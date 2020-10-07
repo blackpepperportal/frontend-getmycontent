@@ -88,52 +88,9 @@ class App extends Component {
     });
   }
 
-  componentDidMount() {
-    this.fetchConfig();
-  }
-
-  async fetchConfig() {
-    const response = await fetch(apiConstants.settingsUrl);
-    const configValue = await response.json();
-    configuration.set({ configData: configValue.data }, { freeze: false });
-    this.setState({ configLoading: false });
-  }
-
   render() {
-    const isLoading = this.state.configLoading;
-
-    if (isLoading) {
-      return (
-        <div className="wrapper">
-          {/* <DashboardLoader></DashboardLoader> */}
-        </div>
-      );
-    }
-
     return (
       <>
-        <Helmet>
-          <title>{configuration.get("configData.site_name")}</title>
-          <link
-            rel="icon"
-            type="image/png"
-            href={configuration.get("configData.site_icon")}
-            sizes="16x16"
-          />
-          <meta
-            name="description"
-            content={configuration.get("configData.meta_description")}
-          ></meta>
-          <meta
-            name="keywords"
-            content={configuration.get("configData.meta_keywords")}
-          ></meta>
-          <meta
-            name="author"
-            content={configuration.get("configData.meta_author")}
-          ></meta>
-        </Helmet>
-
         <Switch>
           <AppRoute
             path={"/"}
