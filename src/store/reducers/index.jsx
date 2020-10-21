@@ -13,6 +13,8 @@ import WithDrawReducer from "./WithDrawReducer";
 import PageReducer from "./PageReducer";
 import ErrorReducer from "./ErrorReducer";
 import ProductOwnerReducer from "./ProductOwnerReducer";
+import PostReducer from "./PostReducer";
+import FollowReducer from "./FollowReducer";
 
 export default combineReducers({
   users: UserReducer,
@@ -28,4 +30,6 @@ export default combineReducers({
   page: PageReducer,
   errorDetails: ErrorReducer,
   proOwner: ProductOwnerReducer,
+  post: PostReducer,
+  follow: FollowReducer,
 });

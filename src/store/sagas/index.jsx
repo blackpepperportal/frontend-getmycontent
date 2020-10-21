@@ -10,7 +10,9 @@ import WalletSaga from "./WalletSaga";
 import TransactionSaga from "./TransactionSaga";
 import WithDrawSaga from "./WithDrawSaga";
 import PageSaga from "./PageSaga";
+import PostSaga from "./PostSaga";
 import ErrorSaga from "./ErrorSaga";
+import FollowSaga from "./FollowSaga";
 
 export default function* rootSaga() {
   yield all([fork(UserSaga)]);
@@ -24,4 +26,6 @@ export default function* rootSaga() {
   yield all([fork(WithDrawSaga)]);
   yield all([fork(ErrorSaga)]);
   yield all([fork(PageSaga)]);
+  yield all([fork(PostSaga)]);
+  yield all([fork(FollowSaga)]);
 }
