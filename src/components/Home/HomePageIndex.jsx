@@ -15,9 +15,14 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-
+import SendTipModal from "../helper/SendTipModal";
 
 const HomePageIndex = () => {
+  const [sendTip, setSendTip] = useState(false);
+
+  const closeSendTipModal = () => {
+    setSendTip(false);
+  };
   return (
     <>
       <div className="home-screen home-sec">
@@ -71,21 +76,21 @@ const HomePageIndex = () => {
                           <Dropdown.Toggle
                             className="btn btn-default dropdown-toggle"
                             type="button"
-                            id="dropdown-basic">
+                            id="dropdown-basic"
+                          >
                             <img
                               src="assets/images/icons/vertical-dots.svg"
                               className="svg-clone vertical-dots"
                             />
                           </Dropdown.Toggle>
                           <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
-
                             <Media as="li">
                               <Link to="#"> Copy link to post </Link>
                             </Media>
                             <Media as="li">
                               <Link to="#">
                                 {" "}
-                          Hide paid blurred from the home feed{" "}
+                                Hide paid blurred from the home feed{" "}
                               </Link>
                             </Media>
                             <Media as="li" className="divider"></Media>
@@ -147,8 +152,7 @@ const HomePageIndex = () => {
                     <Button
                       type=""
                       className="g-icon"
-                      data-toggle="modal"
-                      data-target="#myModal"
+                      onClick={() => setSendTip(true)}
                     >
                       <Image
                         src="assets/images/icons/tip.svg"
@@ -157,85 +161,6 @@ const HomePageIndex = () => {
 
                       <span className="post-tip">SEND TIP</span>
                     </Button>
-
-                    <div className="modal fade" id="myModal" role="dialog">
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <Button
-                              type="button"
-                              className="close"
-                              data-dismiss="modal"
-                            >
-                              &times;
-                            </Button>
-                            <h4 className="modal-title"> Send tip </h4>
-                          </div>
-                          <div className="modal-body">
-                            <div className="header-userinfo">
-                              <div className="g-avatar online_status_class">
-                                <Image
-                                  src="assets/images/avatar/user-4.jpg"
-                                  alt="💕🦋Sarai Rollins🦋💕"
-                                  className="tips__user__img"
-                                />
-                              </div>
-                              <div className="popup-username-row">
-                                <div className="pop-username">
-                                  <div className=""> 💕🦋Sarai Rollins🦋💕</div>
-                                </div>
-                              </div>
-                              <div className="popup-username-row">
-                                <span className="pop-username popuser-realname">
-                                  <div className="pop-user-username">
-                                    {" "}
-                              @sarairollins
-                            </div>
-                                </span>
-                              </div>
-                            </div>
-
-                            <div className="floating-form">
-                              <div className="floating-label">
-                                <Form.Control
-                                  className="floating-input"
-                                  type="text"
-                                  placeholder=" "
-                                />
-                                <span className="highlight"></span>
-                                <label>Tip amount</label>
-                              </div>
-
-                              <div className="floating-label">
-                                <Form.Control
-                                  className="floating-input"
-                                  type="text"
-                                  placeholder=" "
-                                />
-                                <span className="highlight"></span>
-                                <label>Message (optional)</label>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="modal-footer">
-                            <Button
-                              type="button"
-                              className="btn btn-default"
-                              data-dismiss="modal"
-                            >
-                              CANCEL
-                            </Button>
-                            <Button
-                              type="button"
-                              className="btn btn-default"
-                              data-dismiss="modal"
-                            >
-                              SEND TIP
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div className="alignright">
                     <Link to="#">
@@ -268,7 +193,7 @@ const HomePageIndex = () => {
                               Tom{" "}
                               <span className="comment-message">
                                 she's breathtaking
-                        </span>
+                              </span>
                             </span>
                             <small className="text-muted cat">
                               <Button>4:03 am</Button>
@@ -304,7 +229,7 @@ const HomePageIndex = () => {
                               Robert Maskell{" "}
                               <span className="comment-message">
                                 Looks nice necklace?
-                        </span>
+                              </span>
                             </span>
                             <small className="text-muted cat">
                               <Button>4:03 am</Button>
@@ -323,7 +248,10 @@ const HomePageIndex = () => {
                       </div>
                       <div className="alignright">
                         <Link to="#">
-                          <Image src="assets/images/icons/heart.svg" width="16" />
+                          <Image
+                            src="assets/images/icons/heart.svg"
+                            width="16"
+                          />
                         </Link>
                       </div>
                     </div>
@@ -340,7 +268,7 @@ const HomePageIndex = () => {
                               -Johanaki-{" "}
                               <span className="comment-message">
                                 Yes, my goddess!!!
-                        </span>
+                              </span>
                             </span>
                             <small className="text-muted cat">
                               <Button>4:03 am</Button>
@@ -351,15 +279,18 @@ const HomePageIndex = () => {
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
-                              Reply
-                            </Button>
+                                Reply
+                              </Button>
                             </small>
                           </div>
                         </Link>
                       </div>
                       <div className="alignright">
                         <Link to="#">
-                          <Image src="assets/images/icons/heart.svg" width="16" />
+                          <Image
+                            src="assets/images/icons/heart.svg"
+                            width="16"
+                          />
                         </Link>
                       </div>
                     </div>
@@ -386,13 +317,15 @@ const HomePageIndex = () => {
                             </Link>
                           </div>
                           <div className="text-box">
-                          <Form.Control as="textarea" rows={3} 
-                            type="text"
-                            className="form-control"
-                            id="comment"
-                            placeholder="Add a comment"
-                            name="comment"
-                          />
+                            <Form.Control
+                              as="textarea"
+                              rows={3}
+                              type="text"
+                              className="form-control"
+                              id="comment"
+                              placeholder="Add a comment"
+                              name="comment"
+                            />
                           </div>
                           <Button type="submit" className="custom-btn">
                             <i className="fa fa-paper-plane-o"></i>
@@ -408,6 +341,7 @@ const HomePageIndex = () => {
           </div>
         </Container>
       </div>
+      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
     </>
   );
 };
