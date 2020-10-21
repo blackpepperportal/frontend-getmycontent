@@ -24,10 +24,16 @@ import {
   DELETE_ACCOUNT_START,
   DELETE_ACCOUNT_SUCCESS,
   DELETE_ACCOUNT_FAILURE,
+  REGISTER_VERIFY_START,
+  REGISTER_VERIFY_SUCCESS,
+  REGISTER_VERIFY_FAILURE,
+  REGISTER_VERIFY_RESEND_START,
+  REGISTER_VERIFY_RESEND_SUCCESS,
+  REGISTER_VERIFY_RESEND_FAILURE,
+  NOTIFICATION_STATUS_UPDATE_START,
+  NOTIFICATION_STATUS_UPDATE_SUCCESS,
+  NOTIFICATION_STATUS_UPDATE_FAILURE,
   GET_FORGOT_PASSWORD_DETAILS,
-  FETCH_DASHBOARD_START,
-  FETCH_DASHBOARD_SUCCESS,
-  FETCH_DASHBOARD_FAILURE,
 } from "./ActionConstant";
 
 // Get user details actions.
@@ -241,25 +247,67 @@ export function deleteAccountFailure(error) {
   };
 }
 
-// Fetch Dashboard actions.
+// User Delete Account actions.
 
-export function fetchDashboardStart(data) {
+export function registerVerifyStart(data) {
   return {
-    type: FETCH_DASHBOARD_START,
+    type: REGISTER_VERIFY_START,
     data,
   };
 }
 
-export function fetchDashboardSuccess(data) {
+export function registerVerifySuccess(data) {
   return {
-    type: FETCH_DASHBOARD_SUCCESS,
+    type: REGISTER_VERIFY_SUCCESS,
     data,
   };
 }
 
-export function fetchDashboardFailure(error) {
+export function registerVerifyFailure(error) {
   return {
-    type: FETCH_DASHBOARD_FAILURE,
+    type: REGISTER_VERIFY_FAILURE,
+    error,
+  };
+}
+
+export function registerVerifyResendStart(data) {
+  return {
+    type: REGISTER_VERIFY_RESEND_START,
+    data,
+  };
+}
+
+export function registerVerifyResendSuccess(data) {
+  return {
+    type: REGISTER_VERIFY_RESEND_SUCCESS,
+    data,
+  };
+}
+
+export function registerVerifyResendFailure(error) {
+  return {
+    type: REGISTER_VERIFY_RESEND_FAILURE,
+    error,
+  };
+}
+
+export function notificationStatusUpdateStart(data) {
+  return {
+    type: NOTIFICATION_STATUS_UPDATE_START,
+    data,
+  };
+}
+
+export function notificationStatusUpdateSuccess(data) {
+  return {
+    type: NOTIFICATION_STATUS_UPDATE_SUCCESS,
+    data,
+  };
+}
+
+export function notificationStatusUpdateFailure(error) {
+  return {
+    type: NOTIFICATION_STATUS_UPDATE_FAILURE,
     error,
   };
 }

@@ -10,7 +10,6 @@ import {
   getSuccessNotificationMessage,
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
-import { checkLogoutStatus } from "../actions/ErrorAction";
 
 function* changePasswordAPI() {
   try {
@@ -18,20 +17,17 @@ function* changePasswordAPI() {
       (state) => state.changePassword.inputData.data
     );
     const response = yield api.postMethod("change_password", inputData);
+    yield put(changePasswordSuccess(response.data));
     if (response.data.success) {
-      yield put(changePasswordSuccess(response.data));
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/profile");
     } else {
-      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(changePasswordFailure(response.data));
     }
   } catch (error) {
     yield put(changePasswordFailure(error));

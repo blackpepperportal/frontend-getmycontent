@@ -20,10 +20,16 @@ import {
   DELETE_ACCOUNT_START,
   DELETE_ACCOUNT_SUCCESS,
   DELETE_ACCOUNT_FAILURE,
+  REGISTER_VERIFY_START,
+  REGISTER_VERIFY_SUCCESS,
+  REGISTER_VERIFY_FAILURE,
+  REGISTER_VERIFY_RESEND_START,
+  REGISTER_VERIFY_RESEND_SUCCESS,
+  REGISTER_VERIFY_RESEND_FAILURE,
+  NOTIFICATION_STATUS_UPDATE_START,
+  NOTIFICATION_STATUS_UPDATE_SUCCESS,
+  NOTIFICATION_STATUS_UPDATE_FAILURE,
   GET_FORGOT_PASSWORD_DETAILS,
-  FETCH_DASHBOARD_START,
-  FETCH_DASHBOARD_SUCCESS,
-  FETCH_DASHBOARD_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -59,11 +65,27 @@ const initialState = {
     loading: true,
     error: false,
   },
-  dashboard: {
+  registerVerify: {
     data: {},
     loading: true,
     error: false,
-    chartData: {},
+    buttonDisable: false,
+    buttonLoadingContent: null,
+    inputData: {},
+  },
+  registerVerifyResend: {
+    data: {},
+    loading: true,
+    error: false,
+    buttonDisable: false,
+    buttonLoadingContent: null,
+    inputData: {},
+  },
+  notificationUpdate: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
   },
 };
 
@@ -92,7 +114,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         profile: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
       };
@@ -109,21 +131,21 @@ const userReducer = (state = initialState, action) => {
         },
       };
     case UPDATE_USER_DETAILS_START:
+      console.log("profile data ", state.profile.data);
       return {
         ...state,
         profileInputData: {
           data: {
-            name: state.profile.data.name,
+            first_name: state.profile.data.first_name,
+            last_name: state.profile.data.last_name,
             email: state.profile.data.email,
-            about: state.profile.data.about,
+            description: state.profile.data.description,
             mobile:
               state.profile.data.mobile != null
                 ? state.profile.data.mobile
                 : "",
             address: state.profile.data.address,
-            about: state.profile.data.about,
-            picture: action.data.picture == "" ? "" : action.data.picture,
-            cover: action.data.cover == "" ? "" : action.data.cover,
+            picture: action.data,
           },
         },
         buttonDisable: true,
@@ -167,7 +189,10 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loginInputData: {
-          data: action.data,
+          data: {
+            ...state.loginInputData.data,
+            time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
         },
         buttonDisable: true,
         loadingButtonContent: "Loading please wait",
@@ -209,7 +234,10 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         registerInputData: {
-          data: action.data,
+          data: {
+            ...state.registerInputData.data,
+            time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          },
         },
         buttonDisable: true,
         loadingButtonContent: "Loading please wait",
@@ -251,7 +279,9 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         forgotPasswordInputData: {
-          data: action.data,
+          data: {
+            ...state.forgotPasswordInputData.data,
+          },
         },
         buttonDisable: true,
         loadingButtonContent: "Loading please wait",
@@ -278,6 +308,7 @@ const userReducer = (state = initialState, action) => {
         buttonDisable: true,
         loadingButtonContent: "Loading please wait",
       };
+
     case DELETE_ACCOUNT_SUCCESS:
       return {
         ...state,
@@ -290,37 +321,106 @@ const userReducer = (state = initialState, action) => {
         buttonDisable: false,
         loadingButtonContent: null,
       };
-
-    case FETCH_DASHBOARD_START:
+    case REGISTER_VERIFY_START:
       return {
         ...state,
-        dashboard: {
+        registerVerify: {
+          inputData: action.data,
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
           data: {},
           loading: true,
-          error: false,
-          chartData: {},
         },
       };
-    case FETCH_DASHBOARD_SUCCESS:
+    case REGISTER_VERIFY_SUCCESS:
       return {
         ...state,
-        dashboard: {
+        registerVerify: {
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+          data: action.data,
+          loading: false,
+        },
+      };
+    case REGISTER_VERIFY_FAILURE:
+      return {
+        ...state,
+        registerVerify: {
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+          data: {},
+          error: action.error,
+          loading: true,
+        },
+      };
+    case REGISTER_VERIFY_RESEND_START:
+      return {
+        ...state,
+        registerVerifyResend: {
+          inputData: action.data,
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
+          data: {},
+          loading: true,
+        },
+      };
+    case REGISTER_VERIFY_RESEND_SUCCESS:
+      return {
+        ...state,
+        registerVerifyResend: {
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+          data: action.data,
+          loading: false,
+        },
+      };
+    case REGISTER_VERIFY_RESEND_FAILURE:
+      return {
+        ...state,
+        registerVerifyResend: {
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+          data: {},
+          error: action.error,
+          loading: true,
+        },
+      };
+    case NOTIFICATION_STATUS_UPDATE_START:
+      return {
+        ...state,
+        notificationUpdate: {
+          inputData: action.data,
+          data: {},
+          loading: true,
+        },
+      };
+    case NOTIFICATION_STATUS_UPDATE_SUCCESS:
+      return {
+        ...state,
+        notificationUpdate: {
+          inputData: {},
           data: action.data,
           loading: false,
           error: false,
-          chartData: [
-            ["x", "meetings"],
-            ...action.data.last_x_days_meetings_website,
-          ],
+        },
+        profile: {
+          data: action.data.data,
+          loading: false,
+          error: false,
         },
       };
-    case FETCH_DASHBOARD_FAILURE:
+    case NOTIFICATION_STATUS_UPDATE_FAILURE:
       return {
         ...state,
-        dashboard: {
+        notificationUpdate: {
+          inputData: {},
           data: {},
-          loading: false,
           error: action.error,
+          loading: true,
         },
       };
     default:

@@ -13,9 +13,12 @@ import {
   deleteAccountSuccess,
   deleteAccountFailure,
   updateUserDetailsFailure,
-  fetchDashboardSuccess,
-  fetchDashboardFailure,
-  fetchUserDetailsStart,
+  registerVerifyFailure,
+  registerVerifyResendFailure,
+  registerVerifySuccess,
+  registerVerifyResendSuccess,
+  notificationStatusUpdateSuccess,
+  notificationStatusUpdateFailure,
 } from "../actions/UserAction";
 
 import api from "../../Environment";
@@ -26,37 +29,38 @@ import {
   REGISTER_START,
   FORGOT_PASSWORD_START,
   DELETE_ACCOUNT_START,
-  FETCH_DASHBOARD_START,
+  REGISTER_VERIFY_START,
+  REGISTER_VERIFY_RESEND_START,
+  NOTIFICATION_STATUS_UPDATE_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
-import { checkLogoutStatus } from "../actions/ErrorAction";
 
 import {
   getSuccessNotificationMessage,
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
+import { checkLogoutStatus } from "../actions/ErrorAction";
 
 function* getUserDetailsAPI() {
   try {
     const response = yield api.postMethod("profile");
+
     if (response.data.success) {
-      localStorage.setItem("user_picture", response.data.data.picture);
-      localStorage.setItem("user_cover", response.data.data.cover);
-      localStorage.setItem("username", response.data.data.name);
-      localStorage.setItem("no_of_users", response.data.data.no_of_users);
-      localStorage.setItem("no_of_minutes", response.data.data.no_of_minutes);
       yield put(fetchUserDetailsSuccess(response.data));
     } else {
+      yield put(fetchUserDetailsFailure(response.data.error));
+      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(fetchUserDetailsFailure(response.data.error));
     }
   } catch (error) {
     yield put(fetchUserDetailsFailure(error));
-    const notificationMessage = getErrorNotificationMessage(error.message);
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
     yield put(createNotification(notificationMessage));
   }
 }
@@ -64,13 +68,11 @@ function* getUserDetailsAPI() {
 function* updateUserDetailsAPI() {
   try {
     const userData = yield select((state) => state.users.profileInputData.data);
-
     const response = yield api.postMethod("update_profile", userData);
     if (response.data.success) {
       yield put(updateUserDetailsSuccess(response.data));
       localStorage.setItem("user_picture", response.data.data.picture);
-      localStorage.setItem("user_cover", response.data.data.cover);
-      localStorage.setItem("username", response.data.data.name);
+      localStorage.setItem("username", response.data.data.first_name);
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
@@ -85,7 +87,9 @@ function* updateUserDetailsAPI() {
     }
   } catch (error) {
     yield put(updateUserDetailsFailure(error));
-    const notificationMessage = getErrorNotificationMessage(error.message);
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
     yield put(createNotification(notificationMessage));
   }
 }
@@ -95,32 +99,31 @@ function* userLoginAPI() {
     const userData = yield select((state) => state.users.loginInputData.data);
 
     const response = yield api.postMethod("login", userData);
+    yield put(userLoginSuccess(response.data));
     if (response.data.success) {
-      localStorage.setItem("userId", response.data.data.id);
+      if (response.data.code == 1001)
+        window.location.assign("/register/verify");
+      else {
+        localStorage.setItem("userLoginStatus", true);
+        localStorage.setItem("user_picture", response.data.data.picture);
+        localStorage.setItem("username", response.data.data.first_name);
+        const notificationMessage = getSuccessNotificationMessage(
+          response.data.message
+        );
+        yield put(createNotification(notificationMessage));
+        window.location.assign("/dashboard");
+      }
+      localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
-      localStorage.setItem("userLoginStatus", true);
-      localStorage.setItem("user_picture", response.data.data.picture);
-      localStorage.setItem("user_cover", response.data.data.cover);
-      localStorage.setItem("username", response.data.data.name);
-      localStorage.setItem("no_of_users", response.data.data.no_of_users);
-      localStorage.setItem("no_of_minutes", response.data.data.no_of_minutes);
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
-      yield put(userLoginSuccess(response.data));
-      window.location.assign("/dashboard");
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(userLoginFailure(response.data.error));
     }
   } catch (error) {
     yield put(userLoginFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
-
     yield put(createNotification(notificationMessage));
   }
 }
@@ -131,24 +134,23 @@ function* userRegisterAPI() {
       (state) => state.users.registerInputData.data
     );
     const response = yield api.postMethod("register", userData);
+    yield put(userRegisterSuccess(response.data));
+
     if (response.data.success) {
-      localStorage.setItem("userId", response.data.data.id);
+      if (response.data.code == 1001)
+        window.location.assign("/register/verify");
+      else {
+        localStorage.setItem("userLoginStatus", true);
+        localStorage.setItem("user_picture", response.data.data.picture);
+        localStorage.setItem("username", response.data.data.first_name);
+        const notificationMessage = getSuccessNotificationMessage(
+          response.data.message
+        );
+        yield put(createNotification(notificationMessage));
+      }
+      localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
-      localStorage.setItem("userLoginStatus", true);
-      localStorage.setItem("user_picture", response.data.data.picture);
-      localStorage.setItem("username", response.data.data.name);
-      localStorage.setItem("no_of_users", response.data.data.no_of_users);
-      localStorage.setItem("no_of_minutes", response.data.data.no_of_minutes);
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
-      yield put(userRegisterSuccess(response.data));
-      setTimeout(() => {
-        window.location.assign("/dashboard");
-      }, 1000);
     } else {
-      yield put(userRegisterFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
@@ -156,7 +158,9 @@ function* userRegisterAPI() {
     }
   } catch (error) {
     yield put(userRegisterFailure(error));
-    const notificationMessage = getErrorNotificationMessage(error.message);
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
     yield put(createNotification(notificationMessage));
   }
 }
@@ -166,6 +170,7 @@ function* forgotPasswordAPI() {
     const userData = yield select(
       (state) => state.users.forgotPasswordInputData.data
     );
+
     const response = yield api.postMethod("forgot_password", userData);
     yield put(forgotPasswordSuccess(response.data));
     if (response.data.success) {
@@ -173,7 +178,7 @@ function* forgotPasswordAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/login");
+      // window.location.assign("/");
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
@@ -182,7 +187,9 @@ function* forgotPasswordAPI() {
     }
   } catch (error) {
     yield put(forgotPasswordFailure(error));
-    const notificationMessage = getErrorNotificationMessage(error.message);
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
     yield put(createNotification(notificationMessage));
   }
 }
@@ -197,14 +204,6 @@ function* deleteAccountAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("userId");
-      localStorage.removeItem("userLoginStatus");
-      localStorage.removeItem("username");
-      localStorage.removeItem("user_picture");
-      localStorage.removeItem("user_cover");
-      localStorage.removeItem("no_of_users");
-      localStorage.removeItem("no_of_minutes");
       window.location.assign("/");
     } else {
       const notificationMessage = getErrorNotificationMessage(
@@ -214,27 +213,100 @@ function* deleteAccountAPI() {
     }
   } catch (error) {
     yield put(deleteAccountFailure(error));
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* registerVerify() {
+  try {
+    const inputData = yield select(
+      (state) => state.users.registerVerify.inputData
+    );
+
+    const response = yield api.postMethod("verify_email", inputData);
+
+    if (response.data.success) {
+      yield put(registerVerifySuccess(response.data));
+      localStorage.setItem("userId", response.data.data.user_id);
+      localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("userLoginStatus", true);
+      localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("username", response.data.data.first_name);
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+      window.location.assign("/welcome");
+    } else {
+      yield put(registerVerifyFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(registerVerifyFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
 }
 
-function* fetchDashboardAPI() {
+function* registerVerifyResend() {
   try {
-    const response = yield api.postMethod("dashboard");
+    const response = yield api.postMethod("regenerate_email_verification_code");
+
     if (response.data.success) {
-      yield put(fetchDashboardSuccess(response.data.data));
+      yield put(registerVerifyResendSuccess(response.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
     } else {
-      yield put(checkLogoutStatus(response.data));
+      yield put(registerVerifyResendFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(fetchDashboardFailure(response.data.error));
     }
   } catch (error) {
-    yield put(fetchDashboardFailure(error));
-    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(registerVerifyResendFailure(error));
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* notificationStatusUpdateAPI() {
+  try {
+    const userData = yield select(
+      (state) => state.users.notificationUpdate.inputData
+    );
+    const response = yield api.postMethod(
+      "notifications_status_update",
+      userData
+    );
+    if (response.data.success) {
+      yield put(notificationStatusUpdateSuccess(response.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+      yield put(notificationStatusUpdateFailure(response.data.error));
+    }
+  } catch (error) {
+    yield put(notificationStatusUpdateFailure(error));
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
     yield put(createNotification(notificationMessage));
   }
 }
@@ -247,6 +319,11 @@ export default function* pageSaga() {
     yield takeLatest(REGISTER_START, userRegisterAPI),
     yield takeLatest(FORGOT_PASSWORD_START, forgotPasswordAPI),
     yield takeLatest(DELETE_ACCOUNT_START, deleteAccountAPI),
-    yield takeLatest(FETCH_DASHBOARD_START, fetchDashboardAPI),
+    yield takeLatest(REGISTER_VERIFY_START, registerVerify),
+    yield takeLatest(REGISTER_VERIFY_RESEND_START, registerVerifyResend),
+    yield takeLatest(
+      NOTIFICATION_STATUS_UPDATE_START,
+      notificationStatusUpdateAPI
+    ),
   ]);
 }

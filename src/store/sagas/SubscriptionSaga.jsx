@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import { call, select, put, takeLatest, all } from "redux-saga/effects";
 import {
   fetchSubscriptionSuccess,
@@ -8,11 +9,8 @@ import {
   fetchSingleSubscriptionFailure,
   subscriptionPaymentSuccess,
   subscriptionPaymentFailure,
-  enableSubscriptionAutoRenewalSuccess,
-  enableSubscriptionAutoRenewalFailure,
-  disableSubscriptionAutoRenewalSuccess,
-  disableSubscriptionAutoRenewalFailure,
-  fetchMySubscriptionStart,
+  subscriptionAutoRenewalSuccess,
+  subscriptionAutoRenewalFailure,
 } from "../actions/SubscriptionAction";
 
 import api from "../../Environment";
@@ -21,12 +19,10 @@ import {
   FETCH_MY_SUBSCRIPTION_START,
   FETCH_SINGLE_SUBSCRIPTION_START,
   SUBSCRIPTION_PAYMENT_START,
-  ENABLE_SUBSCRIPTION_AUTORENEWAL_START,
-  DISABLE_SUBSCRIPTION_AUTORENEWAL_START,
+  SUBSCRIPTION_AUTO_RENEWAL_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
-import { checkLogoutStatus } from "../actions/ErrorAction";
 
 import {
   getSuccessNotificationMessage,
@@ -36,15 +32,14 @@ import {
 function* getSubscriptionAPI() {
   try {
     const response = yield api.postMethod("subscriptions_index");
+    yield put(fetchSubscriptionSuccess(response.data.data));
     if (response.data.success) {
-      yield put(fetchSubscriptionSuccess(response.data.data));
+      // Do nothing
     } else {
-      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(fetchSubscriptionFailure(response.data.error));
     }
   } catch (error) {
     yield put(fetchSubscriptionFailure(error));
@@ -56,15 +51,14 @@ function* getSubscriptionAPI() {
 function* getMySubscriptionAPI() {
   try {
     const response = yield api.postMethod("subscriptions_history");
+    yield put(fetchMySubscriptionSuccess(response.data.data));
     if (response.data.success) {
-      yield put(fetchMySubscriptionSuccess(response.data.data));
+      // Do nothing
     } else {
-      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(fetchMySubscriptionFailure(response.data.error));
     }
   } catch (error) {
     yield put(fetchMySubscriptionFailure(error));
@@ -78,19 +72,19 @@ function* getSingleSubscriptionAPI() {
     const subscriptionInputData = yield select(
       (state) => state.subscriptions.singleSubInputData.data
     );
+    console.log("subsc", subscriptionInputData);
     const response = yield api.postMethod(
       "subscriptions_view",
       subscriptionInputData
     );
+    yield put(fetchSingleSubscriptionSuccess(response.data.data));
     if (response.data.success) {
-      yield put(fetchSingleSubscriptionSuccess(response.data.data));
+      // Do nothing
     } else {
-      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(fetchSingleSubscriptionFailure(response.data.error));
     }
   } catch (error) {
     yield put(fetchSingleSubscriptionFailure(error));
@@ -105,23 +99,22 @@ function* subscriptionPaymentAPI() {
       (state) => state.subscriptions.subscriptionPayment.inputData
     );
     const response = yield api.postMethod(
-      "subscriptions_payment_by_stripe",
+      "subscriptions_payment_by_card",
       subscriptioDetails
     );
+    yield put(subscriptionPaymentSuccess(response.data.data));
     if (response.data.success) {
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      yield put(subscriptionPaymentSuccess(response.data.data));
-      window.location.assign("/my-subscriptions");
+      window.location.assign("/user/purchase/history");
     } else {
-      yield put(checkLogoutStatus(response.data));
+      yield put(subscriptionPaymentFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(subscriptionPaymentFailure(response.data.error));
     }
   } catch (error) {
     yield put(subscriptionPaymentFailure(error));
@@ -130,64 +123,30 @@ function* subscriptionPaymentAPI() {
   }
 }
 
-function* enableSubscriptionAutoRenewal() {
+function* subscriptionAutoRenewalAPI() {
   try {
-    const inputData = yield select(
-      (state) => state.subscriptions.autoRenewalEnable.inputData
+    const subscriptioDetails = yield select(
+      (state) => state.subscriptions.subscriptionRenew.inputData
     );
     const response = yield api.postMethod(
-      "subscriptions_autorenewal_enable",
-      inputData
+      "subscriptions_autorenewal_status",
+      subscriptioDetails
     );
-
+    yield put(subscriptionAutoRenewalSuccess(response.data.data));
     if (response.data.success) {
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      yield put(enableSubscriptionAutoRenewalSuccess(response.data.data));
-      yield put(fetchMySubscriptionStart());
+      yield put(subscriptionAutoRenewalFailure(response.data.error));
     } else {
-      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(enableSubscriptionAutoRenewalFailure(response.data.error));
     }
   } catch (error) {
-    yield put(enableSubscriptionAutoRenewalFailure(error));
-    const notificationMessage = getErrorNotificationMessage(error.message);
-    yield put(createNotification(notificationMessage));
-  }
-}
-
-function* disableSubscriptionAutoRenewal() {
-  try {
-    const inputData = yield select(
-      (state) => state.subscriptions.autoRenewalDisable.inputData
-    );
-    const response = yield api.postMethod(
-      "subscriptions_autorenewal_cancel",
-      inputData
-    );
-    if (response.data.success) {
-      yield put(disableSubscriptionAutoRenewalSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
-      yield put(fetchMySubscriptionStart());
-    } else {
-      yield put(checkLogoutStatus(response.data));
-      const notificationMessage = getErrorNotificationMessage(
-        response.data.error
-      );
-      yield put(createNotification(notificationMessage));
-      yield put(disableSubscriptionAutoRenewalFailure(response.data.error));
-    }
-  } catch (error) {
-    yield put(disableSubscriptionAutoRenewalFailure(error));
+    yield put(subscriptionAutoRenewalFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
@@ -206,14 +165,8 @@ export default function* pageSaga() {
   ]);
   yield all([
     yield takeLatest(
-      ENABLE_SUBSCRIPTION_AUTORENEWAL_START,
-      enableSubscriptionAutoRenewal
-    ),
-  ]);
-  yield all([
-    yield takeLatest(
-      DISABLE_SUBSCRIPTION_AUTORENEWAL_START,
-      disableSubscriptionAutoRenewal
+      SUBSCRIPTION_AUTO_RENEWAL_START,
+      subscriptionAutoRenewalAPI
     ),
   ]);
 }

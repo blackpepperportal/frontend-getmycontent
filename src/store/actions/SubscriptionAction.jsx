@@ -11,12 +11,9 @@ import {
   SUBSCRIPTION_PAYMENT_START,
   SUBSCRIPTION_PAYMENT_SUCCESS,
   SUBSCRIPTION_PAYMENT_FAILURE,
-  ENABLE_SUBSCRIPTION_AUTORENEWAL_START,
-  ENABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS,
-  ENABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE,
-  DISABLE_SUBSCRIPTION_AUTORENEWAL_START,
-  DISABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS,
-  DISABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE,
+  SUBSCRIPTION_AUTO_RENEWAL_START,
+  SUBSCRIPTION_AUTO_RENEWAL_SUCCESS,
+  SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
 } from "./ActionConstant";
 
 // Get subscription actions.
@@ -111,48 +108,25 @@ export function subscriptionPaymentFailure(error) {
   };
 }
 
-// Get enable autorenewal actions.
+// Subscription auto renewal actions.
 
-export function enableSubscriptionAutoRenewalStart(data) {
+export function subscriptionAutoRenewalStart(data) {
   return {
-    type: ENABLE_SUBSCRIPTION_AUTORENEWAL_START,
+    type: SUBSCRIPTION_AUTO_RENEWAL_START,
     data,
   };
 }
 
-export function enableSubscriptionAutoRenewalSuccess(data) {
+export function subscriptionAutoRenewalSuccess(data) {
   return {
-    type: ENABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS,
+    type: SUBSCRIPTION_AUTO_RENEWAL_SUCCESS,
     data,
   };
 }
 
-export function enableSubscriptionAutoRenewalFailure(error) {
+export function subscriptionAutoRenewalFailure(error) {
   return {
-    type: ENABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE,
-    error,
-  };
-}
-
-// disable auto renewal actions.
-
-export function disableSubscriptionAutoRenewalStart(data) {
-  return {
-    type: DISABLE_SUBSCRIPTION_AUTORENEWAL_START,
-    data,
-  };
-}
-
-export function disableSubscriptionAutoRenewalSuccess(data) {
-  return {
-    type: DISABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS,
-    data,
-  };
-}
-
-export function disableSubscriptionAutoRenewalFailure(error) {
-  return {
-    type: DISABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE,
+    type: SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
     error,
   };
 }

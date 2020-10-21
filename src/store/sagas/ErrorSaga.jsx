@@ -19,7 +19,7 @@ function* logoutStatusCheck() {
       localStorage.removeItem("userLoginStatus");
       localStorage.removeItem("user_picture");
       localStorage.removeItem("username");
-      const notificationMessage = getErrorNotificationMessage(inputData.error.error);
+      const notificationMessage = getErrorNotificationMessage(inputData.error);
       yield put(createNotification(notificationMessage));
       window.location.assign("/");
     } else {

@@ -23,20 +23,19 @@ import {
   getSuccessNotificationMessage,
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
-import { checkLogoutStatus } from "../actions/ErrorAction";
 
 function* getCardDetailsAPI() {
   try {
     const response = yield api.postMethod("cards_list");
+
     if (response.data.success) {
       yield put(fetchCardDetailsSuccess(response.data.data));
     } else {
-      yield put(checkLogoutStatus(response.data));
+      yield put(fetchCardDetailsFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(fetchCardDetailsFailure(response.data));
     }
   } catch (error) {
     yield put(fetchCardDetailsFailure(error));
@@ -49,15 +48,14 @@ function* deleteCardAPI() {
   try {
     const deleteCard = yield select((state) => state.cards.deleteCard.data);
     const response = yield api.postMethod("cards_delete", deleteCard);
+    yield put(deleteCardSuccess(response.data.data));
     if (response.data.success) {
       const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
+        response.data.error
       );
       yield put(createNotification(notificationMessage));
-      yield put(deleteCardSuccess(response.data.data));
       yield put(fetchCardDetailsStart());
     } else {
-      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
@@ -84,7 +82,6 @@ function* selectDefaultCardAPI() {
       yield put(createNotification(notificationMessage));
       yield put(fetchCardDetailsStart());
     } else {
-      yield put(checkLogoutStatus(response.data));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );

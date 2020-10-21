@@ -4,14 +4,12 @@ import configuration from "react-global-configuration";
 import SideBarIndex from "../SideBar/SideBarIndex";
 
 import { connect } from "react-redux";
-import { startMeetingStart } from "../../../store/actions/MeetingAction";
 
 const HeaderIndex = (props) => {
   const [mobileSidebar, setMobileSidebar] = useState(true);
 
   const startMeeting = (event) => {
     event.preventDefault();
-    props.dispatch(startMeetingStart());
   };
 
   return (

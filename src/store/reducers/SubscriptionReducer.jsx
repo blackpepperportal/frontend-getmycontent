@@ -11,12 +11,9 @@ import {
   SUBSCRIPTION_PAYMENT_START,
   SUBSCRIPTION_PAYMENT_SUCCESS,
   SUBSCRIPTION_PAYMENT_FAILURE,
-  ENABLE_SUBSCRIPTION_AUTORENEWAL_START,
-  ENABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS,
-  ENABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE,
-  DISABLE_SUBSCRIPTION_AUTORENEWAL_START,
-  DISABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS,
-  DISABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE,
+  SUBSCRIPTION_AUTO_RENEWAL_START,
+  SUBSCRIPTION_AUTO_RENEWAL_SUCCESS,
+  SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -40,21 +37,17 @@ const initialState = {
     loading: true,
     error: false,
     success: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
-  autoRenewalEnable: {
-    data: {},
+  subscriptionRenew: {
+    inputData: {},
     loading: true,
     error: false,
-    inputData: {},
+    success: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
-  autoRenewalDisable: {
-    data: {},
-    loading: true,
-    error: false,
-    inputData: {},
-  },
-  buttonDisable: false,
-  loadingButtonContent: null,
 };
 
 const SubscriptionReducer = (state = initialState, action) => {
@@ -82,7 +75,7 @@ const SubscriptionReducer = (state = initialState, action) => {
         ...state,
         subscription: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
       };
@@ -109,7 +102,7 @@ const SubscriptionReducer = (state = initialState, action) => {
         ...state,
         mySubscription: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
       };
@@ -139,7 +132,7 @@ const SubscriptionReducer = (state = initialState, action) => {
         ...state,
         singleSubscription: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
       };
@@ -151,9 +144,9 @@ const SubscriptionReducer = (state = initialState, action) => {
           loading: true,
           error: false,
           success: {},
+          buttonDisable: true,
+          loadingButtonContent: "Processing.. Please wait...",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Processing.. Please wait...",
       };
     case SUBSCRIPTION_PAYMENT_SUCCESS:
       return {
@@ -162,79 +155,53 @@ const SubscriptionReducer = (state = initialState, action) => {
           loading: false,
           error: false,
           success: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case SUBSCRIPTION_PAYMENT_FAILURE:
       return {
         ...state,
         subscriptionPayment: {
-          loading: false,
+          loading: true,
           error: action.error,
           success: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
-    case ENABLE_SUBSCRIPTION_AUTORENEWAL_START:
+    case SUBSCRIPTION_AUTO_RENEWAL_START:
       return {
         ...state,
-        autoRenewalEnable: {
-          data: {},
+        subscriptionRenew: {
+          inputData: action.data,
           loading: true,
           error: false,
-          inputData: action.data,
+          success: {},
+          buttonDisable: true,
+          loadingButtonContent: "Processing.. Please wait...",
         },
       };
-    case ENABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS:
+    case SUBSCRIPTION_AUTO_RENEWAL_SUCCESS:
       return {
         ...state,
-        autoRenewalEnable: {
-          data: action.data,
+        subscriptionRenew: {
           loading: false,
           error: false,
-          inputData: {},
+          success: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
       };
-    case ENABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE:
+    case SUBSCRIPTION_AUTO_RENEWAL_FAILURE:
       return {
         ...state,
-        autoRenewalEnable: {
-          data: {},
-          loading: false,
-          error: action.error,
-          inputData: {},
-        },
-      };
-    case DISABLE_SUBSCRIPTION_AUTORENEWAL_START:
-      return {
-        ...state,
-        autoRenewalDisable: {
-          data: {},
+        subscriptionRenew: {
           loading: true,
-          error: false,
-          inputData: action.data,
-        },
-      };
-    case DISABLE_SUBSCRIPTION_AUTORENEWAL_SUCCESS:
-      return {
-        ...state,
-        autoRenewalDisable: {
-          data: action.data,
-          loading: false,
-          error: false,
-          inputData: {},
-        },
-      };
-    case DISABLE_SUBSCRIPTION_AUTORENEWAL_FAILURE:
-      return {
-        ...state,
-        autoRenewalDisable: {
-          data: {},
-          loading: false,
           error: action.error,
-          inputData: {},
+          success: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
       };
     default:

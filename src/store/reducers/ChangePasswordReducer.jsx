@@ -22,7 +22,9 @@ const ChangePasswordReducer = (state = initialState, action) => {
       return {
         ...state,
         inputData: {
-          data: action.data,
+          data: {
+            ...state.inputData.data,
+          },
           loading: true,
           error: false,
         },
@@ -48,7 +50,7 @@ const ChangePasswordReducer = (state = initialState, action) => {
         ...state,
         inputData: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
         buttonDisable: false,

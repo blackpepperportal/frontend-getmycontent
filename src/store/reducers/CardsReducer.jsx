@@ -55,7 +55,7 @@ const CardsReducer = (state = initialState, action) => {
         ...state,
         cardDetails: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
       };
@@ -82,7 +82,7 @@ const CardsReducer = (state = initialState, action) => {
         ...state,
         deleteCard: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
       };
@@ -109,7 +109,7 @@ const CardsReducer = (state = initialState, action) => {
         ...state,
         selectDefaultCard: {
           data: {},
-          loading: false,
+          loading: true,
           error: action.error,
         },
       };

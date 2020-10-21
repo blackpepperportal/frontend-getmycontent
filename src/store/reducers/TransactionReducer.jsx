@@ -1,163 +1,151 @@
 import {
-  FETCH_RECORDING_START,
-  FETCH_RECORDING_SUCCESS,
-  FETCH_RECORDING_FAILURE,
-  DELETE_RECORDING_START,
-  DELETE_RECORDING_SUCCESS,
-  DELETE_RECORDING_FAILURE,
-  SEARCH_RECORDING_START,
-  SEARCH_RECORDING_SUCCESS,
-  SEARCH_RECORDING_FAILURE,
-  FETCH_SINGLE_RECORDING_START,
-  FETCH_SINGLE_RECORDING_SUCCESS,
-  FETCH_SINGLE_RECORDING_FAILURE,
+  FETCH_ALL_TRANSACTION_START,
+  FETCH_ALL_TRANSACTION_SUCCESS,
+  FETCH_ALL_TRANSACTION_FAILURE,
+  FETCH_SENT_PAYMENT_TRANSACTION_START,
+  FETCH_SENT_PAYMENT_TRANSACTION_SUCCESS,
+  FETCH_SENT_PAYMENT_TRANSACTION_FAILURE,
+  FETCH_RECEIVED_PAYMENT_TRANSACTION_START,
+  FETCH_RECEIVED_PAYMENT_TRANSACTION_SUCCESS,
+  FETCH_RECEIVED_PAYMENT_TRANSACTION_FAILURE,
+  FETCH_DEPOSIT_TRANSACTION_START,
+  FETCH_DEPOSIT_TRANSACTION_SUCCESS,
+  FETCH_DEPOSIT_TRANSACTION_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
-  recording: {
+  allTransaction: {
     data: {},
     loading: true,
     error: false,
   },
-  deleteRecording: {
+  sentPayTrans: {
     data: {},
     loading: true,
     error: false,
-    inputData: {},
   },
-  searchRecording: {
+  receivedPayTrans: {
     data: {},
     loading: true,
     error: false,
-    inputData: {},
   },
-  singleRecording: {
+  depositTrans: {
     data: {},
     loading: true,
     error: false,
-    inputData: {},
   },
   buttonDisable: false,
   loadingButtonContent: null,
 };
 
-const RecordingReducer = (state = initialState, action) => {
+const TransactionReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_RECORDING_START:
+    case FETCH_ALL_TRANSACTION_START:
       return {
         ...state,
-        recording: {
+        allTransaction: {
           data: {},
           loading: true,
           error: false,
         },
       };
-    case FETCH_RECORDING_SUCCESS:
+    case FETCH_ALL_TRANSACTION_SUCCESS:
       return {
         ...state,
-        recording: {
+        allTransaction: {
           data: action.data,
           loading: false,
           error: false,
         },
       };
-    case FETCH_RECORDING_FAILURE:
+    case FETCH_ALL_TRANSACTION_FAILURE:
       return {
         ...state,
-        recording: {
+        allTransaction: {
           data: {},
           loading: true,
           error: action.error,
         },
       };
-    case DELETE_RECORDING_START:
+    case FETCH_SENT_PAYMENT_TRANSACTION_START:
       return {
         ...state,
-        deleteRecording: {
-          inputData: action.data,
+        sentPayTrans: {
+          data: {},
           loading: true,
           error: false,
-          data: {},
         },
       };
-    case DELETE_RECORDING_SUCCESS:
+    case FETCH_SENT_PAYMENT_TRANSACTION_SUCCESS:
       return {
         ...state,
-        deleteRecording: {
+        sentPayTrans: {
           data: action.data,
           loading: false,
           error: false,
-          inputData: {},
         },
       };
-    case DELETE_RECORDING_FAILURE:
+    case FETCH_SENT_PAYMENT_TRANSACTION_FAILURE:
       return {
         ...state,
-        deleteRecording: {
+        sentPayTrans: {
           data: {},
           loading: true,
           error: action.error,
-          inputData: {},
         },
       };
-    case SEARCH_RECORDING_START:
+    case FETCH_RECEIVED_PAYMENT_TRANSACTION_START:
       return {
         ...state,
-        searchRecording: {
+        receivedPayTrans: {
           data: {},
           loading: true,
           error: false,
-          inputData: action.data,
         },
       };
-    case SEARCH_RECORDING_SUCCESS:
+    case FETCH_RECEIVED_PAYMENT_TRANSACTION_SUCCESS:
       return {
         ...state,
-        searchRecording: {
+        receivedPayTrans: {
           data: action.data,
           loading: false,
           error: false,
-          inputData: {},
         },
       };
-    case SEARCH_RECORDING_FAILURE:
+    case FETCH_RECEIVED_PAYMENT_TRANSACTION_FAILURE:
       return {
         ...state,
-        searchRecording: {
+        receivedPayTrans: {
           data: {},
           loading: true,
           error: action.error,
-          inputData: {},
         },
       };
-    case FETCH_SINGLE_RECORDING_START:
+    case FETCH_DEPOSIT_TRANSACTION_START:
       return {
         ...state,
-        singleRecording: {
+        depositTrans: {
           data: {},
           loading: true,
           error: false,
-          inputData: action.data,
         },
       };
-    case FETCH_SINGLE_RECORDING_SUCCESS:
+    case FETCH_DEPOSIT_TRANSACTION_SUCCESS:
       return {
         ...state,
-        singleRecording: {
+        depositTrans: {
           data: action.data,
           loading: false,
           error: false,
-          inputData: {},
         },
       };
-    case FETCH_SINGLE_RECORDING_FAILURE:
+    case FETCH_DEPOSIT_TRANSACTION_FAILURE:
       return {
         ...state,
-        singleRecording: {
+        depositTrans: {
           data: {},
           loading: true,
           error: action.error,
-          inputData: {},
         },
       };
 
@@ -166,4 +154,4 @@ const RecordingReducer = (state = initialState, action) => {
   }
 };
 
-export default RecordingReducer;
+export default TransactionReducer;
