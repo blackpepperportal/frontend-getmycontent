@@ -12,7 +12,7 @@ import {
 const SendTipModal = (props) => {
   return (
     <>
-      {/* <Modal
+      <Modal
         className=""
         size="md"
         show={props.sendTip}
@@ -58,17 +58,25 @@ const SendTipModal = (props) => {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="button" className="btn btn-default" data-dismiss="modal">
+            <Button
+              type="button"
+              className="btn btn-default"
+              data-dismiss="modal"
+            >
               CANCEL
             </Button>
-            <Button type="button" className="btn btn-default" data-dismiss="modal">
+            <Button
+              type="button"
+              className="btn btn-default"
+              data-dismiss="modal"
+            >
               SEND TIP
             </Button>
           </Modal.Footer>
         </Form>
-      </Modal> */}
+      </Modal>
 
-      <div className="modal fade" id="myModal" role="dialog">
+      {/* <div className="modal fade" id="myModal" role="dialog">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
@@ -138,7 +146,7 @@ const SendTipModal = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
