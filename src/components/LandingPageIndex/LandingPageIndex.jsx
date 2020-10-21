@@ -5,73 +5,73 @@ const LandingPageIndex = () => {
 
   return (
     <>
-      <section class="login-section">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 hidden-xs iphone-slide-area">
-              <div class="dm-width">
-                <div class="dm-device">
-                  <div class="device">
-                    <div class="screen">
-                      <div class="slider">
-                        <div class="slider__item slider__item--1"></div>
-                        <div class="slider__item slider__item--2"></div>
-                        <div class="slider__item slider__item--3"></div>
-                        <div class="slider__item slider__item--4"></div>
-                        <div class="slider__item slider__item--5"></div>
+      <section className="login-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 col-md-6 col-sm-12 hidden-xs iphone-slide-area">
+              <div className="dm-width">
+                <div className="dm-device">
+                  <div className="device">
+                    <div className="screen">
+                      <div className="slider">
+                        <div className="slider__item slider__item--1"></div>
+                        <div className="slider__item slider__item--2"></div>
+                        <div className="slider__item slider__item--3"></div>
+                        <div className="slider__item slider__item--4"></div>
+                        <div className="slider__item slider__item--5"></div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-              <div class="sign-in form-section">
-                <a href="#" aria-current="page" class="sign-in-logo">
+            <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+              <div className="sign-in form-section">
+                <a href="#" aria-current="page" className="sign-in-logo">
                   <img src="./assets/images/logo.png" width="237" />
                 </a>
-                <p class="login-tagline">
+                <p className="login-tagline">
                   Sign up to make money and interact with your fans!
                 </p>
-                <div class="forms-fields">
-                  <a href="#" class="social-button" id="twitter-connect">
+                <div className="forms-fields">
+                  <a href="#" className="social-button" id="twitter-connect">
                     <span>Sign Up / Login with Twitter</span>
                   </a>
-                  <a href="#" class="social-button" id="google-connect">
+                  <a href="#" className="social-button" id="google-connect">
                     <span>Sign Up / Login with Google</span>
                   </a>
 
-                  <span class="or-line">
+                  <span className="or-line">
                     <span>or</span>
                   </span>
                   <div id="main">
                     <div id="first">
                       {show === "login" ? (
                         <form action="" method="post">
-                          <div class="form-group">
+                          <div className="form-group">
                             <input
                               type="text"
                               id="loginemail"
-                              class="form-control"
+                              className="form-control"
                               placeholder="E-mail"
                               required
                             />
                           </div>
 
-                          <div class="form-group">
+                          <div className="form-group">
                             <input
                               type="password"
                               id="loginpassword"
-                              class="form-control"
+                              className="form-control"
                               placeholder="Password"
                               required
                             />
                           </div>
-                          <div class="forget-password">
+                          <div className="forget-password">
                             <p id="one">
                               <a
                                 type="button"
-                                class="forgot-link"
+                                className="forgot-link"
                                 onClick={(event) => {
                                   event.preventDefault();
                                   setShow("forgotpassword");
@@ -82,11 +82,11 @@ const LandingPageIndex = () => {
                               </a>
                             </p>
                           </div>
-                          <div class="">
+                          <div className="">
                             <button
                               id="login"
                               onclick="location.href = 'home.php';"
-                              class="btn btn-lg"
+                              className="btn btn-lg"
                             >
                               LOGIN
                             </button>
@@ -94,7 +94,7 @@ const LandingPageIndex = () => {
                           <p id="two">Don't have an account yet?</p>
                           <p>
                             <a
-                              class="signup"
+                              className="signup"
                               href="#"
                               id="signup"
                               onClick={(event) => {
@@ -110,51 +110,51 @@ const LandingPageIndex = () => {
                       ) : null}
                       {show === "signup" ? (
                         <form action="" id="form" method="post" name="form">
-                          <div class="form-group">
+                          <div className="form-group">
                             <input
                               type="text"
                               id="registeremail"
-                              class="form-control"
+                              className="form-control"
                               placeholder="E-mail"
                               required
                             />
                           </div>
 
-                          <div class="form-group">
+                          <div className="form-group">
                             <input
                               type="password"
                               id="registerpassword"
-                              class="form-control"
+                              className="form-control"
                               placeholder="Password"
                               required
                             />
                           </div>
 
-                          <div class="form-group">
+                          <div className="form-group">
                             <input
                               type="text"
                               id="name"
-                              class="form-control"
+                              className="form-control"
                               placeholder="Name"
                               required
                             />
                           </div>
 
-                          <div class="form-group round">
+                          <div className="form-group round">
                             <input type="checkbox" id="checkbox" />
                             <label for="checkbox"></label>
-                            <p class="terms">
+                            <p className="terms">
                               By signing up you agree to our{" "}
                               <a href="#">Terms of Service</a> and{" "}
                               <a href="#">Privacy Policy</a>.
                             </p>
                           </div>
 
-                          <div class="form-group">
+                          <div className="form-group">
                             <button
                               id="register"
                               onclick="location.href = 'home.php';"
-                              class="btn btn-lg r-btn"
+                              className="btn btn-lg r-btn"
                             >
                               SIGN UP
                             </button>
@@ -162,7 +162,7 @@ const LandingPageIndex = () => {
                           <p id="two">Already have an account?</p>
                           <p>
                             <a
-                              class="signup"
+                              className="signup"
                               href="#"
                               id="signin"
                               onClick={(event) => {
@@ -178,21 +178,21 @@ const LandingPageIndex = () => {
                       ) : null}
                       {show === "forgotpassword" ? (
                         <form action="" method="post">
-                          <div class="form-group">
+                          <div className="form-group">
                             <input
                               type="text"
                               id="loginemail"
-                              class="form-control"
+                              className="form-control"
                               placeholder="E-mail"
                               required
                             />
                           </div>
 
-                          <div class="">
+                          <div className="">
                             <button
                               id="login"
                               onclick="location.href = 'home.php';"
-                              class="btn btn-lg"
+                              className="btn btn-lg"
                             >
                               Forgot Password
                             </button>
@@ -200,7 +200,7 @@ const LandingPageIndex = () => {
                           <p id="two">Already have an account?</p>
                           <p>
                             <a
-                              class="signup"
+                              className="signup"
                               href="#"
                               id="signin"
                               onClick={(event) => {

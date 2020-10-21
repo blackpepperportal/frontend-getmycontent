@@ -7,11 +7,11 @@ class AuthFooter extends Component {
     return (
       <>
         <footer>
-          <div class="container">
-            <div class="row">
-              <div class="footer-section">
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                  <ul class="list-inline">
+          <div className="container">
+            <div className="row">
+              <div className="footer-section">
+                <div className="col-md-4 col-sm-12 col-xs-12">
+                  <ul className="list-inline">
                     <li>
                       <a href="#">2020 XFans</a>
                     </li>
@@ -23,8 +23,8 @@ class AuthFooter extends Component {
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                  <ul class="list-inline">
+                <div className="col-md-6 col-sm-12 col-xs-12">
+                  <ul className="list-inline">
                     <li>
                       <a href="#"> FAQs </a>
                     </li>
@@ -48,21 +48,21 @@ class AuthFooter extends Component {
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-2 col-sm-12 col-xs-12">
-                  <div class=" dropup">
-                    <i class="fa fa-globe"></i>
+                <div className="col-md-2 col-sm-12 col-xs-12">
+                  <div className=" dropup">
+                    <i className="fa fa-globe"></i>
                     <button
                       type="button"
-                      class="dropdown-toggle countrySelect"
+                      className="dropdown-toggle countrySelect"
                       data-toggle="dropdown"
                     >
                       English
                     </button>
 
-                    <div class="dropdown-menu mobile-popup">
-                      <div class="pop-ups-bg">
-                        <span href="#" class="dropdown-item radio-btns">
-                          <label class="radio-size">
+                    <div className="dropdown-menu mobile-popup">
+                      <div className="pop-ups-bg">
+                        <span href="#" className="dropdown-item radio-btns">
+                          <label className="radio-size">
                             <input
                               type="radio"
                               name="radio"
@@ -72,43 +72,43 @@ class AuthFooter extends Component {
                           </label>
                         </span>
 
-                        <span href="#" class="dropdown-item radio-btns">
-                          <label class="radio-size">
+                        <span href="#" className="dropdown-item radio-btns">
+                          <label className="radio-size">
                             <input type="radio" name="radio" />
                             Indian
                           </label>
                         </span>
 
-                        <span href="#" class="dropdown-item radio-btns">
-                          <label class="radio-size">
+                        <span href="#" className="dropdown-item radio-btns">
+                          <label className="radio-size">
                             <input type="radio" name="radio" />
                             Chinese Simplified
                           </label>
                         </span>
 
-                        <span href="#" class="dropdown-item radio-btns">
-                          <label class="radio-size">
+                        <span href="#" className="dropdown-item radio-btns">
+                          <label className="radio-size">
                             <input type="radio" name="radio" />
                             Chinese Traditional
                           </label>
                         </span>
 
-                        <span href="#" class="dropdown-item radio-btns">
-                          <label class="radio-size">
+                        <span href="#" className="dropdown-item radio-btns">
+                          <label className="radio-size">
                             <input type="radio" name="radio" />
                             Korean
                           </label>
                         </span>
 
-                        <span href="#" class="dropdown-item radio-btns">
-                          <label class="radio-size">
+                        <span href="#" className="dropdown-item radio-btns">
+                          <label className="radio-size">
                             <input type="radio" name="radio" />
                             Italian
                           </label>
                         </span>
 
-                        <span href="#" class="dropdown-item radio-btns">
-                          <label class="radio-size">
+                        <span href="#" className="dropdown-item radio-btns">
+                          <label className="radio-size">
                             <input type="radio" name="radio" />
                             Japanese
                           </label>

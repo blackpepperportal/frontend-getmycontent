@@ -45,7 +45,7 @@ class LoginIndex extends Component {
                           }}
                         ></div>
                         <Link to={"/"}>
-                          <div class="before-logo">
+                          <div className="before-logo">
                             <img
                               src={configuration.get("configData.site_icon")}
                               alt="login"

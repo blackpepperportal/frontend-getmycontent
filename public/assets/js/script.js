@@ -47,8 +47,8 @@ $(document).ready(function(){
                   $('.js-gallery').slick({
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    prevArrow: '<span class="gallery-arrow mod-prev glyphicon glyphicon-chevron-left"></span>',
-                    nextArrow: '<span class="gallery-arrow mod-next glyphicon glyphicon-chevron-right"></span>'
+                    prevArrow: '<span className="gallery-arrow mod-prev glyphicon glyphicon-chevron-left"></span>',
+                    nextArrow: '<span className="gallery-arrow mod-next glyphicon glyphicon-chevron-right"></span>'
                   });
                   
                   $('.js-gallery').slickLightbox({

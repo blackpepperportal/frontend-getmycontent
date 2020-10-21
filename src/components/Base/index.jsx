@@ -27,6 +27,7 @@ import BookmarkVideo from "../Bookmarks/BookmarkVideo";
 import ModelViewProfile from "../Model/ModelViewProfile";
 import FollowingIndex from "../Accounts/Following/FollowingIndex";
 import ListIndex from "../Accounts/List/ListIndex";
+import NotificationIndex from "../Notification/NotificationIndex";
 
 const history = createHistory();
 const $ = window.$;
@@ -149,8 +150,7 @@ class App extends Component {
 
           <AppRoute path={"/list"} component={ListIndex} layout={MainLayout} />
 
-          <PrivateRoute
-            authentication={this.state.authentication}
+          <AppRoute
             path={"/edit-profile"}
             component={EditProfile}
             layout={MainLayout}
@@ -159,6 +159,12 @@ class App extends Component {
           <AppRoute
             path={"/profile"}
             component={ProfileIndex}
+            layout={MainLayout}
+          />
+
+          <AppRoute
+            path={"/notification"}
+            component={NotificationIndex}
             layout={MainLayout}
           />
 

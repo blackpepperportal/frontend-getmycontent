@@ -2,76 +2,79 @@ import React from "react";
 
 const BookmarkAudio = () => {
   return (
-    <section class="edit-profile">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-xs-12">
-            <div class="vertical-menu">
-              <a class="bookmarkes-list " href="bookmarks.php">
-                <img src="assets/images/icons/back.svg" class="svg-clone" />
+    <section className="edit-profile">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4 col-xs-12">
+            <div className="vertical-menu">
+              <a className="bookmarkes-list " href="bookmarks.php">
+                <img src="assets/images/icons/back.svg" className="svg-clone" />
                 BOOKMARKS
               </a>
 
-              <a class="bookmarkes-list " href="bookmarks-photos.php">
+              <a className="bookmarkes-list " href="bookmarks-photos.php">
                 <img
                   src="assets/images/icons/gallery.svg"
-                  class="svg-clone my-p-icons"
+                  className="svg-clone my-p-icons"
                 />
                 Photos
               </a>
 
-              <a class="bookmarkes-list " href="bookmarks-videos.php">
+              <a className="bookmarkes-list " href="bookmarks-videos.php">
                 <img
                   src="assets/images/icons/video.svg"
-                  class="svg-clone my-p-icons"
+                  className="svg-clone my-p-icons"
                 />
                 Videos
               </a>
 
-              <a class="bookmarkes-list active" href="bookmarks-audio.php">
+              <a className="bookmarkes-list active" href="bookmarks-audio.php">
                 <img
                   src="assets/images/icons/audio.svg"
-                  class="svg-clone my-p-icons"
+                  className="svg-clone my-p-icons"
                 />
                 Audio
               </a>
 
-              <a class="bookmarkes-list" href="bookmarks-other.php">
+              <a className="bookmarkes-list" href="bookmarks-other.php">
                 <img
                   src="assets/images/icons/other.svg"
-                  class="svg-clone my-p-icons"
+                  className="svg-clone my-p-icons"
                 />
                 Other
               </a>
 
-              <a class="bookmarkes-list" href="bookmarks-locked.php">
+              <a className="bookmarkes-list" href="bookmarks-locked.php">
                 <img
                   src="assets/images/icons/lock.svg"
-                  class="svg-clone my-p-icons"
+                  className="svg-clone my-p-icons"
                 />
                 Locked
               </a>
             </div>
           </div>
-          <div class="col-md-8">
-            <div class="profile-post-area">
-              <div class="bookmarkes-list bookmarks-right-side">
-                <div class="pull-left">
+          <div className="col-md-8">
+            <div className="profile-post-area">
+              <div className="bookmarkes-list bookmarks-right-side">
+                <div className="pull-left">
                   <h3>Audio</h3>
                 </div>
-                <div class="pull-right">
-                  <a class="bookmarks-filter" href="#">
-                    <img src="assets/images/icons/sort.svg" class="svg-clone" />
+                <div className="pull-right">
+                  <a className="bookmarks-filter" href="#">
+                    <img
+                      src="assets/images/icons/sort.svg"
+                      className="svg-clone"
+                    />
                   </a>
                 </div>
               </div>
 
-              <div class="bookmarks-videos">
-                <div class="empty-message">
-                  <span class="no-bookmarks">
+              <div className="bookmarks-videos">
+                <div className="empty-message">
+                  <span className="no-bookmarks">
                     <img
                       src="assets/images/icons/bookmark.svg"
-                      class="svg-clone"
+                      className="svg-clone"
                       width="64"
                     />
                     <p> No bookmarks yet</p>

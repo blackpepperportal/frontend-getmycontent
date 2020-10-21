@@ -17,100 +17,109 @@ const ModelViewProfile = () => {
 
   return (
     <>
-      <section class="my-profile user-profile-page">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="cover-area">
-                <div class="profile-cover">
+      <section className="my-profile user-profile-page">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="cover-area">
+                <div className="profile-cover">
                   <img
                     src="assets/images/header.jpg"
                     alt="Snow"
                     style={{ width: "100%" }}
                   />
                 </div>
-                <div class="top-left">
-                  <button class="chat-header-back">
-                    <img src="assets/images/icons/back.svg" class="svg-clone" />
+                <div className="top-left">
+                  <button className="chat-header-back">
+                    <img
+                      src="assets/images/icons/back.svg"
+                      className="svg-clone"
+                    />
                   </button>
-                  <h1 class="chat-page-title">Lexy</h1>
-                  <span class="post-count">74 Post</span>
+                  <h1 className="chat-page-title">Lexy</h1>
+                  <span className="post-count">74 Post</span>
                 </div>
 
-                <div class="top-right">
+                <div className="top-right">
                   <a
                     href="#"
-                    class="g-page__header__btn m-with-round-hover has-tooltip"
+                    className="g-page__header__btn m-with-round-hover has-tooltip"
                     data-original-title="null"
                   >
                     <img
                       src="assets/images/icons/vertical-dots.svg"
-                      class="svg-clone"
+                      className="svg-clone"
                     />
                   </a>
                 </div>
               </div>
 
-              <div class="profile--user">
-                <span class="my-profile-status">
+              <div className="profile--user">
+                <span className="my-profile-status">
                   <img src="assets/images/avatar/s-user-3.jpg" />
                 </span>
-                <div class="profile-btn-group">
+                <div className="profile-btn-group">
                   <button
                     type="button"
-                    class="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                     onClick={() => setSendTip(true)}
                     // data-toggle="modal"
                     // data-target="#myModal"
                   >
-                    <img src="assets/images/icons/tip.svg" class="svg-clone" />
+                    <img
+                      src="assets/images/icons/tip.svg"
+                      className="svg-clone"
+                    />
                   </button>
 
                   <button
                     type="button"
-                    class="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
                     <img
                       src="assets/images/icons/message.svg"
-                      class="svg-clone"
+                      className="svg-clone"
                     />
                   </button>
 
                   <button
                     type="button"
-                    class="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
-                    <img src="assets/images/icons/star.svg" class="svg-clone" />
+                    <img
+                      src="assets/images/icons/star.svg"
+                      className="svg-clone"
+                    />
                   </button>
 
                   <button
                     type="button"
-                    class="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
                     <img
                       src="assets/images/icons/share.svg"
-                      class="svg-clone"
+                      className="svg-clone"
                     />
                   </button>
                 </div>
-                <div class="my-profile-names">
-                  <div class="user-name-base-row">
-                    <a href="" class="my-name-lg">
-                      <div class="g-user--name">Lexy</div>
+                <div className="my-profile-names">
+                  <div className="user-name-base-row">
+                    <a href="" className="my-name-lg">
+                      <div className="g-user--name">Lexy</div>
                     </a>
                   </div>
-                  <div class="user-id-row-base">
-                    <a href="" class="user-my-id-text">
-                      <div class="current-user--name">@u63484651</div>
+                  <div className="user-id-row-base">
+                    <a href="" className="user-my-id-text">
+                      <div className="current-user--name">@u63484651</div>
                     </a>
-                    <div class="user-profile -active-status">
+                    <div className="user-profile -active-status">
                       <span>Active</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="profile-about-content">
-                <p class="my-profile-about">
+              <div className="profile-about-content">
+                <p className="my-profile-about">
                   Hi Everyone! Welcome to my Only Fans! I’m so excited to be
                   sharing more of my exclusive photos & videos with you! I want
                   to get more personal with my fans and be able to communicate
@@ -121,23 +130,23 @@ const ModelViewProfile = () => {
                 </p>
               </div>
 
-              <div class="subscription-section">
-                <span class="subscribe-title">Free Subscription </span>
+              <div className="subscription-section">
+                <span className="subscribe-title">Free Subscription </span>
                 <a
                   href=""
-                  class="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                  className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                 >
                   Follow For Free
                 </a>
               </div>
 
-              <div class="tab" role="tabpanel">
+              <div className="tab" role="tabpanel">
                 <ModelProfileTabSec
                   activeSec={activeSec}
                   setActiveSec={setActiveSec}
                 />
 
-                <div class="tab-content tabs">
+                <div className="tab-content tabs">
                   <ModelProfilePostSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
@@ -161,47 +170,47 @@ const ModelViewProfile = () => {
               </div>
             </div>
 
-            {/* <div class="col-md-4 col-xs-12"> */}
-            {/* <div class="gallery-sidebar">
-              <ul class="box-container three-cols">
-                <li class="box">
-                  <div class="inner">
-                    <a href="assets/images/g-6.jpg" class="glightbox">
+            {/* <div className="col-md-4 col-xs-12"> */}
+            {/* <div className="gallery-sidebar">
+              <ul className="box-container three-cols">
+                <li className="box">
+                  <div className="inner">
+                    <a href="assets/images/g-6.jpg" className="glightbox">
                       <img src="assets/images/g-6.jpg" />
                     </a>
                   </div>
                 </li>
-                <li class="box">
-                  <div class="inner">
-                    <a href="assets/images/g-5.jpg" class="glightbox">
+                <li className="box">
+                  <div className="inner">
+                    <a href="assets/images/g-5.jpg" className="glightbox">
                       <img src="assets/images/g-5.jpg" />
                     </a>
                   </div>
                 </li>
-                <li class="box">
-                  <div class="inner">
-                    <a href="assets/images/g-4.jpg" class="glightbox">
+                <li className="box">
+                  <div className="inner">
+                    <a href="assets/images/g-4.jpg" className="glightbox">
                       <img src="assets/images/g-4.jpg" />
                     </a>
                   </div>
                 </li>
-                <li class="box">
-                  <div class="inner">
-                    <a href="assets/images/g-3.jpg" class="glightbox">
+                <li className="box">
+                  <div className="inner">
+                    <a href="assets/images/g-3.jpg" className="glightbox">
                       <img src="assets/images/g-3.jpg" />
                     </a>
                   </div>
                 </li>
-                <li class="box">
-                  <div class="inner">
-                    <a href="assets/images/g-2.jpg" class="glightbox">
+                <li className="box">
+                  <div className="inner">
+                    <a href="assets/images/g-2.jpg" className="glightbox">
                       <img src="assets/images/g-2.jpg" />
                     </a>
                   </div>
                 </li>
-                <li class="box">
-                  <div class="inner">
-                    <a href="assets/images/g-1.jpg" class="glightbox">
+                <li className="box">
+                  <div className="inner">
+                    <a href="assets/images/g-1.jpg" className="glightbox">
                       <img src="assets/images/g-1.jpg" />
                     </a>
                   </div>
@@ -210,14 +219,14 @@ const ModelViewProfile = () => {
             </div> */}
 
             {/* <div
-              class="panel-group"
+              className="panel-group"
               id="accordion"
               role="tablist"
               aria-multiselectable="true"
             >
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                  <h4 class="panel-title">
+              <div className="panel panel-default">
+                <div className="panel-heading" role="tab" id="headingOne">
+                  <h4 className="panel-title">
                     <a
                       role="button"
                       data-toggle="collapse"
@@ -228,21 +237,21 @@ const ModelViewProfile = () => {
                     >
                       <img
                         src="assets/images/icons/highlight.svg"
-                        class="svg-clone"
+                        className="svg-clone"
                       />
-                      <span class="spotify"> Highlights </span>
+                      <span className="spotify"> Highlights </span>
                     </a>
                   </h4>
                 </div>
                 <div
                   id="collapseOne"
-                  class="panel-collapse collapse in"
+                  className="panel-collapse collapse in"
                   role="tabpanel"
                   aria-labelledby="headingOne"
                 >
-                  <div class="panel-body">
-                    <div class="highlights-status">
-                      <div id="stories" class="storiesWrapper"></div>
+                  <div className="panel-body">
+                    <div className="highlights-status">
+                      <div id="stories" className="storiesWrapper"></div>
                     </div>
                   </div>
                 </div>

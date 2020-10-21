@@ -23,106 +23,114 @@ const SendTipModal = (props) => {
             <Modal.Title>Send tip</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div class="header-userinfo">
-              <div class="g-avatar online_status_class">
+            <div className="header-userinfo">
+              <div className="g-avatar online_status_class">
                 <img
                   src="assets/images/avatar/user-4.jpg"
                   alt="💕🦋Sarai Rollins🦋💕"
-                  class="tips__user__img"
+                  className="tips__user__img"
                 />
               </div>
-              <div class="popup-username-row">
-                <div class="pop-username">
-                  <div class=""> 💕🦋Sarai Rollins🦋💕</div>
+              <div className="popup-username-row">
+                <div className="pop-username">
+                  <div className=""> 💕🦋Sarai Rollins🦋💕</div>
                 </div>
               </div>
-              <div class="popup-username-row">
-                <span class="pop-username popuser-realname">
-                  <div class="pop-user-username"> @sarairollins</div>
+              <div className="popup-username-row">
+                <span className="pop-username popuser-realname">
+                  <div className="pop-user-username"> @sarairollins</div>
                 </span>
               </div>
             </div>
 
-            <div class="floating-form">
-              <div class="floating-label">
-                <input class="floating-input" type="text" placeholder=" " />
-                <span class="highlight"></span>
+            <div className="floating-form">
+              <div className="floating-label">
+                <input className="floating-input" type="text" placeholder=" " />
+                <span className="highlight"></span>
                 <label>Tip amount</label>
               </div>
 
-              <div class="floating-label">
-                <input class="floating-input" type="text" placeholder=" " />
-                <span class="highlight"></span>
+              <div className="floating-label">
+                <input className="floating-input" type="text" placeholder=" " />
+                <span className="highlight"></span>
                 <label>Message (optional)</label>
               </div>
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button type="button" class="btn btn-default" data-dismiss="modal">
+            <Button type="button" className="btn btn-default" data-dismiss="modal">
               CANCEL
             </Button>
-            <Button type="button" class="btn btn-default" data-dismiss="modal">
+            <Button type="button" className="btn btn-default" data-dismiss="modal">
               SEND TIP
             </Button>
           </Modal.Footer>
         </Form>
       </Modal> */}
 
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">
+      <div className="modal fade" id="myModal" role="dialog">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <button type="button" className="close" data-dismiss="modal">
                 &times;
               </button>
-              <h4 class="modal-title"> Send tip </h4>
+              <h4 className="modal-title"> Send tip </h4>
             </div>
-            <div class="modal-body">
-              <div class="header-userinfo">
-                <div class="g-avatar online_status_class">
+            <div className="modal-body">
+              <div className="header-userinfo">
+                <div className="g-avatar online_status_class">
                   <img
                     src="assets/images/avatar/user-4.jpg"
                     alt="💕🦋Sarai Rollins🦋💕"
-                    class="tips__user__img"
+                    className="tips__user__img"
                   />
                 </div>
-                <div class="popup-username-row">
-                  <div class="pop-username">
-                    <div class=""> 💕🦋Sarai Rollins🦋💕</div>
+                <div className="popup-username-row">
+                  <div className="pop-username">
+                    <div className=""> 💕🦋Sarai Rollins🦋💕</div>
                   </div>
                 </div>
-                <div class="popup-username-row">
-                  <span class="pop-username popuser-realname">
-                    <div class="pop-user-username"> @sarairollins</div>
+                <div className="popup-username-row">
+                  <span className="pop-username popuser-realname">
+                    <div className="pop-user-username"> @sarairollins</div>
                   </span>
                 </div>
               </div>
 
-              <div class="floating-form">
-                <div class="floating-label">
-                  <input class="floating-input" type="text" placeholder=" " />
-                  <span class="highlight"></span>
+              <div className="floating-form">
+                <div className="floating-label">
+                  <input
+                    className="floating-input"
+                    type="text"
+                    placeholder=" "
+                  />
+                  <span className="highlight"></span>
                   <label>Tip amount</label>
                 </div>
 
-                <div class="floating-label">
-                  <input class="floating-input" type="text" placeholder=" " />
-                  <span class="highlight"></span>
+                <div className="floating-label">
+                  <input
+                    className="floating-input"
+                    type="text"
+                    placeholder=" "
+                  />
+                  <span className="highlight"></span>
                   <label>Message (optional)</label>
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-default"
+                className="btn btn-default"
                 data-dismiss="modal"
               >
                 CANCEL
               </button>
               <button
                 type="button"
-                class="btn btn-default"
+                className="btn btn-default"
                 data-dismiss="modal"
               >
                 SEND TIP

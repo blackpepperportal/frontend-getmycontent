@@ -287,22 +287,22 @@ module.exports = (window => {
       template: {
         timelineItem (itemData) {
           return `
-            <div class="story ${get(itemData, 'seen') === true ? 'seen' : ''}">
-              <a class="item-link" href="${get(itemData, 'link')}">
-                <span class="item-preview">
+            <div className="story ${get(itemData, 'seen') === true ? 'seen' : ''}">
+              <a className="item-link" href="${get(itemData, 'link')}">
+                <span className="item-preview">
                   <img lazy="eager" src="${
                     (option('avatars') || !get(itemData, 'currentPreview'))
                     ? get(itemData, 'photo')
                     : get(itemData, 'currentPreview')
                   }" />
                 </span>
-                <span class="info" itemProp="author" itemScope itemType="http://schema.org/Person">
-                  <strong class="name" itemProp="name">${get(itemData, 'name')}</strong>
-                  <span class="time">${get(itemData, 'lastUpdatedAgo')}</span>
+                <span className="info" itemProp="author" itemScope itemType="http://schema.org/Person">
+                  <strong className="name" itemProp="name">${get(itemData, 'name')}</strong>
+                  <span className="time">${get(itemData, 'lastUpdatedAgo')}</span>
                 </span>
               </a>
               
-              <ul class="items"></ul>
+              <ul className="items"></ul>
             </div>`;
         },
 
@@ -329,37 +329,37 @@ module.exports = (window => {
         },
 
         viewerItem (storyData, currentStoryItem) {
-          return `<div class="story-viewer">
-                    <div class="head">
-                      <div class="left">
-                        ${option('backButton') ? '<a class="back">&lsaquo;</a>' : ''}
+          return `<div className="story-viewer">
+                    <div className="head">
+                      <div className="left">
+                        ${option('backButton') ? '<a className="back">&lsaquo;</a>' : ''}
 
-                        <span class="item-preview">
-                          <img lazy="eager" class="profilePhoto" src="${get(storyData, 'photo')}" />
+                        <span className="item-preview">
+                          <img lazy="eager" className="profilePhoto" src="${get(storyData, 'photo')}" />
                         </span>
 
-                        <div class="info">
-                          <strong class="name">${get(storyData, 'name')}</strong>
-                          <span class="time">${get(storyData, 'timeAgo')}</span>
+                        <div className="info">
+                          <strong className="name">${get(storyData, 'name')}</strong>
+                          <span className="time">${get(storyData, 'timeAgo')}</span>
                         </div>
                       </div>
 
-                      <div class="right">
-                        <span class="time">${get(currentStoryItem, 'timeAgo')}</span>
-                        <span class="loading"></span>
-                        <a class="close" tabIndex="2">&times;</a>
+                      <div className="right">
+                        <span className="time">${get(currentStoryItem, 'timeAgo')}</span>
+                        <span className="loading"></span>
+                        <a className="close" tabIndex="2">&times;</a>
                       </div>
                     </div>
 
-                    <div class="slides-pointers">
-                      <div class="wrap"></div>
+                    <div className="slides-pointers">
+                      <div className="wrap"></div>
                     </div>
 
                     ${
                       option('paginationArrows')
-                      ? `<div class="slides-pagination">
-                          <span class="previous">&lsaquo;</span>
-                          <span class="next">&rsaquo;</span>
+                      ? `<div className="slides-pagination">
+                          <span className="previous">&lsaquo;</span>
+                          <span className="next">&rsaquo;</span>
                         </div>`
                       : ''
                     }
@@ -368,7 +368,7 @@ module.exports = (window => {
 
         viewerItemPointer (index, currentIndex, item) {
           return `<span 
-                    class="${currentIndex === index ? 'active' : ''} ${get(item, 'seen') === true ? 'seen' : ''}"
+                    className="${currentIndex === index ? 'active' : ''} ${get(item, 'seen') === true ? 'seen' : ''}"
                     data-index="${index}" data-item-id="${get(item, 'id')}">
                       <b style="animation-duration:${get(item, 'length') === '' ? '3' : get(item, 'length')}s"></b>
                   </span>`;
@@ -376,18 +376,18 @@ module.exports = (window => {
 
         viewerItemBody (index, currentIndex, item) {
           return `<div 
-                    class="item ${get(item, 'seen') === true ? 'seen' : ''} ${currentIndex === index ? 'active' : ''}"
+                    className="item ${get(item, 'seen') === true ? 'seen' : ''} ${currentIndex === index ? 'active' : ''}"
                     data-time="${get(item, 'time')}" data-type="${get(item, 'type')}" data-index="${index}" data-item-id="${get(item, 'id')}">
                     ${
                       get(item, 'type') === 'video'
-                      ? `<video class="media" muted webkit-playsinline playsinline preload="auto" src="${get(item, 'src')}" ${get(item, 'type')}></video>
-                        <b class="tip muted">${option('language', 'unmute')}</b>`
-                      : `<img loading="auto" class="media" src="${get(item, 'src')}" ${get(item, 'type')} />
+                      ? `<video className="media" muted webkit-playsinline playsinline preload="auto" src="${get(item, 'src')}" ${get(item, 'type')}></video>
+                        <b className="tip muted">${option('language', 'unmute')}</b>`
+                      : `<img loading="auto" className="media" src="${get(item, 'src')}" ${get(item, 'type')} />
                     `}
 
                     ${
                       get(item, 'link')
-                      ? `<a class="tip link" href="${get(item, 'link')}" rel="noopener" target="_blank">
+                      ? `<a className="tip link" href="${get(item, 'link')}" rel="noopener" target="_blank">
                             ${!get(item, 'linkText') || get(item, 'linkText') === '' ? option('language', 'visitLink') : get(item, 'linkText')}
                           </a>`
                       : ''
@@ -875,7 +875,7 @@ module.exports = (window => {
           const modalContainer = query('#zuck-modal');
 
           const callback = function () {
-            modalContent.innerHTML = `<div id="zuck-modal-slider-${id}" class="slider"></div>`;
+            modalContent.innerHTML = `<div id="zuck-modal-slider-${id}" className="slider"></div>`;
 
             const storyData = zuck.data[storyId];
             const currentItem = storyData.currentItem || 0;

@@ -240,7 +240,7 @@
     if (self.btnCache.length) {
       var _html = '';
       for (var i = 0, l = self.btnCache.length; i < l; i++) {
-        _html += '<a class="' + self.btnCache[i].className + '" rel="cxdialog" rev="' + self.btnCache[i].name + '">' + self.btnCache[i].text + '</a>';
+        _html += '<a className="' + self.btnCache[i].className + '" rel="cxdialog" rev="' + self.btnCache[i].name + '">' + self.btnCache[i].text + '</a>';
       };
       self.dom.btns.html(_html).appendTo(self.dom.box);
     };

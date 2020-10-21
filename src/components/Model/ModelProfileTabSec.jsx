@@ -2,10 +2,10 @@ import React from "react";
 
 const ModelProfileTabSec = (props) => {
   return (
-    <ul class="nav nav-tabs" role="tablist">
+    <ul className="nav nav-tabs" role="tablist">
       <li
         role="presentation"
-        class={props.activeSec === "post" ? "active" : ""}
+        className={props.activeSec === "post" ? "active" : ""}
       >
         <a
           href="#Section1"
@@ -14,12 +14,12 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("post")}
         >
-          <img src="assets/images/icons/post.svg" class="svg-clone" />
+          <img src="assets/images/icons/post.svg" className="svg-clone" />
         </a>
       </li>
       <li
         role="presentation"
-        class={props.activeSec === "photo" ? "active" : ""}
+        className={props.activeSec === "photo" ? "active" : ""}
       >
         <a
           href="#Section2"
@@ -28,12 +28,12 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("photo")}
         >
-          <img src="assets/images/icons/gallery.svg" class="svg-clone" />
+          <img src="assets/images/icons/gallery.svg" className="svg-clone" />
         </a>
       </li>
       <li
         role="presentation"
-        class={props.activeSec === "video" ? "active" : ""}
+        className={props.activeSec === "video" ? "active" : ""}
       >
         <a
           href="#Section3"
@@ -42,12 +42,12 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("video")}
         >
-          <img src="assets/images/icons/video.svg" class="svg-clone" />
+          <img src="assets/images/icons/video.svg" className="svg-clone" />
         </a>
       </li>
       <li
         role="presentation"
-        class={props.activeSec === "archive" ? "active" : ""}
+        className={props.activeSec === "archive" ? "active" : ""}
       >
         <a
           href="#Section4"
@@ -56,7 +56,7 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("archive")}
         >
-          <img src="assets/images/icons/archive.svg" class="svg-clone" />
+          <img src="assets/images/icons/archive.svg" className="svg-clone" />
         </a>
       </li>
     </ul>

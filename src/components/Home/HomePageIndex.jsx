@@ -4,68 +4,68 @@ import HomePageSuggesstion from "./HomePageSuggesstion";
 const HomePageIndex = () => {
   return (
     <>
-      <section class="home-screen">
-        <div class="container">
-          <div class="row search-row">
-            <div class="search-section">
-              <a href="#" class="search-button">
+      <section className="home-screen">
+        <div className="container">
+          <div className="row search-row">
+            <div className="search-section">
+              <a href="#" className="search-button">
                 Home
               </a>
-              <div class="search-container">
+              <div className="search-container">
                 <form action="/search" method="get">
                   <input
-                    class="search expandright"
+                    className="search expandright"
                     id="searchright"
                     type="search"
                     name="q"
                     placeholder="Search"
                   />
-                  <label class="button searchbutton" for="searchright">
-                    <span class="mglass">&#9906;</span>
+                  <label className="button searchbutton" for="searchright">
+                    <span className="mglass">&#9906;</span>
                   </label>
                 </form>
               </div>
             </div>
           </div>
-          <div class="">
-            <div class="col-md-8 custom-padding">
-              <div class="container">
-                <div class="row">
-                  <div id="stories" class="storiesWrapper"></div>
+          <div className="">
+            <div className="col-md-8 custom-padding">
+              <div className="container">
+                <div className="row">
+                  <div id="stories" className="storiesWrapper"></div>
                 </div>
               </div>
 
-              <div class="post-list">
-                <div class="post-header">
-                  <div class="alignleft">
-                    <a class="title-container" href="user-profile.php">
+              <div className="post-list">
+                <div className="post-header">
+                  <div className="alignleft">
+                    <a className="title-container" href="user-profile.php">
                       <img
                         src="assets/images/avatar/user.jpg"
-                        class="user-image img-responsive"
+                        className="user-image img-responsive"
                       />
-                      <div class="user-name">
-                        <span class="post-user-name">Lexy</span>
-                        <span class="post-user-">@lexypanterratwerk</span>
+                      <div className="user-name">
+                        <span className="post-user-name">Lexy</span>
+                        <span className="post-user-">@lexypanterratwerk</span>
                       </div>
                     </a>
                   </div>
-                  <div class="alignright">
-                    <div class="post-header-right-side">
-                      <span class="post-time">
+                  <div className="alignright">
+                    <div className="post-header-right-side">
+                      <span className="post-time">
                         {" "}
-                        <span class="post-time">3 hours ago </span>
-                        <div class="dropdown">
+                        <span className="post-time">3 hours ago </span>
+                        <div className="dropdown">
                           <button
-                            class="btn btn-default dropdown-toggle"
+                            className="btn btn-default dropdown-toggle"
                             type="button"
                             data-toggle="dropdown"
                           >
                             <img
                               src="assets/images/icons/vertical-dots.svg"
-                              class="svg-clone vertical-dots"
+                              className="svg-clone vertical-dots"
                             />
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-right">
+                          <ul className="dropdown-menu dropdown-menu-right">
                             <li>
                               <a href="#"> Copy link to post </a>
                             </li>
@@ -75,7 +75,7 @@ const HomePageIndex = () => {
                                 Hide paid blurred from the home feed{" "}
                               </a>
                             </li>
-                            <li class="divider"></li>
+                            <li className="divider"></li>
                             <li>
                               <a href="#"> I don't like this post </a>
                             </li>
@@ -85,18 +85,18 @@ const HomePageIndex = () => {
                           </ul>
                         </div>
                       </span>
-                      <span class="post-time">
+                      <span className="post-time">
                         {" "}
-                        <span class="post-tip-lock">$30 </span>
+                        <span className="post-tip-lock">$30 </span>
                         <a href="#">
-                          <i class="fa fa-lock"></i>
+                          <i className="fa fa-lock"></i>
                         </a>
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div class="post-content">
+                <div className="post-content">
                   <p>
                     VIBIN IN THE WILDERNESS!! bending over twerkin in this see
                     thru skirt as i walk up the stairs.. the camera view is
@@ -104,77 +104,77 @@ const HomePageIndex = () => {
                     covering much!
                   </p>
 
-                  <div class="post-image">
-                    <div class="">
-                      <div class="gallery js-gallery">
+                  <div className="post-image">
+                    <div className="">
+                      <div className="gallery js-gallery">
                         <img
                           src="assets/images/g-3.jpg"
-                          class="post-view-image"
+                          className="post-view-image"
                         />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="post-icons">
-                  <div class="alignleft">
+                <div className="post-icons">
+                  <div className="alignleft">
                     <a href="">
                       <img
                         src="assets/images/icons/heart.svg"
-                        class="svg-clone"
+                        className="svg-clone"
                       />
                     </a>
                     <a href="">
                       <img
                         src="assets/images/icons/comment.svg"
-                        class="svg-clone"
+                        className="svg-clone"
                       />
                     </a>
 
                     <button
                       type=""
-                      class="g-icon"
+                      className="g-icon"
                       data-toggle="modal"
                       data-target="#myModal"
                     >
                       <img
                         src="assets/images/icons/tip.svg"
-                        class="svg-clone"
+                        className="svg-clone"
                       />
 
-                      <span class="post-tip">SEND TIP</span>
+                      <span className="post-tip">SEND TIP</span>
                     </button>
 
-                    <div class="modal fade" id="myModal" role="dialog">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
+                    <div className="modal fade" id="myModal" role="dialog">
+                      <div className="modal-dialog">
+                        <div className="modal-content">
+                          <div className="modal-header">
                             <button
                               type="button"
-                              class="close"
+                              className="close"
                               data-dismiss="modal"
                             >
                               &times;
                             </button>
-                            <h4 class="modal-title"> Send tip </h4>
+                            <h4 className="modal-title"> Send tip </h4>
                           </div>
-                          <div class="modal-body">
-                            <div class="header-userinfo">
-                              <div class="g-avatar online_status_class">
+                          <div className="modal-body">
+                            <div className="header-userinfo">
+                              <div className="g-avatar online_status_class">
                                 <img
                                   src="assets/images/avatar/user-4.jpg"
                                   alt="💕🦋Sarai Rollins🦋💕"
-                                  class="tips__user__img"
+                                  className="tips__user__img"
                                 />
                               </div>
-                              <div class="popup-username-row">
-                                <div class="pop-username">
-                                  <div class=""> 💕🦋Sarai Rollins🦋💕</div>
+                              <div className="popup-username-row">
+                                <div className="pop-username">
+                                  <div className=""> 💕🦋Sarai Rollins🦋💕</div>
                                 </div>
                               </div>
-                              <div class="popup-username-row">
-                                <span class="pop-username popuser-realname">
-                                  <div class="pop-user-username">
+                              <div className="popup-username-row">
+                                <span className="pop-username popuser-realname">
+                                  <div className="pop-user-username">
                                     {" "}
                                     @sarairollins
                                   </div>
@@ -182,39 +182,39 @@ const HomePageIndex = () => {
                               </div>
                             </div>
 
-                            <div class="floating-form">
-                              <div class="floating-label">
+                            <div className="floating-form">
+                              <div className="floating-label">
                                 <input
-                                  class="floating-input"
+                                  className="floating-input"
                                   type="text"
                                   placeholder=" "
                                 />
-                                <span class="highlight"></span>
+                                <span className="highlight"></span>
                                 <label>Tip amount</label>
                               </div>
 
-                              <div class="floating-label">
+                              <div className="floating-label">
                                 <input
-                                  class="floating-input"
+                                  className="floating-input"
                                   type="text"
                                   placeholder=" "
                                 />
-                                <span class="highlight"></span>
+                                <span className="highlight"></span>
                                 <label>Message (optional)</label>
                               </div>
                             </div>
                           </div>
-                          <div class="modal-footer">
+                          <div className="modal-footer">
                             <button
                               type="button"
-                              class="btn btn-default"
+                              className="btn btn-default"
                               data-dismiss="modal"
                             >
                               CANCEL
                             </button>
                             <button
                               type="button"
-                              class="btn btn-default"
+                              className="btn btn-default"
                               data-dismiss="modal"
                             >
                               SEND TIP
@@ -224,42 +224,46 @@ const HomePageIndex = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="alignright">
+                  <div className="alignright">
                     <a href="#">
                       <img
                         src="assets/images/icons/bookmark.svg"
-                        class="svg-clone"
+                        className="svg-clone"
                       />
                     </a>
                   </div>
                 </div>
 
-                <div class="likes alignleft">
+                <div className="likes alignleft">
                   <p>78 Likes</p>
-                  <button class="Show view-comments">View 11 comments</button>
-                  <button class="Hide view-comments">View less comments</button>
+                  <button className="Show view-comments">
+                    View 11 comments
+                  </button>
+                  <button className="Hide view-comments">
+                    View less comments
+                  </button>
                   <div id="target">
-                    <div class="row comment-row">
-                      <div class="alignleft">
-                        <a class="title-container" href="#">
+                    <div className="row comment-row">
+                      <div className="alignleft">
+                        <a className="title-container" href="#">
                           <img
                             src="assets/images/avatar/user.jpg"
-                            class="user-image img-responsive"
+                            className="user-image img-responsive"
                           />
-                          <div class="user-name">
-                            <span class="card-title">
+                          <div className="user-name">
+                            <span className="card-title">
                               Tom{" "}
-                              <span class="comment-message">
+                              <span className="comment-message">
                                 she's breathtaking
                               </span>
                             </span>
-                            <small class="text-muted cat">
+                            <small className="text-muted cat">
                               <button>4:03 am</button>
                               <button>5 Likes</button>
                               <button>
                                 {" "}
                                 <i
-                                  class="fas fa-users text-info"
+                                  className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
@@ -268,34 +272,34 @@ const HomePageIndex = () => {
                           </div>
                         </a>
                       </div>
-                      <div class="alignright">
+                      <div className="alignright">
                         <a href="#">
                           <img src="assets/images/icons/heart.svg" width="16" />
                         </a>
                       </div>
                     </div>
 
-                    <div class="row comment-row">
-                      <div class="alignleft">
-                        <a class="title-container" href="#">
+                    <div className="row comment-row">
+                      <div className="alignleft">
+                        <a className="title-container" href="#">
                           <img
                             src="assets/images/avatar/user-2.jpg"
-                            class="user-image img-responsive"
+                            className="user-image img-responsive"
                           />
-                          <div class="user-name">
-                            <span class="card-title">
+                          <div className="user-name">
+                            <span className="card-title">
                               Robert Maskell{" "}
-                              <span class="comment-message">
+                              <span className="comment-message">
                                 Looks nice necklace?
                               </span>
                             </span>
-                            <small class="text-muted cat">
+                            <small className="text-muted cat">
                               <button>4:03 am</button>
                               <button>5 Likes</button>
                               <button>
                                 {" "}
                                 <i
-                                  class="fas fa-users text-info"
+                                  className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
@@ -304,34 +308,34 @@ const HomePageIndex = () => {
                           </div>
                         </a>
                       </div>
-                      <div class="alignright">
+                      <div className="alignright">
                         <a href="#">
                           <img src="assets/images/icons/heart.svg" width="16" />
                         </a>
                       </div>
                     </div>
 
-                    <div class="row comment-row">
-                      <div class="alignleft">
-                        <a class="title-container" href="#">
+                    <div className="row comment-row">
+                      <div className="alignleft">
+                        <a className="title-container" href="#">
                           <img
                             src="assets/images/avatar/user-3.jpg"
-                            class="user-image img-responsive"
+                            className="user-image img-responsive"
                           />
-                          <div class="user-name">
-                            <span class="card-title">
+                          <div className="user-name">
+                            <span className="card-title">
                               -Johanaki-{" "}
-                              <span class="comment-message">
+                              <span className="comment-message">
                                 Yes, my goddess!!!
                               </span>
                             </span>
-                            <small class="text-muted cat">
+                            <small className="text-muted cat">
                               <button>4:03 am</button>
                               <button>5 Likes</button>
                               <button>
                                 {" "}
                                 <i
-                                  class="fas fa-users text-info"
+                                  className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
@@ -340,45 +344,45 @@ const HomePageIndex = () => {
                           </div>
                         </a>
                       </div>
-                      <div class="alignright">
+                      <div className="alignright">
                         <a href="#">
                           <img src="assets/images/icons/heart.svg" width="16" />
                         </a>
                       </div>
                     </div>
 
-                    <div class="comment-box">
-                      <div class="alignleft">
+                    <div className="comment-box">
+                      <div className="alignleft">
                         <a href="#">
                           <img src="assets/images/icons/gif.png" />
                         </a>
                       </div>
-                      <div class="alignright">
+                      <div className="alignright">
                         <a href="#">
                           <img src="assets/images/icons/smile.png" />
                         </a>
                       </div>
-                      <div class="comment-box-form">
-                        <form class="form-inline" action="">
-                          <div class="user-picture">
-                            <a class="title-container" href="#">
+                      <div className="comment-box-form">
+                        <form className="form-inline" action="">
+                          <div className="user-picture">
+                            <a className="title-container" href="#">
                               <img
                                 src="assets/images/avatar/user-3.jpg"
-                                class="user-image img-responsive"
+                                className="user-image img-responsive"
                               />
                             </a>
                           </div>
-                          <div class="text-box">
+                          <div className="text-box">
                             <textarea
                               ype="text"
-                              class="form-control"
+                              className="form-control"
                               id="comment"
                               placeholder="Add a comment"
                               name="comment"
                             ></textarea>
                           </div>
-                          <button type="submit" class="custom-btn">
-                            <i class="fa fa-paper-plane-o"></i>
+                          <button type="submit" className="custom-btn">
+                            <i className="fa fa-paper-plane-o"></i>
                           </button>
                         </form>
                       </div>

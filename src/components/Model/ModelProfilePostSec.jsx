@@ -5,72 +5,75 @@ const ModelProfilePostSec = (props) => {
   return (
     <div
       role="tabpanel"
-      class={
+      className={
         props.activeSec === "post" ? "tab-pane fade in active" : "tab-pane fade"
       }
       id="Section1"
     >
-      <div class="profile-post-area">
-        <div class="alignleft">
-          <span class="post-number">1 Post</span>
+      <div className="profile-post-area">
+        <div className="alignleft">
+          <span className="post-number">1 Post</span>
         </div>
-        <div class="alignright">
-          <div class="profile-search-post">
-            <form class="searchbox">
+        <div className="alignright">
+          <div className="profile-search-post">
+            <form className="searchbox">
               <input
                 type="search"
                 placeholder="Search......"
                 name="search"
-                class="searchbox-input"
+                className="searchbox-input"
                 onkeyup="buttonUp();"
                 required
               />
-              <input type="submit" class="searchbox-submit" value="" />
-              <span class="searchbox-icon">
-                <img src="assets/images/icons/search.svg" class="svg-clone" />
+              <input type="submit" className="searchbox-submit" value="" />
+              <span className="searchbox-icon">
+                <img
+                  src="assets/images/icons/search.svg"
+                  className="svg-clone"
+                />
               </span>
             </form>
           </div>
         </div>
       </div>
-      <div class="post-list">
-        <div class="post-header">
-          <div class="alignleft">
-            <a class="title-container" href="#">
+      <div className="post-list">
+        <div className="post-header">
+          <div className="alignleft">
+            <a className="title-container" href="#">
               <img
                 src="assets/images/avatar/user.jpg"
-                class="user-image img-responsive"
+                className="user-image img-responsive"
               />
-              <div class="user-name">
-                <span class="post-user-name">John</span>
-                <span class="post-user-">@u63484651</span>
+              <div className="user-name">
+                <span className="post-user-name">John</span>
+                <span className="post-user-">@u63484651</span>
               </div>
             </a>
           </div>
-          <div class="alignright">
-            <div class="post-header-right-side">
-              <span class="post-time">
+          <div className="alignright">
+            <div className="post-header-right-side">
+              <span className="post-time">
                 {" "}
-                <span class="post-time">3 hours ago </span>
-                <div class="dropdown">
+                <span className="post-time">3 hours ago </span>
+                <div className="dropdown">
                   <button
-                    class="btn btn-default dropdown-toggle"
+                    className="btn btn-default dropdown-toggle"
                     type="button"
                     data-toggle="dropdown"
                   >
                     <img
                       src="assets/images/icons/vertical-dots.svg"
-                      class="svg-clone vertical-dots"
+                      className="svg-clone vertical-dots"
                     />
                   </button>
-                  <ul class="dropdown-menu dropdown-menu-right">
+                  <ul className="dropdown-menu dropdown-menu-right">
                     <li>
                       <a href="#"> Copy link to post </a>
                     </li>
                     <li>
                       <a href="#"> Hide paid blurred from the home feed </a>
                     </li>
-                    <li class="divider"></li>
+                    <li className="divider"></li>
                     <li>
                       <a href="#"> I don't like this post </a>
                     </li>
@@ -84,60 +87,68 @@ const ModelProfilePostSec = (props) => {
           </div>
         </div>
 
-        <div class="post-content">
+        <div className="post-content">
           <p>
             VIBIN IN THE WILDERNESS!! bending over twerkin in this see thru
             skirt as i walk up the stairs.. the camera view is below me & my
             skirt keeps coming up! this thong isn’t covering much!
           </p>
 
-          <div class="post-image">
-            <div class="">
-              <img class="post-photo" src="assets/images/post/post4.jpg" />
+          <div className="post-image">
+            <div className="">
+              <img className="post-photo" src="assets/images/post/post4.jpg" />
             </div>
           </div>
         </div>
 
-        <div class="post-icons">
-          <div class="alignleft">
+        <div className="post-icons">
+          <div className="alignleft">
             <a href="">
-              <img src="assets/images/icons/heart.svg" class="svg-clone" />
+              <img src="assets/images/icons/heart.svg" className="svg-clone" />
             </a>
             <a href="">
-              <img src="assets/images/icons/comment.svg" class="svg-clone" />
+              <img
+                src="assets/images/icons/comment.svg"
+                className="svg-clone"
+              />
             </a>
           </div>
-          <div class="alignright">
+          <div className="alignright">
             <a href="#">
-              <img src="assets/images/icons/bookmark.svg" class="svg-clone" />
+              <img
+                src="assets/images/icons/bookmark.svg"
+                className="svg-clone"
+              />
             </a>
           </div>
         </div>
 
-        <div class="likes alignleft">
+        <div className="likes alignleft">
           <p>78 Likes</p>
-          <button class="Show view-comments">View 11 comments</button>
-          <button class="Hide view-comments">View less comments</button>
+          <button className="Show view-comments">View 11 comments</button>
+          <button className="Hide view-comments">View less comments</button>
           <div id="target">
-            <div class="row comment-row">
-              <div class="alignleft">
-                <a class="title-container" href="#">
+            <div className="row comment-row">
+              <div className="alignleft">
+                <a className="title-container" href="#">
                   <img
                     src="assets/images/avatar/user.jpg"
-                    class="user-image img-responsive"
+                    className="user-image img-responsive"
                   />
-                  <div class="user-name">
-                    <span class="card-title">
+                  <div className="user-name">
+                    <span className="card-title">
                       Tom{" "}
-                      <span class="comment-message">she's breathtaking</span>
+                      <span className="comment-message">
+                        she's breathtaking
+                      </span>
                     </span>
-                    <small class="text-muted cat">
+                    <small className="text-muted cat">
                       <button>4:03 am</button>
                       <button>5 Likes</button>
                       <button>
                         {" "}
                         <i
-                          class="fas fa-users text-info"
+                          className="fas fa-users text-info"
                           style={{ display: "none" }}
                         ></i>{" "}
                         Reply
@@ -146,34 +157,34 @@ const ModelProfilePostSec = (props) => {
                   </div>
                 </a>
               </div>
-              <div class="alignright">
+              <div className="alignright">
                 <a href="#">
                   <img src="assets/images/icons/heart.svg" width="16" />
                 </a>
               </div>
             </div>
 
-            <div class="row comment-row">
-              <div class="alignleft">
-                <a class="title-container" href="#">
+            <div className="row comment-row">
+              <div className="alignleft">
+                <a className="title-container" href="#">
                   <img
                     src="assets/images/avatar/user-2.jpg"
-                    class="user-image img-responsive"
+                    className="user-image img-responsive"
                   />
-                  <div class="user-name">
-                    <span class="card-title">
+                  <div className="user-name">
+                    <span className="card-title">
                       Robert Maskell{" "}
-                      <span class="comment-message">
+                      <span className="comment-message">
                         You have your own name on a necklace?
                       </span>
                     </span>
-                    <small class="text-muted cat">
+                    <small className="text-muted cat">
                       <button>4:03 am</button>
                       <button>5 Likes</button>
                       <button>
                         {" "}
                         <i
-                          class="fas fa-users text-info"
+                          className="fas fa-users text-info"
                           style={{ display: "none" }}
                         ></i>{" "}
                         Reply
@@ -182,32 +193,34 @@ const ModelProfilePostSec = (props) => {
                   </div>
                 </a>
               </div>
-              <div class="alignright">
+              <div className="alignright">
                 <a href="#">
                   <img src="assets/images/icons/heart.svg" width="16" />
                 </a>
               </div>
             </div>
 
-            <div class="row comment-row">
-              <div class="alignleft">
-                <a class="title-container" href="#">
+            <div className="row comment-row">
+              <div className="alignleft">
+                <a className="title-container" href="#">
                   <img
                     src="assets/images/avatar/user-3.jpg"
-                    class="user-image img-responsive"
+                    className="user-image img-responsive"
                   />
-                  <div class="user-name">
-                    <span class="card-title">
+                  <div className="user-name">
+                    <span className="card-title">
                       -Johanaki-{" "}
-                      <span class="comment-message">Yes, my goddess!!!</span>
+                      <span className="comment-message">
+                        Yes, my goddess!!!
+                      </span>
                     </span>
-                    <small class="text-muted cat">
+                    <small className="text-muted cat">
                       <button>4:03 am</button>
                       <button>5 Likes</button>
                       <button>
                         {" "}
                         <i
-                          class="fas fa-users text-info"
+                          className="fas fa-users text-info"
                           style={{ display: "none" }}
                         ></i>{" "}
                         Reply
@@ -216,45 +229,45 @@ const ModelProfilePostSec = (props) => {
                   </div>
                 </a>
               </div>
-              <div class="alignright">
+              <div className="alignright">
                 <a href="#">
                   <img src="assets/images/icons/heart.svg" width="16" />
                 </a>
               </div>
             </div>
 
-            <div class="comment-box">
-              <div class="alignleft">
+            <div className="comment-box">
+              <div className="alignleft">
                 <a href="#">
                   <img src="assets/images/icons/gif.png" />
                 </a>
               </div>
-              <div class="alignright">
+              <div className="alignright">
                 <a href="#">
                   <img src="assets/images/icons/smile.png" />
                 </a>
               </div>
-              <div class="comment-box-form">
-                <form class="form-inline" action="/action_page.php">
-                  <div class="user-picture">
-                    <a class="title-container" href="#">
+              <div className="comment-box-form">
+                <form className="form-inline" action="/action_page.php">
+                  <div className="user-picture">
+                    <a className="title-container" href="#">
                       <img
                         src="assets/images/avatar/user-3.jpg"
-                        class="user-image img-responsive"
+                        className="user-image img-responsive"
                       />
                     </a>
                   </div>
-                  <div class="text-box">
+                  <div className="text-box">
                     <textarea
                       ype="text"
-                      class="form-control"
+                      className="form-control"
                       id="comment"
                       placeholder="Add a comment"
                       name="comment"
                     ></textarea>
                   </div>
-                  <button type="submit" class="custom-btn">
-                    <i class="fa fa-paper-plane-o"></i>
+                  <button type="submit" className="custom-btn">
+                    <i className="fa fa-paper-plane-o"></i>
                   </button>
                 </form>
               </div>
