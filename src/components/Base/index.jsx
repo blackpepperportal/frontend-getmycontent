@@ -19,6 +19,14 @@ import { apiConstants } from "../Constant/constants";
 import LandingPageLoader from "../Loader/LandingPageLoader";
 import EmptyLayout from "../layouts/EmptyLayout";
 import LandingPageIndex from "../LandingPageIndex/LandingPageIndex";
+import HomePageIndex from "../Home/HomePageIndex";
+import MessageIndex from "../Messages/MessageIndex";
+import BookmarksIndex from "../Bookmarks/BookmarksIndex";
+import BookmarkPhoto from "../Bookmarks/BookmarkPhoto";
+import BookmarkVideo from "../Bookmarks/BookmarkVideo";
+import ModelViewProfile from "../Model/ModelViewProfile";
+import FollowingIndex from "../Accounts/Following/FollowingIndex";
+import ListIndex from "../Accounts/List/ListIndex";
 
 const history = createHistory();
 const $ = window.$;
@@ -99,6 +107,48 @@ class App extends Component {
             layout={AuthLayout}
           />
 
+          <AppRoute
+            path={"/home"}
+            component={HomePageIndex}
+            layout={MainLayout}
+          />
+
+          <AppRoute
+            path={"/messages"}
+            component={MessageIndex}
+            layout={MainLayout}
+          />
+
+          <AppRoute
+            path={"/bookmarks"}
+            component={BookmarksIndex}
+            layout={MainLayout}
+          />
+
+          <AppRoute
+            path={"/bookmark-photo"}
+            component={BookmarkPhoto}
+            layout={MainLayout}
+          />
+          <AppRoute
+            path={"/bookmark-video"}
+            component={BookmarkVideo}
+            layout={MainLayout}
+          />
+
+          <AppRoute
+            path={"/model-profile"}
+            component={ModelViewProfile}
+            layout={MainLayout}
+          />
+          <AppRoute
+            path={"/following"}
+            component={FollowingIndex}
+            layout={MainLayout}
+          />
+
+          <AppRoute path={"/list"} component={ListIndex} layout={MainLayout} />
+
           <PrivateRoute
             authentication={this.state.authentication}
             path={"/edit-profile"}
@@ -106,8 +156,7 @@ class App extends Component {
             layout={MainLayout}
           />
 
-          <PrivateRoute
-            authentication={this.state.authentication}
+          <AppRoute
             path={"/profile"}
             component={ProfileIndex}
             layout={MainLayout}
