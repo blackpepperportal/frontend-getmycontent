@@ -6907,4 +6907,11 @@ section#tabs {
 }
 }
 
+.home-sec .dropdown-menu.dropdown-menu-right li a{
+    padding: 5px 13px;
+    font-size: 0.8em;
+}
 
+.home-sec .dropdown-menu.show{
+    min-width: 265px;
+}

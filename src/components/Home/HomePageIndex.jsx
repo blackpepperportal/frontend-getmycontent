@@ -1,45 +1,58 @@
 import React from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
+import { Link } from "react-router-dom";
+import {
+  Nav,
+  Container,
+  Row,
+  Col,
+  Tab,
+  Dropdown,
+  Image,
+  ListGroup,
+  Media,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
+
 
 const HomePageIndex = () => {
   return (
     <>
-      <section className="home-screen">
-        <div className="container">
-          <div className="row search-row">
-            <div className="search-section">
-              <a href="#" className="search-button">
-                Home
-              </a>
-              <div className="search-container">
-                <form action="/search" method="get">
-                  <input
-                    className="search expandright"
-                    id="searchright"
-                    type="search"
-                    name="q"
-                    placeholder="Search"
-                  />
-                  <label className="button searchbutton" for="searchright">
-                    <span className="mglass">&#9906;</span>
-                  </label>
-                </form>
-              </div>
+      <div className="home-screen home-sec">
+        <Container>
+          <Row className="search-row">
+            <Link to="#" className="search-button">
+              Home
+            </Link>
+            <div className="search-container">
+              <Form>
+                <FormControl
+                  className="search expandright"
+                  id="searchright"
+                  type="search"
+                  name="q"
+                  placeholder="Search"
+                />
+                <label className="button searchbutton" for="searchright">
+                  <span className="mglass">&#9906;</span>
+                </label>
+              </Form>
             </div>
-          </div>
+          </Row>
           <div className="">
-            <div className="col-md-8 custom-padding">
-              <div className="container">
-                <div className="row">
+            <Col md={8} className="custom-padding">
+              <Container>
+                <Row>
                   <div id="stories" className="storiesWrapper"></div>
-                </div>
-              </div>
-
+                </Row>
+              </Container>
               <div className="post-list">
                 <div className="post-header">
                   <div className="alignleft">
-                    <a className="title-container" href="user-profile.php">
-                      <img
+                    <Link className="title-container" to="user-profile.php">
+                      <Image
                         src="assets/images/avatar/user.jpg"
                         className="user-image img-responsive"
                       />
@@ -47,50 +60,50 @@ const HomePageIndex = () => {
                         <span className="post-user-name">Lexy</span>
                         <span className="post-user-">@lexypanterratwerk</span>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                   <div className="alignright">
                     <div className="post-header-right-side">
                       <span className="post-time">
                         {" "}
                         <span className="post-time">3 hours ago </span>
-                        <div className="dropdown">
-                          <button
+                        <Dropdown>
+                          <Dropdown.Toggle
                             className="btn btn-default dropdown-toggle"
                             type="button"
-                            data-toggle="dropdown"
-                          >
+                            id="dropdown-basic">
                             <img
                               src="assets/images/icons/vertical-dots.svg"
                               className="svg-clone vertical-dots"
                             />
-                          </button>
-                          <ul className="dropdown-menu dropdown-menu-right">
-                            <li>
-                              <a href="#"> Copy link to post </a>
-                            </li>
-                            <li>
-                              <a href="#">
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+
+                            <Media as="li">
+                              <Link to="#"> Copy link to post </Link>
+                            </Media>
+                            <Media as="li">
+                              <Link to="#">
                                 {" "}
-                                Hide paid blurred from the home feed{" "}
-                              </a>
-                            </li>
-                            <li className="divider"></li>
-                            <li>
-                              <a href="#"> I don't like this post </a>
-                            </li>
-                            <li>
-                              <a href="#"> Hide user's posts from feed </a>
-                            </li>
-                          </ul>
-                        </div>
+                          Hide paid blurred from the home feed{" "}
+                              </Link>
+                            </Media>
+                            <Media as="li" className="divider"></Media>
+                            <Media as="li">
+                              <Link to="#"> I don't like this post </Link>
+                            </Media>
+                            <Media as="li">
+                              <Link to="#"> Hide user's posts from feed </Link>
+                            </Media>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </span>
                       <span className="post-time">
                         {" "}
                         <span className="post-tip-lock">$30 </span>
-                        <a href="#">
+                        <Link to="#">
                           <i className="fa fa-lock"></i>
-                        </a>
+                        </Link>
                       </span>
                     </div>
                   </div>
@@ -107,7 +120,7 @@ const HomePageIndex = () => {
                   <div className="post-image">
                     <div className="">
                       <div className="gallery js-gallery">
-                        <img
+                        <Image
                           src="assets/images/g-3.jpg"
                           className="post-view-image"
                         />
@@ -118,50 +131,50 @@ const HomePageIndex = () => {
 
                 <div className="post-icons">
                   <div className="alignleft">
-                    <a href="">
-                      <img
+                    <Link href="">
+                      <Image
                         src="assets/images/icons/heart.svg"
                         className="svg-clone"
                       />
-                    </a>
-                    <a href="">
-                      <img
+                    </Link>
+                    <Link href="">
+                      <Image
                         src="assets/images/icons/comment.svg"
                         className="svg-clone"
                       />
-                    </a>
+                    </Link>
 
-                    <button
+                    <Button
                       type=""
                       className="g-icon"
                       data-toggle="modal"
                       data-target="#myModal"
                     >
-                      <img
+                      <Image
                         src="assets/images/icons/tip.svg"
                         className="svg-clone"
                       />
 
                       <span className="post-tip">SEND TIP</span>
-                    </button>
+                    </Button>
 
                     <div className="modal fade" id="myModal" role="dialog">
                       <div className="modal-dialog">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <button
+                            <Button
                               type="button"
                               className="close"
                               data-dismiss="modal"
                             >
                               &times;
-                            </button>
+                            </Button>
                             <h4 className="modal-title"> Send tip </h4>
                           </div>
                           <div className="modal-body">
                             <div className="header-userinfo">
                               <div className="g-avatar online_status_class">
-                                <img
+                                <Image
                                   src="assets/images/avatar/user-4.jpg"
                                   alt="💕🦋Sarai Rollins🦋💕"
                                   className="tips__user__img"
@@ -176,15 +189,15 @@ const HomePageIndex = () => {
                                 <span className="pop-username popuser-realname">
                                   <div className="pop-user-username">
                                     {" "}
-                                    @sarairollins
-                                  </div>
+                              @sarairollins
+                            </div>
                                 </span>
                               </div>
                             </div>
 
                             <div className="floating-form">
                               <div className="floating-label">
-                                <input
+                                <Form.Control
                                   className="floating-input"
                                   type="text"
                                   placeholder=" "
@@ -194,7 +207,7 @@ const HomePageIndex = () => {
                               </div>
 
                               <div className="floating-label">
-                                <input
+                                <Form.Control
                                   className="floating-input"
                                   type="text"
                                   placeholder=" "
@@ -205,48 +218,48 @@ const HomePageIndex = () => {
                             </div>
                           </div>
                           <div className="modal-footer">
-                            <button
+                            <Button
                               type="button"
                               className="btn btn-default"
                               data-dismiss="modal"
                             >
                               CANCEL
-                            </button>
-                            <button
+                            </Button>
+                            <Button
                               type="button"
                               className="btn btn-default"
                               data-dismiss="modal"
                             >
                               SEND TIP
-                            </button>
+                            </Button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="alignright">
-                    <a href="#">
-                      <img
+                    <Link to="#">
+                      <Image
                         src="assets/images/icons/bookmark.svg"
                         className="svg-clone"
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
                 <div className="likes alignleft">
                   <p>78 Likes</p>
-                  <button className="Show view-comments">
+                  <Button className="Show view-comments">
                     View 11 comments
-                  </button>
-                  <button className="Hide view-comments">
+                  </Button>
+                  <Button className="Hide view-comments">
                     View less comments
-                  </button>
+                  </Button>
                   <div id="target">
                     <div className="row comment-row">
                       <div className="alignleft">
-                        <a className="title-container" href="#">
-                          <img
+                        <Link className="title-container" to="#">
+                          <Image
                             src="assets/images/avatar/user.jpg"
                             className="user-image img-responsive"
                           />
@@ -255,34 +268,34 @@ const HomePageIndex = () => {
                               Tom{" "}
                               <span className="comment-message">
                                 she's breathtaking
-                              </span>
+                        </span>
                             </span>
                             <small className="text-muted cat">
-                              <button>4:03 am</button>
-                              <button>5 Likes</button>
-                              <button>
+                              <Button>4:03 am</Button>
+                              <Button>5 Likes</Button>
+                              <Button>
                                 {" "}
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
-                              </button>
+                              </Button>
                             </small>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
+                        <Link to="#">
                           <img src="assets/images/icons/heart.svg" width="16" />
-                        </a>
+                        </Link>
                       </div>
                     </div>
 
                     <div className="row comment-row">
                       <div className="alignleft">
-                        <a className="title-container" href="#">
-                          <img
+                        <Link className="title-container" to="#">
+                          <Image
                             src="assets/images/avatar/user-2.jpg"
                             className="user-image img-responsive"
                           />
@@ -291,34 +304,34 @@ const HomePageIndex = () => {
                               Robert Maskell{" "}
                               <span className="comment-message">
                                 Looks nice necklace?
-                              </span>
+                        </span>
                             </span>
                             <small className="text-muted cat">
-                              <button>4:03 am</button>
-                              <button>5 Likes</button>
-                              <button>
+                              <Button>4:03 am</Button>
+                              <Button>5 Likes</Button>
+                              <Button>
                                 {" "}
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
-                              </button>
+                              </Button>
                             </small>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
-                          <img src="assets/images/icons/heart.svg" width="16" />
-                        </a>
+                        <Link to="#">
+                          <Image src="assets/images/icons/heart.svg" width="16" />
+                        </Link>
                       </div>
                     </div>
 
                     <div className="row comment-row">
                       <div className="alignleft">
-                        <a className="title-container" href="#">
-                          <img
+                        <Link className="title-container" to="#">
+                          <Image
                             src="assets/images/avatar/user-3.jpg"
                             className="user-image img-responsive"
                           />
@@ -327,74 +340,74 @@ const HomePageIndex = () => {
                               -Johanaki-{" "}
                               <span className="comment-message">
                                 Yes, my goddess!!!
-                              </span>
+                        </span>
                             </span>
                             <small className="text-muted cat">
-                              <button>4:03 am</button>
-                              <button>5 Likes</button>
-                              <button>
+                              <Button>4:03 am</Button>
+                              <Button>5 Likes</Button>
+                              <Button>
                                 {" "}
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
-                                Reply
-                              </button>
+                              Reply
+                            </Button>
                             </small>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
-                          <img src="assets/images/icons/heart.svg" width="16" />
-                        </a>
+                        <Link to="#">
+                          <Image src="assets/images/icons/heart.svg" width="16" />
+                        </Link>
                       </div>
                     </div>
 
                     <div className="comment-box">
                       <div className="alignleft">
-                        <a href="#">
-                          <img src="assets/images/icons/gif.png" />
-                        </a>
+                        <Link to="#">
+                          <Image src="assets/images/icons/gif.png" />
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
-                          <img src="assets/images/icons/smile.png" />
-                        </a>
+                        <Link to="#">
+                          <Image src="assets/images/icons/smile.png" />
+                        </Link>
                       </div>
                       <div className="comment-box-form">
-                        <form className="form-inline" action="">
+                        <Form className="form-inline" action="">
                           <div className="user-picture">
-                            <a className="title-container" href="#">
-                              <img
+                            <Link className="title-container" to="#">
+                              <Image
                                 src="assets/images/avatar/user-3.jpg"
                                 className="user-image img-responsive"
                               />
-                            </a>
+                            </Link>
                           </div>
                           <div className="text-box">
-                            <textarea
-                              ype="text"
-                              className="form-control"
-                              id="comment"
-                              placeholder="Add a comment"
-                              name="comment"
-                            ></textarea>
+                          <Form.Control as="textarea" rows={3} 
+                            type="text"
+                            className="form-control"
+                            id="comment"
+                            placeholder="Add a comment"
+                            name="comment"
+                          />
                           </div>
-                          <button type="submit" className="custom-btn">
+                          <Button type="submit" className="custom-btn">
                             <i className="fa fa-paper-plane-o"></i>
-                          </button>
-                        </form>
+                          </Button>
+                        </Form>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Col>
             <HomePageSuggesstion />
           </div>
-        </div>
-      </section>
+        </Container>
+      </div>
     </>
   );
 };
