@@ -162,12 +162,8 @@ const HeaderIndex = (props) => {
   );
 };
 
-const mapStateToPros = (state) => ({
-  startMeeting: state.meeting.startMeeting,
-});
-
 function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(HeaderIndex);
+export default connect(null, mapDispatchToProps)(HeaderIndex);
