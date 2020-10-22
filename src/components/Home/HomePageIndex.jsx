@@ -34,17 +34,11 @@ const HomePageIndex = () => {
               Home
             </Link>
             <div className="search-container">
-              <Form>
-                <FormControl
-                  className="search expandright"
-                  id="searchright"
-                  type="search"
-                  name="q"
-                  placeholder="Search"
-                />
-                <label className="button searchbutton" for="searchright">
-                  <span className="mglass">&#9906;</span>
-                </label>
+            <Form className='search-box'>
+                <input className="search-text" type="text" placeholder="Search Anything" />
+                <Link to="#" className="search-btn">
+                  <i class="fas fa-search"></i>
+                </Link>
               </Form>
             </div>
           </div>
@@ -72,7 +66,6 @@ const HomePageIndex = () => {
                   <div className="alignright">
                     <div className="post-header-right-side">
                       <span className="post-time flex-content">
-                        {" "}
                         <span className="post-time">3 hours ago </span>
                         <Dropdown>
                           <Dropdown.Toggle
@@ -91,8 +84,8 @@ const HomePageIndex = () => {
                             </Media>
                             <Media as="li">
                               <Link to="#">
-                                {" "}
-                                Hide paid blurred from the home feed{" "}
+                              
+                                Hide paid blurred from the home feed
                               </Link>
                             </Media>
                             <Media as="li" className="divider"></Media>
@@ -106,7 +99,7 @@ const HomePageIndex = () => {
                         </Dropdown>
                       </span>
                       <span className="post-time">
-                        {" "}
+                      
                         <span className="post-tip-lock">$30 </span>
                         <Link to="#">
                           <i className="fa fa-lock"></i>
@@ -138,13 +131,13 @@ const HomePageIndex = () => {
 
                 <div className="post-icons">
                   <div className="alignleft">
-                    <Link href="">
+                    <Link to="">
                       <Image
                         src="assets/images/icons/heart.svg"
                         className="svg-clone"
                       />
                     </Link>
-                    <Link href="">
+                    <Link to="">
                       <Image
                         src="assets/images/icons/comment.svg"
                         className="svg-clone"
@@ -201,7 +194,7 @@ const HomePageIndex = () => {
                               <Button>4:03 am</Button>
                               <Button>5 Likes</Button>
                               <Button>
-                                {" "}
+                              
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
@@ -237,7 +230,7 @@ const HomePageIndex = () => {
                               <Button>4:03 am</Button>
                               <Button>5 Likes</Button>
                               <Button>
-                                {" "}
+                              
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
@@ -276,7 +269,7 @@ const HomePageIndex = () => {
                               <Button>4:03 am</Button>
                               <Button>5 Likes</Button>
                               <Button>
-                                {" "}
+                              
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}

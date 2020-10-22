@@ -22,7 +22,7 @@ import {
 
 const BookmarkVideo = () => {
   return (
-    <div className="edit-profile">
+    <div className="edit-profile book-photo">
       <Container>
         <Row>
           <Col xs={12} sm={12} md={4}>

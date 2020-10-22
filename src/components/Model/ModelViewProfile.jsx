@@ -5,6 +5,26 @@ import ModelProfilePhotoSec from "./ModelProfilePhotoSec";
 import ModelProfileVideoSec from "./ModelProfileVideoSec";
 import ModelProfileArchivedSec from "./ModelProfileArchivedSec";
 import SendTipModal from "../helper/SendTipModal";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const ModelViewProfile = () => {
   const [activeSec, setActiveSec] = useState("post");
@@ -17,101 +37,101 @@ const ModelViewProfile = () => {
 
   return (
     <>
-      <section className="my-profile user-profile-page">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
+      <div className="my-profile user-profile-page model-view-profile-sec">
+        <Container>
+          <Row>
+            <Col sm={12} md={12}>
               <div className="cover-area">
                 <div className="profile-cover">
-                  <img
+                  <Image
                     src="assets/images/header.jpg"
                     alt="Snow"
                     style={{ width: "100%" }}
                   />
                 </div>
                 <div className="top-left">
-                  <button className="chat-header-back">
-                    <img
+                  <Button className="chat-header-back">
+                    <Image
                       src="assets/images/icons/back.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Button>
                   <h1 className="chat-page-title">Lexy</h1>
                   <span className="post-count">74 Post</span>
                 </div>
 
                 <div className="top-right">
-                  <a
+                  <Link
                     href="#"
                     className="g-page__header__btn m-with-round-hover has-tooltip"
                     data-original-title="null"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/vertical-dots.svg"
                       className="svg-clone"
                     />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
               <div className="profile--user">
                 <span className="my-profile-status">
-                  <img src="assets/images/avatar/s-user-3.jpg" />
+                  <Image src="assets/images/avatar/s-user-3.jpg" />
                 </span>
                 <div className="profile-btn-group">
-                  <button
+                  <Button
                     type="button"
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                     onClick={() => setSendTip(true)}
                     // data-toggle="modal"
                     // data-target="#myModal"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/tip.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Button>
 
-                  <button
+                  <Button
                     type="button"
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/message.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Button>
 
-                  <button
+                  <Button
                     type="button"
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/star.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Button>
 
-                  <button
+                  <Button
                     type="button"
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/share.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Button>
                 </div>
                 <div className="my-profile-names">
                   <div className="user-name-base-row">
-                    <a href="" className="my-name-lg">
+                    <Link to="" className="my-name-lg">
                       <div className="g-user--name">Lexy</div>
-                    </a>
+                    </Link>
                   </div>
                   <div className="user-id-row-base">
-                    <a href="" className="user-my-id-text">
+                    <Link to="" className="user-my-id-text">
                       <div className="current-user--name">@u63484651</div>
-                    </a>
+                    </Link>
                     <div className="user-profile -active-status">
                       <span>Active</span>
                     </div>
@@ -132,12 +152,12 @@ const ModelViewProfile = () => {
 
               <div className="subscription-section">
                 <span className="subscribe-title">Free Subscription </span>
-                <a
-                  href=""
+                <Link
+                  to=""
                   className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                 >
                   Follow For Free
-                </a>
+                </Link>
               </div>
 
               <div className="tab" role="tabpanel">
@@ -168,53 +188,53 @@ const ModelViewProfile = () => {
                   />
                 </div>
               </div>
-            </div>
+            </Col>
 
             {/* <div className="col-md-4 col-xs-12"> */}
             {/* <div className="gallery-sidebar">
               <ul className="box-container three-cols">
-                <li className="box">
+                <Media as="li" className="box">
                   <div className="inner">
-                    <a href="assets/images/g-6.jpg" className="glightbox">
-                      <img src="assets/images/g-6.jpg" />
+                    <Link to="assets/images/g-6.jpg" className="glightbox">
+                      <Image src="assets/images/g-6.jpg" />
+                    </Link>
+                  </div>
+                </Media>
+                <Media as="li" className="box">
+                  <div className="inner">
+                    <Link to="assets/images/g-5.jpg" className="glightbox">
+                      <Image src="assets/images/g-5.jpg" />
                     </a>
                   </div>
-                </li>
-                <li className="box">
+                </Media>
+                <Media as="li" className="box">
                   <div className="inner">
-                    <a href="assets/images/g-5.jpg" className="glightbox">
-                      <img src="assets/images/g-5.jpg" />
+                    <Link to="assets/images/g-4.jpg" className="glightbox">
+                      <Image src="assets/images/g-4.jpg" />
+                    </Link>
+                  </div>
+                </Media>
+                <Media as="li" className="box">
+                  <div className="inner">
+                    <Link to="assets/images/g-3.jpg" className="glightbox">
+                      <Image src="assets/images/g-3.jpg" />
+                    </Link>
+                  </div>
+                </Media>
+                <Media as="li" className="box">
+                  <div className="inner">
+                    <Link to="assets/images/g-2.jpg" className="glightbox">
+                      <Image src="assets/images/g-2.jpg" />
                     </a>
                   </div>
-                </li>
-                <li className="box">
+                </Media>
+                <Media as="li" className="box">
                   <div className="inner">
-                    <a href="assets/images/g-4.jpg" className="glightbox">
-                      <img src="assets/images/g-4.jpg" />
+                    <Link to="assets/images/g-1.jpg" className="glightbox">
+                      <Image src="assets/images/g-1.jpg" />
                     </a>
                   </div>
-                </li>
-                <li className="box">
-                  <div className="inner">
-                    <a href="assets/images/g-3.jpg" className="glightbox">
-                      <img src="assets/images/g-3.jpg" />
-                    </a>
-                  </div>
-                </li>
-                <li className="box">
-                  <div className="inner">
-                    <a href="assets/images/g-2.jpg" className="glightbox">
-                      <img src="assets/images/g-2.jpg" />
-                    </a>
-                  </div>
-                </li>
-                <li className="box">
-                  <div className="inner">
-                    <a href="assets/images/g-1.jpg" className="glightbox">
-                      <img src="assets/images/g-1.jpg" />
-                    </a>
-                  </div>
-                </li>
+                </Media>
               </ul>
             </div> */}
 
@@ -227,20 +247,20 @@ const ModelViewProfile = () => {
               <div className="panel panel-default">
                 <div className="panel-heading" role="tab" id="headingOne">
                   <h4 className="panel-title">
-                    <a
+                    <Link
                       role="button"
                       data-toggle="collapse"
                       data-parent="#accordion"
-                      href="#collapseOne"
+                      to="#collapseOne"
                       aria-expanded="true"
                       aria-controls="collapseOne"
                     >
-                      <img
+                      <Image
                         src="assets/images/icons/highlight.svg"
                         className="svg-clone"
                       />
                       <span className="spotify"> Highlights </span>
-                    </a>
+                    </Link>
                   </h4>
                 </div>
                 <div
@@ -258,9 +278,9 @@ const ModelViewProfile = () => {
               </div>
             </div> */}
             {/* </div> */}
-          </div>
-        </div>
-      </section>
+          </Row>
+        </Container>
+      </div>
       <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
     </>
   );

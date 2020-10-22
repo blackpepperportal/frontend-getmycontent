@@ -148,7 +148,10 @@ class App extends Component {
             layout={MainLayout}
           />
 
-          <AppRoute path={"/list"} component={ListIndex} layout={MainLayout} />
+          <AppRoute path={"/list"} 
+          component={ListIndex} 
+          layout={MainLayout} 
+          />
 
           <AppRoute
             path={"/edit-profile"}

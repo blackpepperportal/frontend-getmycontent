@@ -22,12 +22,12 @@ import {
 
 const BookmarkPhoto = () => {
   return (
-    <div className="edit-profile">
+    <div className="edit-profile book-photo">
       <Container>
         <Row>
           <Col xs={12} sm={12} md={4}>
             <div className="vertical-menu">
-              <Link className="bookmarkes-list " to="bookmarks.php">
+              <Link className="bookmarkes-list" to="bookmarks.php">
                 <Image src="assets/images/icons/back.svg" className="svg-clone" />
                 BOOKMARKS
               </Link>

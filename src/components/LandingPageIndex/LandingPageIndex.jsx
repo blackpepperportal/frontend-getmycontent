@@ -101,13 +101,13 @@ const LandingPageIndex = () => {
                             </p>
                           </div>
                           <div className="">
-                            <button
+                            <Button
                               id="login"
                               onclick="location.href = 'home.php';"
-                              className="btn btn-lg"
+                              className="btn btn-auth btn-lg"
                             >
                               LOGIN
-                            </button>
+                            </Button>
                           </div>
                           <p id="two">Don't have an account yet?</p>
                           <p>
@@ -166,13 +166,13 @@ const LandingPageIndex = () => {
                           </Form.Group>
 
                           <Form.Group controlId="formBasicName">
-                            <button
+                            <Button
                               id="register"
                               onclick="location.href = 'home.php';"
-                              className="btn btn-lg r-btn"
+                              className="btn btn-auth btn-lg r-btn"
                             >
                               SIGN UP
-                            </button>
+                            </Button>
                           </Form.Group>
                           <p id="two">Already have an account?</p>
                           <p>
@@ -207,7 +207,7 @@ const LandingPageIndex = () => {
                             <button
                               id="login"
                               onclick="location.href = 'home.php';"
-                              className="btn btn-lg"
+                              className="btn btn-auth btn-lg"
                             >
                               Forgot Password
                             </button>

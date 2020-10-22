@@ -75,8 +75,8 @@ const HomePageSuggesstion = () => {
         >
           <div className="carousel-inner">
             <div className="item active">
-              <div className="row">
-                <div className="col-md-12">
+              <Row className="diplay-block">
+                <Col sm={12} md={12}>
                   <div className="col-item">
                     <div className="photo">
                       <div className="swiper-slide">
@@ -211,12 +211,12 @@ const HomePageSuggesstion = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </div>
             <div className="item">
-              <div className="row">
-                <div className="col-md-12">
+              <Row>
+                <Col sm={12} md={12}>
                   <div className="col-item">
                     <div className="photo">
                       <div className="swiper-slide">
@@ -351,8 +351,8 @@ const HomePageSuggesstion = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </Col>
+              </Row>
             </div>
           </div>
         </div>

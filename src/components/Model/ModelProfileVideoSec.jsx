@@ -1,4 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const ModelProfileVideoSec = (props) => {
   return (
@@ -11,28 +31,28 @@ const ModelProfileVideoSec = (props) => {
       }
       id="Section3"
     >
-      <ul className="box-container three-cols">
-        <li className="box">
+      <ul className="box-container three-cols model-prof-photo-sec">
+        <Media as="li" className="box">
           <div className="inner">
-            <a href="assets/images/videos/demo-1.mp4" className="glightbox3">
-              <img src="assets/images/g-4.jpg" alt="image" />
-            </a>
+            <Link to="assets/images/videos/demo-1.mp4" className="glightbox3">
+              <Image src="assets/images/g-4.jpg" alt="image" />
+            </Link>
           </div>
-        </li>
-        <li className="box">
+        </Media>
+        <Media as="li" className="box">
           <div className="inner">
-            <a href="assets/images/videos/demo-2.mp4" className="glightbox3">
-              <img src="assets/images/g-2.jpg" alt="image" />
-            </a>
+            <Link to="assets/images/videos/demo-2.mp4" className="glightbox3">
+              <Image src="assets/images/g-2.jpg" alt="image" />
+            </Link>
           </div>
-        </li>
-        <li className="box">
+        </Media>
+        <Media as="li" className="box">
           <div className="inner">
-            <a href="assets/images/videos/demo-1.mp4" className="glightbox3">
-              <img src="assets/images/g-3.jpg" alt="image" />
-            </a>
+            <Link to="assets/images/videos/demo-1.mp4" className="glightbox3">
+              <Image src="assets/images/g-3.jpg" alt="image" />
+            </Link>
           </div>
-        </li>
+        </Media>
       </ul>
     </div>
   );

@@ -1,64 +1,84 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const ModelProfileTabSec = (props) => {
   return (
-    <ul className="nav nav-tabs" role="tablist">
-      <li
+    <ul className="nav nav-tabs modal-profile-tabs" role="tablist">
+      <Media as="li"
         role="presentation"
         className={props.activeSec === "post" ? "active" : ""}
       >
-        <a
-          href="#Section1"
+        <Link
+          to="#Section1"
           aria-controls="home"
           role="tab"
           data-toggle="tab"
           onClick={() => props.setActiveSec("post")}
         >
-          <img src="assets/images/icons/post.svg" className="svg-clone" />
-        </a>
-      </li>
-      <li
+          <Image src="assets/images/icons/post.svg" className="svg-clone" />
+        </Link>
+      </Media>
+      <Media as="li"
         role="presentation"
         className={props.activeSec === "photo" ? "active" : ""}
       >
-        <a
-          href="#Section2"
+        <Link
+          to="#Section2"
           aria-controls="profile"
           role="tab"
           data-toggle="tab"
           onClick={() => props.setActiveSec("photo")}
         >
-          <img src="assets/images/icons/gallery.svg" className="svg-clone" />
-        </a>
-      </li>
-      <li
+          <Image src="assets/images/icons/gallery.svg" className="svg-clone" />
+        </Link>
+      </Media>
+      <Media as="li"
         role="presentation"
         className={props.activeSec === "video" ? "active" : ""}
       >
-        <a
-          href="#Section3"
+        <Link
+          to="#Section3"
           aria-controls="messages"
           role="tab"
           data-toggle="tab"
           onClick={() => props.setActiveSec("video")}
         >
-          <img src="assets/images/icons/video.svg" className="svg-clone" />
-        </a>
-      </li>
-      <li
+          <Image src="assets/images/icons/video.svg" className="svg-clone" />
+        </Link>
+      </Media>
+      <Media as="li"
         role="presentation"
         className={props.activeSec === "archive" ? "active" : ""}
       >
-        <a
-          href="#Section4"
+        <Link
+          to="#Section4"
           aria-controls="messages"
           role="tab"
           data-toggle="tab"
           onClick={() => props.setActiveSec("archive")}
         >
-          <img src="assets/images/icons/archive.svg" className="svg-clone" />
-        </a>
-      </li>
+          <Image src="assets/images/icons/archive.svg" className="svg-clone" />
+        </Link>
+      </Media>
     </ul>
   );
 };

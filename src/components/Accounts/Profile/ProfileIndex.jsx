@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import ProfileLoader from "../../Loader/ProfileLoader";
 import {
@@ -7,82 +7,111 @@ import {
   updateUserDetailsStart,
 } from "../../../store/actions/UserAction";
 import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+  Accordion,
+  Card,
+} from "react-bootstrap";
+import SendTipModal from "../../helper/SendTipModal";
 
 const ProfileIndex = () => {
+
+  const [sendTip, setSendTip] = useState(false);
+
+  const closeSendTipModal = () => {
+    setSendTip(false);
+  };
+
   return (
     <>
-      <section className="my-profile">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8">
+      <div className="my-profile">
+        <Container>
+          <Row>
+            <Col sm={12} xs={12} md={8}>
               <div className="cover-area">
                 <div className="profile-cover">
-                  <img
+                  <Image
                     src="assets/images/img-2.jpg"
                     alt="Snow"
                     style={{ width: "100%" }}
                   />
                 </div>
                 <div className="top-left">
-                  <button className="chat-header-back">
-                    <img
+                  <Button className="chat-header-back">
+                    <Image
                       src="assets/images/icons/back.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Button>
                   <h1 className="chat-page-title">John</h1>
                   <span className="post-count">1 Post</span>
                 </div>
 
                 <div className="top-right">
-                  <a
-                    href="#"
+                  <Link
+                    to="#"
                     className="g-page__header__btn m-with-round-hover has-tooltip"
                     data-original-title="null"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/vertical-dots.svg"
                       className="svg-clone"
                     />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
               <div className="profile--user">
                 <span className="my-profile-status">
-                  <img src="assets/images/avatar/s-user-6.jpeg" />
+                  <Image src="assets/images/avatar/s-user-6.jpeg" />
                 </span>
                 <div className="profile-btn-group">
-                  <a
-                    href=""
+                  <Link
+                    to=""
                     className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/settings.svg"
                       className="svg-clone my-p-icons"
                     />
                     Edit profile
-                  </a>
-                  <button
+                  </Link>
+                  <Button
                     type="button"
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/share.svg"
                       className="svg-clone "
                     />
-                  </button>
+                  </Button>
                 </div>
                 <div className="my-profile-names">
                   <div className="user-name-base-row">
-                    <a href="" className="my-name-lg">
+                    <Link to="" className="my-name-lg">
                       <div className="g-user--name">John</div>
-                    </a>
+                    </Link>
                   </div>
                   <div className="user-id-row-base">
-                    <a href="" className="user-my-id-text">
+                    <Link to="" className="user-my-id-text">
                       <div className="current-user--name">@u63484651</div>
-                    </a>
+                    </Link>
                     <div className="user-profile -active-status">
                       <span>Active</span>
                     </div>
@@ -94,33 +123,25 @@ const ProfileIndex = () => {
               </div>
 
               <div className="profile-post-area">
-                <div className="">
-                  <section className="main-search ">
-                    <span className="post-number">1 Post</span>
-                    <button
-                      type="button"
-                      className="btn pull-right"
-                      id="search-toggle"
-                    >
-                      <span className="fa fa-search"></span>
-                    </button>
-                    <div className="form-search stretch-to-fit">
-                      <div className="search-control stretch-to-fit">
-                        <input
-                          type="text"
-                          id="search"
-                          placeholder="Search..."
-                        />
-                      </div>
-                    </div>
-                  </section>
+                <div className="search-row">
+                  <Link to="#" className="search-button">
+                    1 post
+                      </Link>
+                  <div className="search-container">
+                    <Form className='search-box'>
+                      <input className="search-text" type="text" placeholder="Search Anything" />
+                      <Link to="#" className="search-btn">
+                        <i class="fas fa-search"></i>
+                      </Link>
+                    </Form>
+                  </div>
                 </div>
               </div>
               <div className="post-list">
                 <div className="post-header">
                   <div className="alignleft">
-                    <a className="title-container" href="#">
-                      <img
+                    <Link className="title-container" to="#">
+                      <Image
                         src="assets/images/avatar/user.jpg"
                         className="user-image img-responsive"
                       />
@@ -128,43 +149,42 @@ const ProfileIndex = () => {
                         <span className="post-user-name">John</span>
                         <span className="post-user-">@u63484651</span>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                   <div className="alignright">
                     <div className="post-header-right-side">
-                      <span className="post-time">
-                        {" "}
+                      <span className="post-time flex-content">
                         <span className="post-time">3 hours ago </span>
-                        <div className="dropdown">
-                          <button
+                        <Dropdown>
+                          <Dropdown.Toggle
                             className="btn btn-default dropdown-toggle"
                             type="button"
-                            data-toggle="dropdown"
+                            id="dropdown-basic"
                           >
-                            <img
+                            <Image
                               src="assets/images/icons/vertical-dots.svg"
                               className="svg-clone vertical-dots"
                             />
-                          </button>
-                          <ul className="dropdown-menu dropdown-menu-right">
-                            <li>
-                              <a href="#"> Copy link to post </a>
-                            </li>
-                            <li>
-                              <a href="#">
-                                {" "}
-                                Hide paid blurred from the home feed{" "}
-                              </a>
-                            </li>
-                            <li className="divider"></li>
-                            <li>
-                              <a href="#"> I don't like this post </a>
-                            </li>
-                            <li>
-                              <a href="#"> Hide user's posts from feed </a>
-                            </li>
-                          </ul>
-                        </div>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                            <Media as="li">
+                              <Link to="#"> Copy link to post </Link>
+                            </Media>
+                            <Media as="li">
+                              <Link to="#">
+
+                                Hide paid blurred from the home feed
+                              </Link>
+                            </Media>
+                            <Media as="li" className="divider"></Media>
+                            <Media as="li">
+                              <Link to="#"> I don't like this post </Link>
+                            </Media>
+                            <Media as="li">
+                              <Link to="#"> Hide user's posts from feed </Link>
+                            </Media>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </span>
                     </div>
                   </div>
@@ -180,7 +200,7 @@ const ProfileIndex = () => {
 
                   <div className="post-image">
                     <div className="">
-                      <img
+                      <Image
                         className="post-photo"
                         src="assets/images/post/post4.jpg"
                       />
@@ -190,121 +210,55 @@ const ProfileIndex = () => {
 
                 <div className="post-icons">
                   <div className="alignleft">
-                    <a href="">
-                      <img
+                    <Link to="">
+                      <Image
                         src="assets/images/icons/heart.svg"
                         className="svg-clone"
                       />
-                    </a>
-                    <a href="">
-                      <img
+                    </Link>
+                    <Link to="">
+                      <Image
                         src="assets/images/icons/comment.svg"
                         className="svg-clone"
                       />
-                    </a>
+                    </Link>
 
-                    <div className="modal fade" id="myModal" role="dialog">
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <button
-                              type="button"
-                              className="close"
-                              data-dismiss="modal"
-                            >
-                              &times;
-                            </button>
-                            <h4 className="modal-title"> Send tip </h4>
-                          </div>
-                          <div className="modal-body">
-                            <div className="header-userinfo">
-                              <div className="g-avatar online_status_class">
-                                <img
-                                  src="assets/images/avatar/user-4.jpg"
-                                  alt="💕🦋Sarai Rollins🦋💕"
-                                  className="tips__user__img"
-                                />
-                              </div>
-                              <div className="popup-username-row">
-                                <div className="pop-username">
-                                  <div className=""> 💕🦋Sarai Rollins🦋💕</div>
-                                </div>
-                              </div>
-                              <div className="popup-username-row">
-                                <span className="pop-username popuser-realname">
-                                  <div className="pop-user-username">
-                                    {" "}
-                                    @sarairollins
-                                  </div>
-                                </span>
-                              </div>
-                            </div>
+                    <Button
+                      type="button"
+                      className="g-icon"
+                      onClick={() => setSendTip(true)}
+                    >
+                      <Image
+                        src="assets/images/icons/tip.svg"
+                        className="svg-clone"
+                      />
 
-                            <div className="floating-form">
-                              <div className="floating-label">
-                                <input
-                                  className="floating-input"
-                                  type="text"
-                                  placeholder=" "
-                                />
-                                <span className="highlight"></span>
-                                <label>Tip amount</label>
-                              </div>
-
-                              <div className="floating-label">
-                                <input
-                                  className="floating-input"
-                                  type="text"
-                                  placeholder=" "
-                                />
-                                <span className="highlight"></span>
-                                <label>Message (optional)</label>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="modal-footer">
-                            <button
-                              type="button"
-                              className="btn btn-default"
-                              data-dismiss="modal"
-                            >
-                              CANCEL
-                            </button>
-                            <button
-                              type="button"
-                              className="btn btn-default"
-                              data-dismiss="modal"
-                            >
-                              SEND TIP
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      <span className="post-tip">SEND TIP</span>
+                    </Button>
                   </div>
                   <div className="alignright">
-                    <a href="#">
-                      <img
+                    <Link to="#">
+                      <Image
                         src="assets/images/icons/bookmark.svg"
                         className="svg-clone"
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
                 <div className="likes alignleft">
                   <p>78 Likes</p>
-                  <button className="Show view-comments">
+                  <Link className="Show view-comments">
                     View 11 comments
-                  </button>
-                  <button className="Hide view-comments">
+                  </Link>
+                  <Link className="Hide view-comments">
                     View less comments
-                  </button>
+                  </Link>
                   <div id="target">
                     <div className="row comment-row">
                       <div className="alignleft">
-                        <a className="title-container" href="#">
-                          <img
+                        <Link className="title-container" to="#">
+                          <Image
                             src="assets/images/avatar/user.jpg"
                             className="user-image img-responsive"
                           />
@@ -316,31 +270,31 @@ const ProfileIndex = () => {
                               </span>
                             </span>
                             <small className="text-muted cat">
-                              <button>4:03 am</button>
-                              <button>5 Likes</button>
-                              <button>
-                                {" "}
+                              <Button>4:03 am</Button>
+                              <Button>5 Likes</Button>
+                              <Button>
+
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
-                              </button>
+                              </Button>
                             </small>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
-                          <img src="assets/images/icons/heart.svg" width="16" />
-                        </a>
+                        <Link to="#">
+                          <Image src="assets/images/icons/heart.svg" width="16" />
+                        </Link>
                       </div>
                     </div>
 
                     <div className="row comment-row">
                       <div className="alignleft">
-                        <a className="title-container" href="#">
-                          <img
+                        <Link className="title-container" to="#">
+                          <Image
                             src="assets/images/avatar/user-2.jpg"
                             className="user-image img-responsive"
                           />
@@ -348,35 +302,38 @@ const ProfileIndex = () => {
                             <span className="card-title">
                               Robert Maskell{" "}
                               <span className="comment-message">
-                                You have your own name on a necklace?
+                                Looks nice necklace?
                               </span>
                             </span>
                             <small className="text-muted cat">
-                              <button>4:03 am</button>
-                              <button>5 Likes</button>
-                              <button>
-                                {" "}
+                              <Button>4:03 am</Button>
+                              <Button>5 Likes</Button>
+                              <Button>
+
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
-                              </button>
+                              </Button>
                             </small>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
-                          <img src="assets/images/icons/heart.svg" width="16" />
-                        </a>
+                        <Link to="#">
+                          <Image
+                            src="assets/images/icons/heart.svg"
+                            width="16"
+                          />
+                        </Link>
                       </div>
                     </div>
 
                     <div className="row comment-row">
                       <div className="alignleft">
-                        <a className="title-container" href="#">
-                          <img
+                        <Link className="title-container" to="#">
+                          <Image
                             src="assets/images/avatar/user-3.jpg"
                             className="user-image img-responsive"
                           />
@@ -388,117 +345,111 @@ const ProfileIndex = () => {
                               </span>
                             </span>
                             <small className="text-muted cat">
-                              <button>4:03 am</button>
-                              <button>5 Likes</button>
-                              <button>
-                                {" "}
+                              <Button>4:03 am</Button>
+                              <Button>5 Likes</Button>
+                              <Button>
+
                                 <i
                                   className="fas fa-users text-info"
                                   style={{ display: "none" }}
                                 ></i>{" "}
                                 Reply
-                              </button>
+                              </Button>
                             </small>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
-                          <img src="assets/images/icons/heart.svg" width="16" />
-                        </a>
+                        <Link to="#">
+                          <Image
+                            src="assets/images/icons/heart.svg"
+                            width="16"
+                          />
+                        </Link>
                       </div>
                     </div>
 
                     <div className="comment-box">
                       <div className="alignleft">
-                        <a href="#">
-                          <img src="assets/images/icons/gif.png" />
-                        </a>
+                        <Link to="#">
+                          <Image src="assets/images/icons/gif.png" />
+                        </Link>
                       </div>
                       <div className="alignright">
-                        <a href="#">
-                          <img src="assets/images/icons/smile.png" />
-                        </a>
+                        <Link to="#">
+                          <Image src="assets/images/icons/smile.png" />
+                        </Link>
                       </div>
                       <div className="comment-box-form">
-                        <form className="form-inline" action="/action_page.php">
+                        <Form className="form-inline" action="">
                           <div className="user-picture">
-                            <a className="title-container" href="#">
-                              <img
+                            <Link className="title-container" to="#">
+                              <Image
                                 src="assets/images/avatar/user-3.jpg"
                                 className="user-image img-responsive"
                               />
-                            </a>
+                            </Link>
                           </div>
                           <div className="text-box">
-                            <textarea
-                              ype="text"
+                            <Form.Control
+                              as="textarea"
+                              rows={3}
+                              type="text"
                               className="form-control"
                               id="comment"
                               placeholder="Add a comment"
                               name="comment"
-                            ></textarea>
+                            />
                           </div>
-                          <button type="submit" className="custom-btn">
+                          <Button type="submit" className="custom-btn">
                             <i className="fa fa-paper-plane-o"></i>
-                          </button>
-                        </form>
+                          </Button>
+                        </Form>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Col>
 
-            <div className="col-md-4 col-xs-12">
-              <div
-                className="panel-group"
-                id="accordion"
-                role="tablist"
-                aria-multiselectable="true"
-              >
-                <div className="panel panel-default">
-                  <div className="panel-heading" role="tab" id="headingOne">
-                    <h4 className="panel-title">
-                      <a
-                        role="button"
-                        data-toggle="collapse"
-                        data-parent="#accordion"
-                        href="#collapseOne"
-                        aria-expanded="true"
-                        aria-controls="collapseOne"
-                      >
-                        <img
+            <Col sm={12} xs={12} md={4}>
+              <Accordion className="profile-accordion">
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="0">
+                    <Link>
+                      <Image
                           src="assets/images/icons/spotify.svg"
                           className="svg-clone"
-                        />
-                        <span className="spotify"> Spotify</span>
-                      </a>
-                    </h4>
-                  </div>
-                  <div
-                    id="collapseOne"
-                    className="panel-collapse collapse in"
-                    role="tabpanel"
-                    aria-labelledby="headingOne"
-                  >
-                    <div className="panel-body">
-                      <div className="alignleft">
-                        <h2 className="g-section-title"> Spotify account </h2>
-                      </div>
-                      <div className="alignright">
-                        <a href="" className="conect-btn">
-                          Connect
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                      />
+                      <span className="spotify"> Spotify</span>
+                    </Link>
+                    <Link>
+                    </Link>
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="0">
+                    <Card.Body>Hello! I'm the body</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+                <Card>
+                  <Accordion.Toggle as={Card.Header} eventKey="1">
+                  <Link>
+                      <Image
+                          src="assets/images/icons/spotify.svg"
+                          className="svg-clone"
+                      />
+                      <span className="spotify"> Spotify</span>
+                    </Link>
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="1">
+                    <Card.Body>Hello! I'm another body</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
     </>
   );
 };

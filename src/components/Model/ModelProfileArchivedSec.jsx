@@ -1,47 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import SendTipModal from "../helper/SendTipModal";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const ModelProfileArchivedSec = (props) => {
+
+  const [sendTip, setSendTip] = useState(false);
+
+  const closeSendTipModal = () => {
+    setSendTip(false);
+  };
+
   return (
-    <div
-      role="tabpanel"
-      className={
-        props.activeSec === "archive"
-          ? "tab-pane fade in active"
-          : "tab-pane fade"
-      }
-      id="Section4"
-    >
-      <div className="profile-post-area">
+    <>
+      <div
+        role="tabpanel"
+        className={
+          props.activeSec === "archive"
+            ? "tab-pane fade in active"
+            : "tab-pane fade"
+        }
+        id="Section4"
+      >
         <div className="alignleft">
-          <span className="post-number">43 ARCHIVED POSTS</span>
+          <span className="post-number">4358 Post</span>
         </div>
         <div className="alignright">
           <div className="profile-search-post">
-            <form className="searchbox">
-              <input
-                type="search"
-                placeholder="Search......"
-                name="search"
-                className="searchbox-input"
-                onkeyup="buttonUp();"
-                required
-              />
-              <input type="submit" className="searchbox-submit" value="" />
-              <span className="searchbox-icon">
-                <img
-                  src="assets/images/icons/search.svg"
-                  className="svg-clone"
-                />
-              </span>
-            </form>
+            <Form className='search-box'>
+              <input className="search-text" type="text" placeholder="Search Anything" />
+              <Link to="#" className="search-btn">
+                <i class="fas fa-search"></i>
+              </Link>
+            </Form>
           </div>
         </div>
       </div>
       <div className="post-list">
         <div className="post-header">
           <div className="alignleft">
-            <a className="title-container" href="#">
-              <img
+            <Link className="title-container" to="#">
+              <Image
                 src="assets/images/avatar/user.jpg"
                 className="user-image img-responsive"
               />
@@ -49,40 +66,43 @@ const ModelProfileArchivedSec = (props) => {
                 <span className="post-user-name">John</span>
                 <span className="post-user-">@u63484651</span>
               </div>
-            </a>
+            </Link>
           </div>
           <div className="alignright">
             <div className="post-header-right-side">
-              <span className="post-time">
+              <span className="post-time flex-content">
                 {" "}
                 <span className="post-time">3 hours ago </span>
-                <div className="dropdown">
-                  <button
+                <Dropdown>
+                  <Dropdown.Toggle
                     className="btn btn-default dropdown-toggle"
                     type="button"
-                    data-toggle="dropdown"
+                    id="dropdown-basic"
                   >
-                    <img
+                    <Image
                       src="assets/images/icons/vertical-dots.svg"
                       className="svg-clone vertical-dots"
                     />
-                  </button>
-                  <ul className="dropdown-menu dropdown-menu-right">
-                    <li>
-                      <a href="#"> Copy link to post </a>
-                    </li>
-                    <li>
-                      <a href="#"> Hide paid blurred from the home feed </a>
-                    </li>
-                    <li className="divider"></li>
-                    <li>
-                      <a href="#"> I don't like this post </a>
-                    </li>
-                    <li>
-                      <a href="#"> Hide user's posts from feed </a>
-                    </li>
-                  </ul>
-                </div>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                    <Media as="li">
+                      <Link to="#"> Copy link to post </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to="#">
+                        {" "}
+                                Hide paid blurred from the home feed{" "}
+                      </Link>
+                    </Media>
+                    <Media as="li" className="divider"></Media>
+                    <Media as="li">
+                      <Link to="#"> I don't like this post </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to="#"> Hide user's posts from feed </Link>
+                    </Media>
+                  </Dropdown.Menu>
+                </Dropdown>
               </span>
             </div>
           </div>
@@ -97,121 +117,62 @@ const ModelProfileArchivedSec = (props) => {
 
           <div className="post-image">
             <div className="">
-              <img className="post-photo" src="assets/images/post/post4.jpg" />
+              <Image className="post-photo" src="assets/images/post/post4.jpg" />
             </div>
           </div>
         </div>
 
         <div className="post-icons">
           <div className="alignleft">
-            <a href="">
-              <img src="assets/images/icons/heart.svg" className="svg-clone" />
-            </a>
-            <a href="">
-              <img
+            <Link href="">
+              <Image
+                src="assets/images/icons/heart.svg"
+                className="svg-clone"
+              />
+            </Link>
+            <Link href="">
+              <Image
                 src="assets/images/icons/comment.svg"
                 className="svg-clone"
               />
-            </a>
+            </Link>
 
-            <div className="modal fade" id="myModal" role="dialog">
-              <div className="modal-dialog">
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <button
-                      type="button"
-                      className="close"
-                      data-dismiss="modal"
-                    >
-                      &times;
-                    </button>
-                    <h4 className="modal-title"> Send tip </h4>
-                  </div>
-                  <div className="modal-body">
-                    <div className="header-userinfo">
-                      <div className="g-avatar online_status_class">
-                        <img
-                          src="assets/images/avatar/user-4.jpg"
-                          alt="💕🦋Sarai Rollins🦋💕"
-                          className="tips__user__img"
-                        />
-                      </div>
-                      <div className="popup-username-row">
-                        <div className="pop-username">
-                          <div className=""> 💕🦋Sarai Rollins🦋💕</div>
-                        </div>
-                      </div>
-                      <div className="popup-username-row">
-                        <span className="pop-username popuser-realname">
-                          <div className="pop-user-username">
-                            {" "}
-                            @sarairollins
-                          </div>
-                        </span>
-                      </div>
-                    </div>
+            <Button
+              type="button"
+              className="g-icon"
+              onClick={() => setSendTip(true)}
+            >
+              <Image
+                src="assets/images/icons/tip.svg"
+                className="svg-clone"
+              />
 
-                    <div className="floating-form">
-                      <div className="floating-label">
-                        <input
-                          className="floating-input"
-                          type="text"
-                          placeholder=" "
-                        />
-                        <span className="highlight"></span>
-                        <label>Tip amount</label>
-                      </div>
-
-                      <div className="floating-label">
-                        <input
-                          className="floating-input"
-                          type="text"
-                          placeholder=" "
-                        />
-                        <span className="highlight"></span>
-                        <label>Message (optional)</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      type="button"
-                      className="btn btn-default"
-                      data-dismiss="modal"
-                    >
-                      CANCEL
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-default"
-                      data-dismiss="modal"
-                    >
-                      SEND TIP
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <span className="post-tip">SEND TIP</span>
+            </Button>
           </div>
           <div className="alignright">
-            <a href="#">
-              <img
+            <Link to="#">
+              <Image
                 src="assets/images/icons/bookmark.svg"
                 className="svg-clone"
               />
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="likes alignleft">
           <p>78 Likes</p>
-          <button className="Show view-comments">View 11 comments</button>
-          <button className="Hide view-comments">View less comments</button>
+          <Link className="Show view-comments">
+            View 11 comments
+                  </Link>
+          <Link className="Hide view-comments">
+            View less comments
+                  </Link>
           <div id="target">
             <div className="row comment-row">
               <div className="alignleft">
-                <a className="title-container" href="#">
-                  <img
+                <Link className="title-container" to="#">
+                  <Image
                     src="assets/images/avatar/user.jpg"
                     className="user-image img-responsive"
                   />
@@ -220,34 +181,34 @@ const ModelProfileArchivedSec = (props) => {
                       Tom{" "}
                       <span className="comment-message">
                         she's breathtaking
-                      </span>
+                              </span>
                     </span>
                     <small className="text-muted cat">
-                      <button>4:03 am</button>
-                      <button>5 Likes</button>
-                      <button>
+                      <Button>4:03 am</Button>
+                      <Button>5 Likes</Button>
+                      <Button>
                         {" "}
                         <i
                           className="fas fa-users text-info"
                           style={{ display: "none" }}
                         ></i>{" "}
-                        Reply
-                      </button>
+                                Reply
+                              </Button>
                     </small>
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="alignright">
-                <a href="#">
-                  <img src="assets/images/icons/heart.svg" width="16" />
-                </a>
+                <Link to="#">
+                  <Image src="assets/images/icons/heart.svg" width="16" />
+                </Link>
               </div>
             </div>
 
             <div className="row comment-row">
               <div className="alignleft">
-                <a className="title-container" href="#">
-                  <img
+                <Link className="title-container" to="#">
+                  <Image
                     src="assets/images/avatar/user-2.jpg"
                     className="user-image img-responsive"
                   />
@@ -255,35 +216,38 @@ const ModelProfileArchivedSec = (props) => {
                     <span className="card-title">
                       Robert Maskell{" "}
                       <span className="comment-message">
-                        You have your own name on a necklace?
-                      </span>
+                        Looks nice necklace?
+                              </span>
                     </span>
                     <small className="text-muted cat">
-                      <button>4:03 am</button>
-                      <button>5 Likes</button>
-                      <button>
+                      <Button>4:03 am</Button>
+                      <Button>5 Likes</Button>
+                      <Button>
                         {" "}
                         <i
                           className="fas fa-users text-info"
                           style={{ display: "none" }}
                         ></i>{" "}
-                        Reply
-                      </button>
+                                Reply
+                              </Button>
                     </small>
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="alignright">
-                <a href="#">
-                  <img src="assets/images/icons/heart.svg" width="16" />
-                </a>
+                <Link to="#">
+                  <Image
+                    src="assets/images/icons/heart.svg"
+                    width="16"
+                  />
+                </Link>
               </div>
             </div>
 
             <div className="row comment-row">
               <div className="alignleft">
-                <a className="title-container" href="#">
-                  <img
+                <Link className="title-container" to="#">
+                  <Image
                     src="assets/images/avatar/user-3.jpg"
                     className="user-image img-responsive"
                   />
@@ -292,70 +256,76 @@ const ModelProfileArchivedSec = (props) => {
                       -Johanaki-{" "}
                       <span className="comment-message">
                         Yes, my goddess!!!
-                      </span>
+                              </span>
                     </span>
                     <small className="text-muted cat">
-                      <button>4:03 am</button>
-                      <button>5 Likes</button>
-                      <button>
+                      <Button>4:03 am</Button>
+                      <Button>5 Likes</Button>
+                      <Button>
                         {" "}
                         <i
                           className="fas fa-users text-info"
                           style={{ display: "none" }}
                         ></i>{" "}
-                        Reply
-                      </button>
+                                Reply
+                              </Button>
                     </small>
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="alignright">
-                <a href="#">
-                  <img src="assets/images/icons/heart.svg" width="16" />
-                </a>
+                <Link to="#">
+                  <Image
+                    src="assets/images/icons/heart.svg"
+                    width="16"
+                  />
+                </Link>
               </div>
             </div>
 
             <div className="comment-box">
               <div className="alignleft">
-                <a href="#">
-                  <img src="assets/images/icons/gif.png" />
-                </a>
+                <Link to="#">
+                  <Image src="assets/images/icons/gif.png" />
+                </Link>
               </div>
               <div className="alignright">
-                <a href="#">
-                  <img src="assets/images/icons/smile.png" />
-                </a>
+                <Link to="#">
+                  <Image src="assets/images/icons/smile.png" />
+                </Link>
               </div>
               <div className="comment-box-form">
-                <form className="form-inline" action="/action_page.php">
+                <Form className="form-inline" action="">
                   <div className="user-picture">
-                    <a className="title-container" href="#">
-                      <img
+                    <Link className="title-container" to="#">
+                      <Image
                         src="assets/images/avatar/user-3.jpg"
                         className="user-image img-responsive"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="text-box">
-                    <textarea
-                      ype="text"
+                    <Form.Control
+                      as="textarea"
+                      rows={3}
+                      type="text"
                       className="form-control"
                       id="comment"
                       placeholder="Add a comment"
                       name="comment"
-                    ></textarea>
+                    />
                   </div>
-                  <button type="submit" className="custom-btn">
+                  <Button type="submit" className="custom-btn">
                     <i className="fa fa-paper-plane-o"></i>
-                  </button>
-                </form>
+                  </Button>
+                </Form>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
+    </>
   );
 };
 

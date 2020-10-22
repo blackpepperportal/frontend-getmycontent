@@ -5,57 +5,72 @@ import {
   editUserDetails,
   updateUserDetailsStart,
 } from "../../../store/actions/UserAction";
+import { Link } from "react-router-dom";
+import {
+  Nav,
+  Container,
+  Row,
+  Col,
+  Tab,
+  Dropdown,
+  Image,
+  ListGroup,
+  Media,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 
 const EditProfile = () => {
   return (
-    <section className="edit-profile">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4 col-xs-12">
+    <div className="edit-profile">
+      <Container>
+        <Row>
+          <Col sm={12} md={4}>
             <div className="vertical-menu edit-p">
-              <a
+              <Link
                 className="bookmarkes-list"
-                href=""
+                to=""
                 style={{ color: "#000 !Important" }}
               >
-                <img src="assets/images/icons/back.svg" className="svg-clone" />
+                <Image src="assets/images/icons/back.svg" className="svg-clone" />
                 Settings
-              </a>
-              <a className="bookmarkes-list active" aria-hidden="true">
-                <img
+              </Link>
+              <Link className="bookmarkes-list active" aria-hidden="true">
+                <Image
                   src="assets/images/icons/profile.svg"
                   className="svg-clone"
-                />{" "}
+                />
                 Profile
-              </a>
-              <a className="bookmarkes-list" href="bookmarks-videos.php">
-                <img
+              </Link>
+              <Link className="bookmarkes-list" to="bookmarks-videos.php">
+                <Image
                   src="assets/images/icons/account.svg"
                   className="svg-clone"
                 />
                 Account
-              </a>
-              <a className="bookmarkes-list" href="bookmarks-audio.php">
-                <img
+              </Link>
+              <Link className="bookmarkes-list" to="bookmarks-audio.php">
+                <Image
                   src="assets/images/icons/notification.svg"
                   className="svg-clone"
                 />
                 Notifications
-              </a>
-              <a className="bookmarkes-list" href="bookmarks-other.php">
-                <img
+              </Link>
+              <Link className="bookmarkes-list" to="bookmarks-other.php">
+                <Image
                   src="assets/images/icons/security.svg"
                   className="svg-clone"
                 />
                 Security
-              </a>
-              <a className="bookmarkes-list" href="bookmarks-locked.php">
-                <img src="assets/images/icons/new.svg" className="svg-clone" />
+              </Link>
+              <Link className="bookmarkes-list" to="bookmarks-locked.php">
+                <Image src="assets/images/icons/new.svg" className="svg-clone" />
                 What's New
-              </a>
+              </Link>
             </div>
-          </div>
-          <div className="col-md-8">
+          </Col>
+          <Col md={8} sm={12}>
             <div className="profile-post-area">
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
@@ -68,73 +83,72 @@ const EditProfile = () => {
             <div className="edit-profile-photo">
               <div className="profile large">
                 <div className="cover">
-                  <img src="assets/images/b-4.jpg" />
+                  <Image src="assets/images/b-4.jpg" />
                   <div className="layer">
                     <div className="loader"></div>
                   </div>
                   <a className="image-wrapper" href="#">
-                    <form id="coverForm" action="#">
-                      <input
+                    <Form id="coverForm" action="#">
+                      <Form.Control
                         className="hidden-input"
                         id="changeCover"
                         type="file"
                       />
-                      <label
+                      <Form.Label
                         className="edit "
                         for="changeCover"
                         title="Change cover"
                       >
-                        {" "}
-                        Upload cover image{" "}
-                      </label>
-                    </form>
+                        Upload cover image
+                      </Form.Label>
+                    </Form>
                   </a>
                 </div>
                 <div className="user-info">
                   <div className="profile-pic">
-                    <img src="assets/images/avatar/harish-jee.png" />
+                    <Image src="assets/images/avatar/harish-jee.png" />
                     <div className="layer">
                       <div className="loader"></div>
                     </div>
-                    <a className="" href="#">
-                      <form id="profilePictureForm" action="#">
-                        <input
+                    <a className="image-wrapper" href="#">
+                      <Form id="profile-img" action="#">
+                        <Form.Control
                           className="hidden-input"
                           id="changePicture"
                           type="file"
                         />
-                        <label
+                        <Form.Label
                           className="edit"
                           for="changePicture"
                           type="file"
                           title="Change picture"
-                        ></label>
-                      </form>
+                        ></Form.Label>
+                      </Form>
                     </a>
                   </div>
                   <a className="upload-profile-picture">
-                    <form id="profilePictureForm" action="#">
-                      <input
+                    <Form id="profilePictureForm" action="#">
+                      <Form.Control
                         className="hidden-input"
                         id="changePicture"
                         type="file"
                       />
-                      <label
+                      <Form.Label
                         className="edit"
                         for="changePicture"
                         type="file"
                         title="Change picture"
                       >
-                        {" "}
-                        Upload profile photo{" "}
-                      </label>
-                    </form>
+                        
+                        Upload profile photo
+                      </Form.Label>
+                    </Form>
                   </a>
                 </div>
               </div>
               <p className="inuput-help">
-                {" "}
-                Profile images must not contain nudity or explicit material.{" "}
+                
+                Profile images must not contain nudity or explicit material.
               </p>
             </div>
 
@@ -143,12 +157,12 @@ const EditProfile = () => {
               data-vv-delay="1000"
               data-vv-as="Username"
             >
-              <label className="edit-input-label">
-                {" "}
+              <Form.Label className="edit-input-label">
+                
                 Username <span className="edit-input-optional">(optional)</span>
-              </label>
+              </Form.Label>
               <div className="">
-                <input
+                <Form.Control
                   id="edit-login"
                   type="text"
                   autocomplete="on"
@@ -158,7 +172,7 @@ const EditProfile = () => {
                   className="form-control edit-reset"
                 />
                 <span className="edit-new-username-status">
-                  <img
+                  <Image
                     src="assets/images/icons/tick.svg"
                     className="svg-clone"
                   />
@@ -172,13 +186,13 @@ const EditProfile = () => {
               data-vv-delay="1000"
               data-vv-as="Username"
             >
-              <label className="edit-input-label">
-                {" "}
-                Display name{" "}
+              <Form.Label className="edit-input-label">
+                
+                Display name
                 <span className="edit-input-optional">(optional)</span>
-              </label>
+              </Form.Label>
               <div className="">
-                <input
+                <Form.Control
                   id="edit-login"
                   type="text"
                   autocomplete="on"
@@ -196,13 +210,13 @@ const EditProfile = () => {
               data-vv-delay="1000"
               data-vv-as="Username"
             >
-              <label className="edit-input-label">
-                {" "}
-                Subscription price ($ per month){" "}
+              <Form.Label className="edit-input-label">
+                
+                Subscription price ($ per month)
                 <span className="edit-input-optional">(optional)</span>
-              </label>
+              </Form.Label>
               <div className="">
-                <input
+                <Form.Control
                   id="edit-login"
                   type="text"
                   autocomplete="on"
@@ -214,8 +228,8 @@ const EditProfile = () => {
                 />
               </div>
               <p className="inuput-help">
-                You must{" "}
-                <a href="#">Add a Bank Account or Payment Information</a> before
+                You must
+                <Link to="#">Add a Bank Account or Payment Information</Link> before
                 you can set your price or accept tips.
               </p>
             </div>
@@ -225,12 +239,12 @@ const EditProfile = () => {
               data-vv-delay="1000"
               data-vv-as="Username"
             >
-              <label className="edit-input-label">
-                {" "}
+              <Form.Label className="edit-input-label">
+                
                 ABOUT <span className="edit-input-optional">(optional)</span>
-              </label>
+              </Form.Label>
               <div className="">
-                <input
+                <Form.Control
                   id="edit-login"
                   type="text"
                   autocomplete="on"
@@ -248,12 +262,12 @@ const EditProfile = () => {
               data-vv-delay="1000"
               data-vv-as="Username"
             >
-              <label className="edit-input-label">
-                {" "}
+              <Form.Label className="edit-input-label">
+                
                 LOCATION <span className="edit-input-optional">(optional)</span>
-              </label>
+              </Form.Label>
               <div className="">
-                <input
+                <Form.Control
                   id="edit-login"
                   type="text"
                   autocomplete="on"
@@ -271,13 +285,13 @@ const EditProfile = () => {
               data-vv-delay="1000"
               data-vv-as="Username"
             >
-              <label className="edit-input-label">
-                {" "}
-                WEBSITE URL{" "}
+              <Form.Label className="edit-input-label">
+                
+                WEBSITE URL
                 <span className="edit-input-optional">(optional)</span>
-              </label>
+              </Form.Label>
               <div className="">
-                <input
+                <Form.Control
                   id="edit-login"
                   type="text"
                   autocomplete="on"
@@ -295,13 +309,13 @@ const EditProfile = () => {
               data-vv-delay="1000"
               data-vv-as="Username"
             >
-              <label className="edit-input-label">
-                {" "}
-                AMAZON WISHLIST{" "}
+              <Form.Label className="edit-input-label">
+                
+                AMAZON WISHLIST
                 <span className="edit-input-optional">(optional)</span>
-              </label>
+              </Form.Label>
               <div className="">
-                <input
+                <Form.Control
                   id="edit-login"
                   type="text"
                   autocomplete="on"
@@ -315,7 +329,7 @@ const EditProfile = () => {
             </div>
 
             <div className="edit-save">
-              <button className="save-btn"> Save changes </button>
+              <Button className="save-btn"> Save changes </Button>
             </div>
 
             <div className="connect-spotify-section">
@@ -323,15 +337,15 @@ const EditProfile = () => {
                 <h2 className="g-section-title"> Spotify account </h2>
               </div>
               <div className="pull-right">
-                <a href="" className="connect-spotify">
+                <Link to="" className="connect-spotify">
                   Connect
-                </a>
+                </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
