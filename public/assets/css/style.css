@@ -1252,8 +1252,8 @@ button.g-icon:focus {
     font-size: 30px;
 
 }
-section.home-screen {
-    margin-top: 50px;
+.home-screen {
+    margin-top: 65px;
     margin-bottom: 80px;
 }
 .alignleft {
@@ -1263,14 +1263,20 @@ section.home-screen {
   float: right;
 }
 
+.home-sec .alignleft {
+    display: flex;
+}
+
+.btn-primary:hover{
+    background-color: transparent;
+}
+
 .post-header {
     min-height: 48px;
     position: relative;
     margin: 0px 0px 14px;
 }
-.post-header .user-image{
 
-}
 span.post-user-name {
     font-weight: 500;
     color: #242529;
@@ -1878,6 +1884,8 @@ h4.suggestions {
     color: #8a96a3;
     text-transform: uppercase;
     font-weight: 500;
+    margin-bottom: 0;
+    padding-top: 0.8em;
 }
 .b-friend__avatar {
     position: absolute;
@@ -1903,8 +1911,8 @@ h4.suggestions {
 .g-avatar img {
     border-radius: inherit;
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 5em;
+    height: 5em;
     -o-object-fit: cover;
     object-fit: cover;
 }
@@ -2092,7 +2100,6 @@ button.btn.btn-info.btn-lg {
         margin-top: -7px;
         position: relative;
     min-height: 51px;
-    padding-left: 65px;
     padding-top: 6px;
     margin-bottom: 28px;
 }
@@ -2391,17 +2398,23 @@ span.main-header-menu__count {
 }
 
 /*CHAT PAGE CSS HERE*/
-section.message-page {
+.message-page {
     margin: 50px 0px 0px;
 }
 h2.chat-section-title {
-    padding-bottom: 12px;
+    padding-bottom:0;
     font-size: 15px;
     color: #8a96a3;
-    padding: 0 4px 10px;
+    padding: 0 4px 0px;
     margin: 0;
     text-transform: uppercase;
     font-weight: 500;
+}
+.recent-chat{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
 }
 
 .chat-item {
@@ -2421,9 +2434,9 @@ button.chat-btn-one {
     background: none;
     border: none;
     padding: 2px;
-    right: 2px;
+    right: 13px;
     z-index: 10;
-    top: 18px;
+    top: 13px;
     color: rgba(138,150,163,0.4);
 }
 .friend-profile{
@@ -2484,7 +2497,7 @@ span.friend-name {
     min-height: auto;
     -webkit-box-align: start;
     -ms-flex-align: start;
-    align-items: flex-start;
+    align-items:center;
     padding-top: 30px;
     padding-bottom: 30px;
     margin-bottom: 10px;
@@ -3365,7 +3378,7 @@ span.my-profile-status {
 .edit-p a.bookmarkes-list img.svg-clone {
     margin-right: 20px;
 }
-section.edit-profile {
+.edit-profile {
     padding: 60px 0px;
 }
 span.spotify {
@@ -3877,11 +3890,16 @@ h1.chat-section-title {
     color: #000;
     text-align: left;
     margin-top: 0px;
+    padding-top: 0.5em;
 }
 .msg-row-chat{
     height: 95vh;
     display: block;
     overflow: hidden;
+}
+
+.padding-top-lg {
+    padding-top: 2em;
 }
 .chat-section-title-width {
     display: -webkit-box;
@@ -3951,7 +3969,7 @@ button.g-btn.m-rounded.b-chat__btn-submit {
     border-radius: 1000px;
     position: absolute;
     right: 10px;
-    bottom: 10px;
+    bottom:10px;
     padding: 0;
     width: 48px;
     height: 48px;
@@ -4291,7 +4309,7 @@ button.post-btn {
     text-align: center;
     text-transform: uppercase;
 }
-..post-create-header {
+.post-create-header {
     display: block;
     width: 100%;
     float: left;
@@ -5872,7 +5890,7 @@ input.authentication-input {
     position: relative;
     clear: both;
 }
-section.message-page {
+.message-page {
     margin: 30px 0px 0px;
     height: 92vh;
 }
@@ -5921,7 +5939,7 @@ section.notification-page {
     transition: transform .2s;
     will-change: transform;
 }
-section.message-page {
+.message-page {
     margin: 30px 0px 0px;
     height: 92vh;
 }
@@ -6064,7 +6082,7 @@ button.custom-btn {
 .lists {
     margin: 0px 0px;
 }
-section.home-screen {
+.home-screen {
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -6092,7 +6110,7 @@ section.home-screen {
         margin-left: 6px;
     vertical-align: top;
 }
-section.message-page {
+.message-page {
     margin: 0px 0px 0px;
 }
 .chat-content {
@@ -6423,7 +6441,7 @@ div#accordion {
 ----------------------------------------------------------- */
 
 @media only screen and (max-width: 479px) {
-section.home-screen {
+.home-screen {
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -6466,7 +6484,7 @@ section.home-screen {
         margin-left: 6px;
     vertical-align: top;
 }
-section.message-page {
+.message-page {
     margin: 0px 0px 0px;
 }
 .chat-content {
@@ -6484,7 +6502,7 @@ section.message-page {
     min-height: auto;
     -webkit-box-align: start;
     -ms-flex-align: start;
-    align-items: flex-start;
+    align-items: center;
     padding-top: 14px;
     padding-bottom: 14px;
     margin-bottom: 10px;
@@ -6654,7 +6672,6 @@ position: unset;
     height: 100vh;
     top: 0;
     background: #0000008a;
-    opacity: ;
 }
 .dropdown-menu.mobile-popup.show {
     /*position: absolute;*/
@@ -6704,7 +6721,6 @@ position: unset;
     height: 100% !important;
     top: 0;
     background: #0000008a;
-    opacity: ;
 }
 .pop-ups-bg {
     background: #fff;
@@ -6899,7 +6915,7 @@ a.l-sidebar__avatar {
     padding-left: 15px;
     padding-right: 15px;
 }
-section.edit-profile {
+.edit-profile {
     padding: 0px 0px;
 }
 section#tabs {
@@ -6907,11 +6923,60 @@ section#tabs {
 }
 }
 
-.home-sec .dropdown-menu.dropdown-menu-right li a{
+.dropdown-menu.dropdown-menu-right li a{
     padding: 5px 13px;
     font-size: 0.8em;
 }
 
-.home-sec .dropdown-menu.show{
+.dropdown-menu.show{
     min-width: 265px;
 }
+
+.flex-content {
+    display: flex;
+    align-items: center;
+}
+
+.fade.modal-backdrop.show{
+    opacity:0.5!important;
+}
+
+.fade {
+    opacity: unset!important;
+}
+
+
+/* .modal {
+    text-align: center;
+    padding: 0!important;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+  }
+  
+  .modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+  }
+  
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    top:20%;
+  } */
+
+  .btn-primary:hover {
+      background-color: transparent!important;
+      border-color: transparent!important;
+  }
+
+  .btn-primary:focus {
+      box-shadow: none!important;
+  }
