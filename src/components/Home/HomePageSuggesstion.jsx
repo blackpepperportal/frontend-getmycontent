@@ -1,55 +1,73 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+  NavLink,
+} from "react-bootstrap";
 
 const HomePageSuggesstion = () => {
   return (
-    <div className="col-md-4 suggest-col">
-      <div className="row">
-        <div className="">
-          <div className="col-md-6 col-sm-6 col-xs-6">
-            <h4 className="suggestions">suggestions</h4>
-          </div>
+    <Col md={4} className="suggest-col">
+      <Row>
+        <Col sm={6} md={6} xs={6}>
+          <h4 className="suggestions">suggestions</h4>
+        </Col>
+        <Col sm={6} md={6} xs={6}>
+          <div className="controls pull-right ">
+            <Link to="#">
+              <Image
+                src="assets/images/icons/price-tag.svg"
+                className="svg-clone"
+              />
+            </Link>
+            <Link to="#">
+              <Image
+                src="assets/images/icons/refresh.svg"
+                className="svg-clone"
+              />
+            </Link>
 
-          <div className="col-md-6 col-sm-6 col-xs-6">
-            <div className="controls pull-right ">
-              <a href="#">
-                <img
-                  src="assets/images/icons/price-tag.svg"
-                  className="svg-clone"
-                />
-              </a>
-              <a href="#">
-                <img
-                  src="assets/images/icons/refresh.svg"
-                  className="svg-clone"
-                />
-              </a>
-
-              <a
-                className="left btn btn-success"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Prev"
-                href="#carousel-example"
-                data-slide="prev"
-              >
-                <img src="assets/images/icons/left.svg" className="svg-clone" />
-              </a>
-              <a
-                className="right btn btn-success"
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Next"
-                href="#carousel-example"
-                data-slide="next"
-              >
-                <img
-                  src="assets/images/icons/right.svg"
-                  className="svg-clone"
-                />
-              </a>
-            </div>
+            <Link
+              className="left btn btn-success"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Prev"
+              to="#carousel-example"
+              data-slide="prev"
+            >
+              <Image src="assets/images/icons/left.svg" className="svg-clone" />
+            </Link>
+            <Link
+              className="right btn btn-success"
+              data-toggle="tooltip"
+              data-placement="top"
+              title="Next"
+              to="#carousel-example"
+              data-slide="next"
+            >
+              <Image
+                src="assets/images/icons/right.svg"
+                className="svg-clone"
+              />
+            </Link>
           </div>
-        </div>
+        </Col>
         <div
           id="carousel-example"
           className="carousel slide "
@@ -63,9 +81,9 @@ const HomePageSuggesstion = () => {
                     <div className="photo">
                       <div className="swiper-slide">
                         <div className="b-friend">
-                          <a href="user-profile.php" className="">
+                          <Link to="user-profile.php" className="">
                             <div className="b-friend__cover-wrapper">
-                              <img
+                              <Image
                                 src="assets/images/avatar/s-user-11.jpg"
                                 alt="Yoga with Taz"
                                 className="b-friend__cover"
@@ -75,7 +93,7 @@ const HomePageSuggesstion = () => {
                             <div className="b-friend__content">
                               <div className="b-friend__avatar">
                                 <span className="g-avatar online_status_class m-w150 m-border-line">
-                                  <img
+                                  <Image
                                     src="assets/images/avatar/s-user.jpg"
                                     alt="Yoga with Taz"
                                   />
@@ -98,7 +116,7 @@ const HomePageSuggesstion = () => {
                                 </div>
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -108,9 +126,9 @@ const HomePageSuggesstion = () => {
                     <div className="photo">
                       <div className="swiper-slide">
                         <div className="b-friend">
-                          <a href="user-profile.php" className="">
+                          <Link to="user-profile.php" className="">
                             <div className="b-friend__cover-wrapper">
-                              <img
+                              <Image
                                 src="assets/images/avatar/s-user-22.jpg"
                                 alt="Yoga with Taz"
                                 className="b-friend__cover"
@@ -120,7 +138,7 @@ const HomePageSuggesstion = () => {
                             <div className="b-friend__content">
                               <div className="b-friend__avatar">
                                 <span className="g-avatar online_status_class m-w150 m-border-line">
-                                  <img
+                                  <Image
                                     src="assets/images/avatar/s-user-2.jpg"
                                     alt="Yoga with Taz"
                                   />
@@ -143,7 +161,7 @@ const HomePageSuggesstion = () => {
                                 </div>
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -153,9 +171,9 @@ const HomePageSuggesstion = () => {
                     <div className="photo">
                       <div className="swiper-slide">
                         <div className="b-friend">
-                          <a href="user-profile.php" className="">
+                          <Link to="user-profile.php" className="">
                             <div className="b-friend__cover-wrapper">
-                              <img
+                              <Image
                                 src="assets/images/avatar/s-user-33.jpg"
                                 alt="Yoga with Taz"
                                 className="b-friend__cover"
@@ -165,7 +183,7 @@ const HomePageSuggesstion = () => {
                             <div className="b-friend__content">
                               <div className="b-friend__avatar">
                                 <span className="g-avatar online_status_class m-w150 m-border-line">
-                                  <img
+                                  <Image
                                     src="assets/images/avatar/s-user-3.jpg"
                                     alt="Yoga with Taz"
                                   />
@@ -188,7 +206,7 @@ const HomePageSuggesstion = () => {
                                 </div>
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -203,9 +221,9 @@ const HomePageSuggesstion = () => {
                     <div className="photo">
                       <div className="swiper-slide">
                         <div className="b-friend">
-                          <a href="user-profile.php" className="">
+                          <Link to="user-profile.php" className="">
                             <div className="b-friend__cover-wrapper">
-                              <img
+                              <Image
                                 src="assets/images/avatar/s-user-44.jpg"
                                 alt="Yoga with Taz"
                                 className="b-friend__cover"
@@ -215,7 +233,7 @@ const HomePageSuggesstion = () => {
                             <div className="b-friend__content">
                               <div className="b-friend__avatar">
                                 <span className="g-avatar online_status_class m-w150 m-border-line">
-                                  <img
+                                  <Image
                                     src="assets/images/avatar/s-user-4.jpg"
                                     alt="Yoga with Taz"
                                   />
@@ -238,7 +256,7 @@ const HomePageSuggesstion = () => {
                                 </div>
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -248,9 +266,9 @@ const HomePageSuggesstion = () => {
                     <div className="photo">
                       <div className="swiper-slide">
                         <div className="b-friend">
-                          <a href="user-profile.php" className="">
+                          <Link to="user-profile.php" className="">
                             <div className="b-friend__cover-wrapper">
-                              <img
+                              <Image
                                 src="assets/images/avatar/s-user-55.jpg"
                                 alt="Yoga with Taz"
                                 className="b-friend__cover"
@@ -260,7 +278,7 @@ const HomePageSuggesstion = () => {
                             <div className="b-friend__content">
                               <div className="b-friend__avatar">
                                 <span className="g-avatar online_status_class m-w150 m-border-line">
-                                  <img
+                                  <Image
                                     src="assets/images/avatar/s-user-5.jpg"
                                     alt="Yoga with Taz"
                                   />
@@ -283,7 +301,7 @@ const HomePageSuggesstion = () => {
                                 </div>
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -293,9 +311,9 @@ const HomePageSuggesstion = () => {
                     <div className="photo">
                       <div className="swiper-slide">
                         <div className="b-friend">
-                          <a href="user-profile.php" className="">
+                          <Link to="user-profile.php" className="">
                             <div className="b-friend__cover-wrapper">
-                              <img
+                              <Image
                                 src="assets/images/avatar/s-user-66.jpg"
                                 alt="Yoga with Taz"
                                 className="b-friend__cover"
@@ -305,7 +323,7 @@ const HomePageSuggesstion = () => {
                             <div className="b-friend__content">
                               <div className="b-friend__avatar">
                                 <span className="g-avatar online_status_class m-w150 m-border-line">
-                                  <img
+                                  <Image
                                     src="assets/images/avatar/s-user-6.jpeg"
                                     alt="Yoga with Taz"
                                   />
@@ -328,7 +346,7 @@ const HomePageSuggesstion = () => {
                                 </div>
                               </div>
                             </div>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -338,8 +356,8 @@ const HomePageSuggesstion = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Row>
+    </Col>
   );
 };
 

@@ -18,16 +18,18 @@ import {
 import SendTipModal from "../helper/SendTipModal";
 
 const HomePageIndex = () => {
+
   const [sendTip, setSendTip] = useState(false);
 
   const closeSendTipModal = () => {
     setSendTip(false);
   };
+
   return (
     <>
       <div className="home-screen home-sec">
         <Container>
-          <Row className="search-row">
+          <div className="search-row">
             <Link to="#" className="search-button">
               Home
             </Link>
@@ -45,7 +47,7 @@ const HomePageIndex = () => {
                 </label>
               </Form>
             </div>
-          </Row>
+          </div>
           <div className="">
             <Col md={8} className="custom-padding">
               <Container>
@@ -69,7 +71,7 @@ const HomePageIndex = () => {
                   </div>
                   <div className="alignright">
                     <div className="post-header-right-side">
-                      <span className="post-time">
+                      <span className="post-time flex-content">
                         {" "}
                         <span className="post-time">3 hours ago </span>
                         <Dropdown>
@@ -78,7 +80,7 @@ const HomePageIndex = () => {
                             type="button"
                             id="dropdown-basic"
                           >
-                            <img
+                            <Image
                               src="assets/images/icons/vertical-dots.svg"
                               className="svg-clone vertical-dots"
                             />
@@ -150,7 +152,7 @@ const HomePageIndex = () => {
                     </Link>
 
                     <Button
-                      type=""
+                      type="button"
                       className="g-icon"
                       onClick={() => setSendTip(true)}
                     >
@@ -174,12 +176,12 @@ const HomePageIndex = () => {
 
                 <div className="likes alignleft">
                   <p>78 Likes</p>
-                  <Button className="Show view-comments">
+                  <Link className="Show view-comments">
                     View 11 comments
-                  </Button>
-                  <Button className="Hide view-comments">
+                  </Link>
+                  <Link className="Hide view-comments">
                     View less comments
-                  </Button>
+                  </Link>
                   <div id="target">
                     <div className="row comment-row">
                       <div className="alignleft">
@@ -212,7 +214,7 @@ const HomePageIndex = () => {
                       </div>
                       <div className="alignright">
                         <Link to="#">
-                          <img src="assets/images/icons/heart.svg" width="16" />
+                          <Image src="assets/images/icons/heart.svg" width="16" />
                         </Link>
                       </div>
                     </div>

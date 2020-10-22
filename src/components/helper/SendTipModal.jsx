@@ -13,8 +13,9 @@ const SendTipModal = (props) => {
   return (
     <>
       <Modal
-        className=""
+        className="modal-dialog-center"
         size="md"
+        centered
         show={props.sendTip}
         onHide={props.closeSendTipModal}
       >
@@ -60,14 +61,14 @@ const SendTipModal = (props) => {
           <Modal.Footer>
             <Button
               type="button"
-              className="btn btn-default"
+              className="btn btn-danger"
               data-dismiss="modal"
             >
               CANCEL
             </Button>
             <Button
               type="button"
-              className="btn btn-default"
+              className="btn btn-success"
               data-dismiss="modal"
             >
               SEND TIP

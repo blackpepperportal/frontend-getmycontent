@@ -1,14 +1,34 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const LandingPageIndex = () => {
   const [show, setShow] = useState("login");
 
   return (
     <>
-      <section className="login-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 col-md-6 col-sm-12 hidden-xs iphone-slide-area">
+      <div className="login-section">
+        <Container>
+          <Row>
+            <Col lg={6} md={6} sm={12} xs={12} className="hidden-xs iphone-slide-area">
               <div className="dm-width">
                 <div className="dm-device">
                   <div className="device">
@@ -24,22 +44,22 @@ const LandingPageIndex = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+            </Col>
+            <Col lg={6} md={6} sm={12} xs={12}>
               <div className="sign-in form-section">
-                <a href="#" aria-current="page" className="sign-in-logo">
-                  <img src="./assets/images/logo.png" width="237" />
-                </a>
+                <Link to="#" aria-current="page" className="sign-in-logo">
+                  <Image src="./assets/images/logo.png" width="237" />
+                </Link>
                 <p className="login-tagline">
                   Sign up to make money and interact with your fans!
                 </p>
                 <div className="forms-fields">
-                  <a href="#" className="social-button" id="twitter-connect">
+                  <Link to="#" className="social-button" id="twitter-connect">
                     <span>Sign Up / Login with Twitter</span>
-                  </a>
-                  <a href="#" className="social-button" id="google-connect">
+                  </Link>
+                  <Link to="#" className="social-button" id="google-connect">
                     <span>Sign Up / Login with Google</span>
-                  </a>
+                  </Link>
 
                   <span className="or-line">
                     <span>or</span>
@@ -47,29 +67,27 @@ const LandingPageIndex = () => {
                   <div id="main">
                     <div id="first">
                       {show === "login" ? (
-                        <form action="" method="post">
-                          <div className="form-group">
-                            <input
+                        <Form action="" method="post">
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Control
                               type="text"
                               id="loginemail"
-                              className="form-control"
                               placeholder="E-mail"
                               required
                             />
-                          </div>
+                          </Form.Group>
 
-                          <div className="form-group">
-                            <input
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Control
                               type="password"
                               id="loginpassword"
-                              className="form-control"
                               placeholder="Password"
                               required
                             />
-                          </div>
+                          </Form.Group>
                           <div className="forget-password">
                             <p id="one">
-                              <a
+                              <Link
                                 type="button"
                                 className="forgot-link"
                                 onClick={(event) => {
@@ -79,7 +97,7 @@ const LandingPageIndex = () => {
                               >
                                 {" "}
                                 Forgot password?{" "}
-                              </a>
+                              </Link>
                             </p>
                           </div>
                           <div className="">
@@ -93,9 +111,9 @@ const LandingPageIndex = () => {
                           </div>
                           <p id="two">Don't have an account yet?</p>
                           <p>
-                            <a
+                            <Link
                               className="signup"
-                              href="#"
+                              to="#"
                               id="signup"
                               onClick={(event) => {
                                 event.preventDefault();
@@ -104,53 +122,50 @@ const LandingPageIndex = () => {
                             >
                               {" "}
                               Sign up for XFans.com
-                            </a>
+                            </Link>
                           </p>
-                        </form>
+                        </Form>
                       ) : null}
                       {show === "signup" ? (
-                        <form action="" id="form" method="post" name="form">
-                          <div className="form-group">
-                            <input
+                        <Form action="" id="form" method="post" name="form">
+                          <Form.Group controlId="formBasicEmail">
+                            <Form.Control
                               type="text"
                               id="registeremail"
-                              className="form-control"
                               placeholder="E-mail"
                               required
                             />
-                          </div>
+                          </Form.Group>
 
-                          <div className="form-group">
-                            <input
+                          <Form.Group controlId="formBasicPassword">
+                            <Form.Control
                               type="password"
                               id="registerpassword"
-                              className="form-control"
                               placeholder="Password"
                               required
                             />
-                          </div>
+                          </Form.Group>
 
-                          <div className="form-group">
-                            <input
+                          <Form.Group controlId="formBasicName">
+                            <Form.Control
                               type="text"
                               id="name"
-                              className="form-control"
                               placeholder="Name"
                               required
                             />
-                          </div>
+                          </Form.Group>
 
-                          <div className="form-group round">
+                          <Form.Group controlId="formBasicName" className="round">
                             <input type="checkbox" id="checkbox" />
                             <label for="checkbox"></label>
                             <p className="terms">
                               By signing up you agree to our{" "}
-                              <a href="#">Terms of Service</a> and{" "}
-                              <a href="#">Privacy Policy</a>.
+                              <Link to="#">Terms of Service</Link> and{" "}
+                              <Link to="#">Privacy Policy</Link>.
                             </p>
-                          </div>
+                          </Form.Group>
 
-                          <div className="form-group">
+                          <Form.Group controlId="formBasicName">
                             <button
                               id="register"
                               onclick="location.href = 'home.php';"
@@ -158,10 +173,10 @@ const LandingPageIndex = () => {
                             >
                               SIGN UP
                             </button>
-                          </div>
+                          </Form.Group>
                           <p id="two">Already have an account?</p>
                           <p>
-                            <a
+                            <Link
                               className="signup"
                               href="#"
                               id="signin"
@@ -172,14 +187,14 @@ const LandingPageIndex = () => {
                             >
                               {" "}
                               Login for XFans.com
-                            </a>
+                            </Link>
                           </p>
-                        </form>
+                        </Form>
                       ) : null}
                       {show === "forgotpassword" ? (
-                        <form action="" method="post">
+                        <Form action="" method="post">
                           <div className="form-group">
-                            <input
+                            <Form.Control
                               type="text"
                               id="loginemail"
                               className="form-control"
@@ -199,9 +214,9 @@ const LandingPageIndex = () => {
                           </div>
                           <p id="two">Already have an account?</p>
                           <p>
-                            <a
+                            <Link
                               className="signup"
-                              href="#"
+                              to="#"
                               id="signin"
                               onClick={(event) => {
                                 event.preventDefault();
@@ -210,18 +225,18 @@ const LandingPageIndex = () => {
                             >
                               {" "}
                               Login for XFans.com
-                            </a>
+                            </Link>
                           </p>
-                        </form>
+                        </Form>
                       ) : null}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </>
   );
 };

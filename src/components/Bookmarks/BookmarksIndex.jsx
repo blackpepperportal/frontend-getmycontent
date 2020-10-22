@@ -1,71 +1,91 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const BookmarksIndex = () => {
   return (
-    <section className=" edit-profile">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4 col-xs-12">
+    <div className="edit-profile bookmark-sec">
+      <Container>
+        <Row>
+          <Col sm={12} xs={12} md={4}>
             <div className="vertical-menu">
-              <a className="bookmarkes-list active" href="bookmarks.php">
-                <img src="assets/images/icons/back.svg" className="svg-clone" />
+              <Link className="bookmarkes-list active" to="bookmarks.php">
+                <Image src="assets/images/icons/back.svg" className="svg-clone" />
                 BOOKMARKS
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list " href="bookmarks-photos.php">
-                <img
+              <Link className="bookmarkes-list " to="bookmarks-photos.php">
+                <Image
                   src="assets/images/icons/gallery.svg"
                   className="svg-clone my-p-icons"
                 />
                 Photos
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-videos.php">
-                <img
+              <Link className="bookmarkes-list" to="bookmarks-videos.php">
+                <Image
                   src="assets/images/icons/video.svg"
                   className="svg-clone my-p-icons"
                 />
                 Videos
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-audio.php">
-                <img
+              <Link className="bookmarkes-list" to="bookmarks-audio.php">
+                <Image
                   src="assets/images/icons/audio.svg"
                   className="svg-clone my-p-icons"
                 />
                 Audio
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-other.php">
-                <img
+              <Link className="bookmarkes-list" to="bookmarks-other.php">
+                <Image
                   src="assets/images/icons/other.svg"
                   className="svg-clone my-p-icons"
                 />
                 Other
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-locked.php">
-                <img
+              <Link className="bookmarkes-list" to="bookmarks-locked.php">
+                <Image
                   src="assets/images/icons/lock.svg"
                   className="svg-clone my-p-icons"
                 />
                 Locked
-              </a>
+              </Link>
             </div>
-          </div>
-          <div className="col-md-8">
+          </Col>
+          <Col sm={12} xs={12} md={8}>
             <div className="profile-post-area">
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
                   <h3>ALL BOOKMARKS</h3>
                 </div>
                 <div className="pull-right">
-                  <a className="bookmarks-filter" href="#">
-                    <img
+                  <Link className="bookmarks-filter" to="#">
+                    <Image
                       src="assets/images/icons/sort.svg"
                       className="svg-clone"
                     />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -73,8 +93,8 @@ const BookmarksIndex = () => {
             <div className="post-list">
               <div className="post-header">
                 <div className="alignleft">
-                  <a className="title-container" href="#">
-                    <img
+                  <Link className="title-container" to="#">
+                    <Image
                       src="assets/images/avatar/user.jpg"
                       className="user-image img-responsive"
                     />
@@ -82,43 +102,43 @@ const BookmarksIndex = () => {
                       <span className="post-user-name">John</span>
                       <span className="post-user-">@u63484651</span>
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 <div className="alignright">
                   <div className="post-header-right-side">
-                    <span className="post-time">
+                    <span className="post-time flex-content">
                       {" "}
                       <span className="post-time">3 hours ago </span>
-                      <div className="dropdown">
-                        <button
+                      <Dropdown>
+                        <Dropdown.Toggle
                           className="btn btn-default dropdown-toggle"
                           type="button"
-                          data-toggle="dropdown"
+                          id="dropdown-basic"
                         >
-                          <img
+                          <Image
                             src="assets/images/icons/vertical-dots.svg"
                             className="svg-clone vertical-dots"
                           />
-                        </button>
-                        <ul className="dropdown-menu dropdown-menu-right">
-                          <li>
-                            <a href="#"> Copy link to post </a>
-                          </li>
-                          <li>
-                            <a href="#">
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                          <Media as="li">
+                            <Link to="#"> Copy link to post </Link>
+                          </Media>
+                          <Media as="li">
+                            <Link to="#">
                               {" "}
-                              Hide paid blurred from the home feed{" "}
-                            </a>
-                          </li>
-                          <li className="divider"></li>
-                          <li>
-                            <a href="#"> I don't like this post </a>
-                          </li>
-                          <li>
-                            <a href="#"> Hide user's posts from feed </a>
-                          </li>
-                        </ul>
-                      </div>
+                                Hide paid blurred from the home feed{" "}
+                            </Link>
+                          </Media>
+                          <Media as="li" className="divider"></Media>
+                          <Media as="li">
+                            <Link to="#"> I don't like this post </Link>
+                          </Media>
+                          <Media as="li">
+                            <Link to="#"> Hide user's posts from feed </Link>
+                          </Media>
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </span>
                   </div>
                 </div>
@@ -133,7 +153,7 @@ const BookmarksIndex = () => {
 
                 <div className="post-image">
                   <div className="">
-                    <img
+                    <Image
                       className="post-photo"
                       src="assets/images/post/post4.jpg"
                     />
@@ -143,26 +163,26 @@ const BookmarksIndex = () => {
 
               <div className="post-icons">
                 <div className="alignleft">
-                  <a href="">
-                    <img
+                  <Link to="#">
+                    <Image
                       src="assets/images/icons/heart.svg"
                       className="svg-clone"
                     />
-                  </a>
-                  <a href="">
-                    <img
+                  </Link>
+                  <Link to="">
+                    <Image
                       src="assets/images/icons/comment.svg"
                       className="svg-clone"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="alignright">
-                  <a href="#">
-                    <img
+                  <Link to="#">
+                    <Image
                       src="assets/images/icons/bookmark.svg"
                       className="svg-clone"
                     />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -175,8 +195,8 @@ const BookmarksIndex = () => {
                 <div id="target">
                   <div className="row comment-row">
                     <div className="alignleft">
-                      <a className="title-container" href="#">
-                        <img
+                      <Link className="title-container" to="#">
+                        <Image
                           src="assets/images/avatar/user.jpg"
                           className="user-image img-responsive"
                         />
@@ -185,34 +205,34 @@ const BookmarksIndex = () => {
                             Tom{" "}
                             <span className="comment-message">
                               she's breathtaking
-                            </span>
+                              </span>
                           </span>
                           <small className="text-muted cat">
-                            <button>4:03 am</button>
-                            <button>5 Likes</button>
-                            <button>
+                            <Button>4:03 am</Button>
+                            <Button>5 Likes</Button>
+                            <Button>
                               {" "}
                               <i
                                 className="fas fa-users text-info"
                                 style={{ display: "none" }}
                               ></i>{" "}
-                              Reply
-                            </button>
+                                Reply
+                              </Button>
                           </small>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <div className="alignright">
-                      <a href="#">
-                        <img src="assets/images/icons/heart.svg" width="16" />
-                      </a>
+                      <Link to="#">
+                        <Image src="assets/images/icons/heart.svg" width="16" />
+                      </Link>
                     </div>
                   </div>
 
                   <div className="row comment-row">
                     <div className="alignleft">
-                      <a className="title-container" href="#">
-                        <img
+                      <Link className="title-container" to="#">
+                        <Image
                           src="assets/images/avatar/user-2.jpg"
                           className="user-image img-responsive"
                         />
@@ -220,35 +240,38 @@ const BookmarksIndex = () => {
                           <span className="card-title">
                             Robert Maskell{" "}
                             <span className="comment-message">
-                              You have your own name on a necklace?
-                            </span>
+                              Looks nice necklace?
+                              </span>
                           </span>
                           <small className="text-muted cat">
-                            <button>4:03 am</button>
-                            <button>5 Likes</button>
-                            <button>
+                            <Button>4:03 am</Button>
+                            <Button>5 Likes</Button>
+                            <Button>
                               {" "}
                               <i
                                 className="fas fa-users text-info"
                                 style={{ display: "none" }}
                               ></i>{" "}
-                              Reply
-                            </button>
+                                Reply
+                              </Button>
                           </small>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <div className="alignright">
-                      <a href="#">
-                        <img src="assets/images/icons/heart.svg" width="16" />
-                      </a>
+                      <Link to="#">
+                        <Image
+                          src="assets/images/icons/heart.svg"
+                          width="16"
+                        />
+                      </Link>
                     </div>
                   </div>
 
                   <div className="row comment-row">
                     <div className="alignleft">
-                      <a className="title-container" href="#">
-                        <img
+                      <Link className="title-container" to="#">
+                        <Image
                           src="assets/images/avatar/user-3.jpg"
                           className="user-image img-responsive"
                         />
@@ -257,73 +280,78 @@ const BookmarksIndex = () => {
                             -Johanaki-{" "}
                             <span className="comment-message">
                               Yes, my goddess!!!
-                            </span>
+                              </span>
                           </span>
                           <small className="text-muted cat">
-                            <button>4:03 am</button>
-                            <button>5 Likes</button>
-                            <button>
+                            <Button>4:03 am</Button>
+                            <Button>5 Likes</Button>
+                            <Button>
                               {" "}
                               <i
                                 className="fas fa-users text-info"
                                 style={{ display: "none" }}
                               ></i>{" "}
-                              Reply
-                            </button>
+                                Reply
+                              </Button>
                           </small>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <div className="alignright">
-                      <a href="#">
-                        <img src="assets/images/icons/heart.svg" width="16" />
-                      </a>
+                      <Link to="#">
+                        <Image
+                          src="assets/images/icons/heart.svg"
+                          width="16"
+                        />
+                      </Link>
                     </div>
                   </div>
 
                   <div className="comment-box">
                     <div className="alignleft">
-                      <a href="#">
-                        <img src="assets/images/icons/gif.png" />
-                      </a>
+                      <Link to="#">
+                        <Image src="assets/images/icons/gif.png" />
+                      </Link>
                     </div>
                     <div className="alignright">
-                      <a href="#">
-                        <img src="assets/images/icons/smile.png" />
-                      </a>
+                      <Link to="#">
+                        <Image src="assets/images/icons/smile.png" />
+                      </Link>
                     </div>
                     <div className="comment-box-form">
-                      <form className="form-inline" action="/action_page.php">
+                      <Form className="form-inline" action="">
                         <div className="user-picture">
-                          <a className="title-container" href="#">
-                            <img
+                          <Link className="title-container" to="#">
+                            <Image
                               src="assets/images/avatar/user-3.jpg"
                               className="user-image img-responsive"
                             />
-                          </a>
+                          </Link>
                         </div>
                         <div className="text-box">
-                          <textarea
-                            ype="text"
+                          <Form.Control
+                            as="textarea"
+                            rows={3}
+                            type="text"
                             className="form-control"
                             id="comment"
                             placeholder="Add a comment"
                             name="comment"
-                          ></textarea>
+                          />
                         </div>
-                        <button type="submit" className="custom-btn">
+                        <Button type="submit" className="custom-btn">
                           <i className="fa fa-paper-plane-o"></i>
-                        </button>
-                      </form>
+                        </Button>
+                      </Form>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

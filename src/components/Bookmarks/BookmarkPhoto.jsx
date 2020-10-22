@@ -1,125 +1,145 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const BookmarkPhoto = () => {
   return (
-    <section className="edit-profile">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4 col-xs-12">
+    <div className="edit-profile">
+      <Container>
+        <Row>
+          <Col xs={12} sm={12} md={4}>
             <div className="vertical-menu">
-              <a className="bookmarkes-list " href="bookmarks.php">
-                <img src="assets/images/icons/back.svg" className="svg-clone" />
+              <Link className="bookmarkes-list " to="bookmarks.php">
+                <Image src="assets/images/icons/back.svg" className="svg-clone" />
                 BOOKMARKS
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list active" href="bookmarks-photos.php">
-                <img
+              <Link className="bookmarkes-list active" to="bookmarks-photos.php">
+                <Image
                   src="assets/images/icons/gallery.svg"
                   className="svg-clone my-p-icons"
                 />
                 Photos
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-videos.php">
-                <img
+              <Link className="bookmarkes-list" to="bookmarks-videos.php">
+                <Image
                   src="assets/images/icons/video.svg"
                   className="svg-clone my-p-icons"
                 />
                 Videos
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-audio.php">
-                <img
+              <Link className="bookmarkes-list" to="bookmarks-audio.php">
+                <Image
                   src="assets/images/icons/audio.svg"
                   className="svg-clone my-p-icons"
                 />
                 Audio
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-other.php">
-                <img
+              <Link className="bookmarkes-list" to="bookmarks-other.php">
+                <Image
                   src="assets/images/icons/other.svg"
                   className="svg-clone my-p-icons"
                 />
                 Other
-              </a>
+              </Link>
 
-              <a className="bookmarkes-list" href="bookmarks-locked.php">
-                <img
+              <Link className="bookmarkes-list" href="bookmarks-locked.php">
+                <Image
                   src="assets/images/icons/lock.svg"
                   className="svg-clone my-p-icons"
                 />
                 Locked
-              </a>
+              </Link>
             </div>
-          </div>
-          <div className="col-md-8">
+          </Col>
+          <Col xs={12} sm={12} md={8}>
             <div className="profile-post-area">
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
                   <h3>PHOTOS</h3>
                 </div>
                 <div className="pull-right">
-                  <a className="bookmarks-filter" href="#">
-                    <img
+                  <Link className="bookmarks-filter" href="#">
+                    <Image
                       src="assets/images/icons/sort.svg"
                       className="svg-clone"
                     />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
               <div className="bookmarks-photos">
                 <ul className="box-container three-cols">
-                  <li className="box">
+                  <Media as="li" className="box">
                     <div className="inner">
-                      <a href="assets/images/g-6.jpg" className="glightbox">
-                        <img src="assets/images/g-6.jpg" />
-                      </a>
+                      <Link to="assets/images/g-6.jpg" className="glightbox">
+                        <Image src="assets/images/g-6.jpg" />
+                      </Link>
                     </div>
-                  </li>
-                  <li className="box">
+                  </Media>
+                  <Media as="li" className="box">
                     <div className="inner">
-                      <a href="assets/images/g-5.jpg" className="glightbox">
-                        <img src="assets/images/g-5.jpg" />
-                      </a>
+                      <Link to="assets/images/g-5.jpg" className="glightbox">
+                        <Image src="assets/images/g-5.jpg" />
+                      </Link>
                     </div>
-                  </li>
-                  <li className="box">
+                  </Media>
+                  <Media as="li" className="box">
                     <div className="inner">
-                      <a href="assets/images/g-4.jpg" className="glightbox">
-                        <img src="assets/images/g-4.jpg" />
-                      </a>
+                      <Link to="assets/images/g-4.jpg" className="glightbox">
+                        <Image src="assets/images/g-4.jpg" />
+                      </Link>
                     </div>
-                  </li>
-                  <li className="box">
+                  </Media>
+                  <Media as="li" className="box">
                     <div className="inner">
-                      <a href="assets/images/g-3.jpg" className="glightbox">
-                        <img src="assets/images/g-3.jpg" />
-                      </a>
+                      <Link to="assets/images/g-3.jpg" className="glightbox">
+                        <Image src="assets/images/g-3.jpg" />
+                      </Link>
                     </div>
-                  </li>
-                  <li className="box">
+                  </Media>
+                  <Media as="li" className="box">
                     <div className="inner">
-                      <a href="assets/images/g-2.jpg" className="glightbox">
-                        <img src="assets/images/g-2.jpg" />
-                      </a>
+                      <Link to="assets/images/g-2.jpg" className="glightbox">
+                        <Image src="assets/images/g-2.jpg" />
+                      </Link>
                     </div>
-                  </li>
-                  <li className="box">
+                  </Media>
+                  <Media as="li" className="box">
                     <div className="inner">
-                      <a href="assets/images/g-1.jpg" className="glightbox">
-                        <img src="assets/images/g-1.jpg" />
-                      </a>
+                      <Link to="assets/images/g-1.jpg" className="glightbox">
+                        <Image src="assets/images/g-1.jpg" />
+                      </Link>
                     </div>
-                  </li>
+                  </Media>
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

@@ -1,35 +1,55 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
 
 const MessageIndex = () => {
   return (
-    <section className="message-page">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4">
-            <div className="row">
+    <div className="message-page">
+      <Container>
+        <Row>
+          <Col sm={12} md={4}>
+            <Row>
               <div className="chat-content">
                 <div className="chat-header">
-                  <button className="chat-header-back">
-                    <img
+                  <Link className="chat-header-back">
+                    <Image
                       src="assets/images/icons/back.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Link>
                   <h1 className="chat-page-title">Messages</h1>
 
-                  <button type="button" className="search-btn">
-                    <img
+                  <Link type="button" className="search-btn">
+                    <Image
                       src="assets/images/icons/search.svg"
                       className="svg-clone"
                     />
-                  </button>
+                  </Link>
 
-                  <a href="#" className="add-icon">
-                    <img
+                  <Link to="#" className="add-icon">
+                    <Image
                       src="assets/images/icons/plus.svg"
                       className="svg-clone"
                     />
-                  </a>
+                  </Link>
                 </div>
 
                 <div className="scrollbar">
@@ -40,54 +60,54 @@ const MessageIndex = () => {
                       </div>
                       <div className="alignright">
                         <span className="post-icons">
-                          <div className="dropdown">
-                            <button
-                              className="btn btn-default dropdown-toggle"
-                              type="button"
-                              data-toggle="dropdown"
-                            >
-                              <img
-                                src="assets/images/icons/vertical-dots.svg"
-                                className="svg-clone vertical-dots"
-                              />
-                            </button>
-                            <ul className="dropdown-menu dropdown-menu-right">
-                              <li>
-                                <a href="#"> Copy link to post </a>
-                              </li>
-                              <li>
-                                <a href="#">
-                                  {" "}
-                                  Hide paid blurred from the home feed{" "}
-                                </a>
-                              </li>
-                              <li className="divider"></li>
-                              <li>
-                                <a href="#"> I don't like this post </a>
-                              </li>
-                              <li>
-                                <a href="#"> Hide user's posts from feed </a>
-                              </li>
-                            </ul>
-                          </div>
+                        <Dropdown>
+                          <Dropdown.Toggle
+                            className="btn btn-default dropdown-toggle"
+                            type="button"
+                            id="dropdown-basic"
+                          >
+                            <Image
+                              src="assets/images/icons/vertical-dots.svg"
+                              className="svg-clone vertical-dots"
+                            />
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                            <Media as="li">
+                              <Link to="#"> Copy link to post </Link>
+                            </Media>
+                            <Media as="li">
+                              <Link to="#">
+                                {" "}
+                                Hide paid blurred from the home feed{" "}
+                              </Link>
+                            </Media>
+                            <Media as="li" className="divider"></Media>
+                            <Media as="li">
+                              <Link to="#"> I don't like this post </Link>
+                            </Media>
+                            <Media as="li">
+                              <Link to="#"> Hide user's posts from feed </Link>
+                            </Media>
+                          </Dropdown.Menu>
+                        </Dropdown>
                         </span>
                       </div>
                     </div>
 
                     <div className="chat-item active">
-                      <button type="button" className="chat-btn-one">
-                        <img
+                      <Button type="button" className="chat-btn-one">
+                        <Image
                           src="assets/images/icons/cut.svg"
                           className="svg-clone chat-close"
                         />
-                      </button>
-                      <a href="#" className="friend-profile">
-                        <img
+                      </Button>
+                      <Link to="#" className="friend-profile">
+                        <Image
                           src="assets/images/avatar/user-4.jpg"
                           alt="Sarah"
                         />
-                      </a>
-                      <a href="#" className="chat-msg">
+                      </Link>
+                      <Link to="#" className="chat-msg">
                         <div className="friend-name-row">
                           <div className="friend">
                             <span className="friend-name">Sarah</span>
@@ -105,24 +125,24 @@ const MessageIndex = () => {
                             <span title="8:07 am"> 8:07 am </span>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <hr className="solid" />
 
                     <div className="chat-item">
-                      <button type="button" className="chat-btn-one">
-                        <img
+                      <Button type="button" className="chat-btn-one">
+                        <Image
                           src="assets/images/icons/cut.svg"
                           className="svg-clone chat-close"
                         />
-                      </button>
-                      <a href="#" className="friend-profile">
-                        <img
+                      </Button>
+                      <Link to="#" className="friend-profile">
+                        <Image
                           src="assets/images/avatar/user-3.jpg"
                           alt="Sarah"
                         />
-                      </a>
-                      <a href="#" className="chat-msg">
+                      </Link>
+                      <Link to="#" className="chat-msg">
                         <div className="friend-name-row">
                           <div className="friend">
                             <span className="friend-name">Lexy</span>
@@ -140,24 +160,24 @@ const MessageIndex = () => {
                             <span title="8:07 am"> 01:07 am </span>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <hr className="solid" />
 
                     <div className="chat-item">
-                      <button type="button" className="chat-btn-one">
-                        <img
+                      <Button type="button" className="chat-btn-one">
+                        <Image
                           src="assets/images/icons/cut.svg"
                           className="svg-clone chat-close"
                         />
-                      </button>
-                      <a href="#" className="friend-profile">
-                        <img
+                      </Button>
+                      <Link to="#" className="friend-profile">
+                        <Image
                           src="assets/images/avatar/user-5.jpg"
                           alt="Sarah"
                         />
-                      </a>
-                      <a href="#" className="chat-msg">
+                      </Link>
+                      <Link to="#" className="chat-msg">
                         <div className="friend-name-row">
                           <div className="friend">
                             <span className="friend-name">Jessica</span>
@@ -175,24 +195,24 @@ const MessageIndex = () => {
                             <span title="8:07 am"> 6:07 am </span>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <hr className="solid" />
 
                     <div className="chat-item">
-                      <button type="button" className="chat-btn-one">
-                        <img
+                      <Button type="button" className="chat-btn-one">
+                        <Image
                           src="assets/images/icons/cut.svg"
                           className="svg-clone chat-close"
                         />
-                      </button>
-                      <a href="#" className="friend-profile">
-                        <img
+                      </Button>
+                      <Link href="#" className="friend-profile">
+                        <Image
                           src="assets/images/avatar/user-6.jpg"
                           alt="Sarah"
                         />
-                      </a>
-                      <a href="#" className="chat-msg">
+                      </Link>
+                      <Link to="#" className="chat-msg">
                         <div className="friend-name-row">
                           <div className="friend">
                             <span className="friend-name">Jessica</span>
@@ -210,24 +230,24 @@ const MessageIndex = () => {
                             <span title="8:07 am"> 6:07 am </span>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <hr className="solid" />
 
                     <div className="chat-item">
-                      <button type="button" className="chat-btn-one">
-                        <img
+                      <Button type="button" className="chat-btn-one">
+                        <Image
                           src="assets/images/icons/cut.svg"
                           className="svg-clone chat-close"
                         />
-                      </button>
-                      <a href="#" className="friend-profile">
-                        <img
+                      </Button>
+                      <Link to="#" className="friend-profile">
+                        <Image
                           src="assets/images/avatar/user-2.jpg"
                           alt="Sarah"
                         />
-                      </a>
-                      <a href="#" className="chat-msg">
+                      </Link>
+                      <Link to="#" className="chat-msg">
                         <div className="friend-name-row">
                           <div className="friend">
                             <span className="friend-name">Alex Mara</span>
@@ -245,23 +265,23 @@ const MessageIndex = () => {
                             <span title="8:07 am"> 4:07 am </span>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                     <hr className="solid" />
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="col-md-8 hidden-xs">
-            <div className="row msg-row-chat">
+            </Row>
+          </Col>
+          <Col sm={12} md={8} className="hidden-xs">
+            <Row className="msg-row-chat">
               <div className="msg-header">
-                <button className="chat-header-back">
-                  <img
+                <Button className="chat-header-back">
+                  <Image
                     src="assets/images/icons/back.svg"
                     className="svg-clone"
                   />
-                </button>
+                </Button>
                 <h1 className="chat-section-title">
                   <div className="chat-section-title-width">
                     <a href="" className="chat-user-name">
@@ -269,73 +289,75 @@ const MessageIndex = () => {
                     </a>
                   </div>
                 </h1>
-
-                <span className="post-icons">
-                  <div className="dropdown">
-                    <button
+                <span className="post-icons padding-top-lg">
+                  <Dropdown>
+                    <Dropdown.Toggle
                       className="btn btn-default dropdown-toggle"
                       type="button"
-                      data-toggle="dropdown"
+                      id="dropdown-basic"
                     >
-                      <img
+                      <Image
                         src="assets/images/icons/vertical-dots.svg"
                         className="svg-clone vertical-dots"
                       />
-                    </button>
-                    <ul className="dropdown-menu dropdown-menu-right">
-                      <li>
-                        <a href="#"> Copy link to post </a>
-                      </li>
-                      <li>
-                        <a href="#"> Hide paid blurred from the home feed </a>
-                      </li>
-                      <li className="divider"></li>
-                      <li>
-                        <a href="#"> I don't like this post </a>
-                      </li>
-                      <li>
-                        <a href="#"> Hide user's posts from feed </a>
-                      </li>
-                    </ul>
-                  </div>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                      <Media as="li">
+                        <Link to="#"> Copy link to post </Link>
+                      </Media>
+                      <Media as="li">
+                        <Link to="#">
+                          {" "}
+                          Hide paid blurred from the home feed{" "}
+                        </Link>
+                      </Media>
+                      <Media as="li" className="divider"></Media>
+                      <Media as="li">
+                        <Link to="#"> I don't like this post </Link>
+                      </Media>
+                      <Media as="li">
+                        <Link to="#"> Hide user's posts from feed </Link>
+                      </Media>
+                    </Dropdown.Menu>
+                  </Dropdown>
                 </span>
                 <div className="chat-subheader">
                   <div className="chat-user-status">
                     Last seen <span title="Sep 7, 3:12 pm"> 1 hour ago </span>
                   </div>
 
-                  <button type="button" className="chat-subheader-btn">
-                    <img
+                  <Button type="button" className="chat-subheader-btn">
+                    <Image
                       src="assets/images/icons/star.svg"
                       className="svg-clone"
                       width="12"
                     />
-                  </button>
-                  <button type="button" className="chat-subheader-btn">
-                    <img
+                  </Button>
+                  <Button type="button" className="chat-subheader-btn">
+                    <Image
                       src="assets/images/icons/notification.svg"
                       className="svg-clone"
                       width="12"
                     />
-                  </button>
-                  <button type="button" className="chat-subheader-btn">
-                    <img
+                  </Button>
+                  <Button type="button" className="chat-subheader-btn">
+                    <Image
                       src="assets/images/icons/gallery.svg"
                       className="svg-clone"
                       width="12"
                     />
 
                     <span>Gallery</span>
-                  </button>
-                  <button type="button" className="chat-subheader-btn">
-                    <img
+                  </Button>
+                  <Button type="button" className="chat-subheader-btn">
+                    <Image
                       src="assets/images/icons/search.svg"
                       className="svg-clone"
                       width="12"
                     />
 
                     <span>Find</span>
-                  </button>
+                  </Button>
                 </div>
               </div>
 
@@ -343,7 +365,7 @@ const MessageIndex = () => {
                 <div className="chat-wrapper scrollbar">
                   <div className="chat-message padding overflow">
                     <div className="chat-message chat-message-recipient">
-                      <img
+                      <Image
                         className="chat-image chat-image-default"
                         src="assets/images/avatar/user-2.jpg"
                       />
@@ -365,7 +387,7 @@ const MessageIndex = () => {
                     </div>
 
                     <div className="chat-message chat-message-sender">
-                      <img
+                      <Image
                         className="chat-image chat-image-default"
                         src="assets/images/avatar/user-3.jpg"
                       />
@@ -385,7 +407,7 @@ const MessageIndex = () => {
                     </div>
 
                     <div className="chat-message chat-message-recipient">
-                      <img
+                      <Image
                         className="chat-image chat-image-default"
                         src="assets/images/avatar/user-2.jpg"
                       />
@@ -407,7 +429,7 @@ const MessageIndex = () => {
                     </div>
 
                     <div className="chat-message chat-message-sender">
-                      <img
+                      <Image
                         className="chat-image chat-image-default"
                         src="assets/images/avatar/user-3.jpg"
                       />
@@ -429,7 +451,7 @@ const MessageIndex = () => {
                     </div>
 
                     <div className="chat-message chat-message-recipient">
-                      <img
+                      <Image
                         className="chat-image chat-image-default"
                         src="assets/images/avatar/user-2.jpg"
                       />
@@ -451,7 +473,7 @@ const MessageIndex = () => {
                     </div>
 
                     <div className="chat-message chat-message-sender">
-                      <img
+                      <Image
                         className="chat-image chat-image-default"
                         src="assets/images/avatar/user-3.jpg"
                       />
@@ -477,15 +499,15 @@ const MessageIndex = () => {
                 <div
                   style={{ borderTop: "1px solid rgba(138, 150, 163, 0.2)" }}
                 >
-                  <form id="chat_post_form" className="has-advanced-upload">
+                  <Form id="chat_post_form" className="has-advanced-upload">
                     <div className="chats-post-footer">
                       <div></div>
 
                       <div className="chat-post">
                         <div className="chat-textarea-price-wrapper">
                           <div className="">
-                            <div>
-                              <textarea
+                            <Form.Group>
+                              <Form.Control
                                 id="chat-input-area"
                                 placeholder="Type a message"
                                 name="text"
@@ -497,13 +519,13 @@ const MessageIndex = () => {
                                   overflowWrap: "break-word",
                                   height: "48px",
                                 }}
-                              ></textarea>
-                            </div>
+                              />
+                            </Form.Group>
                           </div>
                         </div>
 
                         <div className="chat-post__actions">
-                          <input
+                          <Form.Control
                             id="fileupload_photo"
                             type="file"
                             multiple="multiple"
@@ -515,44 +537,44 @@ const MessageIndex = () => {
                             className="chat-attach_file"
                             data-original-title="null"
                           >
-                            <img
+                            <Image
                               src="assets/images/icons/gallery.svg"
                               className="svg-clone"
                             />
                           </label>
 
-                          <button
+                          <Button
                             type="button"
                             className="chat-send-tip-btn"
                             data-original-title="null"
                           >
-                            <img
+                            <Image
                               src="assets/images/icons/tip.svg"
                               className="svg-clone"
                             />
-                          </button>
+                          </Button>
                         </div>
 
-                        <button
+                        <Button
                           type="button"
                           data-can_send="true"
                           className="g-btn m-rounded b-chat__btn-submit"
                         >
-                          <img
+                          <Image
                             src="assets/images/icons/send.svg"
                             className="svg-clone"
                           />
-                        </button>
+                        </Button>
                       </div>
                     </div>
-                  </form>
+                  </Form>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
