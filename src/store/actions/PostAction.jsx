@@ -99,21 +99,21 @@ export function deletePostFailure(error) {
   };
 }
 
-export function deletePostStart(data) {
+export function changePostStatusStart(data) {
   return {
     type: CHANGE_POST_STATUS_START,
     data,
   };
 }
 
-export function deletePostSuccess(data) {
+export function changePostStatusSuccess(data) {
   return {
     type: CHANGE_POST_STATUS_SUCCESS,
     data,
   };
 }
 
-export function deletePostFailure(error) {
+export function changePostStatusFailure(error) {
   return {
     type: CHANGE_POST_STATUS_FAILURE,
     error,
