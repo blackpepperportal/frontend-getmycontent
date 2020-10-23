@@ -1,125 +1,197 @@
 import React, { Component } from "react";
 import configuration from "react-global-configuration";
 import { Link } from "react-router-dom";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+  Container,
+  Row,
+  Col,
+  InputGroup,
+  Tabs,
+  Tab,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Badge,
+  Media,
+} from "react-bootstrap";
+
 
 class AuthFooter extends Component {
   render() {
     return (
       <>
         <footer>
-          <div className="container">
-            <div className="row">
-              <div className="footer-section">
-                <div className="col-md-4 col-sm-12 col-xs-12">
+          <Container>
+            <div className="footer-section">
+              <Row>
+                <Col sm={12} xs={12} xl={4} lg={4} md={12}>
                   <ul className="list-inline">
-                    <li>
-                      <a href="#">2020 XFans</a>
-                    </li>
-                    <li>
-                      <a href="#">Blog</a>
-                    </li>
-                    <li>
-                      <a href="#">Twitter</a>
-                    </li>
+                    <Media as="li">
+                      <Link to="#">2020 XFans</Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to="#">Blog</Link>
+                    </Media>
+                    <Media as="li">
+                      <Link href="#">Twitter</Link>
+                    </Media>
                   </ul>
-                </div>
-                <div className="col-md-6 col-sm-12 col-xs-12">
+                </Col>
+                <Col sm={12} xs={12} xl={6} lg={6} md={12}>
                   <ul className="list-inline">
-                    <li>
-                      <a href="#"> FAQs </a>
-                    </li>
-                    <li>
-                      <a href="#"> Terms </a>
-                    </li>
-                    <li>
-                      <a href="#"> Privacy </a>
-                    </li>
-                    <li>
-                      <a href="#"> Contact </a>
-                    </li>
-                    <li>
-                      <a href="#"> How it works </a>
-                    </li>
-                    <li>
-                      <a href="#"> USC 2257 </a>
-                    </li>
-                    <li>
+                    <Media as="li">
+                      <Link to="#"> FAQs </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to="#"> Terms </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to="#"> Privacy </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to="#"> Contact </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to="#"> How it works </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link href="#"> USC 2257 </Link>
+                    </Media>
+                    <Media as="li">
                       <a href="#"> DMCA </a>
-                    </li>
+                    </Media>
                   </ul>
-                </div>
-                <div className="col-md-2 col-sm-12 col-xs-12">
-                  <div className=" dropup">
-                    <i className="fa fa-globe"></i>
-                    <button
+                </Col>
+                <Col sm={12} xs={12} xl={2}  lg={2} md={12}>
+                  <Dropdown className="country-sec">
+                    <Dropdown.Toggle
+                      className="btn btn-default dropdown-toggle countrySelect"
                       type="button"
-                      className="dropdown-toggle countrySelect"
-                      data-toggle="dropdown"
+                      id="dropdown-basic"
                     >
-                      English
-                    </button>
-
-                    <div className="dropdown-menu mobile-popup">
-                      <div className="pop-ups-bg">
-                        <span href="#" className="dropdown-item radio-btns">
-                          <label className="radio-size">
-                            <input
-                              type="radio"
-                              name="radio"
-                              checked="checked"
-                            />
-                            English
-                          </label>
-                        </span>
-
-                        <span href="#" className="dropdown-item radio-btns">
-                          <label className="radio-size">
-                            <input type="radio" name="radio" />
-                            Indian
-                          </label>
-                        </span>
-
-                        <span href="#" className="dropdown-item radio-btns">
-                          <label className="radio-size">
-                            <input type="radio" name="radio" />
-                            Chinese Simplified
-                          </label>
-                        </span>
-
-                        <span href="#" className="dropdown-item radio-btns">
-                          <label className="radio-size">
-                            <input type="radio" name="radio" />
-                            Chinese Traditional
-                          </label>
-                        </span>
-
-                        <span href="#" className="dropdown-item radio-btns">
-                          <label className="radio-size">
-                            <input type="radio" name="radio" />
-                            Korean
-                          </label>
-                        </span>
-
-                        <span href="#" className="dropdown-item radio-btns">
-                          <label className="radio-size">
-                            <input type="radio" name="radio" />
-                            Italian
-                          </label>
-                        </span>
-
-                        <span href="#" className="dropdown-item radio-btns">
-                          <label className="radio-size">
-                            <input type="radio" name="radio" />
-                            Japanese
-                          </label>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      <i className="fa fa-globe mr-2"></i>
+                      <span>English</span>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu dropdown-menu-right mobile-popup model-filter-dropdown">
+                      <Form className="pop-ups-bg">
+                      <Media as="li">
+                          <a>
+                            {["radio"].map((type) => (
+                              <div key={`custom-inline-${type}`}>
+                                <Form.Check
+                                  custom
+                                  inline
+                                  label="English"
+                                  type={type}
+                                  id={`custom-inline-${type}-1`}
+                                />
+                              </div>
+                            ))}
+                          </a>
+                        </Media>
+                        <Media as="li">
+                          <a>
+                            {["radio"].map((type) => (
+                              <div key={`custom-inline-${type}`}>
+                                <Form.Check
+                                  custom
+                                  inline
+                                  label="Indian"
+                                  type={type}
+                                  id={`custom-inline-${type}-2`}
+                                />
+                              </div>
+                            ))}
+                          </a>
+                        </Media>
+                        <Media as="li">
+                          <a>
+                            {["radio"].map((type) => (
+                              <div key={`custom-inline-${type}`}>
+                                <Form.Check
+                                  custom
+                                  inline
+                                  label="Chinese Simplified"
+                                  type={type}
+                                  id={`custom-inline-${type}-3`}
+                                />
+                              </div>
+                            ))}
+                          </a>
+                        </Media>
+                        <Media as="li">
+                          <a>
+                            {["radio"].map((type) => (
+                              <div key={`custom-inline-${type}`}>
+                                <Form.Check
+                                  custom
+                                  inline
+                                  label="Chinese Traditional"
+                                  type={type}
+                                  id={`custom-inline-${type}-4`}
+                                />
+                              </div>
+                            ))}
+                          </a>
+                        </Media>
+                        <Media as="li">
+                          <a>
+                            {["radio"].map((type) => (
+                              <div key={`custom-inline-${type}`}>
+                                <Form.Check
+                                  custom
+                                  inline
+                                  label="Korean"
+                                  type={type}
+                                  id={`custom-inline-${type}-5`}
+                                />
+                              </div>
+                            ))}
+                          </a>
+                        </Media>
+                        <Media as="li">
+                          <a>
+                            {["radio"].map((type) => (
+                              <div key={`custom-inline-${type}`}>
+                                <Form.Check
+                                  custom
+                                  inline
+                                  label="Italian"
+                                  type={type}
+                                  id={`custom-inline-${type}-6`}
+                                />
+                              </div>
+                            ))}
+                          </a>
+                        </Media>
+                        <Media as="li">
+                          <a>
+                            {["radio"].map((type) => (
+                              <div key={`custom-inline-${type}`}>
+                                <Form.Check
+                                  custom
+                                  inline
+                                  label="Japanese"
+                                  type={type}
+                                  id={`custom-inline-${type}-7`}
+                                />
+                              </div>
+                            ))}
+                          </a>
+                        </Media>
+                      </Form>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Col>
+              </Row>
               </div>
-            </div>
-          </div>
+          </Container>
         </footer>
       </>
     );

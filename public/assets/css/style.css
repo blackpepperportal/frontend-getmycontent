@@ -18,6 +18,10 @@ a:hover, a:focus {
     margin-left: 125px;
 }*/
 
+.main-wrap-sec{
+    min-height: 90vh;
+}
+
 .form-inline {
     justify-content: space-between;
 }
@@ -1066,11 +1070,11 @@ p.terms {
     border-top: 1px solid rgba(138,150,163,0.2);
     padding: 14px 0;
     font-size: 13px;
-    display: -webkit-box;
+    /* display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
 }
 .list-inline li a {
     color: #8a96a3;
@@ -1268,7 +1272,7 @@ button.g-icon:focus {
 }
 .home-screen {
     margin-top: 65px;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
 }
 .alignleft {
   float: left;
@@ -1469,7 +1473,8 @@ img.post-icon-svg.icon-last {
   width:100%;
   height:auto;
   /*padding:5px;*/
-  display:none;
+  /* display:none; */
+  padding-top: 1em;
 }
 .Hide
 {
@@ -1680,7 +1685,7 @@ button.custom-btn {
 .text-box {
     display: inline-block;
     float: left;
-    width: 88%;
+    width: 80%;
 }
 button.custom-btn {
     display: inline-block;
@@ -2238,7 +2243,7 @@ nav.main-header-menu {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    /* -webkit-box-pack: justify; */
+    -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
     height: 48px;
@@ -2523,7 +2528,7 @@ span.friend-name {
     -ms-flex-align: start;
     align-items:center;
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 35px;
     margin-bottom: 10px;
     flex-wrap: nowrap;
     /* margin: 0 0 6px; */
@@ -2543,9 +2548,9 @@ button.chat-header-back {
     color: inherit;
 }
 .home-screen span.g-avatar.online_status_class {
-        position: absolute;
+    position: absolute;
     left: 0;
-    top: -99px;
+    top: -100px;
     width: 100px;
     height: 100px;
     border-radius: 1000px;
@@ -2854,7 +2859,7 @@ div.user-lists a{
 /*account humbufer menu*/
 /*my-profile*/
 .my-profile-page{
-    margin-top: : 80px auto;
+    margin-top: 80px auto;
 }
 .profile-wrapper__content {
     webkit-box-flex: 1;
@@ -3601,6 +3606,7 @@ a.conect-btn {
     border-bottom: 1px solid rgba(138,150,163,.2);
     padding-bottom: 25px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 h1.chat-page-title {
     height: 30px;
@@ -3926,12 +3932,20 @@ h1.chat-section-title {
     color: #000;
     text-align: left;
     margin-top: 0px;
-    padding-top: 0.5em;
+    padding-top: 1.7em;
 }
 .msg-row-chat{
     height: 95vh;
     display: block!important;
     overflow: hidden;
+}
+
+a.add-icon{
+    margin-right: 1em;
+}
+
+.padding-msg {
+    padding: 0 7px!important;
 }
 
 .padding-top-lg {
@@ -5943,7 +5957,7 @@ input.authentication-input {
     -ms-flex: 0 0 395px;
     flex: 0 0 395px;
     max-width: 395px;
-    padding-right: 25px;
+    padding-right: 15px;
     padding-left: 10px;
     margin-left: -10px;
     margin-right: 23px;
@@ -6251,10 +6265,10 @@ button.custom-btn {
 .container {
     width: 100%;
 }
-.col-md-8{
+/* .col-md-8{
     padding-right: 0px !important;
     padding-left:0px;
-}
+} */
 body.navbar-margin {
     margin-bottom: 80px;
     margin-top: 10px;
@@ -6378,7 +6392,7 @@ position: unset;
     position: fixed;
     z-index: 9999 !important;
     width: 100%;
-    height: 100vh;
+    height: 65vh;
     top: 0;
     background: #0000008a;
 }
@@ -6552,7 +6566,7 @@ div#accordion {
 .text-box {
     display: inline-block;
     float: left;
-    width: 80%;
+    width: 60%;
 }
 .stories.carousel .story:first-child {
     height: 130px;
@@ -6623,10 +6637,10 @@ div#accordion {
 .container {
     width: 100%;
 }
-.col-md-8{
+/* .col-md-8{
     padding-right: 0px !important;
     padding-left:0px;
-}
+} */
 body.navbar-margin {
     margin-bottom: 80px;
     margin-top: 10px;
@@ -6841,7 +6855,7 @@ body.navbar-margin {
 .profile-post-area {
     display: inline-block;
     width: 100%;
-    padding: 0px 16px;
+    padding: 0px 0px;
 }
 div#accordion {
     display: -webkit-inline-box;
@@ -6859,9 +6873,9 @@ div#accordion {
     margin-bottom: 20px;
     margin-top: 10px;
 }
-.my-profile  .post-list {
+.my-profile .post-list {
     display: flow-root;
-    padding: 0px 16px;
+    padding: 0px 0px;
 }
 .tabbable-panel {
     display: inline-block;
@@ -6882,6 +6896,7 @@ section.notification-page {
 }
 .edit-profile .post-list {
     padding: 0px 16px;
+    padding-bottom: 1em;
 }
 .tabbable-line > .nav-tabs > li > a {
     border: 0;
@@ -6945,7 +6960,7 @@ button.custom-btn {
   clear: both;
 }
 .bookmarkes-list.bookmarks-right-side {
-    display: block;
+    /* display: block; */
     margin-bottom: 20px;
     width: 100%;
 }
@@ -6955,7 +6970,7 @@ button.custom-btn {
     .listing-tab .tab .nav-tabs li a:hover, .tab .nav-tabs li.active a{outline: none;}
 .lists .listing-tab .tab-content.tabs a.bookmarkes-list {
     font-size: 14px;
-    display: -webkit-inline-box;
+    /* display: -webkit-inline-box; */
 }
 .lists .listing-tab .tab-content.tabs a.bookmarkes-list span{margin-right: 10px;}.modal-dialog {
     top: 15%;
@@ -7155,4 +7170,144 @@ section#tabs {
     font-weight: 900;
     font-family: 'Font Awesome 5 Free';
     color: #aaaaaa;
+}
+
+.notification-page{
+    margin-top: 65px;
+}
+
+.notify-sec .media:first-child{
+    margin-top:15px;
+}
+
+.padding-top-md{
+    padding-top: 2em;
+}
+
+.change-password-sec .card{
+    border:0;
+}
+
+.change-password-sec{
+    margin-top: 55px;
+    padding-top: 5em;
+}
+
+.change-password-sec .card-header{
+    text-align: center;
+    border-top:0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #ced4da;
+    padding: 2em;
+}
+
+.change-password-sec .card-body{
+    padding: 2em 0;
+}
+
+.change-password-sec label{
+    letter-spacing: 0.8px;
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.change-password-sec .card-header h4{
+    letter-spacing: 0.8px;
+    font-size: 1.8em;
+    font-weight: 900;
+}
+
+
+.delete-account-sec .card{
+    border:0;
+}
+
+.delete-account-sec{
+    margin-top: 65px;
+    padding-top: 5em;
+}
+
+.delete-account-sec .card-header{
+    text-align: center;
+    border-top:0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid #ced4da;
+    padding: 2em;
+}
+
+.delete-account-sec .card-body{
+    padding: 4em 0;
+}
+
+.delete-account-sec label{
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #8a96a3;
+    padding: 0 6px;
+    margin: 0;
+}
+
+.delete-account-sec .form-control{
+    margin-bottom: 0;
+    margin: 0 0 4px;
+    height: 36px;
+    color: #000 !important;
+    opacity: 1;
+    font-size: 15px;
+}
+
+.delete-account-sec .card-header h4{
+    letter-spacing: 0.8px;
+    font-size: 1.8em;
+    font-weight: 900;
+}
+
+.delete-account-sec .card-details{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.delete-account-sec .card-details h5 {
+    font-size: 14px;
+    font-weight: 500;
+    vertical-align: middle;
+    text-transform: uppercase; 
+}
+
+.custom-control-label::after{
+    top: 0.5px!important;
+    left: -1.68rem!important;
+    display: block;
+    width: 2rem!important;
+    height: 2rem!important;
+}
+
+.country-sec{
+    text-align: right;
+}
+
+.country-sec .btn-primary{
+    background-color: transparent!important;
+    border-color: transparent!important;
+    color: #8a96a3;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.country-sec .btn-primary:hover,
+.country-sec .btn-primary:focus,
+.country-sec .btn-primary:active{
+    background-color: transparent!important;
+    color: #8a96a3!important;
+}
+
+.following-tab-sec{
+    display: block!important;
+}
+
+.book-photo .profile-post-area{
+    display: block!important;
 }

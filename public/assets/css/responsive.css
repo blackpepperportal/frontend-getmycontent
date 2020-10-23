@@ -1,0 +1,204 @@
+/*================================
+Template Name:  Fans Club
+Author: Beno darry
+Author website: http://codegama.com/
+Version: 1.0
+================================== */
+
+@media (max-width: 575.98px) {}
+
+@media (min-width: 576px) and (max-width: 767.98px) {}
+
+@media (min-width: 768px) and (max-width: 991.98px) {}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1440px) {}
+
+@media (max-width: 1199.98px) {
+    .dm-width{
+        width:100%;
+        left:0;
+    }
+    .footer-section .list-inline{
+        white-space: nowrap;
+    }
+    .dropup{
+        padding-top: 0.2em;
+    }
+    .chat-wrapper {
+        display: block;
+        width: 100%;
+        overflow-y: scroll;
+    }
+    .follower-profile-header{
+        margin-top: -45px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .footer-section .list-inline{
+        white-space: unset;
+    }
+    .dm-device{
+        left: 120px;
+    }
+
+    .resp-btm-lg {
+        margin-bottom: 2em;
+    }
+    .footer-section .list-inline{
+        text-align: center;
+    }
+    .dropup{
+        float: unset;
+        text-align: center;
+    }
+    .round label{
+        top: -3px;
+    }
+    .country-sec{
+        text-align: center;
+    }
+    .scrollbar{
+        height: 35vh;
+    }
+    .msg-row-chat{
+        height: 35vh;
+    }
+    .overflow {
+        min-height: 60vh;
+    }
+    .main-wrap-sec {
+        min-height: 87vh;
+    }
+
+    .tabbable-line > .nav-tabs{
+        display: flex;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        overflow: auto;
+    }
+}
+
+
+@media (max-width: 767.98px) {
+    .main-wrap-sec{
+        min-height:73vh;
+        overflow:auto;
+    }
+    .search-row{
+        display: block;
+    }
+    .search-button {
+        text-align: center;
+        width: 100%;
+        margin-right: 0;
+        padding-right: 0;
+        padding-top: 1em;
+    }
+    .search-box:hover > .search-text{
+        padding: 2px 10px;
+    }
+    .scrollbar{
+        overflow-y:auto;
+    }
+    .margin-col{
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .footer-section {
+        padding-bottom: 5em;
+        padding-top: 1.5em;
+    }
+    .resp-mrg-btn-xs {
+        margin-bottom: 2em;
+    }
+
+    .scrollbar{
+        height: 30vh;
+    }
+
+    .chat-subheader{
+       padding: 1em 0 16px 24px;
+    }
+    .bookmarkes-list.bookmarks-right-side{
+        margin-bottom: 10px;
+    }
+    .bookmarkes-list.bookmarks-right-side h3{
+        padding-top: 0.5em;
+    }
+
+    .country-sec .dropdown-menu.show {
+        transform: translate3d(60px, -100px, 0px)!important;
+        display: block!important;
+        height: 260px!important;
+        min-width: 200px;
+        width: 250px;
+    }
+    .book-photo .box {
+        transform: translate3d(0, 5px, 0);
+    }
+    .box img{
+        height: 200px;
+    }
+    .box .inner {
+        padding: 2px;
+    }
+    .profile-post-area {
+        display: inline-block;
+        width: 100%;
+        padding: 0px 0px;
+    }
+    .profile-btn-group{
+        max-width: unset;
+    }
+    .float-unset{
+        float:unset;
+    }
+
+    .card-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        width: 15em;
+        white-space: normal;
+    }
+    .edit-profile-photo .profile-pic{
+        left: 55px;
+    }
+    .edit-save{
+        justify-content: center;
+    }
+    .bookmarkes-list.bookmarks-right-side{
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .profile-accordion {
+        margin-top: 0px;
+        padding: 1em 0;
+    }
+    .profile-accordion .card-header {
+        padding: .75rem 0rem;
+    }
+    .tabbable-line > .nav-tabs > li > a{
+        margin-right: 10px;
+    }
+    .tabbable-line ul.nav.nav-tabs span{
+        margin-right: 15px;
+    }
+    .notification-page {
+        margin-top: 10px;
+    }
+    .resp-sapce-center{
+        justify-content: space-between!important;
+    }
+}
+
+@media (max-width: 575.98px) {}

@@ -25,8 +25,7 @@ const MessageIndex = () => {
     <div className="message-page">
       <Container>
         <Row>
-          <Col sm={12} md={4}>
-            <Row>
+          <Col sm={12} md={12} lg={5} xl={4} className="padding-msg resp-mrg-btn-xs">
               <div className="chat-content">
                 <div className="chat-header">
                   <Link className="chat-header-back">
@@ -37,7 +36,7 @@ const MessageIndex = () => {
                   </Link>
                   <h1 className="chat-page-title">Messages</h1>
 
-                  <Link type="button" className="search-btn">
+                  <Link type="button" className="search-btn-1">
                     <Image
                       src="assets/images/icons/search.svg"
                       className="svg-clone"
@@ -271,9 +270,8 @@ const MessageIndex = () => {
                   </div>
                 </div>
               </div>
-            </Row>
           </Col>
-          <Col sm={12} md={8} className="hidden-xs">
+          <Col sm={12} md={12} lg={7} xl={8} className="resp-mrg-btn-xs margin-col">
             <Row className="msg-row-chat">
               <div className="msg-header">
                 <Button className="chat-header-back">
@@ -284,9 +282,9 @@ const MessageIndex = () => {
                 </Button>
                 <h1 className="chat-section-title">
                   <div className="chat-section-title-width">
-                    <a href="" className="chat-user-name">
+                    <Link href="" className="chat-user-name">
                       Jessica
-                    </a>
+                    </Link>
                   </div>
                 </h1>
                 <span className="post-icons padding-top-lg">

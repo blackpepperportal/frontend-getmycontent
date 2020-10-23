@@ -23,12 +23,12 @@ import {
 
 const HomePageSuggesstion = () => {
   return (
-    <Col md={4} className="suggest-col">
+    <Col xl={4} md={12} className="suggest-col">
       <Row>
-        <Col sm={6} md={6} xs={6}>
+        <Col sm={12} xl={5} xs={12} md={6}>
           <h4 className="suggestions">suggestions</h4>
         </Col>
-        <Col sm={6} md={6} xs={6}>
+        <Col sm={12} xl={7} xs={12} md={6}>
           <div className="controls pull-right ">
             <Link to="#">
               <Image
@@ -63,11 +63,12 @@ const HomePageSuggesstion = () => {
             >
               <Image
                 src="assets/images/icons/right.svg"
-                className="svg-clone"
+                className="svg-clone mr-0"
               />
             </Link>
           </div>
         </Col>
+        <Col sm={12} xl={12} xs={12} md={12}>
         <div
           id="carousel-example"
           className="carousel slide "
@@ -102,16 +103,16 @@ const HomePageSuggesstion = () => {
                               <div className="b-username-row">
                                 <div className="b-username m-like-link">
                                   <div className="g-user-name m-lg-size m-verified">
-                                    {" "}
-                                    Yoga with Taz{" "}
+                                    
+                                    Yoga with Taz
                                   </div>
                                 </div>
                               </div>
                               <div className="b-username-row">
                                 <div className="b-username">
                                   <div className="g-user-username">
-                                    {" "}
-                                    @yogawithtaz{" "}
+                                    
+                                    @yogawithtaz
                                   </div>
                                 </div>
                               </div>
@@ -147,16 +148,16 @@ const HomePageSuggesstion = () => {
                               <div className="b-username-row">
                                 <div className="b-username m-like-link">
                                   <div className="g-user-name m-lg-size m-verified">
-                                    {" "}
-                                    Yoga with Taz{" "}
+                                    
+                                    Yoga with Taz
                                   </div>
                                 </div>
                               </div>
                               <div className="b-username-row">
                                 <div className="b-username">
                                   <div className="g-user-username">
-                                    {" "}
-                                    @yogawithtaz{" "}
+                                    
+                                    @yogawithtaz
                                   </div>
                                 </div>
                               </div>
@@ -192,16 +193,16 @@ const HomePageSuggesstion = () => {
                               <div className="b-username-row">
                                 <div className="b-username m-like-link">
                                   <div className="g-user-name m-lg-size m-verified">
-                                    {" "}
-                                    Yoga with Taz{" "}
+                                    
+                                    Yoga with Taz
                                   </div>
                                 </div>
                               </div>
                               <div className="b-username-row">
                                 <div className="b-username">
                                   <div className="g-user-username">
-                                    {" "}
-                                    @yogawithtaz{" "}
+                                    
+                                    @yogawithtaz
                                   </div>
                                 </div>
                               </div>
@@ -242,16 +243,16 @@ const HomePageSuggesstion = () => {
                               <div className="b-username-row">
                                 <div className="b-username m-like-link">
                                   <div className="g-user-name m-lg-size m-verified">
-                                    {" "}
-                                    Yoga with Taz{" "}
+                                    
+                                    Yoga with Taz
                                   </div>
                                 </div>
                               </div>
                               <div className="b-username-row">
                                 <div className="b-username">
                                   <div className="g-user-username">
-                                    {" "}
-                                    @yogawithtaz{" "}
+                                    
+                                    @yogawithtaz
                                   </div>
                                 </div>
                               </div>
@@ -287,16 +288,16 @@ const HomePageSuggesstion = () => {
                               <div className="b-username-row">
                                 <div className="b-username m-like-link">
                                   <div className="g-user-name m-lg-size m-verified">
-                                    {" "}
-                                    Yoga with Taz{" "}
+                                    
+                                    Yoga with Taz
                                   </div>
                                 </div>
                               </div>
                               <div className="b-username-row">
                                 <div className="b-username">
                                   <div className="g-user-username">
-                                    {" "}
-                                    @yogawithtaz{" "}
+                                    
+                                    @yogawithtaz
                                   </div>
                                 </div>
                               </div>
@@ -332,16 +333,16 @@ const HomePageSuggesstion = () => {
                               <div className="b-username-row">
                                 <div className="b-username m-like-link">
                                   <div className="g-user-name m-lg-size m-verified">
-                                    {" "}
-                                    Yoga with Taz{" "}
+                                    
+                                    Yoga with Taz
                                   </div>
                                 </div>
                               </div>
                               <div className="b-username-row">
                                 <div className="b-username">
                                   <div className="g-user-username">
-                                    {" "}
-                                    @yogawithtaz{" "}
+                                    
+                                    @yogawithtaz
                                   </div>
                                 </div>
                               </div>
@@ -356,6 +357,7 @@ const HomePageSuggesstion = () => {
             </div>
           </div>
         </div>
+        </Col>
       </Row>
     </Col>
   );

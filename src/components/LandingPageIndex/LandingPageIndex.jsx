@@ -28,7 +28,7 @@ const LandingPageIndex = () => {
       <div className="login-section">
         <Container>
           <Row>
-            <Col lg={6} md={6} sm={12} xs={12} className="hidden-xs iphone-slide-area">
+            <Col lg={6} xl={6} md={12} sm={12} xs={12} className="hidden-xs iphone-slide-area resp-btm-lg">
               <div className="dm-width">
                 <div className="dm-device">
                   <div className="device">
@@ -45,7 +45,7 @@ const LandingPageIndex = () => {
                 </div>
               </div>
             </Col>
-            <Col lg={6} md={6} sm={12} xs={12}>
+            <Col lg={6} xl={6} md={12} sm={12} xs={12}>
               <div className="sign-in form-section">
                 <Link to="#" aria-current="page" className="sign-in-logo">
                   <Image src="./assets/images/logo.png" width="237" />

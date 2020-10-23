@@ -156,7 +156,8 @@ const FollowingExpiredSec = (props) => {
                         </Dropdown>
                     </div>
                 </div>
-                <Col sm="6" md={4} lg={4} xs="12">
+                <Row>
+                <Col sm={12} md={6} lg={4} xs={12}>
                     <div className="follower-lists">
                         <div className="follower-subscription-lists">
                             <div className="follower-subscription-inner">
@@ -238,6 +239,7 @@ const FollowingExpiredSec = (props) => {
                         </div>
                     </div>
                 </Col>
+                </Row>
             </div>
             <AddFavModal addFav={addFav} closeAddFavModal={closeAddFavModal} />
             <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />

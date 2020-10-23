@@ -25,6 +25,8 @@ const HomePageIndex = () => {
     setSendTip(false);
   };
 
+  const [isVisible, setIsVisible] = React.useState(false);
+
   return (
     <>
       <div className="home-screen home-sec">
@@ -43,7 +45,7 @@ const HomePageIndex = () => {
             </div>
           </div>
           <div className="">
-            <Col md={8} className="custom-padding">
+            <Col xl={8} md={12} className="custom-padding">
               <Container>
                 <Row>
                   <div id="stories" className="storiesWrapper"></div>
@@ -169,12 +171,13 @@ const HomePageIndex = () => {
 
                 <div className="likes alignleft">
                   <p>78 Likes</p>
-                  <Link className="Show view-comments">
+                  <Link className="Show view-comments" onClick={() => setIsVisible(!isVisible)}>
                     View 11 comments
                   </Link>
                   <Link className="Hide view-comments">
                     View less comments
                   </Link>
+                  { isVisible &&
                   <div id="target">
                     <div className="row comment-row">
                       <div className="alignleft">
@@ -323,12 +326,13 @@ const HomePageIndex = () => {
                             />
                           </div>
                           <Button type="submit" className="custom-btn">
-                            <i className="fa fa-paper-plane-o"></i>
+                            <i class="fas fa-paper-plane"></i>
                           </Button>
                         </Form>
                       </div>
                     </div>
                   </div>
+                    }
                 </div>
               </div>
             </Col>

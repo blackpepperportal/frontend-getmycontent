@@ -38,6 +38,8 @@ const ProfileIndex = () => {
     setSendTip(false);
   };
 
+  const [isVisible, setIsVisible] = React.useState(false);
+
   return (
     <>
       <div className="my-profile">
@@ -248,12 +250,13 @@ const ProfileIndex = () => {
 
                 <div className="likes alignleft">
                   <p>78 Likes</p>
-                  <Link className="Show view-comments">
+                  <Link className="Show view-comments" onClick={() => setIsVisible(!isVisible)}>
                     View 11 comments
                   </Link>
                   <Link className="Hide view-comments">
                     View less comments
                   </Link>
+                  { isVisible &&
                   <div id="target">
                     <div className="row comment-row">
                       <div className="alignleft">
@@ -402,12 +405,13 @@ const ProfileIndex = () => {
                             />
                           </div>
                           <Button type="submit" className="custom-btn">
-                            <i className="fa fa-paper-plane-o"></i>
+                            <i class="fas fa-paper-plane"></i>
                           </Button>
                         </Form>
                       </div>
                     </div>
                   </div>
+                }
                 </div>
               </div>
             </Col>

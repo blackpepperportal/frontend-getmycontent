@@ -1,5 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  Nav,
+  Container,
+  Row,
+  Col,
+  Tab,
+  Dropdown,
+  Image,
+  ListGroup,
+  Media,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 import configuration from "react-global-configuration";
 import SideBarIndex from "../SideBar/SideBarIndex";
 
@@ -15,149 +29,149 @@ const HeaderIndex = (props) => {
   return (
     <>
       <header className="main-header">
-        <div className="container">
+        <Container>
           <nav className="main-header-menu">
-            <a
-              href="home.php"
+            <Link
+              to="home.php"
               className="main-header-menu icon-with-round-hover m-current"
             >
-              <img src="assets/images/icons/home.svg" />
-            </a>
-            <a
-              href="notifications.php"
+              <Image src="assets/images/icons/home.svg" />
+            </Link>
+            <Link
+              to="notifications.php"
               className="main-header-menu icon-with-round-hover"
               active-className="m-current"
               exact-active-className=""
             >
-              <img src="assets/images/icons/notification.svg" />
-            </a>
-            <a
-              href="create-post.php"
+              <Image src="assets/images/icons/notification.svg" />
+            </Link>
+            <Link
+              to="create-post.php"
               className="main-header-menu icon-with-round-hover"
             >
-              <img src="assets/images/icons/create-post.svg" />
-            </a>
-            <a
-              href="chat.php"
+              <Image src="assets/images/icons/create-post.svg" />
+            </Link>
+            <Link
+              to="chat.php"
               className="main-header-menu icon-with-round-hover"
             >
-              <img src="assets/images/icons/chat.svg" />
+              <Image src="assets/images/icons/chat.svg" />
               <span className="main-header-menu__count"> 5 </span>
-            </a>
-            <button
+            </Link>
+            <Button
               type="button"
               className="main-header-menu icon-with-round-hover"
-              href="#"
+              to="#"
               data-drawer-trigger
               aria-controls="drawer-name"
               aria-expanded="false"
             >
-              <img src="assets/images/icons/user.svg" />
-            </button>
+              <Image src="assets/images/icons/user.svg" />
+            </Button>
           </nav>
-        </div>
+        </Container>
       </header>
 
-      <section className="drawer" id="drawer-name" data-drawer-target>
+      <div className="drawer" id="drawer-name" data-drawer-target>
         <div className="drawer__overlay" data-drawer-close tabindex="-1"></div>
         <div className="drawer__wrapper">
           <div className="drawer__header">
             <div className="drawer__title">
-              <a href="#" className="l-sidebar__avatar" data-name="Profile">
+              <Link to="#" className="l-sidebar__avatar" data-name="Profile">
                 <span className="sidebar-hamburger-user-profile">
-                  <img src="assets/images/avatar/b-1.jpg" alt="fansclub" />
+                  <Image src="assets/images/avatar/b-1.jpg" alt="fansclub" />
                 </span>
-              </a>
+              </Link>
               <div className="pull-left side-user-head">
-                <a href="my-profile.php">
+                <Link href="my-profile.php">
                   <h3 className="g-user-name">John</h3>
                   <span className="user-id">@johnpaul</span>
-                </a>
+                </Link>
 
                 <ul className="list-inline">
-                  <li>
-                    <a href="following.php">
+                  <Media as="li">
+                    <Link to="following.php">
                       <span className="fans-follow">0</span> Fans
-                    </a>
-                  </li>
-                  <li>
-                    <a href="following.php">
+                    </Link>
+                  </Media>
+                  <Media as="li">
+                    <Link to="following.php">
                       <span className="fans-follow">5</span> Following
-                    </a>
-                  </li>
+                    </Link>
+                  </Media>
                 </ul>
               </div>
 
               <div className="pull-right">
                 <span className="m-arrow">
-                  <img
+                  <Image
                     src="assets/images/icons/arrow-down.svg"
                     alt="fansclub"
                   />
                 </span>
               </div>
             </div>
-            <button
+            <Button
               className="drawer__close"
               data-drawer-close
               aria-label="Close Drawer"
-            ></button>
+            ></Button>
           </div>
           <div className="drawer__content">
             <div className="right-sidebar-menu-item">
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/arrow-down.svg" alt="fansclub" />{" "}
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/arrow-down.svg" alt="fansclub" />{" "}
                 My Profile
-              </a>
+              </Link>
 
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/bookmarks.svg" alt="fansclub" />{" "}
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/bookmarks.svg" alt="fansclub" />{" "}
                 Bookmarks
-              </a>
+              </Link>
 
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/lists.svg" alt="fansclub" /> Lists
-              </a>
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/lists.svg" alt="fansclub" /> Lists
+              </Link>
 
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/settings.svg" alt="AJ" /> Settings
-              </a>
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/settings.svg" alt="AJ" /> Settings
+              </Link>
 
               <hr className="sidebar-menu-divider" />
 
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/card.svg" alt="fansclub" /> Your
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/card.svg" alt="fansclub" /> Your
                 Cards
-              </a>
+              </Link>
 
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/bank.svg" alt="fansclub" /> Add
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/bank.svg" alt="fansclub" /> Add
                 bank
-              </a>
+              </Link>
 
               <hr className="sidebar-menu-divider" />
 
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/help.svg" alt="fansclub" /> Help
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/help.svg" alt="fansclub" /> Help
                 and Support
-              </a>
+              </Link>
 
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/dark.svg" alt="fansclub" /> Dark
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/dark.svg" alt="fansclub" /> Dark
                 mode
-              </a>
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/globe.svg" alt="fansclub" />{" "}
+              </Link>
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/globe.svg" alt="fansclub" />{" "}
                 English
-              </a>
-              <a href="" className="sidebar-menus-item" data-name="Profile">
-                <img src="assets/images/icons/logout.svg" alt="fansclub" />{" "}
+              </Link>
+              <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Image src="assets/images/icons/logout.svg" alt="fansclub" />{" "}
                 Logout
-              </a>
+              </Link>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </>
   );
 };

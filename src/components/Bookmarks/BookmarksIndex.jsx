@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Navbar,
@@ -19,9 +19,21 @@ import {
   Badge,
   Media,
 } from "react-bootstrap";
+import SendTipModal from "../helper/SendTipModal";
 
 const BookmarksIndex = () => {
+
+  const [sendTip, setSendTip] = useState(false);
+
+  const closeSendTipModal = () => {
+    setSendTip(false);
+  };
+
+  const [isVisible, setIsVisible] = React.useState(false);
+
+
   return (
+    <>
     <div className="edit-profile bookmark-sec">
       <Container>
         <Row>
@@ -80,12 +92,108 @@ const BookmarksIndex = () => {
                   <h3>ALL BOOKMARKS</h3>
                 </div>
                 <div className="pull-right">
-                  <Link className="bookmarks-filter" to="#">
-                    <Image
-                      src="assets/images/icons/sort.svg"
-                      className="svg-clone"
-                    />
-                  </Link>
+                <Dropdown>
+                            <Dropdown.Toggle
+                                className="btn btn-default dropdown-toggle bookmarks-filter"
+                                type="button"
+                                id="dropdown-basic"
+                            >
+                                <Image src="assets/images/icons/sort.svg" className="svg-clone" />
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className="dropdown-menu dropdown-menu-right model-filter-dropdown">
+                                <Form action="#">
+                                    <Media as="li">
+                                        <a role="heading" className="dropdown-header">
+                                            Subscription
+                                        </a>
+                                    </Media>
+                                    <Media as="li">
+                                        <a>
+                                        {["radio"].map((type) => (
+                                                <div key={`custom-inline-${type}`}>
+                                                    <Form.Check
+                                                        custom
+                                                        inline
+                                                        label="Recent"
+                                                        type={type}
+                                                        id={`custom-inline-${type}-1`}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </a>
+                                    </Media>
+                                    <Media as="li">
+                                        <a>
+                                        {["radio"].map((type) => (
+                                                <div key={`custom-inline-${type}`}>
+                                                    <Form.Check
+                                                        custom
+                                                        inline
+                                                        label="Name"
+                                                        type={type}
+                                                        id={`custom-inline-${type}-2`}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </a>
+                                    </Media>
+                                </Form>
+                                <Media as="li" className="divider"></Media>
+                                <Form action="#">
+                                    <Media as="li">
+                                        <a role="heading" className="dropdown-header">
+
+                                            Online Status
+                                        </a>
+                                    </Media>
+                                    <Media as="li">
+                                        <a>
+                                            {["radio"].map((type) => (
+                                                <div key={`custom-inline-${type}`}>
+                                                    <Form.Check
+                                                        custom
+                                                        inline
+                                                        label="Online"
+                                                        type={type}
+                                                        id={`custom-inline-${type}-3`}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </a>
+                                    </Media>
+                                    <Media as="li">
+                                        <a>
+                                        {["radio"].map((type) => (
+                                                <div key={`custom-inline-${type}`}>
+                                                    <Form.Check
+                                                        custom
+                                                        inline
+                                                        label="Online"
+                                                        type={type}
+                                                        id={`custom-inline-${type}-4`}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </a>
+                                    </Media>
+                                    <Media as="li">
+                                        <a>
+                                        {["radio"].map((type) => (
+                                                <div key={`custom-inline-${type}`}>
+                                                    <Form.Check
+                                                        custom
+                                                        inline
+                                                        label="Offline"
+                                                        type={type}
+                                                        id={`custom-inline-${type}-5`}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </a>
+                                    </Media>
+                                </Form>
+                            </Dropdown.Menu>
+                        </Dropdown>
                 </div>
               </div>
             </div>
@@ -107,7 +215,7 @@ const BookmarksIndex = () => {
                 <div className="alignright">
                   <div className="post-header-right-side">
                     <span className="post-time flex-content">
-                      {" "}
+                      
                       <span className="post-time">3 hours ago </span>
                       <Dropdown>
                         <Dropdown.Toggle
@@ -126,8 +234,8 @@ const BookmarksIndex = () => {
                           </Media>
                           <Media as="li">
                             <Link to="#">
-                              {" "}
-                                Hide paid blurred from the home feed{" "}
+                              
+                                Hide paid blurred from the home feed
                             </Link>
                           </Media>
                           <Media as="li" className="divider"></Media>
@@ -175,6 +283,18 @@ const BookmarksIndex = () => {
                       className="svg-clone"
                     />
                   </Link>
+                  <Button
+                      type="button"
+                      className="g-icon"
+                      onClick={() => setSendTip(true)}
+                    >
+                      <Image
+                        src="assets/images/icons/tip.svg"
+                        className="svg-clone"
+                      />
+
+                      <span className="post-tip">SEND TIP</span>
+                    </Button>
                 </div>
                 <div className="alignright">
                   <Link to="#">
@@ -188,10 +308,12 @@ const BookmarksIndex = () => {
 
               <div className="likes alignleft">
                 <p>78 Likes</p>
-                <button className="Show view-comments">View 11 comments</button>
-                <button className="Hide view-comments">
+                <Link className="Show view-comments" onClick={() => setIsVisible(!isVisible)}>
+                  View 11 comments</Link>
+                <Link className="Hide view-comments">
                   View less comments
-                </button>
+                </Link>
+                { isVisible &&
                 <div id="target">
                   <div className="row comment-row">
                     <div className="alignleft">
@@ -202,7 +324,7 @@ const BookmarksIndex = () => {
                         />
                         <div className="user-name">
                           <span className="card-title">
-                            Tom{" "}
+                            Tom
                             <span className="comment-message">
                               she's breathtaking
                               </span>
@@ -211,11 +333,11 @@ const BookmarksIndex = () => {
                             <Button>4:03 am</Button>
                             <Button>5 Likes</Button>
                             <Button>
-                              {" "}
+                              
                               <i
                                 className="fas fa-users text-info"
                                 style={{ display: "none" }}
-                              ></i>{" "}
+                              ></i>
                                 Reply
                               </Button>
                           </small>
@@ -238,7 +360,7 @@ const BookmarksIndex = () => {
                         />
                         <div className="user-name">
                           <span className="card-title">
-                            Robert Maskell{" "}
+                            Robert Maskell
                             <span className="comment-message">
                               Looks nice necklace?
                               </span>
@@ -247,11 +369,11 @@ const BookmarksIndex = () => {
                             <Button>4:03 am</Button>
                             <Button>5 Likes</Button>
                             <Button>
-                              {" "}
+                              
                               <i
                                 className="fas fa-users text-info"
                                 style={{ display: "none" }}
-                              ></i>{" "}
+                              ></i>
                                 Reply
                               </Button>
                           </small>
@@ -277,7 +399,7 @@ const BookmarksIndex = () => {
                         />
                         <div className="user-name">
                           <span className="card-title">
-                            -Johanaki-{" "}
+                            -Johanaki-
                             <span className="comment-message">
                               Yes, my goddess!!!
                               </span>
@@ -286,11 +408,11 @@ const BookmarksIndex = () => {
                             <Button>4:03 am</Button>
                             <Button>5 Likes</Button>
                             <Button>
-                              {" "}
+                              
                               <i
                                 className="fas fa-users text-info"
                                 style={{ display: "none" }}
-                              ></i>{" "}
+                              ></i>
                                 Reply
                               </Button>
                           </small>
@@ -340,18 +462,21 @@ const BookmarksIndex = () => {
                           />
                         </div>
                         <Button type="submit" className="custom-btn">
-                          <i className="fa fa-paper-plane-o"></i>
+                          <i class="fas fa-paper-plane"></i>
                         </Button>
                       </Form>
                     </div>
                   </div>
                 </div>
+                }
               </div>
             </div>
           </Col>
         </Row>
       </Container>
     </div>
+    <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
+    </>
   );
 };
 
