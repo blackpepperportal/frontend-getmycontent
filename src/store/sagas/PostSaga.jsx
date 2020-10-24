@@ -1,7 +1,10 @@
 import { call, select, put, takeLatest, all } from "redux-saga/effects";
 import api from "../../Environment";
 import {
-  FETCH_SINGLE_PAGE_START,
+  CHANGE_POST_STATUS_START,
+  DELETE_POST_START,
+  FETCH_POSTS_START,
+  FETCH_SINGLE_POST_START,
   SAVE_POST_START,
 } from "../actions/ActionConstant";
 import { createNotification } from "react-redux-notify";
@@ -9,7 +12,18 @@ import {
   getSuccessNotificationMessage,
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
-import { savePostFailure, savePostSuccess } from "../actions/PostAction";
+import {
+  changePostStatusFailure,
+  changePostStatusSuccess,
+  deletePostFailure,
+  deletePostSuccess,
+  fetchPostsFailure,
+  fetchPostsStart,
+  fetchSinglePostFailure,
+  fetchSinglePostSuccess,
+  savePostFailure,
+  savePostSuccess,
+} from "../actions/PostAction";
 
 function* savePostAPI() {
   try {
@@ -17,6 +31,10 @@ function* savePostAPI() {
     const response = yield api.postMethod("posts_save", inputData);
     if (response.data.success) {
       yield put(savePostSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
     } else {
       yield put(savePostFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -31,6 +49,103 @@ function* savePostAPI() {
   }
 }
 
+function* fetchPostsAPI() {
+  try {
+    const response = yield api.postMethod("posts");
+    if (response.data.success) {
+      yield put(fetchPostsStart(response.data.data));
+    } else {
+      yield put(fetchPostsFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchPostsFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* fetchSinglePostAPI() {
+  try {
+    const inputData = yield select((state) => state.post.singlePost.inputData);
+    const response = yield api.postMethod("posts_view", inputData);
+    if (response.data.success) {
+      yield put(fetchSinglePostSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(fetchSinglePostFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchSinglePostFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* deletePostAPI() {
+  try {
+    const inputData = yield select((state) => state.post.delPost.inputData);
+    const response = yield api.postMethod("posts_delete", inputData);
+    if (response.data.success) {
+      yield put(deletePostSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(deletePostFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(deletePostFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* changePostStatusAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.post.changePostStatus.inputData
+    );
+    const response = yield api.postMethod("posts_status", inputData);
+    if (response.data.success) {
+      yield put(changePostStatusSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(changePostStatusFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(changePostStatusFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([yield takeLatest(SAVE_POST_START, savePostAPI)]);
+  yield all([yield takeLatest(FETCH_POSTS_START, fetchPostsAPI)]);
+  yield all([yield takeLatest(FETCH_SINGLE_POST_START, fetchSinglePostAPI)]);
+  yield all([yield takeLatest(DELETE_POST_START, deletePostAPI)]);
+  yield all([yield takeLatest(CHANGE_POST_STATUS_START, changePostStatusAPI)]);
 }
