@@ -20,15 +20,50 @@ import {
   Media,
 } from "react-bootstrap";
 
-const LandingPageIndex = () => {
+import { connect } from "react-redux";
+import {
+  forgotPasswordStart,
+  userLoginStart,
+  userRegisterStart,
+} from "../../store/actions/UserAction";
+
+const LandingPageIndex = (props) => {
   const [show, setShow] = useState("login");
+
+  const [loginInputData, setLoginInputData] = useState({});
+
+  const [signupInputData, setSignupInputData] = useState({});
+
+  const [forgotPasswordInputData, setForgotPasswordInputData] = useState({});
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    props.dispatch(userLoginStart(loginInputData));
+  };
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    props.dispatch(userRegisterStart(signupInputData));
+  };
+
+  const handleForgotPassword = (event) => {
+    event.preventDefault();
+    props.dispatch(forgotPasswordStart(forgotPasswordInputData));
+  };
 
   return (
     <>
       <div className="login-section">
         <Container>
           <Row>
-            <Col lg={6} xl={6} md={12} sm={12} xs={12} className="hidden-xs iphone-slide-area resp-btm-lg">
+            <Col
+              lg={6}
+              xl={6}
+              md={12}
+              sm={12}
+              xs={12}
+              className="hidden-xs iphone-slide-area resp-btm-lg"
+            >
               <div className="dm-width">
                 <div className="dm-device">
                   <div className="device">
@@ -67,13 +102,21 @@ const LandingPageIndex = () => {
                   <div id="main">
                     <div id="first">
                       {show === "login" ? (
-                        <Form action="" method="post">
+                        <Form onSubmit={handleLogin} method="post">
                           <Form.Group controlId="formBasicEmail">
                             <Form.Control
                               type="text"
                               id="loginemail"
                               placeholder="E-mail"
                               required
+                              value={loginInputData.email}
+                              name="email"
+                              onChange={(event) =>
+                                setLoginInputData({
+                                  ...loginInputData,
+                                  email: event.currentTarget.value,
+                                })
+                              }
                             />
                           </Form.Group>
 
@@ -83,6 +126,14 @@ const LandingPageIndex = () => {
                               id="loginpassword"
                               placeholder="Password"
                               required
+                              value={loginInputData.password}
+                              name="password"
+                              onChange={(event) =>
+                                setLoginInputData({
+                                  ...loginInputData,
+                                  password: event.currentTarget.value,
+                                })
+                              }
                             />
                           </Form.Group>
                           <div className="forget-password">
@@ -103,10 +154,13 @@ const LandingPageIndex = () => {
                           <div className="">
                             <Button
                               id="login"
-                              onclick="location.href = 'home.php';"
+                              onClick={handleLogin}
                               className="btn btn-auth btn-lg"
+                              disabled={props.login.buttonDisable}
                             >
-                              LOGIN
+                              {props.login.loadingButtonContent !== null
+                                ? props.login.loadingButtonContent
+                                : "Login"}
                             </Button>
                           </div>
                           <p id="two">Don't have an account yet?</p>
@@ -127,13 +181,42 @@ const LandingPageIndex = () => {
                         </Form>
                       ) : null}
                       {show === "signup" ? (
-                        <Form action="" id="form" method="post" name="form">
+                        <Form
+                          onSubmit={handleSignup}
+                          id="form"
+                          method="post"
+                          name="form"
+                        >
+                          <Form.Group controlId="formBasicName">
+                            <Form.Control
+                              type="text"
+                              id="name"
+                              placeholder="Name"
+                              required
+                              value={signupInputData.name}
+                              name="name"
+                              onChange={(event) =>
+                                setSignupInputData({
+                                  ...signupInputData,
+                                  name: event.currentTarget.value,
+                                })
+                              }
+                            />
+                          </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Control
                               type="text"
                               id="registeremail"
                               placeholder="E-mail"
                               required
+                              value={signupInputData.email}
+                              name="email"
+                              onChange={(event) =>
+                                setSignupInputData({
+                                  ...signupInputData,
+                                  email: event.currentTarget.value,
+                                })
+                              }
                             />
                           </Form.Group>
 
@@ -143,19 +226,21 @@ const LandingPageIndex = () => {
                               id="registerpassword"
                               placeholder="Password"
                               required
+                              value={signupInputData.password}
+                              name="password"
+                              onChange={(event) =>
+                                setSignupInputData({
+                                  ...signupInputData,
+                                  password: event.currentTarget.value,
+                                })
+                              }
                             />
                           </Form.Group>
 
-                          <Form.Group controlId="formBasicName">
-                            <Form.Control
-                              type="text"
-                              id="name"
-                              placeholder="Name"
-                              required
-                            />
-                          </Form.Group>
-
-                          <Form.Group controlId="formBasicName" className="round">
+                          <Form.Group
+                            controlId="formBasicName"
+                            className="round"
+                          >
                             <input type="checkbox" id="checkbox" />
                             <label for="checkbox"></label>
                             <p className="terms">
@@ -168,10 +253,13 @@ const LandingPageIndex = () => {
                           <Form.Group controlId="formBasicName">
                             <Button
                               id="register"
-                              onclick="location.href = 'home.php';"
+                              onClick={handleSignup}
                               className="btn btn-auth btn-lg r-btn"
+                              disabled={props.login.buttonDisable}
                             >
-                              SIGN UP
+                              {props.signup.loadingButtonContent !== null
+                                ? props.signup.loadingButtonContent
+                                : "SIGN UP"}
                             </Button>
                           </Form.Group>
                           <p id="two">Already have an account?</p>
@@ -192,7 +280,7 @@ const LandingPageIndex = () => {
                         </Form>
                       ) : null}
                       {show === "forgotpassword" ? (
-                        <Form action="" method="post">
+                        <Form onSubmit={handleForgotPassword} method="post">
                           <div className="form-group">
                             <Form.Control
                               type="text"
@@ -200,18 +288,30 @@ const LandingPageIndex = () => {
                               className="form-control"
                               placeholder="E-mail"
                               required
+                              value={forgotPasswordInputData.email}
+                              name="email"
+                              onChange={(event) =>
+                                setForgotPasswordInputData({
+                                  ...forgotPasswordInputData,
+                                  email: event.currentTarget.value,
+                                })
+                              }
                             />
                           </div>
 
-                          <div className="">
-                            <button
-                              id="login"
-                              onclick="location.href = 'home.php';"
+                          <Form.Group controlId="formBasicName">
+                            <Button
+                              id="forgotpassword"
+                              onClick={handleForgotPassword}
                               className="btn btn-auth btn-lg"
+                              disabled={props.forgotPassword.buttonDisable}
                             >
-                              Forgot Password
-                            </button>
-                          </div>
+                              {props.forgotPassword.loadingButtonContent !==
+                              null
+                                ? props.forgotPassword.loadingButtonContent
+                                : "Forgot Password"}
+                            </Button>
+                          </Form.Group>
                           <p id="two">Already have an account?</p>
                           <p>
                             <Link
@@ -241,4 +341,14 @@ const LandingPageIndex = () => {
   );
 };
 
-export default LandingPageIndex;
+const mapStateToPros = (state) => ({
+  login: state.users.loginInputData,
+  signup: state.users.registerInputData,
+  forgotPassword: state.users.forgotPasswordInputData,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(LandingPageIndex);

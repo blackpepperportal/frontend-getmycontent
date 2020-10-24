@@ -49,16 +49,22 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   registerInputData: {
     data: {},
     loading: true,
     error: false,
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   forgotPasswordInputData: {
     data: {},
     loading: true,
     error: false,
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   deleteAccount: {
     data: {},
@@ -190,12 +196,12 @@ const userReducer = (state = initialState, action) => {
         ...state,
         loginInputData: {
           data: {
-            ...state.loginInputData.data,
+            ...action.data,
             time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading please wait",
       };
 
     case LOGIN_SUCCESS:
@@ -203,20 +209,27 @@ const userReducer = (state = initialState, action) => {
         ...state,
         profile: {
           data: action.data.data,
+          loading: false,
+          error: false,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
+        loginInputData: {
+          data: {},
+          loading: true,
+          error: false,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case LOGIN_FAILURE:
       return {
         ...state,
-        profile: {
+        loginInputData: {
           data: {},
-          loading: false,
-          error: action.error,
+          loading: true,
+          error: false,
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case GET_REGISTER_DETAILS:
       return {
@@ -235,12 +248,14 @@ const userReducer = (state = initialState, action) => {
         ...state,
         registerInputData: {
           data: {
-            ...state.registerInputData.data,
+            ...action.data,
             time_zone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
+          loading: true,
+          error: false,
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading please wait",
       };
 
     case REGISTER_SUCCESS:
@@ -249,19 +264,24 @@ const userReducer = (state = initialState, action) => {
         profile: {
           data: action.data.data,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
+        registerInputData: {
+          data: {},
+          loading: false,
+          error: false,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case REGISTER_FAILURE:
       return {
         ...state,
-        profile: {
+        registerInputData: {
           data: {},
           loading: false,
-          error: action.error,
+          error: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case GET_FORGOT_PASSWORD_DETAILS:
       return {
@@ -279,25 +299,35 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         forgotPasswordInputData: {
-          data: {
-            ...state.forgotPasswordInputData.data,
-          },
+          data: action.data,
+          loading: false,
+          error: false,
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading please wait",
       };
 
     case FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
-        buttonDisable: false,
-        loadingButtonContent: null,
+        forgotPasswordInputData: {
+          data: {},
+          loading: true,
+          error: false,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case FORGOT_PASSWORD_FAILURE:
       return {
         ...state,
-        buttonDisable: false,
-        loadingButtonContent: null,
+        forgotPasswordInputData: {
+          data: {},
+          loading: true,
+          error: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case DELETE_ACCOUNT_START:
       return {
