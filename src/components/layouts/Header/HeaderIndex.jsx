@@ -26,6 +26,8 @@ const HeaderIndex = (props) => {
     event.preventDefault();
   };
 
+  const [isVisible, setIsVisible] = React.useState(false);
+
   return (
     <>
       <header className="main-header">
@@ -65,13 +67,14 @@ const HeaderIndex = (props) => {
               data-drawer-trigger
               aria-controls="drawer-name"
               aria-expanded="false"
+              onClick={() => setIsVisible(!isVisible)}
             >
               <Image src="assets/images/icons/user.svg" />
             </Button>
           </nav>
         </Container>
       </header>
-
+      { isVisible ? (
       <div className="drawer" id="drawer-name" data-drawer-target>
         <div className="drawer__overlay" data-drawer-close tabindex="-1"></div>
         <div className="drawer__wrapper">
@@ -111,11 +114,11 @@ const HeaderIndex = (props) => {
                 </span>
               </div>
             </div>
-            <Button
+            {/* <Button
               className="drawer__close"
               data-drawer-close
               aria-label="Close Drawer"
-            ></Button>
+            ></Button> */}
           </div>
           <div className="drawer__content">
             <div className="right-sidebar-menu-item">
@@ -172,6 +175,7 @@ const HeaderIndex = (props) => {
           </div>
         </div>
       </div>
+      ) : null}
     </>
   );
 };
