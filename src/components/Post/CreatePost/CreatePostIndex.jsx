@@ -1,34 +1,54 @@
 import React from "react";
 import CreatePollModal from "../../helper/CreatePollModal";
+import { Link } from "react-router-dom";
+import {
+    Navbar,
+    Nav,
+    NavDropdown,
+    Form,
+    FormControl,
+    Button,
+    Container,
+    Row,
+    Col,
+    InputGroup,
+    Tabs,
+    Tab,
+    Dropdown,
+    DropdownButton,
+    Image,
+    Badge,
+    Media,
+} from "react-bootstrap";
 
 const CreatePostIndex = () => {
   return (
-    <section className="notification-page create-post" id="tabs">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
+    <div className="notification-page create-post" id="tabs">
+      <Container>
+        <Row>
+          <Col sm={12} md={12}>
             <div className="post-create-header">
               <div className="pull-left">
-                <a
+                <Link
                   className="bookmarkes-list notify-title"
-                  href="bookmarks.php"
+                  to="bookmarks.php"
                 >
-                  <img
+                  <Image
                     src="assets/images/icons/back.svg"
                     className="svg-clone"
                   />
                   NEW POST
-                </a>
+                </Link>
               </div>
               <div className="pull-right">
-                <button type="button" className="post-btn" disabled="disabled">
+                <Button type="button" className="post-btn" disabled>
                   Post
-                </button>
+                </Button>
               </div>
             </div>
-          </div>
+          </Col>
 
-          <div className="col-md-12">
+          <Col sm={12} md={12}>
             <div className="create-post-textarea">
               <textarea
                 placeholder="Compose new post..."
@@ -38,7 +58,7 @@ const CreatePostIndex = () => {
               ></textarea>
             </div>
             <div style={{ clear: "both" }}></div>
-            <div className="col-md-12">
+            <Col sm={12} md={12}>
               <div id="poll-toggle">
                 <div className="poll-toggle-div">
                   <div className="left-half">
@@ -93,7 +113,7 @@ const CreatePostIndex = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Col>
             <div className="left-half post-write">
               <button>
                 <input
@@ -128,11 +148,11 @@ const CreatePostIndex = () => {
               </button>
             </div>
             <div style={{ clear: "both" }}></div>
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
       <CreatePollModal />
-    </section>
+    </div>
   );
 };
 

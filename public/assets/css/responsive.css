@@ -81,6 +81,9 @@ Version: 1.0
         white-space: nowrap;
         overflow: auto;
     }
+    .payment-tabs-card .payment-tabs-content td{
+        white-space: nowrap;
+    }
 }
 
 
@@ -198,6 +201,9 @@ Version: 1.0
     }
     .resp-sapce-center{
         justify-content: space-between!important;
+    }
+    .payment-sec {
+        margin-top: 20px!important;
     }
 }
 

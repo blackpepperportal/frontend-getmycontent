@@ -416,7 +416,7 @@ a.bookmarkes-list:focus{
   color: #000 !important
 }
 .vertical-menu a {
-  padding: 12px;
+  /* padding: 12px; */
   text-decoration: none;
 }
 
@@ -2292,6 +2292,8 @@ a.main-header-menu.icon-with-round-hover {
     background-color: transparent;
     border: 1px solid rgba(138,150,163,0.25);
     border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
 }
 .floating-input:focus , .floating-select:focus {
      outline:none;
@@ -3420,6 +3422,7 @@ span.my-profile-status {
 } */
 .edit-p a.bookmarkes-list img.svg-clone {
     margin-right: 20px;
+    max-width: 1.5em;
 }
 .edit-profile {
     padding: 60px 0px;
@@ -4350,21 +4353,22 @@ span.new-user-name:after {
     margin-bottom: 10px;
 }
 
-button.post-btn {
-    background: rgba(138, 150, 163, 0.75);
-    opacity: 0.4;
-    min-width: 72px;
+.post-btn {
+    background: rgba(138, 150, 163, 0.75)!important;
+    border-color:rgba(138, 150, 163, 0.75)!important ;
+    opacity: 0.4!important;
+    min-width: 72px!important;
     pointer-events: none;
-    border-radius: 1000px;
+    border-radius: 1000px!important;
     margin-left: 12px;
     cursor: default;
     border: none;
     position: relative;
     top: 9px;
-    padding: 9px 18px;
-    font-size: 14px;
-    color: rgb(254, 254, 254);
-    font-weight: 500;
+    padding: 6px 20px!important;
+    font-size: 15px!important;
+    color: rgb(254, 254, 254)!important;
+    font-weight: 600!important;
     transition: opacity 0.3s ease 0s, background-color 0.3s ease 0s, box-shadow 0.3s ease 0s, -webkit-box-shadow 0.3s ease 0s;
     display: inline-block;
     white-space: nowrap;
@@ -4390,6 +4394,8 @@ button.post-btn {
     background: var(--bg-color);
     resize: none;
     max-height: 215px;
+    font-size: 1.6em;
+
 }
 .left-half.post-write {
     width: 100%;
@@ -7193,8 +7199,7 @@ section#tabs {
 }
 
 .change-password-sec{
-    margin-top: 55px;
-    padding-top: 5em;
+    padding-top: 2em;
 }
 
 .change-password-sec .card-header{
@@ -7204,6 +7209,7 @@ section#tabs {
     border-right: 0;
     border-bottom: 1px solid #ced4da;
     padding: 2em;
+    padding-top:0;
 }
 
 .change-password-sec .card-body{
@@ -7211,9 +7217,12 @@ section#tabs {
 }
 
 .change-password-sec label{
-    letter-spacing: 0.8px;
-    font-size: 1.4em;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #8a96a3;
+    padding: 0 6px;
+    margin: 0;
 }
 
 .change-password-sec .card-header h4{
@@ -7228,8 +7237,7 @@ section#tabs {
 }
 
 .delete-account-sec{
-    margin-top: 65px;
-    padding-top: 5em;
+    padding-top: 2em;
 }
 
 .delete-account-sec .card-header{
@@ -7239,6 +7247,7 @@ section#tabs {
     border-right: 0;
     border-bottom: 1px solid #ced4da;
     padding: 2em;
+    padding-top:0;
 }
 
 .delete-account-sec .card-body{
@@ -7315,3 +7324,70 @@ section#tabs {
 .book-photo .profile-post-area{
     display: block!important;
 }
+
+.edit-profile-tabs .media{
+    width: 100%;
+    margin-top: 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.edit-profile-tabs .media.active{
+    border-bottom: 1px solid #dee2e6;
+}
+
+.edit-profile-tabs.nav-tabs{
+    border-bottom: 0!important;
+}
+
+.edit-profile-tabs.nav-tabs .bookmarkes-list{
+    min-height: unset;
+    padding: 1em 0;
+}
+
+.edit-profile-tabs.nav-tabs .bookmarkes-list:hover{
+    background-color: transparent;
+}
+
+.edit-profile-tabs.nav-tabs li a {
+    border-color: transparent;
+}
+
+.edit-profile-tabs.nav-tabs li.active a{
+    border-top: 1px solid #dee2e6!important;
+}
+
+.btn-danger{
+    font-size: 1.2em!important;
+    padding: 0.5em 2em!important;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active{
+    color: #fff!important;
+    background-color: #dc3545!important;
+    border-color: #dc3545!important;
+}
+
+.btn-success{
+    font-size: 1.2em!important;
+    padding: 0.5em 2em!important;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active{
+    color: #fff!important;
+    background-color: #28a745!important;
+    border-color: #28a745!important;
+}
+
+.mrg-btm-xs{
+    margin-bottom: 1em;
+}
+
+.chat-wrapper .chat-message .chat-message-wrapper p:first-of-type{
+    font-size: 14px;
+}
+
+

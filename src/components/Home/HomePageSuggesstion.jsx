@@ -25,10 +25,10 @@ const HomePageSuggesstion = () => {
   return (
     <Col xl={4} md={12} className="suggest-col">
       <Row>
-        <Col sm={12} xl={5} xs={12} md={6}>
+        <Col sm={12} xl={5} xs={12} md={6} className="mrg-btm-xs">
           <h4 className="suggestions">suggestions</h4>
         </Col>
-        <Col sm={12} xl={7} xs={12} md={6}>
+        <Col sm={12} xl={7} xs={12} md={6} className="mrg-btm-xs">
           <div className="controls pull-right ">
             <Link to="#">
               <Image
@@ -44,7 +44,7 @@ const HomePageSuggesstion = () => {
             </Link>
 
             <Link
-              className="left btn btn-success"
+              className="left"
               data-toggle="tooltip"
               data-placement="top"
               title="Prev"
@@ -54,7 +54,7 @@ const HomePageSuggesstion = () => {
               <Image src="assets/images/icons/left.svg" className="svg-clone" />
             </Link>
             <Link
-              className="right btn btn-success"
+              className="right"
               data-toggle="tooltip"
               data-placement="top"
               title="Next"

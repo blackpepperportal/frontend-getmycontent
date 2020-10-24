@@ -1,0 +1,64 @@
+.card-list-sec{
+    margin-top: 85px;
+    font-family: 'Roboto', sans-serif; 
+}
+
+.card-list-box {
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    border: 5px solid rgba(0, 0, 0, 0.1);
+}
+
+.credit-img {
+    max-width: 4em;
+}
+
+.card-list-box h5{
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #212529;
+    letter-spacing: 0.002em;
+}
+
+.card-link-text {
+    font-weight: 500;
+    font-size: 1.4em;
+    color: var(--secondary-color);
+    margin-bottom: 0;
+    text-transform: capitalize;
+    margin-right: 1em;
+}
+
+.payment-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.action-btn{
+    display: flex;
+    align-items: center;
+}
+
+.head-title {
+    letter-spacing: 0.8px;
+    font-size: 2em;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 2em;
+    border-bottom:1px solid #dedede;
+    padding-bottom: 1em;
+}
+
+.add-card-img {
+    max-width: 6em;
+    margin-bottom: 1em;
+}
+
+.add-account-sec{
+    text-align: center;
+}

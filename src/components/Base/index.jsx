@@ -30,6 +30,10 @@ import ListIndex from "../Accounts/List/ListIndex";
 import NotificationIndex from "../Notification/NotificationIndex";
 import CreatePostIndex from "../Post/CreatePost/CreatePostIndex";
 import FavoritesIndex from "../Accounts/Favorites/FavoritesIndex";
+import PaymentsIndex from "../Accounts/Payments/PaymentsIndex";
+import BankingIndex from "../Accounts/Payments/BankingIndex";
+import CardListIndex from "../Accounts/Payments/CardListIndex";
+import AddBankIndex from "../Accounts/Payments/AddBankIndex";
 
 const history = createHistory();
 const $ = window.$;
@@ -204,6 +208,34 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/edit-profile-loader"}
             component={LandingPageLoader}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/payments"}
+            component={PaymentsIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/banking"}
+            component={BankingIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/card-list"}
+            component={CardListIndex}
+            layout={MainLayout}
+          />
+
+        <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/add-bank"}
+            component={AddBankIndex}
             layout={MainLayout}
           />
 
