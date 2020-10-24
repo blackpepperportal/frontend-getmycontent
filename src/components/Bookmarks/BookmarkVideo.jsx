@@ -19,60 +19,14 @@ import {
   Badge,
   Media,
 } from "react-bootstrap";
+import BookmarkNav from "./BookmarkNav";
 
 const BookmarkVideo = () => {
   return (
     <div className="edit-profile book-photo">
       <Container>
         <Row>
-          <Col xs={12} sm={12} md={4}>
-            <div className="vertical-menu">
-              <Link className="bookmarkes-list " to="bookmarks.php">
-                <Image src="assets/images/icons/back.svg" className="svg-clone" />
-                BOOKMARKS
-              </Link>
-
-              <Link className="bookmarkes-list " to="bookmarks-photos.php">
-                <Image
-                  src="assets/images/icons/gallery.svg"
-                  className="svg-clone my-p-icons"
-                />
-                Photos
-              </Link>
-
-              <Link className="bookmarkes-list active" to="bookmarks-videos.php">
-                <Image
-                  src="assets/images/icons/video.svg"
-                  className="svg-clone my-p-icons"
-                />
-                Videos
-              </Link>
-
-              <Link className="bookmarkes-list" to="bookmarks-audio.php">
-                <Image
-                  src="assets/images/icons/audio.svg"
-                  className="svg-clone my-p-icons"
-                />
-                Audio
-              </Link>
-
-              <Link className="bookmarkes-list" to="bookmarks-other.php">
-                <Image
-                  src="assets/images/icons/other.svg"
-                  className="svg-clone my-p-icons"
-                />
-                Other
-              </Link>
-
-              <Link className="bookmarkes-list" to="bookmarks-locked.php">
-                <Image
-                  src="assets/images/icons/lock.svg"
-                  className="svg-clone my-p-icons"
-                />
-                Locked
-              </Link>
-            </div>
-          </Col>
+          <BookmarkNav />
           <Col xs={12} sm={12} md={8}>
             <div className="profile-post-area">
               <div className="bookmarkes-list bookmarks-right-side">

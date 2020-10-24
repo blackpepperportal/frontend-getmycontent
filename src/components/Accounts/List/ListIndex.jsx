@@ -15,7 +15,7 @@ import {
   Button,
 } from "react-bootstrap";
 
-const ListIndex = () => {
+const ListIndex = (props) => {
   return (
     <div className="lists">
       <Container>
@@ -24,7 +24,11 @@ const ListIndex = () => {
             <div className="vertical-menu">
               <div className="bookmarkes-list bookmarks-right-side ">
                 <div className="pull-left">
-                  <Link className="bookmarkes-list" to="bookmarks.html">
+                  <Link
+                    className="bookmarkes-list"
+                    to={"/"}
+                    onClick={() => props.history.goBack()}
+                  >
                     <Image
                       src="assets/images/icons/back.svg"
                       className="svg-clone"
@@ -32,7 +36,7 @@ const ListIndex = () => {
                     Lists
                   </Link>
                 </div>
-                <div className="pull-right">
+                {/* <div className="pull-right">
                   <Link className="bookmarks-filter" to="#">
                     <Image
                       src="assets/images/icons/plus.svg"
@@ -40,7 +44,7 @@ const ListIndex = () => {
                       width=""
                     />
                   </Link>
-                </div>
+                </div> */}
               </div>
 
               <div className="user-lists-heading">
@@ -54,14 +58,17 @@ const ListIndex = () => {
                       type="button"
                       id="dropdown-basic"
                     >
-                      <Image src="assets/images/icons/sort.svg" className="svg-clone" />
+                      <Image
+                        src="assets/images/icons/sort.svg"
+                        className="svg-clone"
+                      />
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right model-filter-dropdown">
                       <Form action="#">
                         <Media as="li">
                           <a role="heading" className="dropdown-header">
                             Subscription
-                                        </a>
+                          </a>
                         </Media>
                         <Media as="li">
                           <a>
@@ -98,9 +105,8 @@ const ListIndex = () => {
                       <Form action="#">
                         <Media as="li">
                           <a role="heading" className="dropdown-header">
-
                             Online Status
-                                        </a>
+                          </a>
                         </Media>
                         <Media as="li">
                           <a>
@@ -154,7 +160,7 @@ const ListIndex = () => {
               </div>
 
               <div className="user-lists">
-                <Link to="following.php">
+                <Link to={"/fans"}>
                   <div className="pull-left">
                     <h3>Fans</h3>
                     <span className="user-list-count">0 people</span>
@@ -164,7 +170,7 @@ const ListIndex = () => {
               </div>
 
               <div className="user-lists">
-                <Link to="following.php">
+                <Link to={"/following"}>
                   <div className="pull-left">
                     <h3>Following</h3>
                     <span className="user-list-count">5 peoples</span>
@@ -206,7 +212,7 @@ const ListIndex = () => {
                 </Link>
               </div>
               <div className="user-lists">
-                <Link to="following.php">
+                <Link to={"/favorites"}>
                   <div className="pull-left">
                     <h3>Favorites</h3>
                     <span className="user-list-count">0 people</span>
@@ -215,7 +221,7 @@ const ListIndex = () => {
                 </Link>
               </div>
               <div className="user-lists">
-                <Link to="following.php">
+                <Link to={"/bookmarks"}>
                   <div className="pull-left">
                     <h3>Bookmarks</h3>
                     <span className="user-list-count">0 people</span>
@@ -223,7 +229,7 @@ const ListIndex = () => {
                   <div className="pull-right"></div>
                 </Link>
               </div>
-              <div className="user-lists">
+              {/* <div className="user-lists">
                 <Link to="#">
                   <div className="pull-left">
                     <h3>Close Friends</h3>
@@ -231,7 +237,7 @@ const ListIndex = () => {
                   </div>
                   <div className="pull-right"></div>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </Col>
         </Row>

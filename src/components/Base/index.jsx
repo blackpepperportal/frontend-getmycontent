@@ -25,9 +25,11 @@ import BookmarksIndex from "../Bookmarks/BookmarksIndex";
 import BookmarkPhoto from "../Bookmarks/BookmarkPhoto";
 import BookmarkVideo from "../Bookmarks/BookmarkVideo";
 import ModelViewProfile from "../Model/ModelViewProfile";
-import FollowingIndex from "../Accounts/Following/FollowingIndex";
+import FollowingIndex from "../Accounts/FansFollowing/Following/FollowingIndex";
 import ListIndex from "../Accounts/List/ListIndex";
 import NotificationIndex from "../Notification/NotificationIndex";
+import CreatePostIndex from "../Post/CreatePost/CreatePostIndex";
+import FavoritesIndex from "../Accounts/Favorites/FavoritesIndex";
 
 const history = createHistory();
 const $ = window.$;
@@ -121,6 +123,12 @@ class App extends Component {
           />
 
           <AppRoute
+            path={"/create-post"}
+            component={CreatePostIndex}
+            layout={MainLayout}
+          />
+
+          <AppRoute
             path={"/bookmarks"}
             component={BookmarksIndex}
             layout={MainLayout}
@@ -147,11 +155,18 @@ class App extends Component {
             component={FollowingIndex}
             layout={MainLayout}
           />
-
-          <AppRoute path={"/list"} 
-          component={ListIndex} 
-          layout={MainLayout} 
+          <AppRoute
+            path={"/fans"}
+            component={FollowingIndex}
+            layout={MainLayout}
           />
+          <AppRoute
+            path={"/favorites"}
+            component={FavoritesIndex}
+            layout={MainLayout}
+          />
+
+          <AppRoute path={"/list"} component={ListIndex} layout={MainLayout} />
 
           <AppRoute
             path={"/edit-profile"}

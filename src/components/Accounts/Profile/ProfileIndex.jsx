@@ -31,7 +31,6 @@ import {
 import SendTipModal from "../../helper/SendTipModal";
 
 const ProfileIndex = () => {
-
   const [sendTip, setSendTip] = useState(false);
 
   const closeSendTipModal = () => {
@@ -45,7 +44,7 @@ const ProfileIndex = () => {
       <div className="my-profile">
         <Container>
           <Row>
-            <Col sm={12} xs={12} md={8}>
+            <Col sm={12} xs={12} md={12}>
               <div className="cover-area">
                 <div className="profile-cover">
                   <Image
@@ -85,7 +84,7 @@ const ProfileIndex = () => {
                 </span>
                 <div className="profile-btn-group">
                   <Link
-                    to=""
+                    to={"/edit-profile"}
                     className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile"
                   >
                     <Image
@@ -128,10 +127,14 @@ const ProfileIndex = () => {
                 <div className="search-row">
                   <Link to="#" className="search-button">
                     1 post
-                      </Link>
+                  </Link>
                   <div className="search-container">
-                    <Form className='search-box'>
-                      <input className="search-text" type="text" placeholder="Search Anything" />
+                    <Form className="search-box">
+                      <input
+                        className="search-text"
+                        type="text"
+                        placeholder="Search Anything"
+                      />
                       <Link to="#" className="search-btn">
                         <i class="fas fa-search"></i>
                       </Link>
@@ -174,7 +177,6 @@ const ProfileIndex = () => {
                             </Media>
                             <Media as="li">
                               <Link to="#">
-
                                 Hide paid blurred from the home feed
                               </Link>
                             </Media>
@@ -250,205 +252,171 @@ const ProfileIndex = () => {
 
                 <div className="likes alignleft">
                   <p>78 Likes</p>
-                  <Link className="Show view-comments" onClick={() => setIsVisible(!isVisible)}>
+                  <Link
+                    className="Show view-comments"
+                    onClick={() => setIsVisible(!isVisible)}
+                  >
                     View 11 comments
                   </Link>
-                  <Link className="Hide view-comments">
-                    View less comments
-                  </Link>
-                  { isVisible &&
-                  <div id="target">
-                    <div className="row comment-row">
-                      <div className="alignleft">
-                        <Link className="title-container" to="#">
-                          <Image
-                            src="assets/images/avatar/user.jpg"
-                            className="user-image img-responsive"
-                          />
-                          <div className="user-name">
-                            <span className="card-title">
-                              Tom{" "}
-                              <span className="comment-message">
-                                she's breathtaking
-                              </span>
-                            </span>
-                            <small className="text-muted cat">
-                              <Button>4:03 am</Button>
-                              <Button>5 Likes</Button>
-                              <Button>
-
-                                <i
-                                  className="fas fa-users text-info"
-                                  style={{ display: "none" }}
-                                ></i>{" "}
-                                Reply
-                              </Button>
-                            </small>
-                          </div>
-                        </Link>
-                      </div>
-                      <div className="alignright">
-                        <Link to="#">
-                          <Image src="assets/images/icons/heart.svg" width="16" />
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="row comment-row">
-                      <div className="alignleft">
-                        <Link className="title-container" to="#">
-                          <Image
-                            src="assets/images/avatar/user-2.jpg"
-                            className="user-image img-responsive"
-                          />
-                          <div className="user-name">
-                            <span className="card-title">
-                              Robert Maskell{" "}
-                              <span className="comment-message">
-                                Looks nice necklace?
-                              </span>
-                            </span>
-                            <small className="text-muted cat">
-                              <Button>4:03 am</Button>
-                              <Button>5 Likes</Button>
-                              <Button>
-
-                                <i
-                                  className="fas fa-users text-info"
-                                  style={{ display: "none" }}
-                                ></i>{" "}
-                                Reply
-                              </Button>
-                            </small>
-                          </div>
-                        </Link>
-                      </div>
-                      <div className="alignright">
-                        <Link to="#">
-                          <Image
-                            src="assets/images/icons/heart.svg"
-                            width="16"
-                          />
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="row comment-row">
-                      <div className="alignleft">
-                        <Link className="title-container" to="#">
-                          <Image
-                            src="assets/images/avatar/user-3.jpg"
-                            className="user-image img-responsive"
-                          />
-                          <div className="user-name">
-                            <span className="card-title">
-                              -Johanaki-{" "}
-                              <span className="comment-message">
-                                Yes, my goddess!!!
-                              </span>
-                            </span>
-                            <small className="text-muted cat">
-                              <Button>4:03 am</Button>
-                              <Button>5 Likes</Button>
-                              <Button>
-
-                                <i
-                                  className="fas fa-users text-info"
-                                  style={{ display: "none" }}
-                                ></i>{" "}
-                                Reply
-                              </Button>
-                            </small>
-                          </div>
-                        </Link>
-                      </div>
-                      <div className="alignright">
-                        <Link to="#">
-                          <Image
-                            src="assets/images/icons/heart.svg"
-                            width="16"
-                          />
-                        </Link>
-                      </div>
-                    </div>
-
-                    <div className="comment-box">
-                      <div className="alignleft">
-                        <Link to="#">
-                          <Image src="assets/images/icons/gif.png" />
-                        </Link>
-                      </div>
-                      <div className="alignright">
-                        <Link to="#">
-                          <Image src="assets/images/icons/smile.png" />
-                        </Link>
-                      </div>
-                      <div className="comment-box-form">
-                        <Form className="form-inline" action="">
-                          <div className="user-picture">
-                            <Link className="title-container" to="#">
-                              <Image
-                                src="assets/images/avatar/user-3.jpg"
-                                className="user-image img-responsive"
-                              />
-                            </Link>
-                          </div>
-                          <div className="text-box">
-                            <Form.Control
-                              as="textarea"
-                              rows={3}
-                              type="text"
-                              className="form-control"
-                              id="comment"
-                              placeholder="Add a comment"
-                              name="comment"
+                  <Link className="Hide view-comments">View less comments</Link>
+                  {isVisible && (
+                    <div id="target">
+                      <div className="row comment-row">
+                        <div className="alignleft">
+                          <Link className="title-container" to="#">
+                            <Image
+                              src="assets/images/avatar/user.jpg"
+                              className="user-image img-responsive"
                             />
-                          </div>
-                          <Button type="submit" className="custom-btn">
-                            <i class="fas fa-paper-plane"></i>
-                          </Button>
-                        </Form>
+                            <div className="user-name">
+                              <span className="card-title">
+                                Tom{" "}
+                                <span className="comment-message">
+                                  she's breathtaking
+                                </span>
+                              </span>
+                              <small className="text-muted cat">
+                                <Button>4:03 am</Button>
+                                <Button>5 Likes</Button>
+                                <Button>
+                                  <i
+                                    className="fas fa-users text-info"
+                                    style={{ display: "none" }}
+                                  ></i>{" "}
+                                  Reply
+                                </Button>
+                              </small>
+                            </div>
+                          </Link>
+                        </div>
+                        <div className="alignright">
+                          <Link to="#">
+                            <Image
+                              src="assets/images/icons/heart.svg"
+                              width="16"
+                            />
+                          </Link>
+                        </div>
+                      </div>
+
+                      <div className="row comment-row">
+                        <div className="alignleft">
+                          <Link className="title-container" to="#">
+                            <Image
+                              src="assets/images/avatar/user-2.jpg"
+                              className="user-image img-responsive"
+                            />
+                            <div className="user-name">
+                              <span className="card-title">
+                                Robert Maskell{" "}
+                                <span className="comment-message">
+                                  Looks nice necklace?
+                                </span>
+                              </span>
+                              <small className="text-muted cat">
+                                <Button>4:03 am</Button>
+                                <Button>5 Likes</Button>
+                                <Button>
+                                  <i
+                                    className="fas fa-users text-info"
+                                    style={{ display: "none" }}
+                                  ></i>{" "}
+                                  Reply
+                                </Button>
+                              </small>
+                            </div>
+                          </Link>
+                        </div>
+                        <div className="alignright">
+                          <Link to="#">
+                            <Image
+                              src="assets/images/icons/heart.svg"
+                              width="16"
+                            />
+                          </Link>
+                        </div>
+                      </div>
+
+                      <div className="row comment-row">
+                        <div className="alignleft">
+                          <Link className="title-container" to="#">
+                            <Image
+                              src="assets/images/avatar/user-3.jpg"
+                              className="user-image img-responsive"
+                            />
+                            <div className="user-name">
+                              <span className="card-title">
+                                -Johanaki-{" "}
+                                <span className="comment-message">
+                                  Yes, my goddess!!!
+                                </span>
+                              </span>
+                              <small className="text-muted cat">
+                                <Button>4:03 am</Button>
+                                <Button>5 Likes</Button>
+                                <Button>
+                                  <i
+                                    className="fas fa-users text-info"
+                                    style={{ display: "none" }}
+                                  ></i>{" "}
+                                  Reply
+                                </Button>
+                              </small>
+                            </div>
+                          </Link>
+                        </div>
+                        <div className="alignright">
+                          <Link to="#">
+                            <Image
+                              src="assets/images/icons/heart.svg"
+                              width="16"
+                            />
+                          </Link>
+                        </div>
+                      </div>
+
+                      <div className="comment-box">
+                        <div className="alignleft">
+                          <Link to="#">
+                            <Image src="assets/images/icons/gif.png" />
+                          </Link>
+                        </div>
+                        <div className="alignright">
+                          <Link to="#">
+                            <Image src="assets/images/icons/smile.png" />
+                          </Link>
+                        </div>
+                        <div className="comment-box-form">
+                          <Form className="form-inline" action="">
+                            <div className="user-picture">
+                              <Link className="title-container" to="#">
+                                <Image
+                                  src="assets/images/avatar/user-3.jpg"
+                                  className="user-image img-responsive"
+                                />
+                              </Link>
+                            </div>
+                            <div className="text-box">
+                              <Form.Control
+                                as="textarea"
+                                rows={3}
+                                type="text"
+                                className="form-control"
+                                id="comment"
+                                placeholder="Add a comment"
+                                name="comment"
+                              />
+                            </div>
+                            <Button type="submit" className="custom-btn">
+                              <i class="fas fa-paper-plane"></i>
+                            </Button>
+                          </Form>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                }
+                  )}
                 </div>
               </div>
-            </Col>
-
-            <Col sm={12} xs={12} md={4}>
-              <Accordion className="profile-accordion">
-                <Card>
-                  <Accordion.Toggle as={Card.Header} eventKey="0">
-                    <Link>
-                      <Image
-                          src="assets/images/icons/spotify.svg"
-                          className="svg-clone"
-                      />
-                      <span className="spotify"> Spotify</span>
-                    </Link>
-                    <Link>
-                    </Link>
-                  </Accordion.Toggle>
-                  <Accordion.Collapse eventKey="0">
-                    <Card.Body>Hello! I'm the body</Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-                <Card>
-                  <Accordion.Toggle as={Card.Header} eventKey="1">
-                  <Link>
-                      <Image
-                          src="assets/images/icons/spotify.svg"
-                          className="svg-clone"
-                      />
-                      <span className="spotify"> Spotify</span>
-                    </Link>
-                  </Accordion.Toggle>
-                  <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
-                  </Accordion.Collapse>
-                </Card>
-              </Accordion>
             </Col>
           </Row>
         </Container>

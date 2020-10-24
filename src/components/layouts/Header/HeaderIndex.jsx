@@ -26,7 +26,7 @@ const HeaderIndex = (props) => {
     event.preventDefault();
   };
 
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <>
@@ -34,13 +34,13 @@ const HeaderIndex = (props) => {
         <Container>
           <nav className="main-header-menu">
             <Link
-              to="home.php"
+              to={"/home"}
               className="main-header-menu icon-with-round-hover m-current"
             >
               <Image src="assets/images/icons/home.svg" />
             </Link>
             <Link
-              to="notifications.php"
+              to={"/notification"}
               className="main-header-menu icon-with-round-hover"
               active-className="m-current"
               exact-active-className=""
@@ -48,13 +48,13 @@ const HeaderIndex = (props) => {
               <Image src="assets/images/icons/notification.svg" />
             </Link>
             <Link
-              to="create-post.php"
+              to={"/create-post"}
               className="main-header-menu icon-with-round-hover"
             >
               <Image src="assets/images/icons/create-post.svg" />
             </Link>
             <Link
-              to="chat.php"
+              to={"/messages"}
               className="main-header-menu icon-with-round-hover"
             >
               <Image src="assets/images/icons/chat.svg" />
@@ -74,107 +74,142 @@ const HeaderIndex = (props) => {
           </nav>
         </Container>
       </header>
-      { isVisible ? (
-      <div className="drawer" id="drawer-name" data-drawer-target>
-        <div className="drawer__overlay" data-drawer-close tabindex="-1"></div>
-        <div className="drawer__wrapper">
-          <div className="drawer__header">
-            <div className="drawer__title">
-              <Link to="#" className="l-sidebar__avatar" data-name="Profile">
-                <span className="sidebar-hamburger-user-profile">
-                  <Image src="assets/images/avatar/b-1.jpg" alt="fansclub" />
-                </span>
-              </Link>
-              <div className="pull-left side-user-head">
-                <Link href="my-profile.php">
-                  <h3 className="g-user-name">John</h3>
-                  <span className="user-id">@johnpaul</span>
+      {isVisible ? (
+        <div className="drawer" id="drawer-name" data-drawer-target>
+          <div
+            className="drawer__overlay"
+            data-drawer-close
+            tabindex="-1"
+          ></div>
+          <div className="drawer__wrapper">
+            <div className="drawer__header">
+              <div className="drawer__title">
+                <Link to="#" className="l-sidebar__avatar" data-name="Profile">
+                  <span className="sidebar-hamburger-user-profile">
+                    <Image src="assets/images/avatar/b-1.jpg" alt="fansclub" />
+                  </span>
                 </Link>
+                <div className="pull-left side-user-head">
+                  <Link to={"/profile"}>
+                    <h3 className="g-user-name">John</h3>
+                    <span className="user-id">@johnpaul</span>
+                  </Link>
 
-                <ul className="list-inline">
-                  <Media as="li">
-                    <Link to="following.php">
-                      <span className="fans-follow">0</span> Fans
-                    </Link>
-                  </Media>
-                  <Media as="li">
-                    <Link to="following.php">
-                      <span className="fans-follow">5</span> Following
-                    </Link>
-                  </Media>
-                </ul>
-              </div>
+                  <ul className="list-inline">
+                    <Media as="li">
+                      <Link to={"/following"}>
+                        <span className="fans-follow">0</span> Fans
+                      </Link>
+                    </Media>
+                    <Media as="li">
+                      <Link to={"/fans"}>
+                        <span className="fans-follow">5</span> Following
+                      </Link>
+                    </Media>
+                  </ul>
+                </div>
 
-              <div className="pull-right">
-                <span className="m-arrow">
-                  <Image
-                    src="assets/images/icons/arrow-down.svg"
-                    alt="fansclub"
-                  />
-                </span>
+                <div className="pull-right">
+                  <span className="m-arrow">
+                    <Image
+                      src="assets/images/icons/arrow-down.svg"
+                      alt="fansclub"
+                    />
+                  </span>
+                </div>
               </div>
-            </div>
-            {/* <Button
+              {/* <Button
               className="drawer__close"
               data-drawer-close
               aria-label="Close Drawer"
             ></Button> */}
-          </div>
-          <div className="drawer__content">
-            <div className="right-sidebar-menu-item">
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/arrow-down.svg" alt="fansclub" />{" "}
-                My Profile
-              </Link>
+            </div>
+            <div className="drawer__content">
+              <div className="right-sidebar-menu-item">
+                <Link
+                  to={"/profile"}
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Image
+                    src="assets/images/icons/arrow-down.svg"
+                    alt="fansclub"
+                  />{" "}
+                  My Profile
+                </Link>
 
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/bookmarks.svg" alt="fansclub" />{" "}
-                Bookmarks
-              </Link>
+                <Link
+                  to={"/bookmarks"}
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Image
+                    src="assets/images/icons/bookmarks.svg"
+                    alt="fansclub"
+                  />{" "}
+                  Bookmarks
+                </Link>
 
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/lists.svg" alt="fansclub" /> Lists
-              </Link>
+                <Link
+                  to={"/list"}
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Image src="assets/images/icons/lists.svg" alt="fansclub" />{" "}
+                  Lists
+                </Link>
 
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/settings.svg" alt="AJ" /> Settings
-              </Link>
+                <Link
+                  to={"/edit-profile"}
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Image
+                    src="assets/images/icons/settings.svg"
+                    alt="fansclub"
+                  />{" "}
+                  Settings
+                </Link>
 
-              <hr className="sidebar-menu-divider" />
+                <hr className="sidebar-menu-divider" />
 
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/card.svg" alt="fansclub" /> Your
-                Cards
-              </Link>
+                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                  <Image src="assets/images/icons/card.svg" alt="fansclub" />{" "}
+                  Your Cards
+                </Link>
 
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/bank.svg" alt="fansclub" /> Add
-                bank
-              </Link>
+                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                  <Image src="assets/images/icons/bank.svg" alt="fansclub" />{" "}
+                  Add bank
+                </Link>
 
-              <hr className="sidebar-menu-divider" />
+                <hr className="sidebar-menu-divider" />
 
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/help.svg" alt="fansclub" /> Help
-                and Support
-              </Link>
+                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                  <Image src="assets/images/icons/help.svg" alt="fansclub" />{" "}
+                  Help and Support
+                </Link>
 
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/dark.svg" alt="fansclub" /> Dark
-                mode
-              </Link>
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/globe.svg" alt="fansclub" />{" "}
-                English
-              </Link>
-              <Link to="" className="sidebar-menus-item" data-name="Profile">
-                <Image src="assets/images/icons/logout.svg" alt="fansclub" />{" "}
-                Logout
-              </Link>
+                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                  <Image src="assets/images/icons/dark.svg" alt="fansclub" />{" "}
+                  Dark mode
+                </Link>
+                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                  <Image src="assets/images/icons/globe.svg" alt="fansclub" />{" "}
+                  English
+                </Link>
+                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                  <Image src="assets/images/icons/logout.svg" alt="fansclub" />{" "}
+                  Logout
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       ) : null}
     </>
   );
