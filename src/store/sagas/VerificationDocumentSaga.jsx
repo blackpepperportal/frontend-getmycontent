@@ -10,7 +10,7 @@ import {
   saveVeriDocFailure,
   saveVeriDocSuccess,
   fetchVeriDocumentsSuccess,
-  fetchVeriDocumentFailure,
+  fetchVeriDocumentsFailure,
   delVeriDocSuccess,
   delVeriDocFailure,
   verificationStatusCheckSuccess,
@@ -33,14 +33,14 @@ function* fetchVeriDocsAPI() {
       );
       yield put(createNotification(notificationMessage));
     } else {
-      yield put(fetchVeriDocumentFailure(response.data.error));
+      yield put(fetchVeriDocumentsFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
     }
   } catch (error) {
-    yield put(fetchVeriDocumentFailure(error));
+    yield put(fetchVeriDocumentsFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
