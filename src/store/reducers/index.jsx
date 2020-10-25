@@ -15,6 +15,7 @@ import ErrorReducer from "./ErrorReducer";
 import ProductOwnerReducer from "./ProductOwnerReducer";
 import PostReducer from "./PostReducer";
 import FollowReducer from "./FollowReducer";
+import VerificationDocumentReducer from "./VerificationDocumentReducer";
 
 export default combineReducers({
   users: UserReducer,
@@ -32,4 +33,5 @@ export default combineReducers({
   proOwner: ProductOwnerReducer,
   post: PostReducer,
   follow: FollowReducer,
+  docs: VerificationDocumentReducer,
 });

@@ -114,7 +114,7 @@ function* fetchFollowingAPI() {
 
 export default function* pageSaga() {
   yield all([yield takeLatest(FOLLOW_USER_START, followUserAPI)]);
-  yield all([yield takeLatest(UNFOLLOW_USER_START, followUserAPI)]);
-  yield all([yield takeLatest(FETCH_FOLLOWERS_START, followUserAPI)]);
-  yield all([yield takeLatest(FETCH_FOLLOWING_START, followUserAPI)]);
+  yield all([yield takeLatest(UNFOLLOW_USER_START, unFollowUserAPI)]);
+  yield all([yield takeLatest(FETCH_FOLLOWERS_START, fetchFollowersAPI)]);
+  yield all([yield takeLatest(FETCH_FOLLOWING_START, fetchFollowingAPI)]);
 }

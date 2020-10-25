@@ -13,6 +13,7 @@ import PageSaga from "./PageSaga";
 import PostSaga from "./PostSaga";
 import ErrorSaga from "./ErrorSaga";
 import FollowSaga from "./FollowSaga";
+import VerificationDocumentSaga from "./VerificationDocumentSaga";
 
 export default function* rootSaga() {
   yield all([fork(UserSaga)]);
@@ -28,4 +29,5 @@ export default function* rootSaga() {
   yield all([fork(PageSaga)]);
   yield all([fork(PostSaga)]);
   yield all([fork(FollowSaga)]);
+  yield all([fork(VerificationDocumentSaga)]);
 }
