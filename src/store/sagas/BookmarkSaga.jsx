@@ -45,8 +45,10 @@ function* fetchBookmarkAPI() {
 
 function* saveBookmarkAPI() {
   try {
-    const inputData = yield select((state) => state.docs.saveDocs.inputData);
-    const response = yield api.postMethod("documents_save", inputData);
+    const inputData = yield select(
+      (state) => state.bookmark.saveBookmark.inputData
+    );
+    const response = yield api.postMethod("post_bookmarks_save", inputData);
     if (response.data.success) {
       yield put(saveBookmarkSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
