@@ -237,18 +237,10 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/cards"}
-            component={CardsList}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
             path={"/wallet"}
             component={Wallet}
             layout={MainLayout}
           />
-
 
           <PrivateRoute
             authentication={this.state.authentication}
