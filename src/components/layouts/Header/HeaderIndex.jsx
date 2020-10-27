@@ -37,7 +37,9 @@ const HeaderIndex = (props) => {
               to={"/home"}
               className="main-header-menu icon-with-round-hover m-current"
             >
-              <Image src="assets/images/icons/home.svg" />
+              <Image
+                src={window.location.origin + "/assets/images/icons/home.svg"}
+              />
             </Link>
             <Link
               to={"/notification"}
@@ -45,19 +47,31 @@ const HeaderIndex = (props) => {
               active-className="m-current"
               exact-active-className=""
             >
-              <Image src="assets/images/icons/notification.svg" />
+              <Image
+                src={
+                  window.location.origin +
+                  "/assets/images/icons/notification.svg"
+                }
+              />
             </Link>
             <Link
               to={"/create-post"}
               className="main-header-menu icon-with-round-hover"
             >
-              <Image src="assets/images/icons/create-post.svg" />
+              <Image
+                src={
+                  window.location.origin +
+                  "/assets/images/icons/create-post.svg"
+                }
+              />
             </Link>
             <Link
               to={"/messages"}
               className="main-header-menu icon-with-round-hover"
             >
-              <Image src="assets/images/icons/chat.svg" />
+              <Image
+                src={window.location.origin + "/assets/images/icons/chat.svg"}
+              />
               <span className="main-header-menu__count"> 5 </span>
             </Link>
             <Button
@@ -69,7 +83,9 @@ const HeaderIndex = (props) => {
               aria-expanded="false"
               onClick={() => setIsVisible(!isVisible)}
             >
-              <Image src="assets/images/icons/user.svg" />
+              <Image
+                src={window.location.origin + "/assets/images/icons/user.svg"}
+              />
             </Button>
           </nav>
         </Container>
@@ -86,7 +102,12 @@ const HeaderIndex = (props) => {
               <div className="drawer__title">
                 <Link to="#" className="l-sidebar__avatar" data-name="Profile">
                   <span className="sidebar-hamburger-user-profile">
-                    <Image src="assets/images/avatar/b-1.jpg" alt="fansclub" />
+                    <Image
+                      src={
+                        window.location.origin + "/assets/images/avatar/b-1.jpg"
+                      }
+                      alt="fansclub"
+                    />
                   </span>
                 </Link>
                 <div className="pull-left side-user-head">
@@ -112,7 +133,10 @@ const HeaderIndex = (props) => {
                 <div className="pull-right">
                   <span className="m-arrow">
                     <Image
-                      src="assets/images/icons/arrow-down.svg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/arrow-down.svg"
+                      }
                       alt="fansclub"
                     />
                   </span>
@@ -133,7 +157,10 @@ const HeaderIndex = (props) => {
                   onClick={() => setIsVisible(!isVisible)}
                 >
                   <Image
-                    src="assets/images/icons/arrow-down.svg"
+                    src={
+                      window.location.origin +
+                      "/assets/images/icons/arrow-down.svg"
+                    }
                     alt="fansclub"
                   />{" "}
                   My Profile
@@ -146,7 +173,10 @@ const HeaderIndex = (props) => {
                   onClick={() => setIsVisible(!isVisible)}
                 >
                   <Image
-                    src="assets/images/icons/bookmarks.svg"
+                    src={
+                      window.location.origin +
+                      "/assets/images/icons/bookmarks.svg"
+                    }
                     alt="fansclub"
                   />{" "}
                   Bookmarks
@@ -158,7 +188,12 @@ const HeaderIndex = (props) => {
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
                 >
-                  <Image src="assets/images/icons/lists.svg" alt="fansclub" />{" "}
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/lists.svg"
+                    }
+                    alt="fansclub"
+                  />{" "}
                   Lists
                 </Link>
 
@@ -169,7 +204,10 @@ const HeaderIndex = (props) => {
                   onClick={() => setIsVisible(!isVisible)}
                 >
                   <Image
-                    src="assets/images/icons/settings.svg"
+                    src={
+                      window.location.origin +
+                      "/assets/images/icons/settings.svg"
+                    }
                     alt="fansclub"
                   />{" "}
                   Settings
@@ -183,7 +221,12 @@ const HeaderIndex = (props) => {
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
                 >
-                  <Image src="assets/images/icons/card.svg" alt="fansclub" />{" "}
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/card.svg"
+                    }
+                    alt="fansclub"
+                  />{" "}
                   Your Cards
                 </Link>
 
@@ -193,7 +236,12 @@ const HeaderIndex = (props) => {
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
                 >
-                  <Image src="assets/images/icons/bank.svg" alt="fansclub" />{" "}
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/bank.svg"
+                    }
+                    alt="fansclub"
+                  />{" "}
                   Add bank
                 </Link>
 
@@ -205,7 +253,12 @@ const HeaderIndex = (props) => {
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
                 >
-                  <Image src="assets/images/icons/help.svg" alt="fansclub" />{" "}
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/help.svg"
+                    }
+                    alt="fansclub"
+                  />{" "}
                   Help and Support
                 </Link>
 
@@ -215,7 +268,12 @@ const HeaderIndex = (props) => {
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
                 >
-                  <Image src="assets/images/icons/dark.svg" alt="fansclub" />{" "}
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/dark.svg"
+                    }
+                    alt="fansclub"
+                  />{" "}
                   Dark mode
                 </Link>
 
@@ -225,7 +283,12 @@ const HeaderIndex = (props) => {
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
                 >
-                  <Image src="assets/images/icons/logout.svg" alt="fansclub" />{" "}
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/logout.svg"
+                    }
+                    alt="fansclub"
+                  />{" "}
                   Logout
                 </Link>
               </div>

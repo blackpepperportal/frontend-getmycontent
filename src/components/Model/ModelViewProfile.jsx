@@ -6,27 +6,9 @@ import ModelProfileVideoSec from "./ModelProfileVideoSec";
 import ModelProfileArchivedSec from "./ModelProfileArchivedSec";
 import SendTipModal from "../helper/SendTipModal";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import { Button, Container, Row, Col, Image } from "react-bootstrap";
 
-const ModelViewProfile = () => {
+const ModelViewProfile = (props) => {
   const [activeSec, setActiveSec] = useState("post");
 
   const [sendTip, setSendTip] = useState(false);
@@ -44,7 +26,7 @@ const ModelViewProfile = () => {
               <div className="cover-area">
                 <div className="profile-cover">
                   <Image
-                    src="assets/images/header.jpg"
+                    src={window.location.origin + "/assets/images/header.jpg"}
                     alt="Snow"
                     style={{ width: "100%" }}
                   />
@@ -52,7 +34,9 @@ const ModelViewProfile = () => {
                 <div className="top-left">
                   <Button className="chat-header-back">
                     <Image
-                      src="assets/images/icons/back.svg"
+                      src={
+                        window.location.origin + "/assets/images/icons/back.svg"
+                      }
                       className="svg-clone"
                     />
                   </Button>
@@ -67,7 +51,10 @@ const ModelViewProfile = () => {
                     data-original-title="null"
                   >
                     <Image
-                      src="assets/images/icons/vertical-dots.svg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/vertical-dots.svg"
+                      }
                       className="svg-clone"
                     />
                   </Link>
@@ -76,7 +63,12 @@ const ModelViewProfile = () => {
 
               <div className="profile--user">
                 <span className="my-profile-status">
-                  <Image src="assets/images/avatar/s-user-3.jpg" />
+                  <Image
+                    src={
+                      window.location.origin +
+                      "/assets/images/avatar/s-user-3.jpg"
+                    }
+                  />
                 </span>
                 <div className="profile-btn-group">
                   <Button
@@ -87,7 +79,9 @@ const ModelViewProfile = () => {
                     // data-target="#myModal"
                   >
                     <Image
-                      src="assets/images/icons/tip.svg"
+                      src={
+                        window.location.origin + "/assets/images/icons/tip.svg"
+                      }
                       className="svg-clone"
                     />
                   </Button>
@@ -97,7 +91,10 @@ const ModelViewProfile = () => {
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
                     <Image
-                      src="assets/images/icons/message.svg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/message.svg"
+                      }
                       className="svg-clone"
                     />
                   </Button>
@@ -107,7 +104,9 @@ const ModelViewProfile = () => {
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
                     <Image
-                      src="assets/images/icons/star.svg"
+                      src={
+                        window.location.origin + "/assets/images/icons/star.svg"
+                      }
                       className="svg-clone"
                     />
                   </Button>
@@ -117,7 +116,10 @@ const ModelViewProfile = () => {
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                   >
                     <Image
-                      src="assets/images/icons/share.svg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/share.svg"
+                      }
                       className="svg-clone"
                     />
                   </Button>

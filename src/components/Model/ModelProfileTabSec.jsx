@@ -23,7 +23,8 @@ import {
 const ModelProfileTabSec = (props) => {
   return (
     <ul className="nav nav-tabs modal-profile-tabs" role="tablist">
-      <Media as="li"
+      <Media
+        as="li"
         role="presentation"
         className={props.activeSec === "post" ? "active" : ""}
       >
@@ -34,10 +35,14 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("post")}
         >
-          <Image src="assets/images/icons/post.svg" className="svg-clone" />
+          <Image
+            src={window.location.origin + "/assets/images/icons/post.svg"}
+            className="svg-clone"
+          />
         </Link>
       </Media>
-      <Media as="li"
+      <Media
+        as="li"
         role="presentation"
         className={props.activeSec === "photo" ? "active" : ""}
       >
@@ -48,10 +53,14 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("photo")}
         >
-          <Image src="assets/images/icons/gallery.svg" className="svg-clone" />
+          <Image
+            src={window.location.origin + "/assets/images/icons/gallery.svg"}
+            className="svg-clone"
+          />
         </Link>
       </Media>
-      <Media as="li"
+      <Media
+        as="li"
         role="presentation"
         className={props.activeSec === "video" ? "active" : ""}
       >
@@ -62,10 +71,14 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("video")}
         >
-          <Image src="assets/images/icons/video.svg" className="svg-clone" />
+          <Image
+            src={window.location.origin + "/assets/images/icons/video.svg"}
+            className="svg-clone"
+          />
         </Link>
       </Media>
-      <Media as="li"
+      <Media
+        as="li"
         role="presentation"
         className={props.activeSec === "archive" ? "active" : ""}
       >
@@ -76,7 +89,10 @@ const ModelProfileTabSec = (props) => {
           data-toggle="tab"
           onClick={() => props.setActiveSec("archive")}
         >
-          <Image src="assets/images/icons/archive.svg" className="svg-clone" />
+          <Image
+            src={window.location.origin + "/assets/images/icons/archive.svg"}
+            className="svg-clone"
+          />
         </Link>
       </Media>
     </ul>

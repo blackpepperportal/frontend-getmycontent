@@ -35,21 +35,30 @@ const ModelProfileVideoSec = (props) => {
         <Media as="li" className="box">
           <div className="inner">
             <Link to="assets/images/videos/demo-1.mp4" className="glightbox3">
-              <Image src="assets/images/g-4.jpg" alt="image" />
+              <Image
+                src={window.location.origin + "/assets/images/g-4.jpg"}
+                alt="image"
+              />
             </Link>
           </div>
         </Media>
         <Media as="li" className="box">
           <div className="inner">
             <Link to="assets/images/videos/demo-2.mp4" className="glightbox3">
-              <Image src="assets/images/g-2.jpg" alt="image" />
+              <Image
+                src={window.location.origin + "/assets/images/g-2.jpg"}
+                alt="image"
+              />
             </Link>
           </div>
         </Media>
         <Media as="li" className="box">
           <div className="inner">
             <Link to="assets/images/videos/demo-1.mp4" className="glightbox3">
-              <Image src="assets/images/g-3.jpg" alt="image" />
+              <Image
+                src={window.location.origin + "/assets/images/g-3.jpg"}
+                alt="image"
+              />
             </Link>
           </div>
         </Media>

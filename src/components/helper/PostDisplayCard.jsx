@@ -63,7 +63,10 @@ const PostDisplayCard = (props) => {
     <div className="post-list">
       <div className="post-header">
         <div className="alignleft">
-          <Link className="title-container" to="user-profile.php">
+          <Link
+            className="title-container"
+            to={`/model-profile/${post.user_unique_id}`}
+          >
             <ImageLoader
               image={post.user_picture}
               className="user-image img-responsive"

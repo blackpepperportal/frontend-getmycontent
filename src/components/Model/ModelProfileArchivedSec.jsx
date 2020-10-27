@@ -1,28 +1,9 @@
 import React, { useState } from "react";
 import SendTipModal from "../helper/SendTipModal";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import { Form, Button, Dropdown, Image, Media } from "react-bootstrap";
 
 const ModelProfileArchivedSec = (props) => {
-
   const [sendTip, setSendTip] = useState(false);
 
   const closeSendTipModal = () => {
@@ -47,8 +28,12 @@ const ModelProfileArchivedSec = (props) => {
         </div>
         <div className="alignright">
           <div className="profile-search-post">
-            <Form className='search-box'>
-              <input className="search-text" type="text" placeholder="Search Anything" />
+            <Form className="search-box">
+              <input
+                className="search-text"
+                type="text"
+                placeholder="Search Anything"
+              />
               <Link to="#" className="search-btn">
                 <i class="fas fa-search"></i>
               </Link>
@@ -61,7 +46,7 @@ const ModelProfileArchivedSec = (props) => {
           <div className="alignleft">
             <Link className="title-container" to="#">
               <Image
-                src="assets/images/avatar/user.jpg"
+                src={window.location.origin + "/assets/images/avatar/user.jpg"}
                 className="user-image img-responsive"
               />
               <div className="user-name">
@@ -73,7 +58,6 @@ const ModelProfileArchivedSec = (props) => {
           <div className="alignright">
             <div className="post-header-right-side">
               <span className="post-time flex-content">
-                {" "}
                 <span className="post-time">3 hours ago </span>
                 <Dropdown>
                   <Dropdown.Toggle
@@ -82,7 +66,10 @@ const ModelProfileArchivedSec = (props) => {
                     id="dropdown-basic"
                   >
                     <Image
-                      src="assets/images/icons/vertical-dots.svg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/vertical-dots.svg"
+                      }
                       className="svg-clone vertical-dots"
                     />
                   </Dropdown.Toggle>
@@ -91,10 +78,7 @@ const ModelProfileArchivedSec = (props) => {
                       <Link to="#"> Copy link to post </Link>
                     </Media>
                     <Media as="li">
-                      <Link to="#">
-                        {" "}
-                                Hide paid blurred from the home feed{" "}
-                      </Link>
+                      <Link to="#"> Hide paid blurred from the home feed </Link>
                     </Media>
                     <Media as="li" className="divider"></Media>
                     <Media as="li">
@@ -119,7 +103,10 @@ const ModelProfileArchivedSec = (props) => {
 
           <div className="post-image">
             <div className="">
-              <Image className="post-photo" src="assets/images/post/post4.jpg" />
+              <Image
+                className="post-photo"
+                src={window.location.origin + "/assets/images/post/post4.jpg"}
+              />
             </div>
           </div>
         </div>
@@ -128,13 +115,15 @@ const ModelProfileArchivedSec = (props) => {
           <div className="alignleft">
             <Link href="">
               <Image
-                src="assets/images/icons/heart.svg"
+                src={window.location.origin + "/assets/images/icons/heart.svg"}
                 className="svg-clone"
               />
             </Link>
             <Link href="">
               <Image
-                src="assets/images/icons/comment.svg"
+                src={
+                  window.location.origin + "/assets/images/icons/comment.svg"
+                }
                 className="svg-clone"
               />
             </Link>
@@ -145,7 +134,7 @@ const ModelProfileArchivedSec = (props) => {
               onClick={() => setSendTip(true)}
             >
               <Image
-                src="assets/images/icons/tip.svg"
+                src={window.location.origin + "/assets/images/icons/tip.svg"}
                 className="svg-clone"
               />
 
@@ -155,7 +144,9 @@ const ModelProfileArchivedSec = (props) => {
           <div className="alignright">
             <Link to="#">
               <Image
-                src="assets/images/icons/bookmark.svg"
+                src={
+                  window.location.origin + "/assets/images/icons/bookmark.svg"
+                }
                 className="svg-clone"
               />
             </Link>
@@ -164,19 +155,23 @@ const ModelProfileArchivedSec = (props) => {
 
         <div className="likes alignleft">
           <p>78 Likes</p>
-          <Link className="Show view-comments" onClick={() => setIsVisible(!isVisible)}>
+          <Link
+            className="Show view-comments"
+            onClick={() => setIsVisible(!isVisible)}
+          >
             View 11 comments
-                  </Link>
-          <Link className="Hide view-comments">
-            View less comments
-                  </Link>
-          {isVisible &&
+          </Link>
+          <Link className="Hide view-comments">View less comments</Link>
+          {isVisible && (
             <div id="target">
               <div className="row comment-row">
                 <div className="alignleft">
                   <Link className="title-container" to="#">
                     <Image
-                      src="assets/images/avatar/user.jpg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/avatar/user.jpg"
+                      }
                       className="user-image img-responsive"
                     />
                     <div className="user-name">
@@ -184,7 +179,7 @@ const ModelProfileArchivedSec = (props) => {
                         Tom{" "}
                         <span className="comment-message">
                           she's breathtaking
-                              </span>
+                        </span>
                       </span>
                       <small className="text-muted cat">
                         <Button>4:03 am</Button>
@@ -195,44 +190,8 @@ const ModelProfileArchivedSec = (props) => {
                             className="fas fa-users text-info"
                             style={{ display: "none" }}
                           ></i>{" "}
-                                Reply
-                              </Button>
-                      </small>
-                    </div>
-                  </Link>
-                </div>
-                <div className="alignright">
-                  <Link to="#">
-                    <Image src="assets/images/icons/heart.svg" width="16" />
-                  </Link>
-                </div>
-              </div>
-
-              <div className="row comment-row">
-                <div className="alignleft">
-                  <Link className="title-container" to="#">
-                    <Image
-                      src="assets/images/avatar/user-2.jpg"
-                      className="user-image img-responsive"
-                    />
-                    <div className="user-name">
-                      <span className="card-title">
-                        Robert Maskell{" "}
-                        <span className="comment-message">
-                          Looks nice necklace?
-                              </span>
-                      </span>
-                      <small className="text-muted cat">
-                        <Button>4:03 am</Button>
-                        <Button>5 Likes</Button>
-                        <Button>
-                          {" "}
-                          <i
-                            className="fas fa-users text-info"
-                            style={{ display: "none" }}
-                          ></i>{" "}
-                                Reply
-                              </Button>
+                          Reply
+                        </Button>
                       </small>
                     </div>
                   </Link>
@@ -240,7 +199,10 @@ const ModelProfileArchivedSec = (props) => {
                 <div className="alignright">
                   <Link to="#">
                     <Image
-                      src="assets/images/icons/heart.svg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart.svg"
+                      }
                       width="16"
                     />
                   </Link>
@@ -251,15 +213,18 @@ const ModelProfileArchivedSec = (props) => {
                 <div className="alignleft">
                   <Link className="title-container" to="#">
                     <Image
-                      src="assets/images/avatar/user-3.jpg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/avatar/user-2.jpg"
+                      }
                       className="user-image img-responsive"
                     />
                     <div className="user-name">
                       <span className="card-title">
-                        -Johanaki-{" "}
+                        Robert Maskell{" "}
                         <span className="comment-message">
-                          Yes, my goddess!!!
-                              </span>
+                          Looks nice necklace?
+                        </span>
                       </span>
                       <small className="text-muted cat">
                         <Button>4:03 am</Button>
@@ -270,8 +235,8 @@ const ModelProfileArchivedSec = (props) => {
                             className="fas fa-users text-info"
                             style={{ display: "none" }}
                           ></i>{" "}
-                                Reply
-                              </Button>
+                          Reply
+                        </Button>
                       </small>
                     </div>
                   </Link>
@@ -279,7 +244,55 @@ const ModelProfileArchivedSec = (props) => {
                 <div className="alignright">
                   <Link to="#">
                     <Image
-                      src="assets/images/icons/heart.svg"
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart.svg"
+                      }
+                      width="16"
+                    />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="row comment-row">
+                <div className="alignleft">
+                  <Link className="title-container" to="#">
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/avatar/user-3.jpg"
+                      }
+                      className="user-image img-responsive"
+                    />
+                    <div className="user-name">
+                      <span className="card-title">
+                        -Johanaki-{" "}
+                        <span className="comment-message">
+                          Yes, my goddess!!!
+                        </span>
+                      </span>
+                      <small className="text-muted cat">
+                        <Button>4:03 am</Button>
+                        <Button>5 Likes</Button>
+                        <Button>
+                          {" "}
+                          <i
+                            className="fas fa-users text-info"
+                            style={{ display: "none" }}
+                          ></i>{" "}
+                          Reply
+                        </Button>
+                      </small>
+                    </div>
+                  </Link>
+                </div>
+                <div className="alignright">
+                  <Link to="#">
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart.svg"
+                      }
                       width="16"
                     />
                   </Link>
@@ -289,12 +302,21 @@ const ModelProfileArchivedSec = (props) => {
               <div className="comment-box">
                 <div className="alignleft">
                   <Link to="#">
-                    <Image src="assets/images/icons/gif.png" />
+                    <Image
+                      src={
+                        window.location.origin + "/assets/images/icons/gif.png"
+                      }
+                    />
                   </Link>
                 </div>
                 <div className="alignright">
                   <Link to="#">
-                    <Image src="assets/images/icons/smile.png" />
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/smile.png"
+                      }
+                    />
                   </Link>
                 </div>
                 <div className="comment-box-form">
@@ -302,7 +324,10 @@ const ModelProfileArchivedSec = (props) => {
                     <div className="user-picture">
                       <Link className="title-container" to="#">
                         <Image
-                          src="assets/images/avatar/user-3.jpg"
+                          src={
+                            window.location.origin +
+                            "/assets/images/avatar/user-3.jpg"
+                          }
                           className="user-image img-responsive"
                         />
                       </Link>
@@ -325,7 +350,7 @@ const ModelProfileArchivedSec = (props) => {
                 </div>
               </div>
             </div>
-          }
+          )}
         </div>
       </div>
       <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />

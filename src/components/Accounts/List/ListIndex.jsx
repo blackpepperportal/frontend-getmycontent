@@ -185,7 +185,10 @@ const ListIndex = (props) => {
                       </span>
                       <span className="list-avatar">
                         <Image
-                          src="assets/images/avatar/s-user-3.jpg"
+                          src={
+                            window.location.origin +
+                            "/assets/images/avatar/s-user-3.jpg"
+                          }
                           alt="user-images"
                         />
                       </span>
