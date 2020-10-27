@@ -62,3 +62,76 @@
 .add-account-sec{
     text-align: center;
 }
+
+.add-account-modal .modal-content {
+    margin: auto;
+    width: 380px;
+}
+
+.add-card-modal .close{
+    font-size: 3em;
+    color: #fff;
+}
+
+.add-card-modal .close:hover{
+    color: #fff;
+}
+
+.add-card-modal .user-profile-img{
+    text-align: center;
+}
+
+.add-card-modal .user-profile-img img{
+    width: 100px;
+    height: 100px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: -6em;
+}
+
+.add-card-modal .add-card-content-header{
+    text-align: center;
+}
+
+.add-card-modal .add-card-content-header .media {
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.add-card-modal .add-card-content-header .media span{
+    padding-left: 1em;
+}
+
+.add-card-modal .add-card-content-header .media i{
+    color: #0091ea;
+}
+
+.add-card-user-name {
+    font-size: 1.5em;
+    color: #222222;
+    font-weight: 600;
+}
+
+.sub-title {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #8a96a3;
+    margin-bottom: 1.5em;
+}
+
+.title {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #8a96a3;
+    margin-bottom: 1em;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}

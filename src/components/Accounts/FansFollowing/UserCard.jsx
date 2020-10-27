@@ -25,7 +25,7 @@ const UserCard = (props) => {
             <div className="follower-subscription-inner">
               <Link to="user-profile.html">
                 <div className="follower-wrapper">
-                  <img className="follower-cover" src="assets/images/b-4.jpg" />
+                  <Image className="follower-cover" src="assets/images/b-4.jpg" />
                 </div>
               </Link>
               <div className="follower-profile-header">
