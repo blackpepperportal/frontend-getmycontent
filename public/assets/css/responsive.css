@@ -84,6 +84,23 @@ Version: 1.0
     .payment-tabs-card .payment-tabs-content td{
         white-space: nowrap;
     }
+    .wallet-sec .edit-save{
+        justify-content: center;
+    }
+    .wallet-header-sec {
+        text-align: center;
+    }
+    .wallet-header-details{
+        justify-content: center;
+        margin-bottom: 1em;
+    }
+
+    .trans-table-sec .trans-table td{
+        white-space: nowrap;
+    }
+    .add-account-modal .modal-content {
+        width: 100%;
+    }
 }
 
 
@@ -204,6 +221,23 @@ Version: 1.0
     }
     .payment-sec {
         margin-top: 20px!important;
+    }
+    .wallet-sec{
+        padding-top: 35px!important;
+    }
+    .wallet-header-card h5{
+        margin-bottom: 2em!important;
+    }
+
+    .trans-table .table-responsive {
+        border:0;
+    }
+    .add-account-modal .modal-content {
+        width: 100%;
+    }
+    .card-list-sec {
+        margin-top: 45px!important;
+        margin-bottom: 2em;
     }
 }
 

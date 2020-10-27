@@ -31,6 +31,7 @@ import BankingIndex from "../Accounts/Payments/BankingIndex";
 import CardListIndex from "../Accounts/Payments/CardListIndex";
 import AddBankIndex from "../Accounts/Payments/AddBankIndex";
 import Logout from "../Accounts/Logout";
+import Wallet from "../Wallet/Wallet";
 
 const history = createHistory();
 const $ = window.$;
@@ -240,6 +241,14 @@ class App extends Component {
             component={CardsList}
             layout={MainLayout}
           />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/wallet"}
+            component={Wallet}
+            layout={MainLayout}
+          />
+
 
           <PrivateRoute
             authentication={this.state.authentication}

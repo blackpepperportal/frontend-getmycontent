@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -22,12 +22,29 @@ import {
     Media,
 } from "react-bootstrap";
 
+import AddCardModal from "../../helper/AddCardModal";
+
 import "./CardListIndex.css"
 
-class CardListIndex extends Component {
 
-    render() {
+// class CardListIndex extends Component {
+const CardListIndex = (props) => {
+
+    // const [addCard, setAddCard] = useState(false);
+
+    // const closeAddCardModal = () => {
+    //   setAddCard(false);
+    // };
+
+    const [addCard, setAddCard] = useState(false);
+
+    const closeAddCardModal = () => {
+      setAddCard(false);
+    };
+
+    // render() {
         return (
+            <>
             <div className="card-list-sec">
                 <Container>
                     <h4 className="head-title">Card List</h4>
@@ -73,7 +90,7 @@ class CardListIndex extends Component {
                     </Row>
                     <Row>
                         <Col sm={12} md={6} xl={4}>
-                            <div className="card-list-box">
+                            <div className="card-list-box"  onClick={() => setAddCard(true)}>
                                 <div className="add-account-sec">
                                     <Image src="/assets/images/icons/add-card.svg" className="add-card-img"/>
                                     <h5 className="text-muted">Add Card</h5>
@@ -83,8 +100,10 @@ class CardListIndex extends Component {
                     </Row>
                 </Container>
             </div>
+            <AddCardModal addCard={addCard} closeAddCardModal={closeAddCardModal} />
+            </>
         );
     }
-}
+// }
 
 export default CardListIndex;
