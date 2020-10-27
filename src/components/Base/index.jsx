@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { createBrowserHistory as createHistory } from "history";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
-import Logout from "../Auth/Logout";
 import MainLayout from "../layouts/MainLayout";
-import LoginIndex from "../Auth/LoginIndex";
 import AuthLayout from "../layouts/AuthLayout";
-import RegisterIndex from "../Auth/RegisterIndex";
-import ForgotPassword from "../Auth/ForgotPassword";
 import CardsList from "../Accounts/Cards/CardsList";
 import EditProfile from "../Accounts/Profile/EditProfile";
 import DeleteAccountIndex from "../Accounts/DeleteAccount/DeleteAccountIndex";
@@ -34,6 +30,7 @@ import PaymentsIndex from "../Accounts/Payments/PaymentsIndex";
 import BankingIndex from "../Accounts/Payments/BankingIndex";
 import CardListIndex from "../Accounts/Payments/CardListIndex";
 import AddBankIndex from "../Accounts/Payments/AddBankIndex";
+import Logout from "../Accounts/Logout";
 
 const history = createHistory();
 const $ = window.$;
@@ -232,18 +229,12 @@ class App extends Component {
             layout={MainLayout}
           />
 
-        <PrivateRoute
+          <PrivateRoute
             authentication={this.state.authentication}
             path={"/add-bank"}
             component={AddBankIndex}
             layout={MainLayout}
           />
-
-          <Route path={"/login"} component={LoginIndex} />
-
-          <Route path={"/signup"} component={RegisterIndex} />
-
-          <Route path={"/forgot-password"} component={ForgotPassword} />
 
           <PrivateRoute
             authentication={this.state.authentication}
