@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
-import {
-  Nav,
-  Container,
-  Row,
-  Col,
-  Tab,
-  Dropdown,
-  Image,
-  ListGroup,
-  Media,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
-import SendTipModal from "../helper/SendTipModal";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import { fetchHomePostsStart } from "../../store/actions/HomeAction";
 import { connect } from "react-redux";
 import {
   fetchCommentsStart,
   saveCommentStart,
 } from "../../store/actions/CommentsAction";
-import ImageLoader from "../helper/ImageLoader";
 import { saveBookmarkStart } from "../../store/actions/BookmarkAction";
 import PostDisplayCard from "../helper/PostDisplayCard";
 

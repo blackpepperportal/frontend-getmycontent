@@ -177,32 +177,54 @@ const HeaderIndex = (props) => {
 
                 <hr className="sidebar-menu-divider" />
 
-                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Link
+                  to={"/card-list"}
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
                   <Image src="assets/images/icons/card.svg" alt="fansclub" />{" "}
                   Your Cards
                 </Link>
 
-                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Link
+                  to={"/banking"}
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
                   <Image src="assets/images/icons/bank.svg" alt="fansclub" />{" "}
                   Add bank
                 </Link>
 
                 <hr className="sidebar-menu-divider" />
 
-                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Link
+                  to=""
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
                   <Image src="assets/images/icons/help.svg" alt="fansclub" />{" "}
                   Help and Support
                 </Link>
 
-                <Link to="" className="sidebar-menus-item" data-name="Profile">
+                <Link
+                  to=""
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
                   <Image src="assets/images/icons/dark.svg" alt="fansclub" />{" "}
                   Dark mode
                 </Link>
-                <Link to="" className="sidebar-menus-item" data-name="Profile">
-                  <Image src="assets/images/icons/globe.svg" alt="fansclub" />{" "}
-                  English
-                </Link>
-                <Link to="" className="sidebar-menus-item" data-name="Profile">
+
+                <Link
+                  to={"/logout"}
+                  className="sidebar-menus-item"
+                  data-name="Profile"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
                   <Image src="assets/images/icons/logout.svg" alt="fansclub" />{" "}
                   Logout
                 </Link>

@@ -1,39 +1,14 @@
-import React, { useState } from "react";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
-import AddFavModal from "../../helper/AddFavModal";
-import SendTipModal from "../../helper/SendTipModal";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import UserCard from "../FansFollowing/UserCard";
+import { connect } from "react-redux";
+import { fetchFavStart } from "../../../store/actions/FavAction";
 
 const FavoritesIndex = (props) => {
-  const [sendTip, setSendTip] = useState(false);
+  useEffect(() => {
+    props.dispatch(fetchFavStart());
+  }, []);
 
-  const closeSendTipModal = () => {
-    setSendTip(false);
-  };
-
-  const [addFav, setAddFav] = useState(false);
-
-  const closeAddFavModal = () => {
-    setAddFav(false);
-  };
   return (
     <div className="lists">
       <Container>
@@ -53,14 +28,20 @@ const FavoritesIndex = (props) => {
                 </div>
               </div>
             </div>
-            <UserCard setAddFav={setAddFav} setSendTip={setSendTip} />
+            <UserCard />
           </Col>
         </Row>
       </Container>
-      <AddFavModal addFav={addFav} closeAddFavModal={closeAddFavModal} />
-      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
     </div>
   );
 };
 
-export default FavoritesIndex;
+const mapStateToPros = (state) => ({
+  fav: state.fav.fav,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(FavoritesIndex);
