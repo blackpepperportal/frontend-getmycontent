@@ -16,6 +16,11 @@ import ProductOwnerReducer from "./ProductOwnerReducer";
 import PostReducer from "./PostReducer";
 import FollowReducer from "./FollowReducer";
 import VerificationDocumentReducer from "./VerificationDocumentReducer";
+import CommentsReducer from "./CommentsReducer";
+import FavReducer from "./FavReducer";
+import BookmarkReducer from "./BookmarkReducer";
+import SendTipReducer from "./SendTipReducer";
+import HomeReducer from "./HomeReducer";
 
 export default combineReducers({
   users: UserReducer,
@@ -34,4 +39,9 @@ export default combineReducers({
   post: PostReducer,
   follow: FollowReducer,
   docs: VerificationDocumentReducer,
+  comment: CommentsReducer,
+  fav: FavReducer,
+  bookmark: BookmarkReducer,
+  tip: SendTipReducer,
+  home: HomeReducer,
 });

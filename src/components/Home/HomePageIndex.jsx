@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
 import {
@@ -16,15 +16,42 @@ import {
   Button,
 } from "react-bootstrap";
 import SendTipModal from "../helper/SendTipModal";
+import { fetchHomePostsStart } from "../../store/actions/HomeAction";
+import { connect } from "react-redux";
+import { saveCommentStart } from "../../store/actions/CommentsAction";
 
-const HomePageIndex = () => {
+const HomePageIndex = (props) => {
   const [sendTip, setSendTip] = useState(false);
+
+  useEffect(() => {
+    props.dispatch(fetchHomePostsStart());
+  }, []);
 
   const closeSendTipModal = () => {
     setSendTip(false);
   };
 
+  const [commentInputData, setCommentInputData] = useState({});
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    props.dispatch(saveCommentStart(commentInputData));
+  };
+
   const [isVisible, setIsVisible] = React.useState(false);
+
+  const showCommentSection = (event) => {
+    setCommentInputData({ post_id: 1 });
+    setIsVisible(!isVisible);
+  };
+
+  const handleLike = (event) => {
+    event.preventDefault();
+  };
+
+  const handleBookmark = (event) => {
+    event.preventDefault();
+  };
 
   return (
     <>
@@ -134,13 +161,13 @@ const HomePageIndex = () => {
 
                 <div className="post-icons">
                   <div className="alignleft">
-                    <Link to="">
+                    <Link to="#" onClick={handleLike}>
                       <Image
                         src="assets/images/icons/heart.svg"
                         className="svg-clone"
                       />
                     </Link>
-                    <Link to="">
+                    <Link to="#" onClick={showCommentSection}>
                       <Image
                         src="assets/images/icons/comment.svg"
                         className="svg-clone"
@@ -161,7 +188,7 @@ const HomePageIndex = () => {
                     </Button>
                   </div>
                   <div className="alignright">
-                    <Link to="#">
+                    <Link to="#" onClick={handleBookmark}>
                       <Image
                         src="assets/images/icons/bookmark.svg"
                         className="svg-clone"
@@ -174,9 +201,9 @@ const HomePageIndex = () => {
                   <p>78 Likes</p>
                   <Link
                     className="Show view-comments"
-                    onClick={() => setIsVisible(!isVisible)}
+                    onClick={showCommentSection}
                   >
-                    View 11 comments
+                    {isVisible ? "Close comments" : "View comments"}
                   </Link>
                   <Link className="Hide view-comments">View less comments</Link>
                   {isVisible && (
@@ -195,102 +222,7 @@ const HomePageIndex = () => {
                                   she's breathtaking
                                 </span>
                               </span>
-                              <small className="text-muted cat">
-                                <Button>4:03 am</Button>
-                                <Button>5 Likes</Button>
-                                <Button>
-                                  <i
-                                    className="fas fa-users text-info"
-                                    style={{ display: "none" }}
-                                  ></i>{" "}
-                                  Reply
-                                </Button>
-                              </small>
                             </div>
-                          </Link>
-                        </div>
-                        <div className="alignright">
-                          <Link to="#">
-                            <Image
-                              src="assets/images/icons/heart.svg"
-                              width="16"
-                            />
-                          </Link>
-                        </div>
-                      </div>
-
-                      <div className="row comment-row">
-                        <div className="alignleft">
-                          <Link className="title-container" to="#">
-                            <Image
-                              src="assets/images/avatar/user-2.jpg"
-                              className="user-image img-responsive"
-                            />
-                            <div className="user-name">
-                              <span className="card-title">
-                                Robert Maskell{" "}
-                                <span className="comment-message">
-                                  Looks nice necklace?
-                                </span>
-                              </span>
-                              <small className="text-muted cat">
-                                <Button>4:03 am</Button>
-                                <Button>5 Likes</Button>
-                                <Button>
-                                  <i
-                                    className="fas fa-users text-info"
-                                    style={{ display: "none" }}
-                                  ></i>{" "}
-                                  Reply
-                                </Button>
-                              </small>
-                            </div>
-                          </Link>
-                        </div>
-                        <div className="alignright">
-                          <Link to="#">
-                            <Image
-                              src="assets/images/icons/heart.svg"
-                              width="16"
-                            />
-                          </Link>
-                        </div>
-                      </div>
-
-                      <div className="row comment-row">
-                        <div className="alignleft">
-                          <Link className="title-container" to="#">
-                            <Image
-                              src="assets/images/avatar/user-3.jpg"
-                              className="user-image img-responsive"
-                            />
-                            <div className="user-name">
-                              <span className="card-title">
-                                -Johanaki-{" "}
-                                <span className="comment-message">
-                                  Yes, my goddess!!!
-                                </span>
-                              </span>
-                              <small className="text-muted cat">
-                                <Button>4:03 am</Button>
-                                <Button>5 Likes</Button>
-                                <Button>
-                                  <i
-                                    className="fas fa-users text-info"
-                                    style={{ display: "none" }}
-                                  ></i>{" "}
-                                  Reply
-                                </Button>
-                              </small>
-                            </div>
-                          </Link>
-                        </div>
-                        <div className="alignright">
-                          <Link to="#">
-                            <Image
-                              src="assets/images/icons/heart.svg"
-                              width="16"
-                            />
                           </Link>
                         </div>
                       </div>
@@ -307,7 +239,11 @@ const HomePageIndex = () => {
                           </Link>
                         </div>
                         <div className="comment-box-form">
-                          <Form className="form-inline" action="">
+                          <Form
+                            className="form-inline"
+                            action=""
+                            onSubmit={handleCommentSubmit}
+                          >
                             <div className="user-picture">
                               <Link className="title-container" to="#">
                                 <Image
@@ -325,6 +261,13 @@ const HomePageIndex = () => {
                                 id="comment"
                                 placeholder="Add a comment"
                                 name="comment"
+                                value={commentInputData.comment}
+                                onChange={(event) =>
+                                  setCommentInputData({
+                                    ...commentInputData,
+                                    comment: event.currentTarget.value,
+                                  })
+                                }
                               />
                             </div>
                             <Button type="submit" className="custom-btn">
@@ -347,4 +290,12 @@ const HomePageIndex = () => {
   );
 };
 
-export default HomePageIndex;
+const mapStateToPros = (state) => ({
+  posts: state.home.homePost,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(HomePageIndex);

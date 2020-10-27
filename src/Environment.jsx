@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { apiConstants } from "./components/Constant/constants";
 
-const apiUrl = "https://admin.step.live/api/user/"; // Production Mode
+const apiUrl = "http://fansclub.codegama.net/api/user/"; // Production Mode
 
 const Environment = {
   postMethod: async (action, object) => {

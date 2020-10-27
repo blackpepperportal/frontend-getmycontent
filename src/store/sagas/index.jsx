@@ -14,6 +14,11 @@ import PostSaga from "./PostSaga";
 import ErrorSaga from "./ErrorSaga";
 import FollowSaga from "./FollowSaga";
 import VerificationDocumentSaga from "./VerificationDocumentSaga";
+import CommentsSaga from "./CommentsSaga";
+import FavSaga from "./FavSaga";
+import BookmarkSaga from "./BookmarkSaga";
+import SendTipSaga from "./SendTipSaga";
+import HomeSaga from "./HomeSaga";
 
 export default function* rootSaga() {
   yield all([fork(UserSaga)]);
@@ -30,4 +35,9 @@ export default function* rootSaga() {
   yield all([fork(PostSaga)]);
   yield all([fork(FollowSaga)]);
   yield all([fork(VerificationDocumentSaga)]);
+  yield all([fork(CommentsSaga)]);
+  yield all([fork(FavSaga)]);
+  yield all([fork(BookmarkSaga)]);
+  yield all([fork(SendTipSaga)]);
+  yield all([fork(HomeSaga)]);
 }
