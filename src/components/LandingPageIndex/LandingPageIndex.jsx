@@ -190,15 +190,31 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicName">
                             <Form.Control
                               type="text"
-                              id="name"
-                              placeholder="Name"
+                              id="firstname"
+                              placeholder="First Name"
                               required
-                              value={signupInputData.name}
-                              name="name"
+                              value={signupInputData.first_name}
+                              name="firstname"
                               onChange={(event) =>
                                 setSignupInputData({
                                   ...signupInputData,
-                                  name: event.currentTarget.value,
+                                  first_name: event.currentTarget.value,
+                                })
+                              }
+                            />
+                          </Form.Group>
+                          <Form.Group controlId="formBasicName">
+                            <Form.Control
+                              type="text"
+                              id="lastname"
+                              placeholder="Last Name"
+                              required
+                              value={signupInputData.last_name}
+                              name="lastname"
+                              onChange={(event) =>
+                                setSignupInputData({
+                                  ...signupInputData,
+                                  last_name: event.currentTarget.value,
                                 })
                               }
                             />

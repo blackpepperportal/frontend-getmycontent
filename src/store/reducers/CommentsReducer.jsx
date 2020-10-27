@@ -15,6 +15,8 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    inputData: {},
+    loadingButtonContent: null,
   },
   saveComment: {
     data: {},
@@ -43,6 +45,8 @@ const CommentsReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: false,
+          inputData: action.data,
+          loadingButtonContent: "Loading...",
         },
       };
     case FETCH_COMMENTS_SUCCESS:
@@ -52,6 +56,8 @@ const CommentsReducer = (state = initialState, action) => {
           data: action.data,
           loading: false,
           error: false,
+          inputData: {},
+          loadingButtonContent: null,
         },
       };
     case FETCH_COMMENTS_FAILURE:
@@ -61,6 +67,8 @@ const CommentsReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          inputData: {},
+          loadingButtonContent: null,
         },
       };
     case SAVE_COMMENT_START:

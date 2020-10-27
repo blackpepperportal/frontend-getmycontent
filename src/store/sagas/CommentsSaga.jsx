@@ -6,9 +6,9 @@ import {
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
 import {
-  DEL_VERI_DOC_START,
-  FETCH_VERI_DOCUMENT_START,
-  SAVE_VERI_DOC_START,
+  DELETE_COMMENT_START,
+  FETCH_COMMENTS_START,
+  SAVE_COMMENT_START,
 } from "../actions/ActionConstant";
 import {
   deleteCommentFailure,
@@ -21,7 +21,8 @@ import {
 
 function* fetchCommentsAPI() {
   try {
-    const response = yield api.postMethod("documents_list");
+    const inputData = yield select((state) => state.comment.comments.inputData);
+    const response = yield api.postMethod("post_comments", inputData);
     if (response.data.success) {
       yield put(fetchCommentsSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
@@ -44,8 +45,10 @@ function* fetchCommentsAPI() {
 
 function* saveCommentAPI() {
   try {
-    const inputData = yield select((state) => state.docs.saveDocs.inputData);
-    const response = yield api.postMethod("documents_save", inputData);
+    const inputData = yield select(
+      (state) => state.comment.saveComment.inputData
+    );
+    const response = yield api.postMethod("post_comments", inputData);
     if (response.data.success) {
       yield put(saveCommentSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
@@ -91,7 +94,7 @@ function* deleteCommentAPI() {
 }
 
 export default function* pageSaga() {
-  yield all([yield takeLatest(FETCH_VERI_DOCUMENT_START, fetchCommentsAPI)]);
-  yield all([yield takeLatest(SAVE_VERI_DOC_START, saveCommentAPI)]);
-  yield all([yield takeLatest(DEL_VERI_DOC_START, deleteCommentAPI)]);
+  yield all([yield takeLatest(FETCH_COMMENTS_START, fetchCommentsAPI)]);
+  yield all([yield takeLatest(SAVE_COMMENT_START, saveCommentAPI)]);
+  yield all([yield takeLatest(DELETE_COMMENT_START, deleteCommentAPI)]);
 }

@@ -33,7 +33,7 @@ const EditProfile = () => {
       <Container>
         <Row>
           <Col sm={12} md={4}>
-          <div className="vertical-menu edit-p">
+            <div className="vertical-menu edit-p">
               <div className="tab" role="tabpanel">
                 <EditProfileTabSec
                   activeSec={activeSec}
@@ -43,22 +43,22 @@ const EditProfile = () => {
             </div>
           </Col>
           <Col md={8} sm={12}>
-          <div className="tab-content tabs">
-                <EditProfileCard
-                  activeSec={activeSec}
-                  setActiveSec={setActiveSec}
-                />
+            <div className="tab-content tabs">
+              <EditProfileCard
+                activeSec={activeSec}
+                setActiveSec={setActiveSec}
+              />
 
-                <ChangePasswordCard
-                  activeSec={activeSec}
-                  setActiveSec={setActiveSec}
-                />
+              <ChangePasswordCard
+                activeSec={activeSec}
+                setActiveSec={setActiveSec}
+              />
 
-                <DeleteAccountCard
-                  activeSec={activeSec}
-                  setActiveSec={setActiveSec}
-                />
-              </div>
+              <DeleteAccountCard
+                activeSec={activeSec}
+                setActiveSec={setActiveSec}
+              />
+            </div>
           </Col>
         </Row>
       </Container>
