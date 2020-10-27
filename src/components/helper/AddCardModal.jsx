@@ -1,15 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Form,
-  Button,
-  Container,
-  Row,
-  Col,
-  Image,
-  Modal,
-  Media,
-} from "react-bootstrap";
+import { Form, Image, Modal, Media } from "react-bootstrap";
 import Background from "../helper/g-3.jpg";
 
 const AddCardModel = (props) => {
