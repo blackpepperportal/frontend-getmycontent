@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   NOTIFICATION_TYPE_SUCCESS,
   NOTIFICATION_TYPE_ERROR,

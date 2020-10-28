@@ -1,25 +1,7 @@
 import React from "react";
 import CreatePollModal from "../../helper/CreatePollModal";
 import { Link } from "react-router-dom";
-import {
-    Navbar,
-    Nav,
-    NavDropdown,
-    Form,
-    FormControl,
-    Button,
-    Container,
-    Row,
-    Col,
-    InputGroup,
-    Tabs,
-    Tab,
-    Dropdown,
-    DropdownButton,
-    Image,
-    Badge,
-    Media,
-} from "react-bootstrap";
+import {Button, Container, Row, Col, Image} from "react-bootstrap";
 
 const CreatePostIndex = () => {
   return (
@@ -62,7 +44,7 @@ const CreatePostIndex = () => {
               <div id="poll-toggle">
                 <div className="poll-toggle-div">
                   <div className="left-half">
-                    <img
+                    <Image
                       src="assets/images/icons/analytics.svg"
                       className="svg-clone"
                     />
@@ -83,7 +65,7 @@ const CreatePostIndex = () => {
                       title="Delete"
                       className="b-dropzone__preview__delete b-btn-remove"
                     >
-                      <img
+                      <Image
                         src="assets/images/icons/cut.svg"
                         className="svg-clone"
                         width="20"
@@ -128,7 +110,7 @@ const CreatePostIndex = () => {
                   className="chat-attach_file"
                   data-original-title="null"
                 >
-                  <img
+                  <Image
                     src="assets/images/icons/gallery.svg"
                     className="svg-clone"
                   />
@@ -141,7 +123,7 @@ const CreatePostIndex = () => {
                 className=""
                 style={{ cursor: "pointer" }}
               >
-                <img
+                <Image
                   src="assets/images/icons/analytics.svg"
                   className="svg-clone"
                 />

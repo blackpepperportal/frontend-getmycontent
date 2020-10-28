@@ -9,21 +9,7 @@ import {
   editUserDetails,
   updateUserDetailsStart,
 } from "../../../store/actions/UserAction";
-import { Link } from "react-router-dom";
-import {
-  Nav,
-  Container,
-  Row,
-  Col,
-  Tab,
-  Dropdown,
-  Image,
-  ListGroup,
-  Media,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 
 const EditProfile = () => {
   const [activeSec, setActiveSec] = useState("profile-card");

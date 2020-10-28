@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Form, Image, Modal, Media } from "react-bootstrap";
 import Background from "../helper/g-3.jpg";
+import PaymentAddCardModal from "../helper/PaymentAddCardModal";
 
 const AddCardModel = (props) => {
+
+  const [paymentAddCard, setPaymentAddCard] = useState(false);
+
+  const closePaymentAddCardModal = () => {
+    setPaymentAddCard(false);
+  };
+
   return (
     <>
       <Modal
@@ -60,6 +68,7 @@ const AddCardModel = (props) => {
                 <Link
                   type="button"
                   className="g-btn m-rounded m-border m-profile m-with-icon"
+                  onClick={() => setPaymentAddCard(true)}
                 >
                   <Image
                     src="assets/images/icons/subscribe-blue.svg"
@@ -72,6 +81,7 @@ const AddCardModel = (props) => {
           </Modal.Body>
         </Form>
       </Modal>
+      <PaymentAddCardModal paymentAddCard={paymentAddCard} closePaymentAddCardModal={closePaymentAddCardModal} />
     </>
   );
 };

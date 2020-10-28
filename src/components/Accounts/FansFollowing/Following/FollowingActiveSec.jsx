@@ -1,24 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import { Row} from "react-bootstrap";
 import UserCard from "../UserCard";
 
 const FollowingActiveSec = (props) => {

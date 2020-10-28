@@ -1,24 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import {Container, Row, Col, Image, Media} from "react-bootstrap";
 import BookmarkNav from "./BookmarkNav";
 
 const BookmarkVideo = () => {

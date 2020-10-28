@@ -7,25 +7,7 @@ import NotificationSubscribedSec from "./NotificationSubscribedSec";
 import NotificationTippedSec from "./NotificationTippedSec";
 import NotificationPromotionsSec from "./NotificationPromotionsSec";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import {Container, Row, Col, Image} from "react-bootstrap";
 
 const NotificationIndex = () => {
 

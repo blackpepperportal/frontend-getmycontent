@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import UserCard from "../FansFollowing/UserCard";
 import { connect } from "react-redux";

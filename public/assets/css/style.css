@@ -7391,3 +7391,34 @@ section#tabs {
 }
 
 
+.width-btn {
+    width: 160px;
+}
+
+.payment-add-card-modal .input-group>.input-group-prepend>.input-group-text {
+    font-size: 1.5em;
+    background: transparent;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-left: 0;
+    border-radius: 0;
+}
+
+.payment-add-card-modal .form-control{
+    font-size: 1.4em!important;
+    font-weight: 600;
+}
+
+.payment-add-card-modal .modal-header .close{
+    font-size: 2em;
+}
+
+.payment-add-card-modal .form-control:focus{
+    border-bottom: 1px solid #ced4da!important;
+}
+
+.modal-title.h4 {
+    font-size: 1.6em;
+    font-weight: 600;
+}

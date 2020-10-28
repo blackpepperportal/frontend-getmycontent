@@ -1,26 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteAccountStart } from "../../../store/actions/UserAction";
-import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import {Form, Button, Container, Row, Col} from "react-bootstrap";
 
 class DeleteAccountIndex extends Component {
   state = {

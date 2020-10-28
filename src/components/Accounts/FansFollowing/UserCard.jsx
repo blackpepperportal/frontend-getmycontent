@@ -130,7 +130,6 @@ const UserCard = (props) => {
           </div>
         </div>
       </Col>
-
       <AddFavModal addFav={addFav} closeAddFavModal={closeAddFavModal} />
       <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
     </>

@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Form,
-  Button,
-  Container,
-  Row,
-  Col,
-  Image,
-  Modal,
-} from "react-bootstrap";
+import {Form, Button, Image, Modal} from "react-bootstrap";
 
 const AddFavModal = (props) => {
   return (
@@ -26,7 +18,7 @@ const AddFavModal = (props) => {
           <Modal.Body>
             <div className="header-userinfo">
               <div className="g-avatar online_status_class">
-                <img
+                <Image
                   src="assets/images/avatar/user-4.jpg"
                   alt="💕🦋Sarai Rollins🦋💕"
                   className="tips__user__img"
@@ -34,7 +26,7 @@ const AddFavModal = (props) => {
               </div>
               <div className="popup-username-row">
                 <div className="pop-username">
-                  <div className=""> 💕🦋Sarai Rollins🦋💕</div>
+                  <div className="">💕🦋Sarai Rollins🦋💕</div>
                 </div>
               </div>
               <div className="popup-username-row">

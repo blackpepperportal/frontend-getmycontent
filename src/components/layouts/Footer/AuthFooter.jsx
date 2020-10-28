@@ -1,25 +1,7 @@
 import React, { Component } from "react";
 import configuration from "react-global-configuration";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import {Form, Container, Row, Col, Dropdown, Media} from "react-bootstrap";
 
 
 class AuthFooter extends Component {

@@ -1,18 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  Nav,
   Container,
   Row,
   Col,
-  Tab,
   Dropdown,
   Image,
-  ListGroup,
   Media,
   Form,
-  FormControl,
-  Button,
 } from "react-bootstrap";
 
 const ListIndex = (props) => {
@@ -66,9 +61,9 @@ const ListIndex = (props) => {
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right model-filter-dropdown">
                       <Form action="#">
                         <Media as="li">
-                          <a role="heading" className="dropdown-header">
+                          <Link to="#" role="heading" className="dropdown-header">
                             Subscription
-                          </a>
+                          </Link>
                         </Media>
                         <Media as="li">
                           <a>
@@ -104,9 +99,9 @@ const ListIndex = (props) => {
                       <Media as="li" className="divider"></Media>
                       <Form action="#">
                         <Media as="li">
-                          <a role="heading" className="dropdown-header">
+                          <Link to="#" role="heading" className="dropdown-header">
                             Online Status
-                          </a>
+                          </Link>
                         </Media>
                         <Media as="li">
                           <a>

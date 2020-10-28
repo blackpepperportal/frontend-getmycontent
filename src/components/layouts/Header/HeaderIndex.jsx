@@ -1,30 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Nav,
-  Container,
-  Row,
-  Col,
-  Tab,
-  Dropdown,
-  Image,
-  ListGroup,
-  Media,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
-import configuration from "react-global-configuration";
-import SideBarIndex from "../SideBar/SideBarIndex";
+import {Container, Image, Media, Button} from "react-bootstrap";
+// import configuration from "react-global-configuration";
+// import SideBarIndex from "../SideBar/SideBarIndex";
 
 import { connect } from "react-redux";
 
 const HeaderIndex = (props) => {
-  const [mobileSidebar, setMobileSidebar] = useState(true);
+  // const [mobileSidebar, setMobileSidebar] = useState(true);
 
-  const startMeeting = (event) => {
-    event.preventDefault();
-  };
+  // const startMeeting = (event) => {
+  //   event.preventDefault();
+  // };
 
   const [isVisible, setIsVisible] = useState(false);
 

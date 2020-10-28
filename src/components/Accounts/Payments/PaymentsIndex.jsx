@@ -1,27 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-    Navbar,
-    Nav,
-    NavDropdown,
-    Form,
-    FormControl,
-    Button,
-    Container,
-    Row,
-    Col,
-    InputGroup,
-    Tabs,
-    Table,
-    Tab,
-    Dropdown,
-    DropdownButton,
-    Image,
-    Badge,
-    Media,
-} from "react-bootstrap";
-
+import {Container, Row, Col, Tabs, Table, Tab, Image} from "react-bootstrap";
 import "./PaymentsIndex.css"
 
 class PaymentsIndex extends Component {

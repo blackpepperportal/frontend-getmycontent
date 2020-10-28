@@ -1,27 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-    Navbar,
-    Nav,
-    NavDropdown,
-    Form,
-    FormControl,
-    Button,
-    Container,
-    Row,
-    Col,
-    InputGroup,
-    Tabs,
-    Table,
-    Tab,
-    Dropdown,
-    DropdownButton,
-    Image,
-    Badge,
-    Media,
-} from "react-bootstrap";
-
+import {Button, Container, Row, Col, Table, Image, Badge} from "react-bootstrap";
 import "./Wallet.css"
 
 class Wallet extends Component {

@@ -1,25 +1,7 @@
 import React, { useState } from "react";
 import SendTipModal from "../helper/SendTipModal";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Container,
-  Row,
-  Col,
-  InputGroup,
-  Tabs,
-  Tab,
-  Dropdown,
-  DropdownButton,
-  Image,
-  Badge,
-  Media,
-} from "react-bootstrap";
+import {Form, Button, Dropdown, Image, Media} from "react-bootstrap";
 
 const ModelProfilePostSec = (props) => {
   const [sendTip, setSendTip] = useState(false);
