@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import PostDisplayCard from "../../helper/PostDisplayCard";
 
 const ProfileIndex = () => {
+  useEffect(() => {}, []);
+
   return (
     <>
       <div className="my-profile">

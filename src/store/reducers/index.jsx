@@ -21,6 +21,7 @@ import FavReducer from "./FavReducer";
 import BookmarkReducer from "./BookmarkReducer";
 import SendTipReducer from "./SendTipReducer";
 import HomeReducer from "./HomeReducer";
+import OtherUserReducer from "./OtherUserReducer";
 
 export default combineReducers({
   users: UserReducer,
@@ -44,4 +45,5 @@ export default combineReducers({
   bookmark: BookmarkReducer,
   tip: SendTipReducer,
   home: HomeReducer,
+  otherUser: OtherUserReducer,
 });

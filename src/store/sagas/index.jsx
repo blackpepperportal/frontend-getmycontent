@@ -19,6 +19,7 @@ import FavSaga from "./FavSaga";
 import BookmarkSaga from "./BookmarkSaga";
 import SendTipSaga from "./SendTipSaga";
 import HomeSaga from "./HomeSaga";
+import OtherUserSaga from "./OtherUserSaga";
 
 export default function* rootSaga() {
   yield all([fork(UserSaga)]);
@@ -40,4 +41,5 @@ export default function* rootSaga() {
   yield all([fork(BookmarkSaga)]);
   yield all([fork(SendTipSaga)]);
   yield all([fork(HomeSaga)]);
+  yield all([fork(OtherUserSaga)]);
 }
