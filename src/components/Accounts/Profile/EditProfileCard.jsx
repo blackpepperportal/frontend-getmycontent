@@ -75,7 +75,7 @@ const EditProfileCard = (props) => {
                 <Image
                   src={
                     image.coverImage === ""
-                      ? props.profile.data.picture
+                      ? props.profile.data.cover
                       : image.coverImage
                   }
                 />
