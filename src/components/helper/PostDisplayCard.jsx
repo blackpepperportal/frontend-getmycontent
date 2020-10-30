@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dropdown, Image, Media, Form, Button} from "react-bootstrap";
+import { Dropdown, Image, Media, Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { saveBookmarkStart } from "../../store/actions/BookmarkAction";
@@ -60,8 +60,8 @@ const PostDisplayCard = (props) => {
             />
 
             <div className="user-name">
-              <span className="post-user-name">Lexy</span>
-              <span className="post-user-">@lexypanterratwerk</span>
+              <span className="post-user-name">{post.user.name}</span>
+              <span className="post-user-">@{post.user.username}</span>
             </div>
           </Link>
         </div>
@@ -97,12 +97,14 @@ const PostDisplayCard = (props) => {
                 </Dropdown.Menu>
               </Dropdown>
             </span>
-            <span className="post-time">
-              <span className="post-tip-lock">$30 </span>
-              <Link to="#">
-                <i className="fa fa-lock"></i>
-              </Link>
-            </span>
+            {post.is_user_needs_pay === 1 ? (
+              <span className="post-time">
+                <span className="post-tip-lock">{post.amount_formatted} </span>
+                <Link to="#">
+                  <i className="fa fa-lock"></i>
+                </Link>
+              </span>
+            ) : null}
           </div>
         </div>
       </div>
@@ -110,13 +112,20 @@ const PostDisplayCard = (props) => {
       <div className="post-content">
         <p>{post.content}</p>
 
-        <div className="post-image">
-          <div className="">
-            <div className="gallery js-gallery">
-              <Image src="assets/images/g-3.jpg" className="post-view-image" />
+        {post.post_files.length > 0 ? (
+          post.post_files[0].file_type === "image" ? (
+            <div className="post-image">
+              <div className="">
+                <div className="gallery js-gallery">
+                  <Image
+                    src={post.post_files[0].file}
+                    className="post-view-image"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          ) : null
+        ) : null}
       </div>
 
       <div className="post-icons">
