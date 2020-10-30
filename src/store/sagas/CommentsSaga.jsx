@@ -48,7 +48,7 @@ function* saveCommentAPI() {
     const inputData = yield select(
       (state) => state.comment.saveComment.inputData
     );
-    const response = yield api.postMethod("post_comments", inputData);
+    const response = yield api.postMethod("post_comments_save", inputData);
     if (response.data.success) {
       yield put(saveCommentSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
