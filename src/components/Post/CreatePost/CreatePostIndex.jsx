@@ -1,7 +1,7 @@
 import React from "react";
 import CreatePollModal from "../../helper/CreatePollModal";
 import { Link } from "react-router-dom";
-import {Button, Container, Row, Col, Image} from "react-bootstrap";
+import {Button, Container, Row, Col, Image, Form} from "react-bootstrap";
 
 const CreatePostIndex = () => {
   return (
@@ -31,13 +31,18 @@ const CreatePostIndex = () => {
           </Col>
 
           <Col sm={12} md={12}>
+            <Form>
             <div className="create-post-textarea">
-              <textarea
-                placeholder="Compose new post..."
+              <Form.Group>
+              <Form.Control as="textarea" 
+              rows={3}
+              placeholder="Compose new post..."
                 name="text"
                 maxlength="10000"
                 style={{ width: "100%", maxWidth: "100%" }}
-              ></textarea>
+              />
+              
+              </Form.Group>
             </div>
             <div style={{ clear: "both" }}></div>
             <Col sm={12} md={12}>
@@ -51,16 +56,16 @@ const CreatePostIndex = () => {
                     <p>Poll Duration</p>
                   </div>
                   <div className="right-half">
-                    <button
+                    <Button
                       type="button"
                       className="poll-duration"
                       data-toggle="modal"
                       data-target="#pollDuration"
                     >
                       <span>7 days</span>
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
                       type="button"
                       title="Delete"
                       className="b-dropzone__preview__delete b-btn-remove"
@@ -70,23 +75,23 @@ const CreatePostIndex = () => {
                         className="svg-clone"
                         width="20"
                       />
-                    </button>
+                    </Button>
                   </div>
                   <div className="add-remove-field">
                     <div className="input_fields_wrap">
                       <div className="poll-now">
-                        <input
-                          placeholder="Enter Option"
-                          type="text"
-                          name="mytext[]"
-                        />
+                        <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Control  placeholder="Enter Option"
+                            type="text"
+                            name="mytext[]" />
+                          </Form.Group>
                       </div>
                       <div className="poll-now">
-                        <input
-                          placeholder="Enter Option"
+                      <Form.Group controlId="exampleForm.ControlInput1">
+                          <Form.Control   placeholder="Enter Option"
                           type="text"
-                          name="mytext[]"
-                        />
+                          name="mytext[]" />
+                          </Form.Group>
                       </div>
                       <button className="add_field_button">
                         Add More Fields
@@ -97,14 +102,15 @@ const CreatePostIndex = () => {
               </div>
             </Col>
             <div className="left-half post-write">
-              <button>
-                <input
+              <Button>
+              <Form.Group controlId="exampleForm.ControlInput1" className="mb-0">
+                <Form.Control
                   id="fileupload_photo"
                   type="file"
                   multiple="multiple"
                   accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png,.mp4,.mov,.moov,.m4v,.mpg,.mpeg,.wmv,.avi,.webm,.mkv,.stream,.mp3,.wav,.ogg"
                 />
-                <label
+                <Form.Label
                   id="attach_file_photo"
                   for="fileupload_photo"
                   className="chat-attach_file"
@@ -114,10 +120,11 @@ const CreatePostIndex = () => {
                     src="assets/images/icons/gallery.svg"
                     className="svg-clone"
                   />
-                </label>
-              </button>
+                </Form.Label>
+                </Form.Group>
+              </Button>
 
-              <button
+              <Button
                 onclick="showhide()"
                 id="scrollmap"
                 className=""
@@ -127,9 +134,10 @@ const CreatePostIndex = () => {
                   src="assets/images/icons/analytics.svg"
                   className="svg-clone"
                 />
-              </button>
+              </Button>
             </div>
             <div style={{ clear: "both" }}></div>
+            </Form>
           </Col>
         </Row>
       </Container>
