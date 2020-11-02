@@ -1,18 +1,15 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import {Container, Row, Col, Image,} from "react-bootstrap";
-
+import { Container, Row, Col, Image } from "react-bootstrap";
 import AddCardModal from "../../helper/AddCardModal";
-
 import "./CardListIndex.css";
+import { fetchCardDetailsStart } from "../../../store/actions/CardsAction";
 
-// class CardListIndex extends Component {
 const CardListIndex = (props) => {
-  // const [addCard, setAddCard] = useState(false);
-
-  // const closeAddCardModal = () => {
-  //   setAddCard(false);
-  // };
+  useEffect(() => {
+    console.log("asdfsfdsfs");
+    props.dispatch(fetchCardDetailsStart());
+  }, []);
 
   const [addCard, setAddCard] = useState(false);
 
@@ -20,28 +17,38 @@ const CardListIndex = (props) => {
     setAddCard(false);
   };
 
-  // render() {
+  const { cards } = props;
+
   return (
     <>
       <div className="card-list-sec">
         <Container>
           <h4 className="head-title">Card List</h4>
           <Row>
-            <Col sm={12} md={6} xl={4}>
-              <div className="card-list-box">
-                <h5 className="mb-4">XXXX XXXX XXXX 4242</h5>
-                <h5 className="text-muted">Visa</h5>
-                <div className="payment-bottom">
-                  <div className="action-btn">
-                    <p className="card-link-text text-success">default card</p>
-                  </div>
-                  <Image
-                    src="/assets/images/icons/credit-card.svg"
-                    className="credit-img"
-                  />
-                </div>
-              </div>
-            </Col>
+            {cards.loading
+              ? "Loading..."
+              : cards.data.cards.length > 0
+              ? cards.data.cards.map((card) => (
+                  <Col sm={12} md={6} xl={4}>
+                    <div className="card-list-box">
+                      <h5 className="mb-4">XXXX XXXX XXXX 4242</h5>
+                      <h5 className="text-muted">Visa</h5>
+                      <div className="payment-bottom">
+                        <div className="action-btn">
+                          <p className="card-link-text text-success">
+                            default card
+                          </p>
+                        </div>
+                        <Image
+                          src="/assets/images/icons/credit-card.svg"
+                          className="credit-img"
+                        />
+                      </div>
+                    </div>
+                  </Col>
+                ))
+              : "No data found"}
+
             <Col sm={12} md={6} xl={4}>
               <div className="card-list-box">
                 <h5 className="mb-4">XXXX XXXX XXXX 4242</h5>
@@ -94,6 +101,13 @@ const CardListIndex = (props) => {
     </>
   );
 };
-// }
 
-export default CardListIndex;
+const mapStateToPros = (state) => ({
+  cards: state.cards.cardDetails,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(CardListIndex);
