@@ -60,8 +60,8 @@ const PostDisplayCard = (props) => {
             />
 
             <div className="user-name">
-              <span className="post-user-name">{post.user.name}</span>
-              <span className="post-user-">@{post.user.username}</span>
+              <span className="post-user-name">{post.name}</span>
+              <span className="post-user-">@{post.username}</span>
             </div>
           </Link>
         </div>
