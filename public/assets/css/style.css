@@ -43,9 +43,9 @@ span.sidebar-hamburger-user-profile img {
 .drawer__title {
   width: 100%;
 }
-.drawer {
-  /* display: none; */
-}
+/* .drawer {
+  display: none;
+} */
 .drawer__overlay {
   position: fixed;
   top: 0;
@@ -1587,15 +1587,15 @@ span.comment-message {
   width: 100%;
 }
 
-.search-container {
-  /* position: relative;
+/* .search-container {
+  position: relative;
     display: inline-block;
     margin: 4px 2px;    
     float: right;
     height: 50px;
     width: 50px;
-    vertical-align: bottom; */
-}
+    vertical-align: bottom;
+} */
 
 .mglass {
   display: inline-block;
@@ -1831,7 +1831,7 @@ button.custom-btn {
   height: 128px;
   position: relative;
   /* padding: 14px; */
-  margin-bottom: 8px;
+  /* margin-bottom: 8px; */
   max-width: 100%;
   width: 100%;
 }
@@ -2929,7 +2929,7 @@ div.user-lists a {
   margin-top: 80px auto;
 }
 .profile-wrapper__content {
-  webkit-box-flex: 1;
+  -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
   max-width: calc(100% - (100% / 3) - (16px * 3));
@@ -6365,10 +6365,10 @@ input.authentication-input {
     display: block;
     max-width: 100%;
   }
-  .slick-slider .slick-track {
-    /*display: -webkit-inline-box;*/
-    /*width: 100% !important;*/
-  }
+  /* .slick-slider .slick-track {
+    display: -webkit-inline-box;
+    width: 100% !important;
+  } */
   .chat-item {
     width: 100%;
   }
@@ -6737,10 +6737,10 @@ input.authentication-input {
     display: block;
     max-width: 100%;
   }
-  .slick-slider .slick-track {
-    /*display: -webkit-inline-box;*/
-    /*width: 100% !important;*/
-  }
+  /* .slick-slider .slick-track {
+    display: -webkit-inline-box;
+    width: 100% !important;
+  } */
   .chat-item {
     width: 100%;
   }
