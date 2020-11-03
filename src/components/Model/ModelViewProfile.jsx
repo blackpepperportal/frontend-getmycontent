@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModelProfilePostSec from "./ModelProfilePostSec";
 import ModelProfileTabSec from "./ModelProfileTabSec";
 import ModelProfilePhotoSec from "./ModelProfilePhotoSec";
 import ModelProfileVideoSec from "./ModelProfileVideoSec";
 import ModelProfileArchivedSec from "./ModelProfileArchivedSec";
 import SendTipModal from "../helper/SendTipModal";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
+import { fetchSingleUserProfileStart } from "../../store/actions/OtherUserAction";
 
 const ModelViewProfile = (props) => {
+  useEffect(() => {
+    props.dispatch(
+      fetchSingleUserProfileStart({ user_unique_id: props.match.params.id })
+    );
+  }, []);
+
   const [activeSec, setActiveSec] = useState("post");
 
   const [sendTip, setSendTip] = useState(false);
@@ -288,4 +296,12 @@ const ModelViewProfile = (props) => {
   );
 };
 
-export default ModelViewProfile;
+const mapStateToPros = (state) => ({
+  comments: state.comment.comments,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(ModelViewProfile);

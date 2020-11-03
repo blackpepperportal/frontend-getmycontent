@@ -145,7 +145,7 @@ class App extends Component {
           />
 
           <AppRoute
-            path={"/model-profile"}
+            path={"/model-profile/:id"}
             component={ModelViewProfile}
             layout={MainLayout}
           />

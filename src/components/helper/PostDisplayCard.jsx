@@ -7,6 +7,7 @@ import {
   fetchCommentsStart,
   saveCommentStart,
 } from "../../store/actions/CommentsAction";
+import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
 
@@ -35,6 +36,7 @@ const PostDisplayCard = (props) => {
 
   const handleLike = (event) => {
     event.preventDefault();
+    props.dispatch(savePostLikeStart({ post_id: post.post_id }));
   };
 
   const handleBookmark = (event, post) => {
