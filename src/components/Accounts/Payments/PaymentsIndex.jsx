@@ -13,8 +13,12 @@ import {
 } from "react-bootstrap";
 import "./PaymentsIndex.css";
 import { fetchAllTransactionStart } from "../../../store/actions/TransactionAction";
-import { fetchWithDrawalsStart } from "../../../store/actions/WithDrawAction";
+import {
+  cancelWithDrawRequestStart,
+  fetchWithDrawalsStart,
+} from "../../../store/actions/WithDrawAction";
 import WithdrawModal from "../../helper/WithdrawModal";
+import CancelWithdrawModal from "../../helper/CancelWithdrawModal";
 
 const PaymentsIndex = (props) => {
   useEffect(() => {
@@ -26,6 +30,24 @@ const PaymentsIndex = (props) => {
   const closeWithdrawModal = () => {
     setWithdrawModal(false);
   };
+
+  const [data, setData] = useState("");
+
+  const [cancelWithdrawModal, setCancelWithdrawModal] = useState(false);
+
+  const closeCancelWithdrawModal = () => {
+    setCancelWithdrawModal(false);
+    setIsLoading(false);
+  };
+
+  const showCancelWithdrawModel = (event, data) => {
+    setCancelWithdrawModal(true);
+    setData(data);
+    setIsLoading(true);
+  };
+
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <div className="payment-sec">
       <Container>
@@ -203,8 +225,8 @@ const PaymentsIndex = (props) => {
                       <tbody>
                         {props.withDrawals.loading
                           ? "Loading..."
-                          : props.withDrawals.data.length > 0
-                          ? props.withDrawals.data.map((data) => (
+                          : props.withDrawals.data.history.length > 0
+                          ? props.withDrawals.data.history.map((data) => (
                               <tr>
                                 <td>08-15-20</td>
                                 <td>4:30 AM</td>
@@ -213,9 +235,13 @@ const PaymentsIndex = (props) => {
                                 <td>$ 2.00</td>
                                 <td>$ 7.99</td>
                                 <td>
-                                  <p>
-                                    <i class="far fa-clock mr-2"></i>PENDING
-                                  </p>
+                                  <Button
+                                    onClick={(event) =>
+                                      showCancelWithdrawModel(event, data)
+                                    }
+                                  >
+                                    Cancel
+                                  </Button>
                                 </td>
                               </tr>
                             ))
@@ -232,6 +258,12 @@ const PaymentsIndex = (props) => {
       <WithdrawModal
         withdrawModal={withdrawModal}
         closeWithdrawModal={closeWithdrawModal}
+      />
+      <CancelWithdrawModal
+        closeCancelWithdrawModal={closeCancelWithdrawModal}
+        cancelWithdrawModal={cancelWithdrawModal}
+        data={data}
+        loading={isLoading}
       />
     </div>
   );
