@@ -108,11 +108,6 @@ const BankAccountReducer = (state = initialState, action) => {
           loading: false,
           error: false,
         },
-        addBankAccountInput: {
-          data: action.data.billing_accounts[0],
-          loading: false,
-          error: false,
-        },
       };
     case GET_BANK_ACCOUNT_FAILURE:
       return {

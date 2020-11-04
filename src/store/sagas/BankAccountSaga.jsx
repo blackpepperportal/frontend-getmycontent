@@ -79,7 +79,10 @@ function* makeDefaultBankAccountAPI() {
     const inputData = yield select(
       (state) => state.bankAccount.makeDefault.inputData
     );
-    const response = yield api.postMethod("users_accounts_default", inputData);
+    const response = yield api.postMethod(
+      "billing_accounts_default",
+      inputData
+    );
 
     if (response.data.success) {
       yield put(makeDefaultBankAccountSuccess(response.data));
@@ -107,7 +110,7 @@ function* deleteAccountBankAccountAPI() {
     const inputData = yield select(
       (state) => state.bankAccount.deleteAccount.inputData
     );
-    const response = yield api.postMethod("users_accounts_delete", inputData);
+    const response = yield api.postMethod("billing_accounts_delete", inputData);
 
     if (response.data.success) {
       yield put(deleteBankAccountSuccess(response.data));
