@@ -21,6 +21,7 @@ import SendTipSaga from "./SendTipSaga";
 import HomeSaga from "./HomeSaga";
 import OtherUserSaga from "./OtherUserSaga";
 import PostLikesSaga from "./PostLikesSaga";
+import ChatSaga from "./ChatSaga";
 
 export default function* rootSaga() {
   yield all([fork(UserSaga)]);
@@ -44,4 +45,5 @@ export default function* rootSaga() {
   yield all([fork(HomeSaga)]);
   yield all([fork(OtherUserSaga)]);
   yield all([fork(PostLikesSaga)]);
+  yield all([fork(ChatSaga)]);
 }
