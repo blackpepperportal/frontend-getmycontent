@@ -21,7 +21,7 @@ function* fetchOtherUserProfileAPI() {
     const inputData = yield select(
       (state) => state.otherUser.userDetails.inputData
     );
-    const response = yield api.postMethod("other_profile");
+    const response = yield api.postMethod("other_profile", inputData);
     if (response.data.success) {
       yield put(fetchSingleUserProfileSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(

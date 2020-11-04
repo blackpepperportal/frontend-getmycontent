@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
 import { fetchSingleUserProfileStart } from "../../store/actions/OtherUserAction";
+import { saveFavStart } from "../../store/actions/FavAction";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
@@ -24,6 +25,8 @@ const ModelViewProfile = (props) => {
   const closeSendTipModal = () => {
     setSendTip(false);
   };
+
+  const { userDetails } = props;
 
   return (
     <>
@@ -110,6 +113,11 @@ const ModelViewProfile = (props) => {
                   <Button
                     type="button"
                     className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    onClick={() =>
+                      props.dispatch(
+                        saveFavStart({ user_id: userDetails.data.user.user_id })
+                      )
+                    }
                   >
                     <Image
                       src={
@@ -298,6 +306,7 @@ const ModelViewProfile = (props) => {
 
 const mapStateToPros = (state) => ({
   comments: state.comment.comments,
+  userDetails: state.otherUser.userDetails,
 });
 
 function mapDispatchToProps(dispatch) {

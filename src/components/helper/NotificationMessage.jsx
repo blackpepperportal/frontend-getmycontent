@@ -8,7 +8,7 @@ export const getSuccessNotificationMessage = (message) => {
   return {
     message: message,
     type: NOTIFICATION_TYPE_SUCCESS,
-    duration: 200000,
+    duration: 2000,
     canDismiss: true,
     icon: <i className="fa fa-check" />,
   };
@@ -18,7 +18,7 @@ export const getErrorNotificationMessage = (message) => {
   return {
     message: message,
     type: NOTIFICATION_TYPE_ERROR,
-    duration: 200000,
+    duration: 2000,
     canDismiss: true,
     icon: <i className="fa fa-check" />,
   };

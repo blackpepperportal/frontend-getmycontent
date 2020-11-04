@@ -22,6 +22,9 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    inputData: {},
+    loadingButtonContent: null,
+    buttonDisable: false,
   },
   bankAccount: {
     data: {},
@@ -52,28 +55,17 @@ const initialState = {
 
 const BankAccountReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_BANK_ACCOUNT_DATA:
-      return {
-        ...state,
-        addBankAccountInput: {
-          loading: false,
-          error: false,
-          data: {
-            ...state.addBankAccountInput.data,
-            [action.name]: action.value,
-          },
-        },
-      };
     case ADD_BANK_ACCOUNT_START:
       return {
         ...state,
         addBankAccountInput: {
-          data: action.data,
+          data: {},
           loading: true,
           error: false,
+          inputData: action.data,
+          loadingButtonContent: "Loading... Please wait",
+          buttonDisable: true,
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading...",
       };
     case ADD_BANK_ACCOUNT_SUCCESS:
       return {
@@ -82,9 +74,10 @@ const BankAccountReducer = (state = initialState, action) => {
           data: action.data,
           loading: false,
           error: false,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case ADD_BANK_ACCOUNT_FAILURE:
       return {
@@ -93,9 +86,10 @@ const BankAccountReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case GET_BANK_ACCOUNT_START:
       return {

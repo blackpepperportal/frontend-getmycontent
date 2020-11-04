@@ -28,7 +28,13 @@ const FavoritesIndex = (props) => {
                 </div>
               </div>
             </div>
-            <UserCard />
+            {props.fav.loading
+              ? "Loading..."
+              : props.fav.data.fav_users.length > 0
+              ? props.fav.data.fav_users.map((user) => (
+                  <UserCard user={user} key={user.user_id} />
+                ))
+              : "No data Found"}
           </Col>
         </Row>
       </Container>

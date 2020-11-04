@@ -252,7 +252,11 @@ const PostDisplayCard = (props) => {
           </div>
         ) : null}
       </div>
-      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
+      <SendTipModal
+        sendTip={sendTip}
+        closeSendTipModal={closeSendTipModal}
+        post_id={post.post_id}
+      />
     </div>
   );
 };

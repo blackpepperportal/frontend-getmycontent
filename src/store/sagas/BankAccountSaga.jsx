@@ -29,9 +29,9 @@ import {
 function* addBankAccountAPI() {
   try {
     const inputData = yield select(
-      (state) => state.bankAccount.addBankAccountInput.data
+      (state) => state.bankAccount.addBankAccountInput.inputData
     );
-    const response = yield api.postMethod("users_accounts_save", inputData);
+    const response = yield api.postMethod("billing_accounts_save", inputData);
 
     if (response.data.success) {
       yield put(addBankAccountSuccess(response.data));
@@ -56,7 +56,7 @@ function* addBankAccountAPI() {
 
 function* getBankAccountAPI() {
   try {
-    const response = yield api.postMethod("users_accounts_list");
+    const response = yield api.postMethod("billing_accounts_list");
 
     if (response.data.success) {
       yield put(getBankAccountSuccess(response.data.data));

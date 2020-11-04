@@ -1,7 +1,27 @@
-import React from "react";
-import {Form, Button, Image, Modal} from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Image, Modal } from "react-bootstrap";
+import { connect } from "react-redux";
+import {
+  sendTipStripeStart,
+  sendTipWalletStart,
+} from "../../store/actions/SendTipAction";
 
 const SendTipModal = (props) => {
+  const [amount, setAmount] = useState(0);
+  const [paymentType, setPaymentType] = useState("wallet");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (paymentType === "card")
+      props.dispatch(
+        sendTipStripeStart({ post_id: props.post_id, amount: amount })
+      );
+    if (paymentType === "wallet")
+      props.dispatch(
+        sendTipWalletStart({ post_id: props.post_id, amount: amount })
+      );
+  };
+
   return (
     <>
       <Modal
@@ -11,7 +31,7 @@ const SendTipModal = (props) => {
         show={props.sendTip}
         onHide={props.closeSendTipModal}
       >
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
             <Modal.Title>Send tip</Modal.Title>
           </Modal.Header>
@@ -38,9 +58,37 @@ const SendTipModal = (props) => {
 
             <div className="floating-form">
               <div className="floating-label">
-                <input className="floating-input" type="text" placeholder=" " />
+                <input
+                  className="floating-input"
+                  type="text"
+                  placeholder="Amount"
+                  value={amount}
+                  onChange={(event) => setAmount(event.currentTarget.value)}
+                />
                 <span className="highlight"></span>
                 <label>Tip amount</label>
+              </div>
+              <div className="floating-label">
+                <input
+                  className="floating-input"
+                  type="radio"
+                  label="wallet"
+                  id="wallet"
+                  value="wallet"
+                  name="payment_type"
+                  defaultChecked={true}
+                  onChange={() => setPaymentType("wallet")}
+                />
+                <input
+                  className="floating-input"
+                  type="radio"
+                  label="card"
+                  id="card"
+                  value="card"
+                  name="payment_type"
+                  onChange={() => setPaymentType("card")}
+                />
+                <label>Payment Type</label>
               </div>
 
               <div className="floating-label">
@@ -55,6 +103,7 @@ const SendTipModal = (props) => {
               type="button"
               className="btn btn-danger"
               data-dismiss="modal"
+              onClick={props.closeSendTipModal}
             >
               CANCEL
             </Button>
@@ -62,8 +111,12 @@ const SendTipModal = (props) => {
               type="button"
               className="btn btn-success"
               data-dismiss="modal"
+              onClick={handleSubmit}
+              disabled={props.tipStripe.buttonDisable}
             >
-              SEND TIP
+              {props.tipStripe.loadingButtonContent !== null
+                ? props.tipStripe.loadingButtonContent
+                : "SEND TIP"}
             </Button>
           </Modal.Footer>
         </Form>
@@ -144,4 +197,12 @@ const SendTipModal = (props) => {
   );
 };
 
-export default SendTipModal;
+const mapStateToPros = (state) => ({
+  tipStripe: state.tip.tipStripe,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(SendTipModal);

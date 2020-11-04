@@ -18,7 +18,8 @@ import {
 
 function* sendTipStripeAPI() {
   try {
-    const response = yield api.postMethod("documents_list");
+    const inputData = yield select((state) => state.tip.tipStripe.inputData);
+    const response = yield api.postMethod("tips_send_by_stripe", inputData);
     if (response.data.success) {
       yield put(sendTipStripeSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
@@ -41,8 +42,8 @@ function* sendTipStripeAPI() {
 
 function* sendTipWalletAPI() {
   try {
-    const inputData = yield select((state) => state.docs.saveDocs.inputData);
-    const response = yield api.postMethod("documents_save", inputData);
+    const inputData = yield select((state) => state.tip.tipWallet.inputData);
+    const response = yield api.postMethod("tips_send_by_wallet", inputData);
     if (response.data.success) {
       yield put(sendTipWalletSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Container, Row, Col, Image, Media} from "react-bootstrap";
+import { Container, Row, Col, Image, Media } from "react-bootstrap";
 import BookmarkNav from "./BookmarkNav";
+import { connect } from "react-redux";
 
 const BookmarkVideo = () => {
   return (
@@ -67,4 +68,12 @@ const BookmarkVideo = () => {
   );
 };
 
-export default BookmarkVideo;
+const mapStateToPros = (state) => ({
+  bookmark: state.bookmark.bookmark,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(BookmarkVideo);

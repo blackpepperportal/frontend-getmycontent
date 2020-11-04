@@ -21,13 +21,9 @@ import {
 
 function* fetchFavAPI() {
   try {
-    const response = yield api.postMethod("documents_list");
+    const response = yield api.postMethod("fav_users");
     if (response.data.success) {
       yield put(fetchFavSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchFavFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -44,8 +40,8 @@ function* fetchFavAPI() {
 
 function* saveFavAPI() {
   try {
-    const inputData = yield select((state) => state.docs.saveDocs.inputData);
-    const response = yield api.postMethod("documents_save", inputData);
+    const inputData = yield select((state) => state.fav.saveFav.inputData);
+    const response = yield api.postMethod("fav_users_save", inputData);
     if (response.data.success) {
       yield put(saveFavSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
@@ -68,8 +64,8 @@ function* saveFavAPI() {
 
 function* deleteFavAPI() {
   try {
-    const inputData = yield select((state) => state.docs.delDocs.inputData);
-    const response = yield api.postMethod("documents_delete", inputData);
+    const inputData = yield select((state) => state.fav.deleteFav.inputData);
+    const response = yield api.postMethod("fav_users_delete", inputData);
     if (response.data.success) {
       yield put(deleteFavSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
