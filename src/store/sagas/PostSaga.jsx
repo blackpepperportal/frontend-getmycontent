@@ -51,7 +51,7 @@ function* savePostAPI() {
 
 function* fetchPostsAPI() {
   try {
-    const response = yield api.postMethod("posts");
+    const response = yield api.postMethod("posts_for_owner");
     if (response.data.success) {
       yield put(fetchPostsStart(response.data.data));
     } else {

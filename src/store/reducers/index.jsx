@@ -22,6 +22,7 @@ import BookmarkReducer from "./BookmarkReducer";
 import SendTipReducer from "./SendTipReducer";
 import HomeReducer from "./HomeReducer";
 import OtherUserReducer from "./OtherUserReducer";
+import PostLikesReducer from "./PostLikesReducer";
 
 export default combineReducers({
   users: UserReducer,
@@ -46,4 +47,5 @@ export default combineReducers({
   tip: SendTipReducer,
   home: HomeReducer,
   otherUser: OtherUserReducer,
+  postLike: PostLikesReducer,
 });

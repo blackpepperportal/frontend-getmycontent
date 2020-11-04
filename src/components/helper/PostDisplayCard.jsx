@@ -7,6 +7,7 @@ import {
   fetchCommentsStart,
   saveCommentStart,
 } from "../../store/actions/CommentsAction";
+import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
 
@@ -35,6 +36,7 @@ const PostDisplayCard = (props) => {
 
   const handleLike = (event) => {
     event.preventDefault();
+    props.dispatch(savePostLikeStart({ post_id: post.post_id }));
   };
 
   const handleBookmark = (event, post) => {
@@ -60,8 +62,8 @@ const PostDisplayCard = (props) => {
             />
 
             <div className="user-name">
-              <span className="post-user-name">{post.user.name}</span>
-              <span className="post-user-">@{post.user.username}</span>
+              <span className="post-user-name">{post.name}</span>
+              <span className="post-user-">@{post.username}</span>
             </div>
           </Link>
         </div>
@@ -179,36 +181,32 @@ const PostDisplayCard = (props) => {
         )}
         {isVisible && commentInputData.post_id === post.post_id ? (
           <div id="target">
-            <div className="row comment-row">
-              <div className="alignleft">
-                <Link className="title-container" to="#">
-                  <Image
-                    src="assets/images/avatar/user.jpg"
-                    className="user-image img-responsive"
-                  />
-                  <div className="user-name">
-                    <span className="card-title">
-                      Tom{" "}
-                      <span className="comment-message">
-                        she's breathtaking
-                      </span>
-                    </span>
+            {props.comments.loading
+              ? "Loading..."
+              : props.comments.data.post_comments.length > 0
+              ? props.comments.data.post_comments.map((comment) => (
+                  <div className="row comment-row">
+                    <div className="alignleft">
+                      <Link className="title-container" to="#">
+                        <Image
+                          src={comment.user_picture}
+                          className="user-image img-responsive"
+                        />
+                        <div className="user-name">
+                          <span className="card-title">
+                            {comment.user_displayname}{" "}
+                            <span className="comment-message">
+                              {comment.comment}
+                            </span>
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
-                </Link>
-              </div>
-            </div>
+                ))
+              : "No Data found"}
 
             <div className="comment-box">
-              <div className="alignleft">
-                <Link to="#">
-                  <Image src="assets/images/icons/gif.png" />
-                </Link>
-              </div>
-              <div className="alignright">
-                <Link to="#">
-                  <Image src="assets/images/icons/smile.png" />
-                </Link>
-              </div>
               <div className="comment-box-form">
                 <Form
                   className="form-inline"
@@ -254,7 +252,11 @@ const PostDisplayCard = (props) => {
           </div>
         ) : null}
       </div>
-      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
+      <SendTipModal
+        sendTip={sendTip}
+        closeSendTipModal={closeSendTipModal}
+        post_id={post.post_id}
+      />
     </div>
   );
 };

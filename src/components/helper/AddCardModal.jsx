@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { Form, Image, Modal, Media } from "react-bootstrap";
 import Background from "../helper/g-3.jpg";
 import PaymentAddCardModal from "../helper/PaymentAddCardModal";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe("pk_test_uDYrTXzzAuGRwDYtu7dkhaF3");
 
 const AddCardModel = (props) => {
-
   const [paymentAddCard, setPaymentAddCard] = useState(false);
 
   const closePaymentAddCardModal = () => {
@@ -68,7 +71,10 @@ const AddCardModel = (props) => {
                 <Link
                   type="button"
                   className="g-btn m-rounded m-border m-profile m-with-icon"
-                  onClick={() => setPaymentAddCard(true)}
+                  onClick={() => {
+                    setPaymentAddCard(true);
+                    props.closeAddCardModal();
+                  }}
                 >
                   <Image
                     src="assets/images/icons/subscribe-blue.svg"
@@ -81,7 +87,12 @@ const AddCardModel = (props) => {
           </Modal.Body>
         </Form>
       </Modal>
-      <PaymentAddCardModal paymentAddCard={paymentAddCard} closePaymentAddCardModal={closePaymentAddCardModal} />
+      <Elements stripe={stripePromise}>
+        <PaymentAddCardModal
+          paymentAddCard={paymentAddCard}
+          closePaymentAddCardModal={closePaymentAddCardModal}
+        />
+      </Elements>
     </>
   );
 };

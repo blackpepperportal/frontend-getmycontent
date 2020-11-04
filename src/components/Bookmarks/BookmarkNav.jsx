@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Col, Image } from "react-bootstrap";
+import { connect } from "react-redux";
+import { fetchBookmarksStart } from "../../store/actions/BookmarkAction";
 
-const BookmarkNav = () => {
+const BookmarkNav = (props) => {
   return (
     <Col xs={12} sm={12} md={4}>
       <div className="vertical-menu">
@@ -21,6 +23,9 @@ const BookmarkNav = () => {
           activeClassName="active"
           className="bookmarkes-list"
           to={"/bookmark-photo"}
+          onClick={() =>
+            props.dispatch(fetchBookmarksStart({ type: "photos" }))
+          }
         >
           <Image
             src="assets/images/icons/gallery.svg"
@@ -33,6 +38,9 @@ const BookmarkNav = () => {
           activeClassName="active"
           className="bookmarkes-list"
           to={"/bookmark-video"}
+          onClick={() =>
+            props.dispatch(fetchBookmarksStart({ type: "videos" }))
+          }
         >
           <Image
             src="assets/images/icons/video.svg"
@@ -81,4 +89,8 @@ const BookmarkNav = () => {
   );
 };
 
-export default BookmarkNav;
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(null, mapDispatchToProps)(BookmarkNav);

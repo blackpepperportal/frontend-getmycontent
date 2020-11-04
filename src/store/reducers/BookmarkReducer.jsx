@@ -15,6 +15,7 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    inputData: {},
   },
   saveBookmark: {
     data: {},
@@ -40,6 +41,7 @@ const BookmarkReducer = (state = initialState, action) => {
       return {
         ...state,
         bookmark: {
+          inputData: action.data,
           data: {},
           loading: true,
           error: false,
@@ -52,6 +54,7 @@ const BookmarkReducer = (state = initialState, action) => {
           data: action.data,
           loading: false,
           error: false,
+          inputData: {},
         },
       };
     case FETCH_BOOKMARKS_FAILURE:
@@ -61,6 +64,7 @@ const BookmarkReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          inputData: {},
         },
       };
     case SAVE_BOOKMARK_START:

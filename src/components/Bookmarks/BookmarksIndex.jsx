@@ -7,7 +7,7 @@ import PostDisplayCard from "../helper/PostDisplayCard";
 
 const BookmarksIndex = (props) => {
   useEffect(() => {
-    props.dispatch(fetchBookmarksStart());
+    props.dispatch(fetchBookmarksStart({ type: "all" }));
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import api from "../../Environment";
 
-const Logout = () => {
+const Logout = (props) => {
   useEffect(() => {
     api.postMethod("logout").then((response) => {
       if (response.data.success) {
@@ -14,7 +14,7 @@ const Logout = () => {
     localStorage.removeItem("userLoginStatus");
     localStorage.removeItem("user_picture");
     localStorage.removeItem("username");
-    this.props.history.push("/");
+    props.history.push("/");
   }, []);
   return "";
 };

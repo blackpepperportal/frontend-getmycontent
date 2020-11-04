@@ -3,7 +3,6 @@ import { createBrowserHistory as createHistory } from "history";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
-import CardsList from "../Accounts/Cards/CardsList";
 import EditProfile from "../Accounts/Profile/EditProfile";
 import DeleteAccountIndex from "../Accounts/DeleteAccount/DeleteAccountIndex";
 import ChangePasswordIndex from "../Accounts/ChangePassword/ChangePasswordIndex";
@@ -146,7 +145,7 @@ class App extends Component {
           />
 
           <AppRoute
-            path={"/model-profile"}
+            path={"/model-profile/:id"}
             component={ModelViewProfile}
             layout={MainLayout}
           />

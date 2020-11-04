@@ -117,7 +117,7 @@ const PostReducer = (state = initialState, action) => {
         ...state,
         posts: {
           data: {},
-          loading: true,
+          loading: false,
           error: action.error,
         },
       };
