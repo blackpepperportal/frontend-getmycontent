@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Image,FormGroup } from "react-bootstrap";
 import "./DocumentUploadIndex.css";
 
 const DocumentUploadIndex = (props) => {
@@ -29,19 +29,15 @@ const DocumentUploadIndex = (props) => {
                                 </div>
                             </Col>
                             <Col sm={12} md={6} xl={6}>
-                                <div className="document-upload-box-1">
-                                    <Form.Group className="upload-btn-wrapper">
+                                <FormGroup>
+                                    <Form.File type="file" id="file" />
+                                    <Form.Label for="file" className="document-upload-box-1">
                                         <Image
                                             src="/assets/images/document-upload.svg"
                                             className="doc-upload-img-1"
                                         />
-                                        <Form.File
-                                            id="exampleFormControlFile1"
-                                            label=""
-                                            accept="image/*"
-                                        />
-                                    </Form.Group>
-                                </div>
+                                    </Form.Label>
+                                </FormGroup>
                             </Col>
                         </Row>
                         <Row>
@@ -74,19 +70,15 @@ const DocumentUploadIndex = (props) => {
                                 </div>
                             </Col>
                             <Col sm={12} md={6} xl={6}>
-                                <div className="document-upload-box-1">
-                                    <Form.Group className="upload-btn-wrapper">
+                                <FormGroup>
+                                    <Form.File type="file" id="file-1" />
+                                    <Form.Label for="file-1" className="document-upload-box-1">
                                         <Image
                                             src="/assets/images/document-upload.svg"
                                             className="doc-upload-img-1"
                                         />
-                                        <Form.File
-                                            id="exampleFormControlFile1"
-                                            label=""
-                                            accept="image/*"
-                                        />
-                                    </Form.Group>
-                                </div>
+                                    </Form.Label>
+                                </FormGroup>
                             </Col>
                         </Row>
                         <Row>

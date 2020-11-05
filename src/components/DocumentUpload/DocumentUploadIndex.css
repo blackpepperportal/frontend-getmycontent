@@ -27,6 +27,8 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    margin-bottom: 0;
+    cursor: pointer;
 }
 
 .document-upload-sec .sub-heading h4 {
@@ -72,19 +74,6 @@
     color: #ffffff!important;
 }
 
-.document-upload-sec .upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-}
-
-.document-upload-sec .upload-btn-wrapper input[type=file] {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-}
-
 .doc-upload-img-1{
     max-width: 25em;
 }
@@ -96,3 +85,33 @@
 .space-mg{
     height: 4em;
 }
+
+
+.document-upload-sec .form-control-file {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+  }
+  
+.document-upload-sec .form-control-file + label {
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Rubik', sans-serif;
+    font-size: inherit;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 1rem 50px;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    vertical-align: middle;
+  }
+
+  .document-upload-sec .form-group {
+    margin-bottom: 0!important;
+  }
+  
