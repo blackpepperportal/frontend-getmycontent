@@ -1,7 +1,7 @@
 import {
-  FETCH_CHAT_USER_START,
-  FETCH_CHAT_USER_SUCCESS,
-  FETCH_CHAT_USER_FAILURE,
+  FETCH_CHAT_USERS_START,
+  FETCH_CHAT_USERS_SUCCESS,
+  FETCH_CHAT_USERS_FAILURE,
   FETCH_CHAT_MESSAGE_START,
   FETCH_CHAT_MESSAGE_SUCCESS,
   FETCH_CHAT_MESSAGE_FAILURE,
@@ -26,7 +26,7 @@ const initialState = {
 
 const ChatReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_CHAT_USER_START:
+    case FETCH_CHAT_USERS_START:
       return {
         ...state,
         chatUsers: {
@@ -36,7 +36,7 @@ const ChatReducer = (state = initialState, action) => {
           error: false,
         },
       };
-    case FETCH_CHAT_USER_SUCCESS:
+    case FETCH_CHAT_USERS_SUCCESS:
       return {
         ...state,
         chatUsers: {
@@ -46,7 +46,7 @@ const ChatReducer = (state = initialState, action) => {
           inputData: {},
         },
       };
-    case FETCH_CHAT_USER_FAILURE:
+    case FETCH_CHAT_USERS_FAILURE:
       return {
         ...state,
         chatUsers: {
