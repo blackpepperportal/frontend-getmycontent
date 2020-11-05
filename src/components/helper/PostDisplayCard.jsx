@@ -78,7 +78,10 @@ const PostDisplayCard = (props) => {
                   id="dropdown-basic"
                 >
                   <Image
-                    src="assets/images/icons/vertical-dots.svg"
+                    src={
+                      window.location.origin +
+                      "/assets/images/icons/vertical-dots.svg"
+                    }
                     className="svg-clone vertical-dots"
                   />
                 </Dropdown.Toggle>
@@ -133,14 +136,17 @@ const PostDisplayCard = (props) => {
       <div className="post-icons">
         <div className="alignleft">
           <Link to="#" onClick={handleLike}>
-            <Image src="assets/images/icons/heart.svg" className="svg-clone" />
+            <Image
+              src={window.location.origin + "/assets/images/icons/heart.svg"}
+              className="svg-clone"
+            />
           </Link>
           <Link
             to="#"
             onClick={(event) => showCommentSection(event, post.post_id)}
           >
             <Image
-              src="assets/images/icons/comment.svg"
+              src={window.location.origin + "/assets/images/icons/comment.svg"}
               className="svg-clone"
             />
           </Link>
@@ -150,7 +156,10 @@ const PostDisplayCard = (props) => {
             className="g-icon"
             onClick={() => setSendTip(true)}
           >
-            <Image src="assets/images/icons/tip.svg" className="svg-clone" />
+            <Image
+              src={window.location.origin + "/assets/images/icons/tip.svg"}
+              className="svg-clone"
+            />
 
             <span className="post-tip">SEND TIP</span>
           </Button>
@@ -158,7 +167,7 @@ const PostDisplayCard = (props) => {
         <div className="alignright">
           <Link to="#" onClick={(event) => handleBookmark(event, post)}>
             <Image
-              src="assets/images/icons/bookmark.svg"
+              src={window.location.origin + "/assets/images/icons/bookmark.svg"}
               className="svg-clone"
             />
           </Link>
@@ -216,7 +225,10 @@ const PostDisplayCard = (props) => {
                   <div className="user-picture">
                     <Link className="title-container" to="#">
                       <Image
-                        src="assets/images/avatar/user-3.jpg"
+                        src={
+                          window.location.origin +
+                          "/assets/images/avatar/user-3.jpg"
+                        }
                         className="user-image img-responsive"
                       />
                     </Link>
@@ -255,6 +267,9 @@ const PostDisplayCard = (props) => {
       <SendTipModal
         sendTip={sendTip}
         closeSendTipModal={closeSendTipModal}
+        username={post.username}
+        userPicture={post.user_picture}
+        name={post.user_displayname}
         post_id={post.post_id}
       />
     </div>

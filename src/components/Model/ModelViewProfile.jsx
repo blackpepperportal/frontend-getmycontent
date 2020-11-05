@@ -8,13 +8,22 @@ import SendTipModal from "../helper/SendTipModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
-import { fetchSingleUserProfileStart } from "../../store/actions/OtherUserAction";
+import {
+  fetchSingleUserProfileStart,
+  fetchSingleUserPostsStart,
+} from "../../store/actions/OtherUserAction";
 import { saveFavStart } from "../../store/actions/FavAction";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
     props.dispatch(
       fetchSingleUserProfileStart({ user_unique_id: props.match.params.id })
+    );
+    props.dispatch(
+      fetchSingleUserPostsStart({
+        user_unique_id: props.match.params.id,
+        type: "all",
+      })
     );
   }, []);
 
@@ -24,6 +33,31 @@ const ModelViewProfile = (props) => {
 
   const closeSendTipModal = () => {
     setSendTip(false);
+  };
+
+  const setActiveSection = (event, key) => {
+    setActiveSec(key);
+    if (key === "post")
+      props.dispatch(
+        fetchSingleUserPostsStart({
+          user_unique_id: props.match.params.id,
+          type: "all",
+        })
+      );
+    else if (key === "photo")
+      props.dispatch(
+        fetchSingleUserPostsStart({
+          user_unique_id: props.match.params.id,
+          type: "photos",
+        })
+      );
+    else if (key === "video")
+      props.dispatch(
+        fetchSingleUserPostsStart({
+          user_unique_id: props.match.params.id,
+          type: "videos",
+        })
+      );
   };
 
   const { userDetails } = props;
@@ -182,12 +216,14 @@ const ModelViewProfile = (props) => {
                 <ModelProfileTabSec
                   activeSec={activeSec}
                   setActiveSec={setActiveSec}
+                  setActiveSection={setActiveSection}
                 />
 
                 <div className="tab-content tabs">
                   <ModelProfilePostSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
+                    userPosts={props.userPosts}
                   />
 
                   <ModelProfilePhotoSec
@@ -196,11 +232,6 @@ const ModelViewProfile = (props) => {
                   />
 
                   <ModelProfileVideoSec
-                    activeSec={activeSec}
-                    setActiveSec={setActiveSec}
-                  />
-
-                  <ModelProfileArchivedSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
                   />
@@ -299,7 +330,18 @@ const ModelViewProfile = (props) => {
           </Row>
         </Container>
       </div>
-      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
+      {userDetails.loading ? (
+        "Loading..."
+      ) : (
+        <SendTipModal
+          sendTip={sendTip}
+          closeSendTipModal={closeSendTipModal}
+          username={props.userDetails.data.user.username}
+          userPicture={props.userDetails.data.user.picture}
+          name={props.userDetails.data.user.name}
+          post_id={null}
+        />
+      )}
     </>
   );
 };
@@ -307,6 +349,7 @@ const ModelViewProfile = (props) => {
 const mapStateToPros = (state) => ({
   comments: state.comment.comments,
   userDetails: state.otherUser.userDetails,
+  userPosts: state.otherUser.userPosts,
 });
 
 function mapDispatchToProps(dispatch) {

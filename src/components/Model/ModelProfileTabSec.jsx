@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Image, Media} from "react-bootstrap";
+import { Image, Media } from "react-bootstrap";
 
 const ModelProfileTabSec = (props) => {
   return (
@@ -15,7 +15,7 @@ const ModelProfileTabSec = (props) => {
           aria-controls="home"
           role="tab"
           data-toggle="tab"
-          onClick={() => props.setActiveSec("post")}
+          onClick={(event) => props.setActiveSection(event, "post")}
         >
           <Image
             src={window.location.origin + "/assets/images/icons/post.svg"}
@@ -33,7 +33,7 @@ const ModelProfileTabSec = (props) => {
           aria-controls="profile"
           role="tab"
           data-toggle="tab"
-          onClick={() => props.setActiveSec("photo")}
+          onClick={(event) => props.setActiveSection(event, "photo")}
         >
           <Image
             src={window.location.origin + "/assets/images/icons/gallery.svg"}
@@ -51,28 +51,10 @@ const ModelProfileTabSec = (props) => {
           aria-controls="messages"
           role="tab"
           data-toggle="tab"
-          onClick={() => props.setActiveSec("video")}
+          onClick={(event) => props.setActiveSection(event, "video")}
         >
           <Image
             src={window.location.origin + "/assets/images/icons/video.svg"}
-            className="svg-clone"
-          />
-        </Link>
-      </Media>
-      <Media
-        as="li"
-        role="presentation"
-        className={props.activeSec === "archive" ? "active" : ""}
-      >
-        <Link
-          to="#Section4"
-          aria-controls="messages"
-          role="tab"
-          data-toggle="tab"
-          onClick={() => props.setActiveSec("archive")}
-        >
-          <Image
-            src={window.location.origin + "/assets/images/icons/archive.svg"}
             className="svg-clone"
           />
         </Link>

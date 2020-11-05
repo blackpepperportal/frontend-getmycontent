@@ -44,7 +44,7 @@ function* addKycDocumentAPI() {
 
 function* getKycDocumentAPI() {
   try {
-    const response = yield api.postMethod("kyc_documents_list");
+    const response = yield api.postMethod("documents_list");
     yield put(getKycDocumentSuccess(response.data));
     if (response.data.success) {
       // Do nothing..
