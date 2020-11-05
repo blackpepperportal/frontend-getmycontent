@@ -85,7 +85,10 @@ const HomePageSuggesstion = (props) => {
                                 <div className="photo">
                                   <div className="swiper-slide">
                                     <div className="b-friend">
-                                      <Link to="user-profile.php" className="">
+                                      <Link
+                                        to={`/model-profile/${user.user_unique_id}`}
+                                        className=""
+                                      >
                                         <div className="b-friend__cover-wrapper">
                                           <Image
                                             src={user.cover}
