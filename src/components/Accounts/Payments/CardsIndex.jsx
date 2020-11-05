@@ -3,8 +3,16 @@ import { connect } from "react-redux";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import AddCardModal from "../../helper/AddCardModal";
 import "./CardsIndex.css";
-import { fetchCardDetailsStart } from "../../../store/actions/CardsAction";
+import {
+  fetchCardDetailsStart,
+  selectDefaultCardStart,
+} from "../../../store/actions/CardsAction";
 import { Link } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentAddCardModal from "../../helper/PaymentAddCardModal";
+
+const stripePromise = loadStripe("pk_test_uDYrTXzzAuGRwDYtu7dkhaF3");
 
 const CardsIndex = (props) => {
   useEffect(() => {
@@ -15,6 +23,12 @@ const CardsIndex = (props) => {
 
   const closeAddCardModal = () => {
     setAddCard(false);
+  };
+
+  const [paymentAddCard, setPaymentAddCard] = useState(false);
+
+  const closePaymentAddCardModal = () => {
+    setPaymentAddCard(false);
   };
 
   const { cards } = props;
@@ -40,7 +54,16 @@ const CardsIndex = (props) => {
                               default card
                             </p>
                           ) : (
-                            <Link className="card-link-text text-info">
+                            <Link
+                              className="card-link-text text-info"
+                              onClick={() =>
+                                props.dispatch(
+                                  selectDefaultCardStart({
+                                    user_card_id: card.id,
+                                  })
+                                )
+                              }
+                            >
                               Mark as Default
                             </Link>
                           )}
@@ -57,7 +80,10 @@ const CardsIndex = (props) => {
           </Row>
           <Row>
             <Col sm={12} md={6} xl={4}>
-              <div className="card-list-box" onClick={() => setAddCard(true)}>
+              <div
+                className="card-list-box"
+                onClick={() => setPaymentAddCard(true)}
+              >
                 <div className="add-account-sec">
                   <Image
                     src="/assets/images/icons/add-card.svg"
@@ -70,7 +96,13 @@ const CardsIndex = (props) => {
           </Row>
         </Container>
       </div>
-      <AddCardModal addCard={addCard} closeAddCardModal={closeAddCardModal} />
+      {/* <AddCardModal addCard={addCard} closeAddCardModal={closeAddCardModal} /> */}
+      <Elements stripe={stripePromise}>
+        <PaymentAddCardModal
+          paymentAddCard={paymentAddCard}
+          closePaymentAddCardModal={closePaymentAddCardModal}
+        />
+      </Elements>
     </>
   );
 };

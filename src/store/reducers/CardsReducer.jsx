@@ -25,6 +25,7 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    inputData: {},
   },
   buttonDisable: false,
   loadingButtonContent: null,
@@ -90,9 +91,10 @@ const CardsReducer = (state = initialState, action) => {
       return {
         ...state,
         selectDefaultCard: {
-          data: action.data,
+          inputData: action.data,
           loading: true,
           error: false,
+          data: {},
         },
       };
     case SELECT_DEFAULT_CARD_SUCCESS:
@@ -102,6 +104,7 @@ const CardsReducer = (state = initialState, action) => {
           data: action.data,
           loading: false,
           error: false,
+          inputData: {},
         },
       };
     case SELECT_DEFAULT_CARD_FAILURE:
@@ -111,6 +114,7 @@ const CardsReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          inputData: {},
         },
       };
     default:
