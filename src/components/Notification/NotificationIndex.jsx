@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NotificationAllSec from "./NotificationAllSec";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import { fetchNotificationsStart } from "../../store/actions/NotificationAction";
+import { connect } from "react-redux";
 
-const NotificationIndex = () => {
+const NotificationIndex = (props) => {
   const [activeSec, setActiveSec] = useState("notify-all-sec");
+
+  useEffect(() => {
+    props.dispatch(fetchNotificationsStart());
+  }, []);
 
   return (
     <>
@@ -46,4 +52,12 @@ const NotificationIndex = () => {
   );
 };
 
-export default NotificationIndex;
+const mapStateToPros = (state) => ({
+  notification: state.notification.notification,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(NotificationIndex);
