@@ -18,7 +18,7 @@ import {
   deletePostFailure,
   deletePostSuccess,
   fetchPostsFailure,
-  fetchPostsStart,
+  fetchPostsSuccess,
   fetchSinglePostFailure,
   fetchSinglePostSuccess,
   savePostFailure,
@@ -53,7 +53,7 @@ function* fetchPostsAPI() {
   try {
     const response = yield api.postMethod("posts_for_owner");
     if (response.data.success) {
-      yield put(fetchPostsStart(response.data.data));
+      yield put(fetchPostsSuccess(response.data.data));
     } else {
       yield put(fetchPostsFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

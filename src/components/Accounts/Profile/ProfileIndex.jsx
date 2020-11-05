@@ -128,8 +128,8 @@ const ProfileIndex = (props) => {
               )}
               {props.posts.loading
                 ? "Loading..."
-                : props.posts.data.length > 0
-                ? props.posts.data.map((post) => (
+                : props.posts.data.posts.length > 0
+                ? props.posts.data.posts.map((post) => (
                     <PostDisplayCard post={post} />
                   ))
                 : "No data found"}
