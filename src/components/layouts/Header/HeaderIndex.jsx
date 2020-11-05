@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {Container, Image, Media, Button} from "react-bootstrap";
+import { Container, Image, Media, Button } from "react-bootstrap";
 // import configuration from "react-global-configuration";
 // import SideBarIndex from "../SideBar/SideBarIndex";
 
@@ -203,7 +203,7 @@ const HeaderIndex = (props) => {
                 <hr className="sidebar-menu-divider" />
 
                 <Link
-                  to={"/card-list"}
+                  to={"/cards"}
                   className="sidebar-menus-item"
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
@@ -212,7 +212,7 @@ const HeaderIndex = (props) => {
                     src={
                       window.location.origin + "/assets/images/icons/card.svg"
                     }
-                    alt="fansclub"
+                    alt="Your Cards"
                   />{" "}
                   Your Cards
                 </Link>

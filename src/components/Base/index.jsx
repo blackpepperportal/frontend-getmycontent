@@ -27,7 +27,7 @@ import CreatePostIndex from "../Post/CreatePost/CreatePostIndex";
 import FavoritesIndex from "../Accounts/Favorites/FavoritesIndex";
 import PaymentsIndex from "../Accounts/Payments/PaymentsIndex";
 import BankingIndex from "../Accounts/Payments/BankingIndex";
-import CardListIndex from "../Accounts/Payments/CardListIndex";
+import CardsIndex from "../Accounts/Payments/CardsIndex";
 import AddBankIndex from "../Accounts/Payments/AddBankIndex";
 import Logout from "../Accounts/Logout";
 import Wallet from "../Wallet/Wallet";
@@ -231,8 +231,8 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/card-list"}
-            component={CardListIndex}
+            path={"/cards"}
+            component={CardsIndex}
             layout={MainLayout}
           />
 

@@ -34,10 +34,6 @@ function* fetchHomePostAPI() {
     const response = yield api.postMethod("home");
     if (response.data.success) {
       yield put(fetchHomePostsSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchHomePostsFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -102,10 +98,6 @@ function* fetchPostSuggesstionAPI() {
     const response = yield api.postMethod("user_suggestions", inputData);
     if (response.data.success) {
       yield put(fetchPostSuggesstionSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchPostSuggesstionFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

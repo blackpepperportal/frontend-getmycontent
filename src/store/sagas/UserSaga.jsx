@@ -106,7 +106,15 @@ function* userLoginAPI() {
       else {
         localStorage.setItem("userLoginStatus", true);
         localStorage.setItem("user_picture", response.data.data.picture);
-        localStorage.setItem("username", response.data.data.first_name);
+        localStorage.setItem("username", response.data.data.username);
+        localStorage.setItem(
+          "user_unique_id",
+          response.data.data.user_unique_id
+        );
+        localStorage.setItem(
+          "is_document_verified",
+          response.data.data.is_document_verified
+        );
         const notificationMessage = getSuccessNotificationMessage(
           response.data.message
         );

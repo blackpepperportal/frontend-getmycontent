@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import AddCardModal from "../../helper/AddCardModal";
-import "./CardListIndex.css";
+import "./CardsIndex.css";
 import { fetchCardDetailsStart } from "../../../store/actions/CardsAction";
+import { Link } from "react-router-dom";
 
-const CardListIndex = (props) => {
+const CardsIndex = (props) => {
   useEffect(() => {
-    console.log("asdfsfdsfs");
     props.dispatch(fetchCardDetailsStart());
   }, []);
 
@@ -23,7 +23,7 @@ const CardListIndex = (props) => {
     <>
       <div className="card-list-sec">
         <Container>
-          <h4 className="head-title">Card List</h4>
+          <h4 className="head-title">Your Cards</h4>
           <Row>
             {cards.loading
               ? "Loading..."
@@ -31,13 +31,19 @@ const CardListIndex = (props) => {
               ? cards.data.cards.map((card) => (
                   <Col sm={12} md={6} xl={4}>
                     <div className="card-list-box">
-                      <h5 className="mb-4">XXXX XXXX XXXX 4242</h5>
-                      <h5 className="text-muted">Visa</h5>
+                      <h5 className="mb-4">XXXX XXXX XXXX {card.last_four}</h5>
+                      <h5 className="text-muted">{card.card_type}</h5>
                       <div className="payment-bottom">
                         <div className="action-btn">
-                          <p className="card-link-text text-success">
-                            default card
-                          </p>
+                          {card.is_default == 1 ? (
+                            <p className="card-link-text text-success">
+                              default card
+                            </p>
+                          ) : (
+                            <Link className="card-link-text text-info">
+                              Mark as Default
+                            </Link>
+                          )}
                         </div>
                         <Image
                           src="/assets/images/icons/credit-card.svg"
@@ -48,39 +54,6 @@ const CardListIndex = (props) => {
                   </Col>
                 ))
               : "No data found"}
-
-            <Col sm={12} md={6} xl={4}>
-              <div className="card-list-box">
-                <h5 className="mb-4">XXXX XXXX XXXX 4242</h5>
-                <h5 className="text-muted">Visa</h5>
-                <div className="payment-bottom">
-                  <div className="action-btn">
-                    <p className="card-link-text text-success">Default card</p>
-                    <p className="card-link-text text-danger">Remove card</p>
-                  </div>
-                  <Image
-                    src="/assets/images/icons/credit-card.svg"
-                    className="credit-img"
-                  />
-                </div>
-              </div>
-            </Col>
-            <Col sm={12} md={6} xl={4}>
-              <div className="card-list-box">
-                <h5 className="mb-4">XXXX XXXX XXXX 4242</h5>
-                <h5 className="text-muted">Visa</h5>
-                <div className="payment-bottom">
-                  <div className="action-btn">
-                    <p className="card-link-text text-success">Default card</p>
-                    <p className="card-link-text text-danger">Remove card</p>
-                  </div>
-                  <Image
-                    src="/assets/images/icons/credit-card.svg"
-                    className="credit-img"
-                  />
-                </div>
-              </div>
-            </Col>
           </Row>
           <Row>
             <Col sm={12} md={6} xl={4}>
@@ -110,4 +83,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(CardListIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(CardsIndex);
