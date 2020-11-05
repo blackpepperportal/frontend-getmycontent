@@ -39,7 +39,7 @@ const CancelWithdrawModal = (props) => {
                 <input
                   className="floating-input"
                   type="text"
-                  placeholder=""
+                  placeholder="Cancel reason"
                   value={cancelWithdrawInputData.cancel_reason}
                   name="cancel_reason"
                   onChange={(event) =>
@@ -50,7 +50,7 @@ const CancelWithdrawModal = (props) => {
                   }
                 />
                 <span className="highlight"></span>
-                <label>Message</label>
+                <label className="default-label">Message</label>
               </div>
             </div>
           </Modal.Body>

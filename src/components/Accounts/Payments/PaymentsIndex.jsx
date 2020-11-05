@@ -161,13 +161,15 @@ const PaymentsIndex = (props) => {
           </Col>
           <Col sm={12} md={12} xl={8} lg={8}>
             <div className="payment-tabs-card">
+              <div className="flex-content">
               <h2>Statements</h2>
               <Button
-                className="pull-right"
+                className="send-withdraw-btn"
                 onClick={() => setWithdrawModal(true)}
               >
                 Send Withdraw
               </Button>
+              </div>
               <Tabs defaultActiveKey="earnings" id="uncontrolled-tab-example">
                 <Tab eventKey="earnings" title="Earnings">
                   <div className="payment-tabs-content">
@@ -239,6 +241,7 @@ const PaymentsIndex = (props) => {
                                     onClick={(event) =>
                                       showCancelWithdrawModel(event, data)
                                     }
+                                    className="cancel-btn"
                                   >
                                     Cancel
                                   </Button>

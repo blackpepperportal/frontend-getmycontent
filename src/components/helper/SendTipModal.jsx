@@ -25,7 +25,7 @@ const SendTipModal = (props) => {
   return (
     <>
       <Modal
-        className="modal-dialog-center"
+        className="modal-dialog-center sent-tip-modal"
         size="md"
         centered
         show={props.sendTip}
@@ -61,14 +61,13 @@ const SendTipModal = (props) => {
                 <input
                   className="floating-input"
                   type="text"
-                  placeholder="Amount"
                   value={amount}
                   onChange={(event) => setAmount(event.currentTarget.value)}
                 />
                 <span className="highlight"></span>
-                <label>Tip amount</label>
+                <label className="default-label">Tip amount</label>
               </div>
-              <div className="floating-label">
+              {/* <div className="floating-label">
                 <input
                   className="floating-input"
                   type="radio"
@@ -89,12 +88,42 @@ const SendTipModal = (props) => {
                   onChange={() => setPaymentType("card")}
                 />
                 <label>Payment Type</label>
-              </div>
+              </div> */}
+
+              <Form className="mt-4">
+                {['radio'].map((type) => (
+                  <div key={`custom-inline-${type}`} className="mb-3">
+                    <Form.Check
+                      custom
+                      inline
+                      label="Wallet"
+                      type={type}
+                      // id={`custom-inline-${type}-1`}
+                      id="wallet"
+                      value="wallet"
+                      name="payment_type"
+                      defaultChecked={true}
+                      onChange={() => setPaymentType("wallet")}
+                    />
+                    <Form.Check
+                      custom
+                      inline
+                      label="Card"
+                      type={type}
+                      // id={`custom-inline-${type}-2`}
+                      id="card"
+                      value="card"
+                      name="payment_type"
+                      onChange={() => setPaymentType("card")}
+                    />
+                  </div>
+                ))}
+              </Form>
 
               <div className="floating-label">
-                <input className="floating-input" type="text" placeholder=" " />
+                <input className="floating-input" type="text" placeholder="Message (optional) " />
                 <span className="highlight"></span>
-                <label>Message (optional)</label>
+                <label className="default-label">Message (optional)</label>
               </div>
             </div>
           </Modal.Body>

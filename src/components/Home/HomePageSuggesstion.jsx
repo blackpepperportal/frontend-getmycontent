@@ -103,6 +103,7 @@ const HomePageSuggesstion = (props) => {
                                               <Image
                                                 src={user.picture}
                                                 alt="Yoga with Taz"
+                                                className="suggest-img"
                                               />
                                             </span>
                                           </div>

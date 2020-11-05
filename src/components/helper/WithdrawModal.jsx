@@ -20,7 +20,7 @@ const WithdrawModel = (props) => {
   return (
     <>
       <Modal
-        className="modal-dialog-center"
+        className="modal-dialog-center withdraw-modal"
         size="md"
         centered
         show={props.withdrawModal}
@@ -46,32 +46,55 @@ const WithdrawModel = (props) => {
                   }
                 />
                 <span className="highlight"></span>
-                <label>Tip amount</label>
+                <label className="default-label">Tip amount</label>
               </div>
               <div className="floating-label">
+              <label className="label-default-1">Choose Bank account</label>
                 {props.bankAccount.loading
                   ? "Loading..."
                   : props.bankAccount.data.billing_accounts.length > 0
                   ? props.bankAccount.data.billing_accounts.map((account) => (
-                      <input
-                        className="floating-input"
-                        type="radio"
-                        label="walet"
-                        id={account.user_billing_account_id}
-                        value={account.user_billing_account_id}
-                        name="user_billing_account_id"
-                        onChange={(event) =>
-                          setInputData({
-                            ...inputData,
-                            user_billing_account_id:
-                              account.user_billing_account_id,
-                          })
-                        }
-                      />
+                      // <input
+                      //   className="floating-input"
+                      //   type="radio"
+                      //   label="walet"
+                      //   id={account.user_billing_account_id}
+                      //   value={account.user_billing_account_id}
+                      //   name="user_billing_account_id"
+                      //   onChange={(event) =>
+                      //     setInputData({
+                      //       ...inputData,
+                      //       user_billing_account_id:
+                      //         account.user_billing_account_id,
+                      //     })
+                      //   }
+                      // />
+
+                      <Form>
+                        {['radio'].map((type) => (
+                          <div key={`custom-inline-${type}`} className="mb-3">
+                            <Form.Check
+                              custom
+                              inline
+                              label="Wallet"
+                              type={type}
+                              id={account.user_billing_account_id}
+                                value={account.user_billing_account_id}
+                                name="user_billing_account_id"
+                                onChange={(event) =>
+                                  setInputData({
+                                    ...inputData,
+                                    user_billing_account_id:
+                                      account.user_billing_account_id,
+                                  })
+                                }
+                            />
+                          </div>
+                        ))}
+                      </Form>
+
                     ))
                   : "No data found"}
-
-                <label>Choose Bank account</label>
               </div>
             </div>
           </Modal.Body>

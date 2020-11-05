@@ -226,3 +226,26 @@
 .payment-tabs-card .payment-tabs-content p{
     margin-bottom: 0;
 }
+
+.payment-sec .send-withdraw-btn{
+    overflow: visible;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    background: #0091ea;
+    /* min-width: 78px; */
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding:5px 20px;
+    border: 1px solid rgba(138, 150, 163, 0.25) !important;
+    color: #ffffff;
+    border-radius: 1000px;
+}
+
+.payment-sec .send-withdraw-btn:hover,
+.payment-sec .send-withdraw-btn:focus,
+.payment-sec .send-withdraw-btn:active{
+    background: #0091ea!important;
+    color: #ffffff!important;
+}

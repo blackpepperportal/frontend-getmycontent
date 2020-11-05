@@ -36,8 +36,8 @@ const CreatePostIndex = (props) => {
   return (
     <div className="notification-page create-post" id="tabs">
       <Container>
-        <Row>
           <Form onSubmit={handleSubmit}>
+          <Row>
             <Col sm={12} md={12}>
               <div className="post-create-header">
                 <div className="pull-left">
@@ -107,8 +107,8 @@ const CreatePostIndex = (props) => {
                 </Button>
               </div>
             </Col>
+            </Row>
           </Form>
-        </Row>
       </Container>
     </div>
   );
