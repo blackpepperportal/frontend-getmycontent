@@ -257,7 +257,6 @@ class App extends Component {
             layout={MainLayout}
           />
 
-
           <PrivateRoute
             authentication={this.state.authentication}
             path={"/logout"}

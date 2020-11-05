@@ -1,101 +1,149 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Container, Row, Col, Image,FormGroup } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Image,
+  FormGroup,
+} from "react-bootstrap";
 import "./DocumentUploadIndex.css";
+import { connect } from "react-redux";
+import {
+  addKycDocumentStart,
+  getKycDocumentStart,
+} from "../../store/actions/KycDocumentAction";
 
 const DocumentUploadIndex = (props) => {
+  useEffect(() => {
+    props.dispatch(getKycDocumentStart());
+  }, []);
 
-    return (
-        <>
-            <div className="document-upload-sec">
-                <Container>
-                    <h4 class="head-title">Document Upload</h4>
-                    <div className="document-card">
-                        <Row>
-                            <Col sm={12} md={12}>
-                                <div className="sub-heading">
-                                    <h4>ID Proof</h4>
-                                    <p>This could be your Passport or National ID</p>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12} md={6} xl={6} className="resp-mrg-btn-xs">
-                                <div className="document-upload-box">
-                                    <Image
-                                        src="/assets/images/icons/upload-id.svg"
-                                        className="doc-upload-img"
-                                    />
-                                </div>
-                            </Col>
-                            <Col sm={12} md={6} xl={6}>
-                                <FormGroup>
-                                    <Form.File type="file" id="file" />
-                                    <Form.Label for="file" className="document-upload-box-1">
-                                        <Image
-                                            src="/assets/images/document-upload.svg"
-                                            className="doc-upload-img-1"
-                                        />
-                                    </Form.Label>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12} md={12}>
-                                <Button
-                                    className="receive-btn-blue"
-                                >
-                                    Submit
-                            </Button>
-                            </Col>
-                        </Row>
-                    </div>
-                    <div className="space-mg"></div>
-                    <div className="document-card">
-                        <Row>
-                            <Col sm={12} md={12}>
-                                <div className="sub-heading">
-                                    <h4>Selfie with your ID Proof</h4>
-                                    <p>Take a selfie with the ID proof Document you used just now</p>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12} md={6} xl={6} className="resp-mrg-btn-xs">
-                                <div className="document-upload-box">
-                                    <Image
-                                        src="/assets/images/icons/upload-face-id.svg"
-                                        className="doc-upload-img"
-                                    />
-                                </div>
-                            </Col>
-                            <Col sm={12} md={6} xl={6}>
-                                <FormGroup>
-                                    <Form.File type="file" id="file-1" />
-                                    <Form.Label for="file-1" className="document-upload-box-1">
-                                        <Image
-                                            src="/assets/images/document-upload.svg"
-                                            className="doc-upload-img-1"
-                                        />
-                                    </Form.Label>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12} md={12}>
-                                <Button
-                                    className="receive-btn-blue"
-                                >
-                                    Submit
-                            </Button>
-                            </Col>
-                        </Row>
-                    </div>
-                    <div className="space-mg"></div>
-                </Container>
-            </div>
-        </>
-    );
+  const [inputData, setInputData] = useState({});
+
+  const [image, setImage] = useState({});
+
+  const [uploadDocumentID, setUploadDocumentID] = useState(null);
+
+  const handleChangeImage = (event, doc) => {
+    if (event.currentTarget.type === "file") {
+      setInputData({
+        ...inputData,
+        document_file: event.currentTarget.files[0],
+        document_id: doc.document_id,
+      });
+      let reader = new FileReader();
+      let file = event.currentTarget.files[0];
+
+      reader.onloadend = () => {
+        setImage({ ...image, [doc.document_id]: reader.result });
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  };
+
+  const handleSubmit = (event, doc) => {
+    event.preventDefault();
+    setUploadDocumentID(doc.document_id);
+    props.dispatch(addKycDocumentStart(inputData));
+  };
+
+  return (
+    <>
+      <div className="document-upload-sec">
+        <Container>
+          <h4 class="head-title">Document Upload</h4>
+          {props.kycDocDetails.loading
+            ? "Loading..."
+            : props.kycDocDetails.data.documents.length > 0
+            ? props.kycDocDetails.data.documents.map((doc) => (
+                <>
+                  <div className="document-card">
+                    <Row>
+                      <Col sm={12} md={12}>
+                        <div className="sub-heading">
+                          <h4>{doc.name}</h4>
+                          <p>{doc.description}</p>
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col sm={12} md={6} xl={6} className="resp-mrg-btn-xs">
+                        <div className="document-upload-box">
+                          <Image src={doc.picture} className="doc-upload-img" />
+                        </div>
+                      </Col>
+                      <Col sm={12} md={6} xl={6}>
+                        <FormGroup>
+                          <Form.File
+                            type="file"
+                            id={doc.document_id}
+                            name={doc.document_id}
+                            onChange={(event) => handleChangeImage(event, doc)}
+                          />
+
+                          <Form.Label
+                            htmlFor={doc.document_id}
+                            className="document-upload-box-1"
+                          >
+                            <Image
+                              src={
+                                image[doc.document_id] !== undefined
+                                  ? image[doc.document_id]
+                                  : doc.user_document.document_file !==
+                                    undefined
+                                  ? doc.user_document.document_file
+                                  : window.location.origin +
+                                    "/assets/images/document-upload.svg"
+                              }
+                              className="doc-upload-img-1"
+                            />
+                            <br></br>
+                            {doc.user_document.document_file !== undefined
+                              ? "Click here to reupload"
+                              : null}
+                          </Form.Label>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col sm={12} md={12}>
+                        <Button
+                          className="receive-btn-blue"
+                          onClick={(event) => handleSubmit(event, doc)}
+                          disabled={
+                            uploadDocumentID === doc.document_id ? true : false
+                          }
+                        >
+                          {uploadDocumentID === doc.document_id
+                            ? props.addKycDocInput.loadingButtonContent
+                            : "Submit"}
+                        </Button>
+                      </Col>
+                    </Row>
+                  </div>
+                  <div className="space-mg"></div>
+                </>
+              ))
+            : "No data found"}
+        </Container>
+      </div>
+    </>
+  );
 };
 
-export default DocumentUploadIndex;
+const mapStateToPros = (state) => ({
+  kycDocDetails: state.kycDocument.kycDocDetails,
+  addKycDocInput: state.kycDocument.addKycDocInput,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(DocumentUploadIndex);
