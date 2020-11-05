@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SendTipModal from "../helper/SendTipModal";
 import { Link } from "react-router-dom";
-import { Form, Button, Dropdown, Image, Media } from "react-bootstrap";
+import { Form} from "react-bootstrap";
 
 const ModelProfileArchivedSec = (props) => {
   const [sendTip, setSendTip] = useState(false);

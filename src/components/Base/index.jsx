@@ -32,6 +32,7 @@ import AddBankIndex from "../Accounts/Payments/AddBankIndex";
 import Logout from "../Accounts/Logout";
 import Wallet from "../Wallet/Wallet";
 import BillingAccountIndex from "../Accounts/Payments/BillingAccountIndex";
+import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
 
 const history = createHistory();
 const $ = window.$;
@@ -248,6 +249,14 @@ class App extends Component {
             component={Wallet}
             layout={MainLayout}
           />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/document-upload"}
+            component={DocumentUploadIndex}
+            layout={MainLayout}
+          />
+
 
           <PrivateRoute
             authentication={this.state.authentication}

@@ -1,0 +1,98 @@
+.document-upload-sec{
+    margin-top: 85px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.document-upload-sec .document-upload-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.document-upload-sec .document-upload-box-1 {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+    border: 5px dashed rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.document-upload-sec .sub-heading h4 {
+    color: #808080;
+    font-size: 1.5em;
+    font-weight: 500;
+    letter-spacing: 0.004em;
+}
+
+.document-upload-sec .sub-heading p {
+    color: #c4c4c4;
+    font-size: 1.2em;
+    font-weight: 400;
+    letter-spacing: 0.004em;
+}
+
+.doc-upload-img{
+    width: 15em;
+    height: 15em;
+    object-fit: contain;
+}
+
+.receive-btn-blue {
+    border: none!important;
+    padding: 8px 30px!important;
+    font-size: 13px!important;
+    color: #ffffff!important;
+    font-weight: 500!important;
+    background: #0091ea!important;
+    border-radius: 1000px!important;
+    -webkit-transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
+    transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
+    transition: opacity .15s ease,background-color .15s ease,box-shadow .15s ease;
+    transition: opacity .15s ease,background-color .15s ease,box-shadow .15s ease,-webkit-box-shadow .15s ease;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    margin-top: 2em;
+}
+
+.receive-btn-blue:hover{
+    background: #0091ea!important; 
+    color: #ffffff!important;
+}
+
+.document-upload-sec .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.document-upload-sec .upload-btn-wrapper input[type=file] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.doc-upload-img-1{
+    max-width: 25em;
+}
+
+.document-upload-sec .form-file{
+    margin-bottom: 0;
+}
+
+.space-mg{
+    height: 4em;
+}
