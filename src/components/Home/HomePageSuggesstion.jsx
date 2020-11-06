@@ -27,7 +27,7 @@ const HomePageSuggesstion = (props) => {
         </Col>
         <Col sm={12} xl={7} xs={12} md={6} className="mrg-btm-xs">
           <div className="controls pull-right ">
-            <Link to="#">
+            {/* <Link to="#">
               <Image
                 src="assets/images/icons/price-tag.svg"
                 className="svg-clone"
@@ -38,7 +38,7 @@ const HomePageSuggesstion = (props) => {
                 src="assets/images/icons/refresh.svg"
                 className="svg-clone"
               />
-            </Link>
+            </Link> */}
 
             <Link
               className="left"
@@ -92,7 +92,7 @@ const HomePageSuggesstion = (props) => {
                                         <div className="b-friend__cover-wrapper">
                                           <Image
                                             src={user.cover}
-                                            alt="Yoga with Taz"
+                                            alt={user.username}
                                             className="b-friend__cover"
                                           />
                                         </div>
@@ -102,7 +102,7 @@ const HomePageSuggesstion = (props) => {
                                             <span className="g-avatar online_status_class m-w150 m-border-line">
                                               <Image
                                                 src={user.picture}
-                                                alt="Yoga with Taz"
+                                                alt={user.username}
                                                 className="suggest-img"
                                               />
                                             </span>
@@ -110,8 +110,7 @@ const HomePageSuggesstion = (props) => {
                                           <div className="b-username-row">
                                             <div className="b-username m-like-link">
                                               <div className="g-user-name m-lg-size m-verified">
-                                                {user.first_name}{" "}
-                                                {user.last_name}
+                                                {user.name}
                                               </div>
                                             </div>
                                           </div>
