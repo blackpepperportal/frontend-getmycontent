@@ -9,7 +9,7 @@ import {
   editUserDetails,
   updateUserDetailsStart,
 } from "../../../store/actions/UserAction";
-import {Container, Row, Col} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 const EditProfile = () => {
   const [activeSec, setActiveSec] = useState("profile-card");

@@ -44,9 +44,9 @@ const ListIndex = (props) => {
 
               <div className="user-lists-heading">
                 <div className="pull-left">
-                  <h3>CUSTOM ORDER</h3>
+                  <h3 className="mb-3 mt-3">CUSTOM ORDER</h3>
                 </div>
-                <div className="pull-right">
+                <div className="pull-right hidden">
                   <Dropdown>
                     <Dropdown.Toggle
                       className="btn btn-default dropdown-toggle bookmarks-filter"
@@ -61,7 +61,11 @@ const ListIndex = (props) => {
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right model-filter-dropdown">
                       <Form action="#">
                         <Media as="li">
-                          <Link to="#" role="heading" className="dropdown-header">
+                          <Link
+                            to="#"
+                            role="heading"
+                            className="dropdown-header"
+                          >
                             Subscription
                           </Link>
                         </Media>
@@ -99,7 +103,11 @@ const ListIndex = (props) => {
                       <Media as="li" className="divider"></Media>
                       <Form action="#">
                         <Media as="li">
-                          <Link to="#" role="heading" className="dropdown-header">
+                          <Link
+                            to="#"
+                            role="heading"
+                            className="dropdown-header"
+                          >
                             Online Status
                           </Link>
                         </Media>

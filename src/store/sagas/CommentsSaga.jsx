@@ -25,10 +25,6 @@ function* fetchCommentsAPI() {
     const response = yield api.postMethod("post_comments", inputData);
     if (response.data.success) {
       yield put(fetchCommentsSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchCommentsFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

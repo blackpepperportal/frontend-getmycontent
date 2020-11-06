@@ -62,7 +62,7 @@ const PostDisplayCard = (props) => {
             />
 
             <div className="user-name">
-              <span className="post-user-name">{post.name}</span>
+              <span className="post-user-name">{post.user_displayname}</span>
               <span className="post-user-">@{post.username}</span>
             </div>
           </Link>
@@ -70,7 +70,7 @@ const PostDisplayCard = (props) => {
         <div className="alignright">
           <div className="post-header-right-side">
             <span className="post-time flex-content">
-              <span className="post-time">3 hours ago </span>
+              <span className="post-time">{post.publish_time_formatted}</span>
               <Dropdown>
                 <Dropdown.Toggle
                   className="btn btn-default dropdown-toggle"
@@ -136,10 +136,20 @@ const PostDisplayCard = (props) => {
       <div className="post-icons">
         <div className="alignleft">
           <Link to="#" onClick={handleLike}>
-            <Image
-              src={window.location.origin + "/assets/images/icons/heart.svg"}
-              className="svg-clone"
-            />
+            {post.is_user_liked == 1 ? (
+              <Image
+                src={
+                  window.location.origin +
+                  "/assets/images/icons/heart-active.svg"
+                }
+                className="svg-clone"
+              />
+            ) : (
+              <Image
+                src={window.location.origin + "/assets/images/icons/heart.svg"}
+                className="svg-clone"
+              />
+            )}
           </Link>
           <Link
             to="#"
@@ -166,26 +176,38 @@ const PostDisplayCard = (props) => {
         </div>
         <div className="alignright">
           <Link to="#" onClick={(event) => handleBookmark(event, post)}>
-            <Image
-              src={window.location.origin + "/assets/images/icons/bookmark.svg"}
-              className="svg-clone"
-            />
+            {post.is_user_bookmarked == 1 ? (
+              <Image
+                src={
+                  window.location.origin +
+                  "/assets/images/icons/bookmark-active.svg"
+                }
+                className="svg-clone"
+              />
+            ) : (
+              <Image
+                src={
+                  window.location.origin + "/assets/images/icons/bookmark.svg"
+                }
+                className="svg-clone"
+              />
+            )}
           </Link>
         </div>
       </div>
 
       <div className="likes alignleft">
-        <p>78 Likes</p>
+        <p>{post.total_likes} Likes</p>
         {isVisible && commentInputData.post_id === post.post_id ? (
           <Link className="Show view-comments" onClick={closeCommentSection}>
             Close Comments
           </Link>
         ) : (
           <Link
-            className="Show view-comments"
+            className="Show view-comments text-muted"
             onClick={(event) => showCommentSection(event, post.post_id)}
           >
-            View comments
+            View Comments
           </Link>
         )}
         {isVisible && commentInputData.post_id === post.post_id ? (
@@ -213,7 +235,7 @@ const PostDisplayCard = (props) => {
                     </div>
                   </div>
                 ))
-              : "No Data found"}
+              : ""}
 
             <div className="comment-box">
               <div className="comment-box-form">
@@ -225,10 +247,7 @@ const PostDisplayCard = (props) => {
                   <div className="user-picture">
                     <Link className="title-container" to="#">
                       <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/avatar/user-3.jpg"
-                        }
+                        src={localStorage.getItem("user_picture")}
                         className="user-image img-responsive"
                       />
                     </Link>

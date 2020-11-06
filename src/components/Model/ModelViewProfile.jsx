@@ -75,7 +75,7 @@ const ModelViewProfile = (props) => {
                   <div className="profile-cover">
                     <Image
                       src={userDetails.data.user.cover}
-                      alt="Snow"
+                      alt={userDetails.data.user.name}
                       style={{ width: "100%" }}
                     />
                   </div>
@@ -90,10 +90,10 @@ const ModelViewProfile = (props) => {
                       />
                     </Button>
                     <h1 className="chat-page-title">
-                      {userDetails.data.user.first_name}
+                      {userDetails.data.user.name}
                     </h1>
                     <span className="post-count">
-                      {userDetails.data.total_posts} Post
+                      {userDetails.data.user.total_posts} Post
                     </span>
                   </div>
                 </div>

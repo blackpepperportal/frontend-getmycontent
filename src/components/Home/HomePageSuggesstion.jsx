@@ -96,7 +96,9 @@ const HomePageSuggesstion = (props) => {
                                             className="b-friend__cover"
                                           />
                                         </div>
-                                        <div className="b-free-label">free</div>
+                                        <div className="b-free-label">
+                                          {user.user_account_type_formatted}
+                                        </div>
                                         <div className="b-friend__content">
                                           <div className="b-friend__avatar">
                                             <span className="g-avatar online_status_class m-w150 m-border-line">
@@ -128,7 +130,7 @@ const HomePageSuggesstion = (props) => {
                                 </div>
                               </div>
                             ))
-                          : "No data Found"}
+                          : ""}
                       </Carousel>
                     )}
                   </Col>

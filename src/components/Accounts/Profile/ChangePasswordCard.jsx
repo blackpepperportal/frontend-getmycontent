@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Button, Row, Col} from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 
 const ChangePasswordCard = (props) => {
   return (
@@ -40,7 +40,9 @@ const ChangePasswordCard = (props) => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label for="password_confirmation">Confirm Password</Form.Label>
+                <Form.Label for="password_confirmation">
+                  Confirm Password
+                </Form.Label>
                 <Form.Control
                   className="form-control"
                   id="password_confirmation"
@@ -54,8 +56,9 @@ const ChangePasswordCard = (props) => {
                   <Button
                     className="btn btn-auth btn-lg btn btn-primary"
                     type="submit"
-                  >Change Password
-                                </Button>
+                  >
+                    Change Password
+                  </Button>
                 </Col>
               </Row>
             </Form>

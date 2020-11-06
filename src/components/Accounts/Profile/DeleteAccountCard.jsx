@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Button, Row, Col} from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 
 const DeleteAccountCard = (props) => {
   return (
@@ -28,8 +28,8 @@ const DeleteAccountCard = (props) => {
                           <b>Hope, see you soon</b>
                         </h5>
                         <p>
-                          Note: Once you deleted account, you will lose your history and
-                          wishlist details
+                          Note: Once you deleted account, you will lose your
+                          history and wishlist details
                         </p>
                       </div>
                       <Form autoComplete="new-password">
@@ -48,8 +48,9 @@ const DeleteAccountCard = (props) => {
                             <Button
                               className="btn btn-auth btn-lg btn btn-primary"
                               type="submit"
-                            >Change Password
-                                </Button>
+                            >
+                              Delete Account
+                            </Button>
                           </Col>
                         </Row>
                       </Form>

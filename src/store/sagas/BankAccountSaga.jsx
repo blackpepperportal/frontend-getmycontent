@@ -39,7 +39,7 @@ function* addBankAccountAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/billing-account-list");
+      window.location.assign("/billing-accounts");
     } else {
       yield put(addBankAccountFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -119,7 +119,7 @@ function* deleteAccountBankAccountAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/billing-account-list");
+      window.location.assign("/billing-accounts");
     } else {
       yield put(deleteBankAccountFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

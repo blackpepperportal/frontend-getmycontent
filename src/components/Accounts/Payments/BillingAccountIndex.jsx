@@ -29,36 +29,12 @@ const BillingAccountIndex = (props) => {
             <Col sm={12} md={12}>
               <div className="wallet-header-sec">
                 <Row>
-                  <Col sm={12} md={6} xl={5}>
-                    <div className="wallet-header-card">
-                      <h5>Active Balance</h5>
-                      <div className="wallet-header-details">
-                        <Image
-                          src="/assets/images/icons/wallet-active.svg"
-                          className="credit-img"
-                        />
-                        <h3>
-                          54,689
-                          <span className="amount-decimal">.76500293</span>
-                          <span className="amount-abb">STRAT</span>
-                        </h3>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col sm={12} md={6} xl={4}>
-                    <div className="wallet-header-card">
-                      <h5>Current Balance</h5>
-                      <div className="wallet-header-details">
-                        <Image
-                          src="/assets/images/icons/wallet-dollar.svg"
-                          className="credit-img"
-                        />
-                        <h3>
-                          29<span className="amount-decimal">.76500293</span>
-                          <span className="amount-abb">BTC</span>
-                        </h3>
-                      </div>
-                    </div>
+                  <Col sm={12} md={12} xl={9}>
+                    <h3>Billing Accounts</h3>
+                    <p className="text-muted f-2">
+                      You earnings will be created based on the withdraw billing
+                      accounts. Please add proper information
+                    </p>
                   </Col>
                   <Col sm={12} md={12} xl={3}>
                     <div className="edit-save">
@@ -77,7 +53,6 @@ const BillingAccountIndex = (props) => {
         <Container>
           <Row>
             <Col sm={12} md={12}>
-              <h4>Billing Account List</h4>
               <div className="trans-table">
                 <Table borderedless responsive>
                   <tbody>
@@ -103,22 +78,21 @@ const BillingAccountIndex = (props) => {
                               ) : (
                                 <td> - </td>
                               )}
-                              {accounts.is_default === 0 ? (
-                                <Button
-                                  onClick={() =>
-                                    props.dispatch(
-                                      makeDefaultBankAccountStart({
-                                        user_billing_account_id:
-                                          accounts.user_billing_account_id,
-                                      })
-                                    )
-                                  }
-                                >
-                                  Make Default
-                                </Button>
-                              ) : null}
                               <td>
-                                {" "}
+                                {accounts.is_default === 0 ? (
+                                  <Button
+                                    onClick={() =>
+                                      props.dispatch(
+                                        makeDefaultBankAccountStart({
+                                          user_billing_account_id:
+                                            accounts.user_billing_account_id,
+                                        })
+                                      )
+                                    }
+                                  >
+                                    Make Default
+                                  </Button>
+                                ) : null}{" "}
                                 <Button
                                   onClick={() =>
                                     props.dispatch(

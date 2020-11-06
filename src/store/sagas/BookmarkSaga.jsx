@@ -25,10 +25,6 @@ function* fetchBookmarkAPI() {
     const response = yield api.postMethod("post_bookmarks");
     if (response.data.success) {
       yield put(fetchBookmarksSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchBookmarksFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -72,7 +68,7 @@ function* saveBookmarkAPI() {
 function* deleteBookmarkAPI() {
   try {
     const inputData = yield select((state) => state.docs.delDocs.inputData);
-    const response = yield api.postMethod("documents_delete", inputData);
+    const response = yield api.postMethod("post_bookmarks_delete", inputData);
     if (response.data.success) {
       yield put(deleteBookmarkSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(

@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Form,
-  Button,
-  Container,
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 
 import { changePasswordStart } from "../../../store/actions/UserAction";
@@ -49,6 +43,7 @@ class ChangePasswordIndex extends Component {
                             className="form-control"
                             id="old_password"
                             type="password"
+                            required
                             placeholder="Enter your old password"
                             name="old_password"
                             value={inputData.old_password}
@@ -64,6 +59,7 @@ class ChangePasswordIndex extends Component {
                             type="password"
                             placeholder="Enter your new password"
                             name="password"
+                            required
                             value={inputData.password}
                             onChange={this.handleChange}
                             autoComplete="off"
@@ -79,6 +75,7 @@ class ChangePasswordIndex extends Component {
                             type="password"
                             placeholder="Confirm Password"
                             name="password_confirmation"
+                            required
                             value={inputData.password_confirmation}
                             onChange={this.handleChange}
                             autoComplete="off"
@@ -88,8 +85,9 @@ class ChangePasswordIndex extends Component {
                           <Col sm={12} xs={12} md={6} className="mx-auto">
                             <Button
                               className="btn btn-auth btn-lg btn btn-primary"
-                              type="submit"
+                              type="button"
                               disabled={this.props.changePassword.buttonDisable}
+                              onClick={this.handleSubmit}
                             >
                               {this.props.changePassword.loadingButtonContent !=
                               null

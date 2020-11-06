@@ -224,7 +224,7 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/billing-account-list"}
+            path={"/billing-accounts"}
             component={BillingAccountIndex}
             layout={MainLayout}
           />

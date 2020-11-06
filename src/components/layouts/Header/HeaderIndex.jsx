@@ -90,28 +90,40 @@ const HeaderIndex = (props) => {
                 <Link to="#" className="l-sidebar__avatar" data-name="Profile">
                   <span className="sidebar-hamburger-user-profile">
                     <Image
-                      src={
-                        window.location.origin + "/assets/images/avatar/b-1.jpg"
-                      }
+                      src={localStorage.getItem("user_picture")}
                       alt="fansclub"
                     />
                   </span>
                 </Link>
                 <div className="pull-left side-user-head">
                   <Link to={"/profile"}>
-                    <h3 className="g-user-name">John</h3>
-                    <span className="user-id">@johnpaul</span>
+                    <h3 className="g-user-name">
+                      {localStorage.getItem("name")}
+                    </h3>
+                    <span className="user-id">
+                      @{localStorage.getItem("username")}
+                    </span>
                   </Link>
 
                   <ul className="list-inline">
                     <Media as="li">
                       <Link to={"/following"}>
-                        <span className="fans-follow">0</span> Fans
+                        <span className="fans-follow">
+                          {localStorage.getItem("total_followers")
+                            ? localStorage.getItem("total_followers")
+                            : 0}
+                        </span>{" "}
+                        Fans
                       </Link>
                     </Media>
                     <Media as="li">
                       <Link to={"/fans"}>
-                        <span className="fans-follow">5</span> Following
+                        <span className="fans-follow">
+                          {localStorage.getItem("total_followings")
+                            ? localStorage.getItem("total_followings")
+                            : 0}
+                        </span>{" "}
+                        Following
                       </Link>
                     </Media>
                   </ul>
