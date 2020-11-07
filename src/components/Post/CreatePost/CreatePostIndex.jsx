@@ -7,7 +7,7 @@ import { savePostStart } from "../../../store/actions/PostAction";
 const CreatePostIndex = (props) => {
   const [inputData, setInputData] = useState({});
 
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState({});
 
   const handleChangeImage = (event) => {
     if (event.currentTarget.type === "file") {
@@ -28,7 +28,6 @@ const CreatePostIndex = (props) => {
   };
 
   const handleSubmit = (event) => {
-    console.log("asdfsdfs");
     event.preventDefault();
     props.dispatch(savePostStart(inputData));
   };
@@ -36,7 +35,7 @@ const CreatePostIndex = (props) => {
   return (
     <div className="notification-page create-post" id="tabs">
       <Container>
-          <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Row>
             <Col sm={12} md={12}>
               <div className="post-create-header">
@@ -55,7 +54,7 @@ const CreatePostIndex = (props) => {
                     className="post-btn"
                     onClick={handleSubmit}
                   >
-                    Postsdsdf
+                    POST
                   </Button>
                 </div>
               </div>
@@ -107,8 +106,8 @@ const CreatePostIndex = (props) => {
                 </Button>
               </div>
             </Col>
-            </Row>
-          </Form>
+          </Row>
+        </Form>
       </Container>
     </div>
   );
