@@ -23,7 +23,7 @@ const NotificationIndex = (props) => {
                   <div className="pull-left">
                     <Link
                       className="bookmarkes-list notify-title"
-                      href="bookmarks.php"
+                      to={`/`}
                     >
                       <Image
                         src="assets/images/icons/back.svg"
@@ -37,10 +37,13 @@ const NotificationIndex = (props) => {
               <div className="tabbable-panel">
                 <div className="tab" role="tabpanel">
                   <div className="tab-content tabs padding-top-md">
+                  {props.notification.loading ? "Loading..." :
                     <NotificationAllSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
-                    />
+                      notifications={props.notification.data.notifications}
+                      totalNotifications={props.notification.data.total}
+                    />}
                   </div>
                 </div>
               </div>

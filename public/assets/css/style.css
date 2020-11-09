@@ -7662,3 +7662,8 @@ input.authentication-input {
 .f-2 {
   font-size: 1.5em;
 }
+.notification-user-img {
+  width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
