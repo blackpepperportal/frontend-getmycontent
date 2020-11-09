@@ -4,8 +4,6 @@ import { Router, Switch, Route, Redirect } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import EditProfile from "../Accounts/Profile/EditProfile";
-import DeleteAccountIndex from "../Accounts/DeleteAccount/DeleteAccountIndex";
-import ChangePasswordIndex from "../Accounts/ChangePassword/ChangePasswordIndex";
 import ProfileIndex from "../Accounts/Profile/ProfileIndex";
 import NotFoundIndex from "../NotFound/NotFoundIndex";
 import { Helmet } from "react-helmet";
@@ -184,20 +182,6 @@ class App extends Component {
           <AppRoute
             path={"/notification"}
             component={NotificationIndex}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/delete-account"}
-            component={DeleteAccountIndex}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/change-password"}
-            component={ChangePasswordIndex}
             layout={MainLayout}
           />
 
