@@ -8,9 +8,12 @@ import {
   FETCH_SINGLE_SUBSCRIPTION_START,
   FETCH_SINGLE_SUBSCRIPTION_SUCCESS,
   FETCH_SINGLE_SUBSCRIPTION_FAILURE,
-  SUBSCRIPTION_PAYMENT_START,
-  SUBSCRIPTION_PAYMENT_SUCCESS,
-  SUBSCRIPTION_PAYMENT_FAILURE,
+  SUBSCRIPTION_PAYMENT_STRIPE_START,
+  SUBSCRIPTION_PAYMENT_STRIPE_SUCCESS,
+  SUBSCRIPTION_PAYMENT_STRIPE_FAILURE,
+  SUBSCRIPTION_PAYMENT_WALLET_START,
+  SUBSCRIPTION_PAYMENT_WALLET_SUCCESS,
+  SUBSCRIPTION_PAYMENT_WALLET_FAILURE,
   SUBSCRIPTION_AUTO_RENEWAL_START,
   SUBSCRIPTION_AUTO_RENEWAL_SUCCESS,
   SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
@@ -32,7 +35,15 @@ const initialState = {
     loading: true,
     error: false,
   },
-  subscriptionPayment: {
+  subPayStripe: {
+    inputData: {},
+    loading: true,
+    error: false,
+    success: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
+  },
+  subPayWallet: {
     inputData: {},
     loading: true,
     error: false,
@@ -136,10 +147,10 @@ const SubscriptionReducer = (state = initialState, action) => {
           error: action.error,
         },
       };
-    case SUBSCRIPTION_PAYMENT_START:
+    case SUBSCRIPTION_PAYMENT_STRIPE_START:
       return {
         ...state,
-        subscriptionPayment: {
+        subPayStripe: {
           inputData: action.data,
           loading: true,
           error: false,
@@ -148,10 +159,10 @@ const SubscriptionReducer = (state = initialState, action) => {
           loadingButtonContent: "Processing.. Please wait...",
         },
       };
-    case SUBSCRIPTION_PAYMENT_SUCCESS:
+    case SUBSCRIPTION_PAYMENT_STRIPE_SUCCESS:
       return {
         ...state,
-        subscriptionPayment: {
+        subPayStripe: {
           loading: false,
           error: false,
           success: action.data,
@@ -159,10 +170,44 @@ const SubscriptionReducer = (state = initialState, action) => {
           loadingButtonContent: null,
         },
       };
-    case SUBSCRIPTION_PAYMENT_FAILURE:
+    case SUBSCRIPTION_PAYMENT_STRIPE_FAILURE:
       return {
         ...state,
-        subscriptionPayment: {
+        subPayStripe: {
+          loading: true,
+          error: action.error,
+          success: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case SUBSCRIPTION_PAYMENT_WALLET_START:
+      return {
+        ...state,
+        subPayWallet: {
+          inputData: action.data,
+          loading: true,
+          error: false,
+          success: {},
+          buttonDisable: true,
+          loadingButtonContent: "Processing.. Please wait...",
+        },
+      };
+    case SUBSCRIPTION_PAYMENT_WALLET_SUCCESS:
+      return {
+        ...state,
+        subPayWallet: {
+          loading: false,
+          error: false,
+          success: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case SUBSCRIPTION_PAYMENT_WALLET_FAILURE:
+      return {
+        ...state,
+        subPayWallet: {
           loading: true,
           error: action.error,
           success: {},

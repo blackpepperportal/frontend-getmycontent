@@ -13,6 +13,7 @@ import {
   fetchSingleUserPostsStart,
 } from "../../store/actions/OtherUserAction";
 import { saveFavStart } from "../../store/actions/FavAction";
+import { subscriptionPaymentStripeStart } from "../../store/actions/SubscriptionAction";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
@@ -68,6 +69,16 @@ const ModelViewProfile = (props) => {
     props.dispatch(
       saveFavStart({
         user_id: user_id,
+      })
+    );
+  };
+
+  const subscriptionPayment = (event, plan_type, user_unique_id) => {
+    event.preventDefault();
+    props.dispatch(
+      subscriptionPaymentStripeStart({
+        user_unique_id,
+        plan_type,
       })
     );
   };
@@ -281,6 +292,13 @@ const ModelViewProfile = (props) => {
                       <Link
                         to=""
                         className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                        onClick={(event) =>
+                          subscriptionPayment(
+                            event,
+                            "month",
+                            userDetails.data.user.user_unique_id
+                          )
+                        }
                       >
                         {userDetails.data.payment_info.payment_text}
                       </Link>
@@ -292,6 +310,13 @@ const ModelViewProfile = (props) => {
                       <Link
                         to=""
                         className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                        onClick={(event) =>
+                          subscriptionPayment(
+                            event,
+                            "year",
+                            userDetails.data.user.user_unique_id
+                          )
+                        }
                       >
                         Subscribe for{" "}
                         {
