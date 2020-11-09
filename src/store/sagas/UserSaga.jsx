@@ -235,7 +235,9 @@ function* forgotPasswordAPI() {
 
 function* deleteAccountAPI() {
   try {
-    const userData = yield select((state) => state.users.deleteAccount.data);
+    const userData = yield select(
+      (state) => state.users.deleteAccount.inputData
+    );
     const response = yield api.postMethod("delete_account", userData);
     yield put(deleteAccountSuccess(response.data));
     if (response.data.success) {

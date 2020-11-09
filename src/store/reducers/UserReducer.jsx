@@ -73,6 +73,9 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    inputData: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   registerVerify: {
     data: {},
@@ -341,23 +344,38 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         deleteAccount: {
-          data: action.data,
+          data: {},
+          loading: true,
+          error: {},
+          inputData: action.data,
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading please wait",
       };
 
     case DELETE_ACCOUNT_SUCCESS:
       return {
         ...state,
-        buttonDisable: false,
-        loadingButtonContent: null,
+        deleteAccount: {
+          data: action.data,
+          loading: true,
+          error: {},
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case DELETE_ACCOUNT_FAILURE:
       return {
         ...state,
-        buttonDisable: false,
-        loadingButtonContent: null,
+        deleteAccount: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case REGISTER_VERIFY_START:
       return {
