@@ -22,7 +22,10 @@ import {
 
 function* fetchBookmarkAPI() {
   try {
-    const response = yield api.postMethod("post_bookmarks");
+    const inputData = yield select(
+      (state) => state.bookmark.bookmark.inputData
+    );
+    const response = yield api.postMethod("post_bookmarks", inputData);
     if (response.data.success) {
       yield put(fetchBookmarksSuccess(response.data.data));
     } else {
