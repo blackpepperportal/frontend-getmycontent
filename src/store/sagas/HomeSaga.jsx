@@ -2,6 +2,7 @@ import { call, select, put, takeLatest, all } from "redux-saga/effects";
 import api from "../../Environment";
 import {
   FETCH_HOME_POSTS_START,
+  FETCH_LISTS_DETAILS_START,
   FETCH_OTHERS_SINGLE_POST_START,
   FETCH_POST_SUGGESTION_START,
   POST_PAYMENT_STRIPE_START,
@@ -27,6 +28,8 @@ import {
   postPaymentWalletSuccess,
   postPaymentStripeFailure,
   postPaymentWalletFailure,
+  fetchListsDetailsSuccess,
+  fetchListsDetailsFailure,
 } from "../actions/HomeAction";
 
 function* fetchHomePostAPI() {
@@ -164,6 +167,25 @@ function* postPaymentWalletAPI() {
   }
 }
 
+function* fetchListsAPI() {
+  try {
+    const response = yield api.postMethod("lists_index");
+    if (response.data.success) {
+      yield put(fetchListsDetailsSuccess(response.data.data));
+    } else {
+      yield put(fetchListsDetailsFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchListsDetailsFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([yield takeLatest(FETCH_HOME_POSTS_START, fetchHomePostAPI)]);
   yield all([yield takeLatest(SEARCH_POST_START, searchPostAPI)]);
@@ -179,4 +201,5 @@ export default function* pageSaga() {
   yield all([
     yield takeLatest(POST_PAYMENT_WALLET_START, postPaymentWalletAPI),
   ]);
+  yield all([yield takeLatest(FETCH_LISTS_DETAILS_START, fetchListsAPI)]);
 }

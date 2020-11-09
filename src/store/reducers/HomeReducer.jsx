@@ -17,6 +17,9 @@ import {
   POST_PAYMENT_WALLET_START,
   POST_PAYMENT_WALLET_SUCCESS,
   POST_PAYMENT_WALLET_FAILURE,
+  FETCH_LISTS_DETAILS_START,
+  FETCH_LISTS_DETAILS_SUCCESS,
+  FETCH_LISTS_DETAILS_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -64,6 +67,11 @@ const initialState = {
     inputData: {},
     loadingButtonContent: null,
     buttonDisable: false,
+  },
+  lists: {
+    data: {},
+    loading: true,
+    error: false,
   },
 };
 
@@ -277,6 +285,33 @@ const HomeReducer = (state = initialState, action) => {
           inputData: {},
           loadingButtonContent: null,
           buttonDisable: false,
+        },
+      };
+    case FETCH_LISTS_DETAILS_START:
+      return {
+        ...state,
+        lists: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_LISTS_DETAILS_SUCCESS:
+      return {
+        ...state,
+        lists: {
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_LISTS_DETAILS_FAILURE:
+      return {
+        ...state,
+        lists: {
+          data: {},
+          loading: true,
+          error: action.error,
         },
       };
     default:

@@ -17,6 +17,9 @@ import {
   POST_PAYMENT_WALLET_START,
   POST_PAYMENT_WALLET_SUCCESS,
   POST_PAYMENT_WALLET_FAILURE,
+  FETCH_LISTS_DETAILS_START,
+  FETCH_LISTS_DETAILS_SUCCESS,
+  FETCH_LISTS_DETAILS_FAILURE,
 } from "./ActionConstant";
 
 export function fetchHomePostsStart(data) {
@@ -140,6 +143,27 @@ export function postPaymentWalletSuccess(data) {
 export function postPaymentWalletFailure(error) {
   return {
     type: POST_PAYMENT_WALLET_FAILURE,
+    error,
+  };
+}
+
+export function fetchListsDetailsStart(data) {
+  return {
+    type: FETCH_LISTS_DETAILS_START,
+    data,
+  };
+}
+
+export function fetchListsDetailsSuccess(data) {
+  return {
+    type: FETCH_LISTS_DETAILS_SUCCESS,
+    data,
+  };
+}
+
+export function fetchListsDetailsFailure(error) {
+  return {
+    type: FETCH_LISTS_DETAILS_FAILURE,
     error,
   };
 }
