@@ -23,7 +23,13 @@ const MessageIndex = (props) => {
     <div className="message-page">
       <Container>
         <Row>
-          <ChatUserList />
+          {props.chatUsers.loading ? (
+            "Loading.."
+          ) : props.chatUsers.data.users.length > 0 ? (
+            <ChatUserList chatUsers={props.chatUsers.data} />
+          ) : (
+            ""
+          )}
           <Col
             sm={12}
             md={12}
@@ -336,7 +342,7 @@ const MessageIndex = (props) => {
 };
 
 const mapStateToPros = (state) => ({
-  login: state.users.loginInputData,
+  chatUsers: state.chat.chatUsers,
 });
 
 function mapDispatchToProps(dispatch) {
