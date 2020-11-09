@@ -141,13 +141,21 @@ const ModelViewProfile = (props) => {
                         )
                       }
                     >
+                    {userDetails.data.user.is_favuser == 1  ?
                       <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/star-active.svg"
+                        }
+                        className="svg-clone"
+                      />
+                      : <Image
                         src={
                           window.location.origin +
                           "/assets/images/icons/star.svg"
                         }
                         className="svg-clone"
-                      />
+                      />}
                     </Button>
 
                     <Button
@@ -167,7 +175,7 @@ const ModelViewProfile = (props) => {
                     <div className="user-name-base-row">
                       <Link to="" className="my-name-lg">
                         <div className="g-user--name">
-                          {userDetails.data.user.first_name}
+                          {userDetails.data.user.name}
                         </div>
                       </Link>
                     </div>
@@ -178,32 +186,39 @@ const ModelViewProfile = (props) => {
                         </div>
                       </Link>
                       <div className="user-profile -active-status">
-                        <span>Active</span>
+                        <span>{userDetails.data.user.updated_formatted}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="profile-about-content">
                   <p className="my-profile-about">
-                    Hi Everyone! Welcome to my Only Fans! I’m so excited to be
-                    sharing more of my exclusive photos & videos with you! I
-                    want to get more personal with my fans and be able to
-                    communicate one on one! Subscribe here to talk with me
-                    personally, Ill be uploading new private content every
-                    single day! ***I do NOT post ANY adult/nude/nsfw content. I
-                    do NOT tolerate ANY disrespectful messages! ***
+                    {userDetails.data.user.description}
                   </p>
                 </div>
 
+                {userDetails.data.payment_info.is_user_needs_pay ?
+                <>
                 <div className="subscription-section">
-                  <span className="subscribe-title">Free Subscription </span>
+                  <span className="subscribe-title">Monthly Subscription </span>
                   <Link
                     to=""
                     className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                   >
-                    Follow For Free
+                    {userDetails.data.payment_info.payment_text}
                   </Link>
                 </div>
+                <div className="subscription-section">
+                  <span className="subscribe-title">Yearly Subscription </span>
+                  <Link
+                    to=""
+                    className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                  >
+                    Subscribe for {userDetails.data.payment_info.subscription_info.yearly_amount_formatted}
+                  </Link>
+                </div>
+                </>
+                : ""}
 
                 <div className="tab" role="tabpanel">
                   <ModelProfileTabSec

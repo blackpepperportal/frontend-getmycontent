@@ -128,7 +128,7 @@ const PostDisplayCard = (props) => {
               <div className="">
                 <div className="gallery js-gallery">
                   <Image
-                    src={post.post_files[0].file}
+                    src={post.post_files[0].post_file}
                     className="post-view-image"
                   />
                 </div>
