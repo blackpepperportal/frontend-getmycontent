@@ -23,6 +23,7 @@ const HeaderIndex = (props) => {
             <Link
               to={"/home"}
               className="main-header-menu icon-with-round-hover m-current"
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={window.location.origin + "/assets/images/icons/home.svg"}
@@ -33,6 +34,7 @@ const HeaderIndex = (props) => {
               className="main-header-menu icon-with-round-hover"
               active-className="m-current"
               exact-active-className=""
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={
@@ -44,6 +46,7 @@ const HeaderIndex = (props) => {
             <Link
               to={"/create-post"}
               className="main-header-menu icon-with-round-hover"
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={
@@ -55,6 +58,7 @@ const HeaderIndex = (props) => {
             <Link
               to={"/messages"}
               className="main-header-menu icon-with-round-hover"
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={window.location.origin + "/assets/images/icons/chat.svg"}
@@ -96,7 +100,10 @@ const HeaderIndex = (props) => {
                   </span>
                 </Link>
                 <div className="pull-left side-user-head">
-                  <Link to={"/profile"}>
+                  <Link
+                    to={"/profile"}
+                    onClick={() => setIsVisible(!isVisible)}
+                  >
                     <h3 className="g-user-name">
                       {localStorage.getItem("name")}
                     </h3>
