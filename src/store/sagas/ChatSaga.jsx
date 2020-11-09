@@ -21,10 +21,6 @@ function* fetchChatUserAPI() {
     const response = yield api.postMethod("chat_users");
     if (response.data.success) {
       yield put(fetchChatUsersSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchChatUsersFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -47,10 +43,6 @@ function* fetchChatMessageAPI() {
     const response = yield api.postMethod("chat_messages", inputData);
     if (response.data.success) {
       yield put(fetchChatMessageSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchChatMessageFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
