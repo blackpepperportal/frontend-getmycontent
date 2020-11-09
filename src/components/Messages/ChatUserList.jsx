@@ -31,9 +31,15 @@ const ChatUserList = (props) => {
               </div>
             </div>
 
-            {chatUsers.users.map((chatUser) => (
-              <>
-                <div className="chat-item active">
+            {chatUsers.users.map((chatUser, index) => (
+              <div key={index}>
+                <div
+                  className={
+                    props.activeChat === index
+                      ? "chat-item active"
+                      : "chat-item"
+                  }
+                >
                   <Button type="button" className="chat-btn-one">
                     <Image
                       src={chatUser.to_userpicture}
@@ -46,7 +52,13 @@ const ChatUserList = (props) => {
                       alt={chatUser.to_displayname}
                     />
                   </Link>
-                  <Link to="#" className="chat-msg">
+                  <Link
+                    to="#"
+                    className="chat-msg"
+                    onClick={(event) =>
+                      props.changeUser(event, chatUser, index)
+                    }
+                  >
                     <div className="friend-name-row">
                       <div className="friend">
                         <span className="friend-name">
@@ -73,7 +85,7 @@ const ChatUserList = (props) => {
                   </Link>
                 </div>
                 <hr className="solid" />
-              </>
+              </div>
             ))}
           </div>
         </div>

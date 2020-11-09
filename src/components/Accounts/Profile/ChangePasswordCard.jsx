@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { changePasswordStart } from "../../../store/actions/UserAction";
@@ -6,7 +6,7 @@ import { changePasswordStart } from "../../../store/actions/UserAction";
 const ChangePasswordCard = (props) => {
   const [inputData, setInputData] = useState({});
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     props.dispatch(changePasswordStart(inputData));
   };

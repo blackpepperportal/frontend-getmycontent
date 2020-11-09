@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Form,
@@ -11,13 +11,29 @@ import {
   Media,
 } from "react-bootstrap";
 import { connect } from "react-redux";
-import { fetchChatUsersStart } from "../../store/actions/ChatAction";
+import {
+  fetchChatMessageStart,
+  fetchChatUsersStart,
+} from "../../store/actions/ChatAction";
 import ChatUserList from "./ChatUserList";
 
 const MessageIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchChatUsersStart());
   }, []);
+
+  const [activeChat, setActiveChat] = useState(0);
+
+  const changeUser = (event, chat, index) => {
+    event.preventDefault();
+    setActiveChat(index);
+    props.dispatch(
+      fetchChatMessageStart({
+        to_user_id: chat.to_user_id,
+        from_user_id: chat.from_user_id,
+      })
+    );
+  };
 
   return (
     <div className="message-page">
@@ -26,7 +42,12 @@ const MessageIndex = (props) => {
           {props.chatUsers.loading ? (
             "Loading.."
           ) : props.chatUsers.data.users.length > 0 ? (
-            <ChatUserList chatUsers={props.chatUsers.data} />
+            <ChatUserList
+              chatUsers={props.chatUsers.data}
+              activeChat={activeChat}
+              setActiveChat={setActiveChat}
+              changeUser={changeUser}
+            />
           ) : (
             ""
           )}

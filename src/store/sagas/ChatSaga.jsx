@@ -7,6 +7,7 @@ import {
 } from "../../components/helper/NotificationMessage";
 import {
   fetchChatMessageFailure,
+  fetchChatMessageStart,
   fetchChatMessageSuccess,
   fetchChatUsersFailure,
   fetchChatUsersSuccess,
@@ -21,6 +22,13 @@ function* fetchChatUserAPI() {
     const response = yield api.postMethod("chat_users");
     if (response.data.success) {
       yield put(fetchChatUsersSuccess(response.data.data));
+      if (response.data.data.users.length > 0)
+        yield put(
+          fetchChatMessageStart({
+            to_user_id: response.data.data.users[0].to_user_id,
+            from_user_id: response.data.data.users[0].from_user_id,
+          })
+        );
     } else {
       yield put(fetchChatUsersFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -37,9 +45,7 @@ function* fetchChatUserAPI() {
 
 function* fetchChatMessageAPI() {
   try {
-    const inputData = yield select(
-      (state) => state.bookmark.saveBookmark.inputData
-    );
+    const inputData = yield select((state) => state.chat.messages.inputData);
     const response = yield api.postMethod("chat_messages", inputData);
     if (response.data.success) {
       yield put(fetchChatMessageSuccess(response.data.data));
