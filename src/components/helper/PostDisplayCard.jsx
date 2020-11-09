@@ -18,6 +18,9 @@ const PostDisplayCard = (props) => {
   const [commentInputData, setCommentInputData] = useState({});
   const [isVisible, setIsVisible] = useState(true);
 
+  const [bookmarkStatus, setBookmarkStatus] = useState("");
+  const [likeStatus, setLikeStatus] = useState("");
+
   const closeSendTipModal = () => {
     setSendTip(false);
   };
@@ -34,13 +37,15 @@ const PostDisplayCard = (props) => {
     props.dispatch(fetchCommentsStart({ post_id: post_id }));
   };
 
-  const handleLike = (event) => {
+  const handleLike = (event, status) => {
     event.preventDefault();
+    setLikeStatus(status);
     props.dispatch(savePostLikeStart({ post_id: post.post_id }));
   };
 
-  const handleBookmark = (event, post) => {
+  const handleBookmark = (event, post, status) => {
     event.preventDefault();
+    setBookmarkStatus(status);
     props.dispatch(saveBookmarkStart({ post_id: post.post_id }));
   };
 
@@ -135,8 +140,40 @@ const PostDisplayCard = (props) => {
 
       <div className="post-icons">
         <div className="alignleft">
-          <Link to="#" onClick={handleLike}>
-            {post.is_user_liked == 1 ? (
+          {likeStatus !== "" ? (
+            <>
+              <>
+                {likeStatus === "added" ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleLike(event, "removed")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart-active.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+              <>
+                {likeStatus === "removed" ? (
+                  <Link to="#" onClick={(event) => handleLike(event, "added")}>
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+            </>
+          ) : post.is_user_liked == 1 ? (
+            <Link to="#" onClick={(event) => handleLike(event, "removed")}>
               <Image
                 src={
                   window.location.origin +
@@ -144,13 +181,16 @@ const PostDisplayCard = (props) => {
                 }
                 className="svg-clone"
               />
-            ) : (
+            </Link>
+          ) : (
+            <Link to="#" onClick={(event) => handleLike(event, "added")}>
               <Image
                 src={window.location.origin + "/assets/images/icons/heart.svg"}
                 className="svg-clone"
               />
-            )}
-          </Link>
+            </Link>
+          )}
+
           <Link
             to="#"
             onClick={(event) => showCommentSection(event, post.post_id)}
@@ -175,8 +215,46 @@ const PostDisplayCard = (props) => {
           </Button>
         </div>
         <div className="alignright">
-          <Link to="#" onClick={(event) => handleBookmark(event, post)}>
-            {post.is_user_bookmarked == 1 ? (
+          {bookmarkStatus !== "" ? (
+            <>
+              <>
+                {bookmarkStatus === "added" ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleBookmark(event, post, "removed")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/bookmark-active.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+              <>
+                {bookmarkStatus === "removed" ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleBookmark(event, post, "added")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/bookmark.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+            </>
+          ) : post.is_user_bookmarked == 1 ? (
+            <Link
+              to="#"
+              onClick={(event) => handleBookmark(event, post, "removed")}
+            >
               <Image
                 src={
                   window.location.origin +
@@ -184,15 +262,20 @@ const PostDisplayCard = (props) => {
                 }
                 className="svg-clone"
               />
-            ) : (
+            </Link>
+          ) : (
+            <Link
+              to="#"
+              onClick={(event) => handleBookmark(event, post, "added")}
+            >
               <Image
                 src={
                   window.location.origin + "/assets/images/icons/bookmark.svg"
                 }
                 className="svg-clone"
               />
-            )}
-          </Link>
+            </Link>
+          )}
         </div>
       </div>
 
