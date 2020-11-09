@@ -34,6 +34,9 @@ import {
   NOTIFICATION_STATUS_UPDATE_SUCCESS,
   NOTIFICATION_STATUS_UPDATE_FAILURE,
   GET_FORGOT_PASSWORD_DETAILS,
+  FETCH_PAYMENTS_START,
+  FETCH_PAYMENTS_SUCCESS,
+  FETCH_PAYMENTS_FAILURE,
 } from "./ActionConstant";
 
 // Get user details actions.
@@ -308,6 +311,29 @@ export function notificationStatusUpdateSuccess(data) {
 export function notificationStatusUpdateFailure(error) {
   return {
     type: NOTIFICATION_STATUS_UPDATE_FAILURE,
+    error,
+  };
+}
+
+// Get Payments actions.
+
+export function fetchPaymentsStart(data) {
+  return {
+    type: FETCH_PAYMENTS_START,
+    data,
+  };
+}
+
+export function fetchPaymentsSuccess(data) {
+  return {
+    type: FETCH_PAYMENTS_SUCCESS,
+    data,
+  };
+}
+
+export function fetchPaymentsFailure(error) {
+  return {
+    type: FETCH_PAYMENTS_FAILURE,
     error,
   };
 }

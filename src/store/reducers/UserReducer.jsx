@@ -30,6 +30,9 @@ import {
   NOTIFICATION_STATUS_UPDATE_SUCCESS,
   NOTIFICATION_STATUS_UPDATE_FAILURE,
   GET_FORGOT_PASSWORD_DETAILS,
+  FETCH_PAYMENTS_START,
+  FETCH_PAYMENTS_SUCCESS,
+  FETCH_PAYMENTS_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -92,6 +95,11 @@ const initialState = {
     loading: true,
     error: false,
     inputData: {},
+  },
+  payments: {
+    data: {},
+    loading: true,
+    error: false,
   },
 };
 
@@ -453,6 +461,34 @@ const userReducer = (state = initialState, action) => {
           loading: true,
         },
       };
+    case FETCH_PAYMENTS_START:
+      return {
+        ...state,
+        payments: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_PAYMENTS_SUCCESS:
+      return {
+        ...state,
+        payments: {
+          data: action.data.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_PAYMENTS_FAILURE:
+      return {
+        ...state,
+        payments: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+
     default:
       return state;
   }

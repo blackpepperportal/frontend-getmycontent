@@ -10,7 +10,7 @@ const CancelWithdrawModal = (props) => {
     console.log("Testin...");
     setCancelWithdrawInputData({
       ...cancelWithdrawInputData,
-      user_withdrawal_id: props.data.user_wallet_payment_id,
+      user_withdrawal_id: props.data.user_withdrawal_id,
     });
   }, [props.loading]);
 
@@ -31,7 +31,7 @@ const CancelWithdrawModal = (props) => {
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Cancel Withdraw</Modal.Title>
+            <Modal.Title>Withdraw Request</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="floating-form">
@@ -39,7 +39,7 @@ const CancelWithdrawModal = (props) => {
                 <input
                   className="floating-input"
                   type="text"
-                  placeholder="Cancel reason"
+                  placeholder=""
                   value={cancelWithdrawInputData.cancel_reason}
                   name="cancel_reason"
                   onChange={(event) =>
@@ -50,7 +50,7 @@ const CancelWithdrawModal = (props) => {
                   }
                 />
                 <span className="highlight"></span>
-                <label className="default-label">Message</label>
+                <label className="default-label">Cancel Reason</label>
               </div>
             </div>
           </Modal.Body>

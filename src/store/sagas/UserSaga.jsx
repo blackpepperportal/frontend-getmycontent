@@ -19,6 +19,8 @@ import {
   registerVerifyResendSuccess,
   notificationStatusUpdateSuccess,
   notificationStatusUpdateFailure,
+  fetchPaymentsSuccess,
+  fetchPaymentsFailure,
 } from "../actions/UserAction";
 
 import api from "../../Environment";
@@ -32,6 +34,7 @@ import {
   REGISTER_VERIFY_START,
   REGISTER_VERIFY_RESEND_START,
   NOTIFICATION_STATUS_UPDATE_START,
+  FETCH_PAYMENTS_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -48,6 +51,15 @@ function* getUserDetailsAPI() {
 
     if (response.data.success) {
       yield put(fetchUserDetailsSuccess(response.data));
+      localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_cover", response.data.data.cover);
+      localStorage.setItem("username", response.data.data.username);
+      localStorage.setItem("name", response.data.data.name);
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
+      localStorage.setItem(
+        "is_document_verified",
+        response.data.data.is_document_verified
+      );
     } else {
       yield put(fetchUserDetailsFailure(response.data.error));
       yield put(checkLogoutStatus(response.data));
@@ -72,6 +84,7 @@ function* updateUserDetailsAPI() {
     if (response.data.success) {
       yield put(updateUserDetailsSuccess(response.data));
       localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_cover", response.data.data.cover);
       localStorage.setItem("name", response.data.data.name);
       localStorage.setItem("username", response.data.data.username);
       localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
@@ -112,6 +125,7 @@ function* userLoginAPI() {
       else {
         localStorage.setItem("userLoginStatus", true);
         localStorage.setItem("user_picture", response.data.data.picture);
+        localStorage.setItem("user_cover", response.data.data.cover);
         localStorage.setItem("name", response.data.data.name);
         localStorage.setItem("username", response.data.data.username);
         localStorage.setItem(
@@ -157,6 +171,7 @@ function* userRegisterAPI() {
       else {
         localStorage.setItem("userLoginStatus", true);
         localStorage.setItem("user_picture", response.data.data.picture);
+        localStorage.setItem("user_cover", response.data.data.cover);
         localStorage.setItem("username", response.data.data.username);
         localStorage.setItem("name", response.data.data.name);
         localStorage.setItem(
@@ -335,6 +350,28 @@ function* notificationStatusUpdateAPI() {
   }
 }
 
+function* getPaymentsAPI() {
+  try {
+    const response = yield api.postMethod("payments_index");
+
+    if (response.data.success) {
+      yield put(fetchPaymentsSuccess(response.data));
+    } else {
+      yield put(fetchPaymentsFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchPaymentsFailure(error));
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([
     yield takeLatest(FETCH_USER_DETAILS_START, getUserDetailsAPI),
@@ -349,5 +386,6 @@ export default function* pageSaga() {
       NOTIFICATION_STATUS_UPDATE_START,
       notificationStatusUpdateAPI
     ),
+    yield takeLatest(FETCH_PAYMENTS_START, getPaymentsAPI),
   ]);
 }

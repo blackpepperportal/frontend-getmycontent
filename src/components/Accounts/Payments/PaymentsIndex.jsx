@@ -19,11 +19,13 @@ import {
 } from "../../../store/actions/WithDrawAction";
 import WithdrawModal from "../../helper/WithdrawModal";
 import CancelWithdrawModal from "../../helper/CancelWithdrawModal";
+import { fetchPaymentsStart } from "../../../store/actions/UserAction";
 
 const PaymentsIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchAllTransactionStart());
     props.dispatch(fetchWithDrawalsStart());
+    props.dispatch(fetchPaymentsStart());
   }, []);
   const [withdrawModal, setWithdrawModal] = useState(false);
 
@@ -32,9 +34,7 @@ const PaymentsIndex = (props) => {
   };
 
   const [data, setData] = useState("");
-
   const [cancelWithdrawModal, setCancelWithdrawModal] = useState(false);
-
   const closeCancelWithdrawModal = () => {
     setCancelWithdrawModal(false);
     setIsLoading(false);
@@ -57,93 +57,69 @@ const PaymentsIndex = (props) => {
               <div className="payment-header">
                 <div className="payment-cover-sec">
                   <Image
-                    src="assets/images/b-4.jpg"
+                    src={localStorage.getItem("user_cover")}
                     className="payment-cover"
                   />
                 </div>
                 <div className="paymnet-user-info">
                   <Image
-                    src="assets/images/avatar/harish-jee.png"
+                    src={localStorage.getItem("user_picture")}
                     className="profile-img"
                   />
                   <div className="payment-user-details">
-                    <h2 className="title">Beno Darry</h2>
-                    <p className="desc">@benodarry</p>
+                    <h2 className="title">{localStorage.getItem("name")}</h2>
+                    <p className="desc">
+                      <Link to={`/profile`}>
+                        @{localStorage.getItem("username")}
+                      </Link>
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="payment-body">
-                <Row>
-                  <Col sm={6} xs={6} md={6} className="padding-sm space-sm">
-                    <div className="flex-box">
-                      <div className="payment-body-icon">
-                        <i class="fas fa-bars"></i>
+                {props.payments.loading ? (
+                  "Loading..."
+                ) : (
+                  <Row>
+                    <Col sm={6} xs={6} md={6} className="padding-sm space-sm">
+                      <div className="flex-box">
+                        <div className="payment-body-icon">
+                          <i class="fas fa-bars"></i>
+                        </div>
+                        <div className="payment-body-info">
+                          <h3>POSTS</h3>
+                          <h4>{props.payments.data.user.total_posts}</h4>
+                        </div>
                       </div>
-                      <div className="payment-body-info">
-                        <h3>POSTS</h3>
-                        <h4>101</h4>
+                    </Col>
+
+                    <Col sm={6} xs={6} md={6} className="padding-sm">
+                      <div className="flex-box">
+                        <div className="payment-body-icon">
+                          <i class="fas fa-unlock-alt"></i>
+                        </div>
+                        <div className="payment-body-info">
+                          <h3>SUBCRIBED</h3>
+                          <h4>{props.payments.data.user.total_followings}</h4>
+                        </div>
                       </div>
-                    </div>
-                  </Col>
-                  <Col sm={6} xs={6} md={6} className="padding-sm space-sm">
-                    <div className="flex-box">
-                      <div className="payment-body-icon">
-                        <i class="fas fa-image"></i>
+                    </Col>
+                    <Col sm={6} xs={6} md={6} className="padding-sm">
+                      <div className="flex-box">
+                        <div className="payment-body-icon">
+                          <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div className="payment-body-info">
+                          <h3>SUBSCRIBERS</h3>
+                          <h4>{props.payments.data.user.total_followers}</h4>
+                        </div>
                       </div>
-                      <div className="payment-body-info">
-                        <h3>PHOTOS</h3>
-                        <h4>45</h4>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col sm={6} xs={6} md={6} className="padding-sm">
-                    <div className="flex-box">
-                      <div className="payment-body-icon">
-                        <i class="fas fa-video"></i>
-                      </div>
-                      <div className="payment-body-info">
-                        <h3>VIDEOS</h3>
-                        <h4>23</h4>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col sm={6} xs={6} md={6} className="padding-sm space-sm">
-                    <div className="flex-box">
-                      <div className="payment-body-icon">
-                        <i class="fas fa-heart"></i>
-                      </div>
-                      <div className="payment-body-info">
-                        <h3>LIKES</h3>
-                        <h4>0</h4>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col sm={6} xs={6} md={6} className="padding-sm">
-                    <div className="flex-box">
-                      <div className="payment-body-icon">
-                        <i class="fas fa-unlock-alt"></i>
-                      </div>
-                      <div className="payment-body-info">
-                        <h3>SUBCRIBED</h3>
-                        <h4>0</h4>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col sm={6} xs={6} md={6} className="padding-sm">
-                    <div className="flex-box">
-                      <div className="payment-body-icon">
-                        <i class="fas fa-user-friends"></i>
-                      </div>
-                      <div className="payment-body-info">
-                        <h3>SUBSCRIBERS</h3>
-                        <h4>59</h4>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
+                )}
               </div>
             </div>
-            <div className="payment-refer-add-box">
+            <div className="payment-refer-add-box hidden">
               <div className="payment-body">
                 <h2>Refer your friends to</h2>
                 <Link to="#" aria-current="page" className="sign-in-logo">
@@ -162,13 +138,13 @@ const PaymentsIndex = (props) => {
           <Col sm={12} md={12} xl={8} lg={8}>
             <div className="payment-tabs-card">
               <div className="flex-content">
-              <h2>Statements</h2>
-              <Button
-                className="send-withdraw-btn"
-                onClick={() => setWithdrawModal(true)}
-              >
-                Send Withdraw
-              </Button>
+                <h2>Statements</h2>
+                <Button
+                  className="send-withdraw-btn"
+                  onClick={() => setWithdrawModal(true)}
+                >
+                  Send Withdraw
+                </Button>
               </div>
               <Tabs defaultActiveKey="earnings" id="uncontrolled-tab-example">
                 <Tab eventKey="earnings" title="Earnings">
@@ -177,11 +153,10 @@ const PaymentsIndex = (props) => {
                       <thead>
                         <tr className="bg-white">
                           <th>Date</th>
-                          <th>Time</th>
-                          <th>Item</th>
+                          <th>Transaction ID</th>
+                          <th>Mode</th>
+                          <th>Message</th>
                           <th>Amount</th>
-                          <th>Fee</th>
-                          <th>Net</th>
                           <th>Status</th>
                         </tr>
                       </thead>
@@ -191,15 +166,15 @@ const PaymentsIndex = (props) => {
                           : props.transaction.data.history.length > 0
                           ? props.transaction.data.history.map((history) => (
                               <tr>
-                                <td>08-15-20</td>
-                                <td>4:30 AM</td>
-                                <td>Subscription</td>
-                                <td>$ 9.99</td>
-                                <td>$ 2.00</td>
-                                <td>$ 7.99</td>
+                                <td>{history.paid_date}</td>
+                                <td>{history.payment_id}</td>
+                                <td>{history.payment_mode}</td>
+                                <td>{history.message}</td>
+                                <td>{history.paid_amount_formatted}</td>
                                 <td>
                                   <p>
-                                    <i class="far fa-clock mr-2"></i>PENDING
+                                    <i class="far fa-clock mr-2"></i>
+                                    {history.status_formatted}
                                   </p>
                                 </td>
                               </tr>
@@ -216,38 +191,55 @@ const PaymentsIndex = (props) => {
                       <thead>
                         <tr className="bg-white">
                           <th>Date</th>
-                          <th>Time</th>
-                          <th>Item</th>
-                          <th>Amount</th>
-                          <th>Fee</th>
-                          <th>Net</th>
+                          <th>Transaction ID</th>
+                          <th>Billing Account</th>
+                          <th>Requested</th>
+                          <th>Paid</th>
                           <th>Status</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         {props.withDrawals.loading
                           ? "Loading..."
                           : props.withDrawals.data.history.length > 0
-                          ? props.withDrawals.data.history.map((data) => (
-                              <tr>
-                                <td>08-15-20</td>
-                                <td>4:30 AM</td>
-                                <td>Subscription</td>
-                                <td>$ 9.99</td>
-                                <td>$ 2.00</td>
-                                <td>$ 7.99</td>
-                                <td>
-                                  <Button
-                                    onClick={(event) =>
-                                      showCancelWithdrawModel(event, data)
-                                    }
-                                    className="cancel-btn"
-                                  >
-                                    Cancel
-                                  </Button>
-                                </td>
-                              </tr>
-                            ))
+                          ? props.withDrawals.data.history.map(
+                              (withDrawRequest) => (
+                                <tr>
+                                  <td>{withDrawRequest.created}</td>
+                                  <td>
+                                    {withDrawRequest.user_withdrawal_unique_id}
+                                  </td>
+                                  <td>
+                                    {withDrawRequest.billing_account_name}
+                                  </td>
+                                  <td>
+                                    {withDrawRequest.requested_amount_formatted}
+                                  </td>
+                                  <td>
+                                    {withDrawRequest.paid_amount_formatted}
+                                  </td>
+                                  <td>{withDrawRequest.status_formatted}</td>
+                                  <td>
+                                    {withDrawRequest.cancel_btn_status == 1 ? (
+                                      <Button
+                                        onClick={(event) =>
+                                          showCancelWithdrawModel(
+                                            event,
+                                            withDrawRequest
+                                          )
+                                        }
+                                        className="cancel-btn"
+                                      >
+                                        Cancel
+                                      </Button>
+                                    ) : (
+                                      ""
+                                    )}
+                                  </td>
+                                </tr>
+                              )
+                            )
                           : "No data found"}
                       </tbody>
                     </Table>
@@ -261,6 +253,7 @@ const PaymentsIndex = (props) => {
       <WithdrawModal
         withdrawModal={withdrawModal}
         closeWithdrawModal={closeWithdrawModal}
+        payments={props.payments}
       />
       <CancelWithdrawModal
         closeCancelWithdrawModal={closeCancelWithdrawModal}
@@ -275,6 +268,7 @@ const PaymentsIndex = (props) => {
 const mapStateToPros = (state) => ({
   withDrawals: state.withDraw.withDrawals,
   transaction: state.transaction.allTransaction,
+  payments: state.users.payments,
 });
 
 function mapDispatchToProps(dispatch) {

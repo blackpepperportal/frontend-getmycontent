@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Image, Modal } from "react-bootstrap";
+import { Form, Button, Image, Modal, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getBankAccountStart } from "../../store/actions/BankAccountAction";
 import { sendWithDrawRequestStart } from "../../store/actions/WithDrawAction";
@@ -28,14 +28,39 @@ const WithdrawModel = (props) => {
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Withdraw Modal</Modal.Title>
+            <Modal.Title>Withdrawals</Modal.Title>
           </Modal.Header>
           <Modal.Body>
+            {props.payments.loading ? (
+              "Loading"
+            ) : (
+              <Row>
+                <Col md="12">
+                  <div className="mb-5">
+                    <h4 className="mb-2">
+                      Min Amount Required:{" "}
+                      <span className="text-muted">
+                        {
+                          props.payments.data
+                            .user_withdrawals_min_amount_formatted
+                        }
+                      </span>
+                    </h4>
+                    <h4 className="text-muted">
+                      Wallet Balance:{" "}
+                      <span className="text-muted">
+                        {props.payments.data.wallet.remaining_formatted}
+                      </span>
+                    </h4>
+                  </div>
+                </Col>
+              </Row>
+            )}
             <div className="floating-form">
               <div className="floating-label">
                 <input
                   className="floating-input"
-                  type="text"
+                  type="number"
                   placeholder="Amount"
                   value={inputData.requested_amount}
                   onChange={(event) =>
@@ -46,10 +71,10 @@ const WithdrawModel = (props) => {
                   }
                 />
                 <span className="highlight"></span>
-                <label className="default-label">Tip amount</label>
+                <label className="default-label">Enter Amount</label>
               </div>
               <div className="floating-label">
-              <label className="label-default-1">Choose Bank account</label>
+                <label className="label-default-1">Choose Bank account</label>
                 {props.bankAccount.loading
                   ? "Loading..."
                   : props.bankAccount.data.billing_accounts.length > 0
@@ -71,28 +96,27 @@ const WithdrawModel = (props) => {
                       // />
 
                       <Form>
-                        {['radio'].map((type) => (
+                        {["radio"].map((type) => (
                           <div key={`custom-inline-${type}`} className="mb-3">
                             <Form.Check
                               custom
                               inline
-                              label="Wallet"
+                              label={account.nickname}
                               type={type}
                               id={account.user_billing_account_id}
-                                value={account.user_billing_account_id}
-                                name="user_billing_account_id"
-                                onChange={(event) =>
-                                  setInputData({
-                                    ...inputData,
-                                    user_billing_account_id:
-                                      account.user_billing_account_id,
-                                  })
-                                }
+                              value={account.user_billing_account_id}
+                              name="user_billing_account_id"
+                              onChange={(event) =>
+                                setInputData({
+                                  ...inputData,
+                                  user_billing_account_id:
+                                    account.user_billing_account_id,
+                                })
+                              }
                             />
                           </div>
                         ))}
                       </Form>
-
                     ))
                   : "No data found"}
               </div>
