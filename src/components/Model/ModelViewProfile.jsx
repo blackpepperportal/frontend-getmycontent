@@ -13,6 +13,7 @@ import {
   fetchSingleUserPostsStart,
 } from "../../store/actions/OtherUserAction";
 import { saveFavStart } from "../../store/actions/FavAction";
+import { subscriptionPaymentStripeStart } from "../../store/actions/SubscriptionAction";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
@@ -30,6 +31,8 @@ const ModelViewProfile = (props) => {
   const [activeSec, setActiveSec] = useState("post");
 
   const [sendTip, setSendTip] = useState(false);
+
+  const [starStatus, setStarStatus] = useState("");
 
   const closeSendTipModal = () => {
     setSendTip(false);
@@ -58,6 +61,26 @@ const ModelViewProfile = (props) => {
           type: "videos",
         })
       );
+  };
+
+  const handleStar = (event, user_id, status) => {
+    event.preventDefault();
+    setStarStatus(status);
+    props.dispatch(
+      saveFavStart({
+        user_id: user_id,
+      })
+    );
+  };
+
+  const subscriptionPayment = (event, plan_type, user_unique_id) => {
+    event.preventDefault();
+    props.dispatch(
+      subscriptionPaymentStripeStart({
+        user_unique_id,
+        plan_type,
+      })
+    );
   };
 
   const { userDetails } = props;
@@ -130,33 +153,96 @@ const ModelViewProfile = (props) => {
                       />
                     </Button>
 
-                    <Button
-                      type="button"
-                      className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
-                      onClick={() =>
-                        props.dispatch(
-                          saveFavStart({
-                            user_id: userDetails.data.user.user_id,
-                          })
-                        )
-                      }
-                    >
-                    {userDetails.data.user.is_favuser == 1  ?
-                      <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/icons/star-active.svg"
+                    {starStatus !== "" ? (
+                      <>
+                        <>
+                          {starStatus === "added" ? (
+                            <Button
+                              type="button"
+                              className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                              onClick={(event) =>
+                                handleStar(
+                                  event,
+                                  userDetails.data.user.user_id,
+                                  "removed"
+                                )
+                              }
+                            >
+                              <Image
+                                src={
+                                  window.location.origin +
+                                  "/assets/images/icons/star-active.svg"
+                                }
+                                className="svg-clone"
+                              />
+                            </Button>
+                          ) : null}
+                        </>
+                        <>
+                          {starStatus === "removed" ? (
+                            <Button
+                              type="button"
+                              className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                              onClick={(event) =>
+                                handleStar(
+                                  event,
+                                  userDetails.data.user.user_id,
+                                  "added"
+                                )
+                              }
+                            >
+                              <Image
+                                src={
+                                  window.location.origin +
+                                  "/assets/images/icons/star.svg"
+                                }
+                                className="svg-clone"
+                              />
+                            </Button>
+                          ) : null}
+                        </>
+                      </>
+                    ) : userDetails.data.is_favuser == 1 ? (
+                      <Button
+                        type="button"
+                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                        onClick={(event) =>
+                          handleStar(
+                            event,
+                            userDetails.data.user.user_id,
+                            "removed"
+                          )
                         }
-                        className="svg-clone"
-                      />
-                      : <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/icons/star.svg"
+                      >
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/icons/star-active.svg"
+                          }
+                          className="svg-clone"
+                        />
+                      </Button>
+                    ) : (
+                      <Button
+                        type="button"
+                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                        onClick={(event) =>
+                          handleStar(
+                            event,
+                            userDetails.data.user.user_id,
+                            "added"
+                          )
                         }
-                        className="svg-clone"
-                      />}
-                    </Button>
+                      >
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/icons/star.svg"
+                          }
+                          className="svg-clone"
+                        />
+                      </Button>
+                    )}
 
                     <Button
                       type="button"
@@ -197,28 +283,52 @@ const ModelViewProfile = (props) => {
                   </p>
                 </div>
 
-                {userDetails.data.payment_info.is_user_needs_pay ?
-                <>
-                <div className="subscription-section">
-                  <span className="subscribe-title">Monthly Subscription </span>
-                  <Link
-                    to=""
-                    className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                  >
-                    {userDetails.data.payment_info.payment_text}
-                  </Link>
-                </div>
-                <div className="subscription-section">
-                  <span className="subscribe-title">Yearly Subscription </span>
-                  <Link
-                    to=""
-                    className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                  >
-                    Subscribe for {userDetails.data.payment_info.subscription_info.yearly_amount_formatted}
-                  </Link>
-                </div>
-                </>
-                : ""}
+                {userDetails.data.payment_info.is_user_needs_pay ? (
+                  <>
+                    <div className="subscription-section">
+                      <span className="subscribe-title">
+                        Monthly Subscription{" "}
+                      </span>
+                      <Link
+                        to=""
+                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                        onClick={(event) =>
+                          subscriptionPayment(
+                            event,
+                            "month",
+                            userDetails.data.user.user_unique_id
+                          )
+                        }
+                      >
+                        {userDetails.data.payment_info.payment_text}
+                      </Link>
+                    </div>
+                    <div className="subscription-section">
+                      <span className="subscribe-title">
+                        Yearly Subscription{" "}
+                      </span>
+                      <Link
+                        to=""
+                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                        onClick={(event) =>
+                          subscriptionPayment(
+                            event,
+                            "year",
+                            userDetails.data.user.user_unique_id
+                          )
+                        }
+                      >
+                        Subscribe for{" "}
+                        {
+                          userDetails.data.payment_info.subscription_info
+                            .yearly_amount_formatted
+                        }
+                      </Link>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
 
                 <div className="tab" role="tabpanel">
                   <ModelProfileTabSec

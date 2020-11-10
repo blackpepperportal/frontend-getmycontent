@@ -7,10 +7,12 @@ import {
   fetchMySubscriptionFailure,
   fetchSingleSubscriptionSuccess,
   fetchSingleSubscriptionFailure,
-  subscriptionPaymentSuccess,
-  subscriptionPaymentFailure,
   subscriptionAutoRenewalSuccess,
   subscriptionAutoRenewalFailure,
+  subscriptionPaymentStripeFailure,
+  subscriptionPaymentStripeSuccess,
+  subscriptionPaymentWalletSuccess,
+  subscriptionPaymentWalletFailure,
 } from "../actions/SubscriptionAction";
 
 import api from "../../Environment";
@@ -18,8 +20,9 @@ import {
   FETCH_SUBSCRIPTION_START,
   FETCH_MY_SUBSCRIPTION_START,
   FETCH_SINGLE_SUBSCRIPTION_START,
-  SUBSCRIPTION_PAYMENT_START,
+  SUBSCRIPTION_PAYMENT_STRIPE_START,
   SUBSCRIPTION_AUTO_RENEWAL_START,
+  SUBSCRIPTION_PAYMENT_WALLET_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -93,31 +96,63 @@ function* getSingleSubscriptionAPI() {
   }
 }
 
-function* subscriptionPaymentAPI() {
+function* subscriptionPaymentStripeAPI() {
   try {
     const subscriptioDetails = yield select(
-      (state) => state.subscriptions.subscriptionPayment.inputData
+      (state) => state.subscriptions.subPayStripe.inputData
     );
     const response = yield api.postMethod(
-      "subscriptions_payment_by_card",
+      "user_subscriptions_payment_by_stripe",
       subscriptioDetails
     );
-    yield put(subscriptionPaymentSuccess(response.data.data));
     if (response.data.success) {
+      yield put(subscriptionPaymentStripeSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/user/purchase/history");
+      window.location.assign(
+        `/model-profile/${subscriptioDetails.user_unique_id}`
+      );
     } else {
-      yield put(subscriptionPaymentFailure(response.data.error));
+      yield put(subscriptionPaymentStripeFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
     }
   } catch (error) {
-    yield put(subscriptionPaymentFailure(error));
+    yield put(subscriptionPaymentStripeFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* subscriptionPaymentWalletAPI() {
+  try {
+    const subscriptioDetails = yield select(
+      (state) => state.subscriptions.subPayWallet.inputData
+    );
+    const response = yield api.postMethod(
+      "user_subscriptions_payment_by_wallet",
+      subscriptioDetails
+    );
+
+    if (response.data.success) {
+      yield put(subscriptionPaymentWalletSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(subscriptionPaymentWalletFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(subscriptionPaymentWalletFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
@@ -161,7 +196,16 @@ export default function* pageSaga() {
     yield takeLatest(FETCH_SINGLE_SUBSCRIPTION_START, getSingleSubscriptionAPI),
   ]);
   yield all([
-    yield takeLatest(SUBSCRIPTION_PAYMENT_START, subscriptionPaymentAPI),
+    yield takeLatest(
+      SUBSCRIPTION_PAYMENT_STRIPE_START,
+      subscriptionPaymentStripeAPI
+    ),
+  ]);
+  yield all([
+    yield takeLatest(
+      SUBSCRIPTION_PAYMENT_WALLET_START,
+      subscriptionPaymentWalletAPI
+    ),
   ]);
   yield all([
     yield takeLatest(
