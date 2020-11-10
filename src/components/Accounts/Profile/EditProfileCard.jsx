@@ -61,7 +61,7 @@ const EditProfileCard = (props) => {
           id="Section2"
         >
           <div className="profile-post-area">
-            <div className="bookmarkes-list bookmarks-right-side">
+            <div className="bookmarkes-list bookmarks-right-side border-btm-none">
               <div className="pull-left">
                 <h3>EDIT PROFILE</h3>
                 <p className="small-text">CHANGE PROFILE AND COVER PHOTOS</p>

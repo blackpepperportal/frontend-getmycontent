@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Dropdown, Image, Media } from "react-bootstrap";
 import PostDisplayCard from "../helper/PostDisplayCard";
+import NoDataFound from "../NoDataFound/NoDataFound";
 
 const ModelProfilePostSec = (props) => {
   return (
@@ -41,7 +42,7 @@ const ModelProfilePostSec = (props) => {
           ? props.userPosts.data.posts.map((post) => (
               <PostDisplayCard post={post} key={post.post_id} />
             ))
-          : "No data found"}
+          : <NoDataFound/>}
       </div>
     </>
   );

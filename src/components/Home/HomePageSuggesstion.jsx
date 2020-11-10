@@ -60,7 +60,7 @@ const HomePageSuggesstion = (props) => {
             >
               <Image
                 src="assets/images/icons/right.svg"
-                className="svg-clone mr-0"
+                className="svg-clone mr-0 padding-right-zero"
               />
             </Link>
           </div>
