@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentAddCardModal from "../../helper/PaymentAddCardModal";
-import NoDataFoundIndex from "../../NoDataFound/NoDataFoundIndex";
+import NoDataFound from "../../NoDataFound/NoDataFound";
 
 const stripePromise = loadStripe("pk_test_uDYrTXzzAuGRwDYtu7dkhaF3");
 
@@ -39,6 +39,22 @@ const CardsIndex = (props) => {
       <div className="card-list-sec">
         <Container>
           <h4 className="head-title">Your Cards</h4>
+          <Row>
+            <Col sm={12} md={6} xl={4}>
+              <div
+                className="card-list-box cursor-pointer-link"
+                onClick={() => setPaymentAddCard(true)}
+              >
+                <div className="add-account-sec">
+                  <Image
+                    src="/assets/images/icons/add-card.svg"
+                    className="add-card-img"
+                  />
+                  <h5 className="text-muted">Add Card</h5>
+                </div>
+              </div>
+            </Col>
+          </Row>
           <Row>
             {cards.loading
               ? "Loading..."
@@ -77,23 +93,7 @@ const CardsIndex = (props) => {
                     </div>
                   </Col>
                 ))
-              : <NoDataFoundIndex/>}
-          </Row>
-          <Row>
-            <Col sm={12} md={6} xl={4}>
-              <div
-                className="card-list-box cursor-pointer-link"
-                onClick={() => setPaymentAddCard(true)}
-              >
-                <div className="add-account-sec">
-                  <Image
-                    src="/assets/images/icons/add-card.svg"
-                    className="add-card-img"
-                  />
-                  <h5 className="text-muted">Add Card</h5>
-                </div>
-              </div>
-            </Col>
+              : <NoDataFound/>}
           </Row>
         </Container>
       </div>
