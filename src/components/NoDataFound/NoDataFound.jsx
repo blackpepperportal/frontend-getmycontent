@@ -1,19 +1,20 @@
 import React from "react";
+import { Row, Col, Image } from "react-bootstrap";
 
 const NotFound = () => {
   return (
     <>
       <div className="no-data-found-sec">
-        <div className="row">
-          <div className="col-md-12">
+        <Row>
+          <Col sm="12" md="12">
             <div className="no-data-found-img-sec">
-              <img
+              <Image
                 alt="not-found"
                 src={window.location.origin + "/assets/images/no-data-found-1.svg"}
               />
             </div>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     </>
   );
