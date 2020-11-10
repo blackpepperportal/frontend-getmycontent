@@ -14,6 +14,9 @@ import {
   CHANGE_POST_STATUS_START,
   CHANGE_POST_STATUS_SUCCESS,
   CHANGE_POST_STATUS_FAILURE,
+  POST_FILE_UPLOAD_START,
+  POST_FILE_UPLOAD_SUCCESS,
+  POST_FILE_UPLOAD_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -47,6 +50,14 @@ const initialState = {
     buttonDisable: false,
   },
   changePostStatus: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+    loadingButtonContent: null,
+    buttonDisable: false,
+  },
+  fileUpload: {
     data: {},
     loading: true,
     error: false,
@@ -224,6 +235,42 @@ const PostReducer = (state = initialState, action) => {
       return {
         ...state,
         changePostStatus: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
+        },
+      };
+    case POST_FILE_UPLOAD_START:
+      return {
+        ...state,
+        fileUpload: {
+          inputData: action.data,
+          data: {},
+          loading: true,
+          error: false,
+          loadingButtonContent: "File Uploading....",
+          buttonDisable: true,
+        },
+      };
+    case POST_FILE_UPLOAD_SUCCESS:
+      return {
+        ...state,
+        fileUpload: {
+          data: action.data,
+          loading: false,
+          error: false,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
+        },
+      };
+    case POST_FILE_UPLOAD_FAILURE:
+      return {
+        ...state,
+        fileUpload: {
           data: {},
           loading: true,
           error: action.error,

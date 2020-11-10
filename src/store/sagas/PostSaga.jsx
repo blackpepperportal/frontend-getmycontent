@@ -5,6 +5,7 @@ import {
   DELETE_POST_START,
   FETCH_POSTS_START,
   FETCH_SINGLE_POST_START,
+  POST_FILE_UPLOAD_START,
   SAVE_POST_START,
 } from "../actions/ActionConstant";
 import { createNotification } from "react-redux-notify";
@@ -21,6 +22,8 @@ import {
   fetchPostsSuccess,
   fetchSinglePostFailure,
   fetchSinglePostSuccess,
+  postFileUploadFailure,
+  postFileUploadSuccess,
   savePostFailure,
   savePostSuccess,
 } from "../actions/PostAction";
@@ -142,10 +145,35 @@ function* changePostStatusAPI() {
   }
 }
 
+function* postFileUploadAPI() {
+  try {
+    const inputData = yield select((state) => state.post.fileUpload.inputData);
+    const response = yield api.postMethod("post_files_upload", inputData);
+    if (response.data.success) {
+      yield put(postFileUploadSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(postFileUploadFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(postFileUploadFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([yield takeLatest(SAVE_POST_START, savePostAPI)]);
   yield all([yield takeLatest(FETCH_POSTS_START, fetchPostsAPI)]);
   yield all([yield takeLatest(FETCH_SINGLE_POST_START, fetchSinglePostAPI)]);
   yield all([yield takeLatest(DELETE_POST_START, deletePostAPI)]);
   yield all([yield takeLatest(CHANGE_POST_STATUS_START, changePostStatusAPI)]);
+  yield all([yield takeLatest(POST_FILE_UPLOAD_START, postFileUploadAPI)]);
 }
