@@ -98,9 +98,67 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+    this.fetchConfig();
+  }
+
+  async fetchConfig() {
+    try {
+      const response = await fetch(apiConstants.settingsUrl);
+      const configValue = await response.json();
+
+      configuration.set({ configData: configValue.data }, { freeze: false });
+      this.setState({ configLoading: false });
+    } catch (error) {
+      configuration.set({ configData: [] }, { freeze: false });
+      this.setState({ configLoading: false });
+    }
+
+    // $("#google_analytics").html(
+    //   configuration.get("configData.google_analytics")
+    // );
+
+    // $("#header_scripts").html(configuration.get("configData.header_scripts"));
+
+    // $("#body_scripts").html(configuration.get("configData.body_scripts"));
+  }
+
   render() {
+    const isLoading = this.state.configLoading;
+
+    if (isLoading) {
+      return (
+        // Place content loadder here
+        <div>{/* <HomeLoader></HomeLoader> */}</div>
+      );
+    }
     return (
       <>
+        <Helmet>
+          <title>{configuration.get("configData.site_name")}</title>
+          <link
+            rel="icon"
+            type="image/png"
+            href={configuration.get("configData.site_icon")}
+            sizes="16x16"
+          />
+          <link
+            rel="apple-touch-icon"
+            href={configuration.get("configData.site_icon")}
+          />
+          <meta
+            name="description"
+            content={configuration.get("configData.meta_description")}
+          ></meta>
+          <meta
+            name="keywords"
+            content={configuration.get("configData.meta_keywords")}
+          ></meta>
+          <meta
+            name="author"
+            content={configuration.get("configData.meta_author")}
+          ></meta>
+        </Helmet>
         <Switch>
           <AppRoute
             path={"/"}

@@ -20,6 +20,7 @@ import {
 import WithdrawModal from "../../helper/WithdrawModal";
 import CancelWithdrawModal from "../../helper/CancelWithdrawModal";
 import { fetchPaymentsStart } from "../../../store/actions/UserAction";
+import configuration from "react-global-configuration";
 
 const PaymentsIndex = (props) => {
   useEffect(() => {
@@ -123,7 +124,10 @@ const PaymentsIndex = (props) => {
               <div className="payment-body">
                 <h2>Refer your friends to</h2>
                 <Link to="#" aria-current="page" className="sign-in-logo">
-                  <Image src="./assets/images/logo.png" width="237" />
+                  <Image
+                    src={configuration.get("configData.site_logo")}
+                    width="237"
+                  />
                 </Link>
                 <h2>earn 5% commission,</h2>
                 <h2>LIFETIME!</h2>
