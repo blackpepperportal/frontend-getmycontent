@@ -63,7 +63,7 @@ const HeaderIndex = (props) => {
               <Image
                 src={window.location.origin + "/assets/images/icons/chat.svg"}
               />
-              <span className="main-header-menu__count"> 5 </span>
+              {/* <span className="main-header-menu__count"> 5 </span> */}
             </Link>
             <Button
               type="button"

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const ChatUserList = (props) => {
   const { chatUsers } = props;
-
   return (
     <Col sm={12} md={12} lg={5} xl={4} className="padding-msg resp-mrg-btn-xs">
       <div className="chat-content">

@@ -73,12 +73,18 @@ const ModelViewProfile = (props) => {
     );
   };
 
-  const subscriptionPayment = (event, plan_type, user_unique_id) => {
+  const subscriptionPayment = (
+    event,
+    plan_type,
+    user_unique_id,
+    is_free = 0
+  ) => {
     event.preventDefault();
     props.dispatch(
       subscriptionPaymentStripeStart({
         user_unique_id,
         plan_type,
+        is_free,
       })
     );
   };
@@ -284,11 +290,51 @@ const ModelViewProfile = (props) => {
                 </div>
 
                 {userDetails.data.payment_info.is_user_needs_pay ? (
-                  <>
+                  userDetails.data.payment_info.subscription_info ? (
+                    <>
+                      <div className="subscription-section">
+                        <span className="subscribe-title">
+                          Monthly Subscription{" "}
+                        </span>
+                        <Link
+                          to=""
+                          className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                          onClick={(event) =>
+                            subscriptionPayment(
+                              event,
+                              "month",
+                              userDetails.data.user.user_unique_id
+                            )
+                          }
+                        >
+                          {userDetails.data.payment_info.payment_text}
+                        </Link>
+                      </div>
+                      <div className="subscription-section">
+                        <span className="subscribe-title">
+                          Yearly Subscription{" "}
+                        </span>
+                        <Link
+                          to=""
+                          className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                          onClick={(event) =>
+                            subscriptionPayment(
+                              event,
+                              "year",
+                              userDetails.data.user.user_unique_id
+                            )
+                          }
+                        >
+                          Subscribe for{" "}
+                          {
+                            userDetails.data.payment_info.subscription_info
+                              .yearly_amount_formatted
+                          }
+                        </Link>
+                      </div>
+                    </>
+                  ) : (
                     <div className="subscription-section">
-                      <span className="subscribe-title">
-                        Monthly Subscription{" "}
-                      </span>
                       <Link
                         to=""
                         className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
@@ -296,36 +342,15 @@ const ModelViewProfile = (props) => {
                           subscriptionPayment(
                             event,
                             "month",
-                            userDetails.data.user.user_unique_id
+                            userDetails.data.user.user_unique_id,
+                            1
                           )
                         }
                       >
                         {userDetails.data.payment_info.payment_text}
                       </Link>
                     </div>
-                    <div className="subscription-section">
-                      <span className="subscribe-title">
-                        Yearly Subscription{" "}
-                      </span>
-                      <Link
-                        to=""
-                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                        onClick={(event) =>
-                          subscriptionPayment(
-                            event,
-                            "year",
-                            userDetails.data.user.user_unique_id
-                          )
-                        }
-                      >
-                        Subscribe for{" "}
-                        {
-                          userDetails.data.payment_info.subscription_info
-                            .yearly_amount_formatted
-                        }
-                      </Link>
-                    </div>
-                  </>
+                  )
                 ) : (
                   ""
                 )}

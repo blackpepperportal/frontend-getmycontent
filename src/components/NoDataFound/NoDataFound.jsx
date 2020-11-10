@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
 
-const NotFound = () => {
+const NoDataFound = () => {
   return (
     <>
       <div className="no-data-found-sec">
@@ -10,7 +10,9 @@ const NotFound = () => {
             <div className="no-data-found-img-sec">
               <Image
                 alt="not-found"
-                src={window.location.origin + "/assets/images/no-data-found-1.svg"}
+                src={
+                  window.location.origin + "/assets/images/no-data-found-1.svg"
+                }
               />
             </div>
           </Col>
@@ -20,4 +22,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NoDataFound;
