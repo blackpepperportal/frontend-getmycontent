@@ -12,6 +12,10 @@
     border: 5px solid rgba(0, 0, 0, 0.1);
 }
 
+.cursor-pointer-link {
+    cursor: pointer;
+}
+
 .credit-img {
     max-width: 4em;
 }

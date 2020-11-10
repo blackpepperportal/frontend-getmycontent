@@ -5,6 +5,7 @@ import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import PostDisplayCard from "../../helper/PostDisplayCard";
 import { fetchPostsStart } from "../../../store/actions/PostAction";
 import { fetchUserDetailsStart } from "../../../store/actions/UserAction";
+import NoDataFound from "../../NoDataFound/NoDataFound";
 
 const ProfileIndex = (props) => {
   useEffect(() => {
@@ -134,7 +135,7 @@ const ProfileIndex = (props) => {
                       <PostDisplayCard post={post} />
                     ))
                   : ""
-                : "No data found"}
+                : <NoDataFound/>}
             </Col>
           </Row>
         </Container>

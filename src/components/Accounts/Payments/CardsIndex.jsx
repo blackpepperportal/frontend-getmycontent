@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentAddCardModal from "../../helper/PaymentAddCardModal";
+import NoDataFoundIndex from "../../NoDataFound/NoDataFoundIndex";
 
 const stripePromise = loadStripe("pk_test_uDYrTXzzAuGRwDYtu7dkhaF3");
 
@@ -76,12 +77,12 @@ const CardsIndex = (props) => {
                     </div>
                   </Col>
                 ))
-              : "No data found"}
+              : <NoDataFoundIndex/>}
           </Row>
           <Row>
             <Col sm={12} md={6} xl={4}>
               <div
-                className="card-list-box"
+                className="card-list-box cursor-pointer-link"
                 onClick={() => setPaymentAddCard(true)}
               >
                 <div className="add-account-sec">

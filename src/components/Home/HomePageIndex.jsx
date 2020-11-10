@@ -10,6 +10,7 @@ import {
 } from "../../store/actions/CommentsAction";
 import { saveBookmarkStart } from "../../store/actions/BookmarkAction";
 import PostDisplayCard from "../helper/PostDisplayCard";
+import NoDataFound from "../NoDataFound/NoDataFound";
 
 const HomePageIndex = (props) => {
   useEffect(() => {
@@ -71,20 +72,20 @@ const HomePageIndex = (props) => {
               </Form>
             </div>
           </div>
-          <div className="">
+          <div className="padding-top-xl">
             <Col xl={8} md={12} className="custom-padding">
-              <Container>
+              {/* <Container>
                 <Row>
                   <div id="stories" className="storiesWrapper"></div>
                 </Row>
-              </Container>
+              </Container> */}
               {props.posts.loading
                 ? "Loading..."
                 : props.posts.data.posts.length > 0
                 ? props.posts.data.posts.map((post) => (
                     <PostDisplayCard post={post} key={post.post_id} />
                   ))
-                : "No data Found"}
+                : <NoDataFound/>}
             </Col>
             <HomePageSuggesstion />
           </div>
