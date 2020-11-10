@@ -21,6 +21,7 @@ import WithdrawModal from "../../helper/WithdrawModal";
 import CancelWithdrawModal from "../../helper/CancelWithdrawModal";
 import { fetchPaymentsStart } from "../../../store/actions/UserAction";
 import configuration from "react-global-configuration";
+import NoDataFound from "../../NoDataFound/NoDataFound";
 
 const PaymentsIndex = (props) => {
   useEffect(() => {
@@ -153,100 +154,100 @@ const PaymentsIndex = (props) => {
               <Tabs defaultActiveKey="earnings" id="uncontrolled-tab-example">
                 <Tab eventKey="earnings" title="Earnings">
                   <div className="payment-tabs-content">
-                    <Table borderedless responsive>
-                      <thead>
-                        <tr className="bg-white">
-                          <th>Date</th>
-                          <th>Transaction ID</th>
-                          <th>Mode</th>
-                          <th>Message</th>
-                          <th>Amount</th>
-                          <th>Status</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {props.transaction.loading
-                          ? "Loading..."
-                          : props.transaction.data.history.length > 0
-                          ? props.transaction.data.history.map((history) => (
-                              <tr>
-                                <td>{history.paid_date}</td>
-                                <td>{history.payment_id}</td>
-                                <td>{history.payment_mode}</td>
-                                <td>{history.message}</td>
-                                <td>{history.paid_amount_formatted}</td>
-                                <td>
-                                  <p>
-                                    <i class="far fa-clock mr-2"></i>
-                                    {history.status_formatted}
-                                  </p>
-                                </td>
-                              </tr>
-                            ))
-                          : "No data found"}
-                      </tbody>
-                    </Table>
+                    {props.transaction.loading ? (
+                      "Loading..."
+                    ) : props.transaction.data.history.length > 0 ? (
+                      <Table borderedless responsive>
+                        <thead>
+                          <tr className="bg-white">
+                            <th>Date</th>
+                            <th>Transaction ID</th>
+                            <th>Mode</th>
+                            <th>Message</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {props.transaction.data.history.map((history) => (
+                            <tr>
+                              <td>{history.paid_date}</td>
+                              <td>{history.payment_id}</td>
+                              <td>{history.payment_mode}</td>
+                              <td>{history.message}</td>
+                              <td>{history.paid_amount_formatted}</td>
+                              <td>
+                                <p>
+                                  <i class="far fa-clock mr-2"></i>
+                                  {history.status_formatted}
+                                </p>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                    ) : (
+                      <NoDataFound />
+                    )}
                   </div>
                 </Tab>
 
                 <Tab eventKey="payments" title="Withdraws">
                   <div className="payment-tabs-content">
-                    <Table borderedless responsive>
-                      <thead>
-                        <tr className="bg-white">
-                          <th>Date</th>
-                          <th>Transaction ID</th>
-                          <th>Billing Account</th>
-                          <th>Requested</th>
-                          <th>Paid</th>
-                          <th>Status</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {props.withDrawals.loading
-                          ? "Loading..."
-                          : props.withDrawals.data.history.length > 0
-                          ? props.withDrawals.data.history.map(
-                              (withDrawRequest) => (
-                                <tr>
-                                  <td>{withDrawRequest.created}</td>
-                                  <td>
-                                    {withDrawRequest.user_withdrawal_unique_id}
-                                  </td>
-                                  <td>
-                                    {withDrawRequest.billing_account_name}
-                                  </td>
-                                  <td>
-                                    {withDrawRequest.requested_amount_formatted}
-                                  </td>
-                                  <td>
-                                    {withDrawRequest.paid_amount_formatted}
-                                  </td>
-                                  <td>{withDrawRequest.status_formatted}</td>
-                                  <td>
-                                    {withDrawRequest.cancel_btn_status == 1 ? (
-                                      <Button
-                                        onClick={(event) =>
-                                          showCancelWithdrawModel(
-                                            event,
-                                            withDrawRequest
-                                          )
-                                        }
-                                        className="cancel-btn"
-                                      >
-                                        Cancel
-                                      </Button>
-                                    ) : (
-                                      ""
-                                    )}
-                                  </td>
-                                </tr>
-                              )
+                    {props.withDrawals.loading ? (
+                      "Loading..."
+                    ) : props.withDrawals.data.history.length > 0 ? (
+                      <Table borderedless responsive>
+                        <thead>
+                          <tr className="bg-white">
+                            <th>Date</th>
+                            <th>Transaction ID</th>
+                            <th>Billing Account</th>
+                            <th>Requested</th>
+                            <th>Paid</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {props.withDrawals.data.history.map(
+                            (withDrawRequest) => (
+                              <tr>
+                                <td>{withDrawRequest.created}</td>
+                                <td>
+                                  {withDrawRequest.user_withdrawal_unique_id}
+                                </td>
+                                <td>{withDrawRequest.billing_account_name}</td>
+                                <td>
+                                  {withDrawRequest.requested_amount_formatted}
+                                </td>
+                                <td>{withDrawRequest.paid_amount_formatted}</td>
+                                <td>{withDrawRequest.status_formatted}</td>
+                                <td>
+                                  {withDrawRequest.cancel_btn_status == 1 ? (
+                                    <Button
+                                      onClick={(event) =>
+                                        showCancelWithdrawModel(
+                                          event,
+                                          withDrawRequest
+                                        )
+                                      }
+                                      className="cancel-btn"
+                                    >
+                                      Cancel
+                                    </Button>
+                                  ) : (
+                                    ""
+                                  )}
+                                </td>
+                              </tr>
                             )
-                          : "No data found"}
-                      </tbody>
-                    </Table>
+                          )}
+                        </tbody>
+                      </Table>
+                    ) : (
+                      <NoDataFound />
+                    )}
                   </div>
                 </Tab>
               </Tabs>

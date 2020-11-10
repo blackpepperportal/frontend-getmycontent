@@ -244,12 +244,18 @@ const LandingPageIndex = (props) => {
                             controlId="formBasicName"
                             className="round"
                           >
-                            <input type="checkbox" id="checkbox" />
-                            <label for="checkbox"></label>
+                            {/* <input type="checkbox" id="checkbox" /> */}
+                            {/* <label for="checkbox"></label> */}
                             <p className="terms">
                               By signing up you agree to our{" "}
-                              <Link to="#">Terms of Service</Link> and{" "}
-                              <Link to="#">Privacy Policy</Link>.
+                              <Link to={`/page/terms`} target="_blank">
+                                Terms of Service
+                              </Link>{" "}
+                              and{" "}
+                              <Link to={`/page/privacy`} target="_blank">
+                                Privacy Policy
+                              </Link>
+                              .
                             </p>
                           </Form.Group>
 

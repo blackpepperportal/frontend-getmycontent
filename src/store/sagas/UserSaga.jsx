@@ -186,6 +186,7 @@ function* userRegisterAPI() {
           response.data.message
         );
         yield put(createNotification(notificationMessage));
+        window.location.assign("/");
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);

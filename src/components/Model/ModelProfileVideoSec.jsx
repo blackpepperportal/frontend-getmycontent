@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Image, Media} from "react-bootstrap";
+import { Image, Media } from "react-bootstrap";
+
+import NoDataFound from "../NoDataFound/NoDataFound";
 
 const ModelProfileVideoSec = (props) => {
   return (
@@ -14,36 +16,25 @@ const ModelProfileVideoSec = (props) => {
       id="Section3"
     >
       <ul className="box-container three-cols model-prof-photo-sec">
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/videos/demo-1.mp4" className="glightbox3">
-              <Image
-                src={window.location.origin + "/assets/images/g-4.jpg"}
-                alt="image"
-              />
-            </Link>
-          </div>
-        </Media>
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/videos/demo-2.mp4" className="glightbox3">
-              <Image
-                src={window.location.origin + "/assets/images/g-2.jpg"}
-                alt="image"
-              />
-            </Link>
-          </div>
-        </Media>
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/videos/demo-1.mp4" className="glightbox3">
-              <Image
-                src={window.location.origin + "/assets/images/g-3.jpg"}
-                alt="image"
-              />
-            </Link>
-          </div>
-        </Media>
+        {props.userPosts.loading ? (
+          "Loading..."
+        ) : props.userPosts.data.posts.length > 0 ? (
+          props.userPosts.data.posts.map((post) =>
+            post.post_files.length > 0
+              ? post.post_files.map((p_file) => (
+                  <Media as="li" className="box">
+                    <div className="inner">
+                      <Link to={p_file.file} className="glightbox3">
+                        <Image src={p_file.file} />
+                      </Link>
+                    </div>
+                  </Media>
+                ))
+              : ""
+          )
+        ) : (
+          <NoDataFound></NoDataFound>
+        )}
       </ul>
     </div>
   );

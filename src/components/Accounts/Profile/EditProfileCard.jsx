@@ -5,6 +5,7 @@ import { Form, Button, Image } from "react-bootstrap";
 import {
   editUserDetails,
   fetchUserDetailsStart,
+  updateUserDetailsStart,
 } from "../../../store/actions/UserAction";
 
 const EditProfileCard = (props) => {
@@ -46,6 +47,10 @@ const EditProfileCard = (props) => {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.dispatch(updateUserDetailsStart(profileInputData));
+  };
   return (
     <>
       {props.profile.loading ? (
@@ -90,6 +95,7 @@ const EditProfileCard = (props) => {
                       id="changeCover"
                       type="file"
                       name="coverImage"
+                      accept="image/*"
                       onChange={handleChangeImage}
                     />
                     <Form.Label
@@ -120,6 +126,7 @@ const EditProfileCard = (props) => {
                         className="hidden-input"
                         id="changePicture"
                         type="file"
+                        accept="image/*"
                         name="profileImage"
                         onChange={handleChangeImage}
                       />
@@ -174,6 +181,14 @@ const EditProfileCard = (props) => {
                 name="username"
                 maxlength="24"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
               <span className="edit-new-username-status">
                 <Image
@@ -182,12 +197,16 @@ const EditProfileCard = (props) => {
                 />
               </span>
             </div>
-            <p className="inuput-help">https://fansclub.com/u63484651</p>
+            <p className="inuput-help">
+              {window.location.origin +
+                "/model-profile/" +
+                props.profile.data.username}
+            </p>
           </div>
           <div
             className="edit-input-wrapper"
             data-vv-delay="1000"
-            data-vv-as="Username"
+            data-vv-as="Display Name"
           >
             <Form.Label className="edit-input-label">
               Display name
@@ -197,10 +216,10 @@ const EditProfileCard = (props) => {
               <Form.Control
                 id="edit-login"
                 type="text"
-                autocomplete="on"
+                autocomplete="off"
                 placeholder=""
-                value={props.profile.data.username}
-                name="username"
+                value={props.profile.data.name}
+                name="name"
                 maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -237,26 +256,28 @@ const EditProfileCard = (props) => {
             </div>
             <p className="inuput-help">
               You must
-              <Link to="#">Add a Bank Account or Payment Information</Link>{" "}
+              <Link to={`/add-bank`}>
+                Add a Bank Account or Payment Information
+              </Link>{" "}
               before you can set your price or accept tips.
             </p>
           </div>
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"
-            data-vv-as="Username"
+            data-vv-as="description"
           >
             <Form.Label className="edit-input-label">
               ABOUT <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
               <Form.Control
-                id="edit-login"
+                id="edit-description"
                 type="text"
-                autocomplete="on"
-                value="Nutrition | Motivation"
+                autocomplete="off"
+                value={props.profile.data.description}
                 placeholder=""
-                name="username"
+                name="description"
                 maxlength="24"
                 className="form-control edit-reset"
               />
@@ -265,20 +286,19 @@ const EditProfileCard = (props) => {
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"
-            data-vv-as="Username"
+            data-vv-as="Address"
           >
             <Form.Label className="edit-input-label">
               LOCATION <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
               <Form.Control
-                id="edit-login"
+                id="edit-address"
                 type="text"
-                autocomplete="on"
-                value=""
+                autocomplete="off"
+                value={props.profile.data.address}
                 placeholder="Location"
-                name="username"
-                maxlength="24"
+                name="address"
                 className="form-control edit-reset"
               />
             </div>
@@ -286,7 +306,7 @@ const EditProfileCard = (props) => {
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"
-            data-vv-as="Username"
+            data-vv-as="Website"
           >
             <Form.Label className="edit-input-label">
               WEBSITE URL
@@ -294,10 +314,10 @@ const EditProfileCard = (props) => {
             </Form.Label>
             <div className="">
               <Form.Control
-                id="edit-login"
+                id="edit-website"
                 type="text"
-                autocomplete="on"
-                value=""
+                autocomplete="off"
+                value={props.profile.data.website}
                 placeholder="Website URL"
                 name="username"
                 maxlength="24"
@@ -308,7 +328,7 @@ const EditProfileCard = (props) => {
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"
-            data-vv-as="Username"
+            data-vv-as="Amazon Wishlist"
           >
             <Form.Label className="edit-input-label">
               AMAZON WISHLIST
@@ -316,19 +336,22 @@ const EditProfileCard = (props) => {
             </Form.Label>
             <div className="">
               <Form.Control
-                id="edit-login"
+                id="edit-amazon-wishlist"
                 type="text"
-                autocomplete="on"
-                value=""
+                autocomplete="off"
+                value={props.profile.data.amazon_wishlist}
                 placeholder="Amazon Wishlist"
-                name="username"
+                name="amazon_wishlist"
                 maxlength="24"
                 className="form-control edit-reset"
               />
             </div>
           </div>
           <div className="edit-save">
-            <Button className="save-btn"> Save changes </Button>
+            <Button className="save-btn" onClick={handleSubmit}>
+              {" "}
+              Save changes{" "}
+            </Button>
           </div>
         </div>
       )}

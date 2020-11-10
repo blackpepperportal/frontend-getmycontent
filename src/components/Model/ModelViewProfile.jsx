@@ -51,14 +51,14 @@ const ModelViewProfile = (props) => {
       props.dispatch(
         fetchSingleUserPostsStart({
           user_unique_id: props.match.params.id,
-          type: "photos",
+          type: "image",
         })
       );
     else if (key === "video")
       props.dispatch(
         fetchSingleUserPostsStart({
           user_unique_id: props.match.params.id,
-          type: "videos",
+          type: "video",
         })
       );
   };
@@ -347,11 +347,13 @@ const ModelViewProfile = (props) => {
                     <ModelProfilePhotoSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
+                      userPosts={props.userPosts}
                     />
 
                     <ModelProfileVideoSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
+                      userPosts={props.userPosts}
                     />
                   </div>
                 </div>

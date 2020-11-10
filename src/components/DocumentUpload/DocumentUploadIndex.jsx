@@ -16,6 +16,8 @@ import {
   getKycDocumentStart,
 } from "../../store/actions/KycDocumentAction";
 
+import NoDataFound from "../NoDataFound/NoDataFound";
+
 const DocumentUploadIndex = (props) => {
   useEffect(() => {
     props.dispatch(getKycDocumentStart());
@@ -57,60 +59,64 @@ const DocumentUploadIndex = (props) => {
     <>
       <div className="document-upload-sec">
         <Container>
-          <h4 class="head-title">Document Upload</h4>
-          {props.kycDocDetails.loading
-            ? "Loading..."
-            : props.kycDocDetails.data.documents.length > 0
-            ? props.kycDocDetails.data.documents.map((doc) => (
-                <>
-                  <div className="document-card">
-                    <Row>
-                      <Col sm={12} md={12}>
-                        <div className="sub-heading">
-                          <h4>{doc.name}</h4>
-                          <p>{doc.description}</p>
-                        </div>
-                      </Col>
-                    </Row>
-                    <Row>
+          <h4 class="head-title">Upload Your Documents</h4>
+          {props.kycDocDetails.loading ? (
+            "Loading..."
+          ) : props.kycDocDetails.data.documents.length > 0 ? (
+            props.kycDocDetails.data.documents.map((doc) => (
+              <>
+                <div className="document-card">
+                  <Row>
+                    <Col sm={12} md={12}>
+                      <div className="sub-heading">
+                        <h4>{doc.name}</h4>
+                        <p>{doc.description}</p>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    {doc.is_delete_edit_option ? (
                       <Col sm={12} md={6} xl={6} className="resp-mrg-btn-xs">
                         <div className="document-upload-box">
                           <Image src={doc.picture} className="doc-upload-img" />
                         </div>
                       </Col>
-                      <Col sm={12} md={6} xl={6}>
-                        <FormGroup>
-                          <Form.File
-                            type="file"
-                            id={doc.document_id}
-                            name={doc.document_id}
-                            onChange={(event) => handleChangeImage(event, doc)}
-                          />
+                    ) : (
+                      ""
+                    )}
+                    <Col sm={12} md={6} xl={6}>
+                      <FormGroup>
+                        <Form.File
+                          type="file"
+                          id={doc.document_id}
+                          name={doc.document_id}
+                          onChange={(event) => handleChangeImage(event, doc)}
+                        />
 
-                          <Form.Label
-                            htmlFor={doc.document_id}
-                            className="document-upload-box-1"
-                          >
-                            <Image
-                              src={
-                                image[doc.document_id] !== undefined
-                                  ? image[doc.document_id]
-                                  : doc.user_document.document_file !==
-                                    undefined
-                                  ? doc.user_document.document_file
-                                  : window.location.origin +
-                                    "/assets/images/document-upload.svg"
-                              }
-                              className="doc-upload-img-1"
-                            />
-                            <br></br>
-                            {doc.user_document.document_file !== undefined
-                              ? "Click here to reupload"
-                              : null}
-                          </Form.Label>
-                        </FormGroup>
-                      </Col>
-                    </Row>
+                        <Form.Label
+                          htmlFor={doc.document_id}
+                          className="document-upload-box-1"
+                        >
+                          <Image
+                            src={
+                              image[doc.document_id] !== undefined
+                                ? image[doc.document_id]
+                                : doc.user_document.document_file !== undefined
+                                ? doc.user_document.document_file
+                                : window.location.origin +
+                                  "/assets/images/document-upload.svg"
+                            }
+                            className="doc-upload-img-1"
+                          />
+                          <br></br>
+                          {doc.user_document.document_file !== undefined
+                            ? "Click here to reupload"
+                            : null}
+                        </Form.Label>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  {doc.is_delete_edit_option ? (
                     <Row>
                       <Col sm={12} md={12}>
                         <Button
@@ -122,15 +128,20 @@ const DocumentUploadIndex = (props) => {
                         >
                           {uploadDocumentID === doc.document_id
                             ? props.addKycDocInput.loadingButtonContent
-                            : "Submit"}
+                            : "Send for Approval"}
                         </Button>
                       </Col>
                     </Row>
-                  </div>
-                  <div className="space-mg"></div>
-                </>
-              ))
-            : "No data found"}
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="space-mg"></div>
+              </>
+            ))
+          ) : (
+            <NoDataFound></NoDataFound>
+          )}
         </Container>
       </div>
     </>

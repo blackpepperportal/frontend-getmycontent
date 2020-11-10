@@ -49,7 +49,9 @@ const WithdrawModel = (props) => {
                     <h4 className="text-muted">
                       Wallet Balance:{" "}
                       <span className="text-muted">
-                        {props.payments.data.wallet.remaining_formatted}
+                        {props.payments.data.wallet
+                          ? props.payments.data.wallet.remaining_formatted
+                          : ""}
                       </span>
                     </h4>
                   </div>

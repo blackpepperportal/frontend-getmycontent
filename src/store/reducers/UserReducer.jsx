@@ -162,7 +162,8 @@ const userReducer = (state = initialState, action) => {
                 ? state.profile.data.mobile
                 : "",
             address: state.profile.data.address,
-            picture: action.data,
+            picture: action.data ? action.data : "",
+            cover: action.data ? action.data : "",
           },
         },
         buttonDisable: true,

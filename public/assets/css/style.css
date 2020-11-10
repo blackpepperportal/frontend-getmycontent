@@ -1046,7 +1046,7 @@ p.terms {
   position: relative;
   bottom: 25px;
   text-align: left;
-  left: 41px;
+  /* left: 41px; */
   font-weight: 600;
   font-size: 15px;
 }

@@ -114,16 +114,9 @@ const EditProfileTabSec = (props) => {
         role="presentation"
         className={props.activeSec === "security-card" ? "active" : ""}
       >
-        <Link
-          to="#Section7"
-          aria-controls="profile"
-          role="tab"
-          className="bookmarkes-list"
-          data-toggle="tab"
-          onClick={() => props.setActiveSec("security-card")}
-        >
+        <Link to={`/document-upload`} className="bookmarkes-list">
           <Image src="assets/images/icons/security.svg" className="svg-clone" />
-          Security
+          Documents
         </Link>
       </Media>
       <Media
