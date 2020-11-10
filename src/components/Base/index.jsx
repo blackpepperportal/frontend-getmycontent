@@ -31,6 +31,7 @@ import Logout from "../Accounts/Logout";
 import Wallet from "../Wallet/Wallet";
 import BillingAccountIndex from "../Accounts/Payments/BillingAccountIndex";
 import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
+import StaticPage from "../StaticPage/StaticPage";
 
 const history = createHistory();
 const $ = window.$;
@@ -296,6 +297,13 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/document-upload"}
             component={DocumentUploadIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/static-page"}
+            component={StaticPage}
             layout={MainLayout}
           />
 
