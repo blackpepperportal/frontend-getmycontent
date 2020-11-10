@@ -31,13 +31,14 @@ import {
 function* savePostAPI() {
   try {
     const inputData = yield select((state) => state.post.savePost.inputData);
-    const response = yield api.postMethod("posts_save", inputData);
+    const response = yield api.postMethod("posts_save_for_owner", inputData);
     if (response.data.success) {
       yield put(savePostSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
       yield put(createNotification(notificationMessage));
+      window.location.assign("/profile");
     } else {
       yield put(savePostFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

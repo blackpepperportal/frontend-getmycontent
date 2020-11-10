@@ -76,7 +76,7 @@ const CreatePostIndex = (props) => {
                 <div className="pull-right">
                   <Button
                     type="submit"
-                    className="post-btn"
+                    className="post-btn btn-primary"
                     onClick={handleSubmit}
                     disabled={props.fileUpload.buttonDisable}
                   >

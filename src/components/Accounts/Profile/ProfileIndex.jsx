@@ -127,15 +127,19 @@ const ProfileIndex = (props) => {
                   </div>
                 </>
               )}
-              {props.posts.loading
-                ? "Loading..."
-                : props.posts.data.length > 0
-                ? props.posts.data.posts.length > 0
-                  ? props.posts.data.posts.map((post) => (
-                      <PostDisplayCard post={post} />
-                    ))
-                  : ""
-                : <NoDataFound/>}
+              {props.posts.loading ? (
+                "Loading..."
+              ) : props.posts.data.posts.length > 0 ? (
+                props.posts.data.posts.length > 0 ? (
+                  props.posts.data.posts.map((post) => (
+                    <PostDisplayCard post={post} />
+                  ))
+                ) : (
+                  ""
+                )
+              ) : (
+                <NoDataFound />
+              )}
             </Col>
           </Row>
         </Container>

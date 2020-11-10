@@ -18,7 +18,13 @@ const ModelProfilePostSec = (props) => {
       >
         <div className="profile-post-area">
           <div className="alignleft float-unset">
-            <span className="post-number">1 Post</span>
+            <span className="post-number">
+              {props.userPosts.loading ? (
+                "Loading..."
+              ) : (
+                <span>{props.userPosts.data.total} Posts</span>
+              )}
+            </span>
           </div>
           <div className="alignright">
             <div className="profile-search-post">
@@ -36,13 +42,15 @@ const ModelProfilePostSec = (props) => {
           </div>
         </div>
 
-        {props.userPosts.loading
-          ? "Loading..."
-          : props.userPosts.data.posts.length > 0
-          ? props.userPosts.data.posts.map((post) => (
-              <PostDisplayCard post={post} key={post.post_id} />
-            ))
-          : <NoDataFound/>}
+        {props.userPosts.loading ? (
+          "Loading..."
+        ) : props.userPosts.data.posts.length > 0 ? (
+          props.userPosts.data.posts.map((post) => (
+            <PostDisplayCard post={post} key={post.post_id} />
+          ))
+        ) : (
+          <NoDataFound />
+        )}
       </div>
     </>
   );
