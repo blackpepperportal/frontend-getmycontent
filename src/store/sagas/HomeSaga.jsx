@@ -34,7 +34,8 @@ import {
 
 function* fetchHomePostAPI() {
   try {
-    const response = yield api.postMethod("home");
+    const skipCount = yield select((state) => state.home.homePost.skip);
+    const response = yield api.postMethod("home", { skip: skipCount });
     if (response.data.success) {
       yield put(fetchHomePostsSuccess(response.data.data));
     } else {

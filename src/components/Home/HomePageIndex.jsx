@@ -11,11 +11,18 @@ import {
 import { saveBookmarkStart } from "../../store/actions/BookmarkAction";
 import PostDisplayCard from "../helper/PostDisplayCard";
 import NoDataFound from "../NoDataFound/NoDataFound";
+import useInfiniteScroll from "../helper/useInfiniteScroll";
 
 const HomePageIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchHomePostsStart());
   }, []);
+
+  const fetchHomeData = () => {
+    props.dispatch(fetchHomePostsStart());
+  };
+
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchHomeData);
 
   const [sendTip, setSendTip] = useState(false);
 
@@ -79,16 +86,19 @@ const HomePageIndex = (props) => {
                   <div id="stories" className="storiesWrapper"></div>
                 </Row>
               </Container> */}
-              {props.posts.loading
-                ? "Loading..."
-                : props.posts.data.posts.length > 0
-                ? props.posts.data.posts.map((post) => (
-                    <PostDisplayCard post={post} key={post.post_id} />
-                  ))
-                : <NoDataFound/>}
+              {props.posts.loading ? (
+                "Loading..."
+              ) : props.posts.data.posts.length > 0 ? (
+                props.posts.data.posts.map((post) => (
+                  <PostDisplayCard post={post} key={post.post_id} />
+                ))
+              ) : (
+                <NoDataFound />
+              )}
             </Col>
             <HomePageSuggesstion />
           </div>
+          {isFetching && "Fetching more list items..."}
         </Container>
       </div>
     </>

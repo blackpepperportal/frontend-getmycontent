@@ -122,7 +122,7 @@ const PostDisplayCard = (props) => {
       <div className="post-content">
         <p>{post.content}</p>
 
-        {post.post_files.length > 0 ? (
+        {/* {post.post_files.length > 0 ? (
           post.post_files[0].file_type === "image" ? (
             <div className="post-image">
               <div className="">
@@ -135,7 +135,7 @@ const PostDisplayCard = (props) => {
               </div>
             </div>
           ) : null
-        ) : null}
+        ) : null} */}
       </div>
 
       <div className="post-icons">
