@@ -109,9 +109,9 @@ const DocumentUploadIndex = (props) => {
                             className="doc-upload-img-1"
                           />
                           <br></br>
-                          {doc.user_document.document_file !== undefined
+                          <p className="document-desc">{doc.user_document.document_file !== undefined
                             ? "Click here to reupload"
-                            : null}
+                            : null}</p>
                         </Form.Label>
                       </FormGroup>
                     </Col>

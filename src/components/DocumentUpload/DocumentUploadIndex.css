@@ -29,6 +29,7 @@
     height: 100%;
     margin-bottom: 0;
     cursor: pointer;
+    flex-direction: column;
 }
 
 .document-upload-sec .sub-heading h4 {
@@ -46,7 +47,7 @@
 }
 
 .doc-upload-img{
-    width: 15em;
+    width: 40em;
     height: 15em;
     object-fit: contain;
 }
@@ -75,7 +76,10 @@
 }
 
 .doc-upload-img-1{
-    max-width: 25em;
+    /* max-width: 25em; */
+    width: 15em;
+    height: 15em;
+    object-fit: contain;
 }
 
 .document-upload-sec .form-file{
@@ -113,5 +117,12 @@
 
   .document-upload-sec .form-group {
     margin-bottom: 0!important;
+  }
+
+  .document-desc{
+    color: #c4c4c4;
+    font-size: 1.2em;
+    font-weight: 400;
+    letter-spacing: 0.004em;
   }
   

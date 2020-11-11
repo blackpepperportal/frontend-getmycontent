@@ -5,31 +5,34 @@ const SignupLoader = (props) => (
   <ContentLoader 
     speed={2}
     width={1200}
-    height={600}
-    viewBox="0 0 1204 600"
+    height={700}
+    viewBox="0 0 1200 700"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
     {...props}
   >
-    <rect x="34" y="59" rx="0" ry="0" width="8" height="445" /> 
-    <rect x="34" y="59" rx="0" ry="0" width="1100" height="8" /> 
-    <rect x="1126" y="59" rx="0" ry="0" width="8" height="445" /> 
-    <rect x="37" y="495" rx="0" ry="0" width="1095" height="9" /> 
-    <rect x="72" y="142" rx="10" ry="10" width="550" height="270" /> 
-    <rect x="790" y="95" rx="0" ry="0" width="191" height="8" /> 
-    <rect x="730" y="114" rx="0" ry="0" width="300" height="6" /> 
-    <rect x="680" y="133" rx="0" ry="0" width="68" height="8" /> 
-    <rect x="680" y="150" rx="2" ry="2" width="410" height="38" /> 
-    <rect x="680" y="202" rx="0" ry="0" width="68" height="8" /> 
-    <rect x="680" y="219" rx="2" ry="2" width="410" height="38" /> 
-    <rect x="680" y="269" rx="0" ry="0" width="68" height="8" /> 
-    <rect x="680" y="286" rx="2" ry="2" width="410" height="38" /> 
-    <rect x="680" y="335" rx="0" ry="0" width="68" height="8" /> 
-    <rect x="680" y="352" rx="2" ry="2" width="410" height="38" /> 
-    <rect x="680" y="399" rx="0" ry="0" width="9" height="7" /> 
-    <rect x="700" y="399" rx="0" ry="0" width="174" height="7" /> 
-    <rect x="800" y="421" rx="5" ry="5" width="163" height="30" /> 
-    <rect x="820" y="460" rx="0" ry="0" width="120" height="7" />
+    <rect x="31" y="130" rx="0" ry="0" width="0" height="9" /> 
+    <rect x="10" y="21" rx="5" ry="5" width="272" height="558" /> 
+    <rect x="365" y="42" rx="0" ry="0" width="189" height="30" /> 
+    <rect x="347" y="79" rx="0" ry="0" width="228" height="9" /> 
+    <rect x="327" y="98" rx="25" ry="25" width="273" height="51" /> 
+    <rect x="327" y="165" rx="25" ry="25" width="273" height="51" /> 
+    <rect x="330" y="251" rx="0" ry="0" width="114" height="5" /> 
+    <circle cx="467" cy="255" r="7" /> 
+    <rect x="489" y="251" rx="0" ry="0" width="114" height="5" /> 
+    <rect x="330" y="290" rx="0" ry="0" width="104" height="9" /> 
+    <rect x="330" y="312" rx="0" ry="0" width="274" height="3" /> 
+    <rect x="330" y="339" rx="0" ry="0" width="104" height="9" /> 
+    <rect x="330" y="361" rx="0" ry="0" width="274" height="3" /> 
+    <rect x="330" y="525" rx="25" ry="25" width="273" height="51" /> 
+    <rect x="409" y="590" rx="0" ry="0" width="135" height="5" /> 
+    <rect x="386" y="610" rx="0" ry="0" width="183" height="8" /> 
+    <rect x="331" y="378" rx="0" ry="0" width="104" height="9" /> 
+    <rect x="331" y="400" rx="0" ry="0" width="274" height="3" /> 
+    <rect x="331" y="427" rx="0" ry="0" width="104" height="9" /> 
+    <rect x="331" y="449" rx="0" ry="0" width="274" height="3" /> 
+    <rect x="327" y="468" rx="0" ry="0" width="284" height="8" /> 
+    <rect x="327" y="489" rx="0" ry="0" width="100" height="8" />
   </ContentLoader>
 )
 

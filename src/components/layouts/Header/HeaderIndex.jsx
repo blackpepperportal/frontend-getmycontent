@@ -98,6 +98,7 @@ const HeaderIndex = (props) => {
                       alt="fansclub"
                     />
                   </span>
+                  <span> <i className="material-icons add-icon">clear</i></span>
                 </Link>
                 <div className="pull-left side-user-head">
                   <Link
@@ -165,7 +166,7 @@ const HeaderIndex = (props) => {
                   <Image
                     src={
                       window.location.origin +
-                      "/assets/images/icons/arrow-down.svg"
+                      "/assets/images/icons/user.svg"
                     }
                     alt="fansclub"
                   />{" "}
@@ -233,7 +234,7 @@ const HeaderIndex = (props) => {
                     }
                     alt="Your Cards"
                   />{" "}
-                  Your Cards
+                  Your Cards <span className="desc">(to subscribe)</span>
                 </Link>
 
                 <Link
@@ -248,7 +249,7 @@ const HeaderIndex = (props) => {
                     }
                     alt="fansclub"
                   />{" "}
-                  Add bank
+                  Add bank <span className="desc">(to earn)</span>
                 </Link>
 
                 <hr className="sidebar-menu-divider" />
@@ -282,7 +283,7 @@ const HeaderIndex = (props) => {
                   />{" "}
                   Dark mode
                 </Link>
-
+                <hr className="sidebar-menu-divider" />
                 <Link
                   to={"/logout"}
                   className="sidebar-menus-item"

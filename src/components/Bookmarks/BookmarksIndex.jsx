@@ -4,7 +4,7 @@ import BookmarkNav from "./BookmarkNav";
 import { connect } from "react-redux";
 import { fetchBookmarksStart } from "../../store/actions/BookmarkAction";
 import PostDisplayCard from "../helper/PostDisplayCard";
-import NoDataFound from "../NoDataFound/NoDataFound";
+import BookmarkNoDataFound from "../NoDataFound/BookmarkNoDataFound";
 
 const BookmarksIndex = (props) => {
   useEffect(() => {
@@ -31,7 +31,7 @@ const BookmarksIndex = (props) => {
                 ? props.bookmark.data.posts.map((post) => (
                     <PostDisplayCard post={post} key={post.post_id} />
                   ))
-                : <NoDataFound/>}
+                : <BookmarkNoDataFound/>}
             </Col>
           </Row>
         </Container>

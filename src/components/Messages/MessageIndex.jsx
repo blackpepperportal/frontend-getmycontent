@@ -16,7 +16,7 @@ import {
   fetchChatUsersStart,
 } from "../../store/actions/ChatAction";
 import ChatUserList from "./ChatUserList";
-import NoDataFound from "../NoDataFound/NoDataFound";
+import InboxNoDataFound  from "../NoDataFound/InboxNoDataFound";
 
 const MessageIndex = (props) => {
   useEffect(() => {
@@ -50,7 +50,7 @@ const MessageIndex = (props) => {
               changeUser={changeUser}
             />
           ) : (
-            <NoDataFound></NoDataFound>
+            <InboxNoDataFound/>
           )}
           <Col
             sm={12}
