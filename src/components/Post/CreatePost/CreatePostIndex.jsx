@@ -14,7 +14,7 @@ const CreatePostIndex = (props) => {
 
   const [fileUploadStatus, setFileUploadStatus] = useState(false);
 
-  const handleChangeImage = (event) => {
+  const handleChangeImage = (event, type) => {
     if (event.currentTarget.type === "file") {
       setFileUploadStatus(true);
       // setInputData({
@@ -33,7 +33,7 @@ const CreatePostIndex = (props) => {
       props.dispatch(
         postFileUploadStart({
           file: event.currentTarget.files[0],
-          file_type: "image",
+          file_type: type,
         })
       );
     }
@@ -116,7 +116,7 @@ const CreatePostIndex = (props) => {
                       type="file"
                       multiple="multiple"
                       accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png,.mp4,.mov,.moov,.m4v,.mpg,.mpeg,.wmv,.avi,.webm,.mkv,.stream,.mp3,.wav,.ogg"
-                      onChange={handleChangeImage}
+                      onChange={(event) => handleChangeImage(event, "image")}
                       name="post_files"
                     />
                     <Form.Label
@@ -127,6 +127,32 @@ const CreatePostIndex = (props) => {
                     >
                       <Image
                         src="assets/images/icons/gallery.svg"
+                        className="svg-clone"
+                      />
+                    </Form.Label>
+                  </Form.Group>
+                </Button>
+              </div>
+
+              <div className="left-half post-write">
+                <Button>
+                  <Form.Group className="mb-0">
+                    <Form.Control
+                      id="fileupload_video"
+                      type="file"
+                      multiple="multiple"
+                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png,.mp4,.mov,.moov,.m4v,.mpg,.mpeg,.wmv,.avi,.webm,.mkv,.stream,.mp3,.wav,.ogg"
+                      onChange={(event) => handleChangeImage(event, "video")}
+                      name="post_files"
+                    />
+                    <Form.Label
+                      id="attach_file_video"
+                      for="fileupload_video"
+                      className="chat-attach_file"
+                      data-original-title="null"
+                    >
+                      <Image
+                        src="assets/images/icons/video.svg"
                         className="svg-clone"
                       />
                     </Form.Label>
