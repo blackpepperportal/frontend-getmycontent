@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import configuration from "react-global-configuration";
 import { Link } from "react-router-dom";
-import {Form, Container, Row, Col, Dropdown, Media} from "react-bootstrap";
-
+import { Form, Container, Row, Col, Dropdown, Media } from "react-bootstrap";
 
 class AuthFooter extends Component {
   render() {
@@ -15,42 +14,29 @@ class AuthFooter extends Component {
                 <Col sm={12} xs={12} xl={4} lg={4} md={12}>
                   <ul className="list-inline">
                     <Media as="li">
-                      <Link to="#">2020 XFans</Link>
-                    </Media>
-                    <Media as="li">
-                      <Link to="#">Blog</Link>
-                    </Media>
-                    <Media as="li">
-                      <Link href="#">Twitter</Link>
+                      <Link to="#">
+                        {configuration.get("configData.copyright_content")}
+                      </Link>
                     </Media>
                   </ul>
                 </Col>
                 <Col sm={12} xs={12} xl={6} lg={6} md={12}>
                   <ul className="list-inline">
-                    <Media as="li">
-                      <Link to="#"> FAQs </Link>
-                    </Media>
-                    <Media as="li">
-                      <Link to="#"> Terms </Link>
-                    </Media>
-                    <Media as="li">
-                      <Link to="#"> Privacy </Link>
-                    </Media>
-                    <Media as="li">
-                      <Link to="#"> Contact </Link>
-                    </Media>
-                    <Media as="li">
-                      <Link to="#"> How it works </Link>
-                    </Media>
-                    <Media as="li">
-                      <Link href="#"> USC 2257 </Link>
-                    </Media>
-                    <Media as="li">
-                      <a href="#"> DMCA </a>
-                    </Media>
+                    {configuration
+                      .get("configData.footer_pages1")
+                      .map((static_page, index) => (
+                        <Media as="li">
+                          <Link
+                            to={`/page/${static_page.page_type}`}
+                            key={static_page.unique_id}
+                          >
+                            {static_page.title}
+                          </Link>
+                        </Media>
+                      ))}
                   </ul>
                 </Col>
-                <Col sm={12} xs={12} xl={2}  lg={2} md={12}>
+                <Col sm={12} xs={12} xl={2} lg={2} md={12}>
                   <Dropdown className="country-sec">
                     <Dropdown.Toggle
                       className="btn btn-default dropdown-toggle countrySelect"
@@ -62,7 +48,7 @@ class AuthFooter extends Component {
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right mobile-popup model-filter-dropdown">
                       <Form className="pop-ups-bg">
-                      <Media as="li">
+                        <Media as="li">
                           <a>
                             {["radio"].map((type) => (
                               <div key={`custom-inline-${type}`}>
@@ -172,7 +158,7 @@ class AuthFooter extends Component {
                   </Dropdown>
                 </Col>
               </Row>
-              </div>
+            </div>
           </Container>
         </footer>
       </>

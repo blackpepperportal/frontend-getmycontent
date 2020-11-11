@@ -65,7 +65,7 @@ const AddBankIndex = (props) => {
                   </Form.Label>
                   <Col sm={10}>
                     <Form.Control
-                      type="text"
+                      type="number"
                       placeholder="Account Number"
                       value={inputData.account_number}
                       name="account_number"

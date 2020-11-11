@@ -1,85 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NotificationAllSec from "./NotificationAllSec";
-import NotificationInteractionsSec from "./NotificationInteractionsSec";
-import NotificationLikedSec from "./NotificationLikedSec";
-import NotificationTabSec from "./NotificationTabSec";
-import NotificationSubscribedSec from "./NotificationSubscribedSec";
-import NotificationTippedSec from "./NotificationTippedSec";
-import NotificationPromotionsSec from "./NotificationPromotionsSec";
 import { Link } from "react-router-dom";
-import {Container, Row, Col, Image} from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
+import { fetchNotificationsStart } from "../../store/actions/NotificationAction";
+import { connect } from "react-redux";
 
-const NotificationIndex = () => {
-
+const NotificationIndex = (props) => {
   const [activeSec, setActiveSec] = useState("notify-all-sec");
+
+  useEffect(() => {
+    props.dispatch(fetchNotificationsStart());
+  }, []);
 
   return (
     <>
       <div className="notification-page">
-      <Container>
-            <Row>
+        <Container>
+          <Row>
             <Col sm={12} md={12} xs={12}>
-                <div className="profile-post-area">
-                    <div className="bookmarkes-list bookmarks-right-side resp-sapce-center">
-                        <div className="pull-left">
-                            <Link className="bookmarkes-list notify-title" href="bookmarks.php">
-                                <Image src="assets/images/icons/back.svg" className="svg-clone" />{" "}
-                                Notifications
-                            </Link>
-                        </div>
-                        <div className="pull-right">
-                            <Link className="bookmarks-filter" href="#">
-                                <Image src="assets/images/icons/settings.svg" className="svg-clone" />
-                            </Link>
-                        </div>
-                    </div>
+              <div className="profile-post-area">
+                <div className="bookmarkes-list bookmarks-right-side resp-sapce-center">
+                  <div className="pull-left">
+                    <Link
+                      className="bookmarkes-list notify-title"
+                      to={`/`}
+                    >
+                      <Image
+                        src="assets/images/icons/back.svg"
+                        className="svg-clone"
+                      />
+                      Notifications
+                    </Link>
+                  </div>
                 </div>
-                <div className="tabbable-panel">
-                    <div className="tab" role="tabpanel">
-                        <NotificationTabSec
-                            activeSec={activeSec}
-                            setActiveSec={setActiveSec}
-                        />
-                      <div className="tab-content tabs padding-top-md">
-                          <NotificationAllSec
-                              activeSec={activeSec}
-                              setActiveSec={setActiveSec}
-                          />
-
-                          <NotificationInteractionsSec
-                              activeSec={activeSec}
-                              setActiveSec={setActiveSec}
-                          />
-
-                          <NotificationLikedSec
-                              activeSec={activeSec}
-                              setActiveSec={setActiveSec}
-                          />
-
-                          <NotificationSubscribedSec
-                              activeSec={activeSec}
-                              setActiveSec={setActiveSec}
-                          />
-
-                          <NotificationTippedSec
-                              activeSec={activeSec}
-                              setActiveSec={setActiveSec}
-                          />
-
-                          <NotificationPromotionsSec
-                              activeSec={activeSec}
-                              setActiveSec={setActiveSec}
-                          />
-
-                      </div>
-                    </div>
+              </div>
+              <div className="tabbable-panel">
+                <div className="tab" role="tabpanel">
+                  <div className="tab-content tabs padding-top-md">
+                  {props.notification.loading ? "Loading..." :
+                    <NotificationAllSec
+                      activeSec={activeSec}
+                      setActiveSec={setActiveSec}
+                      notifications={props.notification.data.notifications}
+                      totalNotifications={props.notification.data.total}
+                    />}
+                  </div>
                 </div>
+              </div>
             </Col>
-            </Row>
+          </Row>
         </Container>
       </div>
     </>
   );
 };
 
-export default NotificationIndex;
+const mapStateToPros = (state) => ({
+  notification: state.notification.notification,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(NotificationIndex);

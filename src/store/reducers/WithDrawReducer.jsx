@@ -27,12 +27,16 @@ const initialState = {
     loading: true,
     error: false,
     inputData: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   cancelWithDraw: {
     data: {},
     loading: true,
     error: false,
     inputData: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   searchWithDraw: {
     data: {},
@@ -87,9 +91,9 @@ const WithDrawReducer = (state = initialState, action) => {
           loading: true,
           error: false,
           inputData: action.data,
+          buttonDisable: true,
+          loadingButtonContent: "Loading...",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading...",
       };
     case SEND_WITHDRAW_REQUEST_SUCCESS:
       return {
@@ -99,9 +103,9 @@ const WithDrawReducer = (state = initialState, action) => {
           loading: false,
           error: false,
           inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case SEND_WITHDRAW_REQUEST_FAILURE:
       return {
@@ -111,9 +115,9 @@ const WithDrawReducer = (state = initialState, action) => {
           loading: true,
           error: action.error,
           inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case CANCEL_WITHDRAW_REQUEST_START:
       return {
@@ -123,9 +127,9 @@ const WithDrawReducer = (state = initialState, action) => {
           loading: true,
           error: false,
           inputData: action.data,
+          buttonDisable: true,
+          loadingButtonContent: "Loading...",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading...",
       };
     case CANCEL_WITHDRAW_REQUEST_SUCCESS:
       return {
@@ -135,9 +139,9 @@ const WithDrawReducer = (state = initialState, action) => {
           loading: false,
           error: false,
           inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case CANCEL_WITHDRAW_REQUEST_FAILURE:
       return {
@@ -147,9 +151,9 @@ const WithDrawReducer = (state = initialState, action) => {
           loading: true,
           error: action.error,
           inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
 
     case SEARCH_WITHDRAWALS_START:

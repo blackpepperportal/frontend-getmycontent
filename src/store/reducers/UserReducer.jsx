@@ -30,6 +30,9 @@ import {
   NOTIFICATION_STATUS_UPDATE_SUCCESS,
   NOTIFICATION_STATUS_UPDATE_FAILURE,
   GET_FORGOT_PASSWORD_DETAILS,
+  FETCH_PAYMENTS_START,
+  FETCH_PAYMENTS_SUCCESS,
+  FETCH_PAYMENTS_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -70,6 +73,9 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    inputData: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   registerVerify: {
     data: {},
@@ -92,6 +98,11 @@ const initialState = {
     loading: true,
     error: false,
     inputData: {},
+  },
+  payments: {
+    data: {},
+    loading: true,
+    error: false,
   },
 };
 
@@ -151,7 +162,8 @@ const userReducer = (state = initialState, action) => {
                 ? state.profile.data.mobile
                 : "",
             address: state.profile.data.address,
-            picture: action.data,
+            picture: action.data ? action.data : "",
+            cover: action.data ? action.data : "",
           },
         },
         buttonDisable: true,
@@ -333,23 +345,38 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         deleteAccount: {
-          data: action.data,
+          data: {},
+          loading: true,
+          error: {},
+          inputData: action.data,
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading please wait",
       };
 
     case DELETE_ACCOUNT_SUCCESS:
       return {
         ...state,
-        buttonDisable: false,
-        loadingButtonContent: null,
+        deleteAccount: {
+          data: action.data,
+          loading: true,
+          error: {},
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case DELETE_ACCOUNT_FAILURE:
       return {
         ...state,
-        buttonDisable: false,
-        loadingButtonContent: null,
+        deleteAccount: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
       };
     case REGISTER_VERIFY_START:
       return {
@@ -453,6 +480,34 @@ const userReducer = (state = initialState, action) => {
           loading: true,
         },
       };
+    case FETCH_PAYMENTS_START:
+      return {
+        ...state,
+        payments: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_PAYMENTS_SUCCESS:
+      return {
+        ...state,
+        payments: {
+          data: action.data.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_PAYMENTS_FAILURE:
+      return {
+        ...state,
+        payments: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+
     default:
       return state;
   }

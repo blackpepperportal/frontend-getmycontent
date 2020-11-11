@@ -18,6 +18,9 @@ const PostDisplayCard = (props) => {
   const [commentInputData, setCommentInputData] = useState({});
   const [isVisible, setIsVisible] = useState(true);
 
+  const [bookmarkStatus, setBookmarkStatus] = useState("");
+  const [likeStatus, setLikeStatus] = useState("");
+
   const closeSendTipModal = () => {
     setSendTip(false);
   };
@@ -34,13 +37,15 @@ const PostDisplayCard = (props) => {
     props.dispatch(fetchCommentsStart({ post_id: post_id }));
   };
 
-  const handleLike = (event) => {
+  const handleLike = (event, status) => {
     event.preventDefault();
+    setLikeStatus(status);
     props.dispatch(savePostLikeStart({ post_id: post.post_id }));
   };
 
-  const handleBookmark = (event, post) => {
+  const handleBookmark = (event, post, status) => {
     event.preventDefault();
+    setBookmarkStatus(status);
     props.dispatch(saveBookmarkStart({ post_id: post.post_id }));
   };
 
@@ -62,7 +67,7 @@ const PostDisplayCard = (props) => {
             />
 
             <div className="user-name">
-              <span className="post-user-name">{post.name}</span>
+              <span className="post-user-name">{post.user_displayname}</span>
               <span className="post-user-">@{post.username}</span>
             </div>
           </Link>
@@ -70,7 +75,7 @@ const PostDisplayCard = (props) => {
         <div className="alignright">
           <div className="post-header-right-side">
             <span className="post-time flex-content">
-              <span className="post-time">3 hours ago </span>
+              <span className="post-time">{post.publish_time_formatted}</span>
               <Dropdown>
                 <Dropdown.Toggle
                   className="btn btn-default dropdown-toggle"
@@ -78,7 +83,10 @@ const PostDisplayCard = (props) => {
                   id="dropdown-basic"
                 >
                   <Image
-                    src="assets/images/icons/vertical-dots.svg"
+                    src={
+                      window.location.origin +
+                      "/assets/images/icons/vertical-dots.svg"
+                    }
                     className="svg-clone vertical-dots"
                   />
                 </Dropdown.Toggle>
@@ -120,7 +128,7 @@ const PostDisplayCard = (props) => {
               <div className="">
                 <div className="gallery js-gallery">
                   <Image
-                    src={post.post_files[0].file}
+                    src={post.post_files[0].post_file}
                     className="post-view-image"
                   />
                 </div>
@@ -132,15 +140,63 @@ const PostDisplayCard = (props) => {
 
       <div className="post-icons">
         <div className="alignleft">
-          <Link to="#" onClick={handleLike}>
-            <Image src="assets/images/icons/heart.svg" className="svg-clone" />
-          </Link>
+          {likeStatus !== "" ? (
+            <>
+              <>
+                {likeStatus === "added" ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleLike(event, "removed")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart-active.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+              <>
+                {likeStatus === "removed" ? (
+                  <Link to="#" onClick={(event) => handleLike(event, "added")}>
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+            </>
+          ) : post.is_user_liked == 1 ? (
+            <Link to="#" onClick={(event) => handleLike(event, "removed")}>
+              <Image
+                src={
+                  window.location.origin +
+                  "/assets/images/icons/heart-active.svg"
+                }
+                className="svg-clone"
+              />
+            </Link>
+          ) : (
+            <Link to="#" onClick={(event) => handleLike(event, "added")}>
+              <Image
+                src={window.location.origin + "/assets/images/icons/heart.svg"}
+                className="svg-clone"
+              />
+            </Link>
+          )}
+
           <Link
             to="#"
             onClick={(event) => showCommentSection(event, post.post_id)}
           >
             <Image
-              src="assets/images/icons/comment.svg"
+              src={window.location.origin + "/assets/images/icons/comment.svg"}
               className="svg-clone"
             />
           </Link>
@@ -150,33 +206,91 @@ const PostDisplayCard = (props) => {
             className="g-icon"
             onClick={() => setSendTip(true)}
           >
-            <Image src="assets/images/icons/tip.svg" className="svg-clone" />
+            <Image
+              src={window.location.origin + "/assets/images/icons/tip.svg"}
+              className="svg-clone"
+            />
 
             <span className="post-tip">SEND TIP</span>
           </Button>
         </div>
         <div className="alignright">
-          <Link to="#" onClick={(event) => handleBookmark(event, post)}>
-            <Image
-              src="assets/images/icons/bookmark.svg"
-              className="svg-clone"
-            />
-          </Link>
+          {bookmarkStatus !== "" ? (
+            <>
+              <>
+                {bookmarkStatus === "added" ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleBookmark(event, post, "removed")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/bookmark-active.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+              <>
+                {bookmarkStatus === "removed" ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleBookmark(event, post, "added")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/bookmark.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : null}
+              </>
+            </>
+          ) : post.is_user_bookmarked == 1 ? (
+            <Link
+              to="#"
+              onClick={(event) => handleBookmark(event, post, "removed")}
+            >
+              <Image
+                src={
+                  window.location.origin +
+                  "/assets/images/icons/bookmark-active.svg"
+                }
+                className="svg-clone"
+              />
+            </Link>
+          ) : (
+            <Link
+              to="#"
+              onClick={(event) => handleBookmark(event, post, "added")}
+            >
+              <Image
+                src={
+                  window.location.origin + "/assets/images/icons/bookmark.svg"
+                }
+                className="svg-clone"
+              />
+            </Link>
+          )}
         </div>
       </div>
 
       <div className="likes alignleft">
-        <p>78 Likes</p>
+        <p>{post.total_likes} Likes</p>
         {isVisible && commentInputData.post_id === post.post_id ? (
           <Link className="Show view-comments" onClick={closeCommentSection}>
             Close Comments
           </Link>
         ) : (
           <Link
-            className="Show view-comments"
+            className="Show view-comments text-muted"
             onClick={(event) => showCommentSection(event, post.post_id)}
           >
-            View comments
+            View Comments
           </Link>
         )}
         {isVisible && commentInputData.post_id === post.post_id ? (
@@ -204,7 +318,7 @@ const PostDisplayCard = (props) => {
                     </div>
                   </div>
                 ))
-              : "No Data found"}
+              : ""}
 
             <div className="comment-box">
               <div className="comment-box-form">
@@ -216,7 +330,7 @@ const PostDisplayCard = (props) => {
                   <div className="user-picture">
                     <Link className="title-container" to="#">
                       <Image
-                        src="assets/images/avatar/user-3.jpg"
+                        src={localStorage.getItem("user_picture")}
                         className="user-image img-responsive"
                       />
                     </Link>
@@ -255,6 +369,9 @@ const PostDisplayCard = (props) => {
       <SendTipModal
         sendTip={sendTip}
         closeSendTipModal={closeSendTipModal}
+        username={post.username}
+        userPicture={post.user_picture}
+        name={post.user_displayname}
         post_id={post.post_id}
       />
     </div>

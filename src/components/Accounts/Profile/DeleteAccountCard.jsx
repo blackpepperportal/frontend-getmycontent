@@ -1,7 +1,16 @@
-import React from "react";
-import {Form, Button, Row, Col} from "react-bootstrap";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { deleteAccountStart } from "../../../store/actions/UserAction";
 
 const DeleteAccountCard = (props) => {
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.dispatch(deleteAccountStart({ password: password }));
+  };
+
   return (
     <>
       <div
@@ -28,11 +37,11 @@ const DeleteAccountCard = (props) => {
                           <b>Hope, see you soon</b>
                         </h5>
                         <p>
-                          Note: Once you deleted account, you will lose your history and
-                          wishlist details
+                          Note: Once you deleted account, you will lose your
+                          history and wishlist details
                         </p>
                       </div>
-                      <Form autoComplete="new-password">
+                      <Form autoComplete="new-password" onSubmit={handleSubmit}>
                         <Form.Group>
                           <Form.Label for="password">Password</Form.Label>
                           <Form.Control
@@ -41,6 +50,10 @@ const DeleteAccountCard = (props) => {
                             type="password"
                             placeholder="Enter your password"
                             name="password"
+                            value={password}
+                            onChange={(event) =>
+                              setPassword(event.currentTarget.value)
+                            }
                           />
                         </Form.Group>
                         <Row className="mt-5">
@@ -48,8 +61,12 @@ const DeleteAccountCard = (props) => {
                             <Button
                               className="btn btn-auth btn-lg btn btn-primary"
                               type="submit"
-                            >Change Password
-                                </Button>
+                              disabled={props.deleteAcc.buttonDisable}
+                            >
+                              {props.deleteAcc.loadingButtonContent !== null
+                                ? props.deleteAcc.loadingButtonContent
+                                : "Delete Account"}
+                            </Button>
                           </Col>
                         </Row>
                       </Form>
@@ -65,4 +82,12 @@ const DeleteAccountCard = (props) => {
   );
 };
 
-export default DeleteAccountCard;
+const mapStateToPros = (state) => ({
+  deleteAcc: state.users.deleteAccount,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(DeleteAccountCard);

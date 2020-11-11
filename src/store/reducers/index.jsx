@@ -23,6 +23,8 @@ import SendTipReducer from "./SendTipReducer";
 import HomeReducer from "./HomeReducer";
 import OtherUserReducer from "./OtherUserReducer";
 import PostLikesReducer from "./PostLikesReducer";
+import ChatReducer from "./ChatReducer";
+import NotificationReducer from "./NotificationReducer";
 
 export default combineReducers({
   users: UserReducer,
@@ -48,4 +50,6 @@ export default combineReducers({
   home: HomeReducer,
   otherUser: OtherUserReducer,
   postLike: PostLikesReducer,
+  chat: ChatReducer,
+  notification: NotificationReducer,
 });

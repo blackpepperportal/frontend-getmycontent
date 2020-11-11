@@ -8,13 +8,23 @@ import SendTipModal from "../helper/SendTipModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Container, Row, Col, Image } from "react-bootstrap";
-import { fetchSingleUserProfileStart } from "../../store/actions/OtherUserAction";
+import {
+  fetchSingleUserProfileStart,
+  fetchSingleUserPostsStart,
+} from "../../store/actions/OtherUserAction";
 import { saveFavStart } from "../../store/actions/FavAction";
+import { subscriptionPaymentStripeStart } from "../../store/actions/SubscriptionAction";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
     props.dispatch(
       fetchSingleUserProfileStart({ user_unique_id: props.match.params.id })
+    );
+    props.dispatch(
+      fetchSingleUserPostsStart({
+        user_unique_id: props.match.params.id,
+        type: "all",
+      })
     );
   }, []);
 
@@ -22,8 +32,61 @@ const ModelViewProfile = (props) => {
 
   const [sendTip, setSendTip] = useState(false);
 
+  const [starStatus, setStarStatus] = useState("");
+
   const closeSendTipModal = () => {
     setSendTip(false);
+  };
+
+  const setActiveSection = (event, key) => {
+    setActiveSec(key);
+    if (key === "post")
+      props.dispatch(
+        fetchSingleUserPostsStart({
+          user_unique_id: props.match.params.id,
+          type: "all",
+        })
+      );
+    else if (key === "photo")
+      props.dispatch(
+        fetchSingleUserPostsStart({
+          user_unique_id: props.match.params.id,
+          type: "image",
+        })
+      );
+    else if (key === "video")
+      props.dispatch(
+        fetchSingleUserPostsStart({
+          user_unique_id: props.match.params.id,
+          type: "video",
+        })
+      );
+  };
+
+  const handleStar = (event, user_id, status) => {
+    event.preventDefault();
+    setStarStatus(status);
+    props.dispatch(
+      saveFavStart({
+        user_id: user_id,
+      })
+    );
+  };
+
+  const subscriptionPayment = (
+    event,
+    plan_type,
+    user_unique_id,
+    is_free = 0
+  ) => {
+    event.preventDefault();
+    props.dispatch(
+      subscriptionPaymentStripeStart({
+        user_unique_id,
+        plan_type,
+        is_free,
+      })
+    );
   };
 
   const { userDetails } = props;
@@ -33,273 +96,309 @@ const ModelViewProfile = (props) => {
       <div className="my-profile user-profile-page model-view-profile-sec">
         <Container>
           <Row>
-            <Col sm={12} md={12}>
-              <div className="cover-area">
-                <div className="profile-cover">
-                  <Image
-                    src={window.location.origin + "/assets/images/header.jpg"}
-                    alt="Snow"
-                    style={{ width: "100%" }}
-                  />
-                </div>
-                <div className="top-left">
-                  <Button className="chat-header-back">
+            {userDetails.loading ? (
+              "Loading..."
+            ) : (
+              <Col sm={12} md={12}>
+                <div className="cover-area">
+                  <div className="profile-cover">
                     <Image
-                      src={
-                        window.location.origin + "/assets/images/icons/back.svg"
-                      }
-                      className="svg-clone"
+                      src={userDetails.data.user.cover}
+                      alt={userDetails.data.user.name}
+                      style={{ width: "100%" }}
                     />
-                  </Button>
-                  <h1 className="chat-page-title">Lexy</h1>
-                  <span className="post-count">74 Post</span>
-                </div>
-
-                <div className="top-right">
-                  <Link
-                    href="#"
-                    className="g-page__header__btn m-with-round-hover has-tooltip"
-                    data-original-title="null"
-                  >
-                    <Image
-                      src={
-                        window.location.origin +
-                        "/assets/images/icons/vertical-dots.svg"
-                      }
-                      className="svg-clone"
-                    />
-                  </Link>
-                </div>
-              </div>
-
-              <div className="profile--user">
-                <span className="my-profile-status">
-                  <Image
-                    src={
-                      window.location.origin +
-                      "/assets/images/avatar/s-user-3.jpg"
-                    }
-                  />
-                </span>
-                <div className="profile-btn-group">
-                  <Button
-                    type="button"
-                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
-                    onClick={() => setSendTip(true)}
-                    // data-toggle="modal"
-                    // data-target="#myModal"
-                  >
-                    <Image
-                      src={
-                        window.location.origin + "/assets/images/icons/tip.svg"
-                      }
-                      className="svg-clone"
-                    />
-                  </Button>
-
-                  <Button
-                    type="button"
-                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
-                  >
-                    <Image
-                      src={
-                        window.location.origin +
-                        "/assets/images/icons/message.svg"
-                      }
-                      className="svg-clone"
-                    />
-                  </Button>
-
-                  <Button
-                    type="button"
-                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
-                    onClick={() =>
-                      props.dispatch(
-                        saveFavStart({ user_id: userDetails.data.user.user_id })
-                      )
-                    }
-                  >
-                    <Image
-                      src={
-                        window.location.origin + "/assets/images/icons/star.svg"
-                      }
-                      className="svg-clone"
-                    />
-                  </Button>
-
-                  <Button
-                    type="button"
-                    className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
-                  >
-                    <Image
-                      src={
-                        window.location.origin +
-                        "/assets/images/icons/share.svg"
-                      }
-                      className="svg-clone"
-                    />
-                  </Button>
-                </div>
-                <div className="my-profile-names">
-                  <div className="user-name-base-row">
-                    <Link to="" className="my-name-lg">
-                      <div className="g-user--name">Lexy</div>
-                    </Link>
                   </div>
-                  <div className="user-id-row-base">
-                    <Link to="" className="user-my-id-text">
-                      <div className="current-user--name">@u63484651</div>
-                    </Link>
-                    <div className="user-profile -active-status">
-                      <span>Active</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="profile-about-content">
-                <p className="my-profile-about">
-                  Hi Everyone! Welcome to my Only Fans! I’m so excited to be
-                  sharing more of my exclusive photos & videos with you! I want
-                  to get more personal with my fans and be able to communicate
-                  one on one! Subscribe here to talk with me personally, Ill be
-                  uploading new private content every single day! ***I do NOT
-                  post ANY adult/nude/nsfw content. I do NOT tolerate ANY
-                  disrespectful messages! ***
-                </p>
-              </div>
-
-              <div className="subscription-section">
-                <span className="subscribe-title">Free Subscription </span>
-                <Link
-                  to=""
-                  className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                >
-                  Follow For Free
-                </Link>
-              </div>
-
-              <div className="tab" role="tabpanel">
-                <ModelProfileTabSec
-                  activeSec={activeSec}
-                  setActiveSec={setActiveSec}
-                />
-
-                <div className="tab-content tabs">
-                  <ModelProfilePostSec
-                    activeSec={activeSec}
-                    setActiveSec={setActiveSec}
-                  />
-
-                  <ModelProfilePhotoSec
-                    activeSec={activeSec}
-                    setActiveSec={setActiveSec}
-                  />
-
-                  <ModelProfileVideoSec
-                    activeSec={activeSec}
-                    setActiveSec={setActiveSec}
-                  />
-
-                  <ModelProfileArchivedSec
-                    activeSec={activeSec}
-                    setActiveSec={setActiveSec}
-                  />
-                </div>
-              </div>
-            </Col>
-
-            {/* <div className="col-md-4 col-xs-12"> */}
-            {/* <div className="gallery-sidebar">
-              <ul className="box-container three-cols">
-                <Media as="li" className="box">
-                  <div className="inner">
-                    <Link to="assets/images/g-6.jpg" className="glightbox">
-                      <Image src="assets/images/g-6.jpg" />
-                    </Link>
-                  </div>
-                </Media>
-                <Media as="li" className="box">
-                  <div className="inner">
-                    <Link to="assets/images/g-5.jpg" className="glightbox">
-                      <Image src="assets/images/g-5.jpg" />
-                    </a>
-                  </div>
-                </Media>
-                <Media as="li" className="box">
-                  <div className="inner">
-                    <Link to="assets/images/g-4.jpg" className="glightbox">
-                      <Image src="assets/images/g-4.jpg" />
-                    </Link>
-                  </div>
-                </Media>
-                <Media as="li" className="box">
-                  <div className="inner">
-                    <Link to="assets/images/g-3.jpg" className="glightbox">
-                      <Image src="assets/images/g-3.jpg" />
-                    </Link>
-                  </div>
-                </Media>
-                <Media as="li" className="box">
-                  <div className="inner">
-                    <Link to="assets/images/g-2.jpg" className="glightbox">
-                      <Image src="assets/images/g-2.jpg" />
-                    </a>
-                  </div>
-                </Media>
-                <Media as="li" className="box">
-                  <div className="inner">
-                    <Link to="assets/images/g-1.jpg" className="glightbox">
-                      <Image src="assets/images/g-1.jpg" />
-                    </a>
-                  </div>
-                </Media>
-              </ul>
-            </div> */}
-
-            {/* <div
-              className="panel-group"
-              id="accordion"
-              role="tablist"
-              aria-multiselectable="true"
-            >
-              <div className="panel panel-default">
-                <div className="panel-heading" role="tab" id="headingOne">
-                  <h4 className="panel-title">
-                    <Link
-                      role="button"
-                      data-toggle="collapse"
-                      data-parent="#accordion"
-                      to="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
+                  <div className="top-left">
+                    <Button className="chat-header-back">
                       <Image
-                        src="assets/images/icons/highlight.svg"
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/back.svg"
+                        }
                         className="svg-clone"
                       />
-                      <span className="spotify"> Highlights </span>
-                    </Link>
-                  </h4>
+                    </Button>
+                    <h1 className="chat-page-title">
+                      {userDetails.data.user.name}
+                    </h1>
+                    <span className="post-count">
+                      {userDetails.data.user.total_posts} Post
+                    </span>
+                  </div>
                 </div>
-                <div
-                  id="collapseOne"
-                  className="panel-collapse collapse in"
-                  role="tabpanel"
-                  aria-labelledby="headingOne"
-                >
-                  <div className="panel-body">
-                    <div className="highlights-status">
-                      <div id="stories" className="storiesWrapper"></div>
+
+                <div className="profile--user">
+                  <span className="my-profile-status">
+                    <Image src={userDetails.data.user.picture} />
+                  </span>
+                  <div className="profile-btn-group">
+                    <Button
+                      type="button"
+                      className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                      onClick={() => setSendTip(true)}
+                    >
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/tip.svg"
+                        }
+                        className="svg-clone"
+                      />
+                    </Button>
+
+                    <Button
+                      type="button"
+                      className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    >
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/message.svg"
+                        }
+                        className="svg-clone"
+                      />
+                    </Button>
+
+                    {starStatus !== "" ? (
+                      <>
+                        <>
+                          {starStatus === "added" ? (
+                            <Button
+                              type="button"
+                              className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                              onClick={(event) =>
+                                handleStar(
+                                  event,
+                                  userDetails.data.user.user_id,
+                                  "removed"
+                                )
+                              }
+                            >
+                              <Image
+                                src={
+                                  window.location.origin +
+                                  "/assets/images/icons/star-active.svg"
+                                }
+                                className="svg-clone"
+                              />
+                            </Button>
+                          ) : null}
+                        </>
+                        <>
+                          {starStatus === "removed" ? (
+                            <Button
+                              type="button"
+                              className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                              onClick={(event) =>
+                                handleStar(
+                                  event,
+                                  userDetails.data.user.user_id,
+                                  "added"
+                                )
+                              }
+                            >
+                              <Image
+                                src={
+                                  window.location.origin +
+                                  "/assets/images/icons/star.svg"
+                                }
+                                className="svg-clone"
+                              />
+                            </Button>
+                          ) : null}
+                        </>
+                      </>
+                    ) : userDetails.data.is_favuser == 1 ? (
+                      <Button
+                        type="button"
+                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                        onClick={(event) =>
+                          handleStar(
+                            event,
+                            userDetails.data.user.user_id,
+                            "removed"
+                          )
+                        }
+                      >
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/icons/star-active.svg"
+                          }
+                          className="svg-clone"
+                        />
+                      </Button>
+                    ) : (
+                      <Button
+                        type="button"
+                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                        onClick={(event) =>
+                          handleStar(
+                            event,
+                            userDetails.data.user.user_id,
+                            "added"
+                          )
+                        }
+                      >
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/icons/star.svg"
+                          }
+                          className="svg-clone"
+                        />
+                      </Button>
+                    )}
+
+                    <Button
+                      type="button"
+                      className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    >
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/share.svg"
+                        }
+                        className="svg-clone"
+                      />
+                    </Button>
+                  </div>
+                  <div className="my-profile-names">
+                    <div className="user-name-base-row">
+                      <Link to="" className="my-name-lg">
+                        <div className="g-user--name">
+                          {userDetails.data.user.name}
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="user-id-row-base">
+                      <Link to="" className="user-my-id-text">
+                        <div className="current-user--name">
+                          @{userDetails.data.user.username}
+                        </div>
+                      </Link>
+                      <div className="user-profile -active-status">
+                        <span>{userDetails.data.user.updated_formatted}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> */}
-            {/* </div> */}
+                <div className="profile-about-content">
+                  <p className="my-profile-about">
+                    {userDetails.data.user.description}
+                  </p>
+                </div>
+
+                {userDetails.data.payment_info.is_user_needs_pay ? (
+                  userDetails.data.payment_info.subscription_info ? (
+                    <>
+                      <div className="subscription-section">
+                        <span className="subscribe-title">
+                          Monthly Subscription{" "}
+                        </span>
+                        <Link
+                          to=""
+                          className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                          onClick={(event) =>
+                            subscriptionPayment(
+                              event,
+                              "month",
+                              userDetails.data.user.user_unique_id
+                            )
+                          }
+                        >
+                          {userDetails.data.payment_info.payment_text}
+                        </Link>
+                      </div>
+                      <div className="subscription-section">
+                        <span className="subscribe-title">
+                          Yearly Subscription{" "}
+                        </span>
+                        <Link
+                          to=""
+                          className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                          onClick={(event) =>
+                            subscriptionPayment(
+                              event,
+                              "year",
+                              userDetails.data.user.user_unique_id
+                            )
+                          }
+                        >
+                          Subscribe for{" "}
+                          {
+                            userDetails.data.payment_info.subscription_info
+                              .yearly_amount_formatted
+                          }
+                        </Link>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="subscription-section">
+                      <Link
+                        to=""
+                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                        onClick={(event) =>
+                          subscriptionPayment(
+                            event,
+                            "month",
+                            userDetails.data.user.user_unique_id,
+                            1
+                          )
+                        }
+                      >
+                        {userDetails.data.payment_info.payment_text}
+                      </Link>
+                    </div>
+                  )
+                ) : (
+                  ""
+                )}
+
+                <div className="tab" role="tabpanel">
+                  <ModelProfileTabSec
+                    activeSec={activeSec}
+                    setActiveSec={setActiveSec}
+                    setActiveSection={setActiveSection}
+                  />
+
+                  <div className="tab-content tabs">
+                    <ModelProfilePostSec
+                      activeSec={activeSec}
+                      setActiveSec={setActiveSec}
+                      userPosts={props.userPosts}
+                    />
+
+                    <ModelProfilePhotoSec
+                      activeSec={activeSec}
+                      setActiveSec={setActiveSec}
+                      userPosts={props.userPosts}
+                    />
+
+                    <ModelProfileVideoSec
+                      activeSec={activeSec}
+                      setActiveSec={setActiveSec}
+                      userPosts={props.userPosts}
+                    />
+                  </div>
+                </div>
+              </Col>
+            )}
           </Row>
         </Container>
       </div>
-      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
+      {userDetails.loading ? (
+        "Loading..."
+      ) : (
+        <SendTipModal
+          sendTip={sendTip}
+          closeSendTipModal={closeSendTipModal}
+          username={props.userDetails.data.user.username}
+          userPicture={props.userDetails.data.user.picture}
+          name={props.userDetails.data.user.name}
+          post_id={null}
+        />
+      )}
     </>
   );
 };
@@ -307,6 +406,7 @@ const ModelViewProfile = (props) => {
 const mapStateToPros = (state) => ({
   comments: state.comment.comments,
   userDetails: state.otherUser.userDetails,
+  userPosts: state.otherUser.userPosts,
 });
 
 function mapDispatchToProps(dispatch) {

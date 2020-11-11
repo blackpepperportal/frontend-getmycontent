@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {Form, Button, Container, Row, Col, Image} from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
+import configuration from "react-global-configuration";
 
 import { connect } from "react-redux";
 import {
@@ -65,7 +66,10 @@ const LandingPageIndex = (props) => {
             <Col lg={6} xl={6} md={12} sm={12} xs={12}>
               <div className="sign-in form-section">
                 <Link to="#" aria-current="page" className="sign-in-logo">
-                  <Image src="./assets/images/logo.png" width="237" />
+                  <Image
+                    src={configuration.get("configData.site_logo")}
+                    width="237"
+                  />
                 </Link>
                 <p className="login-tagline">
                   Sign up to make money and interact with your fans!
@@ -157,7 +161,8 @@ const LandingPageIndex = (props) => {
                               }}
                             >
                               {" "}
-                              Sign up for XFans.com
+                              Sign up for{" "}
+                              {configuration.get("configData.site_name")}
                             </Link>
                           </p>
                         </Form>
@@ -239,12 +244,18 @@ const LandingPageIndex = (props) => {
                             controlId="formBasicName"
                             className="round"
                           >
-                            <input type="checkbox" id="checkbox" />
-                            <label for="checkbox"></label>
+                            {/* <input type="checkbox" id="checkbox" /> */}
+                            {/* <label for="checkbox"></label> */}
                             <p className="terms">
                               By signing up you agree to our{" "}
-                              <Link to="#">Terms of Service</Link> and{" "}
-                              <Link to="#">Privacy Policy</Link>.
+                              <Link to={`/page/terms`} target="_blank">
+                                Terms of Service
+                              </Link>{" "}
+                              and{" "}
+                              <Link to={`/page/privacy`} target="_blank">
+                                Privacy Policy
+                              </Link>
+                              .
                             </p>
                           </Form.Group>
 
@@ -272,7 +283,8 @@ const LandingPageIndex = (props) => {
                               }}
                             >
                               {" "}
-                              Login for XFans.com
+                              Login for{" "}
+                              {configuration.get("configData.site_name")}
                             </Link>
                           </p>
                         </Form>
@@ -322,7 +334,8 @@ const LandingPageIndex = (props) => {
                               }}
                             >
                               {" "}
-                              Login for XFans.com
+                              Login for{" "}
+                              {configuration.get("configData.site_name")}
                             </Link>
                           </p>
                         </Form>

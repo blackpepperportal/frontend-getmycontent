@@ -39,7 +39,7 @@ function* addBankAccountAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/billing-account-list");
+      window.location.assign("/billing-accounts");
     } else {
       yield put(addBankAccountFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -79,7 +79,10 @@ function* makeDefaultBankAccountAPI() {
     const inputData = yield select(
       (state) => state.bankAccount.makeDefault.inputData
     );
-    const response = yield api.postMethod("users_accounts_default", inputData);
+    const response = yield api.postMethod(
+      "billing_accounts_default",
+      inputData
+    );
 
     if (response.data.success) {
       yield put(makeDefaultBankAccountSuccess(response.data));
@@ -107,7 +110,7 @@ function* deleteAccountBankAccountAPI() {
     const inputData = yield select(
       (state) => state.bankAccount.deleteAccount.inputData
     );
-    const response = yield api.postMethod("users_accounts_delete", inputData);
+    const response = yield api.postMethod("billing_accounts_delete", inputData);
 
     if (response.data.success) {
       yield put(deleteBankAccountSuccess(response.data));
@@ -116,7 +119,7 @@ function* deleteAccountBankAccountAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/billing-account-list");
+      window.location.assign("/billing-accounts");
     } else {
       yield put(deleteBankAccountFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

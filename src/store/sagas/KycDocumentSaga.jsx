@@ -19,10 +19,10 @@ import {
 function* addKycDocumentAPI() {
   try {
     const inputData = yield select(
-      (state) => state.kycDocument.addKycDocInput.data
+      (state) => state.kycDocument.addKycDocInput.inputData
     );
-    const response = yield api.postMethod("kyc_documents_save", inputData);
-    yield put(addKycDocumentSuccess(response.data));
+    const response = yield api.postMethod("documents_save", inputData);
+    yield put(addKycDocumentSuccess(response.data.data));
     if (response.data.success) {
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
@@ -44,8 +44,8 @@ function* addKycDocumentAPI() {
 
 function* getKycDocumentAPI() {
   try {
-    const response = yield api.postMethod("kyc_documents_list");
-    yield put(getKycDocumentSuccess(response.data));
+    const response = yield api.postMethod("documents_list");
+    yield put(getKycDocumentSuccess(response.data.data));
     if (response.data.success) {
       // Do nothing..
     } else {

@@ -2,6 +2,7 @@ import { call, select, put, takeLatest, all } from "redux-saga/effects";
 import api from "../../Environment";
 import {
   FETCH_HOME_POSTS_START,
+  FETCH_LISTS_DETAILS_START,
   FETCH_OTHERS_SINGLE_POST_START,
   FETCH_POST_SUGGESTION_START,
   POST_PAYMENT_STRIPE_START,
@@ -27,6 +28,8 @@ import {
   postPaymentWalletSuccess,
   postPaymentStripeFailure,
   postPaymentWalletFailure,
+  fetchListsDetailsSuccess,
+  fetchListsDetailsFailure,
 } from "../actions/HomeAction";
 
 function* fetchHomePostAPI() {
@@ -34,10 +37,6 @@ function* fetchHomePostAPI() {
     const response = yield api.postMethod("home");
     if (response.data.success) {
       yield put(fetchHomePostsSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchHomePostsFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -102,10 +101,6 @@ function* fetchPostSuggesstionAPI() {
     const response = yield api.postMethod("user_suggestions", inputData);
     if (response.data.success) {
       yield put(fetchPostSuggesstionSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchPostSuggesstionFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -172,6 +167,25 @@ function* postPaymentWalletAPI() {
   }
 }
 
+function* fetchListsAPI() {
+  try {
+    const response = yield api.postMethod("lists_index");
+    if (response.data.success) {
+      yield put(fetchListsDetailsSuccess(response.data.data));
+    } else {
+      yield put(fetchListsDetailsFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchListsDetailsFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([yield takeLatest(FETCH_HOME_POSTS_START, fetchHomePostAPI)]);
   yield all([yield takeLatest(SEARCH_POST_START, searchPostAPI)]);
@@ -187,4 +201,5 @@ export default function* pageSaga() {
   yield all([
     yield takeLatest(POST_PAYMENT_WALLET_START, postPaymentWalletAPI),
   ]);
+  yield all([yield takeLatest(FETCH_LISTS_DETAILS_START, fetchListsAPI)]);
 }

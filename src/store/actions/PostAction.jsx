@@ -14,6 +14,9 @@ import {
   CHANGE_POST_STATUS_START,
   CHANGE_POST_STATUS_SUCCESS,
   CHANGE_POST_STATUS_FAILURE,
+  POST_FILE_UPLOAD_START,
+  POST_FILE_UPLOAD_SUCCESS,
+  POST_FILE_UPLOAD_FAILURE,
 } from "./ActionConstant";
 
 export function savePostStart(data) {
@@ -116,6 +119,27 @@ export function changePostStatusSuccess(data) {
 export function changePostStatusFailure(error) {
   return {
     type: CHANGE_POST_STATUS_FAILURE,
+    error,
+  };
+}
+
+export function postFileUploadStart(data) {
+  return {
+    type: POST_FILE_UPLOAD_START,
+    data,
+  };
+}
+
+export function postFileUploadSuccess(data) {
+  return {
+    type: POST_FILE_UPLOAD_SUCCESS,
+    data,
+  };
+}
+
+export function postFileUploadFailure(error) {
+  return {
+    type: POST_FILE_UPLOAD_FAILURE,
     error,
   };
 }

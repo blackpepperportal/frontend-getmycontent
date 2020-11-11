@@ -25,129 +25,34 @@ const SendTipModal = (props) => {
   return (
     <>
       <Modal
-        className="modal-dialog-center"
+        className="modal-dialog-center sent-tip-modal"
         size="md"
         centered
         show={props.sendTip}
         onHide={props.closeSendTipModal}
       >
-        <Form onSubmit={handleSubmit}>
-          <Modal.Header closeButton>
-            <Modal.Title>Send tip</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="header-userinfo">
-              <div className="g-avatar online_status_class">
-                <Image
-                  src="assets/images/avatar/user-4.jpg"
-                  alt="💕🦋Sarai Rollins🦋💕"
-                  className="tips__user__img"
-                />
-              </div>
-              <div className="popup-username-row">
-                <div className="pop-username">
-                  <div className=""> 💕🦋Sarai Rollins🦋💕</div>
-                </div>
-              </div>
-              <div className="popup-username-row">
-                <span className="pop-username popuser-realname">
-                  <div className="pop-user-username"> @sarairollins</div>
-                </span>
-              </div>
-            </div>
-
-            <div className="floating-form">
-              <div className="floating-label">
-                <input
-                  className="floating-input"
-                  type="text"
-                  placeholder="Amount"
-                  value={amount}
-                  onChange={(event) => setAmount(event.currentTarget.value)}
-                />
-                <span className="highlight"></span>
-                <label>Tip amount</label>
-              </div>
-              <div className="floating-label">
-                <input
-                  className="floating-input"
-                  type="radio"
-                  label="wallet"
-                  id="wallet"
-                  value="wallet"
-                  name="payment_type"
-                  defaultChecked={true}
-                  onChange={() => setPaymentType("wallet")}
-                />
-                <input
-                  className="floating-input"
-                  type="radio"
-                  label="card"
-                  id="card"
-                  value="card"
-                  name="payment_type"
-                  onChange={() => setPaymentType("card")}
-                />
-                <label>Payment Type</label>
-              </div>
-
-              <div className="floating-label">
-                <input className="floating-input" type="text" placeholder=" " />
-                <span className="highlight"></span>
-                <label>Message (optional)</label>
-              </div>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              type="button"
-              className="btn btn-danger"
-              data-dismiss="modal"
-              onClick={props.closeSendTipModal}
-            >
-              CANCEL
-            </Button>
-            <Button
-              type="button"
-              className="btn btn-success"
-              data-dismiss="modal"
-              onClick={handleSubmit}
-              disabled={props.tipStripe.buttonDisable}
-            >
-              {props.tipStripe.loadingButtonContent !== null
-                ? props.tipStripe.loadingButtonContent
-                : "SEND TIP"}
-            </Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
-
-      {/* <div className="modal fade" id="myModal" role="dialog">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal">
-                &times;
-              </button>
-              <h4 className="modal-title"> Send tip </h4>
-            </div>
-            <div className="modal-body">
+        {props.sendTip === true ? (
+          <Form onSubmit={handleSubmit}>
+            <Modal.Header closeButton>
+              <Modal.Title>Send tip</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
               <div className="header-userinfo">
                 <div className="g-avatar online_status_class">
-                  <img
-                    src="assets/images/avatar/user-4.jpg"
-                    alt="💕🦋Sarai Rollins🦋💕"
+                  <Image
+                    src={props.userPicture}
+                    alt={props.name}
                     className="tips__user__img"
                   />
                 </div>
                 <div className="popup-username-row">
                   <div className="pop-username">
-                    <div className=""> 💕🦋Sarai Rollins🦋💕</div>
+                    <div className="">{props.name}</div>
                   </div>
                 </div>
                 <div className="popup-username-row">
                   <span className="pop-username popuser-realname">
-                    <div className="pop-user-username"> @sarairollins</div>
+                    <div className="pop-user-username">@{props.username}</div>
                   </span>
                 </div>
               </div>
@@ -157,42 +62,78 @@ const SendTipModal = (props) => {
                   <input
                     className="floating-input"
                     type="text"
-                    placeholder=" "
+                    value={amount}
+                    onChange={(event) => setAmount(event.currentTarget.value)}
                   />
                   <span className="highlight"></span>
-                  <label>Tip amount</label>
+                  <label className="default-label">Tip amount</label>
                 </div>
+
+                <Form className="mt-4">
+                  {["radio"].map((type) => (
+                    <div key={`custom-inline-${type}`} className="mb-3">
+                      <Form.Check
+                        custom
+                        inline
+                        label="Wallet"
+                        type={type}
+                        // id={`custom-inline-${type}-1`}
+                        id="wallet"
+                        value="wallet"
+                        name="payment_type"
+                        defaultChecked={true}
+                        onChange={() => setPaymentType("wallet")}
+                      />
+                      <Form.Check
+                        custom
+                        inline
+                        label="Card"
+                        type={type}
+                        // id={`custom-inline-${type}-2`}
+                        id="card"
+                        value="card"
+                        name="payment_type"
+                        onChange={() => setPaymentType("card")}
+                      />
+                    </div>
+                  ))}
+                </Form>
 
                 <div className="floating-label">
                   <input
                     className="floating-input"
                     type="text"
-                    placeholder=" "
+                    placeholder="Message (optional) "
                   />
                   <span className="highlight"></span>
-                  <label>Message (optional)</label>
+                  <label className="default-label">Message (optional)</label>
                 </div>
               </div>
-            </div>
-            <div className="modal-footer">
-              <button
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
                 type="button"
-                className="btn btn-default"
+                className="btn btn-danger"
                 data-dismiss="modal"
+                onClick={props.closeSendTipModal}
               >
                 CANCEL
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className="btn btn-default"
+                className="btn btn-success"
                 data-dismiss="modal"
+                onClick={handleSubmit}
+                disabled={props.tipStripe.buttonDisable}
               >
-                SEND TIP
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
+                {props.tipStripe.loadingButtonContent !== null
+                  ? props.tipStripe.loadingButtonContent
+                  : "SEND TIP"}
+              </Button>
+            </Modal.Footer>
+          </Form>
+        ) : null}
+      </Modal>
     </>
   );
 };

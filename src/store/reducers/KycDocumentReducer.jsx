@@ -12,6 +12,9 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    inputData: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   kycDocDetails: {
     data: {},
@@ -28,12 +31,13 @@ const KycDocumentReducer = (state = initialState, action) => {
       return {
         ...state,
         addKycDocInput: {
-          data: action.data,
+          data: {},
           loading: true,
           error: false,
+          inputData: action.data,
+          buttonDisable: true,
+          loadingButtonContent: "Loading...",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading...",
       };
     case ADD_KYC_DOCUMENT_SUCCESS:
       return {
@@ -42,9 +46,10 @@ const KycDocumentReducer = (state = initialState, action) => {
           data: action.data,
           loading: false,
           error: false,
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case ADD_KYC_DOCUMENT_FAILURE:
       return {
@@ -53,9 +58,10 @@ const KycDocumentReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          inputData: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case GET_KYC_DOCUMENT_START:
       return {
@@ -70,11 +76,6 @@ const KycDocumentReducer = (state = initialState, action) => {
       return {
         ...state,
         kycDocDetails: {
-          data: action.data,
-          loading: false,
-          error: false,
-        },
-        addKycDocInput: {
           data: action.data,
           loading: false,
           error: false,

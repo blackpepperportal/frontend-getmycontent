@@ -71,7 +71,7 @@ function* deleteCardAPI() {
 function* selectDefaultCardAPI() {
   try {
     const selectDefaultCard = yield select(
-      (state) => state.cards.selectDefaultCard.data
+      (state) => state.cards.selectDefaultCard.inputData
     );
     const response = yield api.postMethod("cards_default", selectDefaultCard);
     yield put(selectDefaultCardSuccess(response.data.data));

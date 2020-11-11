@@ -24,10 +24,6 @@ function* fetchOtherUserProfileAPI() {
     const response = yield api.postMethod("other_profile", inputData);
     if (response.data.success) {
       yield put(fetchSingleUserProfileSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchSingleUserProfileFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -50,10 +46,6 @@ function* fetchOtherUserPostAPI() {
     const response = yield api.postMethod("other_profile_posts", inputData);
     if (response.data.success) {
       yield put(fetchSingleUserPostsSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchSingleUserPostsFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

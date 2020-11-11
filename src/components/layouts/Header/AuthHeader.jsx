@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import configuration from "react-global-configuration";
 
 const AuthHeader = () => {
-  return <>Header</>;
+  return <></>;
 };
 
 export default AuthHeader;

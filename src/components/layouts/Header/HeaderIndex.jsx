@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {Container, Image, Media, Button} from "react-bootstrap";
+import { Container, Image, Media, Button } from "react-bootstrap";
 // import configuration from "react-global-configuration";
 // import SideBarIndex from "../SideBar/SideBarIndex";
 
@@ -23,6 +23,7 @@ const HeaderIndex = (props) => {
             <Link
               to={"/home"}
               className="main-header-menu icon-with-round-hover m-current"
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={window.location.origin + "/assets/images/icons/home.svg"}
@@ -33,6 +34,7 @@ const HeaderIndex = (props) => {
               className="main-header-menu icon-with-round-hover"
               active-className="m-current"
               exact-active-className=""
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={
@@ -44,6 +46,7 @@ const HeaderIndex = (props) => {
             <Link
               to={"/create-post"}
               className="main-header-menu icon-with-round-hover"
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={
@@ -55,11 +58,12 @@ const HeaderIndex = (props) => {
             <Link
               to={"/messages"}
               className="main-header-menu icon-with-round-hover"
+              onClick={() => setIsVisible(false)}
             >
               <Image
                 src={window.location.origin + "/assets/images/icons/chat.svg"}
               />
-              <span className="main-header-menu__count"> 5 </span>
+              {/* <span className="main-header-menu__count"> 5 </span> */}
             </Link>
             <Button
               type="button"
@@ -90,28 +94,43 @@ const HeaderIndex = (props) => {
                 <Link to="#" className="l-sidebar__avatar" data-name="Profile">
                   <span className="sidebar-hamburger-user-profile">
                     <Image
-                      src={
-                        window.location.origin + "/assets/images/avatar/b-1.jpg"
-                      }
+                      src={localStorage.getItem("user_picture")}
                       alt="fansclub"
                     />
                   </span>
                 </Link>
                 <div className="pull-left side-user-head">
-                  <Link to={"/profile"}>
-                    <h3 className="g-user-name">John</h3>
-                    <span className="user-id">@johnpaul</span>
+                  <Link
+                    to={"/profile"}
+                    onClick={() => setIsVisible(!isVisible)}
+                  >
+                    <h3 className="g-user-name">
+                      {localStorage.getItem("name")}
+                    </h3>
+                    <span className="user-id">
+                      @{localStorage.getItem("username")}
+                    </span>
                   </Link>
 
                   <ul className="list-inline">
                     <Media as="li">
                       <Link to={"/following"}>
-                        <span className="fans-follow">0</span> Fans
+                        <span className="fans-follow">
+                          {localStorage.getItem("total_followers")
+                            ? localStorage.getItem("total_followers")
+                            : 0}
+                        </span>{" "}
+                        Fans
                       </Link>
                     </Media>
                     <Media as="li">
                       <Link to={"/fans"}>
-                        <span className="fans-follow">5</span> Following
+                        <span className="fans-follow">
+                          {localStorage.getItem("total_followings")
+                            ? localStorage.getItem("total_followings")
+                            : 0}
+                        </span>{" "}
+                        Following
                       </Link>
                     </Media>
                   </ul>
@@ -203,7 +222,7 @@ const HeaderIndex = (props) => {
                 <hr className="sidebar-menu-divider" />
 
                 <Link
-                  to={"/card-list"}
+                  to={"/cards"}
                   className="sidebar-menus-item"
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
@@ -212,7 +231,7 @@ const HeaderIndex = (props) => {
                     src={
                       window.location.origin + "/assets/images/icons/card.svg"
                     }
-                    alt="fansclub"
+                    alt="Your Cards"
                   />{" "}
                   Your Cards
                 </Link>

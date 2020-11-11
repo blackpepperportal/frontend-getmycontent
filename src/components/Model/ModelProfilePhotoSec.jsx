@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Image, Media } from "react-bootstrap";
 
+import NoDataFound from "../NoDataFound/NoDataFound";
+
 const ModelProfilePhotoSec = (props) => {
   return (
     <div
@@ -14,48 +16,25 @@ const ModelProfilePhotoSec = (props) => {
       id="Section2"
     >
       <ul className="box-container three-cols model-prof-photo-sec">
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/g-6.jpg" className="glightbox">
-              <Image src={window.location.origin + "/assets/images/g-6.jpg"} />
-            </Link>
-          </div>
-        </Media>
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/g-5.jpg" className="glightbox">
-              <Image src={window.location.origin + "/assets/images/g-5.jpg"} />
-            </Link>
-          </div>
-        </Media>
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/g-4.jpg" className="glightbox">
-              <Image src={window.location.origin + "/assets/images/g-4.jpg"} />
-            </Link>
-          </div>
-        </Media>
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/g-3.jpg" className="glightbox">
-              <Image src={window.location.origin + "/assets/images/g-3.jpg"} />
-            </Link>
-          </div>
-        </Media>
-        <Media as="li" className="box">
-          <div className="inner">
-            <Link to="assets/images/g-2.jpg" className="glightbox">
-              <Image src={window.location.origin + "/assets/images/g-2.jpg"} />
-            </Link>
-          </div>
-        </Media>
-        <Media className="box">
-          <div className="inner">
-            <Link to="assets/images/g-1.jpg" className="glightbox">
-              <Image src={window.location.origin + "/assets/images/g-1.jpg"} />
-            </Link>
-          </div>
-        </Media>
+        {props.userPosts.loading ? (
+          "Loading..."
+        ) : props.userPosts.data.posts.length > 0 ? (
+          props.userPosts.data.posts.map((post) =>
+            post.post_files.length > 0
+              ? post.post_files.map((p_file) => (
+                  <Media as="li" className="box">
+                    <div className="inner">
+                      <Link to="#" className="glightbox">
+                        <Image src={p_file.file} />
+                      </Link>
+                    </div>
+                  </Media>
+                ))
+              : ""
+          )
+        ) : (
+          <NoDataFound></NoDataFound>
+        )}
       </ul>
     </div>
   );

@@ -42,14 +42,14 @@ const AddCardModel = (props) => {
             <div className="add-card-content-header">
               <Link to="#">
                 <div className="add-card-user-name">
-                  Amber Doig-Thorne
+                  {localStorage.getItem("name")}
                   <Image
                     src="assets/images/icons/verified.svg"
                     className="add-card-verified-icon ml-3"
                   />
                 </div>
               </Link>
-              <h6 className="sub-title">@ambzdt</h6>
+              <h6 className="sub-title">@{localStorage.getItem("username")}</h6>
               <h4 className="title">SUBSCRIPTION BENEFITS:</h4>
               <div className="flex-center">
                 <ul className="list-unstyled">

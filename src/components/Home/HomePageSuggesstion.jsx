@@ -27,7 +27,7 @@ const HomePageSuggesstion = (props) => {
         </Col>
         <Col sm={12} xl={7} xs={12} md={6} className="mrg-btm-xs">
           <div className="controls pull-right ">
-            <Link to="#">
+            {/* <Link to="#">
               <Image
                 src="assets/images/icons/price-tag.svg"
                 className="svg-clone"
@@ -38,7 +38,7 @@ const HomePageSuggesstion = (props) => {
                 src="assets/images/icons/refresh.svg"
                 className="svg-clone"
               />
-            </Link>
+            </Link> */}
 
             <Link
               className="left"
@@ -60,7 +60,7 @@ const HomePageSuggesstion = (props) => {
             >
               <Image
                 src="assets/images/icons/right.svg"
-                className="svg-clone mr-0"
+                className="svg-clone mr-0 padding-right-zero"
               />
             </Link>
           </div>
@@ -77,56 +77,61 @@ const HomePageSuggesstion = (props) => {
                   <Col sm={12} md={12}>
                     {props.postSug.loading ? (
                       "Loading..."
-                    ) : (
+                    ) : props.postSug.data.users.length > 0 ? (
                       <Carousel>
-                        {props.postSug.data.users.length > 0
-                          ? props.postSug.data.users.map((user) => (
-                              <div className="col-item">
-                                <div className="photo">
-                                  <div className="swiper-slide">
-                                    <div className="b-friend">
-                                      <Link to="user-profile.php" className="">
-                                        <div className="b-friend__cover-wrapper">
-                                          <Image
-                                            src={user.cover}
-                                            alt="Yoga with Taz"
-                                            className="b-friend__cover"
-                                          />
-                                        </div>
-                                        <div className="b-free-label">free</div>
-                                        <div className="b-friend__content">
-                                          <div className="b-friend__avatar">
-                                            <span className="g-avatar online_status_class m-w150 m-border-line">
-                                              <Image
-                                                src={user.picture}
-                                                alt="Yoga with Taz"
-                                              />
-                                            </span>
-                                          </div>
-                                          <div className="b-username-row">
-                                            <div className="b-username m-like-link">
-                                              <div className="g-user-name m-lg-size m-verified">
-                                                {user.first_name}{" "}
-                                                {user.last_name}
-                                              </div>
-                                            </div>
-                                          </div>
-                                          <div className="b-username-row">
-                                            <div className="b-username">
-                                              <div className="g-user-username">
-                                                @{user.username}
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </Link>
+                        {props.postSug.data.users.map((user) => (
+                          <div className="col-item">
+                            <div className="photo">
+                              <div className="swiper-slide">
+                                <div className="b-friend">
+                                  <Link
+                                    to={`/model-profile/${user.user_unique_id}`}
+                                    className=""
+                                  >
+                                    <div className="b-friend__cover-wrapper">
+                                      <Image
+                                        src={user.cover}
+                                        alt={user.username}
+                                        className="b-friend__cover"
+                                      />
                                     </div>
-                                  </div>
+                                    <div className="b-free-label">
+                                      {user.user_account_type_formatted}
+                                    </div>
+                                    <div className="b-friend__content">
+                                      <div className="b-friend__avatar">
+                                        <span className="g-avatar online_status_class m-w150 m-border-line">
+                                          <Image
+                                            src={user.picture}
+                                            alt={user.username}
+                                            className="suggest-img"
+                                          />
+                                        </span>
+                                      </div>
+                                      <div className="b-username-row">
+                                        <div className="b-username m-like-link">
+                                          <div className="g-user-name m-lg-size m-verified">
+                                            {user.name}
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div className="b-username-row">
+                                        <div className="b-username">
+                                          <div className="g-user-username">
+                                            @{user.username}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </Link>
                                 </div>
                               </div>
-                            ))
-                          : "No data Found"}
+                            </div>
+                          </div>
+                        ))}
                       </Carousel>
+                    ) : (
+                      "No Suggestions"
                     )}
                   </Col>
                 </Row>

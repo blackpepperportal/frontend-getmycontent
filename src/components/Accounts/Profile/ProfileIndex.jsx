@@ -5,6 +5,7 @@ import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import PostDisplayCard from "../../helper/PostDisplayCard";
 import { fetchPostsStart } from "../../../store/actions/PostAction";
 import { fetchUserDetailsStart } from "../../../store/actions/UserAction";
+import NoDataFound from "../../NoDataFound/NoDataFound";
 
 const ProfileIndex = (props) => {
   useEffect(() => {
@@ -96,19 +97,21 @@ const ProfileIndex = (props) => {
                           </div>
                         </Link>
                         <div className="user-profile -active-status">
-                          <span>Active</span>
+                          <span>{props.profile.data.updated_formatted}</span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="profile-about-content">
-                    <p className="my-profile-about">Nutrition | Motivation</p>
+                    <p className="my-profile-about">
+                      {props.profile.data.about}
+                    </p>
                   </div>
 
                   <div className="profile-post-area">
                     <div className="search-row">
                       <Link to="#" className="search-button">
-                        1 post
+                        {props.profile.data.total_posts} Post
                       </Link>
                       <div className="search-container">
                         <Form className="search-box">
@@ -126,13 +129,21 @@ const ProfileIndex = (props) => {
                   </div>
                 </>
               )}
-              {props.posts.loading
-                ? "Loading..."
-                : props.posts.data.length > 0
-                ? props.posts.data.map((post) => (
+              {props.posts ? (
+                ""
+              ) : props.posts.loading ? (
+                "Loading..."
+              ) : props.posts.data.posts.length > 0 ? (
+                props.posts.data.posts.length > 0 ? (
+                  props.posts.data.posts.map((post) => (
                     <PostDisplayCard post={post} />
                   ))
-                : "No data found"}
+                ) : (
+                  ""
+                )
+              ) : (
+                <NoDataFound />
+              )}
             </Col>
           </Row>
         </Container>

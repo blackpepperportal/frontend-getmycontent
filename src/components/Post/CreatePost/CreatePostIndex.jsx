@@ -2,19 +2,25 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Row, Col, Image, Form } from "react-bootstrap";
 import { connect } from "react-redux";
-import { savePostStart } from "../../../store/actions/PostAction";
+import {
+  postFileUploadStart,
+  savePostStart,
+} from "../../../store/actions/PostAction";
 
 const CreatePostIndex = (props) => {
   const [inputData, setInputData] = useState({});
 
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState({});
+
+  const [fileUploadStatus, setFileUploadStatus] = useState(false);
 
   const handleChangeImage = (event) => {
     if (event.currentTarget.type === "file") {
-      setInputData({
-        ...inputData,
-        [event.currentTarget.name]: event.currentTarget.files[0],
-      });
+      setFileUploadStatus(true);
+      // setInputData({
+      //   ...inputData,
+      //   [event.currentTarget.name]: event.currentTarget.files[0],
+      // });
       let reader = new FileReader();
       let file = event.currentTarget.files[0];
       reader.onloadend = () => {
@@ -24,20 +30,38 @@ const CreatePostIndex = (props) => {
       if (file) {
         reader.readAsDataURL(file);
       }
+      props.dispatch(
+        postFileUploadStart({
+          file: event.currentTarget.files[0],
+          file_type: "image",
+        })
+      );
     }
   };
 
   const handleSubmit = (event) => {
-    console.log("asdfsdfs");
     event.preventDefault();
-    props.dispatch(savePostStart(inputData));
+    if (fileUploadStatus) {
+      props.dispatch(
+        savePostStart({
+          content: inputData.content,
+          post_files: props.fileUpload.data.file,
+        })
+      );
+    } else {
+      props.dispatch(
+        savePostStart({
+          content: inputData.content,
+        })
+      );
+    }
   };
 
   return (
     <div className="notification-page create-post" id="tabs">
       <Container>
-        <Row>
-          <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
+          <Row>
             <Col sm={12} md={12}>
               <div className="post-create-header">
                 <div className="pull-left">
@@ -52,10 +76,13 @@ const CreatePostIndex = (props) => {
                 <div className="pull-right">
                   <Button
                     type="submit"
-                    className="post-btn"
+                    className="post-btn btn-primary"
                     onClick={handleSubmit}
+                    disabled={props.fileUpload.buttonDisable}
                   >
-                    Postsdsdf
+                    {props.fileUpload.loadingButtonContent !== null
+                      ? props.fileUpload.loadingButtonContent
+                      : "POST"}
                   </Button>
                 </div>
               </div>
@@ -107,8 +134,8 @@ const CreatePostIndex = (props) => {
                 </Button>
               </div>
             </Col>
-          </Form>
-        </Row>
+          </Row>
+        </Form>
       </Container>
     </div>
   );
@@ -116,6 +143,7 @@ const CreatePostIndex = (props) => {
 
 const mapStateToPros = (state) => ({
   savePost: state.post.savePost,
+  fileUpload: state.post.fileUpload,
 });
 
 function mapDispatchToProps(dispatch) {

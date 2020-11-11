@@ -4,8 +4,6 @@ import { Router, Switch, Route, Redirect } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import EditProfile from "../Accounts/Profile/EditProfile";
-import DeleteAccountIndex from "../Accounts/DeleteAccount/DeleteAccountIndex";
-import ChangePasswordIndex from "../Accounts/ChangePassword/ChangePasswordIndex";
 import ProfileIndex from "../Accounts/Profile/ProfileIndex";
 import NotFoundIndex from "../NotFound/NotFoundIndex";
 import { Helmet } from "react-helmet";
@@ -27,10 +25,13 @@ import CreatePostIndex from "../Post/CreatePost/CreatePostIndex";
 import FavoritesIndex from "../Accounts/Favorites/FavoritesIndex";
 import PaymentsIndex from "../Accounts/Payments/PaymentsIndex";
 import BankingIndex from "../Accounts/Payments/BankingIndex";
-import CardListIndex from "../Accounts/Payments/CardListIndex";
+import CardsIndex from "../Accounts/Payments/CardsIndex";
 import AddBankIndex from "../Accounts/Payments/AddBankIndex";
 import Logout from "../Accounts/Logout";
 import Wallet from "../Wallet/Wallet";
+import BillingAccountIndex from "../Accounts/Payments/BillingAccountIndex";
+import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
+import StaticPage from "../StaticPage/StaticPage";
 
 const history = createHistory();
 const $ = window.$;
@@ -98,9 +99,67 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+    this.fetchConfig();
+  }
+
+  async fetchConfig() {
+    try {
+      const response = await fetch(apiConstants.settingsUrl);
+      const configValue = await response.json();
+
+      configuration.set({ configData: configValue.data }, { freeze: false });
+      this.setState({ configLoading: false });
+    } catch (error) {
+      configuration.set({ configData: [] }, { freeze: false });
+      this.setState({ configLoading: false });
+    }
+
+    // $("#google_analytics").html(
+    //   configuration.get("configData.google_analytics")
+    // );
+
+    // $("#header_scripts").html(configuration.get("configData.header_scripts"));
+
+    // $("#body_scripts").html(configuration.get("configData.body_scripts"));
+  }
+
   render() {
+    const isLoading = this.state.configLoading;
+
+    if (isLoading) {
+      return (
+        // Place content loadder here
+        <div>{/* <HomeLoader></HomeLoader> */}</div>
+      );
+    }
     return (
       <>
+        <Helmet>
+          <title>{configuration.get("configData.site_name")}</title>
+          <link
+            rel="icon"
+            type="image/png"
+            href={configuration.get("configData.site_icon")}
+            sizes="16x16"
+          />
+          <link
+            rel="apple-touch-icon"
+            href={configuration.get("configData.site_icon")}
+          />
+          <meta
+            name="description"
+            content={configuration.get("configData.meta_description")}
+          ></meta>
+          <meta
+            name="keywords"
+            content={configuration.get("configData.meta_keywords")}
+          ></meta>
+          <meta
+            name="author"
+            content={configuration.get("configData.meta_author")}
+          ></meta>
+        </Helmet>
         <Switch>
           <AppRoute
             path={"/"}
@@ -187,20 +246,6 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/delete-account"}
-            component={DeleteAccountIndex}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/change-password"}
-            component={ChangePasswordIndex}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
             path={"/edit-profile-loader"}
             component={LandingPageLoader}
             layout={MainLayout}
@@ -222,8 +267,15 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/card-list"}
-            component={CardListIndex}
+            path={"/billing-accounts"}
+            component={BillingAccountIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/cards"}
+            component={CardsIndex}
             layout={MainLayout}
           />
 
@@ -238,6 +290,20 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/wallet"}
             component={Wallet}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/document-upload"}
+            component={DocumentUploadIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/static-page"}
+            component={StaticPage}
             layout={MainLayout}
           />
 

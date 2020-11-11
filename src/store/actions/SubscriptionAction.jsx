@@ -8,9 +8,12 @@ import {
   FETCH_SINGLE_SUBSCRIPTION_START,
   FETCH_SINGLE_SUBSCRIPTION_SUCCESS,
   FETCH_SINGLE_SUBSCRIPTION_FAILURE,
-  SUBSCRIPTION_PAYMENT_START,
-  SUBSCRIPTION_PAYMENT_SUCCESS,
-  SUBSCRIPTION_PAYMENT_FAILURE,
+  SUBSCRIPTION_PAYMENT_STRIPE_START,
+  SUBSCRIPTION_PAYMENT_STRIPE_SUCCESS,
+  SUBSCRIPTION_PAYMENT_STRIPE_FAILURE,
+  SUBSCRIPTION_PAYMENT_WALLET_START,
+  SUBSCRIPTION_PAYMENT_WALLET_SUCCESS,
+  SUBSCRIPTION_PAYMENT_WALLET_FAILURE,
   SUBSCRIPTION_AUTO_RENEWAL_START,
   SUBSCRIPTION_AUTO_RENEWAL_SUCCESS,
   SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
@@ -85,25 +88,48 @@ export function fetchSingleSubscriptionFailure(error) {
   };
 }
 
-// Subscription Payment actions.
+// Subscription Payment stripe actions.
 
-export function subscriptionPaymentStart(data) {
+export function subscriptionPaymentStripeStart(data) {
   return {
-    type: SUBSCRIPTION_PAYMENT_START,
+    type: SUBSCRIPTION_PAYMENT_STRIPE_START,
     data,
   };
 }
 
-export function subscriptionPaymentSuccess(data) {
+export function subscriptionPaymentStripeSuccess(data) {
   return {
-    type: SUBSCRIPTION_PAYMENT_SUCCESS,
+    type: SUBSCRIPTION_PAYMENT_STRIPE_SUCCESS,
     data,
   };
 }
 
-export function subscriptionPaymentFailure(error) {
+export function subscriptionPaymentStripeFailure(error) {
   return {
-    type: SUBSCRIPTION_PAYMENT_FAILURE,
+    type: SUBSCRIPTION_PAYMENT_STRIPE_FAILURE,
+    error,
+  };
+}
+
+// Subscription Payment wallet actions.
+
+export function subscriptionPaymentWalletStart(data) {
+  return {
+    type: SUBSCRIPTION_PAYMENT_WALLET_START,
+    data,
+  };
+}
+
+export function subscriptionPaymentWalletSuccess(data) {
+  return {
+    type: SUBSCRIPTION_PAYMENT_WALLET_SUCCESS,
+    data,
+  };
+}
+
+export function subscriptionPaymentWalletFailure(error) {
+  return {
+    type: SUBSCRIPTION_PAYMENT_WALLET_FAILURE,
     error,
   };
 }

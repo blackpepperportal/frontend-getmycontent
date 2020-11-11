@@ -40,13 +40,13 @@ const AddFavModal = (props) => {
               <div className="floating-label">
                 <input className="floating-input" type="text" placeholder=" " />
                 <span className="highlight"></span>
-                <label>Tip amount</label>
+                <label className="default-label">Tip amount</label>
               </div>
 
               <div className="floating-label">
                 <input className="floating-input" type="text" placeholder=" " />
                 <span className="highlight"></span>
-                <label>Message (optional)</label>
+                <label className="default-label">Message (optional)</label>
               </div>
             </div>
           </Modal.Body>
