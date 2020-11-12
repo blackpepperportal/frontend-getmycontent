@@ -45,6 +45,8 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
   buttonDisable: false,
   loadingButtonContent: null,
@@ -148,7 +150,6 @@ const userReducer = (state = initialState, action) => {
         },
       };
     case UPDATE_USER_DETAILS_START:
-      console.log("profile data ", state.profile.data);
       return {
         ...state,
         profileInputData: {
@@ -156,18 +157,22 @@ const userReducer = (state = initialState, action) => {
             first_name: state.profile.data.first_name,
             last_name: state.profile.data.last_name,
             email: state.profile.data.email,
-            description: state.profile.data.description,
+            name: state.profile.data.name,
+            username: state.profile.data.username,
+            about: state.profile.data.about,
+            address: state.profile.data.address,
+            website: state.profile.data.website,
+            amazon_wishlist: state.profile.data.amazon_wishlist,
             mobile:
               state.profile.data.mobile != null
                 ? state.profile.data.mobile
                 : "",
-            address: state.profile.data.address,
-            picture: action.data ? action.data : "",
-            cover: action.data ? action.data : "",
+            picture: action.data.picture ? action.data.picture : "",
+            cover: action.data.cover ? action.data.cover : "",
           },
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
         },
-        buttonDisable: true,
-        loadingButtonContent: "Loading please wait",
       };
 
     case UPDATE_USER_DETAILS_SUCCESS:
@@ -175,9 +180,9 @@ const userReducer = (state = initialState, action) => {
         ...state,
         profile: {
           data: action.data.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
     case UPDATE_USER_DETAILS_FAILURE:
       return {
@@ -186,9 +191,9 @@ const userReducer = (state = initialState, action) => {
           data: state.profile.data,
           loading: false,
           error: action.error,
+          buttonDisable: false,
+          loadingButtonContent: null,
         },
-        buttonDisable: false,
-        loadingButtonContent: null,
       };
 
     case GET_LOGIN_DETAILS:
