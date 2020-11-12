@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader"
 const EditProfileLoader = (props) => (
   <ContentLoader 
     speed={2}
-    width={1200}
+    width={1340}
     height={650}
     viewBox="0 0 1200 650"
     backgroundColor="#f3f3f3"
@@ -15,32 +15,32 @@ const EditProfileLoader = (props) => (
     <circle cx="23" cy="45" r="17" /> 
     <rect x="65" y="38" rx="0" ry="0" width="111" height="13" /> 
     <rect x="6" y="73" rx="0" ry="0" width="244" height="5" /> 
-    <rect x="263" y="13" rx="0" ry="0" width="130" height="14" /> 
-    <rect x="263" y="39" rx="0" ry="0" width="191" height="13" /> 
-    <rect x="263" y="68" rx="0" ry="0" width="340" height="93" /> 
+    <rect x="263" y="13" rx="0" ry="0" width="200" height="14" /> 
+    <rect x="263" y="39" rx="0" ry="0" width="300" height="13" /> 
+    <rect x="263" y="68" rx="0" ry="0" width="938" height="93" /> 
     <circle cx="318" cy="160" r="37" /> 
-    <rect x="474" y="179" rx="20" ry="20" width="122" height="26" /> 
+    <rect x="1060" y="179" rx="20" ry="20" width="122" height="26" /> 
     <rect x="263" y="161" rx="0" ry="0" width="5" height="62" /> 
-    <rect x="265" y="219" rx="0" ry="0" width="338" height="5" /> 
-    <rect x="598" y="156" rx="0" ry="0" width="5" height="68" /> 
+    <rect x="265" y="219" rx="0" ry="0" width="935" height="5" /> 
+    <rect x="1195" y="156" rx="0" ry="0" width="5" height="68" /> 
     <rect x="264" y="233" rx="0" ry="0" width="200" height="7" /> 
     <rect x="264" y="258" rx="0" ry="0" width="111" height="10" /> 
-    <rect x="264" y="279" rx="0" ry="0" width="339" height="3" /> 
+    <rect x="264" y="279" rx="0" ry="0" width="935" height="3" /> 
     <rect x="275" y="286" rx="0" ry="0" width="145" height="6" /> 
     <rect x="265" y="309" rx="0" ry="0" width="111" height="10" /> 
-    <rect x="265" y="330" rx="0" ry="0" width="339" height="3" /> 
+    <rect x="265" y="330" rx="0" ry="0" width="935" height="3" /> 
     <rect x="264" y="349" rx="0" ry="0" width="111" height="10" /> 
-    <rect x="264" y="370" rx="0" ry="0" width="339" height="3" /> 
+    <rect x="264" y="370" rx="0" ry="0" width="935" height="3" /> 
     <rect x="275" y="377" rx="0" ry="0" width="145" height="6" /> 
     <rect x="264" y="402" rx="0" ry="0" width="111" height="10" /> 
-    <rect x="264" y="423" rx="0" ry="0" width="339" height="3" /> 
+    <rect x="264" y="423" rx="0" ry="0" width="935" height="3" /> 
     <rect x="265" y="442" rx="0" ry="0" width="111" height="10" /> 
-    <rect x="265" y="463" rx="0" ry="0" width="339" height="3" /> 
+    <rect x="265" y="463" rx="0" ry="0" width="935" height="3" /> 
     <rect x="266" y="482" rx="0" ry="0" width="111" height="10" /> 
-    <rect x="266" y="503" rx="0" ry="0" width="339" height="3" /> 
+    <rect x="266" y="503" rx="0" ry="0" width="935" height="3" /> 
     <rect x="267" y="522" rx="0" ry="0" width="111" height="10" /> 
-    <rect x="267" y="543" rx="0" ry="0" width="339" height="3" /> 
-    <rect x="463" y="569" rx="20" ry="20" width="135" height="39" /> 
+    <rect x="267" y="543" rx="0" ry="0" width="935" height="3" /> 
+    <rect x="1065" y="569" rx="20" ry="20" width="135" height="39" /> 
     <circle cx="25" cy="109" r="17" /> 
     <rect x="67" y="102" rx="0" ry="0" width="111" height="13" /> 
     <rect x="8" y="137" rx="0" ry="0" width="244" height="5" /> 
