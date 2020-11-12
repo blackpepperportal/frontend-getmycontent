@@ -12,10 +12,14 @@ import {
 
 const initialState = {
   bookmark: {
-    data: {},
+    data: {
+      posts: [],
+    },
     loading: true,
     error: false,
     inputData: {},
+    skip: 0,
+    length: 0,
   },
   saveBookmark: {
     data: {},
@@ -42,19 +46,27 @@ const BookmarkReducer = (state = initialState, action) => {
         ...state,
         bookmark: {
           inputData: action.data,
-          data: {},
+          data: {
+            posts: [...state.bookmark.data.posts],
+          },
           loading: true,
           error: false,
+          skip: state.bookmark.skip,
+          length: state.bookmark.length,
         },
       };
     case FETCH_BOOKMARKS_SUCCESS:
       return {
         ...state,
         bookmark: {
-          data: action.data,
+          data: {
+            posts: [...state.bookmark.data.posts, ...action.data.posts],
+          },
           loading: false,
           error: false,
           inputData: {},
+          skip: action.data.posts.length + state.bookmark.skip,
+          length: action.data.posts.length,
         },
       };
     case FETCH_BOOKMARKS_FAILURE:
@@ -65,6 +77,8 @@ const BookmarkReducer = (state = initialState, action) => {
           loading: true,
           error: action.error,
           inputData: {},
+          skip: state.bookmark.skip,
+          length: state.bookmark.length,
         },
       };
     case SAVE_BOOKMARK_START:

@@ -19,10 +19,17 @@ const HomePageIndex = (props) => {
   }, []);
 
   const fetchHomeData = () => {
-    props.dispatch(fetchHomePostsStart());
+    if (props.posts.length !== 0) {
+      props.dispatch(fetchHomePostsStart());
+      setIsFetching(false);
+    } else {
+      setNoMoreData(true);
+    }
   };
 
   const [isFetching, setIsFetching] = useInfiniteScroll(fetchHomeData);
+
+  const [noMoreData, setNoMoreData] = useState(false);
 
   const [sendTip, setSendTip] = useState(false);
 
@@ -95,10 +102,14 @@ const HomePageIndex = (props) => {
               ) : (
                 <NoDataFound />
               )}
+              {noMoreData !== true ? (
+                <>{isFetching && "Fetching more list items..."}</>
+              ) : (
+                "No More Data"
+              )}
             </Col>
             <HomePageSuggesstion />
           </div>
-          {isFetching && "Fetching more list items..."}
         </Container>
       </div>
     </>
