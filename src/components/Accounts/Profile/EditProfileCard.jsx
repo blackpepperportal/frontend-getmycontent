@@ -12,8 +12,8 @@ const EditProfileCard = (props) => {
   const [profileInputData, setProfileInputData] = useState({});
 
   const [image, setImage] = useState({
-    profileImage: "",
-    coverImage: "",
+    picture: "",
+    cover: "",
   });
 
   useEffect(() => {
@@ -29,15 +29,15 @@ const EditProfileCard = (props) => {
       let reader = new FileReader();
       let file = event.currentTarget.files[0];
 
-      if (event.currentTarget.name === "coverImage") {
+      if (event.currentTarget.name === "cover") {
         reader.onloadend = () => {
-          setImage({ ...image, coverImage: reader.result });
+          setImage({ ...image, cover: reader.result });
         };
       }
 
-      if (event.currentTarget.name === "profileImage") {
+      if (event.currentTarget.name === "picture") {
         reader.onloadend = () => {
-          setImage({ ...image, profileImage: reader.result });
+          setImage({ ...image, picture: reader.result });
         };
       }
 
@@ -49,7 +49,9 @@ const EditProfileCard = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.dispatch(updateUserDetailsStart(profileInputData));
+    if (Object.keys(profileInputData).length > 0)
+      props.dispatch(updateUserDetailsStart(profileInputData));
+    else props.dispatch(updateUserDetailsStart());
   };
   return (
     <>
@@ -79,9 +81,7 @@ const EditProfileCard = (props) => {
               <div className="cover">
                 <Image
                   src={
-                    image.coverImage === ""
-                      ? props.profile.data.cover
-                      : image.coverImage
+                    image.cover === "" ? props.profile.data.cover : image.cover
                   }
                 />
 
@@ -94,7 +94,7 @@ const EditProfileCard = (props) => {
                       className="hidden-input"
                       id="changeCover"
                       type="file"
-                      name="coverImage"
+                      name="cover"
                       accept="image/*"
                       onChange={handleChangeImage}
                     />
@@ -112,9 +112,9 @@ const EditProfileCard = (props) => {
                 <div className="profile-pic">
                   <Image
                     src={
-                      image.profileImage === ""
+                      image.picture === ""
                         ? props.profile.data.picture
-                        : image.profileImage
+                        : image.picture
                     }
                   />
                   <div className="layer">
@@ -127,7 +127,7 @@ const EditProfileCard = (props) => {
                         id="changePicture"
                         type="file"
                         accept="image/*"
-                        name="profileImage"
+                        name="picture"
                         onChange={handleChangeImage}
                       />
                       <Form.Label
@@ -145,7 +145,7 @@ const EditProfileCard = (props) => {
                       className="hidden-input"
                       id="changePicture"
                       type="file"
-                      name="profileImage"
+                      name="picture"
                       onChange={handleChangeImage}
                     />
                     <Form.Label
@@ -179,12 +179,13 @@ const EditProfileCard = (props) => {
                 autocomplete="on"
                 placeholder=""
                 name="username"
+                value={props.profile.data.username}
                 maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(
                     editUserDetails(
-                      event.currentTarget.name,
+                      event.currentTarget.username,
                       event.currentTarget.value
                     )
                   );
@@ -249,7 +250,7 @@ const EditProfileCard = (props) => {
                 autocomplete="on"
                 value="$ FREE"
                 placeholder=""
-                name="username"
+                name="subscription"
                 maxlength="24"
                 className="form-control edit-reset"
               />
@@ -275,11 +276,19 @@ const EditProfileCard = (props) => {
                 id="edit-description"
                 type="text"
                 autocomplete="off"
-                value={props.profile.data.description}
                 placeholder=""
-                name="description"
+                value={props.profile.data.about}
+                name="about"
                 maxlength="24"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
@@ -300,6 +309,14 @@ const EditProfileCard = (props) => {
                 placeholder="Location"
                 name="address"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
@@ -319,9 +336,17 @@ const EditProfileCard = (props) => {
                 autocomplete="off"
                 value={props.profile.data.website}
                 placeholder="Website URL"
-                name="username"
+                name="website"
                 maxlength="24"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
@@ -344,12 +369,19 @@ const EditProfileCard = (props) => {
                 name="amazon_wishlist"
                 maxlength="24"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
           <div className="edit-save">
             <Button className="save-btn" onClick={handleSubmit}>
-              {" "}
               Save changes{" "}
             </Button>
           </div>
