@@ -14,7 +14,7 @@ import {
 function* fetchSinglePage() {
   try {
     const inputData = yield select((state) => state.page.pageData.inputData);
-    const response = yield api.postMethod("pages_list", inputData);
+    const response = yield api.postMethod("pages/list", inputData);
     if (response.data.success) {
       yield put(fetchSinglePageSuccess(response.data.data));
     } else {

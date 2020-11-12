@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import configuration from "react-global-configuration";
+import SocialButton from "../helper/SocialButton";
 
 import { connect } from "react-redux";
 import {
@@ -32,6 +33,14 @@ const LandingPageIndex = (props) => {
   const handleForgotPassword = (event) => {
     event.preventDefault();
     props.dispatch(forgotPasswordStart(forgotPasswordInputData));
+  };
+
+  const handleSocialLogin = (user) => {
+    console.log(user);
+  };
+
+  const handleSocialLoginFailure = (err) => {
+    console.error(err);
   };
 
   return (
@@ -75,6 +84,25 @@ const LandingPageIndex = (props) => {
                   Sign up to make money and interact with your fans!
                 </p>
                 <div className="forms-fields">
+                  {configuration.get("configData.FB_CLIENT_ID") ? (
+                    <Link
+                      to="#"
+                      className="social-button"
+                      id="facebook-connect"
+                    >
+                      <SocialButton
+                        provider="facebook"
+                        appId={configuration.get("configData.FB_CLIENT_ID")}
+                        onLoginSuccess={handleSocialLogin}
+                        onLoginFailure={handleSocialLoginFailure}
+                        className="social-button b-0"
+                      >
+                        Sign Up / Login with with Facebook
+                      </SocialButton>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                   <Link to="#" className="social-button" id="twitter-connect">
                     <span>Sign Up / Login with Twitter</span>
                   </Link>

@@ -300,9 +300,8 @@ class App extends Component {
             layout={MainLayout}
           />
 
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/static-page"}
+          <AppRoute
+            path={"/page/:title"}
             component={StaticPage}
             layout={MainLayout}
           />

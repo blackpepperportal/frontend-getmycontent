@@ -27,8 +27,8 @@ class AuthFooter extends Component {
                       .map((static_page, index) => (
                         <Media as="li">
                           <Link
-                            to={`/page/${static_page.page_type}`}
-                            key={static_page.unique_id}
+                            to={`/page/${static_page.static_page_unique_id}`}
+                            key={static_page.static_page_unique_id}
                           >
                             {static_page.title}
                           </Link>
