@@ -54,7 +54,7 @@ const LandingPageIndex = (props) => {
               md={12}
               sm={12}
               xs={12}
-              className="hidden-xs iphone-slide-area resp-btm-lg"
+              className="hidden-xs iphone-slide-area resp-btm-lg flex-49"
             >
               <div className="dm-width">
                 <div className="dm-device">

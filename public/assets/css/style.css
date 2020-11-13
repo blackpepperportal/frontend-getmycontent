@@ -22,6 +22,11 @@ a:focus {
   min-height: 90vh;
 }
 
+.flex-49{
+  flex: 0 0 49%;
+  max-width: 49%!important;
+}
+
 .form-inline {
   justify-content: space-between;
 }
@@ -694,6 +699,7 @@ storiesWrapper {
   background-size: 22px 50px;
   padding-left: 55px;
   /* border: 1px solid rgb(60, 90, 154); */
+  border:0;
 }
 #facebook-connect span {
   box-sizing: border-box;
@@ -6164,7 +6170,7 @@ input.authentication-input {
   .sign-in.form-section {
     width: 350px;
     margin: auto;
-    margin-left: 125px;
+    margin-left: 115px;
   }
   .advace-setting .col-md-4 {
     padding-left: 0px;
