@@ -141,7 +141,7 @@ const CreatePostIndex = (props) => {
                       id="fileupload_video"
                       type="file"
                       multiple="multiple"
-                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png,.mp4,.mov,.moov,.m4v,.mpg,.mpeg,.wmv,.avi,.webm,.mkv,.stream,.mp3,.wav,.ogg"
+                      accept="video/mp4,video/x-m4v,video/*"
                       onChange={(event) => handleChangeImage(event, "video")}
                       name="post_files"
                     />

@@ -109,7 +109,7 @@ const ModelViewProfile = (props) => {
                     />
                   </div>
                   <div className="top-left">
-                    <Button className="chat-header-back">
+                    <Link to={"/home"} className="chat-header-back">
                       <Image
                         src={
                           window.location.origin +
@@ -117,7 +117,7 @@ const ModelViewProfile = (props) => {
                         }
                         className="svg-clone"
                       />
-                    </Button>
+                    </Link>
                     <h1 className="chat-page-title">
                       {userDetails.data.user.name}
                     </h1>

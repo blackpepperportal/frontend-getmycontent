@@ -120,7 +120,7 @@ const PostDisplayCard = (props) => {
       </div>
 
       <div className="post-content">
-        <p>{post.content}</p>
+        <p>{post.content != undefined ? post.content : ""}</p>
 
         {/* {post.post_files.length > 0 ? (
           post.post_files[0].file_type === "image" ? (

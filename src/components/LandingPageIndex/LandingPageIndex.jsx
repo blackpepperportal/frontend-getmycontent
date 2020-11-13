@@ -85,21 +85,31 @@ const LandingPageIndex = (props) => {
                 </p>
                 <div className="forms-fields">
                   {configuration.get("configData.FB_CLIENT_ID") ? (
-                    <Link
-                      to="#"
+                    <SocialButton
+                      provider="facebook"
+                      appId={configuration.get("configData.FB_CLIENT_ID")}
+                      onLoginSuccess={handleSocialLogin}
+                      onLoginFailure={handleSocialLoginFailure}
                       className="social-button"
                       id="facebook-connect"
                     >
-                      <SocialButton
-                        provider="facebook"
-                        appId={configuration.get("configData.FB_CLIENT_ID")}
-                        onLoginSuccess={handleSocialLogin}
-                        onLoginFailure={handleSocialLoginFailure}
-                        className="social-button b-0"
-                      >
-                        Sign Up / Login with with Facebook
-                      </SocialButton>
-                    </Link>
+                      <span>Sign Up / Login with Facebook</span>
+                    </SocialButton>
+                  ) : (
+                    ""
+                  )}
+
+                  {configuration.get("configData.GOOGLE_CLIENT_ID") ? (
+                    <SocialButton
+                      provider="facebook"
+                      appId={configuration.get("configData.GOOGLE_CLIENT_ID")}
+                      onLoginSuccess={handleSocialLogin}
+                      onLoginFailure={handleSocialLoginFailure}
+                      className="social-button"
+                      id="google-connect"
+                    >
+                      Sign Up / Login with Google
+                    </SocialButton>
                   ) : (
                     ""
                   )}
