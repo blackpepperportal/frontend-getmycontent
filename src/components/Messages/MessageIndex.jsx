@@ -17,7 +17,8 @@ import {
 } from "../../store/actions/ChatAction";
 import ChatUserList from "./ChatUserList";
 import InboxNoDataFound from "../NoDataFound/InboxNoDataFound";
-import io from "socket.io-client";
+// import io from "socket.io";
+import configuration from "react-global-configuration";
 
 const MessageIndex = (props) => {
   useEffect(() => {
@@ -27,6 +28,8 @@ const MessageIndex = (props) => {
   const [activeChat, setActiveChat] = useState(0);
   const [socketStatus, setSocketStatus] = useState(0);
   const [toUserId, setToUserId] = useState(0);
+
+  let chatSocket;
 
   const changeUser = (event, chat, index) => {
     event.preventDefault();
@@ -44,9 +47,9 @@ const MessageIndex = (props) => {
     );
   };
 
-  const chatSocketConnect = () => {
+  /** const chatSocketConnect = () => {
     // check the socket url is configured
-    let chatSocketUrl = config.get("configData.chat_socket_url");
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
 
     if (chatSocketUrl) {
       chatSocket = io(chatSocketUrl, {
@@ -76,11 +79,11 @@ const MessageIndex = (props) => {
         this.setState({ chatData: chatContent });
       });
     }
-  };
+  }; **/
 
   const handleChatSubmit = (event) => {
     event.preventDefault();
-    let chatSocketUrl = config.get("configData.chat_socket_url");
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
     console.log("chatSocketUrl" + chatSocketUrl);
     if (chatSocketUrl != undefined && this.state.chatInputMessage) {
       let chatData = [
