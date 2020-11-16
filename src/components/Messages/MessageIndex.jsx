@@ -9,6 +9,8 @@ import {
   Dropdown,
   Image,
   Media,
+  InputGroup,
+  FormControl
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
@@ -300,7 +302,7 @@ const MessageIndex = (props) => {
                         <div className="chat-post">
                           <div className="chat-textarea-price-wrapper">
                             <div className="">
-                              <Form.Group>
+                              {/* <Form.Group>
                                 <Form.Control
                                   id="chat-input-area"
                                   placeholder="Type a message"
@@ -314,12 +316,41 @@ const MessageIndex = (props) => {
                                     height: "48px",
                                   }}
                                 />
-                              </Form.Group>
+                              </Form.Group> */}
+                               <InputGroup className="mb-3">
+                            <FormControl
+                               id="chat-input-area"
+                               placeholder="Type a message"
+                               name="text"
+                               rows="1"
+                               maxlength="10000"
+                               className="form-control chat-input"
+                               style={{
+                                 overflow: "hidden",
+                                 overflowWrap: "break-word",
+                                 height: "48px",
+                               }}
+                            />
+                            <InputGroup.Append>
+                              <InputGroup.Text id="basic-addon2">
+                              <Button
+                                type="button"
+                                data-can_send="true"
+                                className="g-btn m-rounded b-chat__btn-submit"
+                              >
+                                <Image
+                                  src="assets/images/icons/send.svg"
+                                  className="svg-clone"
+                                />
+                              </Button>
+                              </InputGroup.Text>
+                            </InputGroup.Append>
+                          </InputGroup>
                             </div>
                           </div>
 
-                          <div className="chat-post__actions hidden">
-                            <Form.Control
+                          {/* <div className="chat-post__actions hidden">
+                            <FormControl
                               id="fileupload_photo"
                               type="file"
                               multiple="multiple"
@@ -347,18 +378,7 @@ const MessageIndex = (props) => {
                                 className="svg-clone"
                               />
                             </Button>
-                          </div>
-
-                          <Button
-                            type="button"
-                            data-can_send="true"
-                            className="g-btn m-rounded b-chat__btn-submit"
-                          >
-                            <Image
-                              src="assets/images/icons/send.svg"
-                              className="svg-clone"
-                            />
-                          </Button>
+                          </div> */}
                         </div>
                       </div>
                     </Form>

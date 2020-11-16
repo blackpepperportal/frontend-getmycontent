@@ -731,6 +731,7 @@ storiesWrapper {
     0px / 66px 18px padding-box border-box;
   background-size: 22px 50px;
   padding-left: 55px;
+  border:0;
   /* border: 1px solid rgb(60, 90, 154); */
 }
 #twitter-connect span {
@@ -4206,9 +4207,9 @@ button.g-btn.m-rounded.b-chat__btn-submit:hover {
 }
 button.g-btn.m-rounded.b-chat__btn-submit {
   border-radius: 1000px;
-  position: absolute;
+  /* position: absolute; */
   right: 10px;
-  bottom: 18px;
+  /* bottom: 18px; */
   padding: 0;
   width: 48px;
   height: 48px;
@@ -4544,8 +4545,8 @@ span.new-user-name:after {
 }
 
 .post-btn {
-  background: rgba(138, 150, 163, 0.75) !important;
-  border-color: rgba(138, 150, 163, 0.75) !important ;
+  background: #0091ea!important;
+  border-color: #0091ea!important ;
   opacity: 0.4 !important;
   min-width: 72px !important;
   /* pointer-events: none; */
@@ -4570,8 +4571,8 @@ span.new-user-name:after {
 .post-btn.btn-primary:hover,
 .post-btn.btn-primary:focus,
 .post-btn.btn-primary:active {
-  background: rgba(138, 150, 163, 0.75) !important;
-  border-color: rgba(138, 150, 163, 0.75) !important ;
+  background: #0091ea !important;
+  border-color: #0091ea !important ;
 }
 .post-create-header {
   display: block;
@@ -7866,3 +7867,27 @@ input.authentication-input {
 .message-page .form-control:focus {
   border-bottom: 0 !important;
 }
+
+.create-post input[type=file]{
+  display: none;
+}
+
+
+.chat-attach_file.form-label{
+  margin-bottom: 0;
+}
+
+.message-page .input-group>.input-group-append>.input-group-text {
+  background: transparent;
+  border:0;
+}
+
+.message-page .form-control:focus{
+  background-color: transparent!important;
+}
+
+.trans-table-sec .btn.btn-primary:hover{
+  background: #0091ea!important; 
+  color: #ffffff!important;
+}
+

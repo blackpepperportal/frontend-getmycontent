@@ -65,9 +65,9 @@ Version: 1.0
     .scrollbar{
         height: 35vh;
     }
-    .msg-row-chat{
+    /* .msg-row-chat{
         height: 35vh;
-    }
+    } */
     .overflow {
         min-height: 60vh;
     }

@@ -132,9 +132,6 @@ const CreatePostIndex = (props) => {
                     </Form.Label>
                   </Form.Group>
                 </Button>
-              </div>
-
-              <div className="left-half post-write">
                 <Button>
                   <Form.Group className="mb-0">
                     <Form.Control
