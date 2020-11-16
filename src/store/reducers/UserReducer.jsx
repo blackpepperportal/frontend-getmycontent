@@ -163,15 +163,31 @@ const userReducer = (state = initialState, action) => {
             address: state.profile.data.address,
             website: state.profile.data.website,
             amazon_wishlist: state.profile.data.amazon_wishlist,
+            monthly_amount:
+              state.profile.data.monthly_amount != undefined
+                ? state.profile.data.monthly_amount
+                : 0,
+            yearly_amount:
+              state.profile.data.yearly_amount != undefined
+                ? state.profile.data.yearly_amount
+                : 0,
             mobile:
               state.profile.data.mobile != null
                 ? state.profile.data.mobile
                 : "",
-            picture: action.data.picture ? action.data.picture : "",
-            cover: action.data.cover ? action.data.cover : "",
+            picture: action.data
+              ? action.data.picture != undefined
+                ? action.data.picture
+                : ""
+              : "",
+            cover: action.data
+              ? action.data.cover != undefined
+                ? action.data.cover
+                : ""
+              : "",
           },
           buttonDisable: true,
-          loadingButtonContent: "Loading please wait",
+          loadingButtonContent: "Loading...please wait",
         },
       };
 

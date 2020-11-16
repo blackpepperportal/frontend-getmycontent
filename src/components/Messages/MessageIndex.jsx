@@ -16,7 +16,8 @@ import {
   fetchChatUsersStart,
 } from "../../store/actions/ChatAction";
 import ChatUserList from "./ChatUserList";
-import InboxNoDataFound  from "../NoDataFound/InboxNoDataFound";
+import InboxNoDataFound from "../NoDataFound/InboxNoDataFound";
+import io from "socket.io-client";
 
 const MessageIndex = (props) => {
   useEffect(() => {
@@ -24,16 +25,90 @@ const MessageIndex = (props) => {
   }, []);
 
   const [activeChat, setActiveChat] = useState(0);
+  const [socketStatus, setSocketStatus] = useState(0);
+  const [toUserId, setToUserId] = useState(0);
 
   const changeUser = (event, chat, index) => {
     event.preventDefault();
     setActiveChat(index);
+    let to_user_id =
+      chat.to_user_id == localStorage.getItem("userId")
+        ? chat.from_user_id
+        : chat.to_user_id;
+    setToUserId(to_user_id);
     props.dispatch(
       fetchChatMessageStart({
         to_user_id: chat.to_user_id,
         from_user_id: chat.from_user_id,
       })
     );
+  };
+
+  const chatSocketConnect = () => {
+    // check the socket url is configured
+    let chatSocketUrl = config.get("configData.chat_socket_url");
+
+    if (chatSocketUrl) {
+      chatSocket = io(chatSocketUrl, {
+        query:
+          `commonid: 'user_id_` +
+          localStorage.getItem("userId") +
+          `_to_user_id_` +
+          toUserId +
+          `', myid: ` +
+          localStorage.getItem("userId"),
+      });
+
+      chatSocket.emit("update sender", {
+        commonid:
+          "user_id_" +
+          localStorage.getItem("userId") +
+          "_to_user_id_" +
+          toUserId,
+        myid: localStorage.getItem("userId"),
+      });
+
+      let chatContent;
+      chatSocket.on("message", (newData) => {
+        let content = [];
+        content.push(newData);
+        chatContent = [...this.state.chatData, ...content];
+        this.setState({ chatData: chatContent });
+      });
+    }
+  };
+
+  const handleChatSubmit = (event) => {
+    event.preventDefault();
+    let chatSocketUrl = config.get("configData.chat_socket_url");
+    console.log("chatSocketUrl" + chatSocketUrl);
+    if (chatSocketUrl != undefined && this.state.chatInputMessage) {
+      let chatData = [
+        {
+          from_user_id: localStorage.getItem("userId"),
+          to_user_id: toUserId,
+          message: this.state.chatInputMessage,
+          type: "uu",
+          user_name: localStorage.getItem("name"),
+          user_picture: localStorage.getItem("user_picture"),
+        },
+      ];
+      chatSocket.emit("message", chatData[0]);
+      let messages;
+      if (this.state.chatData != null) {
+        messages = [...this.state.chatData, ...chatData];
+      } else {
+        messages = [...chatData];
+      }
+      this.setState({
+        chatData: messages,
+        chatInputMessage: "",
+      });
+    }
+  };
+
+  const chatInputChange = ({ currentTarget: input }) => {
+    this.setState({ chatInputMessage: input.value });
   };
 
   return (
@@ -50,7 +125,7 @@ const MessageIndex = (props) => {
               changeUser={changeUser}
             />
           ) : (
-            <InboxNoDataFound/>
+            <InboxNoDataFound />
           )}
           <Col
             sm={12}
@@ -60,7 +135,7 @@ const MessageIndex = (props) => {
             className="resp-mrg-btn-xs margin-col"
           >
             {props.chatMessages.loading ? (
-              "Loading..."
+              ""
             ) : (
               <Row className="msg-row-chat">
                 <div className="msg-header">

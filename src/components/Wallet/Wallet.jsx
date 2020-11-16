@@ -39,7 +39,7 @@ const Wallet = (props) => {
                   <Row>
                     <Col sm={12} md={6} xl={5}>
                       <div className="wallet-header-card">
-                        <h5>Active Balance</h5>
+                        <h5>Total Balance</h5>
                         <div className="wallet-header-details">
                           <Image
                             src={
@@ -49,9 +49,9 @@ const Wallet = (props) => {
                             className="credit-img"
                           />
                           <h3>
-                            54,689
-                            <span className="amount-decimal">.76500293</span>
-                            <span className="amount-abb">STRAT</span>
+                            {props.wallet.data.user_wallet.total_formatted}
+                            {/* <span className="amount-decimal">.76500293</span> */}
+                            {/* <span className="amount-abb">..</span> */}
                           </h3>
                         </div>
                       </div>
@@ -68,8 +68,9 @@ const Wallet = (props) => {
                             className="credit-img"
                           />
                           <h3>
-                            29<span className="amount-decimal">.76500293</span>
-                            <span className="amount-abb">BTC</span>
+                            {props.wallet.data.user_wallet.remaining_formatted}
+                            {/* <span className="amount-decimal">.76500293</span>
+                            <span className="amount-abb">BTC</span> */}
                           </h3>
                         </div>
                       </div>
@@ -80,7 +81,7 @@ const Wallet = (props) => {
                           className="send-btn-white"
                           onClick={() => setWithdrawModal(true)}
                         >
-                          WidthDraw
+                          WithDraw
                         </Button>
                       </div>
                     </Col>
@@ -104,18 +105,23 @@ const Wallet = (props) => {
                       : props.transaction.data.history.length > 0
                       ? props.transaction.data.history.map((data) => (
                           <tr>
-                            <td>RECEIVED</td>
+                            <td>{data.status_formatted}</td>
                             <td className="amount">
-                              <i class="fas fa-plus mr-1"></i>17.028503{" "}
-                              <span className="amout-abb">STRAT</span>
+                             {data.paid_amount_formatted}{" "}
+                              {/* <span className="amout-abb">STRAT</span> */}
                             </td>
-                            <td>from : 17gzGq3GrFicPPkiEZcyvk5xZhMZ14PPNG</td>
-                            <td>
+                            <td className="amount">
+                             <span className="text-capitalize">{data.payment_type}{" "}</span>
+                              {/* <span className="amout-abb text-muted">TYPE</span> */}
+                            </td>
+                            <td>from : {data.received_from_username ? data.received_from_username : "-"}</td>
+                            <td>{data.payment_id}</td>
+                            {/* <td>
                               <Badge className="unconfirmed-badge">
                                 unconfirmed
                               </Badge>
                               <span>now</span>
-                            </td>
+                            </td> */}
                           </tr>
                         ))
                       : "No data Found"}
@@ -129,6 +135,7 @@ const Wallet = (props) => {
       <WithdrawModal
         withdrawModal={withdrawModal}
         closeWithdrawModal={closeWithdrawModal}
+        payments={props.wallet}
       />
     </>
   );

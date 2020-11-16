@@ -101,24 +101,28 @@ const LandingPageIndex = (props) => {
 
                   {configuration.get("configData.GOOGLE_CLIENT_ID") ? (
                     <SocialButton
-                      provider="facebook"
+                      provider="google"
+                      key={"google"}
+                      scope={"https://www.googleapis.com/auth/user.gender.read"}
                       appId={configuration.get("configData.GOOGLE_CLIENT_ID")}
                       onLoginSuccess={handleSocialLogin}
                       onLoginFailure={handleSocialLoginFailure}
+                      // onLogoutSuccess={this.onLogoutSuccess}
+                      // onLogoutFailure={this.onLogoutFailure}
                       className="social-button"
                       id="google-connect"
                     >
-                      Sign Up / Login with Google
+                      <span>Sign Up / Login with Google</span>
                     </SocialButton>
                   ) : (
                     ""
                   )}
-                  <Link to="#" className="social-button" id="twitter-connect">
+                  {/* <Link to="#" className="social-button" id="twitter-connect">
                     <span>Sign Up / Login with Twitter</span>
                   </Link>
                   <Link to="#" className="social-button" id="google-connect">
                     <span>Sign Up / Login with Google</span>
-                  </Link>
+                  </Link> */}
 
                   <span className="or-line">
                     <span>or</span>

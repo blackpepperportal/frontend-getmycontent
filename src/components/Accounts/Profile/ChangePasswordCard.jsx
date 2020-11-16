@@ -36,8 +36,6 @@ const ChangePasswordCard = (props) => {
                   type="password"
                   placeholder="Enter your old password"
                   name="old_password"
-                  name="old_password"
-                  value={inputData.old_password}
                   onChange={(event) =>
                     setInputData({
                       ...inputData,
@@ -54,7 +52,6 @@ const ChangePasswordCard = (props) => {
                   type="password"
                   placeholder="Enter your new password"
                   name="password"
-                  value={inputData.password}
                   onChange={(event) =>
                     setInputData({
                       ...inputData,
@@ -73,7 +70,6 @@ const ChangePasswordCard = (props) => {
                   type="password"
                   placeholder="Confirm Password"
                   name="password_confirmation"
-                  value={inputData.password_confirmation}
                   onChange={(event) =>
                     setInputData({
                       ...inputData,

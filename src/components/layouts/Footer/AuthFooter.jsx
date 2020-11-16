@@ -37,7 +37,7 @@ class AuthFooter extends Component {
                   </ul>
                 </Col>
                 <Col sm={12} xs={12} xl={2} lg={2} md={12}>
-                  <Dropdown className="country-sec">
+                  <Dropdown className="country-sec" style={{display : "none"}}>
                     <Dropdown.Toggle
                       className="btn btn-default dropdown-toggle countrySelect"
                       type="button"

@@ -184,7 +184,7 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"posts/create"}
+            path={"/posts-create"}
             component={CreatePostIndex}
             layout={MainLayout}
           />
@@ -235,10 +235,11 @@ class App extends Component {
           />
 
           <PrivateRoute
-            authentication={this.state.authentication} 
-            path={"/list"} 
-            component={ListIndex} 
-            layout={MainLayout} />
+            authentication={this.state.authentication}
+            path={"/list"}
+            component={ListIndex}
+            layout={MainLayout}
+          />
 
           <PrivateRoute
             authentication={this.state.authentication}

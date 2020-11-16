@@ -84,14 +84,14 @@ const ProfileIndex = (props) => {
                     </div>
                     <div className="my-profile-names">
                       <div className="user-name-base-row">
-                        <Link to="" className="my-name-lg">
+                        <Link to={`/profile`} className="my-name-lg">
                           <div className="g-user--name">
                             {props.profile.data.name}
                           </div>
                         </Link>
                       </div>
                       <div className="user-id-row-base">
-                        <Link to="" className="user-my-id-text">
+                        <Link to={`/profile`} className="user-my-id-text">
                           <div className="current-user--name">
                             @{props.profile.data.username}
                           </div>
@@ -113,7 +113,10 @@ const ProfileIndex = (props) => {
                       <Link to="#" className="search-button">
                         {props.profile.data.total_posts} Post
                       </Link>
-                      <div className="search-container">
+                      <div
+                        className="search-container"
+                        style={{ display: "none" }}
+                      >
                         <Form className="search-box">
                           <input
                             className="search-text"
@@ -129,18 +132,14 @@ const ProfileIndex = (props) => {
                   </div>
                 </>
               )}
-              {props.posts ? (
+              {!props.posts ? (
                 ""
               ) : props.posts.loading ? (
                 "Loading..."
               ) : props.posts.data.posts.length > 0 ? (
-                props.posts.data.posts.length > 0 ? (
-                  props.posts.data.posts.map((post) => (
-                    <PostDisplayCard post={post} />
-                  ))
-                ) : (
-                  ""
-                )
+                props.posts.data.posts.map((post) => (
+                  <PostDisplayCard post={post} />
+                ))
               ) : (
                 <NoDataFound />
               )}

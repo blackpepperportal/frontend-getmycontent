@@ -265,14 +265,26 @@ const ModelViewProfile = (props) => {
                   </div>
                   <div className="my-profile-names">
                     <div className="user-name-base-row">
-                      <Link to="" className="my-name-lg">
+                      <Link
+                        to={
+                          `/model-profile/` +
+                          userDetails.data.user.user_unique_id
+                        }
+                        className="my-name-lg"
+                      >
                         <div className="g-user--name">
                           {userDetails.data.user.name}
                         </div>
                       </Link>
                     </div>
                     <div className="user-id-row-base">
-                      <Link to="" className="user-my-id-text">
+                      <Link
+                        to={
+                          `/model-profile/` +
+                          userDetails.data.user.user_unique_id
+                        }
+                        className="user-my-id-text"
+                      >
                         <div className="current-user--name">
                           @{userDetails.data.user.username}
                         </div>

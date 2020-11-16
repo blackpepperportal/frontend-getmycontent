@@ -13,6 +13,7 @@ import SendTipModal from "./SendTipModal";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
+  let totalLikes = props.post.total_likes ? props.post.total_likes : 0;
 
   const [sendTip, setSendTip] = useState(false);
   const [commentInputData, setCommentInputData] = useState({});
@@ -280,7 +281,7 @@ const PostDisplayCard = (props) => {
       </div>
 
       <div className="likes alignleft">
-        <p>{post.total_likes} Likes</p>
+        <p>{totalLikes} Likes</p>
         {isVisible && commentInputData.post_id === post.post_id ? (
           <Link className="Show view-comments" onClick={closeCommentSection}>
             Close Comments

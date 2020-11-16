@@ -57,6 +57,18 @@ function* getUserDetailsAPI() {
       localStorage.setItem("name", response.data.data.name);
       localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem(
+        "total_followers",
+        response.data.data.total_followers
+      );
+      localStorage.setItem(
+        "total_followings",
+        response.data.data.total_followings
+      );
+      localStorage.setItem(
+        "is_subscription_enabled",
+        response.data.data.is_subscription_enabled
+      );
+      localStorage.setItem(
         "is_document_verified",
         response.data.data.is_document_verified
       );
@@ -211,19 +223,30 @@ function* forgotPasswordAPI() {
       (state) => state.users.forgotPasswordInputData.data
     );
 
-    const response = yield api.postMethod("forgot_password", userData);
-    yield put(forgotPasswordSuccess(response.data));
-    if (response.data.success) {
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
-      // window.location.assign("/");
-    } else {
+    if (
+      !userData.email ||
+      userData.email == undefined ||
+      userData.email == null
+    ) {
       const notificationMessage = getErrorNotificationMessage(
-        response.data.error
+        "Please enter the email address"
       );
       yield put(createNotification(notificationMessage));
+    } else {
+      const response = yield api.postMethod("forgot_password", userData);
+      yield put(forgotPasswordSuccess(response.data));
+      if (response.data.success) {
+        const notificationMessage = getSuccessNotificationMessage(
+          response.data.message
+        );
+        yield put(createNotification(notificationMessage));
+        window.location.assign("/");
+      } else {
+        const notificationMessage = getErrorNotificationMessage(
+          response.data.error
+        );
+        yield put(createNotification(notificationMessage));
+      }
     }
   } catch (error) {
     yield put(forgotPasswordFailure(error));

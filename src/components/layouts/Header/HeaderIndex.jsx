@@ -44,7 +44,7 @@ const HeaderIndex = (props) => {
               />
             </Link>
             <Link
-              to={"posts/create"}
+              to={"/posts-create"}
               className="main-header-menu icon-with-round-hover"
               onClick={() => setIsVisible(false)}
             >
@@ -98,7 +98,10 @@ const HeaderIndex = (props) => {
                       alt={configuration.get("configData.site_name")}
                     />
                   </span>
-                  <span> <i className="material-icons add-icon">clear</i></span>
+                  <span>
+                    {" "}
+                    <i className="material-icons add-icon">clear</i>
+                  </span>
                 </Link>
                 <div className="pull-left side-user-head">
                   <Link
@@ -165,8 +168,7 @@ const HeaderIndex = (props) => {
                 >
                   <Image
                     src={
-                      window.location.origin +
-                      "/assets/images/icons/user.svg"
+                      window.location.origin + "/assets/images/icons/user.svg"
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
@@ -251,11 +253,25 @@ const HeaderIndex = (props) => {
                   />{" "}
                   Add bank <span className="desc">(to earn)</span>
                 </Link>
+                <Link
+                  to={"/wallet"}
+                  className="sidebar-menus-item"
+                  data-name="Wallet"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/wallet.svg"
+                    }
+                    alt={configuration.get("configData.site_name")}
+                  />{" "}
+                  Wallet <span className="desc">(Your Earnings)</span>
+                </Link>
 
                 <hr className="sidebar-menu-divider" />
 
                 <Link
-                  to=""
+                  to={`/page/help`}
                   className="sidebar-menus-item"
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
@@ -274,6 +290,7 @@ const HeaderIndex = (props) => {
                   className="sidebar-menus-item"
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
+                  style={{ display: "none" }}
                 >
                   <Image
                     src={

@@ -65,7 +65,7 @@ const CreatePostIndex = (props) => {
             <Col sm={12} md={12}>
               <div className="post-create-header">
                 <div className="pull-left">
-                  <Link className="bookmarkes-list notify-title" to={"/"}>
+                  <Link className="bookmarkes-list notify-title" to={"/home"}>
                     <Image
                       src="assets/images/icons/back.svg"
                       className="svg-clone"

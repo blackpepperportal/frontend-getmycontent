@@ -13,7 +13,7 @@ const BookmarkNav = (props) => {
           className="bookmarkes-list"
           to={"/bookmarks"}
         >
-          <Link to={"/"}>
+          <Link to={"/home"}>
             <Image src="assets/images/icons/back.svg" className="svg-clone" />
           </Link>
           BOOKMARKS
