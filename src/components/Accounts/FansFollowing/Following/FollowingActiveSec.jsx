@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import UserCard from "../UserCard";
 
 const FollowingActiveSec = (props) => {
@@ -23,10 +23,13 @@ const FollowingActiveSec = (props) => {
           </div>
         </div>
         <Row>
-          <UserCard />
-          <UserCard />
-          <UserCard />
-          <UserCard />
+          {props.followers.loading
+            ? "Loading..."
+            : props.followers.data.followers.length > 0
+            ? props.followers.data.followers.map((user) => (
+                <UserCard user={user} />
+              ))
+            : "No data found"}
         </Row>
       </div>
     </>

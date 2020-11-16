@@ -178,13 +178,13 @@ const EditProfileCard = (props) => {
                 type="text"
                 placeholder=""
                 name="username"
-                defaultValue={props.profile.data.username}
+                value={props.profile.data.username}
                 maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(
                     editUserDetails(
-                      event.currentTarget.username,
+                      event.currentTarget.name,
                       event.currentTarget.value
                     )
                   );
@@ -437,9 +437,13 @@ const EditProfileCard = (props) => {
             </div>
           </div>
           <div className="edit-save">
-            <Button className="save-btn" onClick={handleSubmit}>
-              {props.profile.data.loadingButtonContent !== null
-                ? props.profile.data.loadingButtonContent
+            <Button
+              className="save-btn"
+              onClick={handleSubmit}
+              disabled={props.profileInputData.buttonDisable}
+            >
+              {props.profileInputData.loadingButtonContent !== null
+                ? props.profileInputData.loadingButtonContent
                 : "Submit"}
             </Button>
           </div>
@@ -451,6 +455,7 @@ const EditProfileCard = (props) => {
 
 const mapStateToPros = (state) => ({
   profile: state.users.profile,
+  profileInputData: state.users.profileInputData,
 });
 
 function mapDispatchToProps(dispatch) {

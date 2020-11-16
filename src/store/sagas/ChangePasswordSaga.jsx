@@ -17,7 +17,7 @@ function* changePasswordAPI() {
       (state) => state.changePassword.inputData.data
     );
     const response = yield api.postMethod("change_password", inputData);
-    yield put(changePasswordSuccess(response.data));
+    yield put(changePasswordSuccess(response.data.data));
     if (response.data.success) {
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message

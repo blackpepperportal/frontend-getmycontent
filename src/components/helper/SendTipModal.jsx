@@ -14,12 +14,21 @@ const SendTipModal = (props) => {
     event.preventDefault();
     if (paymentType === "card")
       props.dispatch(
-        sendTipStripeStart({ post_id: props.post_id, amount: amount })
+        sendTipStripeStart({
+          post_id: props.post_id,
+          amount: amount,
+          user_id: props.user_id,
+        })
       );
     if (paymentType === "wallet")
       props.dispatch(
-        sendTipWalletStart({ post_id: props.post_id, amount: amount })
+        sendTipWalletStart({
+          post_id: props.post_id,
+          amount: amount,
+          user_id: props.user_id,
+        })
       );
+    props.closeSendTipModal();
   };
 
   return (

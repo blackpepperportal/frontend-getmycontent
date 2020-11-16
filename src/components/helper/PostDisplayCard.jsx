@@ -374,6 +374,7 @@ const PostDisplayCard = (props) => {
         userPicture={post.user_picture}
         name={post.user_displayname}
         post_id={post.post_id}
+        user_id={post.user_id}
       />
     </div>
   );

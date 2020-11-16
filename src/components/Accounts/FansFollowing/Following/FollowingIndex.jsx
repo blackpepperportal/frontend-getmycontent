@@ -42,6 +42,7 @@ const FollowingIndex = (props) => {
                   <FollowingActiveSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
+                    followers={props.followers}
                   />
 
                   <FollowingExpiredSec

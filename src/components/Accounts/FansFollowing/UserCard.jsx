@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, Col, Image } from "react-bootstrap";
 import AddFavModal from "../../helper/AddFavModal";
 import SendTipModal from "../../helper/SendTipModal";
-import { deleteFavStart } from "../../../store/actions/FavAction";
+import { deleteFavStart, saveFavStart } from "../../../store/actions/FavAction";
 import { connect } from "react-redux";
 
 const UserCard = (props) => {
@@ -23,6 +23,16 @@ const UserCard = (props) => {
     props.dispatch(deleteFavStart({ user_id: props.user.user_id }));
   };
 
+  const handleStar = (event) => {
+    event.preventDefault();
+
+    props.dispatch(
+      saveFavStart({
+        user_id: props.user.user_id,
+      })
+    );
+  };
+
   return (
     <>
       <Col sm={12} md={6} lg={4} xs={12}>
@@ -40,7 +50,7 @@ const UserCard = (props) => {
               <div className="follower-profile-header">
                 <Link to="#">
                   <span className="follower-profile-avatar">
-                    <Image src={props.user.user_picture} className="" />
+                    <Image src={props.user.picture} className="" />
                   </span>
                 </Link>
                 <div className="follower-info">
@@ -99,7 +109,7 @@ const UserCard = (props) => {
                   <Link
                     type="button"
                     className="swiper-btn-fav"
-                    onClick={() => setAddFav(true)}
+                    onClick={handleStar}
                   >
                     <Image
                       src="assets/images/icons/star.svg"
@@ -139,8 +149,15 @@ const UserCard = (props) => {
           </div>
         </div>
       </Col>
-      <AddFavModal addFav={addFav} closeAddFavModal={closeAddFavModal} />
-      <SendTipModal sendTip={sendTip} closeSendTipModal={closeSendTipModal} />
+      <SendTipModal
+        sendTip={sendTip}
+        closeSendTipModal={closeSendTipModal}
+        username={props.user.username}
+        userPicture={props.user.picture}
+        name={props.user.usernamee}
+        post_id={null}
+        user_id={props.user.user_id}
+      />
     </>
   );
 };

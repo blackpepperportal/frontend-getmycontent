@@ -409,6 +409,7 @@ const ModelViewProfile = (props) => {
           userPicture={props.userDetails.data.user.picture}
           name={props.userDetails.data.user.name}
           post_id={null}
+          user_id={props.userDetails.data.user.user_id}
         />
       )}
     </>
