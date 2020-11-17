@@ -7,7 +7,6 @@ import {
   Col,
   Table,
   Image,
-  Badge,
 } from "react-bootstrap";
 import "./Wallet.css";
 import { fetchWalletDetailsStart } from "../../store/actions/WalletAction";

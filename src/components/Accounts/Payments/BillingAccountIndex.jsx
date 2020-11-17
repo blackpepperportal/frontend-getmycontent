@@ -15,6 +15,7 @@ import {
   makeDefaultBankAccountStart,
 } from "../../../store/actions/BankAccountAction";
 import { Link } from "react-router-dom";
+import NoDataFound from "../../NoDataFound/NoDataFound";
 
 const BillingAccountIndex = (props) => {
   useEffect(() => {
@@ -108,7 +109,7 @@ const BillingAccountIndex = (props) => {
                             </tr>
                           )
                         )
-                      : "No data found"}
+                      : <NoDataFound/>}
                   </tbody>
                 </Table>
               </div>
