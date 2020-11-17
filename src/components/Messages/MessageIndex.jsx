@@ -137,12 +137,12 @@ const MessageIndex = (props) => {
             md={12}
             lg={7}
             xl={8}
-            className="resp-mrg-btn-xs margin-col"
+            className="resp-mrg-btn-xs margin-col pt-30-zero"
           >
             {props.chatMessages.loading ? (
               ""
             ) : (
-              <Row className="msg-row-chat">
+              <div className="msg-row-chat">
                 <div className="msg-header">
                   <Button className="chat-header-back">
                     <Image
@@ -384,7 +384,7 @@ const MessageIndex = (props) => {
                     </Form>
                   </div>
                 </div>
-              </Row>
+              </div>
             )}
           </Col>
         </Row>
