@@ -10,7 +10,7 @@ import {
   Image,
   Media,
   InputGroup,
-  FormControl
+  FormControl,
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
@@ -19,7 +19,7 @@ import {
 } from "../../store/actions/ChatAction";
 import ChatUserList from "./ChatUserList";
 import InboxNoDataFound from "../NoDataFound/InboxNoDataFound";
-// import io from "socket.io";
+import io from "socket.io-client";
 import configuration from "react-global-configuration";
 
 const MessageIndex = (props) => {
@@ -30,10 +30,11 @@ const MessageIndex = (props) => {
   const [activeChat, setActiveChat] = useState(0);
   const [socketStatus, setSocketStatus] = useState(0);
   const [toUserId, setToUserId] = useState(0);
+  const [inputMessage, setInputMessage] = useState("");
 
   let chatSocket;
 
-  const changeUser = (event, chat, index) => {
+  const changeUser = async (event, chat, index) => {
     event.preventDefault();
     setActiveChat(index);
     let to_user_id =
@@ -41,20 +42,23 @@ const MessageIndex = (props) => {
         ? chat.from_user_id
         : chat.to_user_id;
     setToUserId(to_user_id);
+    console.log("to_user_id" + to_user_id);
+    console.log("toUserId" + toUserId);
     props.dispatch(
       fetchChatMessageStart({
         to_user_id: chat.to_user_id,
         from_user_id: chat.from_user_id,
       })
     );
+    await chatSocketConnect();
   };
 
-  /** const chatSocketConnect = () => {
+  const chatSocketConnect = async () => {
     // check the socket url is configured
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
-
+    console.log(toUserId);
     if (chatSocketUrl) {
-      chatSocket = io(chatSocketUrl, {
+      chatSocket = await io(chatSocketUrl, {
         query:
           `commonid: 'user_id_` +
           localStorage.getItem("userId") +
@@ -64,7 +68,7 @@ const MessageIndex = (props) => {
           localStorage.getItem("userId"),
       });
 
-      chatSocket.emit("update sender", {
+      await chatSocket.emit("update sender", {
         commonid:
           "user_id_" +
           localStorage.getItem("userId") +
@@ -81,7 +85,7 @@ const MessageIndex = (props) => {
         this.setState({ chatData: chatContent });
       });
     }
-  }; **/
+  };
 
   const handleChatSubmit = (event) => {
     event.preventDefault();
@@ -112,8 +116,11 @@ const MessageIndex = (props) => {
     }
   };
 
-  const chatInputChange = ({ currentTarget: input }) => {
-    this.setState({ chatInputMessage: input.value });
+  const chatInputChange = (value) => {
+    console.log(value);
+    setInputMessage(value);
+    console.log(inputMessage);
+    // this.setState({ chatInputMessage: input.value });
   };
 
   return (
@@ -257,7 +264,7 @@ const MessageIndex = (props) => {
 
                                       <div className="chat-details">
                                         <span className="chat-message-localization font-size-small">
-                                          12:38 pm
+                                          {chatMessage.created}
                                         </span>
                                         <span className="chat-message-read-status font-size-small"></span>
                                       </div>
@@ -277,11 +284,11 @@ const MessageIndex = (props) => {
 
                                       <div className="chat-details">
                                         <span className="chat-message-localization font-size-small">
-                                          12:38 pm
+                                          {chatMessage.created}
                                         </span>
-                                        <span className="chat-message-read-status font-size-small">
+                                        {/* <span className="chat-message-read-status font-size-small">
                                           , $69 not paid yet
-                                        </span>
+                                        </span> */}
                                       </div>
                                     </div>
                                   </div>
@@ -302,8 +309,8 @@ const MessageIndex = (props) => {
                         <div className="chat-post">
                           <div className="chat-textarea-price-wrapper">
                             <div className="">
-                              {/* <Form.Group>
-                                <Form.Control
+                              <InputGroup className="mb-3">
+                                <FormControl
                                   id="chat-input-area"
                                   placeholder="Type a message"
                                   name="text"
@@ -315,37 +322,25 @@ const MessageIndex = (props) => {
                                     overflowWrap: "break-word",
                                     height: "48px",
                                   }}
+                                  onChange={(event) => {
+                                    chatInputChange(event.currentTarget.value);
+                                  }}
                                 />
-                              </Form.Group> */}
-                               <InputGroup className="mb-3">
-                            <FormControl
-                               id="chat-input-area"
-                               placeholder="Type a message"
-                               name="text"
-                               rows="1"
-                               maxlength="10000"
-                               className="form-control chat-input"
-                               style={{
-                                 overflow: "hidden",
-                                 overflowWrap: "break-word",
-                                 height: "48px",
-                               }}
-                            />
-                            <InputGroup.Append>
-                              <InputGroup.Text id="basic-addon2">
-                              <Button
-                                type="button"
-                                data-can_send="true"
-                                className="g-btn m-rounded b-chat__btn-submit"
-                              >
-                                <Image
-                                  src="assets/images/icons/send.svg"
-                                  className="svg-clone"
-                                />
-                              </Button>
-                              </InputGroup.Text>
-                            </InputGroup.Append>
-                          </InputGroup>
+                                <InputGroup.Append>
+                                  <InputGroup.Text id="basic-addon2">
+                                    <Button
+                                      type="button"
+                                      data-can_send="true"
+                                      className="g-btn m-rounded b-chat__btn-submit"
+                                    >
+                                      <Image
+                                        src="assets/images/icons/send.svg"
+                                        className="svg-clone"
+                                      />
+                                    </Button>
+                                  </InputGroup.Text>
+                                </InputGroup.Append>
+                              </InputGroup>
                             </div>
                           </div>
 

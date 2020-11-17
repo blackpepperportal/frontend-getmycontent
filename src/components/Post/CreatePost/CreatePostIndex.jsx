@@ -45,6 +45,7 @@ const CreatePostIndex = (props) => {
       props.dispatch(
         savePostStart({
           content: inputData.content,
+          amount: inputData.amount ? inputData.amount : "",
           post_files: props.fileUpload.data.file,
         })
       );
@@ -52,6 +53,7 @@ const CreatePostIndex = (props) => {
       props.dispatch(
         savePostStart({
           content: inputData.content,
+          amount: inputData.amount ? inputData.amount : "",
         })
       );
     }
@@ -95,7 +97,7 @@ const CreatePostIndex = (props) => {
                     as="textarea"
                     rows={3}
                     placeholder="Compose new post..."
-                    name="text"
+                    name="content"
                     maxlength="10000"
                     style={{ width: "100%", maxWidth: "100%" }}
                     value={inputData.content}
@@ -156,6 +158,24 @@ const CreatePostIndex = (props) => {
                   </Form.Group>
                 </Button>
               </div>
+            </Col>
+            <Col sm={12} md={12}>
+              <Form.Group>
+                <label className="text-muted m-1">Price (Optional)</label>
+                <Form.Control
+                  type="number"
+                  placeholder="Set price for the post"
+                  name="amount"
+                  value={inputData.amount}
+                  width="50%"
+                  onChange={(event) =>
+                    setInputData({
+                      ...inputData,
+                      amount: event.currentTarget.value,
+                    })
+                  }
+                />
+              </Form.Group>
             </Col>
           </Row>
         </Form>
