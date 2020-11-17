@@ -3,7 +3,6 @@ import ModelProfilePostSec from "./ModelProfilePostSec";
 import ModelProfileTabSec from "./ModelProfileTabSec";
 import ModelProfilePhotoSec from "./ModelProfilePhotoSec";
 import ModelProfileVideoSec from "./ModelProfileVideoSec";
-import ModelProfileArchivedSec from "./ModelProfileArchivedSec";
 import SendTipModal from "../helper/SendTipModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";

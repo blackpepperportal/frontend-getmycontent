@@ -5842,7 +5842,7 @@ a.upload-profile-picture form#profilePictureForm {
   transform: translateX(-50%);
   -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
-  width: auto;
+  width: 100%;
 }
 .edit-profile-photo .profile-pic:hover .image-wrapper {
   bottom: 0;

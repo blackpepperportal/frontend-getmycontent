@@ -6,7 +6,6 @@ import {
   Row,
   Col,
   Table,
-  Image,
   Badge,
 } from "react-bootstrap";
 import "../../Wallet/Wallet.css";

@@ -4,10 +4,7 @@ import {
   Container,
   Row,
   Col,
-  Dropdown,
   Image,
-  Media,
-  Form,
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchListsDetailsStart } from "../../../store/actions/HomeAction";
