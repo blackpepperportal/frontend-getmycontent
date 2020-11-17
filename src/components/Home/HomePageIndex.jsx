@@ -12,6 +12,7 @@ import { saveBookmarkStart } from "../../store/actions/BookmarkAction";
 import PostDisplayCard from "../helper/PostDisplayCard";
 import NoDataFound from "../NoDataFound/NoDataFound";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
+import HomeLoader from "../Loader/HomeLoader";
 
 const HomePageIndex = (props) => {
   useEffect(() => {
@@ -94,7 +95,7 @@ const HomePageIndex = (props) => {
                 </Row>
               </Container> */}
               {props.posts.loading ? (
-                "Loading..."
+                <HomeLoader></HomeLoader>
               ) : props.posts.data.posts.length > 0 ? (
                 props.posts.data.posts.map((post) => (
                   <PostDisplayCard post={post} key={post.post_id} />

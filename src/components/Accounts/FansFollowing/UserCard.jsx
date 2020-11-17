@@ -41,14 +41,11 @@ const UserCard = (props) => {
             <div className="follower-subscription-inner">
               <Link to="user-profile.html">
                 <div className="follower-wrapper">
-                  <Image
-                    className="follower-cover"
-                    src="assets/images/b-4.jpg"
-                  />
+                  <Image className="follower-cover" src={props.user.cover} />
                 </div>
               </Link>
               <div className="follower-profile-header">
-                <Link to="#">
+                <Link to={`/model-profile` + props.user.user_unique_id}>
                   <span className="follower-profile-avatar">
                     <Image src={props.user.picture} className="" />
                   </span>
@@ -57,7 +54,7 @@ const UserCard = (props) => {
                   <div className="follower-profile-status">
                     <div className="follower-status-text">
                       Last seen
-                      <span title="Oct 12, 1:33 pm">2 hours ago</span>
+                      <span title="Oct 12, 1:33 pm">{props.user.updated}</span>
                     </div>
                     <div className="follower-profile-toggle-dropdown">
                       <Link to="#" className="btn dropdown-toggle btn-link">
@@ -73,7 +70,7 @@ const UserCard = (props) => {
                       <div className="follower-name-row">
                         <Link to="user-profile.html">
                           <div className="follower-user-name">
-                            {props.user.username}
+                            {props.user.name}
                             <Image
                               src="assets/images/icons/verified.svg"
                               className="svg-clone m-verified"
@@ -83,14 +80,19 @@ const UserCard = (props) => {
                       </div>
                       <div className="follower-name-row">
                         <Link
-                          to="user-profile.html"
+                          to={`/model-profile` + props.user.user_unique_id}
                           className="g-user-realname__wrapper"
                         >
-                          <div className="follower-user-id">@sarairollins</div>
+                          <div className="follower-user-id">
+                            @{props.user.username}
+                          </div>
                         </Link>
                       </div>
                     </div>
-                    <div className="group-follower-btns">
+                    <div
+                      className="group-follower-btns"
+                      style={{ display: "none" }}
+                    >
                       <Button
                         type="button"
                         className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
