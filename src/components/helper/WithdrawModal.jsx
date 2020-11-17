@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Image, Modal, Row, Col } from "react-bootstrap";
+import { Form, Button, Modal, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getBankAccountStart } from "../../store/actions/BankAccountAction";
 import { sendWithDrawRequestStart } from "../../store/actions/WithDrawAction";

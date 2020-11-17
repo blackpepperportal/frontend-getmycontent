@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Col, Form } from "react-bootstrap";
 import { fetchHomePostsStart } from "../../store/actions/HomeAction";
 import { connect } from "react-redux";
 import {

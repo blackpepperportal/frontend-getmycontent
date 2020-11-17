@@ -193,11 +193,12 @@ Version: 1.0
     }
     .edit-save{
         justify-content: center;
+        padding-bottom: 0!important;
     }
     .bookmarkes-list.bookmarks-right-side{
-        text-align: center;
+        /* text-align: center; */
         width: 100%;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     .profile-accordion {
@@ -243,6 +244,33 @@ Version: 1.0
     .document-upload-sec {
         margin-top: 45px!important;
         margin-bottom: 2em;
+    }
+    .bookmarkes-list {
+        width: 33.33%;
+        justify-content: center;
+    }
+    .save-btn:last-child{
+        margin-left: 0;
+    }
+    .edit-profile-tabs.nav-tabs .bookmarkes-list{
+        min-height: 40px;
+        width: 100%;
+        font-size: 14px;
+    }
+    .edit-profile-tabs.nav-tabs{
+        margin-bottom: 1em;
+    }
+    .add-bank-box{
+        padding:20px!important;
+    }
+    .flex-content{
+        margin-bottom: 2em;
+    }
+    .payment-card{
+        margin-bottom: 2em;
+    }
+    .lists .listing-tab .tab-content.tabs a.bookmarkes-list{
+        padding-left: 25px;
     }
 }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Image, Modal } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import { cancelWithDrawRequestStart } from "../../store/actions/WithDrawAction";
 
