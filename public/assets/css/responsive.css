@@ -15,7 +15,14 @@ Version: 1.0
 
 @media (min-width: 992px) {}
 
-@media (min-width: 1440px) {}
+@media (min-width: 1440px) {
+    .chat-wrapper {
+        height: 70vh;
+    }
+     .msg-row-chat {
+        height: 70vh;
+    }
+}
 
 @media (max-width: 1199.98px) {
     .dm-width{
@@ -63,7 +70,7 @@ Version: 1.0
         text-align: center;
     }
     .scrollbar{
-        height: 35vh;
+        height: 50vh;
     }
     /* .msg-row-chat{
         height: 35vh;
@@ -100,6 +107,9 @@ Version: 1.0
     }
     .add-account-modal .modal-content {
         width: 100%;
+    }
+    .msg-row-chat {
+        height: 70vh;
     }
 }
 
@@ -139,6 +149,9 @@ Version: 1.0
 
     .scrollbar{
         height: 30vh;
+    }
+    .msg-row-chat {
+        height: 52vh;
     }
 
     .chat-subheader{
