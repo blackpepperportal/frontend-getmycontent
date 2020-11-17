@@ -6218,7 +6218,7 @@ input.authentication-input {
   .chat-wrapper {
     display: block;
     width: 100%;
-    height: 410px;
+    height: 375px;
     overflow-y: scroll;
   }
   section.notification-page {
@@ -6227,7 +6227,7 @@ input.authentication-input {
   /* .main-wrap-sec {
     min-height: 95vh;
   } */
-  .pt-30-zero {
+  pt-30-zero {
     padding-left: 0!important;
   }
 }
