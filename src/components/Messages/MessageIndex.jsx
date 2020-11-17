@@ -34,7 +34,41 @@ const MessageIndex = (props) => {
 
   let chatSocket;
 
-  const changeUser = async (event, chat, index) => {
+  const chatSocketConnect = (to_user_id) => {
+    // check the socket url is configured
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
+    console.log(toUserId);
+    if (chatSocketUrl) {
+      chatSocket = io(chatSocketUrl, {
+        query:
+          `commonid: 'user_id_` +
+          localStorage.getItem("userId") +
+          `_to_user_id_` +
+          to_user_id +
+          `', myid: ` +
+          localStorage.getItem("userId"),
+      });
+
+      chatSocket.emit("update sender", {
+        commonid:
+          "user_id_" +
+          localStorage.getItem("userId") +
+          "_to_user_id_" +
+          to_user_id,
+        myid: localStorage.getItem("userId"),
+      });
+
+      let chatContent;
+      chatSocket.on("message", (newData) => {
+        let content = [];
+        content.push(newData);
+        chatContent = [...this.state.chatData, ...content];
+        this.setState({ chatData: chatContent });
+      });
+    }
+  };
+
+  const changeUser = (event, chat, index) => {
     event.preventDefault();
     setActiveChat(index);
     let to_user_id =
@@ -50,41 +84,7 @@ const MessageIndex = (props) => {
         from_user_id: chat.from_user_id,
       })
     );
-    await chatSocketConnect();
-  };
-
-  const chatSocketConnect = async () => {
-    // check the socket url is configured
-    let chatSocketUrl = configuration.get("configData.chat_socket_url");
-    console.log(toUserId);
-    if (chatSocketUrl) {
-      chatSocket = await io(chatSocketUrl, {
-        query:
-          `commonid: 'user_id_` +
-          localStorage.getItem("userId") +
-          `_to_user_id_` +
-          toUserId +
-          `', myid: ` +
-          localStorage.getItem("userId"),
-      });
-
-      await chatSocket.emit("update sender", {
-        commonid:
-          "user_id_" +
-          localStorage.getItem("userId") +
-          "_to_user_id_" +
-          toUserId,
-        myid: localStorage.getItem("userId"),
-      });
-
-      let chatContent;
-      chatSocket.on("message", (newData) => {
-        let content = [];
-        content.push(newData);
-        chatContent = [...this.state.chatData, ...content];
-        this.setState({ chatData: chatContent });
-      });
-    }
+    chatSocketConnect(to_user_id);
   };
 
   const handleChatSubmit = (event) => {
