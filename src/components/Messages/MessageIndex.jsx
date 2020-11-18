@@ -30,8 +30,20 @@ let chatSocket;
 const MessageIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchChatUsersStart());
-    chatSocketConnect(2);
   }, []);
+
+  useEffect(() => {
+    console.log("asdfasdf checking");
+    if (
+      props.chatUsers.loading === false &&
+      props.chatUsers.data.users.length > 0
+    ) {
+      console.log("asdfasdf");
+      chatSocketConnect(props.chatUsers.data.users[0].to_user_id);
+    } else {
+      console.log("falseeeeee");
+    }
+  }, [!props.chatUsers.loading]);
 
   const [activeChat, setActiveChat] = useState(0);
   const [socketStatus, setSocketStatus] = useState(0);
