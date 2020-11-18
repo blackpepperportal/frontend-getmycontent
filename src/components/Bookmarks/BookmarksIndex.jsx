@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchBookmarksStart } from "../../store/actions/BookmarkAction";
 import PostDisplayCard from "../helper/PostDisplayCard";
 import BookmarkNoDataFound from "../NoDataFound/BookmarkNoDataFound";
+import BookmarkLoader from "../Loader/BookmarkLoader";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
 
 const BookmarksIndex = (props) => {
@@ -44,7 +45,7 @@ const BookmarksIndex = (props) => {
                 </div>
               </div>
               {props.bookmark.loading ? (
-                "Loading..."
+               <BookmarkLoader />
               ) : props.bookmark.data.posts.length > 0 ? (
                 props.bookmark.data.posts.map((post) => (
                   <PostDisplayCard post={post} key={post.post_id} />

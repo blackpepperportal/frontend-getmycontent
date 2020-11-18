@@ -16,6 +16,7 @@ import {
 } from "../../../store/actions/BankAccountAction";
 import { Link } from "react-router-dom";
 import NoDataFound from "../../NoDataFound/NoDataFound";
+import BillingAccountLoader from "../../Loader/BillingAccountLoader";
 
 const BillingAccountIndex = (props) => {
   useEffect(() => {
@@ -57,7 +58,7 @@ const BillingAccountIndex = (props) => {
                 <Table borderedless responsive>
                   <tbody>
                     {props.bankAccount.loading
-                      ? "Loading..."
+                      ? <BillingAccountLoader />
                       : props.bankAccount.data.billing_accounts.length > 0
                       ? props.bankAccount.data.billing_accounts.map(
                           (accounts) => (

@@ -22,6 +22,8 @@ import InboxNoDataFound from "../NoDataFound/InboxNoDataFound";
 import io from "socket.io-client";
 import configuration from "react-global-configuration";
 
+import InboxLoader from "../Loader/InboxLoader";
+
 const MessageIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchChatUsersStart());
@@ -76,8 +78,7 @@ const MessageIndex = (props) => {
         ? chat.from_user_id
         : chat.to_user_id;
     setToUserId(to_user_id);
-    console.log("to_user_id" + to_user_id);
-    console.log("toUserId" + toUserId);
+
     props.dispatch(
       fetchChatMessageStart({
         to_user_id: chat.to_user_id,
@@ -91,12 +92,12 @@ const MessageIndex = (props) => {
     event.preventDefault();
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
     console.log("chatSocketUrl" + chatSocketUrl);
-    if (chatSocketUrl != undefined && this.state.chatInputMessage) {
+    if (chatSocketUrl != undefined && inputMessage) {
       let chatData = [
         {
           from_user_id: localStorage.getItem("userId"),
           to_user_id: toUserId,
-          message: this.state.chatInputMessage,
+          message: inputMessage,
           type: "uu",
           user_name: localStorage.getItem("name"),
           user_picture: localStorage.getItem("user_picture"),
@@ -104,8 +105,8 @@ const MessageIndex = (props) => {
       ];
       chatSocket.emit("message", chatData[0]);
       let messages;
-      if (this.state.chatData != null) {
-        messages = [...this.state.chatData, ...chatData];
+      if (this.props.chatMessages.data.messages != null) {
+        messages = [...props.chatMessages.data.messages, ...chatData];
       } else {
         messages = [...chatData];
       }
@@ -128,7 +129,7 @@ const MessageIndex = (props) => {
       <Container>
         <Row>
           {props.chatUsers.loading ? (
-            "Loading.."
+            <InboxLoader></InboxLoader>
           ) : props.chatUsers.data.users.length > 0 ? (
             <ChatUserList
               chatUsers={props.chatUsers.data}
@@ -332,6 +333,9 @@ const MessageIndex = (props) => {
                                       type="button"
                                       data-can_send="true"
                                       className="g-btn m-rounded b-chat__btn-submit"
+                                       onClick={(event) => {
+                                        handleChatSubmit(event);
+                                      }}
                                     >
                                       <Image
                                         src="assets/images/icons/send.svg"

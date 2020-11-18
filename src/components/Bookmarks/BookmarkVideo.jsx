@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Image, Media } from "react-bootstrap";
 import BookmarkNav from "./BookmarkNav";
 import { connect } from "react-redux";
+import BookmarkVideoLoader from "../Loader/BookmarkVideoLoader";
 
 const BookmarkVideo = () => {
   return (
