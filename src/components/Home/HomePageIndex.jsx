@@ -20,12 +20,14 @@ const HomePageIndex = (props) => {
   }, []);
 
   const fetchHomeData = () => {
-    if (props.posts.length !== 0) {
-      props.dispatch(fetchHomePostsStart());
-      setIsFetching(false);
-    } else {
-      setNoMoreData(true);
-    }
+    setTimeout(() => {
+      if (props.posts.length !== 0) {
+        props.dispatch(fetchHomePostsStart());
+        setIsFetching(false);
+      } else {
+        setNoMoreData(true);
+      }
+    }, 3000);
   };
 
   const [isFetching, setIsFetching] = useInfiniteScroll(fetchHomeData);

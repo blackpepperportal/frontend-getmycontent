@@ -20,14 +20,16 @@ const BookmarksIndex = (props) => {
   const [noMoreData, setNoMoreData] = useState(false);
 
   function fetchBookMarkData() {
-    if (props.bookmark.length !== 0) {
-      props.dispatch(
-        fetchBookmarksStart({ type: "all", skip: props.bookmark.skip })
-      );
-      setIsFetching(false);
-    } else {
-      setNoMoreData(true);
-    }
+    setTimeout(() => {
+      if (props.bookmark.length !== 0) {
+        props.dispatch(
+          fetchBookmarksStart({ type: "all", skip: props.bookmark.skip })
+        );
+        setIsFetching(false);
+      } else {
+        setNoMoreData(true);
+      }
+    }, 3000);
   }
 
   return (
@@ -45,7 +47,7 @@ const BookmarksIndex = (props) => {
                 </div>
               </div>
               {props.bookmark.loading ? (
-               <BookmarkLoader />
+                <BookmarkLoader />
               ) : props.bookmark.data.posts.length > 0 ? (
                 props.bookmark.data.posts.map((post) => (
                   <PostDisplayCard post={post} key={post.post_id} />
