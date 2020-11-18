@@ -18,6 +18,7 @@ const initialState = {
   messages: {
     data: {
       messages: [],
+      user: {},
     },
     loading: true,
     error: false,
@@ -102,6 +103,7 @@ const ChatReducer = (state = initialState, action) => {
         messages: {
           data: {
             messages: [...state.messages.data.messages, ...action.data],
+            user: { ...state.messages.data.user },
           },
           loading: false,
           error: false,

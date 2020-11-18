@@ -130,7 +130,7 @@ const MessageIndex = (props) => {
       //   chatInputMessage: "",
       // });
       setInputMessage("");
-      props.dispatch(addMessageContent(messages));
+      props.dispatch(addMessageContent(chatData));
     }
   };
 
@@ -321,7 +321,11 @@ const MessageIndex = (props) => {
                   <div
                     style={{ borderTop: "1px solid rgba(138, 150, 163, 0.2)" }}
                   >
-                    <Form id="chat_post_form" className="has-advanced-upload">
+                    <Form
+                      id="chat_post_form"
+                      className="has-advanced-upload"
+                      onSubmit={handleChatSubmit}
+                    >
                       <div className="chats-post-footer">
                         <div></div>
                         <div className="chat-post">
@@ -340,6 +344,7 @@ const MessageIndex = (props) => {
                                     overflowWrap: "break-word",
                                     height: "48px",
                                   }}
+                                  value={inputMessage}
                                   onChange={(event) => {
                                     chatInputChange(event.currentTarget.value);
                                   }}
