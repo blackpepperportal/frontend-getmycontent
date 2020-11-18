@@ -5,6 +5,7 @@ import {
   FETCH_CHAT_MESSAGE_START,
   FETCH_CHAT_MESSAGE_SUCCESS,
   FETCH_CHAT_MESSAGE_FAILURE,
+  ADD_MESSAGE_CONTENT,
 } from "./ActionConstant";
 
 export function fetchChatUsersStart(data) {
@@ -46,5 +47,12 @@ export function fetchChatMessageFailure(error) {
   return {
     type: FETCH_CHAT_MESSAGE_FAILURE,
     error,
+  };
+}
+
+export function addMessageContent(data) {
+  return {
+    type: ADD_MESSAGE_CONTENT,
+    data,
   };
 }

@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
+  addMessageContent,
   fetchChatMessageStart,
   fetchChatUsersStart,
 } from "../../store/actions/ChatAction";
@@ -24,17 +25,18 @@ import configuration from "react-global-configuration";
 
 import InboxLoader from "../Loader/InboxLoader";
 
+let chatSocket;
+
 const MessageIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchChatUsersStart());
+    chatSocketConnect(2);
   }, []);
 
   const [activeChat, setActiveChat] = useState(0);
   const [socketStatus, setSocketStatus] = useState(0);
   const [toUserId, setToUserId] = useState(0);
   const [inputMessage, setInputMessage] = useState("");
-
-  let chatSocket;
 
   const chatSocketConnect = (to_user_id) => {
     // check the socket url is configured
@@ -47,10 +49,9 @@ const MessageIndex = (props) => {
           localStorage.getItem("userId") +
           `_to_user_id_` +
           to_user_id +
-          `', myid: ` +
+          `',myid:` +
           localStorage.getItem("userId"),
       });
-
       chatSocket.emit("update sender", {
         commonid:
           "user_id_" +
@@ -59,13 +60,14 @@ const MessageIndex = (props) => {
           to_user_id,
         myid: localStorage.getItem("userId"),
       });
-
       let chatContent;
       chatSocket.on("message", (newData) => {
         let content = [];
         content.push(newData);
-        chatContent = [...this.state.chatData, ...content];
-        this.setState({ chatData: chatContent });
+
+        // chatContent = [...this.state.chatData, ...content];
+        // this.setState({ chatData: chatContent });
+        props.dispatch(addMessageContent(content));
       });
     }
   };
@@ -92,6 +94,7 @@ const MessageIndex = (props) => {
     event.preventDefault();
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
     console.log("chatSocketUrl" + chatSocketUrl);
+    console.log("chatSocket", chatSocket);
     if (chatSocketUrl != undefined && inputMessage) {
       let chatData = [
         {
@@ -105,15 +108,17 @@ const MessageIndex = (props) => {
       ];
       chatSocket.emit("message", chatData[0]);
       let messages;
-      if (this.props.chatMessages.data.messages != null) {
+      if (props.chatMessages.data.messages != null) {
         messages = [...props.chatMessages.data.messages, ...chatData];
       } else {
         messages = [...chatData];
       }
-      this.setState({
-        chatData: messages,
-        chatInputMessage: "",
-      });
+      // this.setState({
+      //   chatData: messages,
+      //   chatInputMessage: "",
+      // });
+      setInputMessage("");
+      props.dispatch(addMessageContent(messages));
     }
   };
 
@@ -333,7 +338,7 @@ const MessageIndex = (props) => {
                                       type="button"
                                       data-can_send="true"
                                       className="g-btn m-rounded b-chat__btn-submit"
-                                       onClick={(event) => {
+                                      onClick={(event) => {
                                         handleChatSubmit(event);
                                       }}
                                     >
