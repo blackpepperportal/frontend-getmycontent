@@ -105,6 +105,9 @@ Version: 1.0
     .msg-row-chat {
         height: 70vh;
     }
+    .scrollbar {
+        height: 40vh;
+    }
 }
 
 
