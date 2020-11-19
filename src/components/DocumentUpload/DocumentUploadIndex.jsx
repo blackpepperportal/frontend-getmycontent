@@ -17,6 +17,7 @@ import {
 } from "../../store/actions/KycDocumentAction";
 
 import NoDataFound from "../NoDataFound/NoDataFound";
+import DocumentUploadLoader from "../Loader/DocumentUploadLoader";
 
 const DocumentUploadIndex = (props) => {
   useEffect(() => {
@@ -61,7 +62,7 @@ const DocumentUploadIndex = (props) => {
         <Container>
           <h4 class="head-title">Upload Your Documents</h4>
           {props.kycDocDetails.loading ? (
-            "Loading..."
+            <DocumentUploadLoader></DocumentUploadLoader>
           ) : props.kycDocDetails.data.documents.length > 0 ? (
             props.kycDocDetails.data.documents.map((doc) => (
               <>
@@ -109,9 +110,11 @@ const DocumentUploadIndex = (props) => {
                             className="doc-upload-img-1"
                           />
                           <br></br>
-                          <p className="document-desc">{doc.user_document.document_file !== undefined
-                            ? "Click here to reupload"
-                            : null}</p>
+                          <p className="document-desc">
+                            {doc.user_document.document_file !== undefined
+                              ? "Click here to reupload"
+                              : null}
+                          </p>
                         </Form.Label>
                       </FormGroup>
                     </Col>

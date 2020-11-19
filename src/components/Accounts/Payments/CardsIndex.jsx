@@ -100,7 +100,6 @@ const CardsIndex = (props) => {
           </Row>
         </Container>
       </div>
-      {/* <AddCardModal addCard={addCard} closeAddCardModal={closeAddCardModal} /> */}
       <Elements stripe={stripePromise}>
         <PaymentAddCardModal
           paymentAddCard={paymentAddCard}

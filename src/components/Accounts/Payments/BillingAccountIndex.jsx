@@ -1,13 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Table,
-  Badge,
-} from "react-bootstrap";
+import { Button, Container, Row, Col, Table, Badge } from "react-bootstrap";
 import "../../Wallet/Wallet.css";
 import {
   deleteBankAccountStart,
@@ -57,60 +50,63 @@ const BillingAccountIndex = (props) => {
               <div className="trans-table">
                 <Table borderedless responsive>
                   <tbody>
-                    {props.bankAccount.loading
-                      ? <BillingAccountLoader />
-                      : props.bankAccount.data.billing_accounts.length > 0
-                      ? props.bankAccount.data.billing_accounts.map(
-                          (accounts) => (
-                            <tr key={accounts.user_billing_account_id}>
-                              <td>{accounts.account_holder_name}</td>
-                              <td className="amount">
-                                {accounts.account_number}
-                              </td>
-                              <td>{accounts.bank_name}</td>
-                              <td>{accounts.ifsc_code}</td>
-                              <td>{accounts.swift_code}</td>
-                              {accounts.is_default === 1 ? (
-                                <td>
-                                  <Badge className="unconfirmed-badge">
-                                    Default
-                                  </Badge>
-                                </td>
-                              ) : (
-                                <td> - </td>
-                              )}
+                    {props.bankAccount.loading ? (
+                      <BillingAccountLoader />
+                    ) : props.bankAccount.data.billing_accounts.length > 0 ? (
+                      props.bankAccount.data.billing_accounts.map(
+                        (accounts) => (
+                          <tr key={accounts.user_billing_account_id}>
+                            <td>{accounts.nickname}</td>
+                            <td>{accounts.account_holder_name}</td>
+                            <td className="amount">
+                              {accounts.account_number}
+                            </td>
+                            <td>{accounts.bank_name}</td>
+                            <td>{accounts.ifsc_code}</td>
+                            <td>{accounts.swift_code}</td>
+                            {accounts.is_default === 1 ? (
                               <td>
-                                {accounts.is_default === 0 ? (
-                                  <Button
-                                    onClick={() =>
-                                      props.dispatch(
-                                        makeDefaultBankAccountStart({
-                                          user_billing_account_id:
-                                            accounts.user_billing_account_id,
-                                        })
-                                      )
-                                    }
-                                  >
-                                    Make Default
-                                  </Button>
-                                ) : null}{" "}
+                                <Badge className="unconfirmed-badge">
+                                  Default
+                                </Badge>
+                              </td>
+                            ) : (
+                              <td> - </td>
+                            )}
+                            <td>
+                              {accounts.is_default === 0 ? (
                                 <Button
                                   onClick={() =>
                                     props.dispatch(
-                                      deleteBankAccountStart({
+                                      makeDefaultBankAccountStart({
                                         user_billing_account_id:
                                           accounts.user_billing_account_id,
                                       })
                                     )
                                   }
                                 >
-                                  Delete
-                                </Button>{" "}
-                              </td>
-                            </tr>
-                          )
+                                  Make Default
+                                </Button>
+                              ) : null}{" "}
+                              <Button
+                                onClick={() =>
+                                  props.dispatch(
+                                    deleteBankAccountStart({
+                                      user_billing_account_id:
+                                        accounts.user_billing_account_id,
+                                    })
+                                  )
+                                }
+                              >
+                                Delete
+                              </Button>{" "}
+                            </td>
+                          </tr>
                         )
-                      : <NoDataFound/>}
+                      )
+                    ) : (
+                      <NoDataFound />
+                    )}
                   </tbody>
                 </Table>
               </div>

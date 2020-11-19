@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Table,
-  Image,
-} from "react-bootstrap";
+import { Button, Container, Row, Col, Table, Image } from "react-bootstrap";
 import "./Wallet.css";
 import { fetchWalletDetailsStart } from "../../store/actions/WalletAction";
 import { fetchAllTransactionStart } from "../../store/actions/TransactionAction";
 import WithdrawModal from "../helper/WithdrawModal";
+import NoDataFound from "../NoDataFound/NoDataFound";
+import WalletLoader from "../Loader/WalletLoader";
 
 const Wallet = (props) => {
   useEffect(() => {
@@ -28,13 +23,13 @@ const Wallet = (props) => {
   return (
     <>
       <div className="wallet-sec">
-        <Container>
-          <Row>
-            <Col sm={12} md={12}>
-              <div className="wallet-header-sec">
-                {props.wallet.loading ? (
-                  "Loading..."
-                ) : (
+        {props.wallet.loading ? (
+          <WalletLoader></WalletLoader>
+        ) : (
+          <Container>
+            <Row>
+              <Col sm={12} md={12}>
+                <div className="wallet-header-sec">
                   <Row>
                     <Col sm={12} md={6} xl={5}>
                       <div className="wallet-header-card">
@@ -85,11 +80,11 @@ const Wallet = (props) => {
                       </div>
                     </Col>
                   </Row>
-                )}
-              </div>
-            </Col>
-          </Row>
-        </Container>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        )}
       </div>
       <div className="trans-table-sec">
         <Container>
@@ -99,31 +94,40 @@ const Wallet = (props) => {
               <div className="trans-table">
                 <Table borderedless responsive>
                   <tbody>
-                    {props.transaction.loading
-                      ? "Loading..."
-                      : props.transaction.data.history.length > 0
-                      ? props.transaction.data.history.map((data) => (
-                          <tr>
-                            <td>{data.status_formatted}</td>
-                            <td className="amount">
-                             {data.paid_amount_formatted}{" "}
-                              {/* <span className="amout-abb">STRAT</span> */}
-                            </td>
-                            <td className="amount">
-                             <span className="text-capitalize">{data.payment_type}{" "}</span>
-                              {/* <span className="amout-abb text-muted">TYPE</span> */}
-                            </td>
-                            <td>from : {data.received_from_username ? data.received_from_username : "-"}</td>
-                            <td>{data.payment_id}</td>
-                            {/* <td>
+                    {props.transaction.loading ? (
+                      "Loading..."
+                    ) : props.transaction.data.history.length > 0 ? (
+                      props.transaction.data.history.map((data) => (
+                        <tr>
+                          <td>{data.status_formatted}</td>
+                          <td className="amount">
+                            {data.paid_amount_formatted}{" "}
+                            {/* <span className="amout-abb">STRAT</span> */}
+                          </td>
+                          <td className="amount">
+                            <span className="text-capitalize">
+                              {data.payment_type}{" "}
+                            </span>
+                            {/* <span className="amout-abb text-muted">TYPE</span> */}
+                          </td>
+                          <td>
+                            from :{" "}
+                            {data.received_from_username
+                              ? data.received_from_username
+                              : "-"}
+                          </td>
+                          <td>{data.payment_id}</td>
+                          {/* <td>
                               <Badge className="unconfirmed-badge">
                                 unconfirmed
                               </Badge>
                               <span>now</span>
                             </td> */}
-                          </tr>
-                        ))
-                      : "No data Found"}
+                        </tr>
+                      ))
+                    ) : (
+                      <NoDataFound></NoDataFound>
+                    )}
                   </tbody>
                 </Table>
               </div>

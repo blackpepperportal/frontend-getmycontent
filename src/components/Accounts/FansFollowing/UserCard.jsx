@@ -5,6 +5,9 @@ import AddFavModal from "../../helper/AddFavModal";
 import SendTipModal from "../../helper/SendTipModal";
 import { deleteFavStart, saveFavStart } from "../../../store/actions/FavAction";
 import { connect } from "react-redux";
+import { getSuccessNotificationMessage } from "../../helper/NotificationMessage";
+import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const UserCard = (props) => {
   const [sendTip, setSendTip] = useState(false);
@@ -31,6 +34,13 @@ const UserCard = (props) => {
         user_id: props.user.user_id,
       })
     );
+  };
+
+  const onCopy = (event) => {
+    const notificationMessage = getSuccessNotificationMessage(
+      "Link to profile was copied to clipboard!"
+    );
+    props.dispatch(createNotification(notificationMessage));
   };
 
   return (
@@ -92,7 +102,25 @@ const UserCard = (props) => {
                         </Link>
                       </div>
                     </div>
-                    <div
+
+                    <div className="group-follower-btns">
+                      <CopyToClipboard
+                        text={props.user.share_link}
+                        onCopy={onCopy}
+                      >
+                        <Button
+                          type="button"
+                          className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                        >
+                          <Image
+                            src="assets/images/icons/share.svg"
+                            className="svg-clone "
+                          />
+                        </Button>
+                      </CopyToClipboard>
+                    </div>
+
+                    {/* <div
                       className="group-follower-btns"
                       style={{ display: "none" }}
                     >
@@ -105,7 +133,7 @@ const UserCard = (props) => {
                           className="svg-clone"
                         />
                       </Button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

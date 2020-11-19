@@ -48,7 +48,7 @@ const KycDocumentReducer = (state = initialState, action) => {
           error: false,
           inputData: {},
           buttonDisable: false,
-          loadingButtonContent: null,
+          loadingButtonContent: "Send for Approval",
         },
       };
     case ADD_KYC_DOCUMENT_FAILURE:
@@ -60,7 +60,7 @@ const KycDocumentReducer = (state = initialState, action) => {
           error: action.error,
           inputData: {},
           buttonDisable: false,
-          loadingButtonContent: null,
+          loadingButtonContent: "Send for Approval",
         },
       };
     case GET_KYC_DOCUMENT_START:

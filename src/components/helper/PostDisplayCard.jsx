@@ -10,11 +10,13 @@ import {
 import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
+import PPVPaymentModal from "./PPVPaymentModal";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
   let totalLikes = props.post.total_likes ? props.post.total_likes : 0;
 
+  const [PPVPayment, setPPVPayment] = useState(false);
   const [sendTip, setSendTip] = useState(false);
   const [commentInputData, setCommentInputData] = useState({});
   const [isVisible, setIsVisible] = useState(true);
@@ -24,6 +26,9 @@ const PostDisplayCard = (props) => {
 
   const closeSendTipModal = () => {
     setSendTip(false);
+  };
+  const closePPVPaymentModal = () => {
+    setPPVPayment(false);
   };
 
   const handleCommentSubmit = (event) => {
