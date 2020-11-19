@@ -97,7 +97,7 @@ const HomePageIndex = (props) => {
                 </Row>
               </Container> */}
               {props.posts.loading ? (
-                <HomeLoader></HomeLoader>
+                <HomeLoader/>
               ) : props.posts.data.posts.length > 0 ? (
                 props.posts.data.posts.map((post) => (
                   <PostDisplayCard post={post} key={post.post_id} />

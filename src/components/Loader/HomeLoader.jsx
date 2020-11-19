@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader"
 const HomeLoader = (props) => (
   <ContentLoader 
     speed={2}
-    width={1340}
+    width={1100}
     height={1150}
     viewBox="0 0 1200 1150"
     backgroundColor="#f3f3f3"
@@ -43,10 +43,10 @@ const HomeLoader = (props) => (
     <rect x="11" y="1116" rx="0" ry="0" width="730" height="3" /> 
     <rect x="710" y="520" rx="0" ry="0" width="29" height="22" /> 
     <rect x="710" y="1054" rx="0" ry="0" width="29" height="22" /> 
-    <rect x="800" y="80" rx="0" ry="0" width="400" height="16" /> 
+    <rect x="800" y="80" rx="0" ry="0" width="200" height="16" /> 
     <rect x="1150" y="78" rx="0" ry="0" width="19" height="19" /> 
     <rect x="800" y="117" rx="5" ry="5" width="400" height="99" /> 
-    <rect x="1180" y="79" rx="0" ry="0" width="19" height="19" /> 
+    <rect x="1180" y="78" rx="0" ry="0" width="19" height="19" /> 
     <rect x="800" y="239" rx="5" ry="5" width="400" height="99" /> 
     <rect x="800" y="362" rx="5" ry="5" width="400" height="99" />
   </ContentLoader>
