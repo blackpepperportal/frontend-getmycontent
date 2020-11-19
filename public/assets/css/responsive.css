@@ -15,7 +15,14 @@ Version: 1.0
 
 @media (min-width: 992px) {}
 
-@media (min-width: 1440px) {}
+@media (min-width: 1440px) {
+    .chat-wrapper {
+        height: 65vh;
+    }
+    .scrollbar {
+        height: 78vh;
+    }
+}
 
 @media (max-width: 1199.98px) {
     .dm-width{

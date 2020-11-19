@@ -98,7 +98,7 @@ const HeaderIndex = (props) => {
                       alt={configuration.get("configData.site_name")}
                     />
                   </span>
-                  <span>
+                  <span onClick={() => setIsVisible(!isVisible)}>
                     {" "}
                     <i className="material-icons add-icon">clear</i>
                   </span>
