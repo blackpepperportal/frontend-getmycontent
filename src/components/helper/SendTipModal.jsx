@@ -15,7 +15,10 @@ const SendTipModal = (props) => {
     if (paymentType === "card")
       props.dispatch(
         sendTipStripeStart({
-          post_id: props.post_id,
+          post_id:
+            props.post_id != undefined || props.post_id != null
+              ? props.post_id
+              : "",
           amount: amount,
           user_id: props.user_id,
         })
@@ -23,7 +26,10 @@ const SendTipModal = (props) => {
     if (paymentType === "wallet")
       props.dispatch(
         sendTipWalletStart({
-          post_id: props.post_id,
+          post_id:
+            props.post_id != undefined || props.post_id != null
+              ? props.post_id
+              : "",
           amount: amount,
           user_id: props.user_id,
         })
@@ -70,7 +76,9 @@ const SendTipModal = (props) => {
                 <div className="floating-label">
                   <input
                     className="floating-input"
-                    type="text"
+                    type="number"
+                    min="0"
+                    step="any"
                     value={amount}
                     onChange={(event) => setAmount(event.currentTarget.value)}
                   />
@@ -86,7 +94,6 @@ const SendTipModal = (props) => {
                         inline
                         label="Wallet"
                         type={type}
-                        // id={`custom-inline-${type}-1`}
                         id="wallet"
                         value="wallet"
                         name="payment_type"

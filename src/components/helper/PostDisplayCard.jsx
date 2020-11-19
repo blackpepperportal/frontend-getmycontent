@@ -123,21 +123,23 @@ const PostDisplayCard = (props) => {
       <div className="post-content">
         <p>{post.content != undefined ? post.content : ""}</p>
 
-        {post.postFiles.length > 0
-          ? post.postFiles.map((postFile, index) =>
-              postFile.file_type === "image" ? (
-                <div className="post-image">
-                  <div className="">
-                    <div className="gallery js-gallery">
-                      <Image
-                        src={postFile.post_file}
-                        className="post-view-image"
-                      />
+        {post.postFiles
+          ? post.postFiles.length > 0
+            ? post.postFiles.map((postFile, index) =>
+                postFile.file_type === "image" ? (
+                  <div className="post-image">
+                    <div className="">
+                      <div className="gallery js-gallery">
+                        <Image
+                          src={postFile.post_file}
+                          className="post-view-image"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ) : null
-            )
+                ) : null
+              )
+            : null
           : null}
       </div>
 

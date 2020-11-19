@@ -1,81 +1,92 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Image, Media } from "react-bootstrap";
 import BookmarkNav from "./BookmarkNav";
 import { connect } from "react-redux";
 import BookmarkPhotoLoader from "../Loader/BookmarkPhotoLoader";
+import BookmarkNoDataFound from "../NoDataFound/BookmarkNoDataFound";
+import { fetchBookmarksStart } from "../../store/actions/BookmarkAction";
+import useInfiniteScroll from "../helper/useInfiniteScroll";
 
-const BookmarkPhoto = () => {
+const BookmarkPhoto = (props) => {
+  useEffect(() => {
+    props.dispatch(
+      fetchBookmarksStart({ type: "image", skip: props.bookmark.skip })
+    );
+  }, []);
+
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchBookMarkData);
+
+  const [noMoreData, setNoMoreData] = useState(false);
+
+  function fetchBookMarkData() {
+    setTimeout(() => {
+      if (props.bookmark.length !== 0) {
+        props.dispatch(
+          fetchBookmarksStart({ type: "image", skip: props.bookmark.skip })
+        );
+        setIsFetching(false);
+      } else {
+        setNoMoreData(true);
+      }
+    }, 3000);
+  }
   return (
     <div className="edit-profile book-photo">
       <Container>
         <Row>
           <BookmarkNav />
           <Col xs={12} sm={12} md={8}>
-            <div className="profile-post-area">
-              <div className="bookmarkes-list bookmarks-right-side">
-                <div className="pull-left">
-                  <h3>PHOTOS</h3>
+            {props.bookmark.loading ? (
+              <BookmarkPhotoLoader />
+            ) : props.bookmark.data.posts.length > 0 ? (
+              <div className="profile-post-area">
+                <div className="bookmarkes-list bookmarks-right-side">
+                  <div className="pull-left">
+                    <h3>PHOTOS</h3>
+                  </div>
+                  <div className="pull-right">
+                    <Link className="bookmarks-filter" href="#">
+                      <Image
+                        src="assets/images/icons/sort.svg"
+                        className="svg-clone"
+                      />
+                    </Link>
+                  </div>
                 </div>
-                <div className="pull-right">
-                  <Link className="bookmarks-filter" href="#">
-                    <Image
-                      src="assets/images/icons/sort.svg"
-                      className="svg-clone"
-                    />
-                  </Link>
-                </div>
-              </div>
 
-              <div className="bookmarks-photos">
-                <ul className="box-container three-cols">
-                  <Media as="li" className="box">
-                    <div className="inner">
-                      <Link to="assets/images/g-6.jpg" className="glightbox">
-                        <Image src="assets/images/g-6.jpg" />
-                      </Link>
-                    </div>
-                  </Media>
-                  <Media as="li" className="box">
-                    <div className="inner">
-                      <Link to="assets/images/g-5.jpg" className="glightbox">
-                        <Image src="assets/images/g-5.jpg" />
-                      </Link>
-                    </div>
-                  </Media>
-                  <Media as="li" className="box">
-                    <div className="inner">
-                      <Link to="assets/images/g-4.jpg" className="glightbox">
-                        <Image src="assets/images/g-4.jpg" />
-                      </Link>
-                    </div>
-                  </Media>
-                  <Media as="li" className="box">
-                    <div className="inner">
-                      <Link to="assets/images/g-3.jpg" className="glightbox">
-                        <Image src="assets/images/g-3.jpg" />
-                      </Link>
-                    </div>
-                  </Media>
-                  <Media as="li" className="box">
-                    <div className="inner">
-                      <Link to="assets/images/g-2.jpg" className="glightbox">
-                        <Image src="assets/images/g-2.jpg" />
-                      </Link>
-                    </div>
-                  </Media>
-                  <Media as="li" className="box">
-                    <div className="inner">
-                      <Link to="assets/images/g-1.jpg" className="glightbox">
-                        <Image src="assets/images/g-1.jpg" />
-                      </Link>
-                    </div>
-                  </Media>
-                </ul>
+                <div className="bookmarks-photos">
+                  <ul className="box-container three-cols">
+                    {props.bookmark.data.posts.map((post) =>
+                      post.postFiles.length > 0
+                        ? post.postFiles.map((post) => (
+                            <Media as="li" className="box" key={post.post_id}>
+                              <div className="inner">
+                                <a
+                                  href={post.post_file}
+                                  target="_blank"
+                                  className="glightbox"
+                                >
+                                  <Image src={post.post_file} />
+                                </a>
+                              </div>
+                            </Media>
+                          ))
+                        : ""
+                    )}
+                  </ul>
+                </div>
               </div>
-            </div>
+            ) : (
+              <BookmarkNoDataFound />
+            )}
           </Col>
         </Row>
+        {noMoreData !== true ? (
+          <>{isFetching && "Fetching more list items..."}</>
+        ) : (
+          "No More Data"
+        )}
       </Container>
     </div>
   );

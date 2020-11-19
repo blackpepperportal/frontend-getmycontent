@@ -13,7 +13,7 @@ const BookmarkNav = (props) => {
           className="bookmarkes-list"
           to={"/bookmarks"}
         >
-          <Link to={"/home"}>
+          <Link to={"/list"}>
             <Image src="assets/images/icons/back.svg" className="svg-clone" />
           </Link>
           BOOKMARKS
@@ -23,9 +23,7 @@ const BookmarkNav = (props) => {
           activeClassName="active"
           className="bookmarkes-list"
           to={"/bookmark-photo"}
-          onClick={() =>
-            props.dispatch(fetchBookmarksStart({ type: "photos" }))
-          }
+          // onClick={() => props.dispatch(fetchBookmarksStart({ type: "image" }))}
         >
           <Image
             src="assets/images/icons/gallery.svg"
@@ -38,9 +36,7 @@ const BookmarkNav = (props) => {
           activeClassName="active"
           className="bookmarkes-list"
           to={"/bookmark-video"}
-          onClick={() =>
-            props.dispatch(fetchBookmarksStart({ type: "videos" }))
-          }
+          // onClick={() => props.dispatch(fetchBookmarksStart({ type: "video" }))}
         >
           <Image
             src="assets/images/icons/video.svg"

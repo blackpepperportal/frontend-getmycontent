@@ -39,7 +39,7 @@ const UserCard = (props) => {
         <div className="follower-lists">
           <div className="follower-subscription-lists">
             <div className="follower-subscription-inner">
-              <Link to="user-profile.html">
+              <Link to={`/model-profile` + props.user.user_unique_id}>
                 <div className="follower-wrapper">
                   <Image className="follower-cover" src={props.user.cover} />
                 </div>
@@ -52,9 +52,12 @@ const UserCard = (props) => {
                 </Link>
                 <div className="follower-info">
                   <div className="follower-profile-status">
-                    <div className="follower-status-text">
+                    <div
+                      className="follower-status-text"
+                      style={{ display: "none" }}
+                    >
                       Last seen
-                      <span title="Oct 12, 1:33 pm">{props.user.updated}</span>
+                      <span title="User Updated">{props.user.updated}</span>
                     </div>
                     <div className="follower-profile-toggle-dropdown">
                       <Link to="#" className="btn dropdown-toggle btn-link">
@@ -135,7 +138,7 @@ const UserCard = (props) => {
                   <span className="b-btn-text">Tip</span>
                 </Button>
               </div>
-              <div className="lists-button-group">
+              <div className="lists-button-group" style={{ display: "none" }}>
                 <Link
                   type="button"
                   className="g-btn m-rounded m-border m-profile m-with-icon"

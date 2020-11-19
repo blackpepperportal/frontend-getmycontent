@@ -52,10 +52,10 @@ function* getUserDetailsAPI() {
     if (response.data.success) {
       yield put(fetchUserDetailsSuccess(response.data));
       localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem("user_cover", response.data.data.cover);
       localStorage.setItem("username", response.data.data.username);
       localStorage.setItem("name", response.data.data.name);
-      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem(
         "total_followers",
         response.data.data.total_followers
@@ -96,6 +96,7 @@ function* updateUserDetailsAPI() {
     if (response.data.success) {
       yield put(updateUserDetailsSuccess(response.data));
       localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem("user_cover", response.data.data.cover);
       localStorage.setItem("name", response.data.data.name);
       localStorage.setItem("username", response.data.data.username);
@@ -296,6 +297,7 @@ function* registerVerify() {
     if (response.data.success) {
       yield put(registerVerifySuccess(response.data));
       localStorage.setItem("userId", response.data.data.user_id);
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem("accessToken", response.data.data.token);
       localStorage.setItem("userLoginStatus", true);
       localStorage.setItem("user_picture", response.data.data.picture);
