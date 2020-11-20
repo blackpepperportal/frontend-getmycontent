@@ -11,6 +11,7 @@ const CreatePostIndex = (props) => {
   const [inputData, setInputData] = useState({});
 
   const [image, setImage] = useState({});
+  const [paidPost, setPaidPost] = useState(false);
 
   const [fileUploadStatus, setFileUploadStatus] = useState(false);
 
@@ -32,6 +33,8 @@ const CreatePostIndex = (props) => {
           file_type: fileType,
         })
       );
+
+      setPaidPost(true);
     }
   };
 
@@ -113,7 +116,7 @@ const CreatePostIndex = (props) => {
                       id="fileupload_photo"
                       type="file"
                       multiple="multiple"
-                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png,.mp4,.mov,.moov,.m4v,.mpg,.mpeg,.wmv,.avi,.webm,.mkv,.stream,.mp3,.wav,.ogg"
+                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png"
                       onChange={(event) => handleChangeImage(event, "image")}
                       name="post_files"
                     />
@@ -155,6 +158,7 @@ const CreatePostIndex = (props) => {
                 </Button>
               </div>
             </Col>
+            {paidPost == true ? 
             <Col sm={12} md={12}>
               <Form.Group>
                 <label className="text-muted m-1">Price (Optional)</label>
@@ -172,7 +176,7 @@ const CreatePostIndex = (props) => {
                   }
                 />
               </Form.Group>
-            </Col>
+            </Col> : ""}
           </Row>
         </Form>
       </Container>
