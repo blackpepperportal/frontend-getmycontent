@@ -79,10 +79,15 @@ const CreatePostIndex = (props) => {
                     type="submit"
                     className="post-btn btn-primary"
                     onClick={handleSubmit}
-                    disabled={props.fileUpload.buttonDisable}
+                    disabled={
+                      props.fileUpload.buttonDisable ||
+                      props.savePost.buttonDisable
+                    }
                   >
                     {props.fileUpload.loadingButtonContent !== null
                       ? props.fileUpload.loadingButtonContent
+                      : props.savePost.loadingButtonContent !== null
+                      ? props.savePost.loadingButtonContent
                       : "POST"}
                   </Button>
                 </div>
@@ -158,25 +163,28 @@ const CreatePostIndex = (props) => {
                 </Button>
               </div>
             </Col>
-            {paidPost == true ? 
-            <Col sm={12} md={12}>
-              <Form.Group>
-                <label className="text-muted m-1">Price (Optional)</label>
-                <Form.Control
-                  type="number"
-                  placeholder="Set price for the post"
-                  name="amount"
-                  value={inputData.amount}
-                  width="50%"
-                  onChange={(event) =>
-                    setInputData({
-                      ...inputData,
-                      amount: event.currentTarget.value,
-                    })
-                  }
-                />
-              </Form.Group>
-            </Col> : ""}
+            {paidPost == true ? (
+              <Col sm={12} md={12}>
+                <Form.Group>
+                  <label className="text-muted m-1">Price (Optional)</label>
+                  <Form.Control
+                    type="number"
+                    placeholder="Set price for the post"
+                    name="amount"
+                    value={inputData.amount}
+                    width="50%"
+                    onChange={(event) =>
+                      setInputData({
+                        ...inputData,
+                        amount: event.currentTarget.value,
+                      })
+                    }
+                  />
+                </Form.Group>
+              </Col>
+            ) : (
+              ""
+            )}
           </Row>
         </Form>
       </Container>
