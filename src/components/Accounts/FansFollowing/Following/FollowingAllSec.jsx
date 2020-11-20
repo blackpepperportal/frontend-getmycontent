@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Row} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import UserCard from "../UserCard";
 
 const FollowingAllSec = (props) => {
@@ -23,9 +23,9 @@ const FollowingAllSec = (props) => {
           </div>
         </div>
         <Row>
+          {/* <UserCard />
           <UserCard />
-          <UserCard />
-          <UserCard />
+          <UserCard /> */}
         </Row>
       </div>
     </>

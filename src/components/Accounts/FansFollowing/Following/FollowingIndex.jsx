@@ -6,6 +6,7 @@ import FollowingTabSec from "./FollowingTabSec";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchFollowersStart } from "../../../../store/actions/FollowAction";
+import FollowingLoader from "../../../Loader/FollowingLoader";
 
 const FollowingIndex = (props) => {
   useEffect(() => {
@@ -42,6 +43,7 @@ const FollowingIndex = (props) => {
                   <FollowingActiveSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
+                    followers={props.followers}
                   />
 
                   <FollowingExpiredSec

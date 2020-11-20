@@ -636,12 +636,6 @@ storiesWrapper {
     padding-left: 55px;
     /* border: 1px solid rgb(60, 90, 154); */
 }
-#google-connect {
-    background: #0091ea url(../../assets/images/google.svg) no-repeat scroll 30px 0px / 66px 18px padding-box border-box;
-    background-size: 22px 50px;
-    padding-left: 55px;
-    /* border: 1px solid rgb(60, 90, 154); */
-}
 #twitter-connect span {
     box-sizing: border-box;
     cursor: pointer;
@@ -660,6 +654,37 @@ storiesWrapper {
     -o-transition: all .3s ease;
     transition: all .3s ease;
 }
+#facebook-connect {
+    background: #0091ea url(../../assets/images/facebook.svg) no-repeat scroll 30px 0px / 66px 18px padding-box border-box;
+    background-size: 22px 50px;
+    padding-left: 55px;
+    /* border: 1px solid rgb(60, 90, 154); */
+}
+#facebook-connect span {
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 14px;
+    white-space: normal;
+    font-weight: 500;
+    color: #FEFEFE;
+    text-align: center;
+    text-transform: uppercase;
+    border: 0px none rgb(255, 255, 255);
+    outline: rgb(0 175 240) none 0px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+#google-connect {
+    background: #0091ea url(../../assets/images/google.svg) no-repeat scroll 30px 0px / 66px 18px padding-box border-box;
+    background-size: 22px 50px;
+    padding-left: 55px;
+    /* border: 1px solid rgb(60, 90, 154); */
+}
+
 #google-connect span {
     box-sizing: border-box;
     cursor: pointer;

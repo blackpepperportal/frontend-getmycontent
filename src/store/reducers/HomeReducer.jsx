@@ -24,9 +24,13 @@ import {
 
 const initialState = {
   homePost: {
-    data: {},
+    data: {
+      posts: [],
+    },
     loading: true,
     error: false,
+    skip: 0,
+    length: 0,
   },
   searchPost: {
     data: {},
@@ -81,18 +85,26 @@ const HomeReducer = (state = initialState, action) => {
       return {
         ...state,
         homePost: {
-          data: {},
+          data: {
+            posts: [...state.homePost.data.posts],
+          },
           loading: true,
           error: false,
+          skip: state.homePost.skip,
+          length: state.homePost.length,
         },
       };
     case FETCH_HOME_POSTS_SUCCESS:
       return {
         ...state,
         homePost: {
-          data: action.data,
+          data: {
+            posts: [...state.homePost.data.posts, ...action.data.posts],
+          },
           loading: false,
           error: false,
+          skip: action.data.posts.length + state.homePost.skip,
+          length: action.data.posts.length,
         },
       };
     case FETCH_HOME_POSTS_FAILURE:
@@ -102,6 +114,8 @@ const HomeReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          skip: state.homePost.skip,
+          length: state.homePost.length,
         },
       };
     case SEARCH_POST_START:

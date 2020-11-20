@@ -11,7 +11,7 @@ const NoDataFound = () => {
               <Image
                 alt="not-found"
                 src={
-                  window.location.origin + "/assets/images/no-data-found-1.svg"
+                  window.location.origin + "/assets/images/no-data-found-2.svg"
                 }
               />
             </div>

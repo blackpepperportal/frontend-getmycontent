@@ -10,10 +10,13 @@ import {
 import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
+import PPVPaymentModal from "./PPVPaymentModal";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
+  let totalLikes = props.post.total_likes ? props.post.total_likes : 0;
 
+  const [PPVPayment, setPPVPayment] = useState(false);
   const [sendTip, setSendTip] = useState(false);
   const [commentInputData, setCommentInputData] = useState({});
   const [isVisible, setIsVisible] = useState(true);
@@ -23,6 +26,9 @@ const PostDisplayCard = (props) => {
 
   const closeSendTipModal = () => {
     setSendTip(false);
+  };
+  const closePPVPaymentModal = () => {
+    setPPVPayment(false);
   };
 
   const handleCommentSubmit = (event) => {
@@ -120,22 +126,26 @@ const PostDisplayCard = (props) => {
       </div>
 
       <div className="post-content">
-        <p>{post.content}</p>
+        <p>{post.content != undefined ? post.content : ""}</p>
 
-        {post.post_files.length > 0 ? (
-          post.post_files[0].file_type === "image" ? (
-            <div className="post-image">
-              <div className="">
-                <div className="gallery js-gallery">
-                  <Image
-                    src={post.post_files[0].post_file}
-                    className="post-view-image"
-                  />
-                </div>
-              </div>
-            </div>
-          ) : null
-        ) : null}
+        {post.postFiles
+          ? post.postFiles.length > 0
+            ? post.postFiles.map((postFile, index) =>
+                postFile.file_type === "image" ? (
+                  <div className="post-image">
+                    <div className="">
+                      <div className="gallery js-gallery">
+                        <Image
+                          src={postFile.post_file}
+                          className="post-view-image"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ) : null
+              )
+            : null
+          : null}
       </div>
 
       <div className="post-icons">
@@ -280,7 +290,7 @@ const PostDisplayCard = (props) => {
       </div>
 
       <div className="likes alignleft">
-        <p>{post.total_likes} Likes</p>
+        <p>{totalLikes} Likes</p>
         {isVisible && commentInputData.post_id === post.post_id ? (
           <Link className="Show view-comments" onClick={closeCommentSection}>
             Close Comments
@@ -373,6 +383,7 @@ const PostDisplayCard = (props) => {
         userPicture={post.user_picture}
         name={post.user_displayname}
         post_id={post.post_id}
+        user_id={post.user_id}
       />
     </div>
   );

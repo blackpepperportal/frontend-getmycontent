@@ -11,12 +11,12 @@ const EditProfileTabSec = (props) => {
         className={props.activeSec === "settings-card" ? "active" : ""}
       >
         <Link
-          to="#Section1"
-          aria-controls="profile"
-          role="tab"
+          to={"/edit-profile"}
           className="bookmarkes-list"
-          data-toggle="tab"
-          onClick={() => props.setActiveSec("settings-card")}
+          // aria-controls="profile"
+          // role="tab"
+          // data-toggle="tab"
+          // onClick={() => props.setActiveSec("settings-card")}
         >
           <Image src="assets/images/icons/back.svg" className="svg-clone" />
           Settings
@@ -122,18 +122,11 @@ const EditProfileTabSec = (props) => {
       <Media
         as="li"
         role="presentation"
-        className={props.activeSec === "whts-new-card" ? "active" : ""}
+        className={props.activeSec === "bank-accounts" ? "active" : ""}
       >
-        <Link
-          to="#Section8"
-          aria-controls="profile"
-          role="tab"
-          className="bookmarkes-list"
-          data-toggle="tab"
-          onClick={() => props.setActiveSec("whts-new-card")}
-        >
-          <Image src="assets/images/icons/new.svg" className="svg-clone" />
-          What's New
+        <Link to={`/billing-accounts`} className="bookmarkes-list">
+          <Image src="assets/images/icons/bank.svg" className="svg-clone" />
+          Bank Accounts
         </Link>
       </Media>
     </ul>

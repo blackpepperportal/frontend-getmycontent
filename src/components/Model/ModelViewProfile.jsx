@@ -3,7 +3,6 @@ import ModelProfilePostSec from "./ModelProfilePostSec";
 import ModelProfileTabSec from "./ModelProfileTabSec";
 import ModelProfilePhotoSec from "./ModelProfilePhotoSec";
 import ModelProfileVideoSec from "./ModelProfileVideoSec";
-import ModelProfileArchivedSec from "./ModelProfileArchivedSec";
 import SendTipModal from "../helper/SendTipModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -109,7 +108,7 @@ const ModelViewProfile = (props) => {
                     />
                   </div>
                   <div className="top-left">
-                    <Button className="chat-header-back">
+                    <Link to={"/home"} className="chat-header-back">
                       <Image
                         src={
                           window.location.origin +
@@ -117,7 +116,7 @@ const ModelViewProfile = (props) => {
                         }
                         className="svg-clone"
                       />
-                    </Button>
+                    </Link>
                     <h1 className="chat-page-title">
                       {userDetails.data.user.name}
                     </h1>
@@ -265,14 +264,26 @@ const ModelViewProfile = (props) => {
                   </div>
                   <div className="my-profile-names">
                     <div className="user-name-base-row">
-                      <Link to="" className="my-name-lg">
+                      <Link
+                        to={
+                          `/model-profile/` +
+                          userDetails.data.user.user_unique_id
+                        }
+                        className="my-name-lg"
+                      >
                         <div className="g-user--name">
                           {userDetails.data.user.name}
                         </div>
                       </Link>
                     </div>
                     <div className="user-id-row-base">
-                      <Link to="" className="user-my-id-text">
+                      <Link
+                        to={
+                          `/model-profile/` +
+                          userDetails.data.user.user_unique_id
+                        }
+                        className="user-my-id-text"
+                      >
                         <div className="current-user--name">
                           @{userDetails.data.user.username}
                         </div>
@@ -397,6 +408,7 @@ const ModelViewProfile = (props) => {
           userPicture={props.userDetails.data.user.picture}
           name={props.userDetails.data.user.name}
           post_id={null}
+          user_id={props.userDetails.data.user.user_id}
         />
       )}
     </>

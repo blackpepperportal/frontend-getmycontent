@@ -5,6 +5,7 @@ import {
   FETCH_CHAT_MESSAGE_START,
   FETCH_CHAT_MESSAGE_SUCCESS,
   FETCH_CHAT_MESSAGE_FAILURE,
+  ADD_MESSAGE_CONTENT,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -15,7 +16,10 @@ const initialState = {
     inputData: {},
   },
   messages: {
-    data: {},
+    data: {
+      messages: [],
+      user: {},
+    },
     loading: true,
     error: false,
     inputData: {},
@@ -87,6 +91,22 @@ const ChatReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
+        },
+      };
+
+    case ADD_MESSAGE_CONTENT:
+      return {
+        ...state,
+        messages: {
+          data: {
+            messages: [...state.messages.data.messages, ...action.data],
+            user: { ...state.messages.data.user },
+          },
+          loading: false,
+          error: false,
           inputData: {},
           loadingButtonContent: null,
           buttonDisable: false,

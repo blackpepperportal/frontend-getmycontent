@@ -1,13 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import UserCard from "../FansFollowing/UserCard";
 import { connect } from "react-redux";
 import { fetchFavStart } from "../../../store/actions/FavAction";
+import NoDataFound from "../../NoDataFound/NoDataFound";
+import useInfiniteScroll from "../../helper/useInfiniteScroll";
+import { Link } from "react-router-dom";
 
 const FavoritesIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchFavStart());
   }, []);
+
+  const fetchFavUsersData = () => {
+    setTimeout(() => {
+      if (props.posts.length !== 0) {
+        props.dispatch(fetchFavStart());
+        setIsFetching(false);
+      } else {
+        setNoMoreData(true);
+      }
+    }, 3000);
+  };
+
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchFavUsersData);
+  const [noMoreData, setNoMoreData] = useState(false);
+
+  const [sendTip, setSendTip] = useState(false);
+
+  const closeSendTipModal = () => {
+    setSendTip(false);
+  };
 
   return (
     <div className="lists">
@@ -18,23 +41,27 @@ const FavoritesIndex = (props) => {
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
                   <h3>
-                    <Image
-                      src="assets/images/icons/back.svg"
-                      className="svg-clone"
-                      width=""
-                    />{" "}
+                    <Link to={"/list"}>
+                      <Image
+                        src="assets/images/icons/back.svg"
+                        className="svg-clone"
+                        width=""
+                      />{" "}
+                    </Link>
                     Favorites
                   </h3>
                 </div>
               </div>
             </div>
-            {props.fav.loading
-              ? "Loading..."
-              : props.fav.data.fav_users.length > 0
-              ? props.fav.data.fav_users.map((user) => (
-                  <UserCard user={user} key={user.user_id} />
-                ))
-              : "No data Found"}
+            {props.fav.loading ? (
+              "Loading..."
+            ) : props.fav.data.fav_users.length > 0 ? (
+              props.fav.data.fav_users.map((fav_user) => (
+                <UserCard user={fav_user.fav_user} key={fav_user.user_id} />
+              ))
+            ) : (
+              <NoDataFound></NoDataFound>
+            )}
           </Col>
         </Row>
       </Container>

@@ -6,12 +6,23 @@ import PostDisplayCard from "../../helper/PostDisplayCard";
 import { fetchPostsStart } from "../../../store/actions/PostAction";
 import { fetchUserDetailsStart } from "../../../store/actions/UserAction";
 import NoDataFound from "../../NoDataFound/NoDataFound";
+import { getSuccessNotificationMessage } from "../../helper/NotificationMessage";
+import ProfileLoader from "../../Loader/ProfileLoader";
+import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ProfileIndex = (props) => {
   useEffect(() => {
     if (props.posts.loading) props.dispatch(fetchPostsStart());
     if (props.profile.loading) props.dispatch(fetchUserDetailsStart());
   }, []);
+
+  const onCopy = (event) => {
+    const notificationMessage = getSuccessNotificationMessage(
+      "Link to profile was copied to clipboard!"
+    );
+    props.dispatch(createNotification(notificationMessage));
+  };
 
   return (
     <>
@@ -20,14 +31,14 @@ const ProfileIndex = (props) => {
           <Row>
             <Col sm={12} xs={12} md={12}>
               {props.profile.loading ? (
-                "Loading..."
+                <ProfileLoader></ProfileLoader>
               ) : (
                 <>
                   <div className="cover-area">
                     <div className="profile-cover">
                       <Image
                         src={props.profile.data.cover}
-                        alt="Snow"
+                        alt={props.profile.data.name}
                         style={{ width: "100%" }}
                       />
                     </div>
@@ -44,7 +55,7 @@ const ProfileIndex = (props) => {
                     </div>
 
                     <div className="top-right">
-                      <Link
+                      {/* <Link
                         to="#"
                         className="g-page__header__btn m-with-round-hover has-tooltip"
                         data-original-title="null"
@@ -53,7 +64,7 @@ const ProfileIndex = (props) => {
                           src="assets/images/icons/vertical-dots.svg"
                           className="svg-clone"
                         />
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
 
@@ -72,26 +83,32 @@ const ProfileIndex = (props) => {
                         />
                         Edit profile
                       </Link>
-                      <Button
-                        type="button"
-                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+
+                      <CopyToClipboard
+                        text={props.profile.data.share_link}
+                        onCopy={onCopy}
                       >
-                        <Image
-                          src="assets/images/icons/share.svg"
-                          className="svg-clone "
-                        />
-                      </Button>
+                        <Button
+                          type="button"
+                          className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                        >
+                          <Image
+                            src="assets/images/icons/share.svg"
+                            className="svg-clone "
+                          />
+                        </Button>
+                      </CopyToClipboard>
                     </div>
                     <div className="my-profile-names">
                       <div className="user-name-base-row">
-                        <Link to="" className="my-name-lg">
+                        <Link to={`/profile`} className="my-name-lg">
                           <div className="g-user--name">
                             {props.profile.data.name}
                           </div>
                         </Link>
                       </div>
                       <div className="user-id-row-base">
-                        <Link to="" className="user-my-id-text">
+                        <Link to={`/profile`} className="user-my-id-text">
                           <div className="current-user--name">
                             @{props.profile.data.username}
                           </div>
@@ -113,7 +130,10 @@ const ProfileIndex = (props) => {
                       <Link to="#" className="search-button">
                         {props.profile.data.total_posts} Post
                       </Link>
-                      <div className="search-container">
+                      <div
+                        className="search-container"
+                        style={{ display: "none" }}
+                      >
                         <Form className="search-box">
                           <input
                             className="search-text"
@@ -129,21 +149,19 @@ const ProfileIndex = (props) => {
                   </div>
                 </>
               )}
-              {props.posts ? (
+              {!props.posts ? (
                 ""
               ) : props.posts.loading ? (
                 "Loading..."
-              ) : props.posts.data.posts.length > 0 ? (
+              ) : props.posts.data.length > 0 ? (
                 props.posts.data.posts.length > 0 ? (
                   props.posts.data.posts.map((post) => (
                     <PostDisplayCard post={post} />
                   ))
                 ) : (
-                  ""
+                  <NoDataFound />
                 )
-              ) : (
-                <NoDataFound />
-              )}
+              ) : null}
             </Col>
           </Row>
         </Container>

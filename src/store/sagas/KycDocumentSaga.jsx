@@ -21,18 +21,25 @@ function* addKycDocumentAPI() {
     const inputData = yield select(
       (state) => state.kycDocument.addKycDocInput.inputData
     );
-    const response = yield api.postMethod("documents_save", inputData);
-    yield put(addKycDocumentSuccess(response.data.data));
-    if (response.data.success) {
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
+    if (inputData.document_id && inputData.document_file) {
+      const response = yield api.postMethod("documents_save", inputData);
+      yield put(addKycDocumentSuccess(response.data.data));
+      if (response.data.success) {
+        const notificationMessage = getSuccessNotificationMessage(
+          response.data.message
+        );
+        yield put(createNotification(notificationMessage));
+      } else {
+        yield put(addKycDocumentFailure(response.data.error));
+        const notificationMessage = getErrorNotificationMessage(
+          response.data.error
+        );
+        yield put(createNotification(notificationMessage));
+      }
     } else {
-      yield put(addKycDocumentFailure(response.data.error));
-      const notificationMessage = getErrorNotificationMessage(
-        response.data.error
-      );
+      let errorMessage = "Please upload the file and choose document";
+      yield put(addKycDocumentFailure(errorMessage));
+      const notificationMessage = getErrorNotificationMessage(errorMessage);
       yield put(createNotification(notificationMessage));
     }
   } catch (error) {

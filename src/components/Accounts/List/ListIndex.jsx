@@ -4,10 +4,7 @@ import {
   Container,
   Row,
   Col,
-  Dropdown,
   Image,
-  Media,
-  Form,
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchListsDetailsStart } from "../../../store/actions/HomeAction";
@@ -73,7 +70,7 @@ const ListIndex = (props) => {
                     <div className="pull-left">
                       <h3>Following</h3>
                       <span className="user-list-count">
-                        {props.lists.data.total_followings} peoples
+                        {props.lists.data.total_followings} people
                       </span>
                     </div>
                   </Link>

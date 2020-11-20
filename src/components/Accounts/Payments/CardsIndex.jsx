@@ -12,6 +12,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentAddCardModal from "../../helper/PaymentAddCardModal";
 import NoDataFound from "../../NoDataFound/NoDataFound";
+import CardListLoader from "../../Loader/CardListLoader";
 
 const stripePromise = loadStripe("pk_test_uDYrTXzzAuGRwDYtu7dkhaF3");
 
@@ -56,48 +57,49 @@ const CardsIndex = (props) => {
             </Col>
           </Row>
           <Row>
-            {cards.loading
-              ? "Loading..."
-              : cards.data.cards.length > 0
-              ? cards.data.cards.map((card) => (
-                  <Col sm={12} md={6} xl={4}>
-                    <div className="card-list-box">
-                      <h5 className="mb-4">XXXX XXXX XXXX {card.last_four}</h5>
-                      <h5 className="text-muted">{card.card_type}</h5>
-                      <div className="payment-bottom">
-                        <div className="action-btn">
-                          {card.is_default == 1 ? (
-                            <p className="card-link-text text-success">
-                              default card
-                            </p>
-                          ) : (
-                            <Link
-                              className="card-link-text text-info"
-                              onClick={() =>
-                                props.dispatch(
-                                  selectDefaultCardStart({
-                                    user_card_id: card.id,
-                                  })
-                                )
-                              }
-                            >
-                              Mark as Default
-                            </Link>
-                          )}
-                        </div>
-                        <Image
-                          src="/assets/images/icons/credit-card.svg"
-                          className="credit-img"
-                        />
+            {cards.loading ? (
+              <CardListLoader />
+            ) : cards.data.cards.length > 0 ? (
+              cards.data.cards.map((card) => (
+                <Col sm={12} md={6} xl={4}>
+                  <div className="card-list-box">
+                    <h5 className="mb-4">XXXX XXXX XXXX {card.last_four}</h5>
+                    <h5 className="text-muted">{card.card_type}</h5>
+                    <div className="payment-bottom">
+                      <div className="action-btn">
+                        {card.is_default == 1 ? (
+                          <p className="card-link-text text-success">
+                            default card
+                          </p>
+                        ) : (
+                          <Link
+                            className="card-link-text text-info"
+                            onClick={() =>
+                              props.dispatch(
+                                selectDefaultCardStart({
+                                  user_card_id: card.id,
+                                })
+                              )
+                            }
+                          >
+                            Mark as Default
+                          </Link>
+                        )}
                       </div>
+                      <Image
+                        src="/assets/images/icons/credit-card.svg"
+                        className="credit-img"
+                      />
                     </div>
-                  </Col>
-                ))
-              : <NoDataFound/>}
+                  </div>
+                </Col>
+              ))
+            ) : (
+              <NoDataFound />
+            )}
           </Row>
         </Container>
       </div>
-      {/* <AddCardModal addCard={addCard} closeAddCardModal={closeAddCardModal} /> */}
       <Elements stripe={stripePromise}>
         <PaymentAddCardModal
           paymentAddCard={paymentAddCard}

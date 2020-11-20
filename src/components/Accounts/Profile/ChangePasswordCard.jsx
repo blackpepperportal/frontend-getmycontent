@@ -36,7 +36,6 @@ const ChangePasswordCard = (props) => {
                   type="password"
                   placeholder="Enter your old password"
                   name="old_password"
-                  name="old_password"
                   value={inputData.old_password}
                   onChange={(event) =>
                     setInputData({

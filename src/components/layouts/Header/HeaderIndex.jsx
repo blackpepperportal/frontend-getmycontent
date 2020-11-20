@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Image, Media, Button } from "react-bootstrap";
-// import configuration from "react-global-configuration";
+import configuration from "react-global-configuration";
 // import SideBarIndex from "../SideBar/SideBarIndex";
 
 import { connect } from "react-redux";
@@ -44,7 +44,7 @@ const HeaderIndex = (props) => {
               />
             </Link>
             <Link
-              to={"/create-post"}
+              to={"/posts-create"}
               className="main-header-menu icon-with-round-hover"
               onClick={() => setIsVisible(false)}
             >
@@ -56,7 +56,7 @@ const HeaderIndex = (props) => {
               />
             </Link>
             <Link
-              to={"/messages"}
+              to={"/inbox"}
               className="main-header-menu icon-with-round-hover"
               onClick={() => setIsVisible(false)}
             >
@@ -95,8 +95,12 @@ const HeaderIndex = (props) => {
                   <span className="sidebar-hamburger-user-profile">
                     <Image
                       src={localStorage.getItem("user_picture")}
-                      alt="fansclub"
+                      alt={configuration.get("configData.site_name")}
                     />
+                  </span>
+                  <span onClick={() => setIsVisible(!isVisible)}>
+                    {" "}
+                    <i className="material-icons add-icon">clear</i>
                   </span>
                 </Link>
                 <div className="pull-left side-user-head">
@@ -143,7 +147,7 @@ const HeaderIndex = (props) => {
                         window.location.origin +
                         "/assets/images/icons/arrow-down.svg"
                       }
-                      alt="fansclub"
+                      alt={configuration.get("configData.site_name")}
                     />
                   </span>
                 </div>
@@ -164,10 +168,9 @@ const HeaderIndex = (props) => {
                 >
                   <Image
                     src={
-                      window.location.origin +
-                      "/assets/images/icons/arrow-down.svg"
+                      window.location.origin + "/assets/images/icons/user.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
                   My Profile
                 </Link>
@@ -183,7 +186,7 @@ const HeaderIndex = (props) => {
                       window.location.origin +
                       "/assets/images/icons/bookmarks.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
                   Bookmarks
                 </Link>
@@ -198,7 +201,7 @@ const HeaderIndex = (props) => {
                     src={
                       window.location.origin + "/assets/images/icons/lists.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
                   Lists
                 </Link>
@@ -214,7 +217,7 @@ const HeaderIndex = (props) => {
                       window.location.origin +
                       "/assets/images/icons/settings.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
                   Settings
                 </Link>
@@ -233,11 +236,11 @@ const HeaderIndex = (props) => {
                     }
                     alt="Your Cards"
                   />{" "}
-                  Your Cards
+                  Your Cards <span className="desc">(to subscribe)</span>
                 </Link>
 
                 <Link
-                  to={"/banking"}
+                  to={"/add-bank"}
                   className="sidebar-menus-item"
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
@@ -246,15 +249,29 @@ const HeaderIndex = (props) => {
                     src={
                       window.location.origin + "/assets/images/icons/bank.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Add bank
+                  Add bank <span className="desc">(to earn)</span>
+                </Link>
+                <Link
+                  to={"/wallet"}
+                  className="sidebar-menus-item"
+                  data-name="Wallet"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/wallet.svg"
+                    }
+                    alt={configuration.get("configData.site_name")}
+                  />{" "}
+                  Wallet <span className="desc">(Your Earnings)</span>
                 </Link>
 
                 <hr className="sidebar-menu-divider" />
 
                 <Link
-                  to=""
+                  to={`/page/help`}
                   className="sidebar-menus-item"
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
@@ -263,7 +280,7 @@ const HeaderIndex = (props) => {
                     src={
                       window.location.origin + "/assets/images/icons/help.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
                   Help and Support
                 </Link>
@@ -273,16 +290,17 @@ const HeaderIndex = (props) => {
                   className="sidebar-menus-item"
                   data-name="Profile"
                   onClick={() => setIsVisible(!isVisible)}
+                  style={{ display: "none" }}
                 >
                   <Image
                     src={
                       window.location.origin + "/assets/images/icons/dark.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
                   Dark mode
                 </Link>
-
+                <hr className="sidebar-menu-divider" />
                 <Link
                   to={"/logout"}
                   className="sidebar-menus-item"
@@ -293,7 +311,7 @@ const HeaderIndex = (props) => {
                     src={
                       window.location.origin + "/assets/images/icons/logout.svg"
                     }
-                    alt="fansclub"
+                    alt={configuration.get("configData.site_name")}
                   />{" "}
                   Logout
                 </Link>

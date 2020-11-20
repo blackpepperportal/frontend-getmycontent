@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {Row} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import UserCard from "../UserCard";
 
 const FollowingExpiredSec = (props) => {
@@ -22,9 +22,7 @@ const FollowingExpiredSec = (props) => {
             </Link>
           </div>
         </div>
-        <Row>
-          <UserCard />
-        </Row>
+        <Row>{/* <UserCard /> */}</Row>
       </div>
     </>
   );

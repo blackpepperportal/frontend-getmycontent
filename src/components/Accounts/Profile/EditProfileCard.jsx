@@ -12,8 +12,8 @@ const EditProfileCard = (props) => {
   const [profileInputData, setProfileInputData] = useState({});
 
   const [image, setImage] = useState({
-    profileImage: "",
-    coverImage: "",
+    picture: "",
+    cover: "",
   });
 
   useEffect(() => {
@@ -29,15 +29,15 @@ const EditProfileCard = (props) => {
       let reader = new FileReader();
       let file = event.currentTarget.files[0];
 
-      if (event.currentTarget.name === "coverImage") {
+      if (event.currentTarget.name === "cover") {
         reader.onloadend = () => {
-          setImage({ ...image, coverImage: reader.result });
+          setImage({ ...image, cover: reader.result });
         };
       }
 
-      if (event.currentTarget.name === "profileImage") {
+      if (event.currentTarget.name === "picture") {
         reader.onloadend = () => {
-          setImage({ ...image, profileImage: reader.result });
+          setImage({ ...image, picture: reader.result });
         };
       }
 
@@ -49,7 +49,9 @@ const EditProfileCard = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.dispatch(updateUserDetailsStart(profileInputData));
+    if (Object.keys(profileInputData).length > 0)
+      props.dispatch(updateUserDetailsStart(profileInputData));
+    else props.dispatch(updateUserDetailsStart());
   };
   return (
     <>
@@ -79,9 +81,7 @@ const EditProfileCard = (props) => {
               <div className="cover">
                 <Image
                   src={
-                    image.coverImage === ""
-                      ? props.profile.data.cover
-                      : image.coverImage
+                    image.cover === "" ? props.profile.data.cover : image.cover
                   }
                 />
 
@@ -94,7 +94,7 @@ const EditProfileCard = (props) => {
                       className="hidden-input"
                       id="changeCover"
                       type="file"
-                      name="coverImage"
+                      name="cover"
                       accept="image/*"
                       onChange={handleChangeImage}
                     />
@@ -112,9 +112,9 @@ const EditProfileCard = (props) => {
                 <div className="profile-pic">
                   <Image
                     src={
-                      image.profileImage === ""
+                      image.picture === ""
                         ? props.profile.data.picture
-                        : image.profileImage
+                        : image.picture
                     }
                   />
                   <div className="layer">
@@ -127,7 +127,7 @@ const EditProfileCard = (props) => {
                         id="changePicture"
                         type="file"
                         accept="image/*"
-                        name="profileImage"
+                        name="picture"
                         onChange={handleChangeImage}
                       />
                       <Form.Label
@@ -145,7 +145,7 @@ const EditProfileCard = (props) => {
                       className="hidden-input"
                       id="changePicture"
                       type="file"
-                      name="profileImage"
+                      name="picture"
                       onChange={handleChangeImage}
                     />
                     <Form.Label
@@ -167,18 +167,18 @@ const EditProfileCard = (props) => {
           <div
             className="edit-input-wrapper"
             data-vv-delay="1000"
-            data-vv-as="Username"
+            data-vv-as="username"
           >
             <Form.Label className="edit-input-label">
               Username <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
               <Form.Control
-                id="edit-login"
+                id="username"
                 type="text"
-                autocomplete="on"
                 placeholder=""
                 name="username"
+                value={props.profile.data.username}
                 maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -214,11 +214,10 @@ const EditProfileCard = (props) => {
             </Form.Label>
             <div className="">
               <Form.Control
-                id="edit-login"
+                id="name"
                 type="text"
-                autocomplete="off"
                 placeholder=""
-                value={props.profile.data.name}
+                defaultValue={props.profile.data.name}
                 name="name"
                 maxlength="24"
                 className="form-control edit-reset"
@@ -236,31 +235,89 @@ const EditProfileCard = (props) => {
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"
-            data-vv-as="Username"
+            data-vv-as="monthly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price ($ per month)
+              Subscription price (per month)
               <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
               <Form.Control
-                id="edit-login"
-                type="text"
-                autocomplete="on"
-                value="$ FREE"
+                id="monthly_amount"
+                type="number"
+                step="any"
+                min="0"
                 placeholder=""
-                name="username"
-                maxlength="24"
+                name="monthly_amount"
                 className="form-control edit-reset"
+                disabled={
+                  localStorage.getItem("is_subscription_enabled") == 1
+                    ? false
+                    : true
+                }
+                defaultValue={props.profile.data.monthly_amount}
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.monthly_amount,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
-            <p className="inuput-help">
-              You must
-              <Link to={`/add-bank`}>
-                Add a Bank Account or Payment Information
-              </Link>{" "}
-              before you can set your price or accept tips.
-            </p>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="yearly_amount"
+          >
+            <Form.Label className="edit-input-label">
+              Subscription price (Per Year)
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="yearly_amount"
+                type="number"
+                step="any"
+                min="0"
+                placeholder=""
+                name="yearly_amount"
+                className="form-control edit-reset"
+                disabled={
+                  localStorage.getItem("is_subscription_enabled") == 1
+                    ? false
+                    : true
+                }
+                defaultValue={props.profile.data.yearly_amount}
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.yearly_amount,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+            {localStorage.getItem("is_subscription_enabled") == 1 ? (
+              <p className="inuput-help">
+                You can change the
+                <Link to={`/add-bank`}>
+                  Bank Account or Payment Information
+                </Link>{" "}
+                at any time.
+              </p>
+            ) : (
+              <p className="inuput-help">
+                You must
+                <Link to={`/add-bank`}>
+                  Add a Bank Account or Payment Information
+                </Link>{" "}
+                before you can set your price or accept tips.
+              </p>
+            )}
           </div>
           <div
             className="edit-input-wrapper disabled"
@@ -275,11 +332,19 @@ const EditProfileCard = (props) => {
                 id="edit-description"
                 type="text"
                 autocomplete="off"
-                value={props.profile.data.description}
                 placeholder=""
-                name="description"
+                value={props.profile.data.about}
+                name="about"
                 maxlength="24"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
@@ -300,6 +365,14 @@ const EditProfileCard = (props) => {
                 placeholder="Location"
                 name="address"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
@@ -319,9 +392,17 @@ const EditProfileCard = (props) => {
                 autocomplete="off"
                 value={props.profile.data.website}
                 placeholder="Website URL"
-                name="username"
+                name="website"
                 maxlength="24"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
@@ -344,13 +425,26 @@ const EditProfileCard = (props) => {
                 name="amazon_wishlist"
                 maxlength="24"
                 className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
               />
             </div>
           </div>
           <div className="edit-save">
-            <Button className="save-btn" onClick={handleSubmit}>
-              {" "}
-              Save changes{" "}
+            <Button
+              className="save-btn"
+              onClick={handleSubmit}
+              disabled={props.profileInputData.buttonDisable}
+            >
+              {props.profileInputData.loadingButtonContent !== null
+                ? props.profileInputData.loadingButtonContent
+                : "Submit"}
             </Button>
           </div>
         </div>
@@ -361,6 +455,7 @@ const EditProfileCard = (props) => {
 
 const mapStateToPros = (state) => ({
   profile: state.users.profile,
+  profileInputData: state.users.profileInputData,
 });
 
 function mapDispatchToProps(dispatch) {

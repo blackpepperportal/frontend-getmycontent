@@ -31,20 +31,29 @@ import {
 function* savePostAPI() {
   try {
     const inputData = yield select((state) => state.post.savePost.inputData);
-    const response = yield api.postMethod("posts_save_for_owner", inputData);
-    if (response.data.success) {
-      yield put(savePostSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
-      window.location.assign("/profile");
-    } else {
-      yield put(savePostFailure(response.data.error));
+
+    if (!inputData.content && !inputData.files) {
+      yield put(savePostFailure("Please fill the content"));
       const notificationMessage = getErrorNotificationMessage(
-        response.data.error
+        "Please fill the content"
       );
       yield put(createNotification(notificationMessage));
+    } else {
+      const response = yield api.postMethod("posts_save_for_owner", inputData);
+      if (response.data.success) {
+        yield put(savePostSuccess(response.data.data));
+        const notificationMessage = getSuccessNotificationMessage(
+          response.data.message
+        );
+        yield put(createNotification(notificationMessage));
+        window.location.assign("/home");
+      } else {
+        yield put(savePostFailure(response.data.error));
+        const notificationMessage = getErrorNotificationMessage(
+          response.data.error
+        );
+        yield put(createNotification(notificationMessage));
+      }
     }
   } catch (error) {
     yield put(savePostFailure(error));
@@ -152,10 +161,10 @@ function* postFileUploadAPI() {
     const response = yield api.postMethod("post_files_upload", inputData);
     if (response.data.success) {
       yield put(postFileUploadSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
+      // const notificationMessage = getSuccessNotificationMessage(
+      //   response.data.message
+      // );
+      // yield put(createNotification(notificationMessage));
     } else {
       yield put(postFileUploadFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

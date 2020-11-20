@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Image, Modal, Row, Col } from "react-bootstrap";
+import { Form, Button, Modal, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getBankAccountStart } from "../../store/actions/BankAccountAction";
 import { sendWithDrawRequestStart } from "../../store/actions/WithDrawAction";
+import { Link } from "react-router-dom";
 
 const WithdrawModel = (props) => {
   useEffect(() => {
@@ -28,7 +29,7 @@ const WithdrawModel = (props) => {
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Withdrawals</Modal.Title>
+            <Modal.Title>Send Request to Admin</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {props.payments.loading ? (
@@ -49,8 +50,8 @@ const WithdrawModel = (props) => {
                     <h4 className="text-muted">
                       Wallet Balance:{" "}
                       <span className="text-muted">
-                        {props.payments.data.wallet
-                          ? props.payments.data.wallet.remaining_formatted
+                        {props.payments.data.user_wallet
+                          ? props.payments.data.user_wallet.remaining_formatted
                           : ""}
                       </span>
                     </h4>
@@ -77,50 +78,41 @@ const WithdrawModel = (props) => {
               </div>
               <div className="floating-label">
                 <label className="label-default-1">Choose Bank account</label>
-                {props.bankAccount.loading
-                  ? "Loading..."
-                  : props.bankAccount.data.billing_accounts.length > 0
-                  ? props.bankAccount.data.billing_accounts.map((account) => (
-                      // <input
-                      //   className="floating-input"
-                      //   type="radio"
-                      //   label="walet"
-                      //   id={account.user_billing_account_id}
-                      //   value={account.user_billing_account_id}
-                      //   name="user_billing_account_id"
-                      //   onChange={(event) =>
-                      //     setInputData({
-                      //       ...inputData,
-                      //       user_billing_account_id:
-                      //         account.user_billing_account_id,
-                      //     })
-                      //   }
-                      // />
-
-                      <Form>
-                        {["radio"].map((type) => (
-                          <div key={`custom-inline-${type}`} className="mb-3">
-                            <Form.Check
-                              custom
-                              inline
-                              label={account.nickname}
-                              type={type}
-                              id={account.user_billing_account_id}
-                              value={account.user_billing_account_id}
-                              name="user_billing_account_id"
-                              onChange={(event) =>
-                                setInputData({
-                                  ...inputData,
-                                  user_billing_account_id:
-                                    account.user_billing_account_id,
-                                })
-                              }
-                            />
-                          </div>
-                        ))}
-                      </Form>
-                    ))
-                  : "No data found"}
+                {props.bankAccount.loading ? (
+                  "Loading..."
+                ) : props.bankAccount.data.billing_accounts.length > 0 ? (
+                  props.bankAccount.data.billing_accounts.map((account) => (
+                    <Form>
+                      {["radio"].map((type) => (
+                        <div key={`custom-inline-${type}`} className="mb-3">
+                          <Form.Check
+                            custom
+                            inline
+                            label={account.nickname}
+                            type={type}
+                            id={account.user_billing_account_id}
+                            value={account.user_billing_account_id}
+                            name="user_billing_account_id"
+                            onChange={(event) =>
+                              setInputData({
+                                ...inputData,
+                                user_billing_account_id:
+                                  account.user_billing_account_id,
+                              })
+                            }
+                          />
+                        </div>
+                      ))}
+                    </Form>
+                  ))
+                ) : (
+                  <p>
+                    No Bank accounts added. To add account, please{" "}
+                    <Link className="text-sm" to={`/add-bank`}>
+                      Click here
+                    </Link>
+                  </p>
+                )}
               </div>
             </div>
           </Modal.Body>

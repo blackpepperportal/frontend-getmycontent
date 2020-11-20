@@ -4,27 +4,30 @@ import ContentLoader from "react-content-loader"
 const LoginLoader = (props) => (
   <ContentLoader 
     speed={2}
-    width={1200}
-    height={450}
-    viewBox="0 0 1205 450"
+    width={1340}
+    height={600}
+    viewBox="0 0 1200 600"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
     {...props}
   >
-    <rect x="34" y="59" rx="0" ry="0" width="8" height="305" /> 
-    <rect x="34" y="59" rx="0" ry="0" width="1100" height="8" /> 
-    <rect x="1130" y="59" rx="0" ry="0" width="8" height="305" /> 
-    <rect x="35" y="355" rx="0" ry="0" width="1100" height="9" /> 
-    <rect x="72" y="120" rx="10" ry="10" width="550" height="180" /> 
-    <rect x="790" y="95" rx="0" ry="0" width="191" height="8" /> 
-    <rect x="765" y="114" rx="0" ry="0" width="250" height="6" /> 
-    <rect x="680" y="133" rx="0" ry="0" width="68" height="8" /> 
-    <rect x="680" y="150" rx="2" ry="2" width="420" height="38" /> 
-    <rect x="680" y="202" rx="0" ry="0" width="68" height="8" /> 
-    <rect x="680" y="219" rx="2" ry="2" width="420" height="38" /> 
-    <rect x="830" y="281" rx="5" ry="5" width="163" height="30" /> 
-    <rect x="810" y="322" rx="0" ry="0" width="91" height="8" /> 
-    <rect x="920" y="322" rx="0" ry="0" width="91" height="8" />
+    <rect x="31" y="130" rx="0" ry="0" width="0" height="9" /> 
+    <rect x="8" y="21" rx="5" ry="5" width="600" height="558" /> 
+    <rect x="800" y="42" rx="0" ry="0" width="189" height="30" /> 
+    <rect x="780" y="79" rx="0" ry="0" width="228" height="9" /> 
+    <rect x="700" y="98" rx="25" ry="25" width="400" height="51" /> 
+    <rect x="700" y="165" rx="25" ry="25" width="400" height="51" /> 
+    <rect x="700" y="251" rx="0" ry="0" width="180" height="5" /> 
+    <circle cx="900" cy="255" r="7" /> 
+    <rect x="920" y="251" rx="0" ry="0" width="180" height="5" /> 
+    <rect x="700" y="290" rx="0" ry="0" width="104" height="9" /> 
+    <rect x="700" y="312" rx="0" ry="0" width="400" height="3" /> 
+    <rect x="700" y="339" rx="0" ry="0" width="104" height="9" /> 
+    <rect x="700" y="361" rx="0" ry="0" width="400" height="3" /> 
+    <rect x="850" y="382" rx="0" ry="0" width="89" height="6" /> 
+    <rect x="700" y="412" rx="25" ry="25" width="400" height="51" /> 
+    <rect x="830" y="477" rx="0" ry="0" width="135" height="5" /> 
+    <rect x="808" y="497" rx="0" ry="0" width="183" height="8" />
   </ContentLoader>
 )
 

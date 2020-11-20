@@ -168,77 +168,95 @@ class App extends Component {
             layout={AuthLayout}
           />
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/home"}
             component={HomePageIndex}
             layout={MainLayout}
           />
 
-          <AppRoute
-            path={"/messages"}
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/inbox"}
             component={MessageIndex}
             layout={MainLayout}
           />
 
-          <AppRoute
-            path={"/create-post"}
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/posts-create"}
             component={CreatePostIndex}
             layout={MainLayout}
           />
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/bookmarks"}
             component={BookmarksIndex}
             layout={MainLayout}
           />
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/bookmark-photo"}
             component={BookmarkPhoto}
             layout={MainLayout}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/bookmark-video"}
             component={BookmarkVideo}
             layout={MainLayout}
           />
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/model-profile/:id"}
             component={ModelViewProfile}
             layout={MainLayout}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/following"}
             component={FollowingIndex}
             layout={MainLayout}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/fans"}
             component={FollowingIndex}
             layout={MainLayout}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/favorites"}
             component={FavoritesIndex}
             layout={MainLayout}
           />
 
-          <AppRoute path={"/list"} component={ListIndex} layout={MainLayout} />
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/list"}
+            component={ListIndex}
+            layout={MainLayout}
+          />
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/edit-profile"}
             component={EditProfile}
             layout={MainLayout}
           />
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/profile"}
             component={ProfileIndex}
             layout={MainLayout}
           />
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/notification"}
             component={NotificationIndex}
             layout={MainLayout}
@@ -246,22 +264,8 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/edit-profile-loader"}
-            component={LandingPageLoader}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
             path={"/payments"}
             component={PaymentsIndex}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/banking"}
-            component={BankingIndex}
             layout={MainLayout}
           />
 
@@ -288,6 +292,13 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
+            path={"/banking"}
+            component={BankingIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/wallet"}
             component={Wallet}
             layout={MainLayout}
@@ -300,9 +311,8 @@ class App extends Component {
             layout={MainLayout}
           />
 
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/static-page"}
+          <AppRoute
+            path={"/page/:title"}
             component={StaticPage}
             layout={MainLayout}
           />

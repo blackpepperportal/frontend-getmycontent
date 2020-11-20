@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { fetchNotificationsStart } from "../../store/actions/NotificationAction";
 import { connect } from "react-redux";
+import NotificationLoader from "../Loader/NotificationLoader";
 
 const NotificationIndex = (props) => {
   const [activeSec, setActiveSec] = useState("notify-all-sec");
@@ -37,7 +38,7 @@ const NotificationIndex = (props) => {
               <div className="tabbable-panel">
                 <div className="tab" role="tabpanel">
                   <div className="tab-content tabs padding-top-md">
-                  {props.notification.loading ? "Loading..." :
+                  {props.notification.loading ? <NotificationLoader></NotificationLoader> :
                     <NotificationAllSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}

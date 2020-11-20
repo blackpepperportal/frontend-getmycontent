@@ -52,10 +52,22 @@ function* getUserDetailsAPI() {
     if (response.data.success) {
       yield put(fetchUserDetailsSuccess(response.data));
       localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem("user_cover", response.data.data.cover);
       localStorage.setItem("username", response.data.data.username);
       localStorage.setItem("name", response.data.data.name);
-      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
+      localStorage.setItem(
+        "total_followers",
+        response.data.data.total_followers
+      );
+      localStorage.setItem(
+        "total_followings",
+        response.data.data.total_followings
+      );
+      localStorage.setItem(
+        "is_subscription_enabled",
+        response.data.data.is_subscription_enabled
+      );
       localStorage.setItem(
         "is_document_verified",
         response.data.data.is_document_verified
@@ -84,6 +96,7 @@ function* updateUserDetailsAPI() {
     if (response.data.success) {
       yield put(updateUserDetailsSuccess(response.data));
       localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem("user_cover", response.data.data.cover);
       localStorage.setItem("name", response.data.data.name);
       localStorage.setItem("username", response.data.data.username);
@@ -211,19 +224,30 @@ function* forgotPasswordAPI() {
       (state) => state.users.forgotPasswordInputData.data
     );
 
-    const response = yield api.postMethod("forgot_password", userData);
-    yield put(forgotPasswordSuccess(response.data));
-    if (response.data.success) {
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
-      // window.location.assign("/");
-    } else {
+    if (
+      !userData.email ||
+      userData.email == undefined ||
+      userData.email == null
+    ) {
       const notificationMessage = getErrorNotificationMessage(
-        response.data.error
+        "Please enter the email address"
       );
       yield put(createNotification(notificationMessage));
+    } else {
+      const response = yield api.postMethod("forgot_password", userData);
+      yield put(forgotPasswordSuccess(response.data));
+      if (response.data.success) {
+        const notificationMessage = getSuccessNotificationMessage(
+          response.data.message
+        );
+        yield put(createNotification(notificationMessage));
+        window.location.assign("/");
+      } else {
+        const notificationMessage = getErrorNotificationMessage(
+          response.data.error
+        );
+        yield put(createNotification(notificationMessage));
+      }
     }
   } catch (error) {
     yield put(forgotPasswordFailure(error));
@@ -273,6 +297,7 @@ function* registerVerify() {
     if (response.data.success) {
       yield put(registerVerifySuccess(response.data));
       localStorage.setItem("userId", response.data.data.user_id);
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem("accessToken", response.data.data.token);
       localStorage.setItem("userLoginStatus", true);
       localStorage.setItem("user_picture", response.data.data.picture);

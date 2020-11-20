@@ -9,31 +9,136 @@ import {
   Dropdown,
   Image,
   Media,
+  InputGroup,
+  FormControl,
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
+  addMessageContent,
   fetchChatMessageStart,
   fetchChatUsersStart,
 } from "../../store/actions/ChatAction";
 import ChatUserList from "./ChatUserList";
-import NoDataFound from "../NoDataFound/NoDataFound";
+import InboxNoDataFound from "../NoDataFound/InboxNoDataFound";
+import io from "socket.io-client";
+import configuration from "react-global-configuration";
+
+import InboxLoader from "../Loader/InboxLoader";
+
+let chatSocket;
 
 const MessageIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchChatUsersStart());
   }, []);
 
+  useEffect(() => {
+    console.log("asdfasdf checking");
+    if (
+      props.chatUsers.loading === false &&
+      props.chatUsers.data.users.length > 0
+    ) {
+      console.log("asdfasdf");
+      chatSocketConnect(props.chatUsers.data.users[0].to_user_id);
+    } else {
+      console.log("falseeeeee");
+    }
+  }, [!props.chatUsers.loading]);
+
   const [activeChat, setActiveChat] = useState(0);
+  const [socketStatus, setSocketStatus] = useState(0);
+  const [toUserId, setToUserId] = useState(0);
+  const [inputMessage, setInputMessage] = useState("");
+
+  const chatSocketConnect = (to_user_id) => {
+    // check the socket url is configured
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
+    console.log(toUserId);
+    if (chatSocketUrl) {
+      chatSocket = io(chatSocketUrl, {
+        query:
+          `commonid: 'user_id_` +
+          localStorage.getItem("userId") +
+          `_to_user_id_` +
+          to_user_id +
+          `',myid:` +
+          localStorage.getItem("userId"),
+      });
+      chatSocket.emit("update sender", {
+        commonid:
+          "user_id_" +
+          localStorage.getItem("userId") +
+          "_to_user_id_" +
+          to_user_id,
+        myid: localStorage.getItem("userId"),
+      });
+      let chatContent;
+      chatSocket.on("message", (newData) => {
+        let content = [];
+        content.push(newData);
+
+        // chatContent = [...this.state.chatData, ...content];
+        // this.setState({ chatData: chatContent });
+        props.dispatch(addMessageContent(content));
+      });
+    }
+  };
 
   const changeUser = (event, chat, index) => {
     event.preventDefault();
     setActiveChat(index);
+    let to_user_id =
+      chat.to_user_id == localStorage.getItem("userId")
+        ? chat.from_user_id
+        : chat.to_user_id;
+    setToUserId(to_user_id);
+
     props.dispatch(
       fetchChatMessageStart({
         to_user_id: chat.to_user_id,
         from_user_id: chat.from_user_id,
       })
     );
+    chatSocketConnect(to_user_id);
+  };
+
+  const handleChatSubmit = (event) => {
+    event.preventDefault();
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
+    console.log("chatSocketUrl" + chatSocketUrl);
+    console.log("chatSocket", chatSocket);
+    if (chatSocketUrl != undefined && inputMessage) {
+      let chatData = [
+        {
+          from_user_id: localStorage.getItem("userId"),
+          to_user_id: toUserId,
+          message: inputMessage,
+          type: "uu",
+          user_name: localStorage.getItem("name"),
+          user_picture: localStorage.getItem("user_picture"),
+        },
+      ];
+      chatSocket.emit("message", chatData[0]);
+      let messages;
+      if (props.chatMessages.data.messages != null) {
+        messages = [...props.chatMessages.data.messages, ...chatData];
+      } else {
+        messages = [...chatData];
+      }
+      // this.setState({
+      //   chatData: messages,
+      //   chatInputMessage: "",
+      // });
+      setInputMessage("");
+      props.dispatch(addMessageContent(chatData));
+    }
+  };
+
+  const chatInputChange = (value) => {
+    console.log(value);
+    setInputMessage(value);
+    console.log(inputMessage);
+    // this.setState({ chatInputMessage: input.value });
   };
 
   return (
@@ -41,7 +146,7 @@ const MessageIndex = (props) => {
       <Container>
         <Row>
           {props.chatUsers.loading ? (
-            "Loading.."
+            <InboxLoader></InboxLoader>
           ) : props.chatUsers.data.users.length > 0 ? (
             <ChatUserList
               chatUsers={props.chatUsers.data}
@@ -50,7 +155,7 @@ const MessageIndex = (props) => {
               changeUser={changeUser}
             />
           ) : (
-            <NoDataFound></NoDataFound>
+            <InboxNoDataFound />
           )}
           <Col
             sm={12}
@@ -60,7 +165,7 @@ const MessageIndex = (props) => {
             className="resp-mrg-btn-xs margin-col"
           >
             {props.chatMessages.loading ? (
-              "Loading..."
+              ""
             ) : (
               <Row className="msg-row-chat">
                 <div className="msg-header">
@@ -73,7 +178,7 @@ const MessageIndex = (props) => {
                   <h1 className="chat-section-title">
                     <div className="chat-section-title-width">
                       <Link
-                        href={
+                        to={
                           `/model-profile` +
                           props.chatMessages.data.user.user_unique_id
                         }
@@ -177,7 +282,7 @@ const MessageIndex = (props) => {
 
                                       <div className="chat-details">
                                         <span className="chat-message-localization font-size-small">
-                                          12:38 pm
+                                          {chatMessage.created}
                                         </span>
                                         <span className="chat-message-read-status font-size-small"></span>
                                       </div>
@@ -197,11 +302,11 @@ const MessageIndex = (props) => {
 
                                       <div className="chat-details">
                                         <span className="chat-message-localization font-size-small">
-                                          12:38 pm
+                                          {chatMessage.created}
                                         </span>
-                                        <span className="chat-message-read-status font-size-small">
+                                        {/* <span className="chat-message-read-status font-size-small">
                                           , $69 not paid yet
-                                        </span>
+                                        </span> */}
                                       </div>
                                     </div>
                                   </div>
@@ -216,14 +321,18 @@ const MessageIndex = (props) => {
                   <div
                     style={{ borderTop: "1px solid rgba(138, 150, 163, 0.2)" }}
                   >
-                    <Form id="chat_post_form" className="has-advanced-upload">
+                    <Form
+                      id="chat_post_form"
+                      className="has-advanced-upload"
+                      onSubmit={handleChatSubmit}
+                    >
                       <div className="chats-post-footer">
                         <div></div>
                         <div className="chat-post">
                           <div className="chat-textarea-price-wrapper">
                             <div className="">
-                              <Form.Group>
-                                <Form.Control
+                              <InputGroup className="mb-3">
+                                <FormControl
                                   id="chat-input-area"
                                   placeholder="Type a message"
                                   name="text"
@@ -235,13 +344,34 @@ const MessageIndex = (props) => {
                                     overflowWrap: "break-word",
                                     height: "48px",
                                   }}
+                                  value={inputMessage}
+                                  onChange={(event) => {
+                                    chatInputChange(event.currentTarget.value);
+                                  }}
                                 />
-                              </Form.Group>
+                                <InputGroup.Append>
+                                  <InputGroup.Text id="basic-addon2">
+                                    <Button
+                                      type="button"
+                                      data-can_send="true"
+                                      className="g-btn m-rounded b-chat__btn-submit"
+                                      onClick={(event) => {
+                                        handleChatSubmit(event);
+                                      }}
+                                    >
+                                      <Image
+                                        src="assets/images/icons/send.svg"
+                                        className="svg-clone"
+                                      />
+                                    </Button>
+                                  </InputGroup.Text>
+                                </InputGroup.Append>
+                              </InputGroup>
                             </div>
                           </div>
 
-                          <div className="chat-post__actions hidden">
-                            <Form.Control
+                          {/* <div className="chat-post__actions hidden">
+                            <FormControl
                               id="fileupload_photo"
                               type="file"
                               multiple="multiple"
@@ -269,18 +399,7 @@ const MessageIndex = (props) => {
                                 className="svg-clone"
                               />
                             </Button>
-                          </div>
-
-                          <Button
-                            type="button"
-                            data-can_send="true"
-                            className="g-btn m-rounded b-chat__btn-submit"
-                          >
-                            <Image
-                              src="assets/images/icons/send.svg"
-                              className="svg-clone"
-                            />
-                          </Button>
+                          </div> */}
                         </div>
                       </div>
                     </Form>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Col, Form } from "react-bootstrap";
 import { fetchHomePostsStart } from "../../store/actions/HomeAction";
 import { connect } from "react-redux";
 import {
@@ -11,11 +11,28 @@ import {
 import { saveBookmarkStart } from "../../store/actions/BookmarkAction";
 import PostDisplayCard from "../helper/PostDisplayCard";
 import NoDataFound from "../NoDataFound/NoDataFound";
+import useInfiniteScroll from "../helper/useInfiniteScroll";
+import HomeLoader from "../Loader/HomeLoader";
 
 const HomePageIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchHomePostsStart());
   }, []);
+
+  const fetchHomeData = () => {
+    setTimeout(() => {
+      if (props.posts.length !== 0) {
+        props.dispatch(fetchHomePostsStart());
+        setIsFetching(false);
+      } else {
+        setNoMoreData(true);
+      }
+    }, 3000);
+  };
+
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchHomeData);
+
+  const [noMoreData, setNoMoreData] = useState(false);
 
   const [sendTip, setSendTip] = useState(false);
 
@@ -79,13 +96,20 @@ const HomePageIndex = (props) => {
                   <div id="stories" className="storiesWrapper"></div>
                 </Row>
               </Container> */}
-              {props.posts.loading
-                ? "Loading..."
-                : props.posts.data.posts.length > 0
-                ? props.posts.data.posts.map((post) => (
-                    <PostDisplayCard post={post} key={post.post_id} />
-                  ))
-                : <NoDataFound/>}
+              {props.posts.loading ? (
+                <HomeLoader/>
+              ) : props.posts.data.posts.length > 0 ? (
+                props.posts.data.posts.map((post) => (
+                  <PostDisplayCard post={post} key={post.post_id} />
+                ))
+              ) : (
+                <NoDataFound />
+              )}
+              {noMoreData !== true ? (
+                <>{isFetching && "Fetching more list items..."}</>
+              ) : (
+                "No More Data"
+              )}
             </Col>
             <HomePageSuggesstion />
           </div>

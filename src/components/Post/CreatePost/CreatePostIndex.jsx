@@ -45,6 +45,7 @@ const CreatePostIndex = (props) => {
       props.dispatch(
         savePostStart({
           content: inputData.content,
+          amount: inputData.amount ? inputData.amount : "",
           post_files: props.fileUpload.data.file,
         })
       );
@@ -52,6 +53,7 @@ const CreatePostIndex = (props) => {
       props.dispatch(
         savePostStart({
           content: inputData.content,
+          amount: inputData.amount ? inputData.amount : "",
         })
       );
     }
@@ -65,7 +67,7 @@ const CreatePostIndex = (props) => {
             <Col sm={12} md={12}>
               <div className="post-create-header">
                 <div className="pull-left">
-                  <Link className="bookmarkes-list notify-title" to={"/"}>
+                  <Link className="bookmarkes-list notify-title" to={"/home"}>
                     <Image
                       src="assets/images/icons/back.svg"
                       className="svg-clone"
@@ -95,7 +97,7 @@ const CreatePostIndex = (props) => {
                     as="textarea"
                     rows={3}
                     placeholder="Compose new post..."
-                    name="text"
+                    name="content"
                     maxlength="10000"
                     style={{ width: "100%", maxWidth: "100%" }}
                     value={inputData.content}
@@ -132,16 +134,13 @@ const CreatePostIndex = (props) => {
                     </Form.Label>
                   </Form.Group>
                 </Button>
-              </div>
-
-              <div className="left-half post-write">
                 <Button>
                   <Form.Group className="mb-0">
                     <Form.Control
                       id="fileupload_video"
                       type="file"
                       multiple="multiple"
-                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png,.mp4,.mov,.moov,.m4v,.mpg,.mpeg,.wmv,.avi,.webm,.mkv,.stream,.mp3,.wav,.ogg"
+                      accept="video/mp4,video/x-m4v,video/*"
                       onChange={(event) => handleChangeImage(event, "video")}
                       name="post_files"
                     />
@@ -159,6 +158,24 @@ const CreatePostIndex = (props) => {
                   </Form.Group>
                 </Button>
               </div>
+            </Col>
+            <Col sm={12} md={12}>
+              <Form.Group>
+                <label className="text-muted m-1">Price (Optional)</label>
+                <Form.Control
+                  type="number"
+                  placeholder="Set price for the post"
+                  name="amount"
+                  value={inputData.amount}
+                  width="50%"
+                  onChange={(event) =>
+                    setInputData({
+                      ...inputData,
+                      amount: event.currentTarget.value,
+                    })
+                  }
+                />
+              </Form.Group>
             </Col>
           </Row>
         </Form>

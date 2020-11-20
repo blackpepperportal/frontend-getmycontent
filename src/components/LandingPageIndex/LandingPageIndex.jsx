@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import configuration from "react-global-configuration";
+import SocialButton from "../helper/SocialButton";
 
 import { connect } from "react-redux";
 import {
@@ -34,6 +35,14 @@ const LandingPageIndex = (props) => {
     props.dispatch(forgotPasswordStart(forgotPasswordInputData));
   };
 
+  const handleSocialLogin = (user) => {
+    console.log(user);
+  };
+
+  const handleSocialLoginFailure = (err) => {
+    console.error(err);
+  };
+
   return (
     <>
       <div className="login-section">
@@ -45,7 +54,7 @@ const LandingPageIndex = (props) => {
               md={12}
               sm={12}
               xs={12}
-              className="hidden-xs iphone-slide-area resp-btm-lg"
+              className="hidden-xs iphone-slide-area resp-btm-lg flex-49"
             >
               <div className="dm-width">
                 <div className="dm-device">
@@ -75,12 +84,45 @@ const LandingPageIndex = (props) => {
                   Sign up to make money and interact with your fans!
                 </p>
                 <div className="forms-fields">
-                  <Link to="#" className="social-button" id="twitter-connect">
+                  {configuration.get("configData.FB_CLIENT_ID") ? (
+                    <SocialButton
+                      provider="facebook"
+                      appId={configuration.get("configData.FB_CLIENT_ID")}
+                      onLoginSuccess={handleSocialLogin}
+                      onLoginFailure={handleSocialLoginFailure}
+                      className="social-button"
+                      id="facebook-connect"
+                    >
+                      <span>Sign Up / Login with Facebook</span>
+                    </SocialButton>
+                  ) : (
+                    ""
+                  )}
+
+                  {configuration.get("configData.GOOGLE_CLIENT_ID") ? (
+                    <SocialButton
+                      provider="google"
+                      key={"google"}
+                      scope={"https://www.googleapis.com/auth/user.gender.read"}
+                      appId={configuration.get("configData.GOOGLE_CLIENT_ID")}
+                      onLoginSuccess={handleSocialLogin}
+                      onLoginFailure={handleSocialLoginFailure}
+                      // onLogoutSuccess={this.onLogoutSuccess}
+                      // onLogoutFailure={this.onLogoutFailure}
+                      className="social-button"
+                      id="google-connect"
+                    >
+                      <span>Sign Up / Login with Google</span>
+                    </SocialButton>
+                  ) : (
+                    ""
+                  )}
+                  {/* <Link to="#" className="social-button" id="twitter-connect">
                     <span>Sign Up / Login with Twitter</span>
                   </Link>
                   <Link to="#" className="social-button" id="google-connect">
                     <span>Sign Up / Login with Google</span>
-                  </Link>
+                  </Link> */}
 
                   <span className="or-line">
                     <span>or</span>
