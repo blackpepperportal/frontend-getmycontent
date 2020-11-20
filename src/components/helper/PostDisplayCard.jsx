@@ -114,14 +114,19 @@ const PostDisplayCard = (props) => {
                 </Dropdown.Menu>
               </Dropdown>
             </span>
-            {post.is_user_needs_pay === 1 ? (
-              <span className="post-time">
+            {post.payment_info.is_user_needs_pay === 1 ? (
+              <span className="post-time" onClick={() => setPPVPayment(true)}>
                 <span className="post-tip-lock">{post.amount_formatted} </span>
-                <Link to="#">
+                <Link to="#" onClick={() => setPPVPayment(true)}>
                   <i className="fa fa-lock"></i>
                 </Link>
               </span>
-            ) : null}
+            ) : post.amount > 0 ? <span className="post-time">
+                <span className="post-tip-lock">{post.amount_formatted} </span>
+                <Link to="#" >
+                  <i className="fa fa-unlock text-success"></i>
+                </Link>
+              </span> : null }
           </div>
         </div>
       </div>
@@ -387,6 +392,15 @@ const PostDisplayCard = (props) => {
       <SendTipModal
         sendTip={sendTip}
         closeSendTipModal={closeSendTipModal}
+        username={post.username}
+        userPicture={post.user_picture}
+        name={post.user_displayname}
+        post_id={post.post_id}
+        user_id={post.user_id}
+      />
+      <PPVPaymentModal
+        PPVPayment={PPVPayment}
+        closePPVPaymentModal={closePPVPaymentModal}
         username={post.username}
         userPicture={post.user_picture}
         name={post.user_displayname}

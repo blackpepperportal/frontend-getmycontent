@@ -17,6 +17,12 @@ import {
   POST_FILE_UPLOAD_START,
   POST_FILE_UPLOAD_SUCCESS,
   POST_FILE_UPLOAD_FAILURE,
+ PPV_PAYMENT_STRIPE_START,
+ PPV_PAYMENT_STRIPE_SUCCESS,
+ PPV_PAYMENT_STRIPE_FAILURE,
+ PPV_PAYMENT_WALLET_START,
+ PPV_PAYMENT_WALLET_SUCCESS,
+ PPV_PAYMENT_WALLET_FAILURE,
 } from "./ActionConstant";
 
 export function savePostStart(data) {
@@ -140,6 +146,52 @@ export function postFileUploadSuccess(data) {
 export function postFileUploadFailure(error) {
   return {
     type: POST_FILE_UPLOAD_FAILURE,
+    error,
+  };
+}
+
+
+
+export function PPVPaymentStripeStart(data) {
+  return {
+    type: PPV_PAYMENT_STRIPE_START,
+    data,
+  };
+}
+
+export function PPVPaymentStripeSuccess(data) {
+  return {
+    type: PPV_PAYMENT_STRIPE_SUCCESS,
+    data,
+  };
+}
+
+export function PPVPaymentStripeFailure(error) {
+  return {
+    type: PPV_PAYMENT_STRIPE_FAILURE,
+    error,
+  };
+}
+
+// Subscription Payment wallet actions.
+
+export function PPVPaymentWalletStart(data) {
+  return {
+    type: PPV_PAYMENT_WALLET_START,
+    data,
+  };
+}
+
+export function PPVPaymentWalletSuccess(data) {
+  return {
+    type: PPV_PAYMENT_WALLET_SUCCESS,
+    data,
+  };
+}
+
+export function PPVPaymentWalletFailure(error) {
+  return {
+    type: PPV_PAYMENT_WALLET_FAILURE,
     error,
   };
 }

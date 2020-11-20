@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { Form, Button, Image, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
-  sendTipStripeStart,
-  sendTipWalletStart,
-} from "../../store/actions/SendTipAction";
+  PPVPaymentStripeStart,
+  PPVPaymentWalletStart,
+} from "../../store/actions/PostAction";
 
 const PPVPaymentModal = (props) => {
   const [amount, setAmount] = useState(0);
-  const [paymentType, setPaymentType] = useState("wallet");
+  const [paymentType, setPaymentType] = useState("card");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (paymentType === "card")
       props.dispatch(
-        sendTipStripeStart({
+        PPVPaymentStripeStart({
           post_id:
             props.post_id != undefined || props.post_id != null
               ? props.post_id
@@ -25,7 +25,7 @@ const PPVPaymentModal = (props) => {
       );
     if (paymentType === "wallet")
       props.dispatch(
-        sendTipWalletStart({
+        PPVPaymentWalletStart({
           post_id:
             props.post_id != undefined || props.post_id != null
               ? props.post_id
@@ -43,10 +43,10 @@ const PPVPaymentModal = (props) => {
         className="modal-dialog-center sent-tip-modal"
         size="md"
         centered
-        show={props.sendTip}
-        onHide={props.closeSendTipModal}
+        show={props.PPVPayment}
+        onHide={props.closePPVPaymentModal}
       >
-        {props.sendTip === true ? (
+        {props.PPVPayment === true ? (
           <Form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
               <Modal.Title>Message</Modal.Title>
@@ -70,10 +70,10 @@ const PPVPaymentModal = (props) => {
                 className="btn btn-success"
                 data-dismiss="modal"
                 onClick={handleSubmit}
-                disabled={props.tipStripe.buttonDisable}
+                disabled={props.ppvPayStripe.buttonDisable}
               >
-                {props.tipStripe.loadingButtonContent !== null
-                  ? props.tipStripe.loadingButtonContent
+                {props.ppvPayStripe.loadingButtonContent !== null
+                  ? props.ppvPayStripe.loadingButtonContent
                   : "Confirm"}
               </Button>
             </Modal.Footer>
@@ -85,7 +85,7 @@ const PPVPaymentModal = (props) => {
 };
 
 const mapStateToPros = (state) => ({
-  tipStripe: state.tip.tipStripe,
+  ppvPayStripe: state.post.ppvPayStripe,
 });
 
 function mapDispatchToProps(dispatch) {
