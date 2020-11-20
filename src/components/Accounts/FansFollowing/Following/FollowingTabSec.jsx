@@ -21,7 +21,7 @@ const FollowingTabSec = (props) => {
             src="assets/images/icons/tick-circle.svg"
             className="svg-clone"
           />
-          <span className="tab-nav-item"> Active (5) </span>
+          <span className="tab-nav-item"> Active </span>
         </Link>
       </Media>
       <Media
@@ -37,7 +37,7 @@ const FollowingTabSec = (props) => {
           onClick={() => props.setActiveSec("expired-sec")}
         >
           <Image src="assets/images/icons/warning.svg" className="svg-clone" />
-          <span className="tab-nav-item"> Expired (2) </span>
+          <span className="tab-nav-item"> Expired </span>
         </Link>
       </Media>
       <Media
@@ -53,7 +53,7 @@ const FollowingTabSec = (props) => {
           onClick={() => props.setActiveSec("all-sec")}
         >
           <Image src="assets/images/icons/all.svg" className="svg-clone" />
-          <span className="tab-nav-item"> All (5) </span>
+          <span className="tab-nav-item"> All </span>
         </Link>
       </Media>
     </ul>
