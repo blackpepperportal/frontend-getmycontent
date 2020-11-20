@@ -81,7 +81,7 @@ const LandingPageIndex = (props) => {
                   />
                 </Link>
                 <p className="login-tagline">
-                  Sign up to make money and interact with your fans!
+                  {configuration.get("configData.tag_name")}
                 </p>
                 <div className="forms-fields">
                   {configuration.get("configData.FB_CLIENT_ID") ? (
