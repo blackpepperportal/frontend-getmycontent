@@ -11,11 +11,11 @@ const FollowingTabSec = (props) => {
         className={props.activeSec === "active-sec" ? "active" : ""}
       >
         <Link
-          to="#Section1"
+          to="#active"
           aria-controls="home"
           role="tab"
           data-toggle="tab"
-          onClick={() => props.setActiveSec("active-sec")}
+          onClick={(event) => props.changeSection(event, "active-sec")}
         >
           <Image
             src="assets/images/icons/tick-circle.svg"
@@ -30,11 +30,11 @@ const FollowingTabSec = (props) => {
         className={props.activeSec === "expired-sec" ? "active" : ""}
       >
         <Link
-          to="#Section2"
+          to="#expired"
           aria-controls="profile"
           role="tab"
           data-toggle="tab"
-          onClick={() => props.setActiveSec("expired-sec")}
+          onClick={(event) => props.changeSection(event, "expired-sec")}
         >
           <Image src="assets/images/icons/warning.svg" className="svg-clone" />
           <span className="tab-nav-item"> Expired </span>
@@ -46,11 +46,11 @@ const FollowingTabSec = (props) => {
         className={props.activeSec === "all-sec" ? "active" : ""}
       >
         <Link
-          to="#Section3"
+          to="#all"
           aria-controls="messages"
           role="tab"
           data-toggle="tab"
-          onClick={() => props.setActiveSec("all-sec")}
+          onClick={(event) => props.changeSection(event, "all-sec")}
         >
           <Image src="assets/images/icons/all.svg" className="svg-clone" />
           <span className="tab-nav-item"> All </span>

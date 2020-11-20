@@ -24,6 +24,8 @@ import io from "socket.io-client";
 import configuration from "react-global-configuration";
 
 import InboxLoader from "../Loader/InboxLoader";
+import { getErrorNotificationMessage } from "../helper/NotificationMessage";
+import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 
 let chatSocket;
 
@@ -35,6 +37,14 @@ const MessageIndex = (props) => {
 
   useEffect(() => {
     props.dispatch(fetchChatUsersStart());
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
+    if (chatSocketUrl === "") {
+      const notificationMessage = getErrorNotificationMessage(
+        "Socket URL is not configured. Chat wil not work..."
+      );
+      props.dispatch(createNotification(notificationMessage));
+      window.location.assign("/home");
+    }
   }, []);
 
   useEffect(() => {

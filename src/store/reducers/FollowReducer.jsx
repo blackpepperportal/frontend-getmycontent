@@ -17,6 +17,12 @@ import {
   FETCH_FOLLOWING_START,
   FETCH_FOLLOWING_SUCCESS,
   FETCH_FOLLOWING_FAILURE,
+  FETCH_ACTIVE_FOLLOWING_START,
+  FETCH_ACTIVE_FOLLOWING_SUCCESS,
+  FETCH_ACTIVE_FOLLOWING_FAILURE,
+  FETCH_EXPIRED_FOLLOWING_START,
+  FETCH_EXPIRED_FOLLOWING_SUCCESS,
+  FETCH_EXPIRED_FOLLOWING_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -52,6 +58,16 @@ const initialState = {
     error: false,
   },
   following: {
+    data: {},
+    loading: true,
+    error: false,
+  },
+  activeFollowing: {
+    data: {},
+    loading: true,
+    error: false,
+  },
+  expiredFollowing: {
     data: {},
     loading: true,
     error: false,
@@ -159,9 +175,7 @@ const FollowReducer = (state = initialState, action) => {
           error: action.error,
         },
       };
-    
-    
-    
+
     case FETCH_ACTIVE_FOLLOWERS_START:
       return {
         ...state,
@@ -238,6 +252,60 @@ const FollowReducer = (state = initialState, action) => {
       return {
         ...state,
         following: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+    case FETCH_ACTIVE_FOLLOWING_START:
+      return {
+        ...state,
+        activeFollowing: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_ACTIVE_FOLLOWING_SUCCESS:
+      return {
+        ...state,
+        activeFollowing: {
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_ACTIVE_FOLLOWING_FAILURE:
+      return {
+        ...state,
+        activeFollowing: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+    case FETCH_EXPIRED_FOLLOWING_START:
+      return {
+        ...state,
+        expiredFollowing: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_EXPIRED_FOLLOWING_SUCCESS:
+      return {
+        ...state,
+        expiredFollowing: {
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_EXPIRED_FOLLOWING_FAILURE:
+      return {
+        ...state,
+        expiredFollowing: {
           data: {},
           loading: true,
           error: action.error,

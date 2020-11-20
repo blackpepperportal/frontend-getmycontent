@@ -5,14 +5,25 @@ import FollowingExpiredSec from "./FollowingExpiredSec";
 import FollowingTabSec from "./FollowingTabSec";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
-import { fetchFollowersStart } from "../../../../store/actions/FollowAction";
+import {
+  fetchActiveFollowingStart,
+  fetchExpiredFollowingStart,
+  fetchFollowingStart,
+} from "../../../../store/actions/FollowAction";
 import FollowingLoader from "../../../Loader/FollowingLoader";
 
 const FollowingIndex = (props) => {
   useEffect(() => {
-    props.dispatch(fetchFollowersStart());
+    props.dispatch(fetchActiveFollowingStart());
   }, []);
   const [activeSec, setActiveSec] = useState("active-sec");
+
+  const changeSection = (event, type) => {
+    setActiveSec(type);
+    if (type === "active-sec") props.dispatch(fetchActiveFollowingStart());
+    if (type === "expired-sec") props.dispatch(fetchExpiredFollowingStart());
+    if (type === "all-sec") props.dispatch(fetchFollowingStart());
+  };
 
   return (
     <div className="lists">
@@ -38,22 +49,25 @@ const FollowingIndex = (props) => {
                 <FollowingTabSec
                   activeSec={activeSec}
                   setActiveSec={setActiveSec}
+                  changeSection={changeSection}
                 />
                 <div className="tab-content tabs">
                   <FollowingActiveSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
-                    followers={props.followers}
+                    following={props.activeFollowing}
                   />
 
                   <FollowingExpiredSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
+                    following={props.expiredFollowing}
                   />
 
                   <FollowingAllSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
+                    following={props.following}
                   />
                 </div>
               </div>
@@ -66,7 +80,9 @@ const FollowingIndex = (props) => {
 };
 
 const mapStateToPros = (state) => ({
-  followers: state.follow.followers,
+  following: state.follow.following,
+  activeFollowing: state.follow.activeFollowing,
+  expiredFollowing: state.follow.expiredFollowing,
 });
 
 function mapDispatchToProps(dispatch) {
