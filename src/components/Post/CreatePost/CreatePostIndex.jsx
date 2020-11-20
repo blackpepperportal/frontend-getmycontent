@@ -14,13 +14,9 @@ const CreatePostIndex = (props) => {
 
   const [fileUploadStatus, setFileUploadStatus] = useState(false);
 
-  const handleChangeImage = (event, type) => {
+  const handleChangeImage = (event, fileType) => {
     if (event.currentTarget.type === "file") {
       setFileUploadStatus(true);
-      // setInputData({
-      //   ...inputData,
-      //   [event.currentTarget.name]: event.currentTarget.files[0],
-      // });
       let reader = new FileReader();
       let file = event.currentTarget.files[0];
       reader.onloadend = () => {
@@ -33,7 +29,7 @@ const CreatePostIndex = (props) => {
       props.dispatch(
         postFileUploadStart({
           file: event.currentTarget.files[0],
-          file_type: type,
+          file_type: fileType,
         })
       );
     }
@@ -46,7 +42,7 @@ const CreatePostIndex = (props) => {
         savePostStart({
           content: inputData.content,
           amount: inputData.amount ? inputData.amount : "",
-          post_files: props.fileUpload.data.file,
+          post_files: props.fileUpload.data.post_file.post_file_id,
         })
       );
     } else {

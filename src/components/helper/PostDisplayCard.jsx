@@ -11,6 +11,7 @@ import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
 import PPVPaymentModal from "./PPVPaymentModal";
+import ReactPlayer from 'react-player/lazy'
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -127,7 +128,6 @@ const PostDisplayCard = (props) => {
 
       <div className="post-content">
         <p>{post.content != undefined ? post.content : ""}</p>
-
         {post.postFiles
           ? post.postFiles.length > 0
             ? post.postFiles.map((postFile, index) =>
@@ -142,7 +142,15 @@ const PostDisplayCard = (props) => {
                       </div>
                     </div>
                   </div>
-                ) : null
+                ) : postFile.file_type === 'video' ? 
+                  <div className="post-image">
+                    <div className="">
+                      <div className="gallery js-gallery">
+                        <ReactPlayer light={postFile.blur_file} url={postFile.post_file} />
+                      </div>
+                    </div>
+                  </div> 
+                  : ""
               )
             : null
           : null}

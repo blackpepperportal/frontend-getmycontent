@@ -32,7 +32,7 @@ function* savePostAPI() {
   try {
     const inputData = yield select((state) => state.post.savePost.inputData);
 
-    if (!inputData.content && !inputData.files) {
+    if (!inputData.content && !inputData.post_files) {
       yield put(savePostFailure("Please fill the content"));
       const notificationMessage = getErrorNotificationMessage(
         "Please fill the content"
