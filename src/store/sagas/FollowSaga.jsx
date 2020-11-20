@@ -7,6 +7,8 @@ import {
   FETCH_FOLLOWING_START,
   FOLLOW_USER_START,
   UNFOLLOW_USER_START,
+  FETCH_ACTIVE_FOLLOWING_START,
+  FETCH_EXPIRED_FOLLOWING_START,
 } from "../actions/ActionConstant";
 import { createNotification } from "react-redux-notify";
 import {
@@ -26,6 +28,10 @@ import {
   followUserSuccess,
   unFollowUserFailure,
   unFollowUserSuccess,
+  fetchActiveFollowingSuccess,
+  fetchActiveFollowingFailure,
+  fetchExpiredFollowingSuccess,
+  fetchExpiredFollowingFailure,
 } from "../actions/FollowAction";
 
 function* followUserAPI() {
@@ -156,11 +162,59 @@ function* fetchFollowingAPI() {
   }
 }
 
+function* fetchActiveFollowingAPI() {
+  try {
+    const response = yield api.postMethod("active_followings");
+    if (response.data.success) {
+      yield put(fetchActiveFollowingSuccess(response.data.data));
+    } else {
+      yield put(fetchActiveFollowingFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchActiveFollowingFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* fetchExpiredFollowingAPI() {
+  try {
+    const response = yield api.postMethod("expired_followings");
+    if (response.data.success) {
+      yield put(fetchExpiredFollowingSuccess(response.data.data));
+    } else {
+      yield put(fetchExpiredFollowingFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchExpiredFollowingFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([yield takeLatest(FOLLOW_USER_START, followUserAPI)]);
   yield all([yield takeLatest(UNFOLLOW_USER_START, unFollowUserAPI)]);
   yield all([yield takeLatest(FETCH_FOLLOWERS_START, fetchFollowersAPI)]);
-  yield all([yield takeLatest(FETCH_ACTIVE_FOLLOWERS_START, fetchActiveFollowersAPI)]);
-  yield all([yield takeLatest(FETCH_EXPIRED_FOLLOWERS_START, fetchExpiredFollowersAPI)]);
+  yield all([
+    yield takeLatest(FETCH_ACTIVE_FOLLOWERS_START, fetchActiveFollowersAPI),
+  ]);
+  yield all([
+    yield takeLatest(FETCH_EXPIRED_FOLLOWERS_START, fetchExpiredFollowersAPI),
+  ]);
   yield all([yield takeLatest(FETCH_FOLLOWING_START, fetchFollowingAPI)]);
+  yield all([
+    yield takeLatest(FETCH_ACTIVE_FOLLOWING_START, fetchActiveFollowingAPI),
+  ]);
+  yield all([
+    yield takeLatest(FETCH_EXPIRED_FOLLOWING_START, fetchExpiredFollowingAPI),
+  ]);
 }

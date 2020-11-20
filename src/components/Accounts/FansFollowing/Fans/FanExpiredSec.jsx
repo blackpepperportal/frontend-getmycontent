@@ -4,7 +4,7 @@ import { Row } from "react-bootstrap";
 import UserCard from "../UserCard";
 import NoDataFound from "../../../NoDataFound/NoDataFound";
 
-const FollowingExpiredSec = (props) => {
+const FanExpiredSec = (props) => {
   return (
     <>
       <div
@@ -16,7 +16,7 @@ const FollowingExpiredSec = (props) => {
         }
         id="expired"
       >
-        {props.following.loading ? (
+        {props.followers.loading ? (
           "Loading..."
         ) : (
           <>
@@ -24,8 +24,8 @@ const FollowingExpiredSec = (props) => {
               <div className="pull-left">
                 <Link className="bookmarkes-list" to="#">
                   <span className="mr-2">
-                    {props.following.data.total
-                      ? props.following.data.total
+                    {props.followers.data.total
+                      ? props.followers.data.total
                       : 0}{" "}
                   </span>{" "}
                   ACTIVE
@@ -33,8 +33,8 @@ const FollowingExpiredSec = (props) => {
               </div>
             </div>
             <Row>
-              {props.following.data.followers.length > 0 ? (
-                props.following.data.followers.map((follower) => (
+              {props.followers.data.followers.length > 0 ? (
+                props.followers.data.followers.map((follower) => (
                   <UserCard user={follower} />
                 ))
               ) : (
@@ -48,4 +48,4 @@ const FollowingExpiredSec = (props) => {
   );
 };
 
-export default FollowingExpiredSec;
+export default FanExpiredSec;

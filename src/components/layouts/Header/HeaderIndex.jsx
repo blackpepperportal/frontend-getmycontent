@@ -118,7 +118,7 @@ const HeaderIndex = (props) => {
 
                   <ul className="list-inline">
                     <Media as="li">
-                      <Link to={"/following"}>
+                      <Link to={"/fans"} onClick={() => setIsVisible(false)}>
                         <span className="fans-follow">
                           {localStorage.getItem("total_followers")
                             ? localStorage.getItem("total_followers")
@@ -128,7 +128,10 @@ const HeaderIndex = (props) => {
                       </Link>
                     </Media>
                     <Media as="li">
-                      <Link to={"/fans"}>
+                      <Link
+                        to={"/following"}
+                        onClick={() => setIsVisible(false)}
+                      >
                         <span className="fans-follow">
                           {localStorage.getItem("total_followings")
                             ? localStorage.getItem("total_followings")

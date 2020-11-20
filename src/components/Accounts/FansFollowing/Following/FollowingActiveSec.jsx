@@ -15,9 +15,9 @@ const FollowingActiveSec = (props) => {
             ? "tab-pane fade in active"
             : "tab-pane fade"
         }
-        id="Section1"
+        id="active"
       >
-        {props.followers.loading ? (
+        {props.following.loading ? (
           "Loading..."
         ) : (
           <>
@@ -25,8 +25,8 @@ const FollowingActiveSec = (props) => {
               <div className="pull-left">
                 <Link className="bookmarkes-list" to="#">
                   <span className="mr-2">
-                    {props.followers.data.total
-                      ? props.followers.data.total
+                    {props.following.data.total
+                      ? props.following.data.total
                       : 0}{" "}
                   </span>{" "}
                   ACTIVE
@@ -34,8 +34,8 @@ const FollowingActiveSec = (props) => {
               </div>
             </div>
             <Row>
-              {props.followers.data.followers.length > 0 ? (
-                props.followers.data.followers.map((follower) => (
+              {props.following.data.followers.length > 0 ? (
+                props.following.data.followers.map((follower) => (
                   <UserCard user={follower} />
                 ))
               ) : (

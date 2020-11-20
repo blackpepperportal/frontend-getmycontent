@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Image, Media } from "react-bootstrap";
 
-const FollowingTabSec = (props) => {
+const FanTabSec = (props) => {
   return (
     <ul className="nav nav-tabs following-tab-sec" role="tablist">
       <Media
@@ -60,4 +60,4 @@ const FollowingTabSec = (props) => {
   );
 };
 
-export default FollowingTabSec;
+export default FanTabSec;

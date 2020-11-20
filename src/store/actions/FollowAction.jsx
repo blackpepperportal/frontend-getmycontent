@@ -17,6 +17,12 @@ import {
   FETCH_FOLLOWING_START,
   FETCH_FOLLOWING_SUCCESS,
   FETCH_FOLLOWING_FAILURE,
+  FETCH_ACTIVE_FOLLOWING_START,
+  FETCH_ACTIVE_FOLLOWING_SUCCESS,
+  FETCH_ACTIVE_FOLLOWING_FAILURE,
+  FETCH_EXPIRED_FOLLOWING_START,
+  FETCH_EXPIRED_FOLLOWING_SUCCESS,
+  FETCH_EXPIRED_FOLLOWING_FAILURE,
 } from "./ActionConstant";
 
 export function followUserStart(data) {
@@ -140,6 +146,48 @@ export function fetchFollowingSuccess(data) {
 export function fetchFollowingFailure(error) {
   return {
     type: FETCH_FOLLOWING_FAILURE,
+    error,
+  };
+}
+
+export function fetchActiveFollowingStart(data) {
+  return {
+    type: FETCH_ACTIVE_FOLLOWING_START,
+    data,
+  };
+}
+
+export function fetchActiveFollowingSuccess(data) {
+  return {
+    type: FETCH_ACTIVE_FOLLOWING_SUCCESS,
+    data,
+  };
+}
+
+export function fetchActiveFollowingFailure(error) {
+  return {
+    type: FETCH_ACTIVE_FOLLOWING_FAILURE,
+    error,
+  };
+}
+
+export function fetchExpiredFollowingStart(data) {
+  return {
+    type: FETCH_EXPIRED_FOLLOWING_START,
+    data,
+  };
+}
+
+export function fetchExpiredFollowingSuccess(data) {
+  return {
+    type: FETCH_EXPIRED_FOLLOWING_SUCCESS,
+    data,
+  };
+}
+
+export function fetchExpiredFollowingFailure(error) {
+  return {
+    type: FETCH_EXPIRED_FOLLOWING_FAILURE,
     error,
   };
 }

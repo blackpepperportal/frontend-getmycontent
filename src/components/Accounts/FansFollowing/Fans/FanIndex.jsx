@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
-import FollowingAllSec from "./FollowingAllSec";
-import FollowingActiveSec from "./FollowingActiveSec";
-import FollowingExpiredSec from "./FollowingExpiredSec";
-import FollowingTabSec from "./FollowingTabSec";
+import FanAllSec from "./FanAllSec";
+import FanActiveSec from "./FanActiveSec";
+import FanExpiredSec from "./FanExpiredSec";
+import FanTabSec from "./FanTabSec";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import {
-  fetchActiveFollowingStart,
-  fetchExpiredFollowingStart,
-  fetchFollowingStart,
+  fetchActiveFollowersStart,
+  fetchExpiredFollowersStart,
+  fetchFollowersStart,
 } from "../../../../store/actions/FollowAction";
 import FollowingLoader from "../../../Loader/FollowingLoader";
 
-const FollowingIndex = (props) => {
+const FanIndex = (props) => {
   useEffect(() => {
-    props.dispatch(fetchActiveFollowingStart());
+    props.dispatch(fetchActiveFollowersStart());
   }, []);
   const [activeSec, setActiveSec] = useState("active-sec");
 
   const changeSection = (event, type) => {
     setActiveSec(type);
-    if (type === "active-sec") props.dispatch(fetchActiveFollowingStart());
-    if (type === "expired-sec") props.dispatch(fetchExpiredFollowingStart());
-    if (type === "all-sec") props.dispatch(fetchFollowingStart());
+    if (type === "active-sec") props.dispatch(fetchActiveFollowersStart());
+    if (type === "expired-sec") props.dispatch(fetchExpiredFollowersStart());
+    if (type === "all-sec") props.dispatch(fetchFollowersStart());
   };
 
   return (
@@ -39,35 +39,35 @@ const FollowingIndex = (props) => {
                       className="svg-clone"
                       width=""
                     />
-                    Following
+                    Fans
                   </h3>
                 </div>
               </div>
             </div>
             <div className="listing-tab">
               <div className="tab" role="tabpanel">
-                <FollowingTabSec
+                <FanTabSec
                   activeSec={activeSec}
                   setActiveSec={setActiveSec}
                   changeSection={changeSection}
                 />
                 <div className="tab-content tabs">
-                  <FollowingActiveSec
+                  <FanActiveSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
-                    following={props.activeFollowing}
+                    followers={props.activeFollowers}
                   />
 
-                  <FollowingExpiredSec
+                  <FanExpiredSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
-                    following={props.expiredFollowing}
+                    followers={props.expiredFollowers}
                   />
 
-                  <FollowingAllSec
+                  <FanAllSec
                     activeSec={activeSec}
                     setActiveSec={setActiveSec}
-                    following={props.following}
+                    followers={props.followers}
                   />
                 </div>
               </div>
@@ -80,13 +80,13 @@ const FollowingIndex = (props) => {
 };
 
 const mapStateToPros = (state) => ({
-  following: state.follow.following,
-  activeFollowing: state.follow.activeFollowing,
-  expiredFollowing: state.follow.expiredFollowing,
+  followers: state.follow.followers,
+  activeFollowers: state.follow.activeFollowers,
+  expiredFollowers: state.follow.expiredFollowers,
 });
 
 function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(FollowingIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(FanIndex);
