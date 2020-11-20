@@ -36,6 +36,22 @@ class AuthFooter extends Component {
                       ))}
                   </ul>
                 </Col>
+                <Col sm={12} xs={12} xl={6} lg={6} md={12}>
+                  <ul className="list-inline">
+                    {configuration
+                      .get("configData.footer_pages2")
+                      .map((static_page, index) => (
+                        <Media as="li">
+                          <Link
+                            to={`/page/${static_page.static_page_unique_id}`}
+                            key={static_page.static_page_unique_id}
+                          >
+                            {static_page.title}
+                          </Link>
+                        </Media>
+                      ))}
+                  </ul>
+                </Col>
                 <Col sm={12} xs={12} xl={2} lg={2} md={12}>
                   <Dropdown className="country-sec" style={{display : "none"}}>
                     <Dropdown.Toggle
