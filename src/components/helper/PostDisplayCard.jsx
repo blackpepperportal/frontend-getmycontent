@@ -11,6 +11,7 @@ import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
 import PPVPaymentModal from "./PPVPaymentModal";
+import ReactPlayer from 'react-player/lazy'
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -113,21 +114,25 @@ const PostDisplayCard = (props) => {
                 </Dropdown.Menu>
               </Dropdown>
             </span>
-            {post.is_user_needs_pay === 1 ? (
-              <span className="post-time">
+            {post.payment_info.is_user_needs_pay === 1 ? (
+              <span className="post-time" onClick={() => setPPVPayment(true)}>
                 <span className="post-tip-lock">{post.amount_formatted} </span>
-                <Link to="#">
+                <Link to="#" onClick={() => setPPVPayment(true)}>
                   <i className="fa fa-lock"></i>
                 </Link>
               </span>
-            ) : null}
+            ) : post.amount > 0 ? <span className="post-time">
+                <span className="post-tip-lock">{post.amount_formatted} </span>
+                <Link to="#" >
+                  <i className="fa fa-unlock text-success"></i>
+                </Link>
+              </span> : null }
           </div>
         </div>
       </div>
 
       <div className="post-content">
         <p>{post.content != undefined ? post.content : ""}</p>
-
         {post.postFiles
           ? post.postFiles.length > 0
             ? post.postFiles.map((postFile, index) =>
@@ -142,7 +147,15 @@ const PostDisplayCard = (props) => {
                       </div>
                     </div>
                   </div>
-                ) : null
+                ) : postFile.file_type === 'video' ? 
+                  <div className="post-image">
+                    <div className="">
+                      <div className="gallery js-gallery">
+                        <ReactPlayer light={postFile.blur_file} url={postFile.post_file} />
+                      </div>
+                    </div>
+                  </div> 
+                  : ""
               )
             : null
           : null}
@@ -379,6 +392,15 @@ const PostDisplayCard = (props) => {
       <SendTipModal
         sendTip={sendTip}
         closeSendTipModal={closeSendTipModal}
+        username={post.username}
+        userPicture={post.user_picture}
+        name={post.user_displayname}
+        post_id={post.post_id}
+        user_id={post.user_id}
+      />
+      <PPVPaymentModal
+        PPVPayment={PPVPayment}
+        closePPVPaymentModal={closePPVPaymentModal}
         username={post.username}
         userPicture={post.user_picture}
         name={post.user_displayname}

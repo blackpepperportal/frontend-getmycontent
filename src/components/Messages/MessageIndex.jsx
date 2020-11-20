@@ -28,6 +28,11 @@ import InboxLoader from "../Loader/InboxLoader";
 let chatSocket;
 
 const MessageIndex = (props) => {
+  const [activeChat, setActiveChat] = useState(0);
+  const [socketStatus, setSocketStatus] = useState(0);
+  const [toUserId, setToUserId] = useState(0);
+  const [inputMessage, setInputMessage] = useState("");
+
   useEffect(() => {
     props.dispatch(fetchChatUsersStart());
   }, []);
@@ -39,25 +44,22 @@ const MessageIndex = (props) => {
       props.chatUsers.data.users.length > 0
     ) {
       console.log("asdfasdf");
+      setToUserId(props.chatUsers.data.users[0].to_user_id);
       chatSocketConnect(props.chatUsers.data.users[0].to_user_id);
     } else {
       console.log("falseeeeee");
     }
   }, [!props.chatUsers.loading]);
 
-  const [activeChat, setActiveChat] = useState(0);
-  const [socketStatus, setSocketStatus] = useState(0);
-  const [toUserId, setToUserId] = useState(0);
-  const [inputMessage, setInputMessage] = useState("");
-
   const chatSocketConnect = (to_user_id) => {
     // check the socket url is configured
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
-    console.log(toUserId);
+    console.log("chatSocket", chatSocketUrl);
+    console.log("Input ID", to_user_id);
     if (chatSocketUrl) {
       chatSocket = io(chatSocketUrl, {
         query:
-          `commonid: 'user_id_` +
+          `commonid:'user_id_` +
           localStorage.getItem("userId") +
           `_to_user_id_` +
           to_user_id +
@@ -107,6 +109,7 @@ const MessageIndex = (props) => {
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
     console.log("chatSocketUrl" + chatSocketUrl);
     console.log("chatSocket", chatSocket);
+    console.log("toUserId", toUserId);
     if (chatSocketUrl != undefined && inputMessage) {
       let chatData = [
         {
@@ -118,6 +121,7 @@ const MessageIndex = (props) => {
           user_picture: localStorage.getItem("user_picture"),
         },
       ];
+      console.log("chat meessage", chatData[0]);
       chatSocket.emit("message", chatData[0]);
       let messages;
       if (props.chatMessages.data.messages != null) {

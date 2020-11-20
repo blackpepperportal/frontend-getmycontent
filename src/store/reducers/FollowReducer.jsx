@@ -8,6 +8,12 @@ import {
   FETCH_FOLLOWERS_START,
   FETCH_FOLLOWERS_SUCCESS,
   FETCH_FOLLOWERS_FAILURE,
+  FETCH_ACTIVE_FOLLOWERS_START,
+  FETCH_ACTIVE_FOLLOWERS_SUCCESS,
+  FETCH_ACTIVE_FOLLOWERS_FAILURE,
+  FETCH_EXPIRED_FOLLOWERS_START,
+  FETCH_EXPIRED_FOLLOWERS_SUCCESS,
+  FETCH_EXPIRED_FOLLOWERS_FAILURE,
   FETCH_FOLLOWING_START,
   FETCH_FOLLOWING_SUCCESS,
   FETCH_FOLLOWING_FAILURE,
@@ -31,6 +37,16 @@ const initialState = {
     buttonDisable: false,
   },
   followers: {
+    data: {},
+    loading: true,
+    error: false,
+  },
+  activeFollowers: {
+    data: {},
+    loading: true,
+    error: false,
+  },
+  expiredFollowers: {
     data: {},
     loading: true,
     error: false,
@@ -138,6 +154,63 @@ const FollowReducer = (state = initialState, action) => {
       return {
         ...state,
         followers: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+    
+    
+    
+    case FETCH_ACTIVE_FOLLOWERS_START:
+      return {
+        ...state,
+        activeFollowers: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_ACTIVE_FOLLOWERS_SUCCESS:
+      return {
+        ...state,
+        activeFollowers: {
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_ACTIVE_FOLLOWERS_FAILURE:
+      return {
+        ...state,
+        activeFollowers: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+    case FETCH_EXPIRED_FOLLOWERS_START:
+      return {
+        ...state,
+        expiredFollowers: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_EXPIRED_FOLLOWERS_SUCCESS:
+      return {
+        ...state,
+        expiredFollowers: {
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_EXPIRED_FOLLOWERS_FAILURE:
+      return {
+        ...state,
+        expiredFollowers: {
           data: {},
           loading: true,
           error: action.error,

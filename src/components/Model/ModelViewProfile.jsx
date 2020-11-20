@@ -12,6 +12,7 @@ import {
   fetchSingleUserPostsStart,
 } from "../../store/actions/OtherUserAction";
 import { saveFavStart } from "../../store/actions/FavAction";
+import { saveChatUserStart } from "../../store/actions/ChatAction";
 import { subscriptionPaymentStripeStart } from "../../store/actions/SubscriptionAction";
 
 const ModelViewProfile = (props) => {
@@ -28,9 +29,7 @@ const ModelViewProfile = (props) => {
   }, []);
 
   const [activeSec, setActiveSec] = useState("post");
-
   const [sendTip, setSendTip] = useState(false);
-
   const [starStatus, setStarStatus] = useState("");
 
   const closeSendTipModal = () => {
@@ -68,6 +67,16 @@ const ModelViewProfile = (props) => {
     props.dispatch(
       saveFavStart({
         user_id: user_id,
+      })
+    );
+  };
+  
+  const handleChatUser = (event, user_id) => {
+    event.preventDefault();
+    props.dispatch(
+      saveChatUserStart({
+        from_user_id: localStorage.getItem('userId'),
+        to_user_id: user_id,
       })
     );
   };
@@ -148,6 +157,12 @@ const ModelViewProfile = (props) => {
                     <Button
                       type="button"
                       className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                      onClick={(event) =>
+                                handleChatUser(
+                                  event,
+                                  userDetails.data.user.user_id,
+                                )
+                              }
                     >
                       <Image
                         src={
@@ -417,6 +432,7 @@ const ModelViewProfile = (props) => {
 
 const mapStateToPros = (state) => ({
   comments: state.comment.comments,
+  chat: state.chat,
   userDetails: state.otherUser.userDetails,
   userPosts: state.otherUser.userPosts,
 });

@@ -8,6 +8,12 @@ import {
   FETCH_FOLLOWERS_START,
   FETCH_FOLLOWERS_SUCCESS,
   FETCH_FOLLOWERS_FAILURE,
+  FETCH_ACTIVE_FOLLOWERS_START,
+  FETCH_ACTIVE_FOLLOWERS_SUCCESS,
+  FETCH_ACTIVE_FOLLOWERS_FAILURE,
+  FETCH_EXPIRED_FOLLOWERS_START,
+  FETCH_EXPIRED_FOLLOWERS_SUCCESS,
+  FETCH_EXPIRED_FOLLOWERS_FAILURE,
   FETCH_FOLLOWING_START,
   FETCH_FOLLOWING_SUCCESS,
   FETCH_FOLLOWING_FAILURE,
@@ -72,6 +78,47 @@ export function fetchFollowersSuccess(data) {
 export function fetchFollowersFailure(error) {
   return {
     type: FETCH_FOLLOWERS_FAILURE,
+    error,
+  };
+}
+export function fetchActiveFollowersStart(data) {
+  return {
+    type: FETCH_ACTIVE_FOLLOWERS_START,
+    data,
+  };
+}
+
+export function fetchActiveFollowersSuccess(data) {
+  return {
+    type: FETCH_ACTIVE_FOLLOWERS_SUCCESS,
+    data,
+  };
+}
+
+export function fetchActiveFollowersFailure(error) {
+  return {
+    type: FETCH_ACTIVE_FOLLOWERS_FAILURE,
+    error,
+  };
+}
+
+export function fetchExpiredFollowersStart(data) {
+  return {
+    type: FETCH_EXPIRED_FOLLOWERS_START,
+    data,
+  };
+}
+
+export function fetchExpiredFollowersSuccess(data) {
+  return {
+    type: FETCH_EXPIRED_FOLLOWERS_SUCCESS,
+    data,
+  };
+}
+
+export function fetchExpiredFollowersFailure(error) {
+  return {
+    type: FETCH_EXPIRED_FOLLOWERS_FAILURE,
     error,
   };
 }

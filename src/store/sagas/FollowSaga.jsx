@@ -2,6 +2,8 @@ import { call, select, put, takeLatest, all } from "redux-saga/effects";
 import api from "../../Environment";
 import {
   FETCH_FOLLOWERS_START,
+  FETCH_ACTIVE_FOLLOWERS_START,
+  FETCH_EXPIRED_FOLLOWERS_START,
   FETCH_FOLLOWING_START,
   FOLLOW_USER_START,
   UNFOLLOW_USER_START,
@@ -14,6 +16,10 @@ import {
 import {
   fetchFollowersFailure,
   fetchFollowersSuccess,
+  fetchActiveFollowersFailure,
+  fetchActiveFollowersSuccess,
+  fetchExpiredFollowersFailure,
+  fetchExpiredFollowersSuccess,
   fetchFollowingFailure,
   fetchFollowingSuccess,
   followUserFailure,
@@ -93,6 +99,44 @@ function* fetchFollowersAPI() {
   }
 }
 
+function* fetchActiveFollowersAPI() {
+  try {
+    const response = yield api.postMethod("active_followers");
+    if (response.data.success) {
+      yield put(fetchActiveFollowersSuccess(response.data.data));
+    } else {
+      yield put(fetchActiveFollowersFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchActiveFollowersFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* fetchExpiredFollowersAPI() {
+  try {
+    const response = yield api.postMethod("expired_followers");
+    if (response.data.success) {
+      yield put(fetchExpiredFollowersSuccess(response.data.data));
+    } else {
+      yield put(fetchExpiredFollowersFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchExpiredFollowersFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 function* fetchFollowingAPI() {
   try {
     const response = yield api.postMethod("followings");
@@ -116,5 +160,7 @@ export default function* pageSaga() {
   yield all([yield takeLatest(FOLLOW_USER_START, followUserAPI)]);
   yield all([yield takeLatest(UNFOLLOW_USER_START, unFollowUserAPI)]);
   yield all([yield takeLatest(FETCH_FOLLOWERS_START, fetchFollowersAPI)]);
+  yield all([yield takeLatest(FETCH_ACTIVE_FOLLOWERS_START, fetchActiveFollowersAPI)]);
+  yield all([yield takeLatest(FETCH_EXPIRED_FOLLOWERS_START, fetchExpiredFollowersAPI)]);
   yield all([yield takeLatest(FETCH_FOLLOWING_START, fetchFollowingAPI)]);
 }

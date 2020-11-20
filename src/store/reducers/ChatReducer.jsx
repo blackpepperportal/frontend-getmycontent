@@ -6,6 +6,9 @@ import {
   FETCH_CHAT_MESSAGE_SUCCESS,
   FETCH_CHAT_MESSAGE_FAILURE,
   ADD_MESSAGE_CONTENT,
+  SAVE_CHAT_USERS_START,
+  SAVE_CHAT_USERS_SUCCESS,
+  SAVE_CHAT_USERS_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -14,6 +17,14 @@ const initialState = {
     loading: true,
     error: false,
     inputData: {},
+  },
+  saveChatUser: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+    loadingButtonContent: null,
+    buttonDisable: false,
   },
   messages: {
     data: {
@@ -112,6 +123,43 @@ const ChatReducer = (state = initialState, action) => {
           buttonDisable: false,
         },
       };
+      case SAVE_CHAT_USERS_START:
+      return {
+        ...state,
+        saveChatUser: {
+          data: {},
+          loading: true,
+          error: false,
+          inputData: action.data,
+          loadingButtonContent: "Loading... Please wait.",
+          buttonDisable: true,
+        },
+      };
+    case SAVE_CHAT_USERS_SUCCESS:
+      return {
+        ...state,
+        saveChatUser: {
+          data: action.data,
+          loading: false,
+          error: false,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
+        },
+      };
+    case SAVE_CHAT_USERS_FAILURE:
+      return {
+        ...state,
+        saveChatUser: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
+        },
+      };
+    
 
     default:
       return state;

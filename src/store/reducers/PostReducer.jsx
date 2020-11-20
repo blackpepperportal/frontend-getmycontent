@@ -17,6 +17,12 @@ import {
   POST_FILE_UPLOAD_START,
   POST_FILE_UPLOAD_SUCCESS,
   POST_FILE_UPLOAD_FAILURE,
+  PPV_PAYMENT_STRIPE_START,
+  PPV_PAYMENT_STRIPE_SUCCESS,
+  PPV_PAYMENT_STRIPE_FAILURE,
+  PPV_PAYMENT_WALLET_START,
+  PPV_PAYMENT_WALLET_SUCCESS,
+  PPV_PAYMENT_WALLET_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -64,6 +70,22 @@ const initialState = {
     inputData: {},
     loadingButtonContent: null,
     buttonDisable: false,
+  },
+  ppvPayStripe: {
+    inputData: {},
+    loading: true,
+    error: false,
+    success: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
+  },
+  ppvPayWallet: {
+    inputData: {},
+    loading: true,
+    error: false,
+    success: {},
+    buttonDisable: false,
+    loadingButtonContent: null,
   },
 };
 
@@ -279,6 +301,75 @@ const PostReducer = (state = initialState, action) => {
           buttonDisable: false,
         },
       };
+      case PPV_PAYMENT_STRIPE_START:
+      return {
+        ...state,
+        ppvPayStripe: {
+          inputData: action.data,
+          loading: true,
+          error: false,
+          success: {},
+          buttonDisable: true,
+          loadingButtonContent: "Processing.. Please wait...",
+        },
+      };
+    case PPV_PAYMENT_STRIPE_SUCCESS:
+      return {
+        ...state,
+        ppvPayStripe: {
+          loading: false,
+          error: false,
+          success: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case PPV_PAYMENT_STRIPE_FAILURE:
+      return {
+        ...state,
+        ppvPayStripe: {
+          loading: true,
+          error: action.error,
+          success: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case PPV_PAYMENT_WALLET_START:
+      return {
+        ...state,
+        ppvPayWallet: {
+          inputData: action.data,
+          loading: true,
+          error: false,
+          success: {},
+          buttonDisable: true,
+          loadingButtonContent: "Processing.. Please wait...",
+        },
+      };
+    case PPV_PAYMENT_WALLET_SUCCESS:
+      return {
+        ...state,
+        ppvPayWallet: {
+          loading: false,
+          error: false,
+          success: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case PPV_PAYMENT_WALLET_FAILURE:
+      return {
+        ...state,
+        ppvPayWallet: {
+          loading: true,
+          error: action.error,
+          success: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    
     default:
       return state;
   }

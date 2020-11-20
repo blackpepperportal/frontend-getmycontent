@@ -11,16 +11,13 @@ const CreatePostIndex = (props) => {
   const [inputData, setInputData] = useState({});
 
   const [image, setImage] = useState({});
+  const [paidPost, setPaidPost] = useState(false);
 
   const [fileUploadStatus, setFileUploadStatus] = useState(false);
 
-  const handleChangeImage = (event, type) => {
+  const handleChangeImage = (event, fileType) => {
     if (event.currentTarget.type === "file") {
       setFileUploadStatus(true);
-      // setInputData({
-      //   ...inputData,
-      //   [event.currentTarget.name]: event.currentTarget.files[0],
-      // });
       let reader = new FileReader();
       let file = event.currentTarget.files[0];
       reader.onloadend = () => {
@@ -33,9 +30,11 @@ const CreatePostIndex = (props) => {
       props.dispatch(
         postFileUploadStart({
           file: event.currentTarget.files[0],
-          file_type: type,
+          file_type: fileType,
         })
       );
+
+      setPaidPost(true);
     }
   };
 
@@ -46,7 +45,7 @@ const CreatePostIndex = (props) => {
         savePostStart({
           content: inputData.content,
           amount: inputData.amount ? inputData.amount : "",
-          post_files: props.fileUpload.data.file,
+          post_files: props.fileUpload.data.post_file.post_file_id,
         })
       );
     } else {
@@ -117,7 +116,7 @@ const CreatePostIndex = (props) => {
                       id="fileupload_photo"
                       type="file"
                       multiple="multiple"
-                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png,.mp4,.mov,.moov,.m4v,.mpg,.mpeg,.wmv,.avi,.webm,.mkv,.stream,.mp3,.wav,.ogg"
+                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png"
                       onChange={(event) => handleChangeImage(event, "image")}
                       name="post_files"
                     />
@@ -159,6 +158,7 @@ const CreatePostIndex = (props) => {
                 </Button>
               </div>
             </Col>
+            {paidPost == true ? 
             <Col sm={12} md={12}>
               <Form.Group>
                 <label className="text-muted m-1">Price (Optional)</label>
@@ -176,7 +176,7 @@ const CreatePostIndex = (props) => {
                   }
                 />
               </Form.Group>
-            </Col>
+            </Col> : ""}
           </Row>
         </Form>
       </Container>
