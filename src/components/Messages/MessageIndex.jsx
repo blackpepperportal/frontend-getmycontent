@@ -30,12 +30,6 @@ import { createNotification } from "react-redux-notify/lib/modules/Notifications
 let chatSocket;
 
 const MessageIndex = (props) => {
-  const messagesEndRef = useRef(null);
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-  // useEffect(scrollToBottom, [props.chatMessages.data.messages]);
-
   const [activeChat, setActiveChat] = useState(0);
   const [toUserId, setToUserId] = useState(0);
   const [inputMessage, setInputMessage] = useState("");
@@ -62,6 +56,15 @@ const MessageIndex = (props) => {
     } else {
     }
   }, [!props.chatUsers.loading]);
+
+  // Scroll down function..
+  useEffect(() => {
+    console.log("Scroll down..");
+    const objDiv = document.getElementById("options-holder");
+    if (objDiv != null) {
+      objDiv.scrollTop = objDiv.scrollHeight;
+    }
+  }, [props.chatMessages.data.messages]);
 
   const chatSocketConnect = (to_user_id) => {
     // check the socket url is configured
