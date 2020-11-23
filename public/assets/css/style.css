@@ -7348,9 +7348,15 @@ input.authentication-input {
   height: 50px;
   border-radius: 40px;
   padding: 10px;
+  display: flex;
 }
 
 .search-box:hover > .search-text {
+  width: 240px;
+  padding: 0px 10px;
+}
+
+.search-text:focus {
   width: 240px;
   padding: 0px 10px;
 }
@@ -7361,6 +7367,10 @@ input.authentication-input {
 }
 
 .search-box:hover {
+  background-color: #eee;
+}
+
+.search-box:focus{
   background-color: #eee;
 }
 
@@ -7897,3 +7907,81 @@ input.authentication-input {
   color: #ffffff!important;
 }
 
+
+/*Search Suggestion*/
+.search-dropdown-sec {
+  position: absolute;
+  top: 132px;
+  z-index: 1000;
+  display: none;
+  width: 300px;
+  right: 118px;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  display: block;
+  /* transform: translate(493px,10px); */
+  background-color: #fff;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-radius: .5em;
+}
+
+.search-dropdown-list-sec {
+  margin-bottom: 0;
+}
+
+.search-dropdown-list-sec li {
+  border-bottom: 1px solid rgba(138, 150, 163, 0.25);
+}
+
+.search-dropdown-list-sec li a{
+  width: 100%;
+}
+
+.search-dropdown-list-sec .media{
+  margin-top: 0;
+}
+
+.search-dropdown-list-sec li:last-child{
+  border-bottom: 0;
+}
+
+.search-dropdown-list-sec .search-body {
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  width: 100%;
+}
+
+.search-dropdown-list-sec .search-body .user-img-sec {
+  position: relative;
+}
+
+.search-dropdown-list-sec .search-body .user-img {
+  height: 40px;
+  width: 40px;
+  max-width: 100%;
+  border-radius: 50%;
+  position: relative;
+  object-fit: cover;
+}
+
+.search-dropdown-list-sec .search-body .search-content {
+  padding-left: 1em;
+}
+
+.search-dropdown-list-sec .search-body .search-content h5 {
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-height: 4em;
+    font-size: .9em;
+    font-weight: 600;
+    color: #242529;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
-import { Container, Col, Form } from "react-bootstrap";
+import { Container, Col, Form, Media, Image } from "react-bootstrap";
 import { fetchHomePostsStart } from "../../store/actions/HomeAction";
 import { connect } from "react-redux";
 import {
@@ -68,6 +68,8 @@ const HomePageIndex = (props) => {
     setIsVisible(false);
   };
 
+  const [show, toggleShow] = React.useState(false);
+
   return (
     <>
       <div className="home-screen home-sec">
@@ -82,12 +84,57 @@ const HomePageIndex = (props) => {
                   className="search-text"
                   type="text"
                   placeholder="Search Anything"
+                  onClick={() => toggleShow(!show)}
                 />
                 <Link to="#" className="search-btn">
                   <i class="fas fa-search"></i>
                 </Link>
               </Form>
             </div>
+            {show && 
+            <div
+                className="search-dropdown-sec"
+              >
+                <ul className="list-unstyled search-dropdown-list-sec">
+                  <Media as="li">
+                    <Link
+                      to="#"
+                    >
+                      <div className="search-body">
+                        <div className="user-img-sec">
+                        <Image
+                          alt="#"
+                          src={window.location.origin + "/assets/images/harish-jee.png"}
+                          className="user-img"
+                        />
+                        </div>
+                        <div className="search-content">
+                          <h5>Beno darry</h5>
+                        </div>
+                      </div>
+                    </Link>
+                  </Media>
+                  <Media as="li">
+                    <Link
+                      to="#"
+                    >
+                      <div className="search-body">
+                        <div className="user-img-sec">
+                        <Image
+                          alt="#"
+                          src={window.location.origin + "/assets/images/harish-jee.png"}
+                          className="user-img"
+                        />
+                        </div>
+                        <div className="search-content">
+                          <h5>Beno darry</h5>
+                        </div>
+                      </div>
+                    </Link>
+                  </Media>
+                </ul>
+              </div>
+              }
           </div>
           <div className="padding-top-xl">
             <Col xl={8} md={12} className="custom-padding">
