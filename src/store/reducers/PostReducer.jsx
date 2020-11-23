@@ -301,7 +301,7 @@ const PostReducer = (state = initialState, action) => {
           buttonDisable: false,
         },
       };
-      case PPV_PAYMENT_STRIPE_START:
+    case PPV_PAYMENT_STRIPE_START:
       return {
         ...state,
         ppvPayStripe: {
@@ -369,7 +369,7 @@ const PostReducer = (state = initialState, action) => {
           loadingButtonContent: null,
         },
       };
-    
+
     default:
       return state;
   }

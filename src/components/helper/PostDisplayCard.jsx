@@ -11,7 +11,7 @@ import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
 import PPVPaymentModal from "./PPVPaymentModal";
-import ReactPlayer from 'react-player/lazy'
+import ReactPlayer from "react-player/lazy";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -121,12 +121,14 @@ const PostDisplayCard = (props) => {
                   <i className="fa fa-lock"></i>
                 </Link>
               </span>
-            ) : post.amount > 0 ? <span className="post-time">
+            ) : post.amount > 0 ? (
+              <span className="post-time">
                 <span className="post-tip-lock">{post.amount_formatted} </span>
-                <Link to="#" >
+                <Link to="#">
                   <i className="fa fa-unlock text-success"></i>
                 </Link>
-              </span> : null }
+              </span>
+            ) : null}
           </div>
         </div>
       </div>
@@ -137,7 +139,7 @@ const PostDisplayCard = (props) => {
           ? post.postFiles.length > 0
             ? post.postFiles.map((postFile, index) =>
                 postFile.file_type === "image" ? (
-                  <div className="post-image">
+                  <div className="post-image" key={index}>
                     <div className="">
                       <div className="gallery js-gallery">
                         <Image
@@ -147,15 +149,21 @@ const PostDisplayCard = (props) => {
                       </div>
                     </div>
                   </div>
-                ) : postFile.file_type === 'video' ? 
-                  <div className="post-image">
+                ) : postFile.file_type === "video" ? (
+                  <div className="post-image" key={index}>
                     <div className="">
                       <div className="gallery js-gallery">
-                        <ReactPlayer light={postFile.blur_file} url={postFile.post_file} />
+                        <ReactPlayer
+                          light={postFile.blur_file}
+                          url={postFile.post_file}
+                          controls={true}
+                        />
                       </div>
                     </div>
-                  </div> 
-                  : ""
+                  </div>
+                ) : (
+                  ""
+                )
               )
             : null
           : null}

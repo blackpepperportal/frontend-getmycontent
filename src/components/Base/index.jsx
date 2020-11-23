@@ -32,6 +32,7 @@ import Wallet from "../Wallet/Wallet";
 import BillingAccountIndex from "../Accounts/Payments/BillingAccountIndex";
 import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
 import StaticPage from "../StaticPage/StaticPage";
+import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 
 const history = createHistory();
 const $ = window.$;
@@ -224,7 +225,7 @@ class App extends Component {
           <PrivateRoute
             authentication={this.state.authentication}
             path={"/fans"}
-            component={FollowingIndex}
+            component={FanIndex}
             layout={MainLayout}
           />
           <PrivateRoute
