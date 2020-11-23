@@ -35,6 +35,7 @@ const MessageIndex = (props) => {
   const [inputMessage, setInputMessage] = useState("");
 
   useEffect(() => {
+    console.log("asdfasdf first");
     props.dispatch(fetchChatUsersStart());
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
     if (chatSocketUrl === "") {
@@ -47,10 +48,12 @@ const MessageIndex = (props) => {
   }, []);
 
   useEffect(() => {
+    console.log("Number of times called");
     if (
       props.chatUsers.loading === false &&
       props.chatUsers.data.users.length > 0
     ) {
+      console.log("Number of times called true  ");
       setToUserId(props.chatUsers.data.users[0].to_user_id);
       chatSocketConnect(props.chatUsers.data.users[0].to_user_id);
     } else {
@@ -102,6 +105,7 @@ const MessageIndex = (props) => {
   };
 
   const changeUser = (event, chat, index) => {
+    chatSocket.disconnect();
     event.preventDefault();
     setActiveChat(index);
     let to_user_id =
@@ -121,6 +125,7 @@ const MessageIndex = (props) => {
 
   const handleChatSubmit = (event) => {
     event.preventDefault();
+    console.log("afasdasdfsdaf submit called....");
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
 
     if (chatSocketUrl != undefined && inputMessage) {
@@ -374,9 +379,7 @@ const MessageIndex = (props) => {
                                       type="button"
                                       data-can_send="true"
                                       className="g-btn m-rounded b-chat__btn-submit"
-                                      onClick={(event) => {
-                                        handleChatSubmit(event);
-                                      }}
+                                      onClick={handleChatSubmit}
                                     >
                                       <Image
                                         src="assets/images/icons/send.svg"
