@@ -24,7 +24,7 @@ const BookmarkVideo = (props) => {
 
   function fetchBookMarkVideoData() {
     setTimeout(() => {
-      if (props.bookmark.length !== 0) {
+      if (props.bookmarkVideo.length !== 0) {
         props.dispatch(
           fetchBookmarksVideoStart({
             type: "video",
