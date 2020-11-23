@@ -161,7 +161,27 @@ const CreatePostIndex = (props) => {
                     </Form.Label>
                   </Form.Group>
                 </Button>
+                <div className="post-title-content">
+                  <h4>Title</h4>
+                  <Link to="#">
+                    <i class="far fa-window-close"></i>
+                  </Link>
+                </div>
               </div>
+              <Row>
+                <Col sm={12} md={3}>
+                  <div className="post-img-preview-sec">
+                    <Link to="#">
+                      <i class="far fa-times-circle"></i>
+                    </Link>
+                    <Image
+                      alt="#"
+                      src={window.location.origin + "/assets/images/g-2.jpg"}
+                      className="post-video-preview"
+                    />
+                  </div>
+                </Col>
+              </Row>
             </Col>
             {paidPost == true ? (
               <Col sm={12} md={12}>
