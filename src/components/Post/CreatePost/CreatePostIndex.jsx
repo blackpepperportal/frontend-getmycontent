@@ -6,12 +6,15 @@ import {
   postFileUploadStart,
   savePostStart,
 } from "../../../store/actions/PostAction";
+import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+import { getErrorNotificationMessage } from "../../helper/NotificationMessage";
 
 const CreatePostIndex = (props) => {
   const [inputData, setInputData] = useState({});
 
-  const [image, setImage] = useState({});
+  const [image, setImage] = useState({ previewImage: "" });
   const [paidPost, setPaidPost] = useState(false);
+  const [videoTitle, setVideoTitle] = useState("");
 
   const [fileUploadStatus, setFileUploadStatus] = useState(false);
 
@@ -21,7 +24,7 @@ const CreatePostIndex = (props) => {
       let reader = new FileReader();
       let file = event.currentTarget.files[0];
       reader.onloadend = () => {
-        setImage({ ...image, profileImage: reader.result });
+        setImage({ ...image, previewImage: reader.result });
       };
 
       if (file) {
@@ -33,8 +36,53 @@ const CreatePostIndex = (props) => {
           file_type: fileType,
         })
       );
-
       setPaidPost(true);
+    }
+  };
+
+  const handleChangeVideo = (event, fileType) => {
+    setVideoTitle(event.currentTarget.files[0].name);
+    if (event.currentTarget.type === "file") {
+      setFileUploadStatus(true);
+      let reader = new FileReader();
+      let file = event.currentTarget.files[0];
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+      props.dispatch(
+        postFileUploadStart({
+          file: event.currentTarget.files[0],
+          file_type: fileType,
+        })
+      );
+      setPaidPost(true);
+    }
+  };
+
+  const imageClose = (event) => {
+    event.preventDefault();
+    if (props.fileUpload.loadingButtonContent !== null) {
+      const notificationMessage = getErrorNotificationMessage(
+        "File is being uploaded.. Please wait"
+      );
+      props.dispatch(createNotification(notificationMessage));
+    } else {
+      setImage({ previewImage: "" });
+      setFileUploadStatus(false);
+    }
+  };
+
+  const videoClose = (event) => {
+    event.preventDefault();
+    if (props.fileUpload.loadingButtonContent !== null) {
+      const notificationMessage = getErrorNotificationMessage(
+        "File is being uploaded.. Please wait"
+      );
+      props.dispatch(createNotification(notificationMessage));
+    } else {
+      setFileUploadStatus(false);
+      setVideoTitle("");
     }
   };
 
@@ -145,7 +193,7 @@ const CreatePostIndex = (props) => {
                       type="file"
                       multiple="multiple"
                       accept="video/mp4,video/x-m4v,video/*"
-                      onChange={(event) => handleChangeImage(event, "video")}
+                      onChange={(event) => handleChangeVideo(event, "video")}
                       name="post_files"
                     />
                     <Form.Label
@@ -161,27 +209,31 @@ const CreatePostIndex = (props) => {
                     </Form.Label>
                   </Form.Group>
                 </Button>
-                <div className="post-title-content">
-                  <h4>Title</h4>
-                  <Link to="#">
-                    <i class="far fa-window-close"></i>
-                  </Link>
-                </div>
-              </div>
-              <Row>
-                <Col sm={12} md={3}>
-                  <div className="post-img-preview-sec">
-                    <Link to="#">
-                      <i class="far fa-times-circle"></i>
+                {videoTitle !== "" ? (
+                  <div className="post-title-content">
+                    <h4>{videoTitle}</h4>
+                    <Link to="#" onClick={videoClose}>
+                      <i class="far fa-window-close"></i>
                     </Link>
-                    <Image
-                      alt="#"
-                      src={window.location.origin + "/assets/images/g-2.jpg"}
-                      className="post-video-preview"
-                    />
                   </div>
-                </Col>
-              </Row>
+                ) : null}
+              </div>
+              {image.previewImage !== "" ? (
+                <Row>
+                  <Col sm={12} md={3}>
+                    <div className="post-img-preview-sec">
+                      <Link to="#" onClick={imageClose}>
+                        <i class="far fa-times-circle"></i>
+                      </Link>
+                      <Image
+                        alt="#"
+                        src={image.previewImage}
+                        className="post-video-preview"
+                      />
+                    </div>
+                  </Col>
+                </Row>
+              ) : null}
             </Col>
             {paidPost == true ? (
               <Col sm={12} md={12}>
