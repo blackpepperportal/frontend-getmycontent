@@ -7345,8 +7345,12 @@ input.authentication-input {
   margin-top: 15px;
 }
 
+.search-text:focus > .search-box{
+  background-color:#efefef;
+}
+
 .search-box {
-  /* background: #efefef; */
+  background: #efefef;
   height: 50px;
   border-radius: 40px;
   padding: 10px;
@@ -7368,13 +7372,9 @@ input.authentication-input {
   color: black;
 }
 
-.search-box:hover {
+/* .search-box:hover{
   background-color: #eee;
-}
-
-.search-box:focus{
-  background-color: #eee;
-}
+} */
 
 .search-btn {
   color: #333333;
@@ -7924,7 +7924,7 @@ input.authentication-input {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   display: block;
-  /* transform: translate(493px,10px); */
+  transform: translate(0px,0px);
   background-color: #fff;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
   border: 5px solid rgba(0, 0, 0, 0.1);
@@ -8017,12 +8017,12 @@ input.authentication-input {
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
   width: 100%;
-  height: 15em;
+  /* height: 15em; */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-left: 5em;
+  margin-bottom: 1em;
 }
 
 .post-img-preview-sec .post-video-preview{
@@ -8032,8 +8032,12 @@ input.authentication-input {
 
 .post-img-preview-sec .fa-times-circle{
   position: absolute;
-  right: 10px;
-  top: 0px;
+  right: 15px;
+  top: 15px;
   font-size: 1.3em;
   color: #F32013;
+}
+
+.md-mrg-btm{
+  margin-bottom: 2em!important;
 }

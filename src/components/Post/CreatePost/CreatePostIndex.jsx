@@ -237,7 +237,7 @@ const CreatePostIndex = (props) => {
             </Col>
             {paidPost == true ? (
               <Col sm={12} md={12}>
-                <Form.Group>
+                <Form.Group className="md-mrg-btm">
                   <label className="text-muted m-1">Price (Optional)</label>
                   <Form.Control
                     type="number"
