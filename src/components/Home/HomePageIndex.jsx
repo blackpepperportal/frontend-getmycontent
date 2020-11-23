@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
 import { Container, Col, Form, Media, Image } from "react-bootstrap";
-import { fetchHomePostsStart } from "../../store/actions/HomeAction";
+import {
+  fetchHomePostsStart,
+  searchUserStart,
+} from "../../store/actions/HomeAction";
 import { connect } from "react-redux";
 import {
   fetchCommentsStart,
@@ -68,7 +71,16 @@ const HomePageIndex = (props) => {
     setIsVisible(false);
   };
 
-  const [show, toggleShow] = React.useState(false);
+  const [show, toggleShow] = useState(false);
+
+  const handleSearch = (event) => {
+    if (event.currentTarget.value === "") {
+      toggleShow(false);
+    } else {
+      toggleShow(true);
+      props.dispatch(searchUserStart({ key: event.currentTarget.value }));
+    }
+  };
 
   return (
     <>
@@ -84,57 +96,41 @@ const HomePageIndex = (props) => {
                   className="search-text"
                   type="text"
                   placeholder="Search Anything"
-                  onClick={() => toggleShow(!show)}
+                  onChange={handleSearch}
                 />
                 <Link to="#" className="search-btn">
                   <i class="fas fa-search"></i>
                 </Link>
               </Form>
             </div>
-            {show && 
-            <div
-                className="search-dropdown-sec"
-              >
+            {show && (
+              <div className="search-dropdown-sec">
                 <ul className="list-unstyled search-dropdown-list-sec">
-                  <Media as="li">
-                    <Link
-                      to="#"
-                    >
-                      <div className="search-body">
-                        <div className="user-img-sec">
-                        <Image
-                          alt="#"
-                          src={window.location.origin + "/assets/images/harish-jee.png"}
-                          className="user-img"
-                        />
-                        </div>
-                        <div className="search-content">
-                          <h5>Beno darry</h5>
-                        </div>
-                      </div>
-                    </Link>
-                  </Media>
-                  <Media as="li">
-                    <Link
-                      to="#"
-                    >
-                      <div className="search-body">
-                        <div className="user-img-sec">
-                        <Image
-                          alt="#"
-                          src={window.location.origin + "/assets/images/harish-jee.png"}
-                          className="user-img"
-                        />
-                        </div>
-                        <div className="search-content">
-                          <h5>Beno darry</h5>
-                        </div>
-                      </div>
-                    </Link>
-                  </Media>
+                  {props.searchUser.loading
+                    ? "Loading..."
+                    : props.searchUser.data.users.length > 0
+                    ? props.searchUser.data.users.map((user) => (
+                        <Media as="li">
+                          <Link to={`/model-profile/${user.user_unique_id}`}>
+                            <div className="search-body">
+                              <div className="user-img-sec">
+                                <Image
+                                  alt="#"
+                                  src={user.picture}
+                                  className="user-img"
+                                />
+                              </div>
+                              <div className="search-content">
+                                <h5>{user.name}</h5>
+                              </div>
+                            </div>
+                          </Link>
+                        </Media>
+                      ))
+                    : "No user found"}
                 </ul>
               </div>
-              }
+            )}
           </div>
           <div className="padding-top-xl">
             <Col xl={8} md={12} className="custom-padding">
@@ -144,7 +140,7 @@ const HomePageIndex = (props) => {
                 </Row>
               </Container> */}
               {props.posts.loading ? (
-                <HomeLoader/>
+                <HomeLoader />
               ) : props.posts.data.posts.length > 0 ? (
                 props.posts.data.posts.map((post) => (
                   <PostDisplayCard post={post} key={post.post_id} />
@@ -168,6 +164,7 @@ const HomePageIndex = (props) => {
 
 const mapStateToPros = (state) => ({
   posts: state.home.homePost,
+  searchUser: state.home.searchUser,
 });
 
 function mapDispatchToProps(dispatch) {

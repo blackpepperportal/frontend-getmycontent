@@ -5,25 +5,31 @@ import BookmarkNav from "./BookmarkNav";
 import { connect } from "react-redux";
 import BookmarkVideoLoader from "../Loader/BookmarkVideoLoader";
 import BookmarkNoDataFound from "../NoDataFound/BookmarkNoDataFound";
-import { fetchBookmarksStart } from "../../store/actions/BookmarkAction";
+import { fetchBookmarksVideoStart } from "../../store/actions/BookmarkAction";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
 
 const BookmarkVideo = (props) => {
   useEffect(() => {
     props.dispatch(
-      fetchBookmarksStart({ type: "video", skip: props.bookmark.skip })
+      fetchBookmarksVideoStart({
+        type: "video",
+        skip: props.bookmarkVideo.skip,
+      })
     );
   }, []);
 
-  const [isFetching, setIsFetching] = useInfiniteScroll(fetchBookMarkData);
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchBookMarkVideoData);
 
   const [noMoreData, setNoMoreData] = useState(false);
 
-  function fetchBookMarkData() {
+  function fetchBookMarkVideoData() {
     setTimeout(() => {
       if (props.bookmark.length !== 0) {
         props.dispatch(
-          fetchBookmarksStart({ type: "video", skip: props.bookmark.skip })
+          fetchBookmarksVideoStart({
+            type: "video",
+            skip: props.bookmarkVideo.skip,
+          })
         );
         setIsFetching(false);
       } else {
@@ -31,15 +37,16 @@ const BookmarkVideo = (props) => {
       }
     }, 3000);
   }
+
   return (
     <div className="edit-profile book-photo">
       <Container>
         <Row>
           <BookmarkNav />
           <Col xs={12} sm={12} md={8}>
-            {props.bookmark.loading ? (
+            {props.bookmarkVideo.loading ? (
               <BookmarkVideoLoader />
-            ) : props.bookmark.data.posts.length > 0 ? (
+            ) : props.bookmarkVideo.data.posts.length > 0 ? (
               <div className="profile-post-area">
                 <div className="bookmarkes-list bookmarks-right-side">
                   <div className="pull-left">
@@ -57,7 +64,7 @@ const BookmarkVideo = (props) => {
 
                 <div className="bookmarks-photos">
                   <ul className="box-container three-cols">
-                    {props.bookmark.data.posts.map((post) =>
+                    {props.bookmarkVideo.data.posts.map((post) =>
                       post.postFiles.length > 0
                         ? post.postFiles.map((post) => (
                             <Media as="li" className="box" key={post.post_id}>
@@ -88,7 +95,7 @@ const BookmarkVideo = (props) => {
 };
 
 const mapStateToPros = (state) => ({
-  bookmark: state.bookmark.bookmark,
+  bookmarkVideo: state.bookmark.bookmarkVideo,
 });
 
 function mapDispatchToProps(dispatch) {

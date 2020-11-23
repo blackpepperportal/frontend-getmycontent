@@ -10,13 +10,19 @@ import {
   deleteBookmarkFailure,
   deleteBookmarkSuccess,
   fetchBookmarksFailure,
+  fetchBookmarksPhotoFailure,
+  fetchBookmarksPhotoSuccess,
   fetchBookmarksSuccess,
+  fetchBookmarksVideoFailure,
+  fetchBookmarksVideoSuccess,
   saveBookmarkFailure,
   saveBookmarkSuccess,
 } from "../actions/BookmarkAction";
 import {
   DELETE_BOOKMARK_START,
+  FETCH_BOOKMARKS_PHOTO_START,
   FETCH_BOOKMARKS_START,
+  FETCH_BOOKMARKS_VIDEO_START,
   SAVE_BOOKMARK_START,
 } from "../actions/ActionConstant";
 
@@ -37,6 +43,50 @@ function* fetchBookmarkAPI() {
     }
   } catch (error) {
     yield put(fetchBookmarksFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* fetchBookmarkPhotoAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.bookmark.bookmarkPhoto.inputData
+    );
+    const response = yield api.postMethod("post_bookmarks_photos", inputData);
+    if (response.data.success) {
+      yield put(fetchBookmarksPhotoSuccess(response.data.data));
+    } else {
+      yield put(fetchBookmarksPhotoFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchBookmarksPhotoFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* fetchBookmarkVideoAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.bookmark.bookmarkVideo.inputData
+    );
+    const response = yield api.postMethod("post_bookmarks_videos", inputData);
+    if (response.data.success) {
+      yield put(fetchBookmarksVideoSuccess(response.data.data));
+    } else {
+      yield put(fetchBookmarksVideoFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchBookmarksVideoFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
@@ -94,6 +144,12 @@ function* deleteBookmarkAPI() {
 
 export default function* pageSaga() {
   yield all([yield takeLatest(FETCH_BOOKMARKS_START, fetchBookmarkAPI)]);
+  yield all([
+    yield takeLatest(FETCH_BOOKMARKS_PHOTO_START, fetchBookmarkPhotoAPI),
+  ]);
+  yield all([
+    yield takeLatest(FETCH_BOOKMARKS_VIDEO_START, fetchBookmarkVideoAPI),
+  ]);
   yield all([yield takeLatest(SAVE_BOOKMARK_START, saveBookmarkAPI)]);
   yield all([yield takeLatest(DELETE_BOOKMARK_START, deleteBookmarkAPI)]);
 }
