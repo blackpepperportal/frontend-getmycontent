@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Form,
@@ -30,8 +30,13 @@ import { createNotification } from "react-redux-notify/lib/modules/Notifications
 let chatSocket;
 
 const MessageIndex = (props) => {
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+  // useEffect(scrollToBottom, [props.chatMessages.data.messages]);
+
   const [activeChat, setActiveChat] = useState(0);
-  const [socketStatus, setSocketStatus] = useState(0);
   const [toUserId, setToUserId] = useState(0);
   const [inputMessage, setInputMessage] = useState("");
 
@@ -48,16 +53,13 @@ const MessageIndex = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("asdfasdf checking");
     if (
       props.chatUsers.loading === false &&
       props.chatUsers.data.users.length > 0
     ) {
-      console.log("asdfasdf");
       setToUserId(props.chatUsers.data.users[0].to_user_id);
       chatSocketConnect(props.chatUsers.data.users[0].to_user_id);
     } else {
-      console.log("falseeeeee");
     }
   }, [!props.chatUsers.loading]);
 
@@ -117,23 +119,27 @@ const MessageIndex = (props) => {
   const handleChatSubmit = (event) => {
     event.preventDefault();
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
-    console.log("chatSocketUrl" + chatSocketUrl);
-    console.log("chatSocket", chatSocket);
-    console.log("toUserId", toUserId);
+
     if (chatSocketUrl != undefined && inputMessage) {
-      alert("djdjjdjdjddjd");
       let chatData = [
         {
           from_user_id: localStorage.getItem("userId"),
           to_user_id: toUserId,
           message: inputMessage,
           type: "uu",
-          user_name: localStorage.getItem("name"),
           user_picture: localStorage.getItem("user_picture"),
           loggedin_user_id: localStorage.getItem("userId"),
+          created: Date(),
+          from_username: localStorage.getItem("username"),
+          from_displayname: localStorage.getItem("name"),
+          from_userpicture: localStorage.getItem("user_picture"),
+          from_user_unique_id: "",
+          to_username: "",
+          to_displayname: "",
+          to_userpicture: "",
+          to_user_unique_id: "",
         },
       ];
-      console.log("chat meessage", chatData[0]);
       chatSocket.emit("message", chatData[0]);
       let messages;
       if (props.chatMessages.data.messages != null) {
@@ -141,20 +147,14 @@ const MessageIndex = (props) => {
       } else {
         messages = [...chatData];
       }
-      // this.setState({
-      //   chatData: messages,
-      //   chatInputMessage: "",
-      // });
+
       setInputMessage("");
       props.dispatch(addMessageContent(chatData));
     }
   };
 
   const chatInputChange = (value) => {
-    console.log(value);
     setInputMessage(value);
-    console.log(inputMessage);
-    // this.setState({ chatInputMessage: input.value });
   };
 
   return (
@@ -277,7 +277,7 @@ const MessageIndex = (props) => {
                 </div>
 
                 <div className="chat-area">
-                  <div className="chat-wrapper scrollbar">
+                  <div className="chat-wrapper scrollbar" id="options-holder">
                     <div className="chat-message padding overflow">
                       {props.chatMessages.data.messages.length > 0
                         ? props.chatMessages.data.messages.map(
@@ -288,7 +288,7 @@ const MessageIndex = (props) => {
                                   <div className="chat-message chat-message-sender">
                                     <Image
                                       className="chat-image chat-image-default"
-                                      src={chatMessage.from_userpicture}
+                                      src={localStorage.getItem("user_picture")}
                                     />
 
                                     <div className="chat-message-wrapper">
@@ -308,7 +308,7 @@ const MessageIndex = (props) => {
                                   <div className="chat-message chat-message-recipient">
                                     <Image
                                       className="chat-image chat-image-default"
-                                      src={chatMessage.to_userpicture}
+                                      src={chatMessage.from_userpicture}
                                     />
 
                                     <div className="chat-message-wrapper">
