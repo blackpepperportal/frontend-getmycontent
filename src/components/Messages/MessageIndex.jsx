@@ -76,6 +76,7 @@ const MessageIndex = (props) => {
           `',myid:` +
           localStorage.getItem("userId"),
       });
+      console.log("chatSocket", chatSocket);
       chatSocket.emit("update sender", {
         commonid:
           "user_id_" +
@@ -88,7 +89,6 @@ const MessageIndex = (props) => {
       chatSocket.on("message", (newData) => {
         let content = [];
         content.push(newData);
-
         // chatContent = [...this.state.chatData, ...content];
         // this.setState({ chatData: chatContent });
         props.dispatch(addMessageContent(content));
@@ -121,6 +121,7 @@ const MessageIndex = (props) => {
     console.log("chatSocket", chatSocket);
     console.log("toUserId", toUserId);
     if (chatSocketUrl != undefined && inputMessage) {
+      alert("djdjjdjdjddjd");
       let chatData = [
         {
           from_user_id: localStorage.getItem("userId"),
@@ -129,6 +130,7 @@ const MessageIndex = (props) => {
           type: "uu",
           user_name: localStorage.getItem("name"),
           user_picture: localStorage.getItem("user_picture"),
+          loggedin_user_id: localStorage.getItem("userId"),
         },
       ];
       console.log("chat meessage", chatData[0]);
