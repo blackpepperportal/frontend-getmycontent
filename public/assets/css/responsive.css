@@ -108,6 +108,10 @@ Version: 1.0
     .scrollbar {
         height: 40vh;
     }
+    svg{
+        width: 100%;
+        height: auto;
+    }
 }
 
 
@@ -281,6 +285,13 @@ Version: 1.0
     }
     .lists .listing-tab .tab-content.tabs a.bookmarkes-list{
         padding-left: 25px;
+    }
+    .landing-main-wrapper {
+        min-height: 75vh;
+    }
+    svg{
+        width: 100%;
+        height: auto;
     }
 }
 

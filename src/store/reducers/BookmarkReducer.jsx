@@ -2,6 +2,12 @@ import {
   FETCH_BOOKMARKS_START,
   FETCH_BOOKMARKS_SUCCESS,
   FETCH_BOOKMARKS_FAILURE,
+  FETCH_BOOKMARKS_PHOTO_START,
+  FETCH_BOOKMARKS_PHOTO_SUCCESS,
+  FETCH_BOOKMARKS_PHOTO_FAILURE,
+  FETCH_BOOKMARKS_VIDEO_START,
+  FETCH_BOOKMARKS_VIDEO_SUCCESS,
+  FETCH_BOOKMARKS_VIDEO_FAILURE,
   SAVE_BOOKMARK_START,
   SAVE_BOOKMARK_SUCCESS,
   SAVE_BOOKMARK_FAILURE,
@@ -12,6 +18,26 @@ import {
 
 const initialState = {
   bookmark: {
+    data: {
+      posts: [],
+    },
+    loading: true,
+    error: false,
+    inputData: {},
+    skip: 0,
+    length: 0,
+  },
+  bookmarkPhoto: {
+    data: {
+      posts: [],
+    },
+    loading: true,
+    error: false,
+    inputData: {},
+    skip: 0,
+    length: 0,
+  },
+  bookmarkVideo: {
     data: {
       posts: [],
     },
@@ -79,6 +105,88 @@ const BookmarkReducer = (state = initialState, action) => {
           inputData: {},
           skip: state.bookmark.skip,
           length: state.bookmark.length,
+        },
+      };
+
+    case FETCH_BOOKMARKS_PHOTO_START:
+      return {
+        ...state,
+        bookmarkPhoto: {
+          inputData: action.data,
+          data: {
+            posts: [...state.bookmarkPhoto.data.posts],
+          },
+          loading: true,
+          error: false,
+          skip: state.bookmarkPhoto.skip,
+          length: state.bookmarkPhoto.length,
+        },
+      };
+    case FETCH_BOOKMARKS_PHOTO_SUCCESS:
+      return {
+        ...state,
+        bookmarkPhoto: {
+          data: {
+            posts: [...state.bookmarkPhoto.data.posts, ...action.data.posts],
+          },
+          loading: false,
+          error: false,
+          inputData: {},
+          skip: action.data.posts.length + state.bookmarkPhoto.skip,
+          length: action.data.posts.length,
+        },
+      };
+    case FETCH_BOOKMARKS_PHOTO_FAILURE:
+      return {
+        ...state,
+        bookmarkPhoto: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          skip: state.bookmarkPhoto.skip,
+          length: state.bookmarkPhoto.length,
+        },
+      };
+
+    case FETCH_BOOKMARKS_VIDEO_START:
+      return {
+        ...state,
+        bookmarkVideo: {
+          inputData: action.data,
+          data: {
+            posts: [...state.bookmarkVideo.data.posts],
+          },
+          loading: true,
+          error: false,
+          skip: state.bookmarkVideo.skip,
+          length: state.bookmarkVideo.length,
+        },
+      };
+    case FETCH_BOOKMARKS_VIDEO_SUCCESS:
+      return {
+        ...state,
+        bookmarkVideo: {
+          data: {
+            posts: [...state.bookmarkVideo.data.posts, ...action.data.posts],
+          },
+          loading: false,
+          error: false,
+          inputData: {},
+          skip: action.data.posts.length + state.bookmarkVideo.skip,
+          length: action.data.posts.length,
+        },
+      };
+    case FETCH_BOOKMARKS_VIDEO_FAILURE:
+      return {
+        ...state,
+        bookmarkVideo: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          skip: state.bookmarkVideo.skip,
+          length: state.bookmarkVideo.length,
         },
       };
     case SAVE_BOOKMARK_START:
