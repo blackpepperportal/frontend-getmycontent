@@ -22,6 +22,9 @@ Version: 1.0
     .scrollbar {
         height: 65vh;
     }
+    .search-dropdown-sec {
+        right: 340px!important;
+    }
 }
 
 @media (max-width: 1199.98px) {
@@ -42,6 +45,9 @@ Version: 1.0
     }
     .follower-profile-header{
         margin-top: -45px;
+    }
+    .search-dropdown-sec {
+        right: 50px!important;
     }
 }
 
@@ -111,6 +117,9 @@ Version: 1.0
     svg{
         width: 100%;
         height: auto;
+    }
+    .search-dropdown-sec {
+        right: 50px!important;
     }
 }
 
@@ -292,6 +301,9 @@ Version: 1.0
     svg{
         width: 100%;
         height: auto;
+    }
+    .search-dropdown-sec {
+        right: 40px!important;
     }
 }
 
