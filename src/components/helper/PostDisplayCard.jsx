@@ -157,6 +157,8 @@ const PostDisplayCard = (props) => {
                           light={postFile.blur_file}
                           url={postFile.post_file}
                           controls={true}
+                          width="100%"
+                          height="360px"
                         />
                       </div>
                     </div>
