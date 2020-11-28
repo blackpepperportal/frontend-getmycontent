@@ -198,7 +198,7 @@ const MessageIndex = (props) => {
                     <div className="chat-section-title-width">
                       <Link
                         to={
-                          `/model-profile` +
+                          `/model-profile/` +
                           props.chatMessages.data.user.user_unique_id
                         }
                         className="chat-user-name"

@@ -35,9 +35,13 @@ const FollowingActiveSec = (props) => {
             </div>
             <Row>
               {props.following.data.followers.length > 0 ? (
-                props.following.data.followers.map((follower) => (
-                  <UserCard user={follower} />
-                ))
+                props.following.data.followers.map((follower) =>
+                  follower.otherUser ? (
+                    <UserCard user={follower.otherUser} />
+                  ) : (
+                    ""
+                  )
+                )
               ) : (
                 <NoDataFound></NoDataFound>
               )}

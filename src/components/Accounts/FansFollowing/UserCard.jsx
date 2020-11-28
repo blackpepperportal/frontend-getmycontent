@@ -50,13 +50,13 @@ const UserCard = (props) => {
         <div className="follower-lists">
           <div className="follower-subscription-lists">
             <div className="follower-subscription-inner">
-              <Link to={`/model-profile` + props.user.user_unique_id}>
+              <Link to={`/model-profile/` + props.user.user_unique_id}>
                 <div className="follower-wrapper">
                   <Image className="follower-cover" src={props.user.cover} />
                 </div>
               </Link>
               <div className="follower-profile-header">
-                <Link to={`/model-profile` + props.user.user_unique_id}>
+                <Link to={`/model-profile/` + props.user.user_unique_id}>
                   <span className="follower-profile-avatar">
                     <Image src={props.user.picture} className="" />
                   </span>
@@ -82,7 +82,9 @@ const UserCard = (props) => {
                   <div className="follower-wrapper-name">
                     <div className="follower-profile-names">
                       <div className="follower-name-row">
-                        <Link to="user-profile.html">
+                        <Link
+                          to={`/model-profile/` + props.user.user_unique_id}
+                        >
                           <div className="follower-user-name">
                             {props.user.name}
                             <Image
@@ -94,7 +96,7 @@ const UserCard = (props) => {
                       </div>
                       <div className="follower-name-row">
                         <Link
-                          to={`/model-profile` + props.user.user_unique_id}
+                          to={`/model-profile/` + props.user.user_unique_id}
                           className="g-user-realname__wrapper"
                         >
                           <div className="follower-user-id">

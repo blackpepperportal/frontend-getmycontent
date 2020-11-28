@@ -12,6 +12,9 @@ import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
 import PPVPaymentModal from "./PPVPaymentModal";
 import ReactPlayer from "react-player/lazy";
+import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { getSuccessNotificationMessage } from "../helper/NotificationMessage";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -59,6 +62,12 @@ const PostDisplayCard = (props) => {
   const closeCommentSection = (event) => {
     setIsVisible(false);
   };
+  const onCopy = (event) => {
+    const notificationMessage = getSuccessNotificationMessage(
+      "Link to the post was copied to clipboard!"
+    );
+    props.dispatch(createNotification(notificationMessage));
+  };
 
   return (
     <div className="post-list">
@@ -98,10 +107,13 @@ const PostDisplayCard = (props) => {
                   />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
-                  <Media as="li">
-                    <Link to="#"> Copy link to post </Link>
-                  </Media>
-                  <Media as="li">
+                  <CopyToClipboard text={post.share_link} onCopy={onCopy}>
+                    <Media as="li">
+                      <Link to="#"> Copy link to post </Link>
+                    </Media>
+                  </CopyToClipboard>
+
+                  {/* <Media as="li">
                     <Link to="#">Hide paid blurred from the home feed</Link>
                   </Media>
                   <Media as="li" className="divider"></Media>
@@ -110,7 +122,7 @@ const PostDisplayCard = (props) => {
                   </Media>
                   <Media as="li">
                     <Link to="#"> Hide user's posts from feed </Link>
-                  </Media>
+                  </Media> */}
                 </Dropdown.Menu>
               </Dropdown>
             </span>
