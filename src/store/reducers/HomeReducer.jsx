@@ -2,9 +2,9 @@ import {
   FETCH_HOME_POSTS_START,
   FETCH_HOME_POSTS_SUCCESS,
   FETCH_HOME_POSTS_FAILURE,
-  SEARCH_POST_START,
-  SEARCH_POST_SUCCESS,
-  SEARCH_POST_FAILURE,
+  SEARCH_USER_START,
+  SEARCH_USER_SUCCESS,
+  SEARCH_USER_FAILURE,
   FETCH_OTHERS_SINGLE_POST_START,
   FETCH_OTHERS_SINGLE_POST_SUCCESS,
   FETCH_OTHERS_SINGLE_POST_FAILURE,
@@ -32,7 +32,7 @@ const initialState = {
     skip: 0,
     length: 0,
   },
-  searchPost: {
+  searchUser: {
     data: {},
     loading: true,
     error: false,
@@ -118,10 +118,10 @@ const HomeReducer = (state = initialState, action) => {
           length: state.homePost.length,
         },
       };
-    case SEARCH_POST_START:
+    case SEARCH_USER_START:
       return {
         ...state,
-        searchPost: {
+        searchUser: {
           data: {},
           loading: true,
           error: false,
@@ -130,10 +130,10 @@ const HomeReducer = (state = initialState, action) => {
           buttonDisable: true,
         },
       };
-    case SEARCH_POST_SUCCESS:
+    case SEARCH_USER_SUCCESS:
       return {
         ...state,
-        searchPost: {
+        searchUser: {
           data: action.data,
           loading: false,
           error: false,
@@ -142,10 +142,10 @@ const HomeReducer = (state = initialState, action) => {
           buttonDisable: false,
         },
       };
-    case SEARCH_POST_FAILURE:
+    case SEARCH_USER_FAILURE:
       return {
         ...state,
-        searchPost: {
+        searchUser: {
           data: {},
           loading: true,
           error: action.error,

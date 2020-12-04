@@ -7,7 +7,7 @@ import {
   FETCH_POST_SUGGESTION_START,
   POST_PAYMENT_STRIPE_START,
   POST_PAYMENT_WALLET_START,
-  SEARCH_POST_START,
+  SEARCH_USER_START,
 } from "../actions/ActionConstant";
 import { createNotification } from "react-redux-notify";
 import {
@@ -22,8 +22,8 @@ import {
   fetchOtherSinglePostSuccess,
   fetchPostSuggesstionFailure,
   fetchPostSuggesstionSuccess,
-  searchPostFailure,
-  searchPostSuccess,
+  searchUserFailure,
+  searchUserSuccess,
   postPaymentStripeSuccess,
   postPaymentWalletSuccess,
   postPaymentStripeFailure,
@@ -38,10 +38,23 @@ function* fetchHomePostAPI() {
     const response = yield api.postMethod("home", { skip: skipCount });
     if (response.data.success) {
       yield put(fetchHomePostsSuccess(response.data.data));
-      if(response.data.data.user) {
-        localStorage.setItem("total_followers", response.data.data.user.total_followers ? response.data.data.user.total_followers : 0);
-        localStorage.setItem("total_followings", response.data.data.user.total_followings ? response.data.data.user.total_followings : 0);
-        localStorage.setItem("is_subscription_enabled", response.data.data.user.is_subscription_enabled);
+      if (response.data.data.user) {
+        localStorage.setItem(
+          "total_followers",
+          response.data.data.user.total_followers
+            ? response.data.data.user.total_followers
+            : 0
+        );
+        localStorage.setItem(
+          "total_followings",
+          response.data.data.user.total_followings
+            ? response.data.data.user.total_followings
+            : 0
+        );
+        localStorage.setItem(
+          "is_subscription_enabled",
+          response.data.data.user.is_subscription_enabled
+        );
         localStorage.setItem("user_picture", response.data.data.user.picture);
         localStorage.setItem("user_cover", response.data.data.user.cover);
         localStorage.setItem("name", response.data.data.user.name);
@@ -69,21 +82,21 @@ function* fetchHomePostAPI() {
   }
 }
 
-function* searchPostAPI() {
+function* searchUserAPI() {
   try {
-    const inputData = yield select((state) => state.post.singlePost.inputData);
-    const response = yield api.postMethod("posts_view", inputData);
+    const inputData = yield select((state) => state.home.searchUser.inputData);
+    const response = yield api.postMethod("users_search", inputData);
     if (response.data.success) {
-      yield put(searchPostSuccess(response.data.data));
+      yield put(searchUserSuccess(response.data.data));
     } else {
-      yield put(searchPostFailure(response.data.error));
+      yield put(searchUserFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
       );
       yield put(createNotification(notificationMessage));
     }
   } catch (error) {
-    yield put(searchPostFailure(error));
+    yield put(searchUserFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
@@ -206,7 +219,7 @@ function* fetchListsAPI() {
 
 export default function* pageSaga() {
   yield all([yield takeLatest(FETCH_HOME_POSTS_START, fetchHomePostAPI)]);
-  yield all([yield takeLatest(SEARCH_POST_START, searchPostAPI)]);
+  yield all([yield takeLatest(SEARCH_USER_START, searchUserAPI)]);
   yield all([
     yield takeLatest(FETCH_OTHERS_SINGLE_POST_START, fetchOtherSinglePostAPI),
   ]);

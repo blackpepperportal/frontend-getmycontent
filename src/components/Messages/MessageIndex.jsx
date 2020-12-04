@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Form,
@@ -31,11 +31,11 @@ let chatSocket;
 
 const MessageIndex = (props) => {
   const [activeChat, setActiveChat] = useState(0);
-  const [socketStatus, setSocketStatus] = useState(0);
   const [toUserId, setToUserId] = useState(0);
   const [inputMessage, setInputMessage] = useState("");
 
   useEffect(() => {
+    console.log("asdfasdf first");
     props.dispatch(fetchChatUsersStart());
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
     if (chatSocketUrl === "") {
@@ -48,18 +48,26 @@ const MessageIndex = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("asdfasdf checking");
+    console.log("Number of times called");
     if (
       props.chatUsers.loading === false &&
       props.chatUsers.data.users.length > 0
     ) {
-      console.log("asdfasdf");
+      console.log("Number of times called true  ");
       setToUserId(props.chatUsers.data.users[0].to_user_id);
       chatSocketConnect(props.chatUsers.data.users[0].to_user_id);
     } else {
-      console.log("falseeeeee");
     }
   }, [!props.chatUsers.loading]);
+
+  // Scroll down function..
+  useEffect(() => {
+    console.log("Scroll down..");
+    const objDiv = document.getElementById("options-holder");
+    if (objDiv != null) {
+      objDiv.scrollTop = objDiv.scrollHeight;
+    }
+  }, [props.chatMessages.data.messages]);
 
   const chatSocketConnect = (to_user_id) => {
     // check the socket url is configured
@@ -76,6 +84,7 @@ const MessageIndex = (props) => {
           `',myid:` +
           localStorage.getItem("userId"),
       });
+      console.log("chatSocket", chatSocket);
       chatSocket.emit("update sender", {
         commonid:
           "user_id_" +
@@ -88,7 +97,6 @@ const MessageIndex = (props) => {
       chatSocket.on("message", (newData) => {
         let content = [];
         content.push(newData);
-
         // chatContent = [...this.state.chatData, ...content];
         // this.setState({ chatData: chatContent });
         props.dispatch(addMessageContent(content));
@@ -97,6 +105,7 @@ const MessageIndex = (props) => {
   };
 
   const changeUser = (event, chat, index) => {
+    chatSocket.disconnect();
     event.preventDefault();
     setActiveChat(index);
     let to_user_id =
@@ -116,10 +125,9 @@ const MessageIndex = (props) => {
 
   const handleChatSubmit = (event) => {
     event.preventDefault();
+    console.log("afasdasdfsdaf submit called....");
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
-    console.log("chatSocketUrl" + chatSocketUrl);
-    console.log("chatSocket", chatSocket);
-    console.log("toUserId", toUserId);
+
     if (chatSocketUrl != undefined && inputMessage) {
       let chatData = [
         {
@@ -127,11 +135,19 @@ const MessageIndex = (props) => {
           to_user_id: toUserId,
           message: inputMessage,
           type: "uu",
-          user_name: localStorage.getItem("name"),
           user_picture: localStorage.getItem("user_picture"),
+          loggedin_user_id: localStorage.getItem("userId"),
+          created: Date(),
+          from_username: localStorage.getItem("username"),
+          from_displayname: localStorage.getItem("name"),
+          from_userpicture: localStorage.getItem("user_picture"),
+          from_user_unique_id: "",
+          to_username: "",
+          to_displayname: "",
+          to_userpicture: "",
+          to_user_unique_id: "",
         },
       ];
-      console.log("chat meessage", chatData[0]);
       chatSocket.emit("message", chatData[0]);
       let messages;
       if (props.chatMessages.data.messages != null) {
@@ -139,20 +155,14 @@ const MessageIndex = (props) => {
       } else {
         messages = [...chatData];
       }
-      // this.setState({
-      //   chatData: messages,
-      //   chatInputMessage: "",
-      // });
+
       setInputMessage("");
       props.dispatch(addMessageContent(chatData));
     }
   };
 
   const chatInputChange = (value) => {
-    console.log(value);
     setInputMessage(value);
-    console.log(inputMessage);
-    // this.setState({ chatInputMessage: input.value });
   };
 
   return (
@@ -193,7 +203,7 @@ const MessageIndex = (props) => {
                     <div className="chat-section-title-width">
                       <Link
                         to={
-                          `/model-profile` +
+                          `/model-profile/` +
                           props.chatMessages.data.user.user_unique_id
                         }
                         className="chat-user-name"
@@ -275,7 +285,7 @@ const MessageIndex = (props) => {
                 </div>
 
                 <div className="chat-area">
-                  <div className="chat-wrapper scrollbar">
+                  <div className="chat-wrapper scrollbar" id="options-holder">
                     <div className="chat-message padding overflow">
                       {props.chatMessages.data.messages.length > 0
                         ? props.chatMessages.data.messages.map(
@@ -286,7 +296,7 @@ const MessageIndex = (props) => {
                                   <div className="chat-message chat-message-sender">
                                     <Image
                                       className="chat-image chat-image-default"
-                                      src={chatMessage.from_userpicture}
+                                      src={localStorage.getItem("user_picture")}
                                     />
 
                                     <div className="chat-message-wrapper">
@@ -306,7 +316,7 @@ const MessageIndex = (props) => {
                                   <div className="chat-message chat-message-recipient">
                                     <Image
                                       className="chat-image chat-image-default"
-                                      src={chatMessage.to_userpicture}
+                                      src={chatMessage.from_userpicture}
                                     />
 
                                     <div className="chat-message-wrapper">
@@ -369,9 +379,7 @@ const MessageIndex = (props) => {
                                       type="button"
                                       data-can_send="true"
                                       className="g-btn m-rounded b-chat__btn-submit"
-                                      onClick={(event) => {
-                                        handleChatSubmit(event);
-                                      }}
+                                      onClick={handleChatSubmit}
                                     >
                                       <Image
                                         src="assets/images/icons/send.svg"

@@ -92,6 +92,7 @@ const DocumentUploadIndex = (props) => {
                           id={doc.document_id}
                           name={doc.document_id}
                           onChange={(event) => handleChangeImage(event, doc)}
+                          accept="image/*"
                         />
 
                         <Form.Label

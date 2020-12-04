@@ -7,10 +7,12 @@ const InboxNoDataFound = () => {
       <div className="message-no-data-found-sec">
         <Row>
           <Col sm="12" md="12">
-            <h4>Select any Coversation or Send a New Message</h4>
-            <Button className="save-btn">
+            <h4>
+              Select any Coversation or Send a New Message from others profile
+            </h4>
+            {/* <Button className="save-btn">
                 New Message
-            </Button>
+            </Button> */}
           </Col>
         </Row>
       </div>

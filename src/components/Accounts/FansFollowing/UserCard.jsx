@@ -17,6 +17,7 @@ const UserCard = (props) => {
   };
 
   const [addFav, setAddFav] = useState(false);
+  const [favStatus, setFavStatus] = useState("");
 
   const closeAddFavModal = () => {
     setAddFav(false);
@@ -26,9 +27,9 @@ const UserCard = (props) => {
     props.dispatch(deleteFavStart({ user_id: props.user.user_id }));
   };
 
-  const handleStar = (event) => {
+  const handleStar = (event, status) => {
     event.preventDefault();
-
+    setFavStatus(status);
     props.dispatch(
       saveFavStart({
         user_id: props.user.user_id,
@@ -49,13 +50,13 @@ const UserCard = (props) => {
         <div className="follower-lists">
           <div className="follower-subscription-lists">
             <div className="follower-subscription-inner">
-              <Link to={`/model-profile` + props.user.user_unique_id}>
+              <Link to={`/model-profile/` + props.user.user_unique_id}>
                 <div className="follower-wrapper">
                   <Image className="follower-cover" src={props.user.cover} />
                 </div>
               </Link>
               <div className="follower-profile-header">
-                <Link to={`/model-profile` + props.user.user_unique_id}>
+                <Link to={`/model-profile/` + props.user.user_unique_id}>
                   <span className="follower-profile-avatar">
                     <Image src={props.user.picture} className="" />
                   </span>
@@ -81,7 +82,9 @@ const UserCard = (props) => {
                   <div className="follower-wrapper-name">
                     <div className="follower-profile-names">
                       <div className="follower-name-row">
-                        <Link to="user-profile.html">
+                        <Link
+                          to={`/model-profile/` + props.user.user_unique_id}
+                        >
                           <div className="follower-user-name">
                             {props.user.name}
                             <Image
@@ -93,7 +96,7 @@ const UserCard = (props) => {
                       </div>
                       <div className="follower-name-row">
                         <Link
-                          to={`/model-profile` + props.user.user_unique_id}
+                          to={`/model-profile/` + props.user.user_unique_id}
                           className="g-user-realname__wrapper"
                         >
                           <div className="follower-user-id">
@@ -139,18 +142,68 @@ const UserCard = (props) => {
               </div>
               <div className="add-to-lists-button">
                 <div className="swiper-favorite">
-                  <Link
-                    type="button"
-                    className="swiper-btn-fav"
-                    onClick={handleStar}
-                  >
-                    <Image
-                      src="assets/images/icons/star.svg"
-                      className="svg-clone my-p-icons"
-                      width="12"
-                    />
-                    Add to favorites and other lists
-                  </Link>
+                  {favStatus !== "" ? (
+                    <>
+                      <>
+                        {favStatus === "added" ? (
+                          <Link
+                            type="button"
+                            className="swiper-btn-fav"
+                            onClick={(event) => handleStar(event, "removed")}
+                          >
+                            <Image
+                              src="assets/images/icons/star.svg"
+                              className="svg-clone my-p-icons"
+                              width="12"
+                            />
+                            Remove to favorites
+                          </Link>
+                        ) : null}
+                      </>
+                      <>
+                        {favStatus === "removed" ? (
+                          <Link
+                            type="button"
+                            className="swiper-btn-fav"
+                            onClick={(event) => handleStar(event, "added")}
+                          >
+                            <Image
+                              src="assets/images/icons/star.svg"
+                              className="svg-clone my-p-icons"
+                              width="12"
+                            />
+                            Add to favorites
+                          </Link>
+                        ) : null}
+                      </>
+                    </>
+                  ) : props.user.is_fav_user === 1 ? (
+                    <Link
+                      type="button"
+                      className="swiper-btn-fav"
+                      onClick={(event) => handleStar(event, "removed")}
+                    >
+                      <Image
+                        src="assets/images/icons/star.svg"
+                        className="svg-clone my-p-icons"
+                        width="12"
+                      />
+                      Remove to favorites
+                    </Link>
+                  ) : (
+                    <Link
+                      type="button"
+                      className="swiper-btn-fav"
+                      onClick={(event) => handleStar(event, "added")}
+                    >
+                      <Image
+                        src="assets/images/icons/star.svg"
+                        className="svg-clone my-p-icons"
+                        width="12"
+                      />
+                      Add to favorites
+                    </Link>
+                  )}
                 </div>
               </div>
               <div className="lists-button-group post-icons">

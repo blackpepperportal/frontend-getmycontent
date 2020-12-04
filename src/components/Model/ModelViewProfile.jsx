@@ -70,12 +70,12 @@ const ModelViewProfile = (props) => {
       })
     );
   };
-  
+
   const handleChatUser = (event, user_id) => {
     event.preventDefault();
     props.dispatch(
       saveChatUserStart({
-        from_user_id: localStorage.getItem('userId'),
+        from_user_id: localStorage.getItem("userId"),
         to_user_id: user_id,
       })
     );
@@ -158,11 +158,8 @@ const ModelViewProfile = (props) => {
                       type="button"
                       className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
                       onClick={(event) =>
-                                handleChatUser(
-                                  event,
-                                  userDetails.data.user.user_id,
-                                )
-                              }
+                        handleChatUser(event, userDetails.data.user.user_id)
+                      }
                     >
                       <Image
                         src={

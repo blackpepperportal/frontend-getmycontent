@@ -2,9 +2,9 @@ import {
   FETCH_HOME_POSTS_START,
   FETCH_HOME_POSTS_SUCCESS,
   FETCH_HOME_POSTS_FAILURE,
-  SEARCH_POST_START,
-  SEARCH_POST_SUCCESS,
-  SEARCH_POST_FAILURE,
+  SEARCH_USER_START,
+  SEARCH_USER_SUCCESS,
+  SEARCH_USER_FAILURE,
   FETCH_OTHERS_SINGLE_POST_START,
   FETCH_OTHERS_SINGLE_POST_SUCCESS,
   FETCH_OTHERS_SINGLE_POST_FAILURE,
@@ -42,23 +42,23 @@ export function fetchHomePostsFailure(error) {
     error,
   };
 }
-export function searchPostStart(data) {
+export function searchUserStart(data) {
   return {
-    type: SEARCH_POST_START,
+    type: SEARCH_USER_START,
     data,
   };
 }
 
-export function searchPostSuccess(data) {
+export function searchUserSuccess(data) {
   return {
-    type: SEARCH_POST_SUCCESS,
+    type: SEARCH_USER_SUCCESS,
     data,
   };
 }
 
-export function searchPostFailure(error) {
+export function searchUserFailure(error) {
   return {
-    type: SEARCH_POST_FAILURE,
+    type: SEARCH_USER_FAILURE,
     error,
   };
 }
