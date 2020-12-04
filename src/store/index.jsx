@@ -7,7 +7,7 @@ import mySaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [logger, sagaMiddleware];
+const middlewares = [sagaMiddleware];
 
 const enhancers = [applyMiddleware(...middlewares)];
 
