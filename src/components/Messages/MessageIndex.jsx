@@ -125,7 +125,6 @@ const MessageIndex = (props) => {
 
   const handleChatSubmit = (event) => {
     event.preventDefault();
-    console.log("afasdasdfsdaf submit called....");
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
 
     if (chatSocketUrl != undefined && inputMessage) {
@@ -193,12 +192,12 @@ const MessageIndex = (props) => {
             ) : (
               <Row className="msg-row-chat">
                 <div className="msg-header">
-                  <Button className="chat-header-back">
+                  {/* <Button className="chat-header-back">
                     <Image
                       src="assets/images/icons/back.svg"
                       className="svg-clone"
                     />
-                  </Button>
+                  </Button> */}
                   <h1 className="chat-section-title">
                     <div className="chat-section-title-width">
                       <Link

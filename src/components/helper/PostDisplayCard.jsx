@@ -165,13 +165,20 @@ const PostDisplayCard = (props) => {
                   <div className="post-image" key={index}>
                     <div className="">
                       <div className="gallery js-gallery">
-                        <ReactPlayer
-                          light={postFile.blur_file}
-                          url={postFile.post_file}
-                          controls={true}
-                          width="100%"
-                          height="360px"
-                        />
+                        {post.payment_info.is_user_needs_pay == 1 ? (
+                          <Image
+                            src={postFile.post_file}
+                            className="post-view-image"
+                          />
+                        ) : (
+                          <ReactPlayer
+                            light={postFile.blur_file}
+                            url={postFile.post_file}
+                            controls={true}
+                            width="100%"
+                            height="360px"
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
