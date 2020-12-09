@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Col, Image } from "react-bootstrap";
+import { Button, Col, Dropdown, Image, Media } from "react-bootstrap";
 import AddFavModal from "../../helper/AddFavModal";
 import SendTipModal from "../../helper/SendTipModal";
 import { deleteFavStart, saveFavStart } from "../../../store/actions/FavAction";
@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { getSuccessNotificationMessage } from "../../helper/NotificationMessage";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { saveBlockUserStart } from "../../../store/actions/UserAction";
 
 const UserCard = (props) => {
   const [sendTip, setSendTip] = useState(false);
@@ -17,7 +18,13 @@ const UserCard = (props) => {
   };
 
   const [addFav, setAddFav] = useState(false);
-  const [favStatus, setFavStatus] = useState("");
+  const [favStatus, setFavStatus] = useState(
+    props.user.is_fav_user == 1 ? "removed" : "added"
+  );
+
+  const [blockUserStatus, setBlockUserStatus] = useState(
+    props.user.is_block_user == 1 ? "unblocked" : "blocked"
+  );
 
   const closeAddFavModal = () => {
     setAddFav(false);
@@ -32,6 +39,15 @@ const UserCard = (props) => {
     setFavStatus(status);
     props.dispatch(
       saveFavStart({
+        user_id: props.user.user_id,
+      })
+    );
+  };
+  const handleBlockUser = (event, status) => {
+    event.preventDefault();
+    setBlockUserStatus(status);
+    props.dispatch(
+      saveBlockUserStart({
         user_id: props.user.user_id,
       })
     );
@@ -71,12 +87,62 @@ const UserCard = (props) => {
                       <span title="User Updated">{props.user.updated}</span>
                     </div>
                     <div className="follower-profile-toggle-dropdown">
-                      <Link to="#" className="btn dropdown-toggle btn-link">
+                      {/* <Link to="#" className="btn dropdown-toggle btn-link">
                         <Image
                           src="assets/images/icons/vertical-dots.svg"
                           className="svg-clone vertical-dots"
                         />
-                      </Link>
+                      </Link> */}
+
+                      <Dropdown className="btn dropdown-toggle btn-link">
+                        <Dropdown.Toggle
+                          className="user-dropdown-dots dropdown-toggle"
+                          type="button"
+                          id="dropdown-basic"
+                        >
+                          <Image
+                            src={
+                              window.location.origin +
+                              "/assets/images/icons/vertical-dots.svg"
+                            }
+                            className="svg-clone vertical-dots"
+                          />
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                          <CopyToClipboard
+                            text={props.user.share_link}
+                            onCopy={onCopy}
+                          >
+                            <Media as="li">
+                              <Link to="#"> Copy link to profile </Link>
+                            </Media>
+                          </CopyToClipboard>
+
+                          {blockUserStatus == "unblocked" ? (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "blocked")
+                                }
+                              >
+                                Block the user
+                              </Link>
+                            </Media>
+                          ) : (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "unblocked")
+                                }
+                              >
+                                Unblock the user
+                              </Link>
+                            </Media>
+                          )}
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </div>
                   </div>
                   <div className="follower-wrapper-name">
@@ -122,21 +188,6 @@ const UserCard = (props) => {
                         </Button>
                       </CopyToClipboard>
                     </div>
-
-                    {/* <div
-                      className="group-follower-btns"
-                      style={{ display: "none" }}
-                    >
-                      <Button
-                        type="button"
-                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
-                      >
-                        <Image
-                          src="assets/images/icons/share.svg"
-                          className="svg-clone"
-                        />
-                      </Button>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -177,7 +228,7 @@ const UserCard = (props) => {
                         ) : null}
                       </>
                     </>
-                  ) : props.user.is_fav_user === 1 ? (
+                  ) : props.user.is_fav_user == 1 ? (
                     <Link
                       type="button"
                       className="swiper-btn-fav"

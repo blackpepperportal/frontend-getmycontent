@@ -6,7 +6,7 @@ import ModelProfileVideoSec from "./ModelProfileVideoSec";
 import SendTipModal from "../helper/SendTipModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Container, Row, Col, Image } from "react-bootstrap";
+import { Button, Container, Row, Col, Image, Modal } from "react-bootstrap";
 import {
   fetchSingleUserProfileStart,
   fetchSingleUserPostsStart,
@@ -14,6 +14,7 @@ import {
 import { saveFavStart } from "../../store/actions/FavAction";
 import { saveChatUserStart } from "../../store/actions/ChatAction";
 import { subscriptionPaymentStripeStart } from "../../store/actions/SubscriptionAction";
+import { unFollowUserStart } from "../../store/actions/FollowAction";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
@@ -31,6 +32,7 @@ const ModelViewProfile = (props) => {
   const [activeSec, setActiveSec] = useState("post");
   const [sendTip, setSendTip] = useState(false);
   const [starStatus, setStarStatus] = useState("");
+  const [showUnfollow, setShowUnfollow] = useState(false);
 
   const closeSendTipModal = () => {
     setSendTip(false);
@@ -59,6 +61,18 @@ const ModelViewProfile = (props) => {
           type: "video",
         })
       );
+  };
+
+  const handleUnfollowModalClose = () => setShowUnfollow(false);
+  const handleUnfollowModalShow = () => setShowUnfollow(true);
+
+  const handleUnfollow = (event, user_id) => {
+    event.preventDefault();
+    props.dispatch(
+      unFollowUserStart({
+        user_id: user_id,
+      })
+    );
   };
 
   const handleStar = (event, user_id, status) => {
@@ -377,6 +391,53 @@ const ModelViewProfile = (props) => {
                 ) : (
                   ""
                 )}
+
+                {userDetails.data.payment_info.unsubscribe_btn_status == 1 ? (
+                  <>
+                    <div className="subscription-section">
+                      <a
+                        href="#"
+                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                        onClick={handleUnfollowModalShow}
+                      >
+                        Following
+                      </a>
+                    </div>
+
+                    <Modal
+                      show={showUnfollow}
+                      onHide={handleUnfollowModalClose}
+                      backdrop="static"
+                      keyboard={false}
+                      centered
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title>UNSUBSCRIBE</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body>
+                        Are you sure you want to cancel subscription?
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button
+                          variant="secondary"
+                          size="lg"
+                          onClick={handleUnfollowModalClose}
+                        >
+                          Close
+                        </Button>
+                        <Button
+                          variant="primary"
+                          size="lg"
+                          onClick={(event) =>
+                            handleUnfollow(event, userDetails.data.user.user_id)
+                          }
+                        >
+                          Yes
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  </>
+                ) : null}
 
                 <div className="tab" role="tabpanel">
                   <ModelProfileTabSec

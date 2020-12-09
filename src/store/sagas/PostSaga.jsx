@@ -9,6 +9,8 @@ import {
   SAVE_POST_START,
   PPV_PAYMENT_STRIPE_START,
   PPV_PAYMENT_WALLET_START,
+  SAVE_REPORT_POST_START,
+  FETCH_REPORT_POSTS_START,
 } from "../actions/ActionConstant";
 import { createNotification } from "react-redux-notify";
 import {
@@ -32,6 +34,10 @@ import {
   PPVPaymentStripeSuccess,
   PPVPaymentWalletSuccess,
   PPVPaymentWalletFailure,
+  saveReportPostSuccess,
+  saveReportPostFailure,
+  fetchReportPostsSuccess,
+  fetchReportPostsFailure,
 } from "../actions/PostAction";
 
 function* savePostAPI() {
@@ -114,7 +120,7 @@ function* fetchSinglePostAPI() {
 function* deletePostAPI() {
   try {
     const inputData = yield select((state) => state.post.delPost.inputData);
-    const response = yield api.postMethod("posts_delete", inputData);
+    const response = yield api.postMethod("posts_delete_for_owner", inputData);
     if (response.data.success) {
       yield put(deletePostSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
@@ -232,7 +238,6 @@ function* PPVPaymentWalletAPI() {
       );
       yield put(createNotification(notificationMessage));
       window.location.assign("/home");
-
     } else {
       yield put(PPVPaymentWalletFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -247,6 +252,50 @@ function* PPVPaymentWalletAPI() {
   }
 }
 
+function* fetchReportPostsAPI() {
+  try {
+    const response = yield api.postMethod("report_posts");
+    if (response.data.success) {
+      yield put(fetchReportPostsSuccess(response.data.data));
+    } else {
+      yield put(fetchReportPostsFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchReportPostsFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* saveReportPostAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.post.saveReportPost.inputData
+    );
+    const response = yield api.postMethod("report_posts_save", inputData);
+    if (response.data.success) {
+      yield put(saveReportPostSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(saveReportPostFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(saveReportPostFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
 
 export default function* pageSaga() {
   yield all([yield takeLatest(SAVE_POST_START, savePostAPI)]);
@@ -256,16 +305,8 @@ export default function* pageSaga() {
   yield all([yield takeLatest(CHANGE_POST_STATUS_START, changePostStatusAPI)]);
   yield all([yield takeLatest(POST_FILE_UPLOAD_START, postFileUploadAPI)]);
 
-   yield all([
-    yield takeLatest(
-      PPV_PAYMENT_STRIPE_START,
-      PPVPaymentStripeAPI
-    ),
-  ]);
-  yield all([
-    yield takeLatest(
-      PPV_PAYMENT_WALLET_START,
-      PPVPaymentWalletAPI
-    ),
-  ]);
+  yield all([yield takeLatest(PPV_PAYMENT_STRIPE_START, PPVPaymentStripeAPI)]);
+  yield all([yield takeLatest(PPV_PAYMENT_WALLET_START, PPVPaymentWalletAPI)]);
+  yield all([yield takeLatest(SAVE_REPORT_POST_START, saveReportPostAPI)]);
+  yield all([yield takeLatest(FETCH_REPORT_POSTS_START, fetchPostsAPI)]);
 }

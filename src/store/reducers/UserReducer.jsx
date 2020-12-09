@@ -33,6 +33,12 @@ import {
   FETCH_PAYMENTS_START,
   FETCH_PAYMENTS_SUCCESS,
   FETCH_PAYMENTS_FAILURE,
+  FETCH_BLOCK_USERS_START,
+  FETCH_BLOCK_USERS_SUCCESS,
+  FETCH_BLOCK_USERS_FAILURE,
+  SAVE_BLOCK_USER_START,
+  SAVE_BLOCK_USER_SUCCESS,
+  SAVE_BLOCK_USER_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -105,6 +111,19 @@ const initialState = {
     data: {},
     loading: true,
     error: false,
+  },
+  blockUsers: {
+    data: {},
+    loading: true,
+    error: false,
+  },
+  saveBlockUser: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+    loadingButtonContent: null,
+    buttonDisable: false,
   },
 };
 
@@ -526,6 +545,70 @@ const userReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+        },
+      };
+
+    case FETCH_BLOCK_USERS_START:
+      return {
+        ...state,
+        blockUsers: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_BLOCK_USERS_SUCCESS:
+      return {
+        ...state,
+        blockUsers: {
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_BLOCK_USERS_FAILURE:
+      return {
+        ...state,
+        blockUsers: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+    case SAVE_BLOCK_USER_START:
+      return {
+        ...state,
+        saveBlockUser: {
+          data: {},
+          loading: true,
+          error: false,
+          inputData: action.data,
+          loadingButtonContent: "Loading... Please wait.",
+          buttonDisable: true,
+        },
+      };
+    case SAVE_BLOCK_USER_SUCCESS:
+      return {
+        ...state,
+        saveBlockUser: {
+          data: action.data,
+          loading: false,
+          error: false,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
+        },
+      };
+    case SAVE_BLOCK_USER_FAILURE:
+      return {
+        ...state,
+        saveBlockUser: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
         },
       };
 

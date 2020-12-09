@@ -22,9 +22,9 @@ a:focus {
   min-height: 90vh;
 }
 
-.flex-49{
+.flex-49 {
   flex: 0 0 49%;
-  max-width: 49%!important;
+  max-width: 49% !important;
 }
 
 .form-inline {
@@ -699,7 +699,7 @@ storiesWrapper {
   background-size: 22px 50px;
   padding-left: 55px;
   /* border: 1px solid rgb(60, 90, 154); */
-  border:0;
+  border: 0;
 }
 #facebook-connect span {
   box-sizing: border-box;
@@ -731,7 +731,7 @@ storiesWrapper {
     0px / 66px 18px padding-box border-box;
   background-size: 22px 50px;
   padding-left: 55px;
-  border:0;
+  border: 0;
   /* border: 1px solid rgb(60, 90, 154); */
 }
 #twitter-connect span {
@@ -4545,8 +4545,8 @@ span.new-user-name:after {
 }
 
 .post-btn {
-  background: #0091ea!important;
-  border-color: #0091ea!important ;
+  background: #0091ea !important;
+  border-color: #0091ea !important ;
   min-width: 72px !important;
   /* pointer-events: none; */
   border-radius: 1000px !important;
@@ -5203,6 +5203,7 @@ svg.g-icon.m-verified {
   text-align: center;
   border: none;
   cursor: pointer;
+  margin-right: 5px;
 }
 button.model-filter {
   margin-top: -2px;
@@ -6230,7 +6231,7 @@ input.authentication-input {
     min-height: 95vh;
   } */
   pt-30-zero {
-    padding-left: 0!important;
+    padding-left: 0 !important;
   }
 }
 
@@ -7345,8 +7346,8 @@ input.authentication-input {
   margin-top: 15px;
 }
 
-.search-text:focus > .search-box{
-  background-color:#efefef;
+.search-text:focus > .search-box {
+  background-color: #efefef;
 }
 
 .search-box {
@@ -7886,29 +7887,27 @@ input.authentication-input {
   border-bottom: 0 !important;
 }
 
-.create-post input[type=file]{
+.create-post input[type="file"] {
   display: none;
 }
 
-
-.chat-attach_file.form-label{
+.chat-attach_file.form-label {
   margin-bottom: 0;
 }
 
-.message-page .input-group>.input-group-append>.input-group-text {
+.message-page .input-group > .input-group-append > .input-group-text {
   background: transparent;
-  border:0;
+  border: 0;
 }
 
-.message-page .form-control:focus{
-  background-color: transparent!important;
+.message-page .form-control:focus {
+  background-color: transparent !important;
 }
 
-.trans-table-sec .btn.btn-primary:hover{
-  background: #0091ea!important; 
-  color: #ffffff!important;
+.trans-table-sec .btn.btn-primary:hover {
+  background: #0091ea !important;
+  color: #ffffff !important;
 }
-
 
 /*Search Suggestion*/
 .search-dropdown-sec {
@@ -7924,11 +7923,11 @@ input.authentication-input {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   display: block;
-  transform: translate(0px,0px);
+  transform: translate(0px, 0px);
   background-color: #fff;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
   border: 5px solid rgba(0, 0, 0, 0.1);
-  border-radius: .5em;
+  border-radius: 0.5em;
 }
 
 .search-dropdown-list-sec {
@@ -7939,15 +7938,15 @@ input.authentication-input {
   border-bottom: 1px solid rgba(138, 150, 163, 0.25);
 }
 
-.search-dropdown-list-sec li a{
+.search-dropdown-list-sec li a {
   width: 100%;
 }
 
-.search-dropdown-list-sec .media{
+.search-dropdown-list-sec .media {
   margin-top: 0;
 }
 
-.search-dropdown-list-sec li:last-child{
+.search-dropdown-list-sec li:last-child {
   border-bottom: 0;
 }
 
@@ -7976,18 +7975,17 @@ input.authentication-input {
 }
 
 .search-dropdown-list-sec .search-body .search-content h5 {
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    max-height: 4em;
-    font-size: .9em;
-    font-weight: 600;
-    color: #242529;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  max-height: 4em;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #242529;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
-
 
 /*Create post Changes*/
 .post-title-content {
@@ -7999,8 +7997,8 @@ input.authentication-input {
 }
 
 .post-title-content .fa-window-close {
-  font-size:1.3em;
-  color: #F32013;
+  font-size: 1.3em;
+  color: #f32013;
 }
 
 .post-title-content h4 {
@@ -8025,19 +8023,19 @@ input.authentication-input {
   margin-bottom: 1em;
 }
 
-.post-img-preview-sec .post-video-preview{
- width: 100%;
- border: 5px solid rgba(0, 0, 0, 0.1);
+.post-img-preview-sec .post-video-preview {
+  width: 100%;
+  border: 5px solid rgba(0, 0, 0, 0.1);
 }
 
-.post-img-preview-sec .fa-times-circle{
+.post-img-preview-sec .fa-times-circle {
   position: absolute;
   right: 15px;
   top: 15px;
   font-size: 1.3em;
-  color: #F32013;
+  color: #f32013;
 }
 
-.md-mrg-btm{
-  margin-bottom: 2em!important;
+.md-mrg-btm {
+  margin-bottom: 2em !important;
 }

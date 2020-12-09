@@ -23,6 +23,13 @@ import {
   PPV_PAYMENT_WALLET_START,
   PPV_PAYMENT_WALLET_SUCCESS,
   PPV_PAYMENT_WALLET_FAILURE,
+  SAVE_REPORT_POST_FAILURE,
+  SAVE_REPORT_POST_SUCCESS,
+  SAVE_BLOCK_USER_START,
+  FETCH_REPORT_POSTS_FAILURE,
+  FETCH_REPORT_POSTS_START,
+  FETCH_REPORT_POSTS_SUCCESS,
+  SAVE_REPORT_POST_START,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -86,6 +93,19 @@ const initialState = {
     success: {},
     buttonDisable: false,
     loadingButtonContent: null,
+  },
+  reportPosts: {
+    data: {},
+    loading: true,
+    error: false,
+  },
+  saveReportPost: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+    loadingButtonContent: null,
+    buttonDisable: false,
   },
 };
 
@@ -367,6 +387,70 @@ const PostReducer = (state = initialState, action) => {
           success: {},
           buttonDisable: false,
           loadingButtonContent: null,
+        },
+      };
+
+    case FETCH_REPORT_POSTS_START:
+      return {
+        ...state,
+        reportPosts: {
+          data: {},
+          loading: true,
+          error: false,
+        },
+      };
+    case FETCH_REPORT_POSTS_SUCCESS:
+      return {
+        ...state,
+        reportPosts: {
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case FETCH_REPORT_POSTS_FAILURE:
+      return {
+        ...state,
+        reportPosts: {
+          data: {},
+          loading: true,
+          error: action.error,
+        },
+      };
+    case SAVE_REPORT_POST_START:
+      return {
+        ...state,
+        saveReportPost: {
+          data: {},
+          loading: true,
+          error: false,
+          inputData: action.data,
+          loadingButtonContent: "Loading... Please wait.",
+          buttonDisable: true,
+        },
+      };
+    case SAVE_REPORT_POST_SUCCESS:
+      return {
+        ...state,
+        saveReportPost: {
+          data: action.data,
+          loading: false,
+          error: false,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
+        },
+      };
+    case SAVE_REPORT_POST_FAILURE:
+      return {
+        ...state,
+        saveReportPost: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          loadingButtonContent: null,
+          buttonDisable: false,
         },
       };
 

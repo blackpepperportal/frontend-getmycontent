@@ -17,12 +17,18 @@ import {
   POST_FILE_UPLOAD_START,
   POST_FILE_UPLOAD_SUCCESS,
   POST_FILE_UPLOAD_FAILURE,
- PPV_PAYMENT_STRIPE_START,
- PPV_PAYMENT_STRIPE_SUCCESS,
- PPV_PAYMENT_STRIPE_FAILURE,
- PPV_PAYMENT_WALLET_START,
- PPV_PAYMENT_WALLET_SUCCESS,
- PPV_PAYMENT_WALLET_FAILURE,
+  PPV_PAYMENT_STRIPE_START,
+  PPV_PAYMENT_STRIPE_SUCCESS,
+  PPV_PAYMENT_STRIPE_FAILURE,
+  PPV_PAYMENT_WALLET_START,
+  PPV_PAYMENT_WALLET_SUCCESS,
+  PPV_PAYMENT_WALLET_FAILURE,
+  SAVE_REPORT_POST_START,
+  SAVE_REPORT_POST_SUCCESS,
+  SAVE_REPORT_POST_FAILURE,
+  FETCH_REPORT_POSTS_START,
+  FETCH_REPORT_POSTS_SUCCESS,
+  FETCH_REPORT_POSTS_FAILURE,
 } from "./ActionConstant";
 
 export function savePostStart(data) {
@@ -150,8 +156,6 @@ export function postFileUploadFailure(error) {
   };
 }
 
-
-
 export function PPVPaymentStripeStart(data) {
   return {
     type: PPV_PAYMENT_STRIPE_START,
@@ -192,6 +196,48 @@ export function PPVPaymentWalletSuccess(data) {
 export function PPVPaymentWalletFailure(error) {
   return {
     type: PPV_PAYMENT_WALLET_FAILURE,
+    error,
+  };
+}
+
+export function saveReportPostStart(data) {
+  return {
+    type: SAVE_REPORT_POST_START,
+    data,
+  };
+}
+
+export function saveReportPostSuccess(data) {
+  return {
+    type: SAVE_REPORT_POST_SUCCESS,
+    data,
+  };
+}
+
+export function saveReportPostFailure(error) {
+  return {
+    type: SAVE_REPORT_POST_FAILURE,
+    error,
+  };
+}
+
+export function fetchReportPostsStart(data) {
+  return {
+    type: FETCH_REPORT_POSTS_START,
+    data,
+  };
+}
+
+export function fetchReportPostsSuccess(data) {
+  return {
+    type: FETCH_REPORT_POSTS_SUCCESS,
+    data,
+  };
+}
+
+export function fetchReportPostsFailure(error) {
+  return {
+    type: FETCH_REPORT_POSTS_FAILURE,
     error,
   };
 }
