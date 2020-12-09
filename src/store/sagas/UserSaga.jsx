@@ -21,6 +21,10 @@ import {
   notificationStatusUpdateFailure,
   fetchPaymentsSuccess,
   fetchPaymentsFailure,
+  saveBlockUserSuccess,
+  saveBlockUserFailure,
+  fetchBlockUsersSuccess,
+  fetchBlockUsersFailure,
 } from "../actions/UserAction";
 
 import api from "../../Environment";
@@ -35,6 +39,8 @@ import {
   REGISTER_VERIFY_RESEND_START,
   NOTIFICATION_STATUS_UPDATE_START,
   FETCH_PAYMENTS_START,
+  FETCH_BLOCK_USERS_START,
+  SAVE_BLOCK_USER_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -400,6 +406,51 @@ function* getPaymentsAPI() {
   }
 }
 
+function* fetchBlockUsersAPI() {
+  try {
+    const response = yield api.postMethod("block_users");
+    if (response.data.success) {
+      yield put(fetchBlockUsersSuccess(response.data.data));
+    } else {
+      yield put(fetchBlockUsersFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(fetchBlockUsersFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* saveBlockUserAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.users.saveBlockUser.inputData
+    );
+    const response = yield api.postMethod("block_users_save", inputData);
+    if (response.data.success) {
+      yield put(saveBlockUserSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(saveBlockUserFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(saveBlockUserFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([
     yield takeLatest(FETCH_USER_DETAILS_START, getUserDetailsAPI),
@@ -415,5 +466,7 @@ export default function* pageSaga() {
       notificationStatusUpdateAPI
     ),
     yield takeLatest(FETCH_PAYMENTS_START, getPaymentsAPI),
+    yield takeLatest(FETCH_BLOCK_USERS_START, fetchBlockUsersAPI),
+    yield takeLatest(SAVE_BLOCK_USER_START, saveBlockUserAPI),
   ]);
 }

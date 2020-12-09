@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { getSuccessNotificationMessage } from "../../helper/NotificationMessage";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { saveBlockUserStart } from "../../../store/actions/UserAction";
 
 const UserCard = (props) => {
   const [sendTip, setSendTip] = useState(false);
@@ -17,7 +18,13 @@ const UserCard = (props) => {
   };
 
   const [addFav, setAddFav] = useState(false);
-  const [favStatus, setFavStatus] = useState("");
+  const [favStatus, setFavStatus] = useState(
+    props.user.is_fav_user == 1 ? "removed" : "added"
+  );
+
+  const [blockUserStatus, setBlockUserStatus] = useState(
+    props.user.is_fav_user
+  );
 
   const closeAddFavModal = () => {
     setAddFav(false);
@@ -32,6 +39,15 @@ const UserCard = (props) => {
     setFavStatus(status);
     props.dispatch(
       saveFavStart({
+        user_id: props.user.user_id,
+      })
+    );
+  };
+  const handleBlockUser = (event, status) => {
+    event.preventDefault();
+    setBlockUserStatus(status);
+    props.dispatch(
+      saveBlockUserStart({
         user_id: props.user.user_id,
       })
     );
@@ -122,21 +138,6 @@ const UserCard = (props) => {
                         </Button>
                       </CopyToClipboard>
                     </div>
-
-                    {/* <div
-                      className="group-follower-btns"
-                      style={{ display: "none" }}
-                    >
-                      <Button
-                        type="button"
-                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
-                      >
-                        <Image
-                          src="assets/images/icons/share.svg"
-                          className="svg-clone"
-                        />
-                      </Button>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -177,7 +178,7 @@ const UserCard = (props) => {
                         ) : null}
                       </>
                     </>
-                  ) : props.user.is_fav_user === 1 ? (
+                  ) : props.user.is_fav_user == 1 ? (
                     <Link
                       type="button"
                       className="swiper-btn-fav"
@@ -202,6 +203,24 @@ const UserCard = (props) => {
                         width="12"
                       />
                       Add to favorites
+                    </Link>
+                  )}
+
+                  {blockUserStatus == 0 ? (
+                    <Link
+                      type="button"
+                      className="swiper-btn-fav"
+                      onClick={(event) => handleBlockUser(event, 1)}
+                    >
+                      Block the user
+                    </Link>
+                  ) : (
+                    <Link
+                      type="button"
+                      className="swiper-btn-fav"
+                      onClick={(event) => handleBlockUser(event, 0)}
+                    >
+                      Remove from Blocklist
                     </Link>
                   )}
                 </div>

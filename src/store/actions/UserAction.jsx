@@ -37,6 +37,12 @@ import {
   FETCH_PAYMENTS_START,
   FETCH_PAYMENTS_SUCCESS,
   FETCH_PAYMENTS_FAILURE,
+  SAVE_BLOCK_USER_START,
+  SAVE_BLOCK_USER_SUCCESS,
+  SAVE_BLOCK_USER_FAILURE,
+  FETCH_BLOCK_USERS_START,
+  FETCH_BLOCK_USERS_SUCCESS,
+  FETCH_BLOCK_USERS_FAILURE,
 } from "./ActionConstant";
 
 // Get user details actions.
@@ -334,6 +340,48 @@ export function fetchPaymentsSuccess(data) {
 export function fetchPaymentsFailure(error) {
   return {
     type: FETCH_PAYMENTS_FAILURE,
+    error,
+  };
+}
+
+export function saveBlockUserStart(data) {
+  return {
+    type: SAVE_BLOCK_USER_START,
+    data,
+  };
+}
+
+export function saveBlockUserSuccess(data) {
+  return {
+    type: SAVE_BLOCK_USER_SUCCESS,
+    data,
+  };
+}
+
+export function saveBlockUserFailure(error) {
+  return {
+    type: SAVE_BLOCK_USER_FAILURE,
+    error,
+  };
+}
+
+export function fetchBlockUsersStart(data) {
+  return {
+    type: FETCH_BLOCK_USERS_START,
+    data,
+  };
+}
+
+export function fetchBlockUsersSuccess(data) {
+  return {
+    type: FETCH_BLOCK_USERS_SUCCESS,
+    data,
+  };
+}
+
+export function fetchBlockUsersFailure(error) {
+  return {
+    type: FETCH_BLOCK_USERS_FAILURE,
     error,
   };
 }
