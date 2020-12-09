@@ -15,7 +15,10 @@ import ReactPlayer from "react-player/lazy";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getSuccessNotificationMessage } from "../helper/NotificationMessage";
-import { saveReportPostStart } from "../../store/actions/PostAction";
+import {
+  deletePostStart,
+  saveReportPostStart,
+} from "../../store/actions/PostAction";
 import { saveBlockUserStart } from "../../store/actions/UserAction";
 
 const PostDisplayCard = (props) => {
@@ -30,6 +33,7 @@ const PostDisplayCard = (props) => {
   const [bookmarkStatus, setBookmarkStatus] = useState("");
   const [ReportPostStatus, setReportPostStatus] = useState(false);
   const [BlockUserStatus, setBlockUserStatus] = useState(false);
+  const [postDisplayStatus, setPostDisplayStatus] = useState(true);
   const [likeStatus, setLikeStatus] = useState("");
 
   const closeSendTipModal = () => {
@@ -65,13 +69,19 @@ const PostDisplayCard = (props) => {
 
   const handleReportPost = (event, post) => {
     event.preventDefault();
-    setReportPostStatus(true);
+    setPostDisplayStatus(false);
     props.dispatch(saveReportPostStart({ post_id: post.post_id }));
   };
   const handleBlockUser = (event, post) => {
     event.preventDefault();
-    setBlockUserStatus(true);
+    setPostDisplayStatus(false);
     props.dispatch(saveBlockUserStart({ user_id: post.user_id }));
+  };
+
+  const handleDeletePost = (event, post) => {
+    event.preventDefault();
+    setPostDisplayStatus(false);
+    props.dispatch(deletePostStart({ post_id: post.post_id }));
   };
 
   const closeCommentSection = (event) => {
@@ -86,7 +96,7 @@ const PostDisplayCard = (props) => {
 
   return (
     <>
-      {ReportPostStatus == false && BlockUserStatus == false ? (
+      {postDisplayStatus == true ? (
         <div className="post-list">
           <div className="post-header">
             <div className="alignleft">
@@ -156,6 +166,20 @@ const PostDisplayCard = (props) => {
                           I don't like the user. Add to blocklists.
                         </Link>
                       </Media>
+                      {post.delete_btn_status == 1 ? (
+                        <>
+                          <Media as="li" className="divider"></Media>
+
+                          <Media as="li">
+                            <Link
+                              to="#"
+                              onClick={(event) => handleDeletePost(event, post)}
+                            >
+                              Delete Post
+                            </Link>
+                          </Media>
+                        </>
+                      ) : null}
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>

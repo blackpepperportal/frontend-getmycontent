@@ -120,7 +120,7 @@ function* fetchSinglePostAPI() {
 function* deletePostAPI() {
   try {
     const inputData = yield select((state) => state.post.delPost.inputData);
-    const response = yield api.postMethod("posts_delete", inputData);
+    const response = yield api.postMethod("posts_delete_for_owner", inputData);
     if (response.data.success) {
       yield put(deletePostSuccess(response.data.data));
       const notificationMessage = getSuccessNotificationMessage(
