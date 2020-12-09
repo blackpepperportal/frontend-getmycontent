@@ -8,7 +8,7 @@ import {
 
 const SendTipModal = (props) => {
   const [amount, setAmount] = useState(0);
-  const [paymentType, setPaymentType] = useState("wallet");
+  const [paymentType, setPaymentType] = useState("card");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -86,7 +86,7 @@ const SendTipModal = (props) => {
                   <label className="default-label">Tip amount</label>
                 </div>
 
-                <Form className="mt-4">
+                {/* <Form className="mt-4">
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`} className="mb-3">
                       <Form.Check
@@ -113,7 +113,7 @@ const SendTipModal = (props) => {
                       />
                     </div>
                   ))}
-                </Form>
+                </Form> */}
 
                 <div className="floating-label">
                   <input

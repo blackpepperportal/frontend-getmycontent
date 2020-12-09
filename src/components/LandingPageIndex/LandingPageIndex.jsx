@@ -182,6 +182,7 @@ const LandingPageIndex = (props) => {
                           <div className="">
                             <Button
                               id="login"
+                              type="submit"
                               onClick={handleLogin}
                               className="btn btn-auth btn-lg"
                               disabled={props.login.buttonDisable}
@@ -304,6 +305,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicName">
                             <Button
                               id="register"
+                              type="submit"
                               onClick={handleSignup}
                               className="btn btn-auth btn-lg r-btn"
                               disabled={props.login.buttonDisable}
@@ -354,6 +356,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicName">
                             <Button
                               id="forgotpassword"
+                              type="submit"
                               onClick={handleForgotPassword}
                               className="btn btn-auth btn-lg"
                               disabled={props.forgotPassword.buttonDisable}
