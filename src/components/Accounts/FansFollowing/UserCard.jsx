@@ -96,7 +96,7 @@ const UserCard = (props) => {
 
                       <Dropdown className="btn dropdown-toggle btn-link">
                         <Dropdown.Toggle
-                          className="btn btn-default dropdown-toggle"
+                          className="user-dropdown-dots dropdown-toggle"
                           type="button"
                           id="dropdown-basic"
                         >
