@@ -72,6 +72,7 @@ function* unFollowUserAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
+      window.location.reload();
     } else {
       yield put(unFollowUserFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
