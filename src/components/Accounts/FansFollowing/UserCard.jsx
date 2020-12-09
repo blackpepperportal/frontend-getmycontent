@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Col, Image } from "react-bootstrap";
+import { Button, Col, Dropdown, Image, Media } from "react-bootstrap";
 import AddFavModal from "../../helper/AddFavModal";
 import SendTipModal from "../../helper/SendTipModal";
 import { deleteFavStart, saveFavStart } from "../../../store/actions/FavAction";
@@ -23,7 +23,7 @@ const UserCard = (props) => {
   );
 
   const [blockUserStatus, setBlockUserStatus] = useState(
-    props.user.is_fav_user
+    props.user.is_block_user == 1 ? "unblocked" : "blocked"
   );
 
   const closeAddFavModal = () => {
@@ -87,12 +87,62 @@ const UserCard = (props) => {
                       <span title="User Updated">{props.user.updated}</span>
                     </div>
                     <div className="follower-profile-toggle-dropdown">
-                      <Link to="#" className="btn dropdown-toggle btn-link">
+                      {/* <Link to="#" className="btn dropdown-toggle btn-link">
                         <Image
                           src="assets/images/icons/vertical-dots.svg"
                           className="svg-clone vertical-dots"
                         />
-                      </Link>
+                      </Link> */}
+
+                      <Dropdown className="btn dropdown-toggle btn-link">
+                        <Dropdown.Toggle
+                          className="btn btn-default dropdown-toggle"
+                          type="button"
+                          id="dropdown-basic"
+                        >
+                          <Image
+                            src={
+                              window.location.origin +
+                              "/assets/images/icons/vertical-dots.svg"
+                            }
+                            className="svg-clone vertical-dots"
+                          />
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
+                          <CopyToClipboard
+                            text={props.user.share_link}
+                            onCopy={onCopy}
+                          >
+                            <Media as="li">
+                              <Link to="#"> Copy link to profile </Link>
+                            </Media>
+                          </CopyToClipboard>
+
+                          {blockUserStatus == "unblocked" ? (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "blocked")
+                                }
+                              >
+                                Block the user
+                              </Link>
+                            </Media>
+                          ) : (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "unblocked")
+                                }
+                              >
+                                Unblock the user
+                              </Link>
+                            </Media>
+                          )}
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </div>
                   </div>
                   <div className="follower-wrapper-name">
@@ -203,24 +253,6 @@ const UserCard = (props) => {
                         width="12"
                       />
                       Add to favorites
-                    </Link>
-                  )}
-
-                  {blockUserStatus == 0 ? (
-                    <Link
-                      type="button"
-                      className="swiper-btn-fav"
-                      onClick={(event) => handleBlockUser(event, 1)}
-                    >
-                      Block the user
-                    </Link>
-                  ) : (
-                    <Link
-                      type="button"
-                      className="swiper-btn-fav"
-                      onClick={(event) => handleBlockUser(event, 0)}
-                    >
-                      Remove from Blocklist
                     </Link>
                   )}
                 </div>
