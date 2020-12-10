@@ -31,10 +31,9 @@ const PostDisplayCard = (props) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const [bookmarkStatus, setBookmarkStatus] = useState("");
-  const [ReportPostStatus, setReportPostStatus] = useState(false);
-  const [BlockUserStatus, setBlockUserStatus] = useState(false);
   const [postDisplayStatus, setPostDisplayStatus] = useState(true);
   const [likeStatus, setLikeStatus] = useState("");
+  const [likeCount, setLikeCount] = useState(totalLikes);
 
   const closeSendTipModal = () => {
     setSendTip(false);
@@ -59,6 +58,13 @@ const PostDisplayCard = (props) => {
     event.preventDefault();
     setLikeStatus(status);
     props.dispatch(savePostLikeStart({ post_id: post.post_id }));
+    if (status == "added") {
+      let currentLikeCount = likeCount + 1;
+      setLikeCount(currentLikeCount);
+    } else {
+      let currentLikeCount = likeCount - 1;
+      setLikeCount(currentLikeCount);
+    }
   };
 
   const handleBookmark = (event, post, status) => {
@@ -154,7 +160,7 @@ const PostDisplayCard = (props) => {
                           onClick={(event) => handleReportPost(event, post)}
                         >
                           {" "}
-                          I don't like this post{" "}
+                          Report{" "}
                         </Link>
                       </Media>
                       <Media as="li">
@@ -408,7 +414,7 @@ const PostDisplayCard = (props) => {
           </div>
 
           <div className="likes alignleft">
-            <p>{totalLikes} Likes</p>
+            <p>{likeCount} Likes</p>
             {isVisible && commentInputData.post_id === post.post_id ? (
               <Link
                 className="Show view-comments"
