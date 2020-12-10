@@ -106,7 +106,7 @@ const UserCard = (props) => {
                           <Image
                             src={
                               window.location.origin +
-                              "/assets/images/icons/vertical-dots.svg"
+                              "/assets/images/icons/vertical-dots-white.svg"
                             }
                             className="svg-clone vertical-dots"
                           />
@@ -144,7 +144,7 @@ const UserCard = (props) => {
                               </Link>
                             </Media>
                           )}
-
+                          <Media as="li" className="divider media"></Media>
                           {subscribeStatus == "unsubscribed" ? (
                             <Media as="li">
                               <Link

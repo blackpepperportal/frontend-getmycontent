@@ -5109,7 +5109,7 @@ span.follower-profile-avatar img {
 }
 .follower-profile-toggle-dropdown {
   margin-left: auto;
-  margin-right: 7px;
+  margin-right: -10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5121,6 +5121,35 @@ span.follower-profile-avatar img {
   justify-content: flex-end;
   position: static;
 }
+
+.follower-profile-toggle-dropdown .user-dropdown-dots {
+  background: transparent!important;
+  box-shadow: none!important;
+}
+
+.dropdown-menu.show:after{
+  right: 4px!important;
+  left: unset;
+}
+
+.dropdown-menu.show {
+  box-shadow: 0 3px 6px rgba(0,0,0,.16);
+  background: #fff;
+  border: 1px solid rgba(138,150,163,.25);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 0;
+}
+
+.dropdown-menu.show .media{
+  margin:0;
+}
+
+.follower-profile-toggle-dropdown .dropdown-menu.show{
+  transform: translate(-215px, 47px)!important;
+}
+
 .follower-wrapper-name {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7277,13 +7306,23 @@ input.authentication-input {
 }
 
 .dropdown-menu.dropdown-menu-right li a {
-  padding: 5px 13px;
-  font-size: 0.8em;
+  padding: 15px 20px;
+  font-size: 1em;
   width: 100%;
+  font-weight: 600;
 }
 
 .dropdown-menu.show {
   min-width: 265px;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
+  /* background-color: transparent;
+  color: #000000!important; */
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .flex-content {
