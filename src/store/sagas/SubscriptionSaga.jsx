@@ -111,6 +111,14 @@ function* subscriptionPaymentStripeAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
+      localStorage.setItem(
+        "total_followers",
+        JSON.stringify(response.data.data.total_followers)
+      );
+      localStorage.setItem(
+        "total_followings",
+        JSON.stringify(response.data.data.total_followings)
+      );
       window.location.assign(
         `/model-profile/${subscriptioDetails.user_unique_id}`
       );

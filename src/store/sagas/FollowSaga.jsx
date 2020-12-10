@@ -46,6 +46,14 @@ function* followUserAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
+      localStorage.setItem(
+        "total_followers",
+        JSON.stringify(response.data.data.total_followers)
+      );
+      localStorage.setItem(
+        "total_followings",
+        JSON.stringify(response.data.data.total_followings)
+      );
     } else {
       yield put(followUserFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -72,6 +80,14 @@ function* unFollowUserAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
+      localStorage.setItem(
+        "total_followers",
+        JSON.stringify(response.data.data.total_followers)
+      );
+      localStorage.setItem(
+        "total_followings",
+        JSON.stringify(response.data.data.total_followings)
+      );
       window.location.reload();
     } else {
       yield put(unFollowUserFailure(response.data.error));

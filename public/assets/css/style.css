@@ -5147,7 +5147,7 @@ span.follower-profile-avatar img {
 }
 
 .follower-profile-toggle-dropdown .dropdown-menu.show{
-  transform: translate(-215px, 47px)!important;
+  transform: translate(-260px, 47px)!important;
 }
 
 .follower-wrapper-name {
@@ -7313,7 +7313,8 @@ input.authentication-input {
 }
 
 .dropdown-menu.show {
-  min-width: 265px;
+  min-width: 315px;
+  transform: translate(-275px, 35px)!important;
 }
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
