@@ -23,7 +23,7 @@ const UserCard = (props) => {
   );
 
   const [blockUserStatus, setBlockUserStatus] = useState(
-    props.user.is_block_user == 1 ? "unblocked" : "blocked"
+    props.user.is_block_user == 1 ? "blocked" : "unblocked"
   );
 
   const closeAddFavModal = () => {
