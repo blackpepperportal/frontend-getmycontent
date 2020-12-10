@@ -437,6 +437,10 @@ function* saveBlockUserAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
+
+      if (inputData.is_other_profile == 1) {
+        window.location.reload();
+      }
     } else {
       yield put(saveBlockUserFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

@@ -15,6 +15,7 @@ import { saveFavStart } from "../../store/actions/FavAction";
 import { saveChatUserStart } from "../../store/actions/ChatAction";
 import { subscriptionPaymentStripeStart } from "../../store/actions/SubscriptionAction";
 import { unFollowUserStart } from "../../store/actions/FollowAction";
+import { saveBlockUserStart } from "../../store/actions/UserAction";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
@@ -33,9 +34,27 @@ const ModelViewProfile = (props) => {
   const [sendTip, setSendTip] = useState(false);
   const [starStatus, setStarStatus] = useState("");
   const [showUnfollow, setShowUnfollow] = useState(false);
-
+  const [blockUserStatus, setBlockUserStatus] = useState("");
   const closeSendTipModal = () => {
     setSendTip(false);
+  };
+
+  const blockStatusUpdate = () => {
+    if (props.loading == false) {
+      setBlockUserStatus(
+        props.data.is_block_user == 1 ? "blocked" : "unblocked"
+      );
+    }
+  };
+  const handleBlockUser = (event, status, user_id) => {
+    event.preventDefault();
+    setBlockUserStatus(status);
+    props.dispatch(
+      saveBlockUserStart({
+        user_id: user_id,
+        is_other_profile: 1,
+      })
+    );
   };
 
   const setActiveSection = (event, key) => {
@@ -326,118 +345,142 @@ const ModelViewProfile = (props) => {
                   </p>
                 </div>
 
-                {userDetails.data.payment_info.is_user_needs_pay ? (
-                  userDetails.data.payment_info.subscription_info ? (
-                    <>
-                      <div className="subscription-section">
-                        <span className="subscribe-title">
-                          Monthly Subscription{" "}
-                        </span>
-                        <Link
-                          to=""
-                          className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                          onClick={(event) =>
-                            subscriptionPayment(
-                              event,
-                              "month",
-                              userDetails.data.user.user_unique_id
-                            )
-                          }
-                        >
-                          {userDetails.data.payment_info.payment_text}
-                        </Link>
-                      </div>
-                      <div className="subscription-section">
-                        <span className="subscribe-title">
-                          Yearly Subscription{" "}
-                        </span>
-                        <Link
-                          to=""
-                          className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                          onClick={(event) =>
-                            subscriptionPayment(
-                              event,
-                              "year",
-                              userDetails.data.user.user_unique_id
-                            )
-                          }
-                        >
-                          Subscribe for{" "}
-                          {
-                            userDetails.data.payment_info.subscription_info
-                              .yearly_amount_formatted
-                          }
-                        </Link>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="subscription-section">
-                      <Link
-                        to=""
-                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                        onClick={(event) =>
-                          subscriptionPayment(
-                            event,
-                            "month",
-                            userDetails.data.user.user_unique_id,
-                            1
-                          )
-                        }
-                      >
-                        {userDetails.data.payment_info.payment_text}
-                      </Link>
-                    </div>
-                  )
-                ) : (
-                  ""
-                )}
-
-                {userDetails.data.payment_info.unsubscribe_btn_status == 1 ? (
+                {userDetails.data.is_block_user == 0 ? (
                   <>
-                    <div className="subscription-section">
-                      <a
-                        href="#"
-                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
-                        onClick={handleUnfollowModalShow}
-                      >
-                        Following
-                      </a>
-                    </div>
+                    {userDetails.data.payment_info.is_user_needs_pay ? (
+                      userDetails.data.payment_info.subscription_info ? (
+                        <>
+                          <div className="subscription-section">
+                            <span className="subscribe-title">
+                              Monthly Subscription{" "}
+                            </span>
+                            <Link
+                              to=""
+                              className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                              onClick={(event) =>
+                                subscriptionPayment(
+                                  event,
+                                  "month",
+                                  userDetails.data.user.user_unique_id
+                                )
+                              }
+                            >
+                              {userDetails.data.payment_info.payment_text}
+                            </Link>
+                          </div>
+                          <div className="subscription-section">
+                            <span className="subscribe-title">
+                              Yearly Subscription{" "}
+                            </span>
+                            <Link
+                              to=""
+                              className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                              onClick={(event) =>
+                                subscriptionPayment(
+                                  event,
+                                  "year",
+                                  userDetails.data.user.user_unique_id
+                                )
+                              }
+                            >
+                              Subscribe for{" "}
+                              {
+                                userDetails.data.payment_info.subscription_info
+                                  .yearly_amount_formatted
+                              }
+                            </Link>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="subscription-section">
+                          <Link
+                            to=""
+                            className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                            onClick={(event) =>
+                              subscriptionPayment(
+                                event,
+                                "month",
+                                userDetails.data.user.user_unique_id,
+                                1
+                              )
+                            }
+                          >
+                            {userDetails.data.payment_info.payment_text}
+                          </Link>
+                        </div>
+                      )
+                    ) : (
+                      ""
+                    )}
 
-                    <Modal
-                      show={showUnfollow}
-                      onHide={handleUnfollowModalClose}
-                      backdrop="static"
-                      keyboard={false}
-                      centered
-                    >
-                      <Modal.Header closeButton>
-                        <Modal.Title>UNSUBSCRIBE</Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body>
-                        Are you sure you want to cancel subscription?
-                      </Modal.Body>
-                      <Modal.Footer>
-                        <Button
-                          variant="secondary"
-                          size="lg"
-                          onClick={handleUnfollowModalClose}
+                    {userDetails.data.payment_info.unsubscribe_btn_status ==
+                    1 ? (
+                      <>
+                        <div className="subscription-section">
+                          <a
+                            href="#"
+                            className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                            onClick={handleUnfollowModalShow}
+                          >
+                            Following
+                          </a>
+                        </div>
+
+                        <Modal
+                          show={showUnfollow}
+                          onHide={handleUnfollowModalClose}
+                          backdrop="static"
+                          keyboard={false}
+                          centered
                         >
-                          Close
-                        </Button>
-                        <Button
-                          variant="primary"
-                          size="lg"
-                          onClick={(event) =>
-                            handleUnfollow(event, userDetails.data.user.user_id)
-                          }
-                        >
-                          Yes
-                        </Button>
-                      </Modal.Footer>
-                    </Modal>
+                          <Modal.Header closeButton>
+                            <Modal.Title>UNSUBSCRIBE</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                            Are you sure you want to cancel subscription?
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button
+                              variant="secondary"
+                              size="lg"
+                              onClick={handleUnfollowModalClose}
+                            >
+                              Close
+                            </Button>
+                            <Button
+                              variant="primary"
+                              size="lg"
+                              onClick={(event) =>
+                                handleUnfollow(
+                                  event,
+                                  userDetails.data.user.user_id
+                                )
+                              }
+                            >
+                              Yes
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
+                      </>
+                    ) : null}
                   </>
-                ) : null}
+                ) : (
+                  <div className="subscription-section">
+                    <Link
+                      to=""
+                      className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
+                      onClick={(event) =>
+                        handleBlockUser(
+                          event,
+                          "unblocked",
+                          userDetails.data.user.user_id
+                        )
+                      }
+                    >
+                      UNBLOCK USER
+                    </Link>
+                  </div>
+                )}
 
                 <div className="tab" role="tabpanel">
                   <ModelProfileTabSec

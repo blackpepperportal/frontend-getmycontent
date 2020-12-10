@@ -13,13 +13,16 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentAddCardModal from "../../helper/PaymentAddCardModal";
 import NoDataFound from "../../NoDataFound/NoDataFound";
 import CardListLoader from "../../Loader/CardListLoader";
-
-const stripePromise = loadStripe("pk_test_uDYrTXzzAuGRwDYtu7dkhaF3");
+import configuration from "react-global-configuration";
 
 const CardsIndex = (props) => {
   useEffect(() => {
     props.dispatch(fetchCardDetailsStart());
   }, []);
+
+  const stripePromise = loadStripe(
+    configuration.get("configData.stripe_publishable_key")
+  );
 
   const [addCard, setAddCard] = useState(false);
 

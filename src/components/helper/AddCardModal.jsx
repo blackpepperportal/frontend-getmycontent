@@ -5,10 +5,12 @@ import Background from "../helper/g-3.jpg";
 import PaymentAddCardModal from "../helper/PaymentAddCardModal";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
-const stripePromise = loadStripe("pk_test_uDYrTXzzAuGRwDYtu7dkhaF3");
+import configuration from "react-global-configuration";
 
 const AddCardModel = (props) => {
+  const stripePromise = loadStripe(
+    configuration.get("configData.stripe_publishable_key")
+  );
   const [paymentAddCard, setPaymentAddCard] = useState(false);
 
   const closePaymentAddCardModal = () => {
