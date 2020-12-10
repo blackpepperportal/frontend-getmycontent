@@ -141,6 +141,30 @@ const UserCard = (props) => {
                               </Link>
                             </Media>
                           )}
+
+                          {blockUserStatus == "unblocked" ? (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "blocked")
+                                }
+                              >
+                                SUBSCRIBE NOW
+                              </Link>
+                            </Media>
+                          ) : (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "unblocked")
+                                }
+                              >
+                                UNSUBSCRIBE THE USER
+                              </Link>
+                            </Media>
+                          )}
                         </Dropdown.Menu>
                       </Dropdown>
                     </div>
