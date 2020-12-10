@@ -25,6 +25,9 @@ const UserCard = (props) => {
   const [blockUserStatus, setBlockUserStatus] = useState(
     props.user.is_block_user == 1 ? "blocked" : "unblocked"
   );
+  const [subscribeStatus, setSubscribeStatus] = useState(
+    props.user.is_block_user == 1 ? "subscribed" : "unsubscribed"
+  );
 
   const closeAddFavModal = () => {
     setAddFav(false);
@@ -142,12 +145,12 @@ const UserCard = (props) => {
                             </Media>
                           )}
 
-                          {blockUserStatus == "unblocked" ? (
+                          {subscribeStatus == "unsubscribed" ? (
                             <Media as="li">
                               <Link
                                 to="#"
                                 onClick={(event) =>
-                                  handleBlockUser(event, "blocked")
+                                  handleBlockUser(event, "subscribed")
                                 }
                               >
                                 SUBSCRIBE NOW
@@ -158,7 +161,7 @@ const UserCard = (props) => {
                               <Link
                                 to="#"
                                 onClick={(event) =>
-                                  handleBlockUser(event, "unblocked")
+                                  handleBlockUser(event, "unsubscribed")
                                 }
                               >
                                 UNSUBSCRIBE THE USER
