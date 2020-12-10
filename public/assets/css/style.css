@@ -18,6 +18,8 @@ a:focus {
     margin-left: 125px;
 }*/
 
+/*Don't Remove This */
+
 .main-wrap-sec {
   min-height: 90vh;
 }
@@ -8088,4 +8090,10 @@ input.authentication-input {
   border: 0 !important;
   box-shadow: 0px 5px 5px #e1e5e7 !important;
   background: #f6f7f8 !important;
+}
+
+/*Don't Remove This*/
+
+.landing-main-wrapper{
+  min-height: 90vh;
 }
