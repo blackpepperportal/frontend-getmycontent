@@ -18,6 +18,8 @@ a:focus {
     margin-left: 125px;
 }*/
 
+/*Don't Remove This */
+
 .main-wrap-sec {
   min-height: 90vh;
 }
@@ -5147,7 +5149,7 @@ span.follower-profile-avatar img {
 }
 
 .follower-profile-toggle-dropdown .dropdown-menu.show{
-  transform: translate(-215px, 47px)!important;
+  transform: translate(-260px, 47px)!important;
 }
 
 .follower-wrapper-name {
@@ -7313,7 +7315,8 @@ input.authentication-input {
 }
 
 .dropdown-menu.show {
-  min-width: 265px;
+  min-width: 315px;
+  transform: translate(-275px, 35px)!important;
 }
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{
@@ -8087,4 +8090,10 @@ input.authentication-input {
   border: 0 !important;
   box-shadow: 0px 5px 5px #e1e5e7 !important;
   background: #f6f7f8 !important;
+}
+
+/*Don't Remove This*/
+
+.landing-main-wrapper{
+  min-height: 90vh;
 }
