@@ -123,7 +123,7 @@ const HomePageIndex = (props) => {
                               <div className="search-content">
                                 <h5>{user.name}</h5>
                                 <p className="text-muted f-12">
-                                  @{user.user_unique_id}
+                                  @{user.username}
                                 </p>
                               </div>
                             </div>
