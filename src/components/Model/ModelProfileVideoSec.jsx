@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Image, Media } from "react-bootstrap";
 
 import NoDataFound from "../NoDataFound/NoDataFound";
+import PostDisplayCard from "../helper/PostDisplayCard";
 
 const ModelProfileVideoSec = (props) => {
   return (
@@ -15,27 +16,15 @@ const ModelProfileVideoSec = (props) => {
       }
       id="Section3"
     >
-      <ul className="box-container three-cols model-prof-photo-sec">
-        {props.userPosts.loading ? (
-          "Loading..."
-        ) : props.userPosts.data.posts.length > 0 ? (
-          props.userPosts.data.posts.map((post) =>
-            post.post_files.length > 0
-              ? post.post_files.map((p_file) => (
-                  <Media as="li" className="box">
-                    <div className="inner">
-                      <Link to={p_file.file} className="glightbox3">
-                        <Image src={p_file.file} />
-                      </Link>
-                    </div>
-                  </Media>
-                ))
-              : ""
-          )
-        ) : (
-          <NoDataFound></NoDataFound>
-        )}
-      </ul>
+      {props.userPosts.loading ? (
+        "Loading..."
+      ) : props.userPosts.data.posts.length > 0 ? (
+        props.userPosts.data.posts.map((post) => (
+          <PostDisplayCard post={post} key={post.post_id} />
+        ))
+      ) : (
+        <NoDataFound />
+      )}
     </div>
   );
 };

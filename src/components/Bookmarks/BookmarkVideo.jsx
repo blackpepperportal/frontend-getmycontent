@@ -7,6 +7,9 @@ import BookmarkVideoLoader from "../Loader/BookmarkVideoLoader";
 import BookmarkNoDataFound from "../NoDataFound/BookmarkNoDataFound";
 import { fetchBookmarksVideoStart } from "../../store/actions/BookmarkAction";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
+import ReactPlayer from "react-player/lazy";
+import BookmarkLoader from "../Loader/BookmarkLoader";
+import PostDisplayCard from "../helper/PostDisplayCard";
 
 const BookmarkVideo = (props) => {
   useEffect(() => {
@@ -43,52 +46,30 @@ const BookmarkVideo = (props) => {
       <Container>
         <Row>
           <BookmarkNav />
-          <Col xs={12} sm={12} md={8}>
-            {props.bookmarkVideo.loading ? (
-              <BookmarkVideoLoader />
-            ) : props.bookmarkVideo.data.posts.length > 0 ? (
-              <div className="profile-post-area">
-                <div className="bookmarkes-list bookmarks-right-side">
-                  <div className="pull-left">
-                    <h3>Videos</h3>
-                  </div>
-                  <div className="pull-right">
-                    <Link className="bookmarks-filter" to="#">
-                      <Image
-                        src="assets/images/icons/sort.svg"
-                        className="svg-clone"
-                      />
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="bookmarks-photos">
-                  <ul className="box-container three-cols">
-                    {props.bookmarkVideo.data.posts.map((post) =>
-                      post.postFiles.length > 0
-                        ? post.postFiles.map((post) => (
-                            <Media as="li" className="box" key={post.post_id}>
-                              <div className="inner">
-                                <a
-                                  href={post.post_file}
-                                  target="_blank"
-                                  className="glightbox3"
-                                >
-                                  <Image src={post.post_file} alt="image" />
-                                </a>
-                              </div>
-                            </Media>
-                          ))
-                        : ""
-                    )}
-                  </ul>
+          <Col sm={12} xs={12} md={8}>
+            <div className="profile-post-area">
+              <div className="bookmarkes-list bookmarks-right-side">
+                <div className="pull-left">
+                  <h3>Videos</h3>
                 </div>
               </div>
+            </div>
+            {props.bookmarkVideo.loading ? (
+              <BookmarkLoader />
+            ) : props.bookmarkVideo.data.posts.length > 0 ? (
+              props.bookmarkVideo.data.posts.map((post) => (
+                <PostDisplayCard post={post} key={post.post_id} />
+              ))
             ) : (
               <BookmarkNoDataFound />
             )}
           </Col>
         </Row>
+        {noMoreData !== true ? (
+          <>{isFetching && "Fetching more list items..."}</>
+        ) : (
+          "No More Data"
+        )}
       </Container>
     </div>
   );

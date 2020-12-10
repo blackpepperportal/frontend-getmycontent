@@ -25,6 +25,9 @@ const UserCard = (props) => {
   const [blockUserStatus, setBlockUserStatus] = useState(
     props.user.is_block_user == 1 ? "blocked" : "unblocked"
   );
+  const [subscribeStatus, setSubscribeStatus] = useState(
+    props.user.is_block_user == 1 ? "subscribed" : "unsubscribed"
+  );
 
   const closeAddFavModal = () => {
     setAddFav(false);
@@ -103,7 +106,7 @@ const UserCard = (props) => {
                           <Image
                             src={
                               window.location.origin +
-                              "/assets/images/icons/vertical-dots.svg"
+                              "/assets/images/icons/vertical-dots-white.svg"
                             }
                             className="svg-clone vertical-dots"
                           />
@@ -138,6 +141,30 @@ const UserCard = (props) => {
                                 }
                               >
                                 Unblock the user
+                              </Link>
+                            </Media>
+                          )}
+                          <Media as="li" className="divider media"></Media>
+                          {subscribeStatus == "unsubscribed" ? (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "subscribed")
+                                }
+                              >
+                                SUBSCRIBE NOW
+                              </Link>
+                            </Media>
+                          ) : (
+                            <Media as="li">
+                              <Link
+                                to="#"
+                                onClick={(event) =>
+                                  handleBlockUser(event, "unsubscribed")
+                                }
+                              >
+                                UNSUBSCRIBE THE USER
                               </Link>
                             </Media>
                           )}

@@ -22,8 +22,19 @@ const BookmarkNav = (props) => {
         <NavLink
           activeClassName="active"
           className="bookmarkes-list"
+          to={"/bookmarks"}
+        >
+          <Image
+            src="assets/images/icons/bookmark.svg"
+            className="svg-clone my-p-icons"
+          />
+          ALL BOOKMARKS
+        </NavLink>
+
+        <NavLink
+          activeClassName="active"
+          className="bookmarkes-list"
           to={"/bookmark-photo"}
-          // onClick={() => props.dispatch(fetchBookmarksStart({ type: "image" }))}
         >
           <Image
             src="assets/images/icons/gallery.svg"
@@ -36,7 +47,6 @@ const BookmarkNav = (props) => {
           activeClassName="active"
           className="bookmarkes-list"
           to={"/bookmark-video"}
-          // onClick={() => props.dispatch(fetchBookmarksStart({ type: "video" }))}
         >
           <Image
             src="assets/images/icons/video.svg"

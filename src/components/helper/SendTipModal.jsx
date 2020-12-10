@@ -73,7 +73,7 @@ const SendTipModal = (props) => {
               </div>
 
               <div className="floating-form">
-                <div className="floating-label">
+                <div className="floating-label mb-5">
                   <input
                     className="floating-input"
                     type="number"
