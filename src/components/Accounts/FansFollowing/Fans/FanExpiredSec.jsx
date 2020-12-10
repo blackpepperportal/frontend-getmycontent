@@ -35,7 +35,7 @@ const FanExpiredSec = (props) => {
             <Row>
               {props.followers.data.followers.length > 0 ? (
                 props.followers.data.followers.map((follower) => (
-                  <UserCard user={follower} />
+                  <UserCard user={follower.otherUser} />
                 ))
               ) : (
                 <NoDataFound></NoDataFound>

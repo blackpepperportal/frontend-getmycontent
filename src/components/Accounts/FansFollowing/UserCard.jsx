@@ -9,6 +9,7 @@ import { getSuccessNotificationMessage } from "../../helper/NotificationMessage"
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { saveBlockUserStart } from "../../../store/actions/UserAction";
+import { unFollowUserStart } from "../../../store/actions/FollowAction";
 
 const UserCard = (props) => {
   const [sendTip, setSendTip] = useState(false);
@@ -18,16 +19,10 @@ const UserCard = (props) => {
   };
 
   const [addFav, setAddFav] = useState(false);
-  const [favStatus, setFavStatus] = useState(
-    props.user.is_fav_user == 1 ? "removed" : "added"
-  );
+  const [favStatus, setFavStatus] = useState("");
 
-  const [blockUserStatus, setBlockUserStatus] = useState(
-    props.user.is_block_user == 1 ? "blocked" : "unblocked"
-  );
-  const [subscribeStatus, setSubscribeStatus] = useState(
-    props.user.is_block_user == 1 ? "subscribed" : "unsubscribed"
-  );
+  const [blockUserStatus, setBlockUserStatus] = useState("");
+  const [subscribeStatus, setSubscribeStatus] = useState("");
 
   const closeAddFavModal = () => {
     setAddFav(false);
@@ -51,6 +46,16 @@ const UserCard = (props) => {
     setBlockUserStatus(status);
     props.dispatch(
       saveBlockUserStart({
+        user_id: props.user.user_id,
+      })
+    );
+  };
+
+  const handleUnfollowUser = (event, status) => {
+    event.preventDefault();
+    setSubscribeStatus(status);
+    props.dispatch(
+      unFollowUserStart({
         user_id: props.user.user_id,
       })
     );
@@ -121,18 +126,31 @@ const UserCard = (props) => {
                             </Media>
                           </CopyToClipboard>
 
-                          {blockUserStatus == "unblocked" ? (
-                            <Media as="li">
-                              <Link
-                                to="#"
-                                onClick={(event) =>
-                                  handleBlockUser(event, "blocked")
-                                }
-                              >
-                                Block the user
-                              </Link>
-                            </Media>
-                          ) : (
+                          {blockUserStatus != "" ? (
+                            blockUserStatus == "unblocked" ? (
+                              <Media as="li">
+                                <Link
+                                  to="#"
+                                  onClick={(event) =>
+                                    handleBlockUser(event, "blocked")
+                                  }
+                                >
+                                  Block the user
+                                </Link>
+                              </Media>
+                            ) : (
+                              <Media as="li">
+                                <Link
+                                  to="#"
+                                  onClick={(event) =>
+                                    handleBlockUser(event, "unblocked")
+                                  }
+                                >
+                                  Unblock the user
+                                </Link>
+                              </Media>
+                            )
+                          ) : props.user.is_block_user == 1 ? (
                             <Media as="li">
                               <Link
                                 to="#"
@@ -143,17 +161,51 @@ const UserCard = (props) => {
                                 Unblock the user
                               </Link>
                             </Media>
-                          )}
-                          <Media as="li" className="divider media"></Media>
-                          {subscribeStatus == "unsubscribed" ? (
+                          ) : (
                             <Media as="li">
                               <Link
                                 to="#"
                                 onClick={(event) =>
-                                  handleBlockUser(event, "subscribed")
+                                  handleBlockUser(event, "blocked")
                                 }
                               >
-                                SUBSCRIBE NOW
+                                Block the user
+                              </Link>
+                            </Media>
+                          )}
+
+                          {subscribeStatus != "" ? (
+                            subscribeStatus == "unsubscribed" ? (
+                              <Media as="li">
+                                <Link
+                                  to={
+                                    `/model-profile/` +
+                                    props.user.user_unique_id
+                                  }
+                                >
+                                  Subscribe
+                                </Link>
+                              </Media>
+                            ) : (
+                              <Media as="li">
+                                <Link
+                                  to="#"
+                                  onClick={(event) =>
+                                    handleUnfollowUser(event, "unsubscribed")
+                                  }
+                                >
+                                  Unsubscribe
+                                </Link>
+                              </Media>
+                            )
+                          ) : props.user.show_follow ? (
+                            <Media as="li">
+                              <Link
+                                to={
+                                  `/model-profile/` + props.user.user_unique_id
+                                }
+                              >
+                                Subscribe
                               </Link>
                             </Media>
                           ) : (
@@ -161,10 +213,10 @@ const UserCard = (props) => {
                               <Link
                                 to="#"
                                 onClick={(event) =>
-                                  handleBlockUser(event, "unsubscribed")
+                                  handleUnfollowUser(event, "unsubscribed")
                                 }
                               >
-                                UNSUBSCRIBE THE USER
+                                Unsubscribe
                               </Link>
                             </Media>
                           )}

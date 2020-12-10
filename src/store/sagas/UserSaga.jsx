@@ -438,6 +438,15 @@ function* saveBlockUserAPI() {
       );
       yield put(createNotification(notificationMessage));
 
+      localStorage.setItem(
+        "total_followers",
+        response.data.data.total_followers
+      );
+      localStorage.setItem(
+        "total_followings",
+        response.data.data.total_followings
+      );
+
       if (inputData.is_other_profile == 1) {
         window.location.reload();
       }
