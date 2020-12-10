@@ -22,10 +22,7 @@ const NotificationIndex = (props) => {
               <div className="profile-post-area">
                 <div className="bookmarkes-list bookmarks-right-side resp-sapce-center">
                   <div className="pull-left">
-                    <Link
-                      className="bookmarkes-list notify-title"
-                      to={`/`}
-                    >
+                    <Link className="bookmarkes-list notify-title" to={`/home`}>
                       <Image
                         src="assets/images/icons/back.svg"
                         className="svg-clone"
@@ -38,13 +35,16 @@ const NotificationIndex = (props) => {
               <div className="tabbable-panel">
                 <div className="tab" role="tabpanel">
                   <div className="tab-content tabs padding-top-md">
-                  {props.notification.loading ? <NotificationLoader></NotificationLoader> :
-                    <NotificationAllSec
-                      activeSec={activeSec}
-                      setActiveSec={setActiveSec}
-                      notifications={props.notification.data.notifications}
-                      totalNotifications={props.notification.data.total}
-                    />}
+                    {props.notification.loading ? (
+                      <NotificationLoader></NotificationLoader>
+                    ) : (
+                      <NotificationAllSec
+                        activeSec={activeSec}
+                        setActiveSec={setActiveSec}
+                        notifications={props.notification.data.notifications}
+                        totalNotifications={props.notification.data.total}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

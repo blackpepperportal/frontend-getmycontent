@@ -1,11 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Image,
-} from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchListsDetailsStart } from "../../../store/actions/HomeAction";
 
@@ -26,7 +21,7 @@ const ListIndex = (props) => {
                   <div className="pull-left">
                     <Link
                       className="bookmarkes-list"
-                      to={"/"}
+                      to={"/home"}
                       onClick={() => props.history.goBack()}
                     >
                       <Image
