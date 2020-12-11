@@ -16,7 +16,7 @@ const HomePageSuggesstion = (props) => {
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 3,    
   };
 
   return (
@@ -68,7 +68,7 @@ const HomePageSuggesstion = (props) => {
         <Col sm={12} xl={12} xs={12} md={12}>
           <div
             id="carousel-example"
-            className="carousel slide "
+            className="carousel slide"
             data-ride="carousel"
           >
             <div className="carousel-inner">
@@ -78,7 +78,7 @@ const HomePageSuggesstion = (props) => {
                     {props.postSug.loading ? (
                       "Loading..."
                     ) : props.postSug.data.users.length > 0 ? (
-                      <Carousel>
+                      <Carousel axis="vertical" items="3" slidesToSlide="3" dynamicHeight="true" showArrows="false">
                         {props.postSug.data.users.map((user) => (
                           <div className="col-item">
                             <div className="photo">
@@ -100,13 +100,20 @@ const HomePageSuggesstion = (props) => {
                                     </div>
                                     <div className="b-friend__content">
                                       <div className="b-friend__avatar">
-                                        <span className="g-avatar online_status_class m-w150 m-border-line">
+                                        {/* <span className="g-avatar online_status_class m-w150 m-border-line">
                                           <Image
                                             src={user.picture}
                                             alt={user.username}
                                             className="suggest-img"
                                           />
-                                        </span>
+                                        </span> */}
+                                        <div className="profile-pic">
+                                          <Image
+                                              src={user.picture}
+                                              alt={user.username}
+                                              className="suggest-img"
+                                          />
+                                        </div>
                                       </div>
                                       <div className="b-username-row">
                                         <div className="b-username m-like-link">
