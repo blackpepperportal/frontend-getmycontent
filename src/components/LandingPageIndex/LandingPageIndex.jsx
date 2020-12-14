@@ -40,15 +40,19 @@ const LandingPageIndex = (props) => {
     console.log("handleFacebookLogin", user._profile.name);
     setSignupInputData({
       ...signupInputData,
-      name: user.name,
+      name: user._profile.name,
     });
     setSignupInputData({
       ...signupInputData,
-      first_name: user.firstName ? user._profile.firstName : "",
+      first_name: user._profile.firstName ? user._profile.firstName : "",
     });
     setSignupInputData({
       ...signupInputData,
-      last_name: user.lastName ? user._profile.lastName : "",
+      last_name: user._profile.lastName ? user._profile.lastName : "",
+    });
+    setSignupInputData({
+      ...signupInputData,
+      email: user._profile.email ? user._profile.email : "",
     });
     setSignupInputData({
       ...signupInputData,
@@ -65,8 +69,9 @@ const LandingPageIndex = (props) => {
     props.dispatch(
       userRegisterStart({
         name: user._profile.name,
-        first_name: user.firstName ? user._profile.firstName : "",
-        last_name: user.lastName ? user._profile.lastName : "",
+        first_name: user._profile.firstName ? user._profile.firstName : "",
+        last_name: user._profile.lastName ? user._profile.lastName : "",
+        email: user._profile.email ? user._profile.email : "",
         social_unique_id: user._profile.id,
         picture: user._profile.profilePicURL,
         login_by: "facebook",
@@ -106,8 +111,9 @@ const LandingPageIndex = (props) => {
     props.dispatch(
       userRegisterStart({
         name: user._profile.name,
-        first_name: user.firstName ? user._profile.firstName : "",
-        last_name: user.lastName ? user._profile.lastName : "",
+        email: user._profile.email,
+        first_name: user._profile.firstName ? user._profile.firstName : "",
+        last_name: user._profile.lastName ? user._profile.lastName : "",
         social_unique_id: user._profile.id,
         picture: user._profile.profilePicURL,
         login_by: "google",
