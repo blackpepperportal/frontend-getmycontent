@@ -62,7 +62,16 @@ const LandingPageIndex = (props) => {
       ...signupInputData,
       login_by: "facebook",
     });
-    props.dispatch(userRegisterStart(signupInputData));
+    props.dispatch(
+      userRegisterStart({
+        name: user._profile.name,
+        first_name: user.firstName ? user._profile.firstName : "",
+        last_name: user.lastName ? user._profile.lastName : "",
+        social_unique_id: user._profile.id,
+        picture: user._profile.profilePicURL,
+        login_by: "facebook",
+      })
+    );
   };
 
   const handleGoogleLogin = (user) => {
@@ -94,7 +103,16 @@ const LandingPageIndex = (props) => {
       ...signupInputData,
       login_by: "google",
     });
-    props.dispatch(userRegisterStart(signupInputData));
+    props.dispatch(
+      userRegisterStart({
+        name: user._profile.name,
+        first_name: user.firstName ? user._profile.firstName : "",
+        last_name: user.lastName ? user._profile.lastName : "",
+        social_unique_id: user._profile.id,
+        picture: user._profile.profilePicURL,
+        login_by: "google",
+      })
+    );
   };
 
   const handleSocialLoginFailure = (err) => {
