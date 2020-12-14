@@ -14,9 +14,9 @@ const HomePageSuggesstion = (props) => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    // speed: 100,
     slidesToShow: 3,
-    slidesToScroll: 3,    
+    slidesToScroll: 1,
   };
 
   return (
@@ -78,7 +78,13 @@ const HomePageSuggesstion = (props) => {
                     {props.postSug.loading ? (
                       "Loading..."
                     ) : props.postSug.data.users.length > 0 ? (
-                      <Carousel axis="vertical" items="3" slidesToSlide="3" dynamicHeight="true" showArrows="false">
+                      <Carousel
+                        axis="vertical"
+                        items="3"
+                        slidesToSlide="3"
+                        dynamicHeight="true"
+                        showArrows="false"
+                      >
                         {props.postSug.data.users.map((user) => (
                           <div className="col-item">
                             <div className="photo">
@@ -109,9 +115,9 @@ const HomePageSuggesstion = (props) => {
                                         </span> */}
                                         <div className="profile-pic">
                                           <Image
-                                              src={user.picture}
-                                              alt={user.username}
-                                              className="suggest-img"
+                                            src={user.picture}
+                                            alt={user.username}
+                                            className="suggest-img"
                                           />
                                         </div>
                                       </div>

@@ -857,6 +857,9 @@ i.fa.fa-google {
     background-position: center center;
   
 }
+.login-or-hide {
+    padding: 40px 0;
+}
 .or-line {
     position: relative;
     display: block;

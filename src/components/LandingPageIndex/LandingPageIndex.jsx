@@ -35,8 +35,32 @@ const LandingPageIndex = (props) => {
     props.dispatch(forgotPasswordStart(forgotPasswordInputData));
   };
 
-  const handleSocialLogin = (user) => {
+  const handleFacebookLogin = (user) => {
     console.log(user);
+    setSignupInputData({
+      ...signupInputData,
+      name: user.name,
+      first_name: user.firstName ? user.firstName : "",
+      last_name: user.lastName ? user.lastName : "",
+      social_unique_id: user.id,
+      picture: user.profilePicURL,
+      login_by: "facebok",
+    });
+    props.dispatch(userRegisterStart(signupInputData));
+  };
+
+  const handleGoogleLogin = (user) => {
+    console.log(user);
+    setSignupInputData({
+      ...signupInputData,
+      name: user.name,
+      first_name: user.firstName ? user.firstName : "",
+      last_name: user.lastName ? user.lastName : "",
+      social_unique_id: user.id,
+      picture: user.profilePicURL,
+      login_by: "facebok",
+    });
+    props.dispatch(userRegisterStart(signupInputData));
   };
 
   const handleSocialLoginFailure = (err) => {
@@ -88,7 +112,7 @@ const LandingPageIndex = (props) => {
                     <SocialButton
                       provider="facebook"
                       appId={configuration.get("configData.FB_CLIENT_ID")}
-                      onLoginSuccess={handleSocialLogin}
+                      onLoginSuccess={handleFacebookLogin}
                       onLoginFailure={handleSocialLoginFailure}
                       className="social-button"
                       id="facebook-connect"
@@ -103,12 +127,9 @@ const LandingPageIndex = (props) => {
                     <SocialButton
                       provider="google"
                       key={"google"}
-                      scope={"https://www.googleapis.com/auth/user.gender.read"}
                       appId={configuration.get("configData.GOOGLE_CLIENT_ID")}
-                      onLoginSuccess={handleSocialLogin}
+                      onLoginSuccess={handleGoogleLogin}
                       onLoginFailure={handleSocialLoginFailure}
-                      // onLogoutSuccess={this.onLogoutSuccess}
-                      // onLogoutFailure={this.onLogoutFailure}
                       className="social-button"
                       id="google-connect"
                     >
@@ -124,9 +145,14 @@ const LandingPageIndex = (props) => {
                     <span>Sign Up / Login with Google</span>
                   </Link> */}
 
-                  <span className="or-line">
-                    <span>or</span>
-                  </span>
+                  {configuration.get("configData.GOOGLE_CLIENT_ID") ||
+                  configuration.get("configData.FB_CLIENT_ID") ? (
+                    <span className="or-line">
+                      <span>or</span>
+                    </span>
+                  ) : (
+                    <span classsName="login-or-hide"></span>
+                  )}
                   <div id="main">
                     <div id="first">
                       {show === "login" ? (

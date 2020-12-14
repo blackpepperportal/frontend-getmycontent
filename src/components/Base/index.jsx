@@ -144,22 +144,6 @@ class App extends Component {
             href={configuration.get("configData.site_icon")}
             sizes="16x16"
           />
-          <link
-            rel="apple-touch-icon"
-            href={configuration.get("configData.site_icon")}
-          />
-          <meta
-            name="description"
-            content={configuration.get("configData.meta_description")}
-          ></meta>
-          <meta
-            name="keywords"
-            content={configuration.get("configData.meta_keywords")}
-          ></meta>
-          <meta
-            name="author"
-            content={configuration.get("configData.meta_author")}
-          ></meta>
         </Helmet>
         <Switch>
           <AppRoute
