@@ -90,11 +90,15 @@ const LandingPageIndex = (props) => {
     });
     setSignupInputData({
       ...signupInputData,
-      first_name: user.firstName ? user._profile.firstName : "",
+      first_name: user._profile.firstName ? user._profile.firstName : "",
     });
     setSignupInputData({
       ...signupInputData,
-      last_name: user.lastName ? user._profile.lastName : "",
+      last_name: user._profile.lastName ? user._profile.lastName : "",
+    });
+    setSignupInputData({
+      ...signupInputData,
+      email: user._profile.email ? user._profile.email : "",
     });
     setSignupInputData({
       ...signupInputData,
