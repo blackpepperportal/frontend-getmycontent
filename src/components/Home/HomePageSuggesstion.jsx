@@ -40,7 +40,7 @@ const HomePageSuggesstion = (props) => {
               />
             </Link> */}
 
-            <Link
+            {/** <Link
               className="left"
               data-toggle="tooltip"
               data-placement="top"
@@ -62,7 +62,7 @@ const HomePageSuggesstion = (props) => {
                 src="assets/images/icons/right.svg"
                 className="svg-clone mr-0 padding-right-zero"
               />
-            </Link>
+            </Link> */}
           </div>
         </Col>
         <Col sm={12} xl={12} xs={12} md={12}>
