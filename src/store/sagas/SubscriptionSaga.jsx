@@ -119,9 +119,7 @@ function* subscriptionPaymentStripeAPI() {
         "total_followings",
         JSON.stringify(response.data.data.total_followings)
       );
-      window.location.assign(
-        `/model-profile/${subscriptioDetails.user_unique_id}`
-      );
+      window.location.assign(`${subscriptioDetails.user_unique_id}`);
     } else {
       yield put(subscriptionPaymentStripeFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

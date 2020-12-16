@@ -91,7 +91,7 @@ const HomePageSuggesstion = (props) => {
                               <div className="swiper-slide">
                                 <div className="b-friend">
                                   <Link
-                                    to={`/model-profile/${user.user_unique_id}`}
+                                    to={`/m-profile/${user.user_unique_id}`}
                                     className=""
                                   >
                                     <div className="b-friend__cover-wrapper">

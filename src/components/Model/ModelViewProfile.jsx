@@ -20,11 +20,13 @@ import { saveBlockUserStart } from "../../store/actions/UserAction";
 const ModelViewProfile = (props) => {
   useEffect(() => {
     props.dispatch(
-      fetchSingleUserProfileStart({ user_unique_id: props.match.params.id })
+      fetchSingleUserProfileStart({
+        user_unique_id: props.match.params.username,
+      })
     );
     props.dispatch(
       fetchSingleUserPostsStart({
-        user_unique_id: props.match.params.id,
+        user_unique_id: props.match.params.username,
         type: "all",
       })
     );
@@ -62,21 +64,21 @@ const ModelViewProfile = (props) => {
     if (key === "post")
       props.dispatch(
         fetchSingleUserPostsStart({
-          user_unique_id: props.match.params.id,
+          user_unique_id: props.match.params.username,
           type: "all",
         })
       );
     else if (key === "photo")
       props.dispatch(
         fetchSingleUserPostsStart({
-          user_unique_id: props.match.params.id,
+          user_unique_id: props.match.params.username,
           type: "image",
         })
       );
     else if (key === "video")
       props.dispatch(
         fetchSingleUserPostsStart({
-          user_unique_id: props.match.params.id,
+          user_unique_id: props.match.params.username,
           type: "video",
         })
       );
@@ -311,8 +313,7 @@ const ModelViewProfile = (props) => {
                     <div className="user-name-base-row">
                       <Link
                         to={
-                          `/model-profile/` +
-                          userDetails.data.user.user_unique_id
+                          `/m-profile/` + userDetails.data.user.user_unique_id
                         }
                         className="my-name-lg"
                       >
@@ -324,8 +325,7 @@ const ModelViewProfile = (props) => {
                     <div className="user-id-row-base">
                       <Link
                         to={
-                          `/model-profile/` +
-                          userDetails.data.user.user_unique_id
+                          `/m-profile/` + userDetails.data.user.user_unique_id
                         }
                         className="user-my-id-text"
                       >

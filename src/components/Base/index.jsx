@@ -33,6 +33,7 @@ import BillingAccountIndex from "../Accounts/Payments/BillingAccountIndex";
 import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
 import StaticPage from "../StaticPage/StaticPage";
 import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
+import PostView from "../Post/PostView";
 
 const history = createHistory();
 const $ = window.$;
@@ -173,6 +174,12 @@ class App extends Component {
             component={CreatePostIndex}
             layout={MainLayout}
           />
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/post/:post_unique_id"}
+            component={PostView}
+            layout={MainLayout}
+          />
 
           <PrivateRoute
             authentication={this.state.authentication}
@@ -196,7 +203,7 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/model-profile/:id"}
+            path={"/m-profile/:username"}
             component={ModelViewProfile}
             layout={MainLayout}
           />
