@@ -6,7 +6,15 @@ import ModelProfileVideoSec from "./ModelProfileVideoSec";
 import SendTipModal from "../helper/SendTipModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Container, Row, Col, Image, Modal } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Image,
+  Modal,
+  Media,
+} from "react-bootstrap";
 import {
   fetchSingleUserProfileStart,
   fetchSingleUserPostsStart,
@@ -339,11 +347,46 @@ const ModelViewProfile = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="profile-about-content">
-                  <p className="my-profile-about">
-                    {userDetails.data.user.description}
-                  </p>
-                </div>
+                {userDetails.data.user.website ||
+                userDetails.data.user.address ||
+                userDetails.data.user.amazon_wishlist ? (
+                  <div className="profile-about-content">
+                    <p className="my-profile-about">
+                      {userDetails.data.user.amazon_wishlist ? (
+                        <span>
+                          <i className="fa fa-heart theme-color"></i>{" "}
+                          {userDetails.data.user.amazon_wishlist}
+                        </span>
+                      ) : null}
+                      {userDetails.data.user.website ? (
+                        <span>
+                          <span> | </span>
+                          <span>
+                            <i className="fa fa-globe theme-color"></i>{" "}
+                            {userDetails.data.user.website}
+                          </span>{" "}
+                        </span>
+                      ) : null}
+                      {userDetails.data.user.address ? (
+                        <span>
+                          <span> | </span>
+                          <span>
+                            <i className="fa fa-map theme-color"></i>{" "}
+                            {userDetails.data.user.address}
+                          </span>
+                        </span>
+                      ) : null}
+                    </p>
+                  </div>
+                ) : null}
+
+                {userDetails.data.user.about != "null" ? (
+                  <div className="profile-about-content">
+                    <p className="my-profile-about">
+                      {userDetails.data.user.about}
+                    </p>
+                  </div>
+                ) : null}
 
                 {userDetails.data.is_block_user == 0 ? (
                   <>

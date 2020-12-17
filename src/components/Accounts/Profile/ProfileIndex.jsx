@@ -1,7 +1,15 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Row,
+  Col,
+  Image,
+  Media,
+} from "react-bootstrap";
 import PostDisplayCard from "../../helper/PostDisplayCard";
 import { fetchPostsStart } from "../../../store/actions/PostAction";
 import { fetchUserDetailsStart } from "../../../store/actions/UserAction";
@@ -120,6 +128,49 @@ const ProfileIndex = (props) => {
                     </div>
                   </div>
                   <div className="profile-about-content">
+                    <ul className="list-inline">
+                      <Media as="li">
+                        <Link to={"/fans"}>
+                          <span className="fans-follow">
+                            {localStorage.getItem("total_followers")
+                              ? localStorage.getItem("total_followers")
+                              : 0}
+                          </span>{" "}
+                          Fans
+                        </Link>
+                      </Media>
+                      <Media as="li">
+                        <Link to={"/following"}>
+                          <span className="fans-follow">
+                            {localStorage.getItem("total_followings")
+                              ? localStorage.getItem("total_followings")
+                              : 0}
+                          </span>{" "}
+                          Following
+                        </Link>
+                      </Media>
+                    </ul>
+                  </div>
+                  <div className="profile-about-content">
+                    <p className="my-profile-about">
+                      <span>
+                        <i className="fa fa-heart theme-color"></i>{" "}
+                        {props.profile.data.amazon_wishlist}
+                      </span>
+                      <span> | </span>
+                      <span>
+                        <i className="fa fa-globe theme-color"></i>{" "}
+                        {props.profile.data.website}
+                      </span>
+                      <span> | </span>
+                      <span>
+                        <i className="fa fa-map theme-color"></i>{" "}
+                        {props.profile.data.address}
+                      </span>
+                    </p>
+                  </div>
+
+                  <div className="profile-about-content">
                     <p className="my-profile-about">
                       {props.profile.data.about}
                     </p>
@@ -128,7 +179,8 @@ const ProfileIndex = (props) => {
                   <div className="profile-post-area">
                     <div className="search-row">
                       <Link to="#" className="search-button">
-                        {props.profile.data.total_posts} Post
+                        {props.profile.data.total_posts}{" "}
+                        {props.profile.data.total_posts >= 0 ? "Posts" : "Post"}
                       </Link>
                       <div
                         className="search-container"

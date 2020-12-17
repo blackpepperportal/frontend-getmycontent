@@ -335,7 +335,6 @@ const EditProfileCard = (props) => {
                 placeholder=""
                 value={props.profile.data.about}
                 name="about"
-                maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(
