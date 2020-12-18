@@ -36,7 +36,11 @@ const NotificationAllSec = (props) => {
                         <span className="post-user-name">
                           {notification.from_displayname}
                           <span className="user-id">
-                            @{notification.from_username}
+                            <Link
+                              to={`/m-profile/` + notification.from_username}
+                            >
+                              @{notification.from_username}
+                            </Link>
                           </span>
                         </span>
                         <span className="post-user-notify">

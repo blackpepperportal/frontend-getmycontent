@@ -6,7 +6,15 @@ import ModelProfileVideoSec from "./ModelProfileVideoSec";
 import SendTipModal from "../helper/SendTipModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { Button, Container, Row, Col, Image, Modal } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Row,
+  Col,
+  Image,
+  Modal,
+  Media,
+} from "react-bootstrap";
 import {
   fetchSingleUserProfileStart,
   fetchSingleUserPostsStart,
@@ -20,11 +28,13 @@ import { saveBlockUserStart } from "../../store/actions/UserAction";
 const ModelViewProfile = (props) => {
   useEffect(() => {
     props.dispatch(
-      fetchSingleUserProfileStart({ user_unique_id: props.match.params.id })
+      fetchSingleUserProfileStart({
+        user_unique_id: props.match.params.username,
+      })
     );
     props.dispatch(
       fetchSingleUserPostsStart({
-        user_unique_id: props.match.params.id,
+        user_unique_id: props.match.params.username,
         type: "all",
       })
     );
@@ -62,21 +72,21 @@ const ModelViewProfile = (props) => {
     if (key === "post")
       props.dispatch(
         fetchSingleUserPostsStart({
-          user_unique_id: props.match.params.id,
+          user_unique_id: props.match.params.username,
           type: "all",
         })
       );
     else if (key === "photo")
       props.dispatch(
         fetchSingleUserPostsStart({
-          user_unique_id: props.match.params.id,
+          user_unique_id: props.match.params.username,
           type: "image",
         })
       );
     else if (key === "video")
       props.dispatch(
         fetchSingleUserPostsStart({
-          user_unique_id: props.match.params.id,
+          user_unique_id: props.match.params.username,
           type: "video",
         })
       );
@@ -311,8 +321,7 @@ const ModelViewProfile = (props) => {
                     <div className="user-name-base-row">
                       <Link
                         to={
-                          `/model-profile/` +
-                          userDetails.data.user.user_unique_id
+                          `/m-profile/` + userDetails.data.user.user_unique_id
                         }
                         className="my-name-lg"
                       >
@@ -324,8 +333,7 @@ const ModelViewProfile = (props) => {
                     <div className="user-id-row-base">
                       <Link
                         to={
-                          `/model-profile/` +
-                          userDetails.data.user.user_unique_id
+                          `/m-profile/` + userDetails.data.user.user_unique_id
                         }
                         className="user-my-id-text"
                       >
@@ -339,11 +347,46 @@ const ModelViewProfile = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="profile-about-content">
-                  <p className="my-profile-about">
-                    {userDetails.data.user.description}
-                  </p>
-                </div>
+                {userDetails.data.user.website ||
+                userDetails.data.user.address ||
+                userDetails.data.user.amazon_wishlist ? (
+                  <div className="profile-about-content">
+                    <p className="my-profile-about">
+                      {userDetails.data.user.amazon_wishlist ? (
+                        <span>
+                          <i className="fa fa-heart theme-color"></i>{" "}
+                          {userDetails.data.user.amazon_wishlist}
+                        </span>
+                      ) : null}
+                      {userDetails.data.user.website ? (
+                        <span>
+                          <span> | </span>
+                          <span>
+                            <i className="fa fa-globe theme-color"></i>{" "}
+                            {userDetails.data.user.website}
+                          </span>{" "}
+                        </span>
+                      ) : null}
+                      {userDetails.data.user.address ? (
+                        <span>
+                          <span> | </span>
+                          <span>
+                            <i className="fa fa-map theme-color"></i>{" "}
+                            {userDetails.data.user.address}
+                          </span>
+                        </span>
+                      ) : null}
+                    </p>
+                  </div>
+                ) : null}
+
+                {userDetails.data.user.about != "null" ? (
+                  <div className="profile-about-content">
+                    <p className="my-profile-about">
+                      {userDetails.data.user.about}
+                    </p>
+                  </div>
+                ) : null}
 
                 {userDetails.data.is_block_user == 0 ? (
                   <>

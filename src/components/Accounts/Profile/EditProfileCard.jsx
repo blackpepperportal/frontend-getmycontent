@@ -197,10 +197,10 @@ const EditProfileCard = (props) => {
                 />
               </span>
             </div>
-            <p className="inuput-help">
+            <p className="input-help">
               {window.location.origin +
-                "/model-profile/" +
-                props.profile.data.username}
+                `/m-profile/` +
+                props.profile.data.user_unique_id}
             </p>
           </div>
           <div
@@ -335,7 +335,6 @@ const EditProfileCard = (props) => {
                 placeholder=""
                 value={props.profile.data.about}
                 name="about"
-                maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(

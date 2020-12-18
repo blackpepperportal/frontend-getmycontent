@@ -96,13 +96,9 @@ function* fetchPostsAPI() {
 function* fetchSinglePostAPI() {
   try {
     const inputData = yield select((state) => state.post.singlePost.inputData);
-    const response = yield api.postMethod("posts_view", inputData);
+    const response = yield api.postMethod("posts_view_for_others", inputData);
     if (response.data.success) {
       yield put(fetchSinglePostSuccess(response.data.data));
-      const notificationMessage = getSuccessNotificationMessage(
-        response.data.message
-      );
-      yield put(createNotification(notificationMessage));
     } else {
       yield put(fetchSinglePostFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -173,10 +169,6 @@ function* postFileUploadAPI() {
     const response = yield api.postMethod("post_files_upload", inputData);
     if (response.data.success) {
       yield put(postFileUploadSuccess(response.data.data));
-      // const notificationMessage = getSuccessNotificationMessage(
-      //   response.data.message
-      // );
-      // yield put(createNotification(notificationMessage));
     } else {
       yield put(postFileUploadFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

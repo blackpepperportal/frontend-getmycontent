@@ -108,7 +108,7 @@ const PostDisplayCard = (props) => {
             <div className="alignleft">
               <Link
                 className="title-container"
-                to={`/model-profile/${post.user_unique_id}`}
+                to={`/m-profile/${post.user_unique_id}`}
               >
                 <ImageLoader
                   image={post.user_picture}
@@ -146,7 +146,10 @@ const PostDisplayCard = (props) => {
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
                       <CopyToClipboard text={post.share_link} onCopy={onCopy}>
                         <Media as="li">
-                          <Link to="#"> Copy link to post </Link>
+                          <Link to="#" className="dropdown-a">
+                            {" "}
+                            Copy link to post{" "}
+                          </Link>
                         </Media>
                       </CopyToClipboard>
 
@@ -158,6 +161,7 @@ const PostDisplayCard = (props) => {
                         <Link
                           to="#"
                           onClick={(event) => handleReportPost(event, post)}
+                          className="dropdown-a"
                         >
                           {" "}
                           Report{" "}
@@ -167,6 +171,7 @@ const PostDisplayCard = (props) => {
                         <Link
                           to="#"
                           onClick={(event) => handleBlockUser(event, post)}
+                          className="dropdown-a"
                         >
                           {" "}
                           I don't like the user. Add to blocklists.
@@ -180,6 +185,7 @@ const PostDisplayCard = (props) => {
                             <Link
                               to="#"
                               onClick={(event) => handleDeletePost(event, post)}
+                              className="dropdown-a"
                             >
                               Delete Post
                             </Link>

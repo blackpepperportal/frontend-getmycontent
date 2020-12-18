@@ -36,36 +36,7 @@ const LandingPageIndex = (props) => {
   };
 
   const handleFacebookLogin = (user) => {
-    console.log(user);
-    console.log("handleFacebookLogin", user._profile.name);
-    setSignupInputData({
-      ...signupInputData,
-      name: user._profile.name,
-    });
-    setSignupInputData({
-      ...signupInputData,
-      first_name: user._profile.firstName ? user._profile.firstName : "",
-    });
-    setSignupInputData({
-      ...signupInputData,
-      last_name: user._profile.lastName ? user._profile.lastName : "",
-    });
-    setSignupInputData({
-      ...signupInputData,
-      email: user._profile.email ? user._profile.email : "",
-    });
-    setSignupInputData({
-      ...signupInputData,
-      social_unique_id: user._profile.id,
-    });
-    setSignupInputData({
-      ...signupInputData,
-      picture: user._profile.profilePicURL,
-    });
-    setSignupInputData({
-      ...signupInputData,
-      login_by: "facebook",
-    });
+    console.log("handleFacebookLogin", user._profile);
     props.dispatch(
       userRegisterStart({
         name: user._profile.name,
@@ -80,38 +51,7 @@ const LandingPageIndex = (props) => {
   };
 
   const handleGoogleLogin = (user) => {
-    console.log(user);
-    console.log(user._profile);
-    console.log("handleGoogleLogin", user._profile.name);
-
-    setSignupInputData({
-      ...signupInputData,
-      name: user._profile.name,
-    });
-    setSignupInputData({
-      ...signupInputData,
-      first_name: user._profile.firstName ? user._profile.firstName : "",
-    });
-    setSignupInputData({
-      ...signupInputData,
-      last_name: user._profile.lastName ? user._profile.lastName : "",
-    });
-    setSignupInputData({
-      ...signupInputData,
-      email: user._profile.email ? user._profile.email : "",
-    });
-    setSignupInputData({
-      ...signupInputData,
-      social_unique_id: user._profile.id,
-    });
-    setSignupInputData({
-      ...signupInputData,
-      picture: user._profile.profilePicURL,
-    });
-    setSignupInputData({
-      ...signupInputData,
-      login_by: "google",
-    });
+    console.log("handleGoogleLogin", user._profile);
     props.dispatch(
       userRegisterStart({
         name: user._profile.name,
