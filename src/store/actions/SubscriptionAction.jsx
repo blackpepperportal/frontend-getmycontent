@@ -17,6 +17,9 @@ import {
   SUBSCRIPTION_AUTO_RENEWAL_START,
   SUBSCRIPTION_AUTO_RENEWAL_SUCCESS,
   SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
+  SUBSCRIPTION_PAYMENT_PAYPAL_START,
+  SUBSCRIPTION_PAYMENT_PAYPAL_SUCCESS,
+  SUBSCRIPTION_PAYMENT_PAYPAL_FAILURE,
 } from "./ActionConstant";
 
 // Get subscription actions.
@@ -153,6 +156,29 @@ export function subscriptionAutoRenewalSuccess(data) {
 export function subscriptionAutoRenewalFailure(error) {
   return {
     type: SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
+    error,
+  };
+}
+
+// Subscription Payment stripe actions.
+
+export function subscriptionPaymentPaypalStart(data) {
+  return {
+    type: SUBSCRIPTION_PAYMENT_PAYPAL_START,
+    data,
+  };
+}
+
+export function subscriptionPaymentPaypalSuccess(data) {
+  return {
+    type: SUBSCRIPTION_PAYMENT_PAYPAL_SUCCESS,
+    data,
+  };
+}
+
+export function subscriptionPaymentPaypalFailure(error) {
+  return {
+    type: SUBSCRIPTION_PAYMENT_PAYPAL_FAILURE,
     error,
   };
 }
