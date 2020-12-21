@@ -29,6 +29,9 @@ import {
   FETCH_REPORT_POSTS_START,
   FETCH_REPORT_POSTS_SUCCESS,
   FETCH_REPORT_POSTS_FAILURE,
+  PPV_PAYMENT_PAYPAL_START,
+  PPV_PAYMENT_PAYPAL_SUCCESS,
+  PPV_PAYMENT_PAYPAL_FAILURE,
 } from "./ActionConstant";
 
 export function savePostStart(data) {
@@ -238,6 +241,27 @@ export function fetchReportPostsSuccess(data) {
 export function fetchReportPostsFailure(error) {
   return {
     type: FETCH_REPORT_POSTS_FAILURE,
+    error,
+  };
+}
+
+export function PPVPaymentPaypalStart(data) {
+  return {
+    type: PPV_PAYMENT_PAYPAL_START,
+    data,
+  };
+}
+
+export function PPVPaymentPaypalSuccess(data) {
+  return {
+    type: PPV_PAYMENT_PAYPAL_SUCCESS,
+    data,
+  };
+}
+
+export function PPVPaymentPaypalFailure(error) {
+  return {
+    type: PPV_PAYMENT_PAYPAL_FAILURE,
     error,
   };
 }

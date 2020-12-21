@@ -10,10 +10,13 @@ import {
   sendTipStripeSuccess,
   sendTipWalletFailure,
   sendTipWalletSuccess,
+  sendTipPaypalSuccess,
+  sendTipPaypalFailure,
 } from "../actions/SendTipAction";
 import {
   SEND_TIP_BY_STRIPE_START,
   SEND_TIP_BY_WALLET_START,
+  SEND_TIP_BY_PAYPAL_START,
 } from "../actions/ActionConstant";
 
 function* sendTipStripeAPI() {
@@ -35,6 +38,30 @@ function* sendTipStripeAPI() {
     }
   } catch (error) {
     yield put(sendTipStripeFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* sendTipPaypalAPI() {
+  try {
+    const inputData = yield select((state) => state.tip.tipPaypal.inputData);
+    const response = yield api.postMethod("tips_payment_by_paypal", inputData);
+    if (response.data.success) {
+      yield put(sendTipPaypalSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      yield put(sendTipPaypalFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(sendTipPaypalFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
@@ -67,4 +94,5 @@ function* sendTipWalletAPI() {
 export default function* pageSaga() {
   yield all([yield takeLatest(SEND_TIP_BY_STRIPE_START, sendTipStripeAPI)]);
   yield all([yield takeLatest(SEND_TIP_BY_WALLET_START, sendTipWalletAPI)]);
+  yield all([yield takeLatest(SEND_TIP_BY_PAYPAL_START, sendTipPaypalAPI)]);
 }

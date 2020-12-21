@@ -13,6 +13,8 @@ import {
   subscriptionPaymentStripeSuccess,
   subscriptionPaymentWalletSuccess,
   subscriptionPaymentWalletFailure,
+  subscriptionPaymentPaypalSuccess,
+  subscriptionPaymentPaypalFailure,
 } from "../actions/SubscriptionAction";
 
 import api from "../../Environment";
@@ -23,6 +25,7 @@ import {
   SUBSCRIPTION_PAYMENT_STRIPE_START,
   SUBSCRIPTION_AUTO_RENEWAL_START,
   SUBSCRIPTION_PAYMENT_WALLET_START,
+  SUBSCRIPTION_PAYMENT_PAYPAL_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -134,6 +137,44 @@ function* subscriptionPaymentStripeAPI() {
   }
 }
 
+function* subscriptionPaymentPaypalAPI() {
+  try {
+    const subscriptioDetails = yield select(
+      (state) => state.subscriptions.subPayPaypal.inputData
+    );
+    const response = yield api.postMethod(
+      "user_subscriptions_payment_by_paypal",
+      subscriptioDetails
+    );
+    if (response.data.success) {
+      yield put(subscriptionPaymentPaypalSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+      localStorage.setItem(
+        "total_followers",
+        JSON.stringify(response.data.data.total_followers)
+      );
+      localStorage.setItem(
+        "total_followings",
+        JSON.stringify(response.data.data.total_followings)
+      );
+      window.location.assign(`${subscriptioDetails.user_unique_id}`);
+    } else {
+      yield put(subscriptionPaymentPaypalFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(subscriptionPaymentPaypalFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 function* subscriptionPaymentWalletAPI() {
   try {
     const subscriptioDetails = yield select(
@@ -217,6 +258,12 @@ export default function* pageSaga() {
     yield takeLatest(
       SUBSCRIPTION_AUTO_RENEWAL_START,
       subscriptionAutoRenewalAPI
+    ),
+  ]);
+  yield all([
+    yield takeLatest(
+      SUBSCRIPTION_PAYMENT_PAYPAL_START,
+      subscriptionPaymentPaypalAPI
     ),
   ]);
 }

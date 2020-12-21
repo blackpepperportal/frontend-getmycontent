@@ -30,6 +30,9 @@ import {
   FETCH_REPORT_POSTS_START,
   FETCH_REPORT_POSTS_SUCCESS,
   SAVE_REPORT_POST_START,
+  PPV_PAYMENT_PAYPAL_START,
+  PPV_PAYMENT_PAYPAL_SUCCESS,
+  PPV_PAYMENT_PAYPAL_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -453,7 +456,40 @@ const PostReducer = (state = initialState, action) => {
           buttonDisable: false,
         },
       };
-
+      case PPV_PAYMENT_PAYPAL_START:
+        return {
+          ...state,
+          ppvPayPal: {
+            inputData: action.data,
+            loading: true,
+            error: false,
+            success: {},
+            buttonDisable: true,
+            loadingButtonContent: "Processing.. Please wait...",
+          },
+        };
+      case PPV_PAYMENT_PAYPAL_SUCCESS:
+        return {
+          ...state,
+          ppvPayPal: {
+            loading: false,
+            error: false,
+            success: action.data,
+            buttonDisable: false,
+            loadingButtonContent: null,
+          },
+        };
+      case PPV_PAYMENT_PAYPAL_FAILURE:
+        return {
+          ...state,
+          ppvPayPal: {
+            loading: true,
+            error: action.error,
+            success: {},
+            buttonDisable: false,
+            loadingButtonContent: null,
+          },
+        };
     default:
       return state;
   }

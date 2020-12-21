@@ -4,12 +4,22 @@ import { connect } from "react-redux";
 import {
   sendTipStripeStart,
   sendTipWalletStart,
+  sendTipPaypalStart,
 } from "../../store/actions/SendTipAction";
+import configuration from "react-global-configuration";
+
+
+import PaypalExpressBtn from "react-paypal-express-checkout";
+import { createNotification } from "react-redux-notify";
+import {
+  getSuccessNotificationMessage,
+  getErrorNotificationMessage,
+} from "../../components/helper/NotificationMessage";
 
 const SendTipModal = (props) => {
   const [amount, setAmount] = useState(0);
   const [paymentType, setPaymentType] = useState("card");
-
+  const [showPayPal, payPal] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
     if (paymentType === "card")
@@ -37,6 +47,48 @@ const SendTipModal = (props) => {
     props.closeSendTipModal();
   };
 
+  const paypalOnSuccess = (payment) => {
+    setTimeout(() => {
+        props.dispatch( 
+          sendTipPaypalStart({
+            payment_id : payment.paymentID,
+            post_id:
+            props.post_id != undefined || props.post_id != null
+              ? props.post_id
+              : "",
+            amount: amount,
+            user_id: props.user_id,
+          })
+        );
+    }, 1000);
+    props.closeSendTipModal();
+  };
+
+  const paypalOnError = (err) => {
+      const notificationMessage = getErrorNotificationMessage(err);
+      this.props.dispatch(createNotification(notificationMessage));
+  };
+
+  const paypalOnCancel = (data) => {
+      const notificationMessage = getErrorNotificationMessage(
+          "Payment cancelled please try again.."
+      );
+      this.props.dispatch(createNotification(notificationMessage));
+  };
+
+  const choosePaymentOption = (event) => {
+    console.log(amount);
+    setPaymentType(event);
+  };
+
+  let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
+  let currency = "USD"; // or you can set this value from your props or state
+  
+  const client = {
+    sandbox:configuration.get("configData.PAYPAL_ID"),
+    production:configuration.get("configData.PAYPAL_ID"),
+  };
+  
   return (
     <>
       <Modal
@@ -86,34 +138,37 @@ const SendTipModal = (props) => {
                   <label className="default-label">Tip amount</label>
                 </div>
 
-                {/* <Form className="mt-4">
+                <Form className="mt-4">
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`} className="mb-3">
                       <Form.Check
                         custom
                         inline
-                        label="Wallet"
-                        type={type}
-                        id="wallet"
-                        value="wallet"
-                        name="payment_type"
-                        defaultChecked={true}
-                        onChange={() => setPaymentType("wallet")}
-                      />
-                      <Form.Check
-                        custom
-                        inline
                         label="Card"
                         type={type}
-                        // id={`custom-inline-${type}-2`}
                         id="card"
                         value="card"
                         name="payment_type"
+                        defaultChecked={true}
                         onChange={() => setPaymentType("card")}
                       />
+                      {configuration.get("configData.is_paypal_enabled") == 1 ? (
+                      <Form.Check
+                        custom
+                        inline
+                        label="Paypal"
+                        type={type}
+                        // id={`custom-inline-${type}-2`}
+                        id="paypal"
+                        value="paypal"
+                        name="payment_type"
+                        onChange={() => setPaymentType("paypal")}
+                      />
+                      ) : "" }
+
                     </div>
                   ))}
-                </Form> */}
+                </Form>
 
                 <div className="floating-label">
                   <input
@@ -127,6 +182,18 @@ const SendTipModal = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
+              {paymentType === "paypal" && amount != 0 ? (
+                <PaypalExpressBtn
+                    env={env}
+                    client={client}
+                    currency={currency}
+                    total={amount}
+                    onError={paypalOnError}
+                    onSuccess={paypalOnSuccess}
+                    onCancel={paypalOnCancel}
+                />
+              ) : null}
+
               <Button
                 type="button"
                 className="btn btn-danger"
@@ -135,17 +202,19 @@ const SendTipModal = (props) => {
               >
                 CANCEL
               </Button>
-              <Button
-                type="button"
-                className="btn btn-success"
-                data-dismiss="modal"
-                onClick={handleSubmit}
-                disabled={props.tipStripe.buttonDisable}
-              >
-                {props.tipStripe.loadingButtonContent !== null
-                  ? props.tipStripe.loadingButtonContent
-                  : "SEND TIP"}
-              </Button>
+              {paymentType !== "paypal" ? (
+                <Button
+                  type="button"
+                  className="btn btn-success"
+                  data-dismiss="modal"
+                  onClick={handleSubmit}
+                  disabled={props.tipStripe.buttonDisable}
+                >
+                  {props.tipStripe.loadingButtonContent !== null
+                    ? props.tipStripe.loadingButtonContent
+                    : "SEND TIP"}
+                </Button>
+              ) : ''}
             </Modal.Footer>
           </Form>
         ) : null}
