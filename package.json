@@ -27,6 +27,7 @@
     "react-google-charts": "^3.0.15",
     "react-helmet": "^6.1.0",
     "react-lazy-load-image-component": "^1.5.0",
+    "react-paypal-express-checkout": "^1.0.5",
     "react-player": "^2.7.0",
     "react-redux": "^7.2.0",
     "react-redux-notify": "^4.2.1",

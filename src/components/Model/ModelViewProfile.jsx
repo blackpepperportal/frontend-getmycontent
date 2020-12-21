@@ -4,6 +4,7 @@ import ModelProfileTabSec from "./ModelProfileTabSec";
 import ModelProfilePhotoSec from "./ModelProfilePhotoSec";
 import ModelProfileVideoSec from "./ModelProfileVideoSec";
 import SendTipModal from "../helper/SendTipModal";
+import PaymentModal from "../helper/PaymentModal";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -45,8 +46,21 @@ const ModelViewProfile = (props) => {
   const [starStatus, setStarStatus] = useState("");
   const [showUnfollow, setShowUnfollow] = useState(false);
   const [blockUserStatus, setBlockUserStatus] = useState("");
+
+  const [subscriptionData, setSubscriptionData] = useState({
+    is_free: 0,
+    plan_type: 'month',
+    amount: 0,
+    amount_formatted: 0,
+  });
+
+  const [subscrptionPayment, setPaymentModal] = useState(false);
   const closeSendTipModal = () => {
     setSendTip(false);
+  };
+
+  const closePaymentModal = () => {
+    setPaymentModal(false);
   };
 
   const blockStatusUpdate = () => {
@@ -127,17 +141,19 @@ const ModelViewProfile = (props) => {
   const subscriptionPayment = (
     event,
     plan_type,
-    user_unique_id,
+    amount,
+    amount_formatted,
     is_free = 0
   ) => {
     event.preventDefault();
-    props.dispatch(
-      subscriptionPaymentStripeStart({
-        user_unique_id,
-        plan_type,
-        is_free,
-      })
-    );
+    setSubscriptionData({ 
+      ...subscriptionData,
+      is_free: is_free,
+      plan_type: plan_type,
+      amount: amount, 
+      amount_formatted: amount_formatted, 
+    });
+    setPaymentModal(true);
   };
 
   const { userDetails } = props;
@@ -397,32 +413,39 @@ const ModelViewProfile = (props) => {
                             <span className="subscribe-title">
                               Monthly Subscription{" "}
                             </span>
-                            <Link
+                            
+                            <Button
                               to=""
                               className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                               onClick={(event) =>
                                 subscriptionPayment(
                                   event,
                                   "month",
-                                  userDetails.data.user.user_unique_id
+                                  userDetails.data.payment_info.subscription_info
+                                  .monthly_amount,
+                                  userDetails.data.payment_info.subscription_info
+                                  .monthly_amount_formatted
                                 )
                               }
                             >
-                              {userDetails.data.payment_info.payment_text}
-                            </Link>
+                             {userDetails.data.payment_info.payment_text}
+                            </Button>
                           </div>
                           <div className="subscription-section">
                             <span className="subscribe-title">
                               Yearly Subscription{" "}
                             </span>
-                            <Link
+                            <Button
                               to=""
                               className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                               onClick={(event) =>
                                 subscriptionPayment(
                                   event,
                                   "year",
-                                  userDetails.data.user.user_unique_id
+                                  userDetails.data.payment_info.subscription_info
+                                  .yearly_amount,
+                                  userDetails.data.payment_info.subscription_info
+                                  .yearly_amount_formatted
                                 )
                               }
                             >
@@ -431,25 +454,28 @@ const ModelViewProfile = (props) => {
                                 userDetails.data.payment_info.subscription_info
                                   .yearly_amount_formatted
                               }
-                            </Link>
+                            </Button>
                           </div>
                         </>
                       ) : (
                         <div className="subscription-section">
-                          <Link
+                          <Button
                             to=""
                             className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                             onClick={(event) =>
                               subscriptionPayment(
-                                event,
-                                "month",
-                                userDetails.data.user.user_unique_id,
-                                1
+                                  event,
+                                  "month",
+                                  userDetails.data.payment_info.subscription_info
+                                  .monthly_amount,
+                                  userDetails.data.payment_info.subscription_info
+                                  .monthly_amount_formatted,
+                                  1
                               )
                             }
                           >
                             {userDetails.data.payment_info.payment_text}
-                          </Link>
+                          </Button>
                         </div>
                       )
                     ) : (
@@ -568,6 +594,20 @@ const ModelViewProfile = (props) => {
           name={props.userDetails.data.user.name}
           post_id={null}
           user_id={props.userDetails.data.user.user_id}
+        />  
+      )}
+
+    {userDetails.loading ? (
+        "Loading..."
+      ) : (
+        <PaymentModal
+          subscrptionPayment={subscrptionPayment}
+          closePaymentModal={closePaymentModal}
+          userPicture={props.userDetails.data.user.picture}
+          name={props.userDetails.data.user.name}
+          user_unique_id={props.userDetails.data.user.user_unique_id}
+          subscriptionData={subscriptionData}
+          username={props.userDetails.data.user.username}
         />
       )}
     </>

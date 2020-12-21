@@ -3262,13 +3262,13 @@ button.profile-page__header__btn:after {
   display: flex;
   margin-left: auto;
 }
-a.g-btn.m-rounded.m-border.m-uppercase.m-flex.m-fluid-width.m-profile {
+button.g-btn.m-rounded.m-border.m-uppercase.m-flex.m-fluid-width.m-profile {
   margin-left: 0;
   padding-left: 12px;
   padding-right: 22px;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  width: auto;
+  width: 100% !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

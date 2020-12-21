@@ -17,6 +17,9 @@ import {
   SUBSCRIPTION_AUTO_RENEWAL_START,
   SUBSCRIPTION_AUTO_RENEWAL_SUCCESS,
   SUBSCRIPTION_AUTO_RENEWAL_FAILURE,
+  SUBSCRIPTION_PAYMENT_PAYPAL_START,
+  SUBSCRIPTION_PAYMENT_PAYPAL_SUCCESS,
+  SUBSCRIPTION_PAYMENT_PAYPAL_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -242,6 +245,40 @@ const SubscriptionReducer = (state = initialState, action) => {
       return {
         ...state,
         subscriptionRenew: {
+          loading: true,
+          error: action.error,
+          success: {},
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case SUBSCRIPTION_PAYMENT_PAYPAL_START:
+      return {
+        ...state,
+        subPayPaypal: {
+          inputData: action.data,
+          loading: true,
+          error: false,
+          success: {},
+          buttonDisable: true,
+          loadingButtonContent: "Processing.. Please wait...",
+        },
+      };
+    case SUBSCRIPTION_PAYMENT_PAYPAL_SUCCESS:
+      return {
+        ...state,
+        subPayPaypal: {
+          loading: false,
+          error: false,
+          success: action.data,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case SUBSCRIPTION_PAYMENT_PAYPAL_FAILURE:
+      return {
+        ...state,
+        subPayPaypal: {
           loading: true,
           error: action.error,
           success: {},

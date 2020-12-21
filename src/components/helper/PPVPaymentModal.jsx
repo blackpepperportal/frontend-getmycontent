@@ -4,14 +4,29 @@ import { connect } from "react-redux";
 import {
   PPVPaymentStripeStart,
   PPVPaymentWalletStart,
+  PPVPaymentPaypalStart
 } from "../../store/actions/PostAction";
+
+import PaypalExpressBtn from "react-paypal-express-checkout";
+import { createNotification } from "react-redux-notify";
+import {
+  getSuccessNotificationMessage,
+  getErrorNotificationMessage,
+} from "../../components/helper/NotificationMessage";
+import configuration from "react-global-configuration";
+
 
 const PPVPaymentModal = (props) => {
   const [amount, setAmount] = useState(0);
   const [paymentType, setPaymentType] = useState("card");
 
+  const [showPayPal, payPal] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (paymentType === "paypal")
+      showPayPal(true);
+        
     if (paymentType === "card")
       props.dispatch(
         PPVPaymentStripeStart({
@@ -30,13 +45,55 @@ const PPVPaymentModal = (props) => {
             props.post_id != undefined || props.post_id != null
               ? props.post_id
               : "",
-          amount: amount,
+          amount: props.amount,
           user_id: props.user_id,
         })
       );
+      if (paymentType === "paypal")
     props.closePPVPaymentModal();
   };
 
+  const paypalOnSuccess = (payment) => {
+    console.log(payment);
+    setTimeout(() => {
+        props.dispatch( 
+          PPVPaymentPaypalStart({
+            payment_id : payment.paymentID,
+            post_id: props.post_id != undefined || props.post_id != null
+              ? props.post_id
+              : "",
+            amount: props.amount,
+            user_id: props.user_id,
+          })
+        );
+    }, 1000);
+  };
+
+  const paypalOnError = (err) => {
+      const notificationMessage = getErrorNotificationMessage(err);
+      this.props.dispatch(createNotification(notificationMessage));
+  };
+
+  const paypalOnCancel = (data) => {
+      const notificationMessage = getErrorNotificationMessage(
+          "Payment cancelled please try again.."
+      );
+      this.props.dispatch(createNotification(notificationMessage));
+  };
+
+  const choosePaymentOption = (event) => {
+    console.log(amount);
+    setPaymentType(event);
+  };
+
+  let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
+  let currency = "USD"; // or you can set this value from your props or state
+  
+  const client = {
+    sandbox:configuration.get("configData.PAYPAL_ID"),
+    production:configuration.get("configData.PAYPAL_ID"),
+  };
+  
   return (
     <>
       <Modal
@@ -49,14 +106,59 @@ const PPVPaymentModal = (props) => {
         {props.PPVPayment === true ? (
           <Form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-              <Modal.Title>Message</Modal.Title>
+              <Modal.Title>Payment Mode</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="floating-form">
-                <p>Are You Sure?</p>
+                <Form className="mt-4">
+                  {["radio"].map((type) => (
+                    <div key={`custom-inline-${type}`} className="mb-3">
+                      
+                      <Form.Check
+                        custom
+                        inline
+                        label="Card"
+                        type={type}
+                        // id={`custom-inline-${type}-2`}
+                        id="card"
+                        value="card"
+                        name="payment_type"
+                        defaultChecked={true}
+                        onChange={(event) => {
+                            choosePaymentOption(event.currentTarget.value);
+                        }}
+                      />
+                    {configuration.get("configData.is_paypal_enabled") == 1 ? (
+                    <Form.Check
+                        custom
+                        inline
+                        label="Paypal"
+                        type={type}
+                        id="paypal"
+                        value="paypal"
+                        name="payment_type"
+                        onChange={(event) => {
+                            choosePaymentOption(event.currentTarget.value);
+                        }}
+                      />
+                    ) : "" }
+                    </div>
+                  ))}
+                </Form>
               </div>
             </Modal.Body>
             <Modal.Footer>
+              {paymentType === "paypal" && props.amount != 0 ? (
+                <PaypalExpressBtn
+                    env={env}
+                    client={client}
+                    currency={currency}
+                    total={props.amount}
+                    onError={paypalOnError}
+                    onSuccess={paypalOnSuccess}
+                    onCancel={paypalOnCancel}
+                />
+              ) : null}
               <Button
                 type="button"
                 className="btn btn-danger"
@@ -65,17 +167,19 @@ const PPVPaymentModal = (props) => {
               >
                 CANCEL
               </Button>
-              <Button
-                type="button"
-                className="btn btn-success"
-                data-dismiss="modal"
-                onClick={handleSubmit}
-                disabled={props.ppvPayStripe.buttonDisable}
-              >
-                {props.ppvPayStripe.loadingButtonContent !== null
-                  ? props.ppvPayStripe.loadingButtonContent
-                  : "Confirm"}
-              </Button>
+              {paymentType !== "paypal" ? (
+                <Button
+                  type="button"
+                  className="btn btn-success"
+                  data-dismiss="modal"
+                  onClick={handleSubmit}
+                  disabled={props.ppvPayStripe.buttonDisable}
+                >
+                  {props.ppvPayStripe.loadingButtonContent !== null
+                    ? props.ppvPayStripe.loadingButtonContent
+                    : "Confirm"}
+                </Button>
+              ) : ''}
             </Modal.Footer>
           </Form>
         ) : null}

@@ -11,6 +11,7 @@ import {
   PPV_PAYMENT_WALLET_START,
   SAVE_REPORT_POST_START,
   FETCH_REPORT_POSTS_START,
+  PPV_PAYMENT_PAYPAL_START,
 } from "../actions/ActionConstant";
 import { createNotification } from "react-redux-notify";
 import {
@@ -38,6 +39,8 @@ import {
   saveReportPostFailure,
   fetchReportPostsSuccess,
   fetchReportPostsFailure,
+  PPVPaymentPaypalFailure,
+  PPVPaymentPaypalSuccess,
 } from "../actions/PostAction";
 
 function* savePostAPI() {
@@ -183,6 +186,36 @@ function* postFileUploadAPI() {
   }
 }
 
+function* PPVPaymentPaypalAPI() {
+  try {
+    const paymentInputData = yield select(
+      (state) => state.post.ppvPayPal.inputData
+    );
+    const response = yield api.postMethod(
+      "posts_payment_by_paypal",
+      paymentInputData
+    );
+    if (response.data.success) {
+      yield put(PPVPaymentPaypalSuccess(response.data.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+      window.location.assign("/home");
+    } else {
+      yield put(PPVPaymentPaypalFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(PPVPaymentPaypalFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 function* PPVPaymentStripeAPI() {
   try {
     const paymentInputData = yield select(
@@ -301,4 +334,5 @@ export default function* pageSaga() {
   yield all([yield takeLatest(PPV_PAYMENT_WALLET_START, PPVPaymentWalletAPI)]);
   yield all([yield takeLatest(SAVE_REPORT_POST_START, saveReportPostAPI)]);
   yield all([yield takeLatest(FETCH_REPORT_POSTS_START, fetchPostsAPI)]);
+  yield all([yield takeLatest(PPV_PAYMENT_PAYPAL_START, PPVPaymentPaypalAPI)]);
 }

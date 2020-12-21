@@ -5,6 +5,9 @@ import {
   SEND_TIP_BY_WALLET_START,
   SEND_TIP_BY_WALLET_SUCCESS,
   SEND_TIP_BY_WALLET_FAILURE,
+  SEND_TIP_BY_PAYPAL_START,
+  SEND_TIP_BY_PAYPAL_SUCCESS,
+  SEND_TIP_BY_PAYPAL_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -17,6 +20,14 @@ const initialState = {
     buttonDisable: false,
   },
   tipWallet: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+    loadingButtonContent: null,
+    buttonDisable: false,
+  },
+  tipPaypal: {
     data: {},
     loading: true,
     error: false,
@@ -64,6 +75,42 @@ const SendTipReducer = (state = initialState, action) => {
           buttonDisable: false,
         },
       };
+      case SEND_TIP_BY_PAYPAL_START:
+        return {
+          ...state,
+          tipPaypal: {
+            data: {},
+            loading: true,
+            error: false,
+            inputData: action.data,
+            loadingButtonContent: "Loading... Please wait.",
+            buttonDisable: true,
+          },
+        };
+      case SEND_TIP_BY_PAYPAL_SUCCESS:
+        return {
+          ...state,
+          tipPaypal: {
+            data: action.data,
+            loading: false,
+            error: false,
+            inputData: {},
+            loadingButtonContent: null,
+            buttonDisable: false,
+          },
+        };
+      case SEND_TIP_BY_PAYPAL_FAILURE:
+        return {
+          ...state,
+          tipPaypal: {
+            data: {},
+            loading: true,
+            error: action.error,
+            inputData: {},
+            loadingButtonContent: null,
+            buttonDisable: false,
+          },
+        };
     case SEND_TIP_BY_WALLET_START:
       return {
         ...state,
