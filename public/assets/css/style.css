@@ -7319,9 +7319,9 @@ input.authentication-input {
 
 .dropdown-menu.dropdown-menu-right li a {
   padding: 15px 20px;
-  font-size: 1em;
+  font-size: 1em!important;
   width: 100%;
-  font-weight: 600;
+  font-weight: 600!important;
 }
 
 .dropdown-menu.show {
@@ -8180,3 +8180,54 @@ input.authentication-input {
 .dropdown-a:hover {
   background-color: #fff !important;
 }
+
+.report-form .custom-control-label{
+  font-size: 1.6em!important;
+  font-weight: 500!important;
+}
+
+.report-form .custom-control-label::before{
+  width: 2rem!important;
+  height: 2rem!important;
+  top:.4rem!important;
+}
+
+.report-form label{
+  padding-left: 1em!important;
+}
+
+.report-form .custom-control-label::after {
+  top: 4px !important;
+  left: -1.5rem !important;
+}
+
+.btn-theme {
+color: #0091ea!important;
+background-color: transparent!important;
+border:0!important;
+font-size: 1.4em!important;
+font-weight: 600!important;
+}
+
+.btn-normal{
+  color: #c5bcbc!important;
+  background-color: transparent!important;
+  border:0!important;
+  font-size: 1.4em!important;
+  font-weight: 600!important;
+  }
+
+  .report-modal .modal-content{
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    background: #fff;
+    border: 1px solid rgba(138, 150, 163, 0.25);
+    border-radius: 10px;
+  }
+
+  .report-modal .modal-header{
+    border: 0;
+  }
+
+  .report-modal .modal-footer{
+    border:0;
+  }

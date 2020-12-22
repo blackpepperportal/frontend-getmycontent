@@ -10,6 +10,7 @@ import {
 import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
+import ReportModeModal from "./ReportModeModal";
 import PPVPaymentModal from "./PPVPaymentModal";
 import ReactPlayer from "react-player/lazy";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
@@ -29,6 +30,14 @@ const PostDisplayCard = (props) => {
   const [sendTip, setSendTip] = useState(false);
   const [commentInputData, setCommentInputData] = useState({});
   const [isVisible, setIsVisible] = useState(true);
+
+  const [reportMode, setReportMode] = useState(false);
+
+  const closeReportModeModal = () => {
+    setReportMode(false);
+  };
+
+
 
   const [bookmarkStatus, setBookmarkStatus] = useState("");
   const [postDisplayStatus, setPostDisplayStatus] = useState(true);
@@ -100,6 +109,7 @@ const PostDisplayCard = (props) => {
     props.dispatch(createNotification(notificationMessage));
   };
 
+
   return (
     <>
       {postDisplayStatus == true ? (
@@ -159,9 +169,10 @@ const PostDisplayCard = (props) => {
                       <Media as="li" className="divider"></Media>
                       <Media as="li">
                         <Link
-                          to="#"
-                          onClick={(event) => handleReportPost(event, post)}
-                          className="dropdown-a"
+                          // to=""
+                          // onClick={(event) => handleReportPost(event, post)}
+                          // className="dropdown-a"
+                          onClick={() => setReportMode(true)}
                         >
                           {" "}
                           Report{" "}
@@ -528,6 +539,7 @@ const PostDisplayCard = (props) => {
             user_id={post.user_id}
             amount={post.amount}
           />
+         <ReportModeModal reportMode={reportMode} closeReportModeModal={closeReportModeModal} />
         </div>
       ) : (
         ""
