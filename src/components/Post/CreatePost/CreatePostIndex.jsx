@@ -18,6 +18,8 @@ const CreatePostIndex = (props) => {
 
   const [fileUploadStatus, setFileUploadStatus] = useState(false);
 
+  const [videoThumbnail, setVideoThumbnail] = useState(false);
+
   const handleChangeImage = (event, fileType) => {
     if (event.currentTarget.type === "file") {
       setFileUploadStatus(true);
@@ -57,6 +59,7 @@ const CreatePostIndex = (props) => {
         })
       );
       setPaidPost(true);
+      setVideoThumbnail(true);
     }
   };
 
@@ -249,6 +252,30 @@ const CreatePostIndex = (props) => {
                       setInputData({
                         ...inputData,
                         amount: event.currentTarget.value,
+                      })
+                    }
+                  />
+                </Form.Group>
+              </Col>
+            ) : (
+              ""
+            )}
+            {videoThumbnail === true ? (
+              <Col sm={12} md={12}>
+                <Form.Group className="md-mrg-btm">
+                  <label className="text-muted m-1">
+                    Video Thumbnail Image
+                  </label>
+                  <Form.Control
+                    style={{ display: "block" }}
+                    type="file"
+                    placeholder="Video Thumbnail Image"
+                    name="preview_file"
+                    width="50%"
+                    onChange={(event) =>
+                      setInputData({
+                        ...inputData,
+                        preview_file: event.currentTarget.files[0],
                       })
                     }
                   />
