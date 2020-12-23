@@ -121,7 +121,7 @@ const ProfileIndex = (props) => {
                             @{props.profile.data.username}
                           </div>
                         </Link>
-                        <div className="user-profile -active-status">
+                        <div className="user-profile -active-status mt-1">
                           <span>{props.profile.data.updated_formatted}</span>
                         </div>
                       </div>
@@ -153,20 +153,32 @@ const ProfileIndex = (props) => {
                   </div>
                   <div className="profile-about-content">
                     <p className="my-profile-about">
-                      <span>
-                        <i className="fa fa-heart theme-color"></i>{" "}
-                        {props.profile.data.amazon_wishlist}
-                      </span>
-                      <span> | </span>
-                      <span>
-                        <i className="fa fa-globe theme-color"></i>{" "}
-                        {props.profile.data.website}
-                      </span>
-                      <span> | </span>
-                      <span>
-                        <i className="fa fa-map theme-color"></i>{" "}
-                        {props.profile.data.address}
-                      </span>
+                      {props.profile.data.amazon_wishlist ? (
+                        <span>
+                          <span>
+                            <i className="fa fa-heart theme-color"></i>{" "}
+                            {props.profile.data.amazon_wishlist}
+                          </span>
+                          <span> | </span>
+                        </span>
+                      ) : null}
+
+                      {props.profile.data.website ? (
+                        <span>
+                          <span>
+                            <i className="fa fa-globe theme-color"></i>{" "}
+                            {props.profile.data.website}
+                          </span>
+                          <span> | </span>
+                        </span>
+                      ) : null}
+
+                      {props.profile.data.website ? (
+                        <span>
+                          <i className="fa fa-map theme-color"></i>{" "}
+                          {props.profile.data.address}
+                        </span>
+                      ) : null}
                     </p>
                   </div>
 

@@ -26,6 +26,7 @@ import configuration from "react-global-configuration";
 import InboxLoader from "../Loader/InboxLoader";
 import { getErrorNotificationMessage } from "../helper/NotificationMessage";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+const $ = window.$;
 
 let chatSocket;
 
@@ -33,6 +34,7 @@ const MessageIndex = (props) => {
   const [activeChat, setActiveChat] = useState(0);
   const [toUserId, setToUserId] = useState(0);
   const [inputMessage, setInputMessage] = useState("");
+  const [initialHeight, setInitialHeight] = useState(0);
 
   useEffect(() => {
     console.log("asdfasdf first");
@@ -65,7 +67,17 @@ const MessageIndex = (props) => {
     console.log("Scroll down..");
     const objDiv = document.getElementById("options-holder");
     if (objDiv != null) {
-      objDiv.scrollTop = objDiv.scrollHeight;
+      let differenceNumber =
+        objDiv.offsetHeight > objDiv.scrollHeight
+          ? objDiv.offsetHeight - objDiv.scrollHeight
+          : objDiv.scrollHeight - objDiv.offsetHeight;
+
+      if (differenceNumber > 280) {
+        objDiv.scrollTop = objDiv.scrollHeight;
+      } else {
+        objDiv.scrollTop = initialHeight;
+        setInitialHeight(initialHeight + 20);
+      }
     }
   }, [props.chatMessages.data.messages]);
 
@@ -201,10 +213,7 @@ const MessageIndex = (props) => {
                   <h1 className="chat-section-title">
                     <div className="chat-section-title-width">
                       <Link
-                        to={
-                          `/m-profile/` +
-                          props.chatMessages.data.user.user_unique_id
-                        }
+                        to={`/` + props.chatMessages.data.user.user_unique_id}
                         className="chat-user-name"
                       >
                         {props.chatMessages.data.user.name}
@@ -285,7 +294,7 @@ const MessageIndex = (props) => {
 
                 <div className="chat-area">
                   <div className="chat-wrapper scrollbar" id="options-holder">
-                    <div className="chat-message padding overflow">
+                    <div className="chat-message padding overflow" id="check">
                       {props.chatMessages.data.messages.length > 0
                         ? props.chatMessages.data.messages.map(
                             (chatMessage, index) => (
@@ -356,7 +365,7 @@ const MessageIndex = (props) => {
                             <div className="">
                               <InputGroup className="mb-3">
                                 <FormControl
-                                  id="chat-input-area"
+                                  controlId="chat-input-area"
                                   placeholder="Type a message"
                                   name="text"
                                   rows="1"

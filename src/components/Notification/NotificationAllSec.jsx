@@ -24,9 +24,10 @@ const NotificationAllSec = (props) => {
               <div className="notify-item">
                 <div className="post-header">
                   <div className="alignleft">
-                    <Link
+                    <a
                       className="title-container"
-                      to={notification.action_url}
+                      href={notification.action_url}
+                      target="_blank"
                     >
                       <Image
                         src={notification.from_userpicture}
@@ -37,7 +38,8 @@ const NotificationAllSec = (props) => {
                           {notification.from_displayname}
                           <span className="user-id">
                             <Link
-                              to={`/m-profile/` + notification.from_username}
+                              target="_blank"
+                              to={notification.from_username}
                             >
                               @{notification.from_username}
                             </Link>
@@ -50,7 +52,7 @@ const NotificationAllSec = (props) => {
                           {notification.updated_formatted}
                         </span>
                       </div>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

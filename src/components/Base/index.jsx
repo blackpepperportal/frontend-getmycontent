@@ -200,13 +200,6 @@ class App extends Component {
             component={BookmarkVideo}
             layout={MainLayout}
           />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/m-profile/:username"}
-            component={ModelViewProfile}
-            layout={MainLayout}
-          />
           <PrivateRoute
             authentication={this.state.authentication}
             path={"/following"}
@@ -313,6 +306,13 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/logout"}
             component={Logout}
+            layout={MainLayout}
+          />
+          {/* Dont move this route to top */}
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/:username"}
+            component={ModelViewProfile}
             layout={MainLayout}
           />
 

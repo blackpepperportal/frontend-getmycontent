@@ -10,6 +10,7 @@ import {
 import { savePostLikeStart } from "../../store/actions/PostLikesAction";
 import ImageLoader from "./ImageLoader";
 import SendTipModal from "./SendTipModal";
+import ReportModeModal from "./ReportModeModal";
 import PPVPaymentModal from "./PPVPaymentModal";
 import ReactPlayer from "react-player/lazy";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
@@ -29,6 +30,12 @@ const PostDisplayCard = (props) => {
   const [sendTip, setSendTip] = useState(false);
   const [commentInputData, setCommentInputData] = useState({});
   const [isVisible, setIsVisible] = useState(true);
+
+  const [reportMode, setReportMode] = useState(false);
+
+  const closeReportModeModal = () => {
+    setReportMode(false);
+  };
 
   const [bookmarkStatus, setBookmarkStatus] = useState("");
   const [postDisplayStatus, setPostDisplayStatus] = useState(true);
@@ -106,10 +113,7 @@ const PostDisplayCard = (props) => {
         <div className="post-list">
           <div className="post-header">
             <div className="alignleft">
-              <Link
-                className="title-container"
-                to={`/m-profile/${post.user_unique_id}`}
-              >
+              <Link className="title-container" to={`/${post.user_unique_id}`}>
                 <ImageLoader
                   image={post.user_picture}
                   className="user-image img-responsive"
@@ -159,9 +163,10 @@ const PostDisplayCard = (props) => {
                       <Media as="li" className="divider"></Media>
                       <Media as="li">
                         <Link
-                          to="#"
-                          onClick={(event) => handleReportPost(event, post)}
-                          className="dropdown-a"
+                          // to=""
+                          // onClick={(event) => handleReportPost(event, post)}
+                          // className="dropdown-a"
+                          onClick={() => setReportMode(true)}
                         >
                           {" "}
                           Report{" "}
@@ -243,12 +248,16 @@ const PostDisplayCard = (props) => {
                           <div className="gallery js-gallery">
                             {post.payment_info.is_user_needs_pay == 1 ? (
                               <Image
-                                src={postFile.post_file}
+                                src={
+                                  postFile.preview_file
+                                    ? postFile.preview_file
+                                    : postFile.post_file
+                                }
                                 className="post-view-image"
                               />
                             ) : (
                               <ReactPlayer
-                                light={postFile.blur_file}
+                                light={postFile.preview_file}
                                 url={postFile.post_file}
                                 controls={true}
                                 width="100%"
@@ -527,6 +536,10 @@ const PostDisplayCard = (props) => {
             post_id={post.post_id}
             user_id={post.user_id}
             amount={post.amount}
+          />
+          <ReportModeModal
+            reportMode={reportMode}
+            closeReportModeModal={closeReportModeModal}
           />
         </div>
       ) : (

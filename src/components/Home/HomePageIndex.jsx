@@ -111,7 +111,7 @@ const HomePageIndex = (props) => {
                     : props.searchUser.data.users.length > 0
                     ? props.searchUser.data.users.map((user) => (
                         <Media as="li">
-                          <Link to={`/m-profile/${user.user_unique_id}`}>
+                          <Link to={`/${user.user_unique_id}`}>
                             <div className="search-body">
                               <div className="user-img-sec">
                                 <Image
