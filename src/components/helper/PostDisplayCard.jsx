@@ -37,8 +37,6 @@ const PostDisplayCard = (props) => {
     setReportMode(false);
   };
 
-
-
   const [bookmarkStatus, setBookmarkStatus] = useState("");
   const [postDisplayStatus, setPostDisplayStatus] = useState(true);
   const [likeStatus, setLikeStatus] = useState("");
@@ -109,17 +107,13 @@ const PostDisplayCard = (props) => {
     props.dispatch(createNotification(notificationMessage));
   };
 
-
   return (
     <>
       {postDisplayStatus == true ? (
         <div className="post-list">
           <div className="post-header">
             <div className="alignleft">
-              <Link
-                className="title-container"
-                to={`/m-profile/${post.user_unique_id}`}
-              >
+              <Link className="title-container" to={`/${post.user_unique_id}`}>
                 <ImageLoader
                   image={post.user_picture}
                   className="user-image img-responsive"
@@ -254,12 +248,16 @@ const PostDisplayCard = (props) => {
                           <div className="gallery js-gallery">
                             {post.payment_info.is_user_needs_pay == 1 ? (
                               <Image
-                                src={postFile.post_file}
+                                src={
+                                  postFile.preview_file
+                                    ? postFile.preview_file
+                                    : postFile.post_file
+                                }
                                 className="post-view-image"
                               />
                             ) : (
                               <ReactPlayer
-                                light={postFile.blur_file}
+                                light={postFile.preview_file}
                                 url={postFile.post_file}
                                 controls={true}
                                 width="100%"
@@ -539,7 +537,10 @@ const PostDisplayCard = (props) => {
             user_id={post.user_id}
             amount={post.amount}
           />
-         <ReportModeModal reportMode={reportMode} closeReportModeModal={closeReportModeModal} />
+          <ReportModeModal
+            reportMode={reportMode}
+            closeReportModeModal={closeReportModeModal}
+          />
         </div>
       ) : (
         ""

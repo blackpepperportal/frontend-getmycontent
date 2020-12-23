@@ -264,8 +264,8 @@ const CreatePostIndex = (props) => {
             {videoThumbnail === true ? (
               <Col sm={12} md={12}>
                 <Form.Group className="md-mrg-btm">
-                  <label className="text-muted m-1">
-                    Video Thumbnail Image
+                  <label className="text-muted m-1 mt-3 f-12 text-uppercase">
+                    Upload Video Thumbnail:
                   </label>
                   <Form.Control
                     style={{ display: "block" }}
@@ -273,6 +273,8 @@ const CreatePostIndex = (props) => {
                     placeholder="Video Thumbnail Image"
                     name="preview_file"
                     width="50%"
+                    className="form-control"
+                    accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png"
                     onChange={(event) =>
                       setInputData({
                         ...inputData,

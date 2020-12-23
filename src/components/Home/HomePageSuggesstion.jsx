@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchPostSuggesstionStart } from "../../store/actions/HomeAction";
-// import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import { Carousel } from "react-responsive-carousel";
 import Slider from "react-slick";
-
 
 const HomePageSuggesstion = (props) => {
   useEffect(() => {
@@ -23,40 +22,40 @@ const HomePageSuggesstion = (props) => {
 
   const settings = {
     dots: false,
-    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     arrow: true,
     vertical: true,
     verticalSwiping: true,
+    infinite: false,
     responsive: [
-        {
-            breakpoint: 1195,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                infinite: true,
-                dots: false,
-            }
+      {
+        breakpoint: 1195,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
         },
-        {
-            breakpoint: 900,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                initialSlide: 2
-            }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
         },
-        {
-            breakpoint: 750,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
-            }
-        }
-    ]
-};
+      },
+      {
+        breakpoint: 750,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <Col xl={4} md={12} className="suggest-col">
@@ -106,9 +105,9 @@ const HomePageSuggesstion = (props) => {
         </Col>
         <Col sm={12} xl={12} xs={12} md={12}>
           <div
-            // id="carousel-example"
-            // className="carousel slide"
-            // data-ride="carousel"
+          // id="carousel-example"
+          // className="carousel slide"
+          // data-ride="carousel"
           >
             <div className="suggestion-slider">
               <div className="item active">
@@ -122,9 +121,9 @@ const HomePageSuggesstion = (props) => {
                       //   items="3"
                       //   slidesToSlide="3"
                       //   dynamicHeight="true"
-                      //   showArrows="false"                      
+                      //   showArrows="false"
                       // >
-                      
+
                       <Slider {...settings}>
                         {props.postSug.data.users.map((user) => (
                           <div className="col-item">
@@ -132,7 +131,7 @@ const HomePageSuggesstion = (props) => {
                               <div className="swiper-slide">
                                 <div className="b-friend">
                                   <Link
-                                    to={`/m-profile/${user.user_unique_id}`}
+                                    to={`/${user.user_unique_id}`}
                                     className=""
                                   >
                                     <div className="b-friend__cover-wrapper">
@@ -183,9 +182,9 @@ const HomePageSuggesstion = (props) => {
                             </div>
                           </div>
                         ))}
-                        </Slider>
-                      // </Carousel>
+                      </Slider>
                     ) : (
+                      // </Carousel>
                       "No Suggestions"
                     )}
                   </Col>

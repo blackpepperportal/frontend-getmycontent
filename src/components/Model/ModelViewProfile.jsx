@@ -49,7 +49,7 @@ const ModelViewProfile = (props) => {
 
   const [subscriptionData, setSubscriptionData] = useState({
     is_free: 0,
-    plan_type: 'month',
+    plan_type: "month",
     amount: 0,
     amount_formatted: 0,
   });
@@ -146,12 +146,12 @@ const ModelViewProfile = (props) => {
     is_free = 0
   ) => {
     event.preventDefault();
-    setSubscriptionData({ 
+    setSubscriptionData({
       ...subscriptionData,
       is_free: is_free,
       plan_type: plan_type,
-      amount: amount, 
-      amount_formatted: amount_formatted, 
+      amount: amount,
+      amount_formatted: amount_formatted,
     });
     setPaymentModal(true);
   };
@@ -336,9 +336,7 @@ const ModelViewProfile = (props) => {
                   <div className="my-profile-names">
                     <div className="user-name-base-row">
                       <Link
-                        to={
-                          `/m-profile/` + userDetails.data.user.user_unique_id
-                        }
+                        to={`/` + userDetails.data.user.user_unique_id}
                         className="my-name-lg"
                       >
                         <div className="g-user--name">
@@ -348,16 +346,14 @@ const ModelViewProfile = (props) => {
                     </div>
                     <div className="user-id-row-base">
                       <Link
-                        to={
-                          `/m-profile/` + userDetails.data.user.user_unique_id
-                        }
+                        to={`/` + userDetails.data.user.user_unique_id}
                         className="user-my-id-text"
                       >
                         <div className="current-user--name">
                           @{userDetails.data.user.username}
                         </div>
                       </Link>
-                      <div className="user-profile -active-status">
+                      <div className="user-profile -active-status mt-1">
                         <span>{userDetails.data.user.updated_formatted}</span>
                       </div>
                     </div>
@@ -370,26 +366,28 @@ const ModelViewProfile = (props) => {
                     <p className="my-profile-about">
                       {userDetails.data.user.amazon_wishlist ? (
                         <span>
-                          <i className="fa fa-heart theme-color"></i>{" "}
-                          {userDetails.data.user.amazon_wishlist}
+                          <span>
+                            <i className="fa fa-heart theme-color"></i>{" "}
+                            {userDetails.data.user.amazon_wishlist}
+                          </span>
+                          <span> | </span>
                         </span>
                       ) : null}
+
                       {userDetails.data.user.website ? (
                         <span>
-                          <span> | </span>
                           <span>
                             <i className="fa fa-globe theme-color"></i>{" "}
                             {userDetails.data.user.website}
-                          </span>{" "}
+                          </span>
+                          <span> | </span>
                         </span>
                       ) : null}
-                      {userDetails.data.user.address ? (
+
+                      {userDetails.data.user.website ? (
                         <span>
-                          <span> | </span>
-                          <span>
-                            <i className="fa fa-map theme-color"></i>{" "}
-                            {userDetails.data.user.address}
-                          </span>
+                          <i className="fa fa-map theme-color"></i>{" "}
+                          {userDetails.data.user.address}
                         </span>
                       ) : null}
                     </p>
@@ -407,13 +405,14 @@ const ModelViewProfile = (props) => {
                 {userDetails.data.is_block_user == 0 ? (
                   <>
                     {userDetails.data.payment_info.is_user_needs_pay ? (
-                      userDetails.data.payment_info.subscription_info ? (
+                      userDetails.data.payment_info.subscription_info.length >
+                      0 ? (
                         <>
                           <div className="subscription-section">
                             <span className="subscribe-title">
                               Monthly Subscription{" "}
                             </span>
-                            
+
                             <Button
                               to=""
                               className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
@@ -421,14 +420,17 @@ const ModelViewProfile = (props) => {
                                 subscriptionPayment(
                                   event,
                                   "month",
-                                  userDetails.data.payment_info.subscription_info
-                                  .monthly_amount,
-                                  userDetails.data.payment_info.subscription_info
-                                  .monthly_amount_formatted
+                                  userDetails.data.payment_info
+                                    .subscription_info.length > 0
+                                    ? userDetails.data.payment_info
+                                        .subscription_info.monthly_amount
+                                    : 0.0,
+                                  userDetails.data.payment_info
+                                    .subscription_info.monthly_amount_formatted
                                 )
                               }
                             >
-                             {userDetails.data.payment_info.payment_text}
+                              {userDetails.data.payment_info.payment_text}
                             </Button>
                           </div>
                           <div className="subscription-section">
@@ -442,10 +444,10 @@ const ModelViewProfile = (props) => {
                                 subscriptionPayment(
                                   event,
                                   "year",
-                                  userDetails.data.payment_info.subscription_info
-                                  .yearly_amount,
-                                  userDetails.data.payment_info.subscription_info
-                                  .yearly_amount_formatted
+                                  userDetails.data.payment_info
+                                    .subscription_info.yearly_amount,
+                                  userDetails.data.payment_info
+                                    .subscription_info.yearly_amount_formatted
                                 )
                               }
                             >
@@ -464,13 +466,13 @@ const ModelViewProfile = (props) => {
                             className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                             onClick={(event) =>
                               subscriptionPayment(
-                                  event,
-                                  "month",
-                                  userDetails.data.payment_info.subscription_info
+                                event,
+                                "month",
+                                userDetails.data.payment_info.subscription_info
                                   .monthly_amount,
-                                  userDetails.data.payment_info.subscription_info
+                                userDetails.data.payment_info.subscription_info
                                   .monthly_amount_formatted,
-                                  1
+                                1
                               )
                             }
                           >
@@ -594,10 +596,10 @@ const ModelViewProfile = (props) => {
           name={props.userDetails.data.user.name}
           post_id={null}
           user_id={props.userDetails.data.user.user_id}
-        />  
+        />
       )}
 
-    {userDetails.loading ? (
+      {userDetails.loading ? (
         "Loading..."
       ) : (
         <PaymentModal
