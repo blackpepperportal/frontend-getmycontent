@@ -97,6 +97,7 @@ const CreatePostIndex = (props) => {
           content: inputData.content,
           amount: inputData.amount ? inputData.amount : "",
           post_files: props.fileUpload.data.post_file.post_file_id,
+          preview_file: inputData.preview_file ? inputData.preview_file : "",
         })
       );
     } else {
