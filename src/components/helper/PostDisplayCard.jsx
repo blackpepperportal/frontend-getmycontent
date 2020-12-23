@@ -248,7 +248,11 @@ const PostDisplayCard = (props) => {
                           <div className="gallery js-gallery">
                             {post.payment_info.is_user_needs_pay == 1 ? (
                               <Image
-                                src={postFile.post_file}
+                                src={
+                                  postFile.preview_file
+                                    ? postFile.preview_file
+                                    : postFile.post_file
+                                }
                                 className="post-view-image"
                               />
                             ) : (
