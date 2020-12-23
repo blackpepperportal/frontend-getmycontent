@@ -253,7 +253,7 @@ const PostDisplayCard = (props) => {
                               />
                             ) : (
                               <ReactPlayer
-                                light={postFile.blur_file}
+                                light={postFile.preview_file}
                                 url={postFile.post_file}
                                 controls={true}
                                 width="100%"
