@@ -64,6 +64,8 @@ const BillingAccountIndex = (props) => {
                             <td>{accounts.bank_name}</td>
                             <td>{accounts.ifsc_code}</td>
                             <td>{accounts.swift_code}</td>
+                            <td>{accounts.route_number}</td>
+                            <td>{accounts.iban_number}</td>
                             {accounts.is_default === 1 ? (
                               <td>
                                 <Badge className="unconfirmed-badge">

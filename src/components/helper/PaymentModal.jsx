@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Form, Button, Image, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
-import { subscriptionPaymentStripeStart,subscriptionPaymentPaypalStart } from "../../store/actions/SubscriptionAction";
+import {
+  subscriptionPaymentStripeStart,
+  subscriptionPaymentPaypalStart,
+} from "../../store/actions/SubscriptionAction";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 import { createNotification } from "react-redux-notify";
 import {
@@ -11,64 +14,62 @@ import {
 import configuration from "react-global-configuration";
 
 const PaymentModal = (props) => {
+  const [paymentType, setPaymentType] = useState("card");
 
-    const [paymentType, setPaymentType] = useState("card");
+  const [showPayPal, payPal] = useState(false);
 
-    const [showPayPal, payPal] = useState(false);
+  let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
+  let currency = "USD"; // or you can set this value from your props or state
 
-    let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
-    let currency = "USD"; // or you can set this value from your props or state
-    
-    const client = {
-      sandbox:configuration.get("configData.PAYPAL_ID"),
-      production:configuration.get("configData.PAYPAL_ID"),
-    };
+  const client = {
+    sandbox: configuration.get("configData.PAYPAL_ID"),
+    production: configuration.get("configData.PAYPAL_ID"),
+  };
 
-    const choosePaymentOption = (event) => {
-        setPaymentType(event)
-    };
+  const choosePaymentOption = (event) => {
+    setPaymentType(event);
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (paymentType === "card")
-            props.dispatch(
-                subscriptionPaymentStripeStart({
-                    user_unique_id : props.username,
-                    plan_type : props.subscriptionData.plan_type,
-                    is_free : props.subscriptionData.is_free,
-                })
-            );
-        if (paymentType === "paypal")
-            showPayPal(true);
-        
-        // props.closePaymentModal();
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (paymentType === "card")
+      props.dispatch(
+        subscriptionPaymentStripeStart({
+          user_unique_id: props.user_unique_id,
+          plan_type: props.subscriptionData.plan_type,
+          is_free: props.subscriptionData.is_free,
+        })
+      );
+    if (paymentType === "paypal") showPayPal(true);
 
-    const paypalOnSuccess = (payment) => {
-        console.log(payment);
-        setTimeout(() => {
-            props.dispatch( 
-                subscriptionPaymentPaypalStart({
-                    payment_id : payment.paymentID,
-                    user_unique_id : props.user_unique_id,
-                    plan_type : props.subscriptionData.plan_type,
-                    is_free : props.subscriptionData.is_free,
-                })
-            );
-        }, 1000);
-    };
+    // props.closePaymentModal();
+  };
 
-    const paypalOnError = (err) => {
-        const notificationMessage = getErrorNotificationMessage(err);
-        this.props.dispatch(createNotification(notificationMessage));
-    };
+  const paypalOnSuccess = (payment) => {
+    console.log(payment);
+    setTimeout(() => {
+      props.dispatch(
+        subscriptionPaymentPaypalStart({
+          payment_id: payment.paymentID,
+          user_unique_id: props.user_unique_id,
+          plan_type: props.subscriptionData.plan_type,
+          is_free: props.subscriptionData.is_free,
+        })
+      );
+    }, 1000);
+  };
 
-    const paypalOnCancel = (data) => {
-        const notificationMessage = getErrorNotificationMessage(
-            "Payment cancelled please try again.."
-        );
-        this.props.dispatch(createNotification(notificationMessage));
-    };
+  const paypalOnError = (err) => {
+    const notificationMessage = getErrorNotificationMessage(err);
+    this.props.dispatch(createNotification(notificationMessage));
+  };
+
+  const paypalOnCancel = (data) => {
+    const notificationMessage = getErrorNotificationMessage(
+      "Payment cancelled please try again.."
+    );
+    this.props.dispatch(createNotification(notificationMessage));
+  };
 
   return (
     <>
@@ -103,17 +104,17 @@ const PaymentModal = (props) => {
                     <div className="pop-user-username">@{props.username}</div>
                   </span>
                 </div>
-
               </div>
 
               <div className="floating-form">
                 <div>
-                    <div className="pop-user-username">Amount - {props.subscriptionData.amount_formatted}</div>
+                  <div className="pop-user-username">
+                    Amount - {props.subscriptionData.amount_formatted}
+                  </div>
                 </div>
                 <Form className="mt-4">
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`} className="mb-3">
-                      
                       <Form.Check
                         custom
                         inline
@@ -125,41 +126,44 @@ const PaymentModal = (props) => {
                         name="payment_type"
                         defaultChecked={true}
                         onChange={(event) => {
-                            choosePaymentOption(event.currentTarget.value);
+                          choosePaymentOption(event.currentTarget.value);
                         }}
                       />
-                    {configuration.get("configData.is_paypal_enabled") == 1 ? (
-                    <Form.Check
-                        custom
-                        inline
-                        label="Paypal"
-                        type={type}
-                        id="paypal"
-                        value="paypal"
-                        name="payment_type"
-                        onChange={(event) => {
+                      {configuration.get("configData.is_paypal_enabled") ==
+                      1 ? (
+                        <Form.Check
+                          custom
+                          inline
+                          label="Paypal"
+                          type={type}
+                          id="paypal"
+                          value="paypal"
+                          name="payment_type"
+                          onChange={(event) => {
                             choosePaymentOption(event.currentTarget.value);
-                        }}
-                      />
-                    ) : "" }
+                          }}
+                        />
+                      ) : (
+                        ""
+                      )}
                     </div>
                   ))}
                 </Form>
               </div>
             </Modal.Body>
             <Modal.Footer>
-
-            {paymentType === "paypal" && props.subscriptionData.amount != 0 ? (
+              {paymentType === "paypal" &&
+              props.subscriptionData.amount != 0 ? (
                 <PaypalExpressBtn
-                    env={env}
-                    client={client}
-                    currency={currency}
-                    total={props.subscriptionData.amount}
-                    onError={paypalOnError}
-                    onSuccess={paypalOnSuccess}
-                    onCancel={paypalOnCancel}
+                  env={env}
+                  client={client}
+                  currency={currency}
+                  total={props.subscriptionData.amount}
+                  onError={paypalOnError}
+                  onSuccess={paypalOnSuccess}
+                  onCancel={paypalOnCancel}
                 />
-            ) : null}
+              ) : null}
 
               <Button
                 type="button"
@@ -171,28 +175,29 @@ const PaymentModal = (props) => {
               </Button>
               {paymentType !== "paypal" ? (
                 <Button
-                    type="button"
-                    className="btn btn-success"
-                    data-dismiss="modal"
-                    onClick={handleSubmit}
-                    disabled={props.subPayStripe.buttonDisable}
+                  type="button"
+                  className="btn btn-success"
+                  data-dismiss="modal"
+                  onClick={handleSubmit}
+                  disabled={props.subPayStripe.buttonDisable}
                 >
-                    {props.subPayStripe.loadingButtonContent !== null
+                  {props.subPayStripe.loadingButtonContent !== null
                     ? props.subPayStripe.loadingButtonContent
                     : "Pay Now"}
                 </Button>
-              ) : ''}
+              ) : (
+                ""
+              )}
             </Modal.Footer>
           </Form>
         ) : null}
       </Modal>
-
     </>
   );
 };
 
 const mapStateToPros = (state) => ({
-    subPayStripe: state.subscriptions.subPayStripe,
+  subPayStripe: state.subscriptions.subPayStripe,
 });
 
 function mapDispatchToProps(dispatch) {

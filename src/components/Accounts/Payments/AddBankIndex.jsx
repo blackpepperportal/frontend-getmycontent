@@ -20,11 +20,9 @@ const AddBankIndex = (props) => {
           <Col sm={12} md={12}>
             <div className="add-bank-box">
               <Form onSubmit={handleSubmit}>
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    Nick Name :
-                  </Form.Label>
-                  <Col sm={10}>
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalNickname">
+                    <Form.Label>Nick Name: (*)</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Nick Name"
@@ -37,14 +35,12 @@ const AddBankIndex = (props) => {
                         });
                       }}
                     />
-                  </Col>
-                </Form.Group>
+                  </Form.Group>
+                </Col>
 
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    Account Name :
-                  </Form.Label>
-                  <Col sm={10}>
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalAccountName">
+                    <Form.Label>Account Name: (*)</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Account Name"
@@ -57,13 +53,11 @@ const AddBankIndex = (props) => {
                         });
                       }}
                     />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    Account Number :
-                  </Form.Label>
-                  <Col sm={10}>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalAccountNumber">
+                    <Form.Label>Account Number: (*)</Form.Label>
                     <Form.Control
                       type="number"
                       placeholder="Account Number"
@@ -76,13 +70,14 @@ const AddBankIndex = (props) => {
                         });
                       }}
                     />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    Bank Name :
-                  </Form.Label>
-                  <Col sm={10}>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalBanlName">
+                    <Form.Label>
+                      Bank Name:{" "}
+                      <span className="text-capitalize">(Optional)</span>
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Bank Name"
@@ -95,13 +90,14 @@ const AddBankIndex = (props) => {
                         });
                       }}
                     />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    IFSC Code :
-                  </Form.Label>
-                  <Col sm={10}>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalIFSCCode">
+                    <Form.Label>
+                      IFSC Code:{" "}
+                      <span className="text-capitalize">(Optional)</span>
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="IFSC Code"
@@ -114,13 +110,14 @@ const AddBankIndex = (props) => {
                         });
                       }}
                     />
-                  </Col>
-                </Form.Group>
-                <Form.Group as={Row} controlId="formHorizontalEmail">
-                  <Form.Label column sm={2}>
-                    SWIFT Code :
-                  </Form.Label>
-                  <Col sm={10}>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalSWIFTCode">
+                    <Form.Label>
+                      SWIFT Code:{" "}
+                      <span className="text-capitalize">(Optional)</span>
+                    </Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="SWIFT Code"
@@ -133,8 +130,49 @@ const AddBankIndex = (props) => {
                         });
                       }}
                     />
-                  </Col>
-                </Form.Group>
+                  </Form.Group>
+                </Col>
+
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalRouteNumber">
+                    <Form.Label>
+                      Route Number:
+                      <span className="text-capitalize">(Optional)</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Route Number"
+                      value={inputData.route_number}
+                      name="route_number"
+                      onChange={(event) => {
+                        setInputData({
+                          ...inputData,
+                          route_number: event.currentTarget.value,
+                        });
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group controlId="formHorizontalIBANNumber">
+                    <Form.Label>
+                      IBAN Number:{" "}
+                      <span className="text-capitalize">(Optional)</span>
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="IBAN Number"
+                      value={inputData.iban_number}
+                      name="iban_number"
+                      onChange={(event) => {
+                        setInputData({
+                          ...inputData,
+                          iban_number: event.currentTarget.value,
+                        });
+                      }}
+                    />
+                  </Form.Group>
+                </Col>
                 <div className="edit-save">
                   <Button
                     className="save-btn"

@@ -37,8 +37,6 @@ const PostDisplayCard = (props) => {
     setReportMode(false);
   };
 
-
-
   const [bookmarkStatus, setBookmarkStatus] = useState("");
   const [postDisplayStatus, setPostDisplayStatus] = useState(true);
   const [likeStatus, setLikeStatus] = useState("");
@@ -109,17 +107,13 @@ const PostDisplayCard = (props) => {
     props.dispatch(createNotification(notificationMessage));
   };
 
-
   return (
     <>
       {postDisplayStatus == true ? (
         <div className="post-list">
           <div className="post-header">
             <div className="alignleft">
-              <Link
-                className="title-container"
-                to={`/m-profile/${post.user_unique_id}`}
-              >
+              <Link className="title-container" to={`/${post.user_unique_id}`}>
                 <ImageLoader
                   image={post.user_picture}
                   className="user-image img-responsive"
@@ -539,7 +533,10 @@ const PostDisplayCard = (props) => {
             user_id={post.user_id}
             amount={post.amount}
           />
-         <ReportModeModal reportMode={reportMode} closeReportModeModal={closeReportModeModal} />
+          <ReportModeModal
+            reportMode={reportMode}
+            closeReportModeModal={closeReportModeModal}
+          />
         </div>
       ) : (
         ""

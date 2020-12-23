@@ -87,11 +87,28 @@ const LandingPageIndex = (props) => {
                   <div className="device">
                     <div className="screen">
                       <div className="slider">
-                        <div className="slider__item slider__item--1"></div>
-                        <div className="slider__item slider__item--2"></div>
-                        <div className="slider__item slider__item--3"></div>
+                        <div className="slider__item slider__item--1">
+                          <img
+                            src={
+                              window.location.origin +
+                              "/assets/images/login-slider-1.jpg"
+                            }
+                            alt=""
+                          />
+                        </div>
+                        <div className="slider__item slider__item--2">
+                          {" "}
+                          <img
+                            src={
+                              window.location.origin +
+                              "/assets/images/login-slider-2.jpg"
+                            }
+                            alt=""
+                          />
+                        </div>
+                        {/* <div className="slider__item slider__item--3"></div>
                         <div className="slider__item slider__item--4"></div>
-                        <div className="slider__item slider__item--5"></div>
+                        <div className="slider__item slider__item--5"></div> */}
                       </div>
                     </div>
                   </div>
@@ -162,7 +179,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicEmail">
                             <Form.Control
                               type="text"
-                              id="loginemail"
+                              controlId="loginemail"
                               placeholder="E-mail"
                               required
                               value={loginInputData.email}
@@ -179,7 +196,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicPassword">
                             <Form.Control
                               type="password"
-                              id="loginpassword"
+                              controlId="loginpassword"
                               placeholder="Password"
                               required
                               value={loginInputData.password}
@@ -248,7 +265,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicName">
                             <Form.Control
                               type="text"
-                              id="firstname"
+                              controlId="firstname"
                               placeholder="First Name"
                               required
                               value={signupInputData.first_name}
@@ -264,7 +281,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicName">
                             <Form.Control
                               type="text"
-                              id="lastname"
+                              controlId="lastname"
                               placeholder="Last Name"
                               required
                               value={signupInputData.last_name}
@@ -280,7 +297,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicEmail">
                             <Form.Control
                               type="text"
-                              id="registeremail"
+                              controlId="registeremail"
                               placeholder="E-mail"
                               required
                               value={signupInputData.email}
@@ -297,7 +314,7 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicPassword">
                             <Form.Control
                               type="password"
-                              id="registerpassword"
+                              controlId="registerpassword"
                               placeholder="Password"
                               required
                               value={signupInputData.password}
@@ -366,7 +383,7 @@ const LandingPageIndex = (props) => {
                           <div className="form-group">
                             <Form.Control
                               type="text"
-                              id="loginemail"
+                              controlId="loginemail"
                               className="form-control"
                               placeholder="E-mail"
                               required

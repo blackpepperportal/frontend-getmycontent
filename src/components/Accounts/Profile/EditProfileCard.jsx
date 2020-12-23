@@ -198,9 +198,7 @@ const EditProfileCard = (props) => {
               </span>
             </div>
             <p className="input-help">
-              {window.location.origin +
-                `/m-profile/` +
-                props.profile.data.user_unique_id}
+              {window.location.origin + props.profile.data.user_unique_id}
             </p>
           </div>
           <div
