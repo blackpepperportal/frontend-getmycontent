@@ -22,13 +22,13 @@ const HomePageSuggesstion = (props) => {
 
   const settings = {
     dots: false,
-    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     arrow: true,
     vertical: true,
     verticalSwiping: true,
+    infinite: false,
     responsive: [
       {
         breakpoint: 1195,
