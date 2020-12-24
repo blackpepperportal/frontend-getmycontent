@@ -153,7 +153,6 @@ const CreatePostIndex = (props) => {
                     rows={3}
                     placeholder="Compose new post..."
                     name="content"
-                    maxlength="10000"
                     style={{ width: "100%", maxWidth: "100%" }}
                     value={inputData.content}
                     onChange={(event) =>

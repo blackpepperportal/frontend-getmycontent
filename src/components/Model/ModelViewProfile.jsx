@@ -361,43 +361,59 @@ const ModelViewProfile = (props) => {
                 </div>
                 {userDetails.data.user.website ||
                 userDetails.data.user.address ||
-                userDetails.data.user.amazon_wishlist ? (
+                userDetails.data.user.amazon_wishlist ||
+                userDetails.data.user.about != "null" ? (
                   <div className="profile-about-content">
                     <p className="my-profile-about">
-                      {userDetails.data.user.amazon_wishlist ? (
-                        <span>
-                          <span>
-                            <i className="fa fa-heart theme-color"></i>{" "}
-                            {userDetails.data.user.amazon_wishlist}
-                          </span>
-                          <span> | </span>
-                        </span>
-                      ) : null}
+                      {userDetails.data.user.about != "null" ? (
+                        <div className="ml-1">
+                          {userDetails.data.user.about}
+                        </div>
+                      ) : (
+                        ""
+                      )}
 
-                      {userDetails.data.user.website ? (
-                        <span>
-                          <span>
-                            <i className="fa fa-globe theme-color"></i>{" "}
-                            {userDetails.data.user.website}
-                          </span>
-                          <span> | </span>
-                        </span>
-                      ) : null}
+                      <p className="">
+                        <div className="profile-links">
+                          {userDetails.data.user.address ? (
+                            <span>
+                              <i className="fas fa-map-marker-alt"></i>{" "}
+                              {userDetails.data.user.address}
+                            </span>
+                          ) : null}
+                        </div>
 
-                      {userDetails.data.user.website ? (
-                        <span>
-                          <i className="fa fa-map theme-color"></i>{" "}
-                          {userDetails.data.user.address}
-                        </span>
-                      ) : null}
-                    </p>
-                  </div>
-                ) : null}
-
-                {userDetails.data.user.about != "null" ? (
-                  <div className="profile-about-content">
-                    <p className="my-profile-about">
-                      {userDetails.data.user.about}
+                        <div className="profile-links">
+                          {userDetails.data.user.website ? (
+                            <span>
+                              <i className="fa fa-link"></i>{" "}
+                              <a
+                                href={userDetails.data.user.website}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.website}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                        <div className="profile-links">
+                          {userDetails.data.user.amazon_wishlist ? (
+                            <span>
+                              <i className="fa fa-gift"></i>{" "}
+                              <a
+                                href={userDetails.data.user.amazon_wishlist}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.amazon_wishlist}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                      </p>
                     </p>
                   </div>
                 ) : null}
@@ -488,13 +504,12 @@ const ModelViewProfile = (props) => {
                     1 ? (
                       <>
                         <div className="subscription-section">
-                          <a
-                            href="#"
+                          <Button
                             className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                             onClick={handleUnfollowModalShow}
                           >
                             Following
-                          </a>
+                          </Button>
                         </div>
 
                         <Modal

@@ -153,38 +153,53 @@ const ProfileIndex = (props) => {
                   </div>
                   <div className="profile-about-content">
                     <p className="my-profile-about">
-                      {props.profile.data.amazon_wishlist ? (
-                        <span>
-                          <span>
-                            <i className="fa fa-heart theme-color"></i>{" "}
-                            {props.profile.data.amazon_wishlist}
-                          </span>
-                          <span> | </span>
-                        </span>
-                      ) : null}
+                      <div className="ml-1">{props.profile.data.about}</div>
 
-                      {props.profile.data.website ? (
-                        <span>
-                          <span>
-                            <i className="fa fa-globe theme-color"></i>{" "}
-                            {props.profile.data.website}
-                          </span>
-                          <span> | </span>
-                        </span>
-                      ) : null}
+                      {props.profile.data.website ||
+                      props.profile.data.address ||
+                      props.profile.data.amazon_wishlist ? (
+                        <p className="">
+                          <div className="profile-links">
+                            {props.profile.data.address ? (
+                              <span>
+                                <i className="fas fa-map-marker-alt"></i>{" "}
+                                {props.profile.data.address}
+                              </span>
+                            ) : null}
+                          </div>
 
-                      {props.profile.data.website ? (
-                        <span>
-                          <i className="fa fa-map theme-color"></i>{" "}
-                          {props.profile.data.address}
-                        </span>
+                          <div className="profile-links">
+                            {props.profile.data.website ? (
+                              <span>
+                                <i className="fa fa-link"></i>{" "}
+                                <a
+                                  href={props.profile.data.website}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  {props.profile.data.website}
+                                </a>
+                              </span>
+                            ) : null}
+                          </div>
+                          <div className="profile-links">
+                            {props.profile.data.amazon_wishlist ? (
+                              <span>
+                                <i className="fa fa-gift"></i>{" "}
+                                <a
+                                  href={props.profile.data.amazon_wishlist}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  {props.profile.data.amazon_wishlist}
+                                </a>
+                              </span>
+                            ) : null}
+                          </div>
+                        </p>
                       ) : null}
-                    </p>
-                  </div>
-
-                  <div className="profile-about-content">
-                    <p className="my-profile-about">
-                      {props.profile.data.about}
                     </p>
                   </div>
 
