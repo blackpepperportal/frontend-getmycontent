@@ -369,7 +369,6 @@ const MessageIndex = (props) => {
                                   placeholder="Type a message"
                                   name="text"
                                   rows="1"
-                                  maxlength="10000"
                                   className="form-control chat-input"
                                   style={{
                                     overflow: "hidden",

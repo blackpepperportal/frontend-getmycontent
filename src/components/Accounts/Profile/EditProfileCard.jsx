@@ -179,7 +179,6 @@ const EditProfileCard = (props) => {
                 placeholder=""
                 name="username"
                 value={props.profile.data.username}
-                maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(
@@ -217,7 +216,6 @@ const EditProfileCard = (props) => {
                 placeholder=""
                 defaultValue={props.profile.data.name}
                 name="name"
-                maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(
@@ -390,7 +388,6 @@ const EditProfileCard = (props) => {
                 value={props.profile.data.website}
                 placeholder="Website URL"
                 name="website"
-                maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(
@@ -420,7 +417,6 @@ const EditProfileCard = (props) => {
                 value={props.profile.data.amazon_wishlist}
                 placeholder="Amazon Wishlist"
                 name="amazon_wishlist"
-                maxlength="24"
                 className="form-control edit-reset"
                 onChange={(event) => {
                   props.dispatch(
