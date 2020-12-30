@@ -7341,7 +7341,7 @@ input.authentication-input {
   padding: 15px 20px;
   font-size: 1em !important;
   width: 100%;
-  font-weight: 600 !important;
+  /* font-weight: 600 !important; */
 }
 
 .dropdown-menu.show {
@@ -8197,6 +8197,7 @@ input.authentication-input {
   -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
   width: 100%;
+  object-fit: cover;
 }
 
 /* .g-user-name.m-lg-size.m-verified{

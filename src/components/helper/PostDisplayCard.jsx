@@ -163,15 +163,22 @@ const PostDisplayCard = (props) => {
                       <Media as="li" className="divider"></Media>
                       <Media as="li">
                         <Link
-                          // to=""
-                          // onClick={(event) => handleReportPost(event, post)}
-                          // className="dropdown-a"
-                          onClick={() => setReportMode(true)}
+                          to=""
+                          onClick={(event) => handleReportPost(event, post)}
+                          className="dropdown-a"
                         >
+                          Report
+                        </Link>
+                      </Media>
+                      {/* Report Post with reasons start */}
+                      {/* <Media as="li">
+                        <Link onClick={() => setReportMode(true)}>
                           {" "}
                           Report{" "}
                         </Link>
-                      </Media>
+                      </Media> */}
+                      {/* Report Post with reasons end */}
+
                       <Media as="li">
                         <Link
                           to="#"
