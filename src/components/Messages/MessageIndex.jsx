@@ -220,7 +220,10 @@ const MessageIndex = (props) => {
                       </Link>
                     </div>
                   </h1>
-                  <span className="post-icons padding-top-lg">
+                  <span
+                    className="post-icons padding-top-lg"
+                    style={{ display: "none" }}
+                  >
                     <Dropdown>
                       <Dropdown.Toggle
                         className="btn btn-default dropdown-toggle"
