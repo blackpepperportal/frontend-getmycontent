@@ -327,7 +327,7 @@ const MessageIndex = (props) => {
                                   <div className="chat-message chat-message-recipient">
                                     <Image
                                       className="chat-image chat-image-default"
-                                      src={chatMessage.from_userpicture}
+                                      src={props.chatMessages.data.user.picture}
                                     />
 
                                     <div className="chat-message-wrapper">

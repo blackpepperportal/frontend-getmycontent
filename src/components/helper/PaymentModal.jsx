@@ -83,7 +83,7 @@ const PaymentModal = (props) => {
         {props.subscrptionPayment === true ? (
           <Form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-              <Modal.Title>Subscription Payment</Modal.Title>
+              <Modal.Title>Subscribe</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="header-userinfo">
