@@ -460,20 +460,28 @@ const PostDisplayCard = (props) => {
                   ? props.comments.data.post_comments.map((comment) => (
                       <div className="row comment-row">
                         <div className="alignleft">
-                          <Link className="title-container" to="#">
+                          <Link
+                            className="title-container"
+                            to={`/` + comment.user_unique_id}
+                          >
                             <Image
                               src={comment.user_picture}
                               className="user-image img-responsive"
                             />
-                            <div className="user-name">
-                              <span className="card-title">
-                                {comment.user_displayname}{" "}
-                                <span className="comment-message">
-                                  {comment.comment}
-                                </span>
-                              </span>
-                            </div>
                           </Link>
+                          <div className="user-name">
+                            <span className="card-title">
+                              <Link
+                                className="title-container"
+                                to={`/` + comment.user_unique_id}
+                              >
+                                {comment.user_displayname}{" "}
+                              </Link>
+                              <span className="comment-message">
+                                {comment.comment}
+                              </span>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     ))
@@ -537,6 +545,7 @@ const PostDisplayCard = (props) => {
           <PPVPaymentModal
             PPVPayment={PPVPayment}
             closePPVPaymentModal={closePPVPaymentModal}
+            post={post}
             username={post.username}
             userPicture={post.user_picture}
             name={post.user_displayname}
