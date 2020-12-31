@@ -161,15 +161,18 @@ const PostDisplayCard = (props) => {
                     <Link to="#">Hide paid blurred from the home feed</Link>
                   </Media> */}
                       <Media as="li" className="divider"></Media>
-                      <Media as="li">
-                        <Link
-                          to=""
-                          onClick={(event) => handleReportPost(event, post)}
-                          className="dropdown-a"
-                        >
-                          Report
-                        </Link>
-                      </Media>
+
+                      {post.user_id != localStorage.getItem("userId") ? (
+                        <Media as="li">
+                          <Link
+                            to=""
+                            onClick={(event) => handleReportPost(event, post)}
+                            className="dropdown-a"
+                          >
+                            Report
+                          </Link>
+                        </Media>
+                      ) : null}
                       {/* Report Post with reasons start */}
                       {/* <Media as="li">
                         <Link onClick={() => setReportMode(true)}>
@@ -178,17 +181,19 @@ const PostDisplayCard = (props) => {
                         </Link>
                       </Media> */}
                       {/* Report Post with reasons end */}
+                      {post.user_id != localStorage.getItem("userId") ? (
+                        <Media as="li">
+                          <Link
+                            to="#"
+                            onClick={(event) => handleBlockUser(event, post)}
+                            className="dropdown-a"
+                          >
+                            {" "}
+                            I don't like the user. Add to blocklists.
+                          </Link>
+                        </Media>
+                      ) : null}
 
-                      <Media as="li">
-                        <Link
-                          to="#"
-                          onClick={(event) => handleBlockUser(event, post)}
-                          className="dropdown-a"
-                        >
-                          {" "}
-                          I don't like the user. Add to blocklists.
-                        </Link>
-                      </Media>
                       {post.delete_btn_status == 1 ? (
                         <>
                           <Media as="li" className="divider"></Media>
@@ -282,158 +287,167 @@ const PostDisplayCard = (props) => {
               : null}
           </div>
 
-          <div className="post-icons">
-            <div className="alignleft">
-              {likeStatus !== "" ? (
-                <>
+          {post.user_id != localStorage.getItem("userId") ? (
+            <div className="post-icons">
+              <div className="alignleft">
+                {likeStatus !== "" ? (
                   <>
-                    {likeStatus === "added" ? (
-                      <Link
-                        to="#"
-                        onClick={(event) => handleLike(event, "removed")}
-                      >
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/icons/heart-active.svg"
-                          }
-                          className="svg-clone"
-                        />
-                      </Link>
-                    ) : null}
+                    <>
+                      {likeStatus === "added" ? (
+                        <Link
+                          to="#"
+                          onClick={(event) => handleLike(event, "removed")}
+                        >
+                          <Image
+                            src={
+                              window.location.origin +
+                              "/assets/images/icons/heart-active.svg"
+                            }
+                            className="svg-clone"
+                          />
+                        </Link>
+                      ) : null}
+                    </>
+                    <>
+                      {likeStatus === "removed" ? (
+                        <Link
+                          to="#"
+                          onClick={(event) => handleLike(event, "added")}
+                        >
+                          <Image
+                            src={
+                              window.location.origin +
+                              "/assets/images/icons/heart.svg"
+                            }
+                            className="svg-clone"
+                          />
+                        </Link>
+                      ) : null}
+                    </>
                   </>
-                  <>
-                    {likeStatus === "removed" ? (
-                      <Link
-                        to="#"
-                        onClick={(event) => handleLike(event, "added")}
-                      >
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/icons/heart.svg"
-                          }
-                          className="svg-clone"
-                        />
-                      </Link>
-                    ) : null}
-                  </>
-                </>
-              ) : post.is_user_liked == 1 ? (
-                <Link to="#" onClick={(event) => handleLike(event, "removed")}>
-                  <Image
-                    src={
-                      window.location.origin +
-                      "/assets/images/icons/heart-active.svg"
-                    }
-                    className="svg-clone"
-                  />
-                </Link>
-              ) : (
-                <Link to="#" onClick={(event) => handleLike(event, "added")}>
-                  <Image
-                    src={
-                      window.location.origin + "/assets/images/icons/heart.svg"
-                    }
-                    className="svg-clone"
-                  />
-                </Link>
-              )}
+                ) : post.is_user_liked == 1 ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleLike(event, "removed")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart-active.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : (
+                  <Link to="#" onClick={(event) => handleLike(event, "added")}>
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/heart.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                )}
 
-              <Link
-                to="#"
-                onClick={(event) => showCommentSection(event, post.post_id)}
-              >
-                <Image
-                  src={
-                    window.location.origin + "/assets/images/icons/comment.svg"
-                  }
-                  className="svg-clone"
-                />
-              </Link>
-
-              <Button
-                type="button"
-                className="g-icon"
-                onClick={() => setSendTip(true)}
-              >
-                <Image
-                  src={window.location.origin + "/assets/images/icons/tip.svg"}
-                  className="svg-clone"
-                />
-
-                <span className="post-tip">SEND TIP</span>
-              </Button>
-            </div>
-            <div className="alignright">
-              {bookmarkStatus !== "" ? (
-                <>
-                  <>
-                    {bookmarkStatus === "added" ? (
-                      <Link
-                        to="#"
-                        onClick={(event) =>
-                          handleBookmark(event, post, "removed")
-                        }
-                      >
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/icons/bookmark-active.svg"
-                          }
-                          className="svg-clone"
-                        />
-                      </Link>
-                    ) : null}
-                  </>
-                  <>
-                    {bookmarkStatus === "removed" ? (
-                      <Link
-                        to="#"
-                        onClick={(event) =>
-                          handleBookmark(event, post, "added")
-                        }
-                      >
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/icons/bookmark.svg"
-                          }
-                          className="svg-clone"
-                        />
-                      </Link>
-                    ) : null}
-                  </>
-                </>
-              ) : post.is_user_bookmarked == 1 ? (
                 <Link
                   to="#"
-                  onClick={(event) => handleBookmark(event, post, "removed")}
+                  onClick={(event) => showCommentSection(event, post.post_id)}
                 >
                   <Image
                     src={
                       window.location.origin +
-                      "/assets/images/icons/bookmark-active.svg"
+                      "/assets/images/icons/comment.svg"
                     }
                     className="svg-clone"
                   />
                 </Link>
-              ) : (
-                <Link
-                  to="#"
-                  onClick={(event) => handleBookmark(event, post, "added")}
+
+                <Button
+                  type="button"
+                  className="g-icon"
+                  onClick={() => setSendTip(true)}
                 >
                   <Image
                     src={
-                      window.location.origin +
-                      "/assets/images/icons/bookmark.svg"
+                      window.location.origin + "/assets/images/icons/tip.svg"
                     }
                     className="svg-clone"
                   />
-                </Link>
-              )}
+
+                  <span className="post-tip">SEND TIP</span>
+                </Button>
+              </div>
+              <div className="alignright">
+                {bookmarkStatus !== "" ? (
+                  <>
+                    <>
+                      {bookmarkStatus === "added" ? (
+                        <Link
+                          to="#"
+                          onClick={(event) =>
+                            handleBookmark(event, post, "removed")
+                          }
+                        >
+                          <Image
+                            src={
+                              window.location.origin +
+                              "/assets/images/icons/bookmark-active.svg"
+                            }
+                            className="svg-clone"
+                          />
+                        </Link>
+                      ) : null}
+                    </>
+                    <>
+                      {bookmarkStatus === "removed" ? (
+                        <Link
+                          to="#"
+                          onClick={(event) =>
+                            handleBookmark(event, post, "added")
+                          }
+                        >
+                          <Image
+                            src={
+                              window.location.origin +
+                              "/assets/images/icons/bookmark.svg"
+                            }
+                            className="svg-clone"
+                          />
+                        </Link>
+                      ) : null}
+                    </>
+                  </>
+                ) : post.is_user_bookmarked == 1 ? (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleBookmark(event, post, "removed")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/bookmark-active.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                ) : (
+                  <Link
+                    to="#"
+                    onClick={(event) => handleBookmark(event, post, "added")}
+                  >
+                    <Image
+                      src={
+                        window.location.origin +
+                        "/assets/images/icons/bookmark.svg"
+                      }
+                      className="svg-clone"
+                    />
+                  </Link>
+                )}
+              </div>
             </div>
-          </div>
+          ) : null}
 
           <div className="likes alignleft">
             <p>{likeCount} Likes</p>

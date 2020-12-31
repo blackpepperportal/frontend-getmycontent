@@ -61,7 +61,7 @@ function* savePostAPI() {
           response.data.message
         );
         yield put(createNotification(notificationMessage));
-        window.location.assign("/home");
+        window.location.assign("/post/" + response.data.data.post_unique_id);
       } else {
         yield put(savePostFailure(response.data.error));
         const notificationMessage = getErrorNotificationMessage(
@@ -126,6 +126,7 @@ function* deletePostAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
+      window.location.assign("/profile");
     } else {
       yield put(deletePostFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -201,7 +202,7 @@ function* PPVPaymentPaypalAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/home");
+      window.location.assign("/post/" + response.data.data.post.post_unique_id);
     } else {
       yield put(PPVPaymentPaypalFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -231,7 +232,7 @@ function* PPVPaymentStripeAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/home");
+      window.location.assign("/post/" + response.data.data.post.post_unique_id);
     } else {
       yield put(PPVPaymentStripeFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
@@ -262,7 +263,7 @@ function* PPVPaymentWalletAPI() {
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      window.location.assign("/home");
+      window.location.assign("/post/" + response.data.data.post.post_unique_id);
     } else {
       yield put(PPVPaymentWalletFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(
