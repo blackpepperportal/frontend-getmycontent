@@ -238,31 +238,31 @@ const PostDisplayCard = (props) => {
             {post.postFiles
               ? post.postFiles.length > 0
                 ? post.postFiles.map((postFile, index) =>
-                    postFile.file_type === "image" ? (
-                      <div className="post-image" key={index}>
-                        <div className="">
-                          <div className="gallery js-gallery">
-                            <Image
-                              src={postFile.post_file}
-                              className="post-view-image"
-                            />
-                          </div>
+                  postFile.file_type === "image" ? (
+                    <div className="post-image" key={index}>
+                      <div className="">
+                        <div className="gallery js-gallery">
+                          <Image
+                            src={postFile.post_file}
+                            className="post-view-image"
+                          />
                         </div>
                       </div>
-                    ) : postFile.file_type === "video" ? (
-                      <div className="post-image" key={index}>
-                        <div className="">
-                          <div className="gallery js-gallery">
-                            {post.payment_info.is_user_needs_pay == 1 ? (
-                              <Image
-                                src={
-                                  postFile.preview_file
-                                    ? postFile.preview_file
-                                    : postFile.post_file
-                                }
-                                className="post-view-image"
-                              />
-                            ) : (
+                    </div>
+                  ) : postFile.file_type === "video" ? (
+                    <div className="post-image" key={index}>
+                      <div className="">
+                        <div className="gallery js-gallery">
+                          {post.payment_info.is_user_needs_pay == 1 ? (
+                            <Image
+                              src={
+                                postFile.preview_file
+                                  ? postFile.preview_file
+                                  : postFile.post_file
+                              }
+                              className="post-view-image"
+                            />
+                          ) : (
                               <ReactPlayer
                                 light={postFile.preview_file}
                                 url={postFile.post_file}
@@ -271,13 +271,13 @@ const PostDisplayCard = (props) => {
                                 height="360px"
                               />
                             )}
-                          </div>
                         </div>
                       </div>
-                    ) : (
-                      ""
-                    )
-                  )
+                    </div>
+                  ) : (
+                        ""
+                      )
+                )
                 : null
               : null}
           </div>
@@ -330,15 +330,15 @@ const PostDisplayCard = (props) => {
                   />
                 </Link>
               ) : (
-                <Link to="#" onClick={(event) => handleLike(event, "added")}>
-                  <Image
-                    src={
-                      window.location.origin + "/assets/images/icons/heart.svg"
-                    }
-                    className="svg-clone"
-                  />
-                </Link>
-              )}
+                    <Link to="#" onClick={(event) => handleLike(event, "added")}>
+                      <Image
+                        src={
+                          window.location.origin + "/assets/images/icons/heart.svg"
+                        }
+                        className="svg-clone"
+                      />
+                    </Link>
+                  )}
 
               <Link
                 to="#"
@@ -419,19 +419,19 @@ const PostDisplayCard = (props) => {
                   />
                 </Link>
               ) : (
-                <Link
-                  to="#"
-                  onClick={(event) => handleBookmark(event, post, "added")}
-                >
-                  <Image
-                    src={
-                      window.location.origin +
-                      "/assets/images/icons/bookmark.svg"
-                    }
-                    className="svg-clone"
-                  />
-                </Link>
-              )}
+                    <Link
+                      to="#"
+                      onClick={(event) => handleBookmark(event, post, "added")}
+                    >
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/bookmark.svg"
+                        }
+                        className="svg-clone"
+                      />
+                    </Link>
+                  )}
             </div>
           </div>
 
@@ -445,19 +445,19 @@ const PostDisplayCard = (props) => {
                 Close Comments
               </Link>
             ) : (
-              <Link
-                className="Show view-comments text-muted"
-                onClick={(event) => showCommentSection(event, post.post_id)}
-              >
-                View Comments
-              </Link>
-            )}
+                <Link
+                  className="Show view-comments text-muted"
+                  onClick={(event) => showCommentSection(event, post.post_id)}
+                >
+                  View Comments
+                </Link>
+              )}
             {isVisible && commentInputData.post_id === post.post_id ? (
               <div id="target">
                 {props.comments.loading
                   ? "Loading..."
                   : props.comments.data.post_comments.length > 0
-                  ? props.comments.data.post_comments.map((comment) => (
+                    ? props.comments.data.post_comments.map((comment) => (
                       <div className="row comment-row">
                         <div className="alignleft">
                           <Link
@@ -472,7 +472,7 @@ const PostDisplayCard = (props) => {
                           <div className="user-name">
                             <span className="card-title">
                               <Link
-                                className="title-container"
+                                className="title-container-1"
                                 to={`/` + comment.user_unique_id}
                               >
                                 {comment.user_displayname}{" "}
@@ -481,11 +481,27 @@ const PostDisplayCard = (props) => {
                                 {comment.comment}
                               </span>
                             </span>
+                            <div className="comment-info-sec">
+                              <ul className="list-unstyled comment-info-link">
+                                <Media as="li">
+                                  <p>Dec 22</p>
+                                </Media>
+                                {/* <Media as="li">
+                                  <p>1 Like</p>
+                              </Media>
+                              <Media as="li">
+                                  <p>Reply</p>
+                              </Media> */}
+                              </ul>
+                            </div>
                           </div>
+                          {/* <div className="whishlist-heart-icon">
+                            <i className="far fa-heart"></i>
+                          </div> */}
                         </div>
                       </div>
                     ))
-                  : ""}
+                    : ""}
 
                 <div className="comment-box">
                   <div className="comment-box-form">
@@ -495,7 +511,7 @@ const PostDisplayCard = (props) => {
                       onSubmit={handleCommentSubmit}
                     >
                       <div className="user-picture">
-                        <Link className="title-container" to="#">
+                        <Link className="title-container-1" to="#">
                           <Image
                             src={localStorage.getItem("user_picture")}
                             className="user-image img-responsive"
@@ -559,8 +575,8 @@ const PostDisplayCard = (props) => {
           />
         </div>
       ) : (
-        ""
-      )}
+          ""
+        )}
     </>
   );
 };
