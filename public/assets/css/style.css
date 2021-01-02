@@ -1397,6 +1397,7 @@ button.g-icon:focus {
   min-height: 48px;
   position: relative;
   margin: 0px 0px 14px;
+  display: flex;
 }
 
 span.post-user-name {
@@ -1408,6 +1409,23 @@ a.title-container {
   justify-content: space-between;
   align-items: center;
 }
+
+.likes.alignleft a.title-container {
+  width: 8%;
+}
+
+.home-sec .alignleft{
+  width: 100%;
+}
+
+.likes.alignleft .user-name{
+  width:85%;
+}
+
+.whishlist-heart-icon i{
+  font-size: 1.5em;
+}
+
 .post-header .user-image {
   border-radius: 1000px;
   object-fit: cover !important;
@@ -1417,6 +1435,11 @@ a.title-container {
   grid-auto-flow: row;
   margin-left: 20px;
 }
+
+.user-name .card-title {
+  width: 55%;
+}
+
 span.post-time {
   text-align-last: end;
   font-size: 13px;
@@ -1464,7 +1487,7 @@ span.fa.fa-ellipsis-h {
   position: relative;
   display: block;
   max-width: 100%;
-  max-height: 525px;
+  max-height: 100%;
   margin: auto;
   border-radius: 5px;
   overflow: hidden;
@@ -1610,8 +1633,16 @@ img.user-image.img-responsive {
 span.comment-message {
   font-size: 14px;
   color: #242529;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  max-height: 4em;
+  width: 575px;
 }
 .cat button {
   font-size: 14px;
@@ -3255,7 +3286,7 @@ button.profile-page__header__btn:after {
   justify-content: flex-end;
   -webkit-box-align: start;
   -ms-flex-align: start;
-  align-items: flex-start;
+  align-items: center;
   -ms-flex-line-pack: start;
   align-content: flex-start;
   display: -ms-flexbox;
@@ -8338,4 +8369,31 @@ input.authentication-input {
 .profile-a:active,
 .profile-a:hover {
   color: #00aff0 !important;
+}
+
+/*Comment UI changes*/
+
+.comment-info-sec .comment-info-link {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.comment-info-sec .comment-info-link .media{
+  margin-top: 0;
+  margin-right: 1em;
+}
+
+
+.comment-info-sec .comment-info-link .media p {
+  font-weight: 500;
+  line-height: 1.5;
+  color:#c1c7ce;
+  font-size: 1.3em;
+  margin-bottom: 0;
+}
+
+.chat-header-back:focus{
+  background-color: transparent!important;
+  border-color: transparent!important;
 }
