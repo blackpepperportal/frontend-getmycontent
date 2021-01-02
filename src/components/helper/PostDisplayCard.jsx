@@ -156,20 +156,19 @@ const PostDisplayCard = (props) => {
                           </Link>
                         </Media>
                       </CopyToClipboard>
-
-                      {/* <Media as="li">
-                    <Link to="#">Hide paid blurred from the home feed</Link>
-                  </Media> */}
                       <Media as="li" className="divider"></Media>
-                      <Media as="li">
-                        <Link
-                          to=""
-                          onClick={(event) => handleReportPost(event, post)}
-                          className="dropdown-a"
-                        >
-                          Report
-                        </Link>
-                      </Media>
+
+                      {localStorage.getItem("userId") != post.user_id ? (
+                        <Media as="li">
+                          <Link
+                            to=""
+                            onClick={(event) => handleReportPost(event, post)}
+                            className="dropdown-a"
+                          >
+                            Report
+                          </Link>
+                        </Media>
+                      ) : null}
                       {/* Report Post with reasons start */}
                       {/* <Media as="li">
                         <Link onClick={() => setReportMode(true)}>
@@ -179,16 +178,18 @@ const PostDisplayCard = (props) => {
                       </Media> */}
                       {/* Report Post with reasons end */}
 
-                      <Media as="li">
-                        <Link
-                          to="#"
-                          onClick={(event) => handleBlockUser(event, post)}
-                          className="dropdown-a"
-                        >
-                          {" "}
-                          I don't like the user. Add to blocklists.
-                        </Link>
-                      </Media>
+                      {localStorage.getItem("userId") != post.user_id ? (
+                        <Media as="li">
+                          <Link
+                            to="#"
+                            onClick={(event) => handleBlockUser(event, post)}
+                            className="dropdown-a"
+                          >
+                            {" "}
+                            I don't like the user. Add to blocklists.
+                          </Link>
+                        </Media>
+                      ) : null}
                       {post.delete_btn_status == 1 ? (
                         <>
                           <Media as="li" className="divider"></Media>
