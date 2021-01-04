@@ -34,6 +34,7 @@ import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
 import StaticPage from "../StaticPage/StaticPage";
 import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 import PostView from "../Post/PostView";
+import CategoryListIndex from "../Home/CategoryListIndex";
 
 const history = createHistory();
 const $ = window.$;
@@ -308,6 +309,12 @@ class App extends Component {
             component={Logout}
             layout={MainLayout}
           />
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/category-list"}
+            component={CategoryListIndex}
+            layout={MainLayout}
+          />
           {/* Dont move this route to top */}
           <PrivateRoute
             authentication={this.state.authentication}
@@ -315,7 +322,6 @@ class App extends Component {
             component={ModelViewProfile}
             layout={MainLayout}
           />
-
           <Route path="*" component={NotFoundIndex} />
         </Switch>
       </>
