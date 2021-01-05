@@ -156,20 +156,19 @@ const PostDisplayCard = (props) => {
                           </Link>
                         </Media>
                       </CopyToClipboard>
-
-                      {/* <Media as="li">
-                    <Link to="#">Hide paid blurred from the home feed</Link>
-                  </Media> */}
                       <Media as="li" className="divider"></Media>
-                      <Media as="li">
-                        <Link
-                          to=""
-                          onClick={(event) => handleReportPost(event, post)}
-                          className="dropdown-a"
-                        >
-                          Report
-                        </Link>
-                      </Media>
+
+                      {localStorage.getItem("userId") != post.user_id ? (
+                        <Media as="li">
+                          <Link
+                            to=""
+                            onClick={(event) => handleReportPost(event, post)}
+                            className="dropdown-a"
+                          >
+                            Report
+                          </Link>
+                        </Media>
+                      ) : null}
                       {/* Report Post with reasons start */}
                       {/* <Media as="li">
                         <Link onClick={() => setReportMode(true)}>
@@ -179,16 +178,18 @@ const PostDisplayCard = (props) => {
                       </Media> */}
                       {/* Report Post with reasons end */}
 
-                      <Media as="li">
-                        <Link
-                          to="#"
-                          onClick={(event) => handleBlockUser(event, post)}
-                          className="dropdown-a"
-                        >
-                          {" "}
-                          I don't like the user. Add to blocklists.
-                        </Link>
-                      </Media>
+                      {localStorage.getItem("userId") != post.user_id ? (
+                        <Media as="li">
+                          <Link
+                            to="#"
+                            onClick={(event) => handleBlockUser(event, post)}
+                            className="dropdown-a"
+                          >
+                            {" "}
+                            I don't like the user. Add to blocklists.
+                          </Link>
+                        </Media>
+                      ) : null}
                       {post.delete_btn_status == 1 ? (
                         <>
                           <Media as="li" className="divider"></Media>
@@ -472,7 +473,7 @@ const PostDisplayCard = (props) => {
                           <div className="user-name">
                             <span className="card-title">
                               <Link
-                                className="title-container"
+                                className="title-container-1"
                                 to={`/` + comment.user_unique_id}
                               >
                                 {comment.user_displayname}{" "}
@@ -481,7 +482,23 @@ const PostDisplayCard = (props) => {
                                 {comment.comment}
                               </span>
                             </span>
+                            <div className="comment-info-sec">
+                              <ul className="list-unstyled comment-info-link">
+                                <Media as="li">
+                                  <p>Dec 22</p>
+                                </Media>
+                                {/* <Media as="li">
+                                  <p>1 Like</p>
+                              </Media>
+                              <Media as="li">
+                                  <p>Reply</p>
+                              </Media> */}
+                              </ul>
+                            </div>
                           </div>
+                          {/* <div className="whishlist-heart-icon">
+                            <i className="far fa-heart"></i>
+                          </div> */}
                         </div>
                       </div>
                     ))
@@ -495,7 +512,7 @@ const PostDisplayCard = (props) => {
                       onSubmit={handleCommentSubmit}
                     >
                       <div className="user-picture">
-                        <Link className="title-container" to="#">
+                        <Link className="title-container-1" to="#">
                           <Image
                             src={localStorage.getItem("user_picture")}
                             className="user-image img-responsive"

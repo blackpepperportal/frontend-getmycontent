@@ -25,6 +25,9 @@ import { saveChatUserStart } from "../../store/actions/ChatAction";
 import { subscriptionPaymentStripeStart } from "../../store/actions/SubscriptionAction";
 import { unFollowUserStart } from "../../store/actions/FollowAction";
 import { saveBlockUserStart } from "../../store/actions/UserAction";
+import { getSuccessNotificationMessage } from "../helper/NotificationMessage";
+import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
@@ -154,6 +157,13 @@ const ModelViewProfile = (props) => {
       amount_formatted: amount_formatted,
     });
     setPaymentModal(true);
+  };
+
+  const onCopy = (event) => {
+    const notificationMessage = getSuccessNotificationMessage(
+      "Link to profile was copied to clipboard!"
+    );
+    props.dispatch(createNotification(notificationMessage));
   };
 
   const { userDetails } = props;
@@ -319,19 +329,23 @@ const ModelViewProfile = (props) => {
                         />
                       </Button>
                     )}
-
-                    <Button
-                      type="button"
-                      className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                    <CopyToClipboard
+                      text={userDetails.data.user.share_link}
+                      onCopy={onCopy}
                     >
-                      <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/icons/share.svg"
-                        }
-                        className="svg-clone"
-                      />
-                    </Button>
+                      <Button
+                        type="button"
+                        className="g-btn m-rounded m-border m-icon m-icon-only m-colored has-tooltip"
+                      >
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/icons/share.svg"
+                          }
+                          className="svg-clone"
+                        />
+                      </Button>
+                    </CopyToClipboard>
                   </div>
                   <div className="my-profile-names">
                     <div className="user-name-base-row">
