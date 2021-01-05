@@ -8397,3 +8397,12 @@ input.authentication-input {
   background-color: transparent!important;
   border-color: transparent!important;
 }
+
+[type=button], [type=reset], [type=submit], button {
+  -webkit-appearance: unset;
+}
+
+.col8-sm{
+  flex: 0 0 65.666667%!important;
+  max-width: 65.666667%!important;
+}
