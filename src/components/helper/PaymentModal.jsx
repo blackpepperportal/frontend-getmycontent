@@ -96,7 +96,19 @@ const PaymentModal = (props) => {
                 </div>
                 <div className="popup-username-row">
                   <div className="pop-username">
-                    <div className="">{props.name}</div>
+                    <div className="">
+                      {props.name}{" "}
+                      {props.is_verified_badge == 1 ? (
+                        <img
+                          className="verified-badge"
+                          alt="verified-badge"
+                          src={
+                            window.location.origin +
+                            "/assets/images/verified.svg"
+                          }
+                        />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
                 <div className="popup-username-row">

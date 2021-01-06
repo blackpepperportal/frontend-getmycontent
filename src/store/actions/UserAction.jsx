@@ -43,6 +43,9 @@ import {
   FETCH_BLOCK_USERS_START,
   FETCH_BLOCK_USERS_SUCCESS,
   FETCH_BLOCK_USERS_FAILURE,
+  USER_VERIFY_BADGE_STATUS_START,
+  USER_VERIFY_BADGE_STATUS_SUCCESS,
+  USER_VERIFY_BADGE_STATUS_FAILURE,
 } from "./ActionConstant";
 
 // Get user details actions.
@@ -382,6 +385,27 @@ export function fetchBlockUsersSuccess(data) {
 export function fetchBlockUsersFailure(error) {
   return {
     type: FETCH_BLOCK_USERS_FAILURE,
+    error,
+  };
+}
+
+export function updateVerifyBadgeStatusStart(data) {
+  return {
+    type: USER_VERIFY_BADGE_STATUS_START,
+    data,
+  };
+}
+
+export function updateVerifyBadgeStatusSuccess(data) {
+  return {
+    type: USER_VERIFY_BADGE_STATUS_SUCCESS,
+    data,
+  };
+}
+
+export function updateVerifyBadgeStatusFailure(error) {
+  return {
+    type: USER_VERIFY_BADGE_STATUS_FAILURE,
     error,
   };
 }

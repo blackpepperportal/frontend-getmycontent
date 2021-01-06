@@ -122,6 +122,16 @@ const PostDisplayCard = (props) => {
                 <div className="user-name">
                   <span className="post-user-name">
                     {post.user_displayname}
+                    {"  "}
+                    {post.user.is_verified_badge == 1 ? (
+                      <img
+                        className="verified-badge"
+                        alt="verified-badge"
+                        src={
+                          window.location.origin + "/assets/images/verified.svg"
+                        }
+                      />
+                    ) : null}
                   </span>
                   <span className="post-user-">@{post.username}</span>
                 </div>
