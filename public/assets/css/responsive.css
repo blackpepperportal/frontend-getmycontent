@@ -121,10 +121,18 @@ Version: 1.0
     .search-dropdown-sec {
         right: 50px!important;
     }
+    .col8-sm {
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
+    }
 }
 
 
 @media (max-width: 767.98px) {
+    .col8-sm {
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
+    }
     .main-wrap-sec{
         min-height:73vh;
         overflow:auto;

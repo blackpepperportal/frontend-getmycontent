@@ -197,7 +197,7 @@ const MessageIndex = (props) => {
             md={12}
             lg={7}
             xl={8}
-            className="resp-mrg-btn-xs margin-col"
+            className="resp-mrg-btn-xs margin-col col8-sm"
           >
             {props.chatMessages.loading ? (
               ""
