@@ -21,6 +21,7 @@ const UserCard = (props) => {
   const [addFav, setAddFav] = useState(false);
   const [favStatus, setFavStatus] = useState("");
 
+  const [badgeStatus, setBadgeStatus] = useState(props.user.is_verified_badge);
   const [blockUserStatus, setBlockUserStatus] = useState("");
   const [subscribeStatus, setSubscribeStatus] = useState("");
 
@@ -220,11 +221,21 @@ const UserCard = (props) => {
                       <div className="follower-name-row">
                         <Link to={props.user.user_unique_id}>
                           <div className="follower-user-name">
-                            {props.user.name}
-                            <Image
-                              src="assets/images/icons/verified.svg"
-                              className="svg-clone m-verified"
-                            />
+                            {props.user.name}{" "}
+                            {badgeStatus == 1 ? (
+                              <Image
+                                src="assets/images/icons/verified.svg"
+                                className="svg-clone m-verified"
+                              />
+                            ) : // <img
+                            //   className="verified-badge"
+                            //   alt="verified-badge"
+                            //   src={
+                            //     window.location.origin +
+                            //     "/assets/images/verified.svg"
+                            //   }
+                            // />
+                            null}
                           </div>
                         </Link>
                       </div>

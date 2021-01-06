@@ -197,6 +197,17 @@ const ModelViewProfile = (props) => {
                     </Link>
                     <h1 className="chat-page-title">
                       {userDetails.data.user.name}
+                      {"  "}
+                      {userDetails.data.user.is_verified_badge == 1 ? (
+                        <img
+                          className="verified-badge"
+                          alt="verified-badge"
+                          src={
+                            window.location.origin +
+                            "/assets/images/verified-white.svg"
+                          }
+                        />
+                      ) : null}
                     </h1>
                     <span className="post-count">
                       {userDetails.data.user.total_posts} Post
@@ -354,7 +365,17 @@ const ModelViewProfile = (props) => {
                         className="my-name-lg"
                       >
                         <div className="g-user--name">
-                          {userDetails.data.user.name}
+                          {userDetails.data.user.name}{" "}
+                          {userDetails.data.user.is_verified_badge == 1 ? (
+                            <img
+                              className="verified-badge"
+                              alt="verified-badge"
+                              src={
+                                window.location.origin +
+                                "/assets/images/verified.svg"
+                              }
+                            />
+                          ) : null}
                         </div>
                       </Link>
                     </div>

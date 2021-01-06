@@ -8397,3 +8397,9 @@ input.authentication-input {
   background-color: transparent!important;
   border-color: transparent!important;
 }
+
+.verified-badge {
+  height: 2rem;
+  width: 2rem;
+
+}

@@ -121,7 +121,19 @@ const HomePageIndex = (props) => {
                                 />
                               </div>
                               <div className="search-content">
-                                <h5>{user.name}</h5>
+                                <h5>
+                                  {user.name}{" "}
+                                  {user.is_verified_badge == 1 ? (
+                                    <img
+                                      className="verified-badge"
+                                      alt="verified-badge"
+                                      src={
+                                        window.location.origin +
+                                        "/assets/images/verified.svg"
+                                      }
+                                    />
+                                  ) : null}
+                                </h5>
                                 <p className="text-muted f-12">
                                   @{user.username}
                                 </p>

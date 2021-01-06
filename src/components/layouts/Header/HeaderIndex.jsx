@@ -109,7 +109,17 @@ const HeaderIndex = (props) => {
                     onClick={() => setIsVisible(!isVisible)}
                   >
                     <h3 className="g-user-name">
-                      {localStorage.getItem("name")}
+                      {localStorage.getItem("name")} {"  "}
+                      {localStorage.getItem("is_verified_badge") == 1 ? (
+                        <img
+                          className="verified-badge"
+                          alt="verified-badge"
+                          src={
+                            window.location.origin +
+                            "/assets/images/verified.svg"
+                          }
+                        />
+                      ) : null}
                     </h3>
                     <span className="user-id">
                       @{localStorage.getItem("username")}

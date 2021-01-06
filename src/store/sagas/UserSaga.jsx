@@ -41,6 +41,7 @@ import {
   FETCH_PAYMENTS_START,
   FETCH_BLOCK_USERS_START,
   SAVE_BLOCK_USER_START,
+  USER_VERIFY_BADGE_STATUS_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -78,6 +79,12 @@ function* getUserDetailsAPI() {
         "is_document_verified",
         response.data.data.is_document_verified
       );
+      localStorage.setItem(
+        "is_verified_badge",
+        response.data.data.is_verified_badge
+          ? response.data.data.is_verified_badge
+          : 0
+      );
     } else {
       yield put(fetchUserDetailsFailure(response.data.error));
       yield put(checkLogoutStatus(response.data));
@@ -110,6 +117,12 @@ function* updateUserDetailsAPI() {
       localStorage.setItem(
         "is_document_verified",
         response.data.data.is_document_verified
+      );
+      localStorage.setItem(
+        "is_verified_badge",
+        response.data.data.is_verified_badge
+          ? response.data.data.is_verified_badge
+          : 0
       );
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
@@ -154,6 +167,12 @@ function* userLoginAPI() {
         localStorage.setItem(
           "is_document_verified",
           response.data.data.is_document_verified
+        );
+        localStorage.setItem(
+          "is_verified_badge",
+          response.data.data.is_verified_badge
+            ? response.data.data.is_verified_badge
+            : 0
         );
         const notificationMessage = getSuccessNotificationMessage(
           response.data.message
@@ -200,6 +219,12 @@ function* userRegisterAPI() {
         localStorage.setItem(
           "is_document_verified",
           response.data.data.is_document_verified
+        );
+        localStorage.setItem(
+          "is_verified_badge",
+          response.data.data.is_verified_badge
+            ? response.data.data.is_verified_badge
+            : 0
         );
         const notificationMessage = getSuccessNotificationMessage(
           response.data.message
@@ -308,6 +333,12 @@ function* registerVerify() {
       localStorage.setItem("userLoginStatus", true);
       localStorage.setItem("user_picture", response.data.data.picture);
       localStorage.setItem("username", response.data.data.first_name);
+      localStorage.setItem(
+        "is_verified_badge",
+        response.data.data.is_verified_badge
+          ? response.data.data.is_verified_badge
+          : 0
+      );
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
@@ -366,6 +397,40 @@ function* notificationStatusUpdateAPI() {
       yield put(notificationStatusUpdateSuccess(response.data));
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+    } else {
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+      yield put(notificationStatusUpdateFailure(response.data.error));
+    }
+  } catch (error) {
+    yield put(notificationStatusUpdateFailure(error));
+    const notificationMessage = getErrorNotificationMessage(
+      error.response.data.error
+    );
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* verificationBadgeStatusUpdateAPI() {
+  try {
+    const userData = yield select(
+      (state) => state.users.verifyBadgeUpdate.inputData
+    );
+    const response = yield api.postMethod("verified_badge_status", userData);
+    if (response.data.success) {
+      yield put(notificationStatusUpdateSuccess(response.data));
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      localStorage.setItem(
+        "is_verified_badge",
+        response.data.data.is_verified_badge
+          ? response.data.data.is_verified_badge
+          : 0
       );
       yield put(createNotification(notificationMessage));
     } else {
@@ -481,5 +546,9 @@ export default function* pageSaga() {
     yield takeLatest(FETCH_PAYMENTS_START, getPaymentsAPI),
     yield takeLatest(FETCH_BLOCK_USERS_START, fetchBlockUsersAPI),
     yield takeLatest(SAVE_BLOCK_USER_START, saveBlockUserAPI),
+    yield takeLatest(
+      USER_VERIFY_BADGE_STATUS_START,
+      verificationBadgeStatusUpdateAPI
+    ),
   ]);
 }

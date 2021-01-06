@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -12,17 +12,28 @@ import {
 } from "react-bootstrap";
 import PostDisplayCard from "../../helper/PostDisplayCard";
 import { fetchPostsStart } from "../../../store/actions/PostAction";
-import { fetchUserDetailsStart } from "../../../store/actions/UserAction";
+import {
+  fetchUserDetailsStart,
+  updateVerifyBadgeStatusStart,
+} from "../../../store/actions/UserAction";
 import NoDataFound from "../../NoDataFound/NoDataFound";
 import { getSuccessNotificationMessage } from "../../helper/NotificationMessage";
 import ProfileLoader from "../../Loader/ProfileLoader";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import configuration from "react-global-configuration";
+
+import "./Profile.css";
 
 const ProfileIndex = (props) => {
+  const [badgeStatus, setBadgeStatus] = useState(0);
+
   useEffect(() => {
     if (props.posts.loading) props.dispatch(fetchPostsStart());
-    if (props.profile.loading) props.dispatch(fetchUserDetailsStart());
+    if (props.profile.loading) {
+      props.dispatch(fetchUserDetailsStart());
+      setBadgeStatus(localStorage.getItem("is_verified_badge"));
+    }
   }, []);
 
   const onCopy = (event) => {
@@ -30,6 +41,12 @@ const ProfileIndex = (props) => {
       "Link to profile was copied to clipboard!"
     );
     props.dispatch(createNotification(notificationMessage));
+  };
+  const onVerificationBadgeChange = (event) => {
+    props.dispatch(updateVerifyBadgeStatusStart());
+    setTimeout(() => {
+      setBadgeStatus(localStorage.getItem("is_verified_badge"));
+    }, 1000);
   };
 
   return (
@@ -58,7 +75,17 @@ const ProfileIndex = (props) => {
                         />
                       </Button>
                       <h1 className="chat-page-title">
-                        {props.profile.data.name}
+                        {props.profile.data.name}{" "}
+                        {props.profile.data.is_verified_badge == 1 ? (
+                          <img
+                            className="verified-badge"
+                            alt="verified-badge"
+                            src={
+                              window.location.origin +
+                              "/assets/images/verified.svg"
+                            }
+                          />
+                        ) : null}
                       </h1>
                     </div>
 
@@ -91,6 +118,26 @@ const ProfileIndex = (props) => {
                         />
                         Edit profile
                       </Link>
+                      {configuration.get(
+                        "configData.is_verified_badge_enabled"
+                      ) == 1 ? (
+                        badgeStatus == 0 ? (
+                          <button
+                            onClick={onVerificationBadgeChange}
+                            className="m-uppercase m-l-10 save-btn btn btn-primary"
+                          >
+                            Show Badge
+                          </button>
+                        ) : (
+                          <button
+                            onClick={onVerificationBadgeChange}
+                            // onClick={props.dispatch(updateVerifyBadgeStatusStart())}
+                            className="m-uppercase m-l-10 save-btn btn btn-danger"
+                          >
+                            Disable Badge
+                          </button>
+                        )
+                      ) : null}
 
                       <CopyToClipboard
                         text={props.profile.data.share_link}
@@ -111,7 +158,17 @@ const ProfileIndex = (props) => {
                       <div className="user-name-base-row">
                         <Link to={`/profile`} className="my-name-lg">
                           <div className="g-user--name">
-                            {props.profile.data.name}
+                            {props.profile.data.name}{" "}
+                            {badgeStatus == 1 ? (
+                              <img
+                                className="verified-badge"
+                                alt="verified-badge"
+                                src={
+                                  window.location.origin +
+                                  "/assets/images/verified.svg"
+                                }
+                              />
+                            ) : null}
                           </div>
                         </Link>
                       </div>

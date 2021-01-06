@@ -216,7 +216,17 @@ const MessageIndex = (props) => {
                         to={`/` + props.chatMessages.data.user.user_unique_id}
                         className="chat-user-name"
                       >
-                        {props.chatMessages.data.user.name}
+                        {props.chatMessages.data.user.name}{" "}
+                        {props.chatMessages.data.user.is_verified_badge == 1 ? (
+                          <img
+                            className="verified-badge"
+                            alt="verified-badge"
+                            src={
+                              window.location.origin +
+                              "/assets/images/verified.svg"
+                            }
+                          />
+                        ) : null}
                       </Link>
                     </div>
                   </h1>

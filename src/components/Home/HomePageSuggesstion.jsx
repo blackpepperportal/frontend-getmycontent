@@ -164,7 +164,17 @@ const HomePageSuggesstion = (props) => {
                                       <div className="b-username-row">
                                         <div className="b-username m-like-link">
                                           <div className="g-user-name m-lg-size m-verified">
-                                            {user.name}
+                                            {user.name}{" "}
+                                            {user.is_verified_badge == 1 ? (
+                                              <img
+                                                className="verified-badge"
+                                                alt="verified-badge"
+                                                src={
+                                                  window.location.origin +
+                                                  "/assets/images/verified.svg"
+                                                }
+                                              />
+                                            ) : null}
                                           </div>
                                         </div>
                                       </div>

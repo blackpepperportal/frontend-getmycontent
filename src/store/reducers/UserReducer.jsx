@@ -39,6 +39,9 @@ import {
   SAVE_BLOCK_USER_START,
   SAVE_BLOCK_USER_SUCCESS,
   SAVE_BLOCK_USER_FAILURE,
+  USER_VERIFY_BADGE_STATUS_SUCCESS,
+  USER_VERIFY_BADGE_STATUS_START,
+  USER_VERIFY_BADGE_STATUS_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -102,6 +105,12 @@ const initialState = {
     inputData: {},
   },
   notificationUpdate: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+  },
+  verifyBadgeUpdate: {
     data: {},
     loading: true,
     error: false,
@@ -609,6 +618,40 @@ const userReducer = (state = initialState, action) => {
           inputData: {},
           loadingButtonContent: null,
           buttonDisable: false,
+        },
+      };
+    case USER_VERIFY_BADGE_STATUS_START:
+      return {
+        ...state,
+        verifyBadgeUpdate: {
+          inputData: action.data,
+          data: {},
+          loading: true,
+        },
+      };
+    case USER_VERIFY_BADGE_STATUS_SUCCESS:
+      return {
+        ...state,
+        verifyBadgeUpdate: {
+          inputData: {},
+          data: action.data,
+          loading: false,
+          error: false,
+        },
+        profile: {
+          data: action.data.data,
+          loading: false,
+          error: false,
+        },
+      };
+    case USER_VERIFY_BADGE_STATUS_FAILURE:
+      return {
+        ...state,
+        verifyBadgeUpdate: {
+          inputData: {},
+          data: {},
+          error: action.error,
+          loading: true,
         },
       };
 

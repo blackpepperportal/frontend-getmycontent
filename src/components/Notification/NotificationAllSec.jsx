@@ -35,7 +35,17 @@ const NotificationAllSec = (props) => {
                       />
                       <div className="user-name">
                         <span className="post-user-name">
-                          {notification.from_displayname}
+                          {notification.from_displayname}{" "}
+                          {notification.from_user.is_verified_badge == 1 ? (
+                            <img
+                              className="verified-badge"
+                              alt="verified-badge"
+                              src={
+                                window.location.origin +
+                                "/assets/images/verified.svg"
+                              }
+                            />
+                          ) : null}
                           <span className="user-id">
                             <Link
                               target="_blank"
