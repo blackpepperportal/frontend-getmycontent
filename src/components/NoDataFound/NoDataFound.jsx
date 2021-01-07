@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
+import configuration from "react-global-configuration";
 
 const NoDataFound = () => {
   return (
@@ -11,7 +12,10 @@ const NoDataFound = () => {
               <Image
                 alt="not-found"
                 src={
-                  window.location.origin + "/assets/images/no-data-found-2.svg"
+                  configuration.get("configData.frontend_no_data_image")
+                    ? configuration.get("configData.frontend_no_data_image")
+                    : window.location.origin +
+                      "/assets/images/no-data-found-2.svg"
                 }
               />
             </div>

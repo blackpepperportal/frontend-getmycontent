@@ -117,13 +117,13 @@ class App extends Component {
       this.setState({ configLoading: false });
     }
 
-    // $("#google_analytics").html(
-    //   configuration.get("configData.google_analytics")
-    // );
+    $("#google_analytics").html(
+      configuration.get("configData.google_analytics")
+    );
 
-    // $("#header_scripts").html(configuration.get("configData.header_scripts"));
+    $("#header_scripts").html(configuration.get("configData.header_scripts"));
 
-    // $("#body_scripts").html(configuration.get("configData.body_scripts"));
+    $("#body_scripts").html(configuration.get("configData.body_scripts"));
   }
 
   render() {
@@ -143,7 +143,7 @@ class App extends Component {
             rel="icon"
             type="image/png"
             href={configuration.get("configData.site_icon")}
-            sizes="16x16"
+            // sizes="16x16"
           />
         </Helmet>
         <Switch>
