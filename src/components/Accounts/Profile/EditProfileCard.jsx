@@ -228,6 +228,44 @@ const EditProfileCard = (props) => {
               />
             </div>
           </div>
+          {props.profile &&
+          props.profile.categories &&
+          props.profile.data.categories.length > 0 ? (
+            <div
+              className="edit-input-wrapper"
+              data-vv-delay="1000"
+              data-vv-as="Choose Category"
+            >
+              <Form.Label className="edit-input-label">
+                Choose Category
+                <span className="edit-input-optional">(optional)</span>
+              </Form.Label>
+              <Form.Control
+                as="select"
+                name="u_category_id"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              >
+                <option value="">Choose Your Category</option>
+                {props.profile.data.categories.map((category, index) => {
+                  return [
+                    <option
+                      value={category.u_category_id}
+                      selected={category.is_selected == 1 ? true : false}
+                    >
+                      {category.name}
+                    </option>,
+                  ];
+                })}
+              </Form.Control>
+            </div>
+          ) : null}
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"

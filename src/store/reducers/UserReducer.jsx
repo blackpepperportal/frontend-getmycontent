@@ -190,6 +190,7 @@ const userReducer = (state = initialState, action) => {
             about: state.profile.data.about,
             address: state.profile.data.address,
             website: state.profile.data.website,
+            u_category_id: state.profile.data.u_category_id,
             amazon_wishlist: state.profile.data.amazon_wishlist,
             monthly_amount:
               state.profile.data.monthly_amount != undefined

@@ -34,7 +34,7 @@ import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
 import StaticPage from "../StaticPage/StaticPage";
 import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 import PostView from "../Post/PostView";
-import CategoryListIndex from "../Home/CategoryListIndex";
+import CategoryUsers from "../Categories/CategoryUsers";
 
 const history = createHistory();
 const $ = window.$;
@@ -311,8 +311,8 @@ class App extends Component {
           />
           <PrivateRoute
             authentication={this.state.authentication}
-            path={"/category-list"}
-            component={CategoryListIndex}
+            path={"/category/:u_category_unique_id"}
+            component={CategoryUsers}
             layout={MainLayout}
           />
           {/* Dont move this route to top */}

@@ -16,6 +16,7 @@ import PostDisplayCard from "../helper/PostDisplayCard";
 import NoDataFound from "../NoDataFound/NoDataFound";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
 import HomeLoader from "../Loader/HomeLoader";
+import HomeCategoryList from "../Categories/HomeCategoryList";
 
 const HomePageIndex = (props) => {
   useEffect(() => {
@@ -147,108 +148,11 @@ const HomePageIndex = (props) => {
               </div>
             )}
           </div>
-          <div className="category-list-sec">
-            <ul className="list-ustyled category-sec">
-              <Media as="li">
-                <Link to="#">
-                  <div className="category-img-sec">
-                    <Image
-                      src="assets/images/category/joystick.svg"
-                      className="category-img"
-                    />
-                  </div>
-                  <Media.Body>
-                    <h5>Gaming</h5>
-                    <p>Tag account: <strong>20</strong></p>
-                  </Media.Body>
-                </Link>
-              </Media>
-              <Media as="li">
-                <Link to="#">
-                  <div className="category-img-sec">
-                    <Image
-                      src="assets/images/category/investment.svg"
-                      className="category-img"
-                    />
-                  </div>
-                  <Media.Body>
-                    <h5>Investing</h5>
-                    <p>Tag account: <strong>20</strong></p>
-                  </Media.Body>
-                </Link>
-              </Media>
-              <Media as="li">
-                <Link to="#">
-                  <div className="category-img-sec">
-                    <Image
-                      src="assets/images/category/cryptocurrency.svg"
-                      className="category-img"
-                    />
-                  </div>
-                  <Media.Body>
-                    <h5>Crypto</h5>
-                    <p>Tag account: <strong>20</strong></p>
-                  </Media.Body>
-                </Link>
-              </Media>
-              <Media as="li">
-                <Link to="#">
-                  <div className="category-img-sec">
-                    <Image
-                      src="assets/images/category/chef.svg"
-                      className="category-img"
-                    />
-                  </div>
-                  <Media.Body>
-                    <h5>Cooking</h5>
-                    <p>Tag account: <strong>20</strong></p>
-                  </Media.Body>
-                </Link>
-              </Media>
-              <Media as="li">
-                <Link to="#">
-                  <div className="category-img-sec">
-                    <Image
-                      src="assets/images/category/family-insurance.svg"
-                      className="category-img"
-                    />
-                  </div>
-                  <Media.Body>
-                    <h5>Health & Wellness</h5>
-                    <p>Tag account: <strong>20</strong></p>
-                  </Media.Body>
-                </Link>
-              </Media>
-              <Media as="li">
-                <Link to="#">
-                  <div className="category-img-sec">
-                    <Image
-                      src="assets/images/category/fashion.svg"
-                      className="category-img"
-                    />
-                  </div>
-                  <Media.Body>
-                    <h5>Fashion & Beauty</h5>
-                    <p>Tag account: <strong>20</strong></p>
-                  </Media.Body>
-                </Link>
-              </Media>
-              <Media as="li">
-                <Link to="#">
-                  <div className="category-img-sec">
-                    <Image
-                      src="assets/images/category/web-programming.svg"
-                      className="category-img"
-                    />
-                  </div>
-                  <Media.Body>
-                    <h5>Coding</h5>
-                    <p>Tag account: <strong>20</strong></p>
-                  </Media.Body>
-                </Link>
-              </Media>
-            </ul>
-          </div>
+          {/* categories list start */}
+          <HomeCategoryList />
+          <hr></hr>
+          {/* categories list start */}
+
           <div className="padding-top-xl">
             <Col xl={8} md={12} className="custom-padding">
               {/* <Container>
