@@ -229,7 +229,7 @@ const EditProfileCard = (props) => {
             </div>
           </div>
           {props.profile &&
-          props.profile.categories &&
+          props.profile.data.categories &&
           props.profile.data.categories.length > 0 ? (
             <div
               className="edit-input-wrapper"
