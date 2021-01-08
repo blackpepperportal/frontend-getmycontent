@@ -197,7 +197,7 @@ const MessageIndex = (props) => {
             md={12}
             lg={7}
             xl={8}
-            className="resp-mrg-btn-xs margin-col"
+            className="resp-mrg-btn-xs margin-col col8-sm"
           >
             {props.chatMessages.loading ? (
               ""
@@ -216,7 +216,17 @@ const MessageIndex = (props) => {
                         to={`/` + props.chatMessages.data.user.user_unique_id}
                         className="chat-user-name"
                       >
-                        {props.chatMessages.data.user.name}
+                        {props.chatMessages.data.user.name}{" "}
+                        {props.chatMessages.data.user.is_verified_badge == 1 ? (
+                          <img
+                            className="verified-badge"
+                            alt="verified-badge"
+                            src={
+                              window.location.origin +
+                              "/assets/images/verified.svg"
+                            }
+                          />
+                        ) : null}
                       </Link>
                     </div>
                   </h1>

@@ -8,7 +8,7 @@ const ChatUserList = (props) => {
     <Col sm={12} md={12} lg={5} xl={4} className="padding-msg resp-mrg-btn-xs">
       <div className="chat-content">
         <div className="chat-header">
-          <Link className="chat-header-back">
+          <Link className="chat-header-back" to={`/home`}>
             <Image src="assets/images/icons/back.svg" className="svg-clone" />
           </Link>
           <h1 className="chat-page-title">Messages</h1>
