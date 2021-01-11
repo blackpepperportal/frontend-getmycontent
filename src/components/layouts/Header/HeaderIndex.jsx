@@ -82,7 +82,23 @@ const HeaderIndex = (props) => {
             </nav>
           </Container>
         </header>
-      ) : null}
+      ) : (
+        <header className="main-header">
+          <Container>
+            <nav className="main-header-menu">
+              <Link
+                to={"/"}
+                className="main-header-menu icon-with-round-hover m-current"
+                onClick={() => setIsVisible(false)}
+              >
+                <Image
+                  src={window.location.origin + "/assets/images/icons/home.svg"}
+                />
+              </Link>
+            </nav>
+          </Container>
+        </header>
+      )}
       {isVisible && localStorage.getItem("userId") ? (
         <div className="drawer" id="drawer-name" data-drawer-target>
           <div
