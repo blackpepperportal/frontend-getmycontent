@@ -6,6 +6,7 @@ import { fetchPostSuggesstionStart } from "../../store/actions/HomeAction";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import { Carousel } from "react-responsive-carousel";
 import Slider from "react-slick";
+import VerifiedBadge from "../Handlers/VerifiedBadge";
 
 const HomePageSuggesstion = (props) => {
   useEffect(() => {
@@ -166,14 +167,7 @@ const HomePageSuggesstion = (props) => {
                                           <div className="g-user-name m-lg-size m-verified">
                                             {user.name}{" "}
                                             {user.is_verified_badge == 1 ? (
-                                              <img
-                                                className="verified-badge"
-                                                alt="verified-badge"
-                                                src={
-                                                  window.location.origin +
-                                                  "/assets/images/verified.svg"
-                                                }
-                                              />
+                                              <VerifiedBadge />
                                             ) : null}
                                           </div>
                                         </div>
