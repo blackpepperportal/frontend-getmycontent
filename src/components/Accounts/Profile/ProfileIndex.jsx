@@ -68,12 +68,17 @@ const ProfileIndex = (props) => {
                       />
                     </div>
                     <div className="top-left">
-                      <Button className="chat-header-back">
-                        <Image
-                          src="assets/images/icons/back.svg"
-                          className="svg-clone"
-                        />
-                      </Button>
+                      <Link to={`/home`}>
+                        <Button className="chat-header-back">
+                          <Image
+                            src={
+                              window.location.origin +
+                              "/assets/images/icons/back.svg"
+                            }
+                            className="svg-clone"
+                          />
+                        </Button>
+                      </Link>
                       <h1 className="chat-page-title">
                         {props.profile.data.name}{" "}
                         {props.profile.data.is_verified_badge == 1 ? (
