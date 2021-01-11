@@ -1,8 +1,8 @@
 import React from "react";
 import { Image } from "react-bootstrap";
-const VerifiedBadge = (props) => {
+const VerifiedBadgeNoShadow = (props) => {
   return (
-    <span className="verified-badge-sec">
+    <span className="verified-badge-sec no-shadow">
       <Image
         src="assets/images/verified.svg"
         className="verified-dating"
@@ -13,4 +13,4 @@ const VerifiedBadge = (props) => {
   );
 };
 
-export default VerifiedBadge;
+export default VerifiedBadgeNoShadow;

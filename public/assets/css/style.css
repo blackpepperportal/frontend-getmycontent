@@ -1403,6 +1403,7 @@ button.g-icon:focus {
 span.post-user-name {
   font-weight: 500;
   color: #242529;
+  display: flex;
 }
 a.title-container {
   display: flex;
@@ -2019,7 +2020,7 @@ section.main-search.bookmarkes-list.bookmarks-right-side {
   bottom: 0;
   border-radius: 0 0 6px 6px;
   padding: 11px 11px 11px 115px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 a.left.btn.btn-success {
   font-size: 30px;
@@ -2135,6 +2136,7 @@ h4.suggestions {
 .g-user-username.m-lg-size {
   font-size: 19px;
   line-height: 24px;
+  text-align: left;
 }
 .g-user-name {
   font-weight: 500;
@@ -2163,6 +2165,7 @@ h4.suggestions {
   text-overflow: ellipsis;
   font-size: 15px;
   white-space: nowrap;
+  display:flex;
 }
 .pull-left.side-user-head ul.list-inline span.fans-follow {
   color: #000;
@@ -3070,6 +3073,14 @@ div.user-lists a {
 .my-profile-page {
   margin-top: 80px auto;
 }
+.my-profile .post-header{
+  display: block;
+}
+
+.my-profile .g-user--name {
+  display: flex;
+}
+
 .profile-wrapper__content {
   -webkit-box-flex: 1;
   -ms-flex: 1;
@@ -8024,7 +8035,7 @@ input.authentication-input {
   top: 132px;
   z-index: 1000;
   display: none;
-  width: 300px;
+  width: 330px;
   right: 118px;
   font-size: 14px;
   text-align: left;
@@ -8088,12 +8099,13 @@ input.authentication-input {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   max-height: 4em;
-  font-size: 0.9em;
+  font-size: 0.85em;
   font-weight: 600;
   color: #242529;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
+  display: flex;
 }
 
 /*Create post Changes*/
@@ -8410,4 +8422,37 @@ input.authentication-input {
 .verified-badge {
   height: 2rem;
   width: 2rem;
+}
+
+.verified-dating{
+  width: 0.9em;
+}
+
+.verified-info{
+  padding-left: 0.5em;
+  font-size: 14px;
+  color: #d73ea2;
+  font-weight: 700;
+  text-shadow: 2px 2px #000000;
+}
+
+.verified-badge-sec{
+  display: flex;
+  align-items: center;
+}
+
+.user-name-post {
+  padding-right: 0.5em;
+}
+
+.verified-badge-sec.no-shadow .verified-info{
+  text-shadow: unset;
+}
+
+.notification-list .post-header{
+  display: block;
+}
+
+.notification-list a.title-container {
+  padding-top:1em;
 }

@@ -22,6 +22,7 @@ import ProfileLoader from "../../Loader/ProfileLoader";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import configuration from "react-global-configuration";
+import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 
 import "./Profile.css";
 
@@ -82,14 +83,9 @@ const ProfileIndex = (props) => {
                       <h1 className="chat-page-title">
                         {props.profile.data.name}{" "}
                         {props.profile.data.is_verified_badge == 1 ? (
-                          <img
-                            className="verified-badge"
-                            alt="verified-badge"
-                            src={
-                              window.location.origin +
-                              "/assets/images/verified.svg"
-                            }
-                          />
+                          <div className="pl-2">
+                          <VerifiedBadgeNoShadow/>
+                        </div>
                         ) : null}
                       </h1>
                     </div>
@@ -165,14 +161,9 @@ const ProfileIndex = (props) => {
                           <div className="g-user--name">
                             {props.profile.data.name}{" "}
                             {badgeStatus == 1 ? (
-                              <img
-                                className="verified-badge"
-                                alt="verified-badge"
-                                src={
-                                  window.location.origin +
-                                  "/assets/images/verified.svg"
-                                }
-                              />
+                              <div className="pl-2">
+                              <VerifiedBadgeNoShadow/>
+                            </div>
                             ) : null}
                           </div>
                         </Link>

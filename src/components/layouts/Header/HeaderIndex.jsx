@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Image, Media, Button } from "react-bootstrap";
 import configuration from "react-global-configuration";
+import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 // import SideBarIndex from "../SideBar/SideBarIndex";
 
 import { connect } from "react-redux";
@@ -111,14 +112,9 @@ const HeaderIndex = (props) => {
                     <h3 className="g-user-name">
                       {localStorage.getItem("name")} {"  "}
                       {localStorage.getItem("is_verified_badge") == 1 ? (
-                        <img
-                          className="verified-badge"
-                          alt="verified-badge"
-                          src={
-                            window.location.origin +
-                            "/assets/images/verified.svg"
-                          }
-                        />
+                        <div className="pl-2">
+                          <VerifiedBadgeNoShadow/>
+                        </div>
                       ) : null}
                     </h3>
                     <span className="user-id">

@@ -16,6 +16,7 @@ import PostDisplayCard from "../helper/PostDisplayCard";
 import NoDataFound from "../NoDataFound/NoDataFound";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
 import HomeLoader from "../Loader/HomeLoader";
+import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 
 const HomePageIndex = (props) => {
   useEffect(() => {
@@ -124,14 +125,9 @@ const HomePageIndex = (props) => {
                                 <h5>
                                   {user.name}{" "}
                                   {user.is_verified_badge == 1 ? (
-                                    <img
-                                      className="verified-badge"
-                                      alt="verified-badge"
-                                      src={
-                                        window.location.origin +
-                                        "/assets/images/verified.svg"
-                                      }
-                                    />
+                                    <div className="pl-2">
+                                      <VerifiedBadgeNoShadow/>
+                                    </div>
                                   ) : null}
                                 </h5>
                                 <p className="text-muted f-12">
