@@ -324,6 +324,12 @@ Version: 1.0
     .search-btn{
         width: 46px;
     }
+    .category-list-sec .media{
+        justify-content: center;
+    }
+    .category-list-sec .category-sec{
+        margin-right: 0;
+    }
 }
 
 

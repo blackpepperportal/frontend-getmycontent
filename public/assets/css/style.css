@@ -8424,14 +8424,20 @@ input.authentication-input {
 }
 
 .category-list-sec .category-sec{
-  padding: 0;
+  /* padding: 0;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   white-space: nowrap;
   overflow: auto;
   margin-bottom: 0;
-  padding-top: 1em;
+  padding-top: 1em; */
+  margin-bottom: 0;
+  margin: 0 1em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 2em;
 }
 
 .category-list-sec .category-sec li{
@@ -8576,4 +8582,29 @@ input.authentication-input {
 .verified-badge {
   height: 2rem;
   width: 2rem;
+}
+
+.category-list-sec .slick-prev:before {
+  color: #000;
+  font-size: 23px;
+}
+
+.category-list-sec .slick-next:before {
+  color: #000;
+  font-size: 23px;
+}
+
+.category-list-sec .slick-prev {
+  top: 50%;
+  right: unset;
+  left: 5px;
+  z-index: 999;
+}
+
+.category-list-sec .slick-next {
+  top:50%;
+}
+
+.category-list-sec .category-sec{
+  
 }
