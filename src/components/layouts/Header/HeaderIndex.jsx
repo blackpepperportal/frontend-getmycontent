@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Image, Media, Button } from "react-bootstrap";
 import configuration from "react-global-configuration";
+import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 // import SideBarIndex from "../SideBar/SideBarIndex";
 
 import { connect } from "react-redux";
@@ -17,71 +18,89 @@ const HeaderIndex = (props) => {
 
   return (
     <>
-      <header className="main-header">
-        <Container>
-          <nav className="main-header-menu">
-            <Link
-              to={"/home"}
-              className="main-header-menu icon-with-round-hover m-current"
-              onClick={() => setIsVisible(false)}
-            >
-              <Image
-                src={window.location.origin + "/assets/images/icons/home.svg"}
-              />
-            </Link>
-            <Link
-              to={"/notification"}
-              className="main-header-menu icon-with-round-hover"
-              active-className="m-current"
-              exact-active-className=""
-              onClick={() => setIsVisible(false)}
-            >
-              <Image
-                src={
-                  window.location.origin +
-                  "/assets/images/icons/notification.svg"
-                }
-              />
-            </Link>
-            <Link
-              to={"/posts-create"}
-              className="main-header-menu icon-with-round-hover"
-              onClick={() => setIsVisible(false)}
-            >
-              <Image
-                src={
-                  window.location.origin +
-                  "/assets/images/icons/create-post.svg"
-                }
-              />
-            </Link>
-            <Link
-              to={"/inbox"}
-              className="main-header-menu icon-with-round-hover"
-              onClick={() => setIsVisible(false)}
-            >
-              <Image
-                src={window.location.origin + "/assets/images/icons/chat.svg"}
-              />
-              {/* <span className="main-header-menu__count"> 5 </span> */}
-            </Link>
-            <Button
-              type="button"
-              className="main-header-menu icon-with-round-hover"
-              to="#"
-              data-drawer-trigger
-              aria-controls="drawer-name"
-              aria-expanded="false"
-              onClick={() => setIsVisible(!isVisible)}
-            >
-              <Image
-                src={window.location.origin + "/assets/images/icons/user.svg"}
-              />
-            </Button>
-          </nav>
-        </Container>
-      </header>
-      {isVisible ? (
+      {localStorage.getItem("userId") ? (
+        <header className="main-header">
+          <Container>
+            <nav className="main-header-menu">
+              <Link
+                to={"/home"}
+                className="main-header-menu icon-with-round-hover m-current"
+                onClick={() => setIsVisible(false)}
+              >
+                <Image
+                  src={window.location.origin + "/assets/images/icons/home.svg"}
+                />
+              </Link>
+              <Link
+                to={"/notification"}
+                className="main-header-menu icon-with-round-hover"
+                active-className="m-current"
+                exact-active-className=""
+                onClick={() => setIsVisible(false)}
+              >
+                <Image
+                  src={
+                    window.location.origin +
+                    "/assets/images/icons/notification.svg"
+                  }
+                />
+              </Link>
+              <Link
+                to={"/posts-create"}
+                className="main-header-menu icon-with-round-hover"
+                onClick={() => setIsVisible(false)}
+              >
+                <Image
+                  src={
+                    window.location.origin +
+                    "/assets/images/icons/create-post.svg"
+                  }
+                />
+              </Link>
+              <Link
+                to={"/inbox"}
+                className="main-header-menu icon-with-round-hover"
+                onClick={() => setIsVisible(false)}
+              >
+                <Image
+                  src={window.location.origin + "/assets/images/icons/chat.svg"}
+                />
+                {/* <span className="main-header-menu__count"> 5 </span> */}
+              </Link>
+              <Button
+                type="button"
+                className="main-header-menu icon-with-round-hover"
+                to="#"
+                data-drawer-trigger
+                aria-controls="drawer-name"
+                aria-expanded="false"
+                onClick={() => setIsVisible(!isVisible)}
+              >
+                <Image
+                  src={window.location.origin + "/assets/images/icons/user.svg"}
+                />
+              </Button>
+            </nav>
+          </Container>
+        </header>
+      ) : (
+        <header className="main-header">
+          <Container>
+            <nav className="main-header-menu">
+              <Link
+                to={"/"}
+                className="main-header-menu icon-with-round-hover m-current"
+                onClick={() => setIsVisible(false)}
+              >
+                <Image
+                  src={window.location.origin + "/assets/images/icons/home.svg"}
+                />
+              </Link>
+            </nav>
+          </Container>
+        </header>
+      )}
+      {isVisible && localStorage.getItem("userId") ? (
         <div className="drawer" id="drawer-name" data-drawer-target>
           <div
             className="drawer__overlay"
@@ -111,14 +130,9 @@ const HeaderIndex = (props) => {
                     <h3 className="g-user-name">
                       {localStorage.getItem("name")} {"  "}
                       {localStorage.getItem("is_verified_badge") == 1 ? (
-                        <img
-                          className="verified-badge"
-                          alt="verified-badge"
-                          src={
-                            window.location.origin +
-                            "/assets/images/verified.svg"
-                          }
-                        />
+                        <div className="pl-2">
+                          <VerifiedBadgeNoShadow/>
+                        </div>
                       ) : null}
                     </h3>
                     <span className="user-id">

@@ -21,6 +21,7 @@ import {
   saveReportPostStart,
 } from "../../store/actions/PostAction";
 import { saveBlockUserStart } from "../../store/actions/UserAction";
+import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -121,16 +122,10 @@ const PostDisplayCard = (props) => {
 
                 <div className="user-name">
                   <span className="post-user-name">
-                    {post.user_displayname}
+                    <span className="user-name-post">{post.user_displayname}</span>
                     {"  "}
                     {post.user.is_verified_badge == 1 ? (
-                      <img
-                        className="verified-badge"
-                        alt="verified-badge"
-                        src={
-                          window.location.origin + "/assets/images/verified.svg"
-                        }
-                      />
+                      <VerifiedBadgeNoShadow/>
                     ) : null}
                   </span>
                   <span className="post-user-">@{post.username}</span>

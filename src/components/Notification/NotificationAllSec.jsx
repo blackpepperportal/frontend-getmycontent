@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 import NoDataFound from "../NoDataFound/NoDataFound";
+import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 
 const NotificationAllSec = (props) => {
   const { notifications } = props;
@@ -37,14 +38,9 @@ const NotificationAllSec = (props) => {
                         <span className="post-user-name">
                           {notification.from_displayname}{" "}
                           {notification.from_user.is_verified_badge == 1 ? (
-                            <img
-                              className="verified-badge"
-                              alt="verified-badge"
-                              src={
-                                window.location.origin +
-                                "/assets/images/verified.svg"
-                              }
-                            />
+                            <div className="pl-2">
+                            <VerifiedBadgeNoShadow/>
+                          </div>
                           ) : null}
                           <span className="user-id">
                             <Link
