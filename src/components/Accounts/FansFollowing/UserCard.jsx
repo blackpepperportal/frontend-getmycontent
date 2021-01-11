@@ -10,6 +10,7 @@ import { createNotification } from "react-redux-notify/lib/modules/Notifications
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { saveBlockUserStart } from "../../../store/actions/UserAction";
 import { unFollowUserStart } from "../../../store/actions/FollowAction";
+import VerifiedBadge from "../../Handlers/VerifiedBadge";
 
 const UserCard = (props) => {
   const [sendTip, setSendTip] = useState(false);
@@ -222,20 +223,7 @@ const UserCard = (props) => {
                         <Link to={props.user.user_unique_id}>
                           <div className="follower-user-name">
                             {props.user.name}{" "}
-                            {badgeStatus == 1 ? (
-                              <Image
-                                src="assets/images/icons/verified.svg"
-                                className="svg-clone m-verified"
-                              />
-                            ) : // <img
-                            //   className="verified-badge"
-                            //   alt="verified-badge"
-                            //   src={
-                            //     window.location.origin +
-                            //     "/assets/images/verified.svg"
-                            //   }
-                            // />
-                            null}
+                            {badgeStatus == 1 ? <VerifiedBadge /> : null}
                           </div>
                         </Link>
                       </div>

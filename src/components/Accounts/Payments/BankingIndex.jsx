@@ -17,10 +17,10 @@ const BankingIndex = (props) => {
           <Col sm={12} md={12}>
             <div className="banking-header">
               <div className="back-icon">
-                <Image
+                {/* <Image
                   src="assets/images/icons/back.svg"
                   className="svg-clone"
-                />
+                /> */}
                 <span>Banking</span>
               </div>
               <div className="help-icon">
