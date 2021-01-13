@@ -28,6 +28,7 @@ import { saveBlockUserStart } from "../../store/actions/UserAction";
 import { getSuccessNotificationMessage } from "../helper/NotificationMessage";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 
 const ModelViewProfile = (props) => {
   useEffect(() => {
@@ -199,14 +200,9 @@ const ModelViewProfile = (props) => {
                       {userDetails.data.user.name}
                       {"  "}
                       {userDetails.data.user.is_verified_badge == 1 ? (
-                        <img
-                          className="verified-badge"
-                          alt="verified-badge"
-                          src={
-                            window.location.origin +
-                            "/assets/images/verified.svg"
-                          }
-                        />
+                        <div className="pl-2">
+                          <VerifiedBadgeNoShadow />
+                        </div>
                       ) : null}
                     </h1>
                     <span className="post-count">
@@ -367,14 +363,9 @@ const ModelViewProfile = (props) => {
                         <div className="g-user--name">
                           {userDetails.data.user.name}{" "}
                           {userDetails.data.user.is_verified_badge == 1 ? (
-                            <img
-                              className="verified-badge"
-                              alt="verified-badge"
-                              src={
-                                window.location.origin +
-                                "/assets/images/verified.svg"
-                              }
-                            />
+                            <div className="pl-2">
+                              <VerifiedBadgeNoShadow />
+                            </div>
                           ) : null}
                         </div>
                       </Link>
