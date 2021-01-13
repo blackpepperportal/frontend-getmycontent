@@ -4,10 +4,10 @@ const VerifiedBadge = (props) => {
   return (
     <span className="verified-badge-sec">
       <Image
-        src="assets/images/verified.svg"
+        src={window.location.origin + "/assets/images/verified.svg"}
         className="verified-dating"
         alt="verified-badge"
-      /> 
+      />
       <span className="verified-info">Open For Dating</span>
     </span>
   );
