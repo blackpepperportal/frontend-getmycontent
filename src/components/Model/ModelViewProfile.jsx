@@ -204,7 +204,7 @@ const ModelViewProfile = (props) => {
                           alt="verified-badge"
                           src={
                             window.location.origin +
-                            "/assets/images/verified-white.svg"
+                            "/assets/images/verified.svg"
                           }
                         />
                       ) : null}
@@ -455,9 +455,8 @@ const ModelViewProfile = (props) => {
 
                 {userDetails.data.is_block_user == 0 ? (
                   <>
-                    {userDetails.data.payment_info.is_user_needs_pay ? (
-                      userDetails.data.payment_info.subscription_info.length >
-                      0 ? (
+                    {userDetails.data.payment_info.is_user_needs_pay == 1 ? (
+                      userDetails.data.payment_info.is_free_account == 0 ? (
                         <>
                           <div className="subscription-section">
                             <span className="subscribe-title">
@@ -472,16 +471,17 @@ const ModelViewProfile = (props) => {
                                   event,
                                   "month",
                                   userDetails.data.payment_info
-                                    .subscription_info.length > 0
-                                    ? userDetails.data.payment_info
-                                        .subscription_info.monthly_amount
-                                    : 0.0,
+                                    .subscription_info.monthly_amount,
                                   userDetails.data.payment_info
                                     .subscription_info.monthly_amount_formatted
                                 )
                               }
                             >
-                              {userDetails.data.payment_info.payment_text}
+                              SUBSCRIBE FOR{" "}
+                              {
+                                userDetails.data.payment_info.subscription_info
+                                  .monthly_amount_formatted
+                              }
                             </Button>
                           </div>
                           <div className="subscription-section">
@@ -502,7 +502,7 @@ const ModelViewProfile = (props) => {
                                 )
                               }
                             >
-                              Subscribe for{" "}
+                              SUBSCRIBE FOR{" "}
                               {
                                 userDetails.data.payment_info.subscription_info
                                   .yearly_amount_formatted
@@ -516,16 +516,26 @@ const ModelViewProfile = (props) => {
                             to=""
                             className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                             onClick={(event) =>
-                              subscriptionPayment(
-                                event,
-                                "month",
-                                userDetails.data.payment_info.subscription_info
-                                  .monthly_amount,
-                                userDetails.data.payment_info.subscription_info
-                                  .monthly_amount_formatted,
-                                1
+                              props.dispatch(
+                                subscriptionPaymentStripeStart({
+                                  user_unique_id:
+                                    userDetails.data.user.user_unique_id,
+                                  plan_type: "month",
+                                  is_free: 1,
+                                })
                               )
                             }
+                            // onClick={(event) =>
+                            //   subscriptionPayment(
+                            //     event,
+                            //     "month",
+                            //     userDetails.data.payment_info.subscription_info
+                            //       .monthly_amount,
+                            //     userDetails.data.payment_info.subscription_info
+                            //       .monthly_amount_formatted,
+                            //     1
+                            //   )
+                            // }
                           >
                             {userDetails.data.payment_info.payment_text}
                           </Button>

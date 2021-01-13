@@ -46,7 +46,10 @@ const AddCardModel = (props) => {
                 <div className="add-card-user-name">
                   {localStorage.getItem("name")}
                   <Image
-                    src="assets/images/icons/verified.svg"
+                    src={
+                      window.location.origin +
+                      "/assets/images/icons/verified.svg"
+                    }
                     className="add-card-verified-icon ml-3"
                   />
                 </div>

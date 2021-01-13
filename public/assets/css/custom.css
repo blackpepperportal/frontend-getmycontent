@@ -3,3 +3,10 @@
   font-size: 12px;
   font-weight: 800;
 }
+.user-follow:hover,
+.user-follow:active,
+.user-follow:focus {
+  color: #fff !important;
+  background-color: #428bca !important;
+  border-color: #357ebd !important;
+}

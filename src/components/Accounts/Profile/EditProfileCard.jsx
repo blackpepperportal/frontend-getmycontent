@@ -255,7 +255,7 @@ const EditProfileCard = (props) => {
                 onChange={(event) => {
                   props.dispatch(
                     editUserDetails(
-                      event.currentTarget.monthly_amount,
+                      event.currentTarget.name,
                       event.currentTarget.value
                     )
                   );
@@ -290,7 +290,7 @@ const EditProfileCard = (props) => {
                 onChange={(event) => {
                   props.dispatch(
                     editUserDetails(
-                      event.currentTarget.yearly_amount,
+                      event.currentTarget.name,
                       event.currentTarget.value
                     )
                   );
