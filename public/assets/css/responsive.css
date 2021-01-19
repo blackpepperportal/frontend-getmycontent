@@ -206,6 +206,8 @@ Version: 1.0
     }
     .profile-btn-group{
         max-width: unset;
+        margin-left: unset;
+        margin: 5px 0;
     }
     .float-unset{
         float:unset;
@@ -278,7 +280,7 @@ Version: 1.0
         margin-bottom: 2em;
     }
     .bookmarkes-list {
-        width: 33.33%;
+        width: 25%;
         justify-content: center;
     }
     .save-btn:last-child{
@@ -323,6 +325,54 @@ Version: 1.0
     }
     .search-btn{
         width: 46px;
+    }
+    .bookmark-sec .post-header{
+        justify-content: space-between;
+    }
+    span.post-user-name{
+        display: block;
+    }
+    .post-header-right-side .flex-content {
+        margin-bottom: 0;
+    }
+    .home-sec .post-header{
+        align-items: center;
+    }
+
+    .my-profile .profile-btn-group{
+        justify-content: space-between;
+    }
+    .my-profile .profile-btn-group .save-btn{
+        margin-bottom:1em;
+    }
+    .home-sec .user-name{
+        margin-left: 10px;
+    }
+    .book-photo .profile-post-area{
+        display: inline-block!important;
+    }
+    .follower-profile-status{
+        margin: 0 0 5px;
+    }
+    .doc-upload-img{
+        width: 30em!important;
+    }
+    .pull-left.side-user-head h3.g-user-name{
+        display: block;
+    }
+    .pull-left.side-user-head h3.g-user-name .verified-badge-sec{
+        padding-top: 0.5em;
+    }
+    .pull-left.side-user-head h3.g-user-name .pl-2 {
+        padding-left: 0!important;
+    }
+    .my-profile .post-content p{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
 
