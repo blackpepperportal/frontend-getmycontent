@@ -94,7 +94,7 @@ const CreatePostIndex = (props) => {
     if (fileUploadStatus) {
       props.dispatch(
         savePostStart({
-          content: inputData.content,
+          content: inputData.content ? inputData.content : "",
           amount: inputData.amount ? inputData.amount : "",
           post_files: props.fileUpload.data.post_file.post_file_id,
           preview_file: inputData.preview_file ? inputData.preview_file : "",
@@ -103,7 +103,7 @@ const CreatePostIndex = (props) => {
     } else {
       props.dispatch(
         savePostStart({
-          content: inputData.content,
+          content: inputData.content ? inputData.content : "",
           amount: inputData.amount ? inputData.amount : "",
         })
       );
@@ -155,7 +155,7 @@ const CreatePostIndex = (props) => {
                     placeholder="Compose new post..."
                     name="content"
                     style={{ width: "100%", maxWidth: "100%" }}
-                    value={inputData.content}
+                    value={inputData.content ? inputData.content : null}
                     onChange={(event) =>
                       setInputData({
                         ...inputData,

@@ -4,7 +4,7 @@ import ContentLoader from "react-content-loader"
 const BillingAccountLoader = (props) => (
     <ContentLoader 
     speed={2}
-    width={1340}
+    width={1100}
     height={700}
     viewBox="0 0 1200 700"
     backgroundColor="#f3f3f3"
