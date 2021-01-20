@@ -50,7 +50,6 @@ const BillingAccountIndex = (props) => {
               <div className="trans-table">
                 <Table borderedless responsive>
                   <tbody>
-                  <BillingAccountLoader />
                     {props.bankAccount.loading ? (
                       <BillingAccountLoader />
                     ) : props.bankAccount.data.billing_accounts.length > 0 ? (

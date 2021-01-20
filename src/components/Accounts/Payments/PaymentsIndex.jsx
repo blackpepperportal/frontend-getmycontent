@@ -101,7 +101,7 @@ const PaymentsIndex = (props) => {
                           <i class="fas fa-unlock-alt"></i>
                         </div>
                         <div className="payment-body-info">
-                          <h3>SUBCRIBED</h3>
+                          <h3>SUBSCRIBED</h3>
                           <h4>{props.payments.data.user.total_followings}</h4>
                         </div>
                       </div>

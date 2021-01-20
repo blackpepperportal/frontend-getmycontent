@@ -269,7 +269,7 @@ const EditProfileCard = (props) => {
             data-vv-as="yearly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price (Per Year)
+              Subscription price (Per Year) {localStorage.getItem("is_subscription_enabled")}
               <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">

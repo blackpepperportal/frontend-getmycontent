@@ -124,7 +124,7 @@ const PostDisplayCard = (props) => {
                   <span className="post-user-name">
                     <span className="user-name-post">{post.user_displayname}</span>
                     {"  "}
-                    {post.user.is_verified_badge == 1 ? (
+                    {post.is_verified_badge == 1 ? (
                       <VerifiedBadgeNoShadow/>
                     ) : null}
                   </span>
@@ -357,7 +357,7 @@ const PostDisplayCard = (props) => {
                   className="svg-clone"
                 />
               </Link>
-
+              {localStorage.getItem("userId") != post.user_id ? (
               <Button
                 type="button"
                 className="g-icon"
@@ -370,6 +370,7 @@ const PostDisplayCard = (props) => {
 
                 <span className="post-tip">SEND TIP</span>
               </Button>
+              ) : null}
             </div>
             <div className="alignright">
               {bookmarkStatus !== "" ? (
