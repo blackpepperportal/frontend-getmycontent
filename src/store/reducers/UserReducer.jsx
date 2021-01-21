@@ -42,6 +42,9 @@ import {
   USER_VERIFY_BADGE_STATUS_SUCCESS,
   USER_VERIFY_BADGE_STATUS_START,
   USER_VERIFY_BADGE_STATUS_FAILURE,
+  RESET_PASSWORD_START,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -654,7 +657,28 @@ const userReducer = (state = initialState, action) => {
           loading: true,
         },
       };
-
+      case RESET_PASSWORD_START:
+        return {
+          ...state,
+          resetPasswordInputData: {
+            inputData: action.data,
+          },
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
+        };
+  
+      case RESET_PASSWORD_SUCCESS:
+        return {
+          ...state,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        };
+      case RESET_PASSWORD_FAILURE:
+        return {
+          ...state,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        };
     default:
       return state;
   }

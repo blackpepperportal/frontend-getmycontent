@@ -25,6 +25,8 @@ import {
   saveBlockUserFailure,
   fetchBlockUsersSuccess,
   fetchBlockUsersFailure,
+  resetPasswordFailure,
+  resetPasswordSuccess,
 } from "../actions/UserAction";
 
 import api from "../../Environment";
@@ -42,6 +44,7 @@ import {
   FETCH_BLOCK_USERS_START,
   SAVE_BLOCK_USER_START,
   USER_VERIFY_BADGE_STATUS_START,
+  RESET_PASSWORD_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -529,6 +532,42 @@ function* saveBlockUserAPI() {
   }
 }
 
+function* resetPasswordAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.users.resetPasswordInputData.inputData
+    );
+    const response = yield api.postMethod("reset_password", inputData);
+    yield put(resetPasswordSuccess(response.data));
+    if (response.data.success) {
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+      // window.location.assign("/login");
+      localStorage.setItem("userId", response.data.data.id);
+      localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("userLoginStatus", true);
+      localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("username", response.data.data.name);
+      localStorage.setItem("no_of_users", response.data.data.no_of_users);
+      localStorage.setItem("no_of_minutes", response.data.data.no_of_minutes);
+      setTimeout(() => {
+        window.location.assign("/dashboard");
+      }, 1000);
+    } else {
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(resetPasswordFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([
     yield takeLatest(FETCH_USER_DETAILS_START, getUserDetailsAPI),
@@ -550,5 +589,6 @@ export default function* pageSaga() {
       USER_VERIFY_BADGE_STATUS_START,
       verificationBadgeStatusUpdateAPI
     ),
+    yield takeLatest(RESET_PASSWORD_START, resetPasswordAPI),
   ]);
 }

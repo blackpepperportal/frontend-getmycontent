@@ -46,6 +46,9 @@ import {
   USER_VERIFY_BADGE_STATUS_START,
   USER_VERIFY_BADGE_STATUS_SUCCESS,
   USER_VERIFY_BADGE_STATUS_FAILURE,
+  RESET_PASSWORD_START,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE,
 } from "./ActionConstant";
 
 // Get user details actions.
@@ -406,6 +409,29 @@ export function updateVerifyBadgeStatusSuccess(data) {
 export function updateVerifyBadgeStatusFailure(error) {
   return {
     type: USER_VERIFY_BADGE_STATUS_FAILURE,
+    error,
+  };
+}
+
+// User RESET_PASWORD actions.
+
+export function resetPasswordStart(data) {
+  return {
+    type: RESET_PASSWORD_START,
+    data,
+  };
+}
+
+export function resetPasswordSuccess(data) {
+  return {
+    type: RESET_PASSWORD_SUCCESS,
+    data,
+  };
+}
+
+export function resetPasswordFailure(error) {
+  return {
+    type: RESET_PASSWORD_FAILURE,
     error,
   };
 }
