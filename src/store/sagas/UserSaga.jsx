@@ -540,21 +540,31 @@ function* resetPasswordAPI() {
     const response = yield api.postMethod("reset_password", inputData);
     yield put(resetPasswordSuccess(response.data));
     if (response.data.success) {
+      console.log(response.data.data);
+      localStorage.setItem("userLoginStatus", true);
+      localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_cover", response.data.data.cover);
+      localStorage.setItem("name", response.data.data.name);
+      localStorage.setItem("username", response.data.data.username);
+      localStorage.setItem(
+        "user_unique_id",
+        response.data.data.user_unique_id
+      );
+      localStorage.setItem(
+        "is_document_verified",
+        response.data.data.is_document_verified
+      );
+      localStorage.setItem(
+        "is_verified_badge",
+        response.data.data.is_verified_badge
+          ? response.data.data.is_verified_badge
+          : 0
+      );
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
       yield put(createNotification(notificationMessage));
-      // window.location.assign("/login");
-      localStorage.setItem("userId", response.data.data.id);
-      localStorage.setItem("accessToken", response.data.data.token);
-      localStorage.setItem("userLoginStatus", true);
-      localStorage.setItem("user_picture", response.data.data.picture);
-      localStorage.setItem("username", response.data.data.name);
-      localStorage.setItem("no_of_users", response.data.data.no_of_users);
-      localStorage.setItem("no_of_minutes", response.data.data.no_of_minutes);
-      setTimeout(() => {
-        window.location.assign("/dashboard");
-      }, 1000);
+      window.location.assign("/home");
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
