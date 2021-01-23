@@ -34,6 +34,7 @@ import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
 import StaticPage from "../StaticPage/StaticPage";
 import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 import PostView from "../Post/PostView";
+import ResetPassword from "../LandingPageIndex/ResetPassword";
 
 const history = createHistory();
 const $ = window.$;
@@ -300,6 +301,12 @@ class App extends Component {
             path={"/page/:title"}
             component={StaticPage}
             layout={MainLayout}
+          />
+
+          <AppRoute
+            path={"/reset-password/:token"}
+            component={ResetPassword}
+            layout={AuthLayout}
           />
 
           <PrivateRoute

@@ -62,6 +62,7 @@ const AddBankIndex = (props) => {
                       type="number"
                       placeholder="Account Number"
                       value={inputData.account_number}
+                      min='0'
                       name="account_number"
                       onChange={(event) => {
                         setInputData({

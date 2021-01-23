@@ -25,6 +25,8 @@ import {
   saveBlockUserFailure,
   fetchBlockUsersSuccess,
   fetchBlockUsersFailure,
+  resetPasswordFailure,
+  resetPasswordSuccess,
 } from "../actions/UserAction";
 
 import api from "../../Environment";
@@ -42,6 +44,7 @@ import {
   FETCH_BLOCK_USERS_START,
   SAVE_BLOCK_USER_START,
   USER_VERIFY_BADGE_STATUS_START,
+  RESET_PASSWORD_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -529,6 +532,52 @@ function* saveBlockUserAPI() {
   }
 }
 
+function* resetPasswordAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.users.resetPasswordInputData.inputData
+    );
+    const response = yield api.postMethod("reset_password", inputData);
+    yield put(resetPasswordSuccess(response.data));
+    if (response.data.success) {
+      console.log(response.data.data);
+      localStorage.setItem("userLoginStatus", true);
+      localStorage.setItem("user_picture", response.data.data.picture);
+      localStorage.setItem("user_cover", response.data.data.cover);
+      localStorage.setItem("name", response.data.data.name);
+      localStorage.setItem("username", response.data.data.username);
+      localStorage.setItem(
+        "user_unique_id",
+        response.data.data.user_unique_id
+      );
+      localStorage.setItem(
+        "is_document_verified",
+        response.data.data.is_document_verified
+      );
+      localStorage.setItem(
+        "is_verified_badge",
+        response.data.data.is_verified_badge
+          ? response.data.data.is_verified_badge
+          : 0
+      );
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+      window.location.assign("/home");
+    } else {
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(resetPasswordFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([
     yield takeLatest(FETCH_USER_DETAILS_START, getUserDetailsAPI),
@@ -550,5 +599,6 @@ export default function* pageSaga() {
       USER_VERIFY_BADGE_STATUS_START,
       verificationBadgeStatusUpdateAPI
     ),
+    yield takeLatest(RESET_PASSWORD_START, resetPasswordAPI),
   ]);
 }

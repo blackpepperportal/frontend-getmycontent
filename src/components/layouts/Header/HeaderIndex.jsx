@@ -167,7 +167,7 @@ const HeaderIndex = (props) => {
                   </ul>
                 </div>
 
-                <div className="pull-right">
+                {/* <div className="pull-right">
                   <span className="m-arrow">
                     <Image
                       src={
@@ -177,7 +177,7 @@ const HeaderIndex = (props) => {
                       alt={configuration.get("configData.site_name")}
                     />
                   </span>
-                </div>
+                </div> */}
               </div>
               {/* <Button
               className="drawer__close"
