@@ -666,13 +666,23 @@ const userReducer = (state = initialState, action) => {
           buttonDisable: true,
           loadingButtonContent: "Loading please wait",
         };
-  
+      
       case RESET_PASSWORD_SUCCESS:
-        return {
-          ...state,
+      return {
+        ...state,
+        profile: {
+          data: action.data.data,
+          loading: false,
+          error: false,
+        },
+        inputData: {
+          data: {},
+          loading: true,
+          error: false,
           buttonDisable: false,
           loadingButtonContent: null,
-        };
+        },
+      };
       case RESET_PASSWORD_FAILURE:
         return {
           ...state,
