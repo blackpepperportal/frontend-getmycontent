@@ -540,7 +540,6 @@ function* resetPasswordAPI() {
     const response = yield api.postMethod("reset_password", inputData);
     yield put(resetPasswordSuccess(response.data));
     if (response.data.success) {
-      console.log(response.data.data);
       localStorage.setItem("userLoginStatus", true);
       localStorage.setItem("user_picture", response.data.data.picture);
       localStorage.setItem("user_cover", response.data.data.cover);
@@ -563,6 +562,8 @@ function* resetPasswordAPI() {
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
+      localStorage.setItem("userId", response.data.data.user_id);
+      localStorage.setItem("accessToken", response.data.data.token);
       yield put(createNotification(notificationMessage));
       window.location.assign("/home");
     } else {
