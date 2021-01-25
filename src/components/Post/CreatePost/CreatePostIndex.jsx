@@ -246,6 +246,9 @@ const CreatePostIndex = (props) => {
                     type="number"
                     placeholder="Set price for the post"
                     name="amount"
+                    pattern="[0-9]*"
+                    min="1"
+                    inputmode="numeric"
                     value={inputData.amount}
                     width="50%"
                     onChange={(event) =>
