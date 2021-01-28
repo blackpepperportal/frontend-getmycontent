@@ -7381,10 +7381,10 @@ input.authentication-input {
 }
 
 .dropdown-menu.dropdown-menu-right li a {
-  padding: 15px 20px;
+  padding: 10px 20px;
   font-size: 1em !important;
   width: 100%;
-  /* font-weight: 600 !important; */
+  font-weight: 600 !important;
 }
 
 .dropdown-menu.show {
@@ -7690,9 +7690,9 @@ input.authentication-input {
   display: block !important;
 }
 
-.book-photo .profile-post-area {
+/* .book-photo .profile-post-area {
   display: block !important;
-}
+} */
 
 .edit-profile-tabs .media {
   width: 100%;
@@ -8425,7 +8425,7 @@ input.authentication-input {
 }
 
 .verified-dating{
-  width: 0.9em;
+  width: 1em;
 }
 
 .verified-info{
@@ -8455,4 +8455,24 @@ input.authentication-input {
 
 .notification-list a.title-container {
   padding-top:1em;
+}
+
+/* .post-video-size{
+  width: 100%!important;
+  height: 360px!important;
+} */
+
+.swiper-btn-fav:hover,
+.swiper-btn-fav:focus,
+.swiper-btn-fav:active{
+  color: #000!important;
+}
+
+.bookmark-sec .post-header{
+  justify-content: space-between;
+}
+
+.bookmark-sec .comment-row .alignleft{
+  display: flex;
+  align-items: center;
 }
