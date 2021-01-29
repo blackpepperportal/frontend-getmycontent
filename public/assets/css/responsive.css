@@ -179,7 +179,7 @@ Version: 1.0
         height: 30vh;
     }
     .msg-row-chat {
-        height: 52vh;
+        height: 58vh;
     }
 
     .chat-subheader{
@@ -384,9 +384,9 @@ Version: 1.0
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    /* .msg-header{
+    .msg-header{
         min-height: auto;
-    } */
+    }
     .search-dropdown-list-sec .search-body .search-content h5{
         flex-direction: column;
     }
