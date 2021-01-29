@@ -8494,7 +8494,7 @@ input.authentication-input {
   float: right;
   font-weight: 500;
   color: #007bff;
-  border: 1px solid #e2ecf8;
+  border: 1px solid rgba(138, 150, 163, 0.25);
   font-size: 14px;
   background: transparent;
   border-radius: 1000px;
