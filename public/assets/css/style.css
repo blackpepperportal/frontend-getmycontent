@@ -1099,6 +1099,8 @@ p#one {
   right: 0;
   bottom: 25px;
   font-size: 12px;
+  margin-bottom: 0;
+  padding-top: 0.2em;
 }
 .btn.btn-auth:hover {
   color: #fff !important;
@@ -4211,6 +4213,10 @@ a.chat-user-name {
   color: #000;
   font-family: roboto, sans-serif;
 }
+
+.chat-user-name .verified-badge-sec.no-shadow{
+  margin-left: 0.5em;
+}
 /*--*/
 .has-advanced-upload {
   position: relative;
@@ -6637,9 +6643,9 @@ input.authentication-input {
     font-size: 13px;
     word-break: break-word;
   }
-  ul.list-inline {
+  /* ul.list-inline {
     text-align: center;
-  }
+  } */
   .sign-in.form-section {
     width: 100%;
     margin: auto;
@@ -7014,8 +7020,14 @@ input.authentication-input {
     font-size: 13px;
     word-break: break-word;
   }
-  ul.list-inline {
+  /* ul.list-inline {
     text-align: center;
+  } */
+  ul.list-inline{
+    margin-bottom: 0;
+  }
+  ul.list-inline > li{
+    padding-left: 0;
   }
   .sign-in.form-section {
     width: 100%;
@@ -8411,7 +8423,7 @@ input.authentication-input {
 }
 
 [type=button], [type=reset], [type=submit], button {
-  -webkit-appearance: unset;
+  -webkit-appearance: unset!important;
 }
 
 .col8-sm{
@@ -8475,4 +8487,18 @@ input.authentication-input {
 .bookmark-sec .comment-row .alignleft{
   display: flex;
   align-items: center;
+}
+
+.btn-profile{
+  padding: 9px 16px;
+  float: right;
+  font-weight: 500;
+  color: #007bff;
+  border: 1px solid #e2ecf8;
+  font-size: 14px;
+  background: transparent;
+  border-radius: 1000px;
+  text-align: center;
+  min-width: 150px;
+  position: relative;
 }

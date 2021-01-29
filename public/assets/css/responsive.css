@@ -346,7 +346,7 @@ Version: 1.0
         margin-bottom: 0;
     }
     .home-sec .post-header{
-        align-items: center;
+        align-items: flex-start;
     }
 
     .my-profile .profile-btn-group{
@@ -379,19 +379,19 @@ Version: 1.0
     .my-profile .post-content p{
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: flex-start;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    .msg-header{
+    /* .msg-header{
         min-height: auto;
-    }
+    } */
     .search-dropdown-list-sec .search-body .search-content h5{
         flex-direction: column;
     }
     .verified-badge-sec{
-        padding-top: 0.5em;
+        padding-top: 0em;
     }
     .search-content .pl-2{
         padding-left: 0!important;
@@ -428,6 +428,28 @@ Version: 1.0
     }
     .edit-profile .tab-content.tabs{
         padding-bottom: 2em;
+    }
+    .gallery{
+        overflow: unset;
+    }
+    /* .my-profile .post-image{
+        margin-top:2em;
+    } */
+    .my-profile .post-content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-end;
+    }
+    h1.chat-page-title{
+        font-size: 12px;
+    }
+    button.g-btn.m-rounded.m-border.m-uppercase.m-flex.m-fluid-width.m-profile{
+        margin-top: 0;
+    }
+    .msg-row-chat{
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
