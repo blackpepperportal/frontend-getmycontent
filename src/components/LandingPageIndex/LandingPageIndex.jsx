@@ -9,6 +9,7 @@ import {
   forgotPasswordStart,
   userLoginStart,
   userRegisterStart,
+  usernameValidationStart,
 } from "../../store/actions/UserAction";
 
 const LandingPageIndex = (props) => {
@@ -63,6 +64,14 @@ const LandingPageIndex = (props) => {
         login_by: "google",
       })
     );
+  };
+
+  const handleUsernameValidation = (event, username) => {
+    setSignupInputData({
+      ...signupInputData,
+      username: username,
+    })
+    props.dispatch(usernameValidationStart({username:username}));
   };
 
   const handleSocialLoginFailure = (err) => {
@@ -265,15 +274,15 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicName">
                             <Form.Control
                               type="text"
-                              controlId="firstname"
-                              placeholder="First Name"
+                              controlId="name"
+                              placeholder="Name"
                               required
-                              value={signupInputData.first_name}
-                              name="firstname"
+                              value={signupInputData.name}
+                              name="name"
                               onChange={(event) =>
                                 setSignupInputData({
                                   ...signupInputData,
-                                  first_name: event.currentTarget.value,
+                                  name: event.currentTarget.value,
                                 })
                               }
                             />
@@ -282,15 +291,12 @@ const LandingPageIndex = (props) => {
                             <Form.Control
                               type="text"
                               controlId="lastname"
-                              placeholder="Last Name"
+                              placeholder="User Name"
                               required
-                              value={signupInputData.last_name}
-                              name="lastname"
+                              value={signupInputData.user_name}
+                              name="username"
                               onChange={(event) =>
-                                setSignupInputData({
-                                  ...signupInputData,
-                                  last_name: event.currentTarget.value,
-                                })
+                                handleUsernameValidation(event, event.currentTarget.value)
                               }
                             />
                           </Form.Group>

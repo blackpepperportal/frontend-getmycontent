@@ -45,6 +45,9 @@ import {
   RESET_PASSWORD_START,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAILURE,
+  USERNAME_VALIDATION_START,
+  USERNAME_VALIDATION_SUCCESS,
+  USERNAME_VALIDATION_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -689,6 +692,45 @@ const userReducer = (state = initialState, action) => {
           buttonDisable: false,
           loadingButtonContent: null,
         };
+        case USERNAME_VALIDATION_START:
+          return {
+            ...state,
+            validationInputData: {
+              data: {
+                ...action.data,
+              },
+              loading: true,
+              error: false,
+              buttonDisable: true,
+              loadingButtonContent: "Loading please wait",
+            },
+          };
+    
+        case USERNAME_VALIDATION_SUCCESS:
+          return {
+            ...state,
+            profile: {
+              data: action.data.data,
+            },
+            validationInputData: {
+              data: {},
+              loading: false,
+              error: false,
+              buttonDisable: false,
+              loadingButtonContent: null,
+            },
+          };
+        case USERNAME_VALIDATION_FAILURE:
+          return {
+            ...state,
+            validationInputData: {
+              data: {},
+              loading: false,
+              error: action.data,
+              buttonDisable: false,
+              loadingButtonContent: null,
+            },
+          };
     default:
       return state;
   }
