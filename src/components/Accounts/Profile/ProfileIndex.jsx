@@ -111,7 +111,7 @@ const ProfileIndex = (props) => {
                     <div className="profile-btn-group">
                       <Link
                         to={"/edit-profile"}
-                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile"
+                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile btn-profile"
                       >
                         <Image
                           src="assets/images/icons/settings.svg"

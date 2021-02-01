@@ -35,6 +35,7 @@ import StaticPage from "../StaticPage/StaticPage";
 import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 import PostView from "../Post/PostView";
 import ResetPassword from "../LandingPageIndex/ResetPassword";
+import UploadProfilePicture from "../Accounts/Profile/UploadProfilePicture";
 
 const history = createHistory();
 const $ = window.$;
@@ -307,6 +308,13 @@ class App extends Component {
             path={"/reset-password/:token"}
             component={ResetPassword}
             layout={AuthLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/upload-profile-picture"}
+            component={UploadProfilePicture}
+            layout={MainLayout}
           />
 
           <PrivateRoute
