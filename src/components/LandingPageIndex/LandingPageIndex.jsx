@@ -21,6 +21,8 @@ const LandingPageIndex = (props) => {
 
   const [forgotPasswordInputData, setForgotPasswordInputData] = useState({});
 
+  const [validationError, setValidationError] = useState("NO");
+  
   const handleLogin = (event) => {
     event.preventDefault();
     props.dispatch(userLoginStart(loginInputData));
@@ -79,6 +81,7 @@ const LandingPageIndex = (props) => {
   };
 
   return (
+    
     <>
       <div className="login-section">
         <Container>
@@ -193,6 +196,7 @@ const LandingPageIndex = (props) => {
                               required
                               value={loginInputData.email}
                               name="email"
+                              autocomplete="off"
                               onChange={(event) =>
                                 setLoginInputData({
                                   ...loginInputData,
@@ -208,6 +212,7 @@ const LandingPageIndex = (props) => {
                               controlId="loginpassword"
                               placeholder="Password"
                               required
+                              autocomplete="off"
                               value={loginInputData.password}
                               name="password"
                               onChange={(event) =>
@@ -279,6 +284,7 @@ const LandingPageIndex = (props) => {
                               required
                               value={signupInputData.name}
                               name="name"
+                              autocomplete="off"
                               onChange={(event) =>
                                 setSignupInputData({
                                   ...signupInputData,
@@ -293,12 +299,17 @@ const LandingPageIndex = (props) => {
                               controlId="lastname"
                               placeholder="User Name"
                               required
+                              autocomplete="off"
                               value={signupInputData.user_name}
                               name="username"
                               onChange={(event) =>
                                 handleUsernameValidation(event, event.currentTarget.value)
                               }
+                              isInvalid={props.validation.isValid}
                             />
+                            {props.validation.isValid ? 
+                              <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+                            : ''}
                           </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Control
@@ -306,6 +317,7 @@ const LandingPageIndex = (props) => {
                               controlId="registeremail"
                               placeholder="E-mail"
                               required
+                              autocomplete="off"
                               value={signupInputData.email}
                               name="email"
                               onChange={(event) =>
@@ -323,6 +335,7 @@ const LandingPageIndex = (props) => {
                               controlId="registerpassword"
                               placeholder="Password"
                               required
+                              autocomplete="off"
                               value={signupInputData.password}
                               name="password"
                               onChange={(event) =>
@@ -452,6 +465,7 @@ const mapStateToPros = (state) => ({
   login: state.users.loginInputData,
   signup: state.users.registerInputData,
   forgotPassword: state.users.forgotPasswordInputData,
+  validation: state.users.validationInputData,
 });
 
 function mapDispatchToProps(dispatch) {

@@ -8502,3 +8502,7 @@ input.authentication-input {
   min-width: 150px;
   position: relative;
 }
+
+.invalid-feedback{
+  font-size: 90% !important;
+}

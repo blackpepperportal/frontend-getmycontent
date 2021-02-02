@@ -588,14 +588,15 @@ function* usernameValidationAPI() {
       (state) => state.users.validationInputData.data
     );
     const response = yield api.postMethod("username_validation", inputData);
-    yield put(usernameValidationSuccess(response.data));
+    // yield put(usernameValidationSuccess(response.data));
     if (response.data.success) {
       
     } else {
-      const notificationMessage = getErrorNotificationMessage(
-        response.data.error
-      );
-      yield put(createNotification(notificationMessage));
+      yield put(usernameValidationFailure(response));
+      // const notificationMessage = getErrorNotificationMessage(
+      //   response.data.error
+      // );
+      // yield put(createNotification(notificationMessage));
     }
   } catch (error) {
     yield put(usernameValidationFailure(error));
