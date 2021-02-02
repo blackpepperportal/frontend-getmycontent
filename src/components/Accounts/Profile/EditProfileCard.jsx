@@ -6,6 +6,7 @@ import {
   editUserDetails,
   fetchUserDetailsStart,
   updateUserDetailsStart,
+  usernameValidationStart,
 } from "../../../store/actions/UserAction";
 
 const EditProfileCard = (props) => {
@@ -19,6 +20,16 @@ const EditProfileCard = (props) => {
   useEffect(() => {
     if (props.profile.loading) props.dispatch(fetchUserDetailsStart());
   }, []);
+
+  const handleUsernameValidation = (event, username,value) => {
+    props.dispatch(
+      editUserDetails(
+        username,
+        value
+      )
+    );
+    props.dispatch(usernameValidationStart({username:value}));
+  };
 
   const handleChangeImage = (event) => {
     if (event.currentTarget.type === "file") {
@@ -180,15 +191,14 @@ const EditProfileCard = (props) => {
                 name="username"
                 value={props.profile.data.username}
                 className="form-control edit-reset"
-                onChange={(event) => {
-                  props.dispatch(
-                    editUserDetails(
-                      event.currentTarget.name,
-                      event.currentTarget.value
-                    )
-                  );
-                }}
+                onChange={(event) =>
+                  handleUsernameValidation(event,  event.currentTarget.name,event.currentTarget.value)
+                }
+                isInvalid={props.validation.isValid}
               />
+              {props.validation.isValid ? 
+                <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+              : ''}
               <span className="edit-new-username-status">
                 <Image
                   src="assets/images/icons/tick.svg"
@@ -449,6 +459,7 @@ const EditProfileCard = (props) => {
 const mapStateToPros = (state) => ({
   profile: state.users.profile,
   profileInputData: state.users.profileInputData,
+  validation: state.users.validationInputData,
 });
 
 function mapDispatchToProps(dispatch) {

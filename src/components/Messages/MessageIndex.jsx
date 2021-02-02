@@ -26,6 +26,7 @@ import configuration from "react-global-configuration";
 import InboxLoader from "../Loader/InboxLoader";
 import { getErrorNotificationMessage } from "../helper/NotificationMessage";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 const $ = window.$;
 
 let chatSocket;
@@ -218,14 +219,15 @@ const MessageIndex = (props) => {
                       >
                         {props.chatMessages.data.user.name}{" "}
                         {props.chatMessages.data.user.is_verified_badge == 1 ? (
-                          <img
-                            className="verified-badge"
-                            alt="verified-badge"
-                            src={
-                              window.location.origin +
-                              "/assets/images/verified.svg"
-                            }
-                          />
+                          // <img
+                          //   className="verified-badge"
+                          //   alt="verified-badge"
+                          //   src={
+                          //     window.location.origin +
+                          //     "/assets/images/verified.svg"
+                          //   }
+                          // />
+                          <VerifiedBadgeNoShadow/>
                         ) : null}
                       </Link>
                     </div>

@@ -274,7 +274,8 @@ const PostDisplayCard = (props) => {
                                 url={postFile.post_file}
                                 controls={true}
                                 width="100%"
-                                height="360px"
+                                height="100%"
+                                className="post-video-size"
                               />
                             )}
                           </div>
