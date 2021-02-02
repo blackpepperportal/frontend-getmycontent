@@ -454,6 +454,12 @@ Version: 1.0
     .upload-profile-img-form{
         margin-bottom: 2em;
     }
+    .drawer__wrapper ul.list-inline{
+        margin-bottom:1rem;
+    }
+    .drawer__wrapper .pull-left.side-user-head{
+        float: none!important;
+    }
 }
 
 
