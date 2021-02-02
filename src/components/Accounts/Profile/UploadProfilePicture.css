@@ -35,12 +35,13 @@
     width: 100%;
     margin-bottom: 0;
     text-align: center;
-    height: 18em;
+    height: 100%;
   }
 
   .upload-profile-picture-card .upload-profile-picture-img{
       width:100%;
-      max-width: 15em;
+      max-width: 20em;
+      height: 20em;
   }
 
   .upload-profile-img-btn {
