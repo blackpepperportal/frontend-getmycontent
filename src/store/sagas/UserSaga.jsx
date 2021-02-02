@@ -236,7 +236,7 @@ function* userRegisterAPI() {
           response.data.message
         );
         yield put(createNotification(notificationMessage));
-        window.location.assign("/home");
+        window.location.assign("/upload-profile-picture");
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
