@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Image, Button } from "react-bootstrap";
 import "./UploadProfilePicture.css";
+import { connect } from "react-redux";
 
 import {
-  editUserDetails,
-  fetchUserDetailsStart,
   updateUserDetailsStart,
+  fetchUserDetailsStart,
 } from "../../../store/actions/UserAction";
 
 const UploadProfilePicture = (props) => {
@@ -18,7 +18,7 @@ const UploadProfilePicture = (props) => {
   });
 
   useEffect(() => {
-    
+    if (props.profile.loading) props.dispatch(fetchUserDetailsStart());
   }, []);
 
   const handleChangeImage = (event) => {
@@ -115,4 +115,13 @@ const UploadProfilePicture = (props) => {
   );
 };
 
-export default UploadProfilePicture;
+const mapStateToPros = (state) => ({
+  profile: state.users.profile,
+  profileInputData: state.users.profileInputData,
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(UploadProfilePicture);
