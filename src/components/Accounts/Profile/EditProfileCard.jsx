@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Form, Button, Image } from "react-bootstrap";
+import configuration from "react-global-configuration";
+
 import {
   editUserDetails,
   fetchUserDetailsStart,
@@ -21,14 +23,9 @@ const EditProfileCard = (props) => {
     if (props.profile.loading) props.dispatch(fetchUserDetailsStart());
   }, []);
 
-  const handleUsernameValidation = (event, username,value) => {
-    props.dispatch(
-      editUserDetails(
-        username,
-        value
-      )
-    );
-    props.dispatch(usernameValidationStart({username:value}));
+  const handleUsernameValidation = (event, username, value) => {
+    props.dispatch(editUserDetails(username, value));
+    props.dispatch(usernameValidationStart({ username: value }));
   };
 
   const handleChangeImage = (event) => {
@@ -192,13 +189,21 @@ const EditProfileCard = (props) => {
                 value={props.profile.data.username}
                 className="form-control edit-reset"
                 onChange={(event) =>
-                  handleUsernameValidation(event,  event.currentTarget.name,event.currentTarget.value)
+                  handleUsernameValidation(
+                    event,
+                    event.currentTarget.name,
+                    event.currentTarget.value
+                  )
                 }
                 isInvalid={props.validation.isValid}
               />
-              {props.validation.isValid ? 
-                <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
-              : ''}
+              {props.validation.isValid ? (
+                <Form.Control.Feedback type="invalid">
+                  Username already taken. Please try another
+                </Form.Control.Feedback>
+              ) : (
+                ""
+              )}
               <span className="edit-new-username-status">
                 <Image
                   src="assets/images/icons/tick.svg"
@@ -207,7 +212,7 @@ const EditProfileCard = (props) => {
               </span>
             </div>
             <p className="input-help">
-              {window.location.origin + props.profile.data.user_unique_id}
+              {window.location.origin + "/" + props.profile.data.user_unique_id}
             </p>
           </div>
           <div
@@ -244,7 +249,8 @@ const EditProfileCard = (props) => {
             data-vv-as="monthly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price (per month)
+              Subscription price (per month{" "}
+              {configuration.get("configData.currency_code")})
               <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
@@ -279,7 +285,8 @@ const EditProfileCard = (props) => {
             data-vv-as="yearly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price (Per Year)
+              Subscription price (Per Year{" "}
+              {configuration.get("configData.currency_code")})
               <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
