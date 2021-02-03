@@ -218,7 +218,7 @@ span.sidebar-hamburger-user-profile:after {
   background-clip: content-box;
   bottom: 1px;
   right: 1px;
-  background: #35d063;
+  /* background: #35d063; */
   z-index: 2;
 }
 .stretch-to-fit {
@@ -2332,7 +2332,7 @@ button.btn.btn-info.btn-lg {
   background-clip: content-box;
   bottom: 1px;
   right: 1px;
-  background: #35d063;
+  /* background: #35d063; */
   z-index: 2;
 }
 .popup-username-row {
@@ -3619,7 +3619,7 @@ span.my-profile-status {
   background-clip: content-box;
   bottom: 1px;
   right: 1px;
-  background: #35d063;
+   /** background: #35d063; Next version */ 
   z-index: 2;
   width: 16px;
   height: 16px;
