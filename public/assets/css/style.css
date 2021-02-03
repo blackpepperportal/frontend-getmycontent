@@ -1417,15 +1417,15 @@ a.title-container {
   width: 8%;
 }
 
-.home-sec .alignleft{
+.home-sec .alignleft {
   width: 100%;
 }
 
-.likes.alignleft .user-name{
-  width:85%;
+.likes.alignleft .user-name {
+  width: 85%;
 }
 
-.whishlist-heart-icon i{
+.whishlist-heart-icon i {
   font-size: 1.5em;
 }
 
@@ -1657,6 +1657,7 @@ span.comment-message {
 .comment-row img.user-image.img-responsive {
   width: 50px;
   height: 50px;
+  object-fit: cover;
 }
 .row.comment-row {
   display: block;
@@ -2167,7 +2168,7 @@ h4.suggestions {
   text-overflow: ellipsis;
   font-size: 15px;
   white-space: nowrap;
-  display:flex;
+  display: flex;
 }
 .pull-left.side-user-head ul.list-inline span.fans-follow {
   color: #000;
@@ -3075,7 +3076,7 @@ div.user-lists a {
 .my-profile-page {
   margin-top: 80px auto;
 }
-.my-profile .post-header{
+.my-profile .post-header {
   display: block;
 }
 
@@ -4214,7 +4215,7 @@ a.chat-user-name {
   font-family: roboto, sans-serif;
 }
 
-.chat-user-name .verified-badge-sec.no-shadow{
+.chat-user-name .verified-badge-sec.no-shadow {
   margin-left: 0.5em;
 }
 /*--*/
@@ -7023,10 +7024,10 @@ input.authentication-input {
   /* ul.list-inline {
     text-align: center;
   } */
-  ul.list-inline{
+  ul.list-inline {
     margin-bottom: 0;
   }
-  ul.list-inline > li{
+  ul.list-inline > li {
     padding-left: 0;
   }
   .sign-in.form-section {
@@ -7344,7 +7345,7 @@ input.authentication-input {
     margin-right: 10px;
   }
   .modal-dialog {
-    top: 15%;
+    top: 0%;
   }
   .notification-page .bookmarkes-list.bookmarks-right-side .notify-title {
     color: #000 !important;
@@ -8403,32 +8404,34 @@ input.authentication-input {
   margin-bottom: 0;
 }
 
-.comment-info-sec .comment-info-link .media{
+.comment-info-sec .comment-info-link .media {
   margin-top: 0;
   margin-right: 1em;
 }
 
-
 .comment-info-sec .comment-info-link .media p {
   font-weight: 500;
   line-height: 1.5;
-  color:#c1c7ce;
+  color: #c1c7ce;
   font-size: 1.3em;
   margin-bottom: 0;
 }
 
-.chat-header-back:focus{
-  background-color: transparent!important;
-  border-color: transparent!important;
+.chat-header-back:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
 }
 
-[type=button], [type=reset], [type=submit], button {
-  -webkit-appearance: unset!important;
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+  -webkit-appearance: unset !important;
 }
 
-.col8-sm{
-  flex: 0 0 65.666667%!important;
-  max-width: 65.666667%!important;
+.col8-sm {
+  flex: 0 0 65.666667% !important;
+  max-width: 65.666667% !important;
 }
 
 .verified-badge {
@@ -8436,11 +8439,11 @@ input.authentication-input {
   width: 2rem;
 }
 
-.verified-dating{
+.verified-dating {
   width: 1em;
 }
 
-.verified-info{
+.verified-info {
   padding-left: 0.5em;
   font-size: 14px;
   color: #d73ea2;
@@ -8448,7 +8451,7 @@ input.authentication-input {
   text-shadow: 2px 2px #000000;
 }
 
-.verified-badge-sec{
+.verified-badge-sec {
   display: flex;
   align-items: center;
 }
@@ -8457,16 +8460,16 @@ input.authentication-input {
   padding-right: 0.5em;
 }
 
-.verified-badge-sec.no-shadow .verified-info{
+.verified-badge-sec.no-shadow .verified-info {
   text-shadow: unset;
 }
 
-.notification-list .post-header{
+.notification-list .post-header {
   display: block;
 }
 
 .notification-list a.title-container {
-  padding-top:1em;
+  padding-top: 1em;
 }
 
 /* .post-video-size{
@@ -8476,20 +8479,20 @@ input.authentication-input {
 
 .swiper-btn-fav:hover,
 .swiper-btn-fav:focus,
-.swiper-btn-fav:active{
-  color: #000!important;
+.swiper-btn-fav:active {
+  color: #000 !important;
 }
 
-.bookmark-sec .post-header{
+.bookmark-sec .post-header {
   justify-content: space-between;
 }
 
-.bookmark-sec .comment-row .alignleft{
+.bookmark-sec .comment-row .alignleft {
   display: flex;
   align-items: center;
 }
 
-.btn-profile{
+.btn-profile {
   padding: 9px 16px;
   float: right;
   font-weight: 500;
@@ -8503,6 +8506,6 @@ input.authentication-input {
   position: relative;
 }
 
-.invalid-feedback{
+.invalid-feedback {
   font-size: 90% !important;
 }
