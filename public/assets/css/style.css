@@ -8509,3 +8509,12 @@ button {
 .invalid-feedback {
   font-size: 90% !important;
 }
+
+.badge-notify {
+  position: absolute;
+  right: 0;
+  top: 4px;
+  background-color: #007bff!important;
+  color: #ffffff!important;
+  border-radius: 10px!important;
+}

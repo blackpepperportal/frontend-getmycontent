@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Container, Image, Media, Button } from "react-bootstrap";
+import { Container, Image, Media, Button, Badge } from "react-bootstrap";
 import configuration from "react-global-configuration";
 import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 // import SideBarIndex from "../SideBar/SideBarIndex";
@@ -44,6 +44,7 @@ const HeaderIndex = (props) => {
                     "/assets/images/icons/notification.svg"
                   }
                 />
+                <Badge variant="light" className="badge-notify">9</Badge>
               </Link>
               <Link
                 to={"/posts-create"}
@@ -66,6 +67,7 @@ const HeaderIndex = (props) => {
                   src={window.location.origin + "/assets/images/icons/chat.svg"}
                 />
                 {/* <span className="main-header-menu__count"> 5 </span> */}
+                <Badge variant="light" className="badge-notify">9</Badge>
               </Link>
               <Button
                 type="button"
