@@ -188,6 +188,7 @@ function* userLoginAPI() {
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("socket", true);
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
@@ -240,6 +241,7 @@ function* userRegisterAPI() {
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("socket", true);
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
@@ -345,6 +347,7 @@ function* registerVerify() {
           ? response.data.data.is_verified_badge
           : 0
       );
+      localStorage.setItem("socket", true);
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
@@ -567,6 +570,7 @@ function* resetPasswordAPI() {
       );
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("socket", true);
       yield put(createNotification(notificationMessage));
       window.location.assign("/home");
     } else {

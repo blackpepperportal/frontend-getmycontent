@@ -112,6 +112,7 @@ const MessageIndex = (props) => {
         content.push(newData);
         // chatContent = [...this.state.chatData, ...content];
         // this.setState({ chatData: chatContent });
+        console.log(content);
         props.dispatch(addMessageContent(content));
       });
     }
