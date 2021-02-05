@@ -11,6 +11,12 @@ const initialState = {
     error: false,
     inputData: {},
   },
+  notifications: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+  },
 };
 
 const NotificationReducer = (state = initialState, action) => {
@@ -45,7 +51,6 @@ const NotificationReducer = (state = initialState, action) => {
           inputData: {},
         },
       };
-
     default:
       return state;
   }
