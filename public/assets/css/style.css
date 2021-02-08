@@ -703,8 +703,8 @@ storiesWrapper {
 
 #facebook-connect {
   background: #0091ea url(../../assets/images/facebook.svg) no-repeat scroll
-    30px 0px / 66px 18px padding-box border-box;
-  background-size: 22px 50px;
+    30px 0px / 66px 18px padding-box border-box!important;
+  background-size: 22px 50px!important;
   padding-left: 55px;
   /* border: 1px solid rgb(60, 90, 154); */
   border: 0;
@@ -729,15 +729,15 @@ storiesWrapper {
 }
 #twitter-connect {
   background: #0091ea url(../../assets/images/twitter.svg) no-repeat scroll 30px
-    0px / 66px 18px padding-box border-box;
-  background-size: 22px 50px;
+    0px / 66px 18px padding-box border-box!important;
+  background-size: 22px 50px!important;
   padding-left: 55px;
   /* border: 1px solid rgb(60, 90, 154); */
 }
 #google-connect {
   background: #0091ea url(../../assets/images/google.svg) no-repeat scroll 30px
-    0px / 66px 18px padding-box border-box;
-  background-size: 22px 50px;
+    0px / 66px 18px padding-box border-box!important;
+  background-size: 22px 50px!important;
   padding-left: 55px;
   border: 0;
   /* border: 1px solid rgb(60, 90, 154); */

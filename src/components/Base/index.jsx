@@ -36,6 +36,7 @@ import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 import PostView from "../Post/PostView";
 import ResetPassword from "../LandingPageIndex/ResetPassword";
 import UploadProfilePicture from "../Accounts/Profile/UploadProfilePicture";
+import NewLandingPage from "../LandingPageIndex/NewLandingPage";
 
 const history = createHistory();
 const $ = window.$;
@@ -323,6 +324,14 @@ class App extends Component {
             component={Logout}
             layout={MainLayout}
           />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/landing-page"}
+            component={NewLandingPage}
+            layout={MainLayout}
+          />
+
           {/* Dont move this route to top */}
           <PrivateRoute
             authentication={this.state.authentication}
