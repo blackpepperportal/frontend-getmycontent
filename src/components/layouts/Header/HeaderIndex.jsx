@@ -1,18 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Container, Image, Media, Button } from "react-bootstrap";
+import { Container, Image, Media, Button, Badge } from "react-bootstrap";
 import configuration from "react-global-configuration";
 import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 // import SideBarIndex from "../SideBar/SideBarIndex";
+import io from "socket.io-client";
+import {
+  updateNotificationCount,
+} from "../../../store/actions/NotificationAction";
 
 import { connect } from "react-redux";
+let chatSocket;
 
 const HeaderIndex = (props) => {
-  // const [mobileSidebar, setMobileSidebar] = useState(true);
+  const [chatCount, setChatCount] = useState(0);
+  const [bellCount, setBellCount] = useState(0);
+  
+  useEffect(() => {
+    console.log('Inside');
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
+    if (chatSocketUrl === "") {
+      console.log('no keys configured');
+    }
+    if(configuration.get("configData.is_notification_count_enabled") == 1) {
+      chatSocketConnect();
+    }
+  }, []);
 
-  // const startMeeting = (event) => {
-  //   event.preventDefault();
-  // };
+  const chatSocketConnect = () => {
+    // check the socket url is configured
+    let chatSocketUrl = configuration.get("configData.chat_socket_url");
+    if (chatSocketUrl) {
+      chatSocket = io(chatSocketUrl, {
+        query:
+          `commonid:'user_id_` +
+          localStorage.getItem("userId") +
+          `',myid:` +
+          localStorage.getItem("userId"),
+      });
+      chatSocket.emit("notification update", {
+        commonid:
+          "user_id_" +
+          localStorage.getItem("userId"),
+        myid: localStorage.getItem("userId"),
+      });
+      if(localStorage.getItem("socket")) {
+        chatSocket.on("notification", (newData) => {
+          console.log(newData);
+          setChatCount(newData.chat_notification);
+          setBellCount(newData.bell_notification);
+        });
+      } else {
+        console.log(false);
+        chatSocket.disconnect();
+      }
+    }
+  };
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -44,6 +87,7 @@ const HeaderIndex = (props) => {
                     "/assets/images/icons/notification.svg"
                   }
                 />
+                <Badge variant="light" className="badge-notify">{bellCount}</Badge>
               </Link>
               <Link
                 to={"/posts-create"}
@@ -66,6 +110,7 @@ const HeaderIndex = (props) => {
                   src={window.location.origin + "/assets/images/icons/chat.svg"}
                 />
                 {/* <span className="main-header-menu__count"> 5 </span> */}
+                <Badge variant="light" className="badge-notify">{chatCount}</Badge>
               </Link>
               <Button
                 type="button"
@@ -351,8 +396,12 @@ const HeaderIndex = (props) => {
   );
 };
 
+const mapStateToPros = (state) => ({
+  notifications: state.notification.notifications,
+});
+
 function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(null, mapDispatchToProps)(HeaderIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(HeaderIndex);

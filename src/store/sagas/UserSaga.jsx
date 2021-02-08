@@ -27,6 +27,8 @@ import {
   fetchBlockUsersFailure,
   resetPasswordFailure,
   resetPasswordSuccess,
+  usernameValidationSuccess,
+  usernameValidationFailure,
 } from "../actions/UserAction";
 
 import api from "../../Environment";
@@ -45,6 +47,7 @@ import {
   SAVE_BLOCK_USER_START,
   USER_VERIFY_BADGE_STATUS_START,
   RESET_PASSWORD_START,
+  USERNAME_VALIDATION_START,
 } from "../actions/ActionConstant";
 
 import { createNotification } from "react-redux-notify";
@@ -185,6 +188,7 @@ function* userLoginAPI() {
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("socket", true);
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
@@ -233,10 +237,11 @@ function* userRegisterAPI() {
           response.data.message
         );
         yield put(createNotification(notificationMessage));
-        window.location.assign("/home");
+        window.location.assign("/upload-profile-picture");
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("socket", true);
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
@@ -342,6 +347,7 @@ function* registerVerify() {
           ? response.data.data.is_verified_badge
           : 0
       );
+      localStorage.setItem("socket", true);
       const notificationMessage = getSuccessNotificationMessage(
         response.data.message
       );
@@ -564,6 +570,7 @@ function* resetPasswordAPI() {
       );
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
+      localStorage.setItem("socket", true);
       yield put(createNotification(notificationMessage));
       window.location.assign("/home");
     } else {
@@ -574,6 +581,29 @@ function* resetPasswordAPI() {
     }
   } catch (error) {
     yield put(resetPasswordFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
+function* usernameValidationAPI() {
+  try {
+    const inputData = yield select(
+      (state) => state.users.validationInputData.data
+    );
+    const response = yield api.postMethod("username_validation", inputData);
+    // yield put(usernameValidationSuccess(response.data));
+    if (response.data.success) {
+      
+    } else {
+      yield put(usernameValidationFailure(response));
+      // const notificationMessage = getErrorNotificationMessage(
+      //   response.data.error
+      // );
+      // yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(usernameValidationFailure(error));
     const notificationMessage = getErrorNotificationMessage(error.message);
     yield put(createNotification(notificationMessage));
   }
@@ -601,5 +631,6 @@ export default function* pageSaga() {
       verificationBadgeStatusUpdateAPI
     ),
     yield takeLatest(RESET_PASSWORD_START, resetPasswordAPI),
+    yield takeLatest(USERNAME_VALIDATION_START, usernameValidationAPI),
   ]);
 }

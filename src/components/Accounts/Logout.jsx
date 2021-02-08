@@ -14,6 +14,7 @@ const Logout = (props) => {
     localStorage.removeItem("userLoginStatus");
     localStorage.removeItem("user_picture");
     localStorage.removeItem("username");
+    localStorage.removeItem("socket");
     props.history.push("/");
   }, []);
   return "";

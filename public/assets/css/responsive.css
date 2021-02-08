@@ -125,6 +125,15 @@ Version: 1.0
         flex: 0 0 100%!important;
         max-width: 100%!important;
     }
+    .search-dropdown-list-sec .search-body .search-content h5{
+        flex-direction: column;
+    }
+    .verified-badge-sec{
+        padding-top: 0.5em;
+    }
+    .search-content .pl-2{
+        padding-left: 0!important;
+    }
 }
 
 
@@ -154,10 +163,10 @@ Version: 1.0
     .scrollbar{
         overflow-y:auto;
     }
-    .margin-col{
+    /* .margin-col{
         margin-left: 15px;
         margin-right: 15px;
-    }
+    } */
     .footer-section {
         padding-bottom: 5em;
         padding-top: 1.5em;
@@ -170,7 +179,7 @@ Version: 1.0
         height: 30vh;
     }
     .msg-row-chat {
-        height: 52vh;
+        height: 58vh;
     }
 
     .chat-subheader{
@@ -194,7 +203,8 @@ Version: 1.0
         transform: translate3d(0, 5px, 0);
     }
     .box img{
-        height: 200px;
+        height: 10em;
+        transform: unset;
     }
     .box .inner {
         padding: 2px;
@@ -336,7 +346,7 @@ Version: 1.0
         margin-bottom: 0;
     }
     .home-sec .post-header{
-        align-items: center;
+        align-items: flex-start;
     }
 
     .my-profile .profile-btn-group{
@@ -369,17 +379,96 @@ Version: 1.0
     .my-profile .post-content p{
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: flex-start;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+    .msg-header{
+        min-height: auto;
+    }
+    .search-dropdown-list-sec .search-body .search-content h5{
+        flex-direction: column;
+    }
+    .verified-badge-sec{
+        padding-top: 0em;
+    }
+    .search-content .pl-2{
+        padding-left: 0!important;
+    }
+    .likes.alignleft a.title-container{
+        width: 20%;
+    }
+    .likes .alignleft {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    .comment-box-form .user-picture{
+        width: 20%;
+        top: 0px;
+    }
+    .b-friend__content .b-friend__avatar .profile-pic{
+        width: 80px;
+        top: -40px;
+        height: 80px;
+    }
+    span.comment-message{
+        max-height: 3em;
+        width: 100%;
+    }
+    .bookmarks-photos ul.box-container.three-cols{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .bookmarks-photos .three-cols .box{
+        width: 100%;
+    }
+    .edit-profile .tab-content.tabs{
+        padding-bottom: 2em;
+    }
+    .gallery{
+        overflow: unset;
+    }
+    /* .my-profile .post-image{
+        margin-top:2em;
+    } */
+    .my-profile .post-content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-end;
+    }
+    h1.chat-page-title{
+        font-size: 12px;
+    }
+    button.g-btn.m-rounded.m-border.m-uppercase.m-flex.m-fluid-width.m-profile{
+        margin-top: 0;
+    }
+    .msg-row-chat{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .upload-profile-img-form{
+        margin-bottom: 2em;
+    }
+    /* .drawer__wrapper ul.list-inline{
+        margin-bottom:1rem;
+    } */
+    .drawer__wrapper .pull-left.side-user-head{
+        float: none!important;
+    }
+    .drawer__header{
+        padding-bottom: 18px;
     }
 }
 
 
 @media (max-width: 375px) {
     .search-dropdown-sec {
-        right: 35px!important;
+        right: 20px!important;
         top: 133px;
     }
 }
@@ -388,5 +477,6 @@ Version: 1.0
     .search-dropdown-sec {
         right: 10px!important;
         top: 133px;
+        width: 295px;
     }
 }
