@@ -46,17 +46,15 @@ const NewLandingPage = (props) => {
                         <Row>
                             <Col md={12} xl={6}>
                                 <div className="banner-content-sec">
-                                    <h2 className="title">Premium Social Media Subscription<br /> App Development</h2>
-                                    <p className="desc">Launch a revenue-generating premium social media platform like OnlyFans in a
-                                    matter of days. Avail our ready-made solution, customize, and launch it swiftly.
-                                </p>
+                                    <h2 className="title">Get My Content assists content creators monetise their social content.</h2>
+                                    <p className="desc">Join get my content the first app that bridges the gap between social network and monetisation platforms.</p>
                                     <div className="banner-button-sec">
-                                        <Link to="#" className="auth-btn margin-right-sm"
+                                        {/* <Link to="#" className="auth-btn margin-right-sm"
                                         onClick={() => setSignInModal(true)}
-                                        >Sign In</Link>
+                                        >Sign In</Link> */}
                                         <Link to="#" className="auth-btn"
                                         onClick={() => setSignUpModal(true)}
-                                        >Sign Up</Link>
+                                        >Join Us</Link>
                                     </div>
                                 </div>
                             </Col>
@@ -77,26 +75,24 @@ const NewLandingPage = (props) => {
                     <Container>
                         <Row>
                             <Col md={12}>
-                                <h1 className="section-title text-center">
-                                    What Is An OnlyFans Clone?
-                                <span className="ml-1">Who Uses It?</span>
-                                </h1>
-                                <p>OnlyFans clone is a premium social media subscription platform where content creators
-                                and celebrities share videos / photos with their followers and get paid for their content.
-                                They can also socialize with their followers over one-on-one video calls or respond to their
-                                questions for a price.
-                            </p>
-                                <p>It is almost similar to other social networking sites like Facebook, Instagram, etc.
-                                The only difference is that the content creators get paid on OnlyFans clone, unlike other
-                                platforms. Also, the site doesn’t have any restrictions on the content shared on the
-                                platform, be it clean content or erotic content.
-                            </p>
-                                <p>Content creators from various segments of life can become a part of OnlyFans clone.
+                                <h2 className="section-title text-center">
+                                Who Is 
+                                <span className="ml-2">Get My Content?</span>
+                                </h2>
+                                <p>Get My Content is a new subscription-based social network that will help users 
+                                to monetise their content and earn regular revenue. 
+                                Users grow their following organically through external social media links. 
+                                Creators will share videos/photos with their supporters whilst getting paid through numerous avenues. 
+                                The only restriction content creators have is that anything posted must not be adult content.
+                                </p>
+                                <p>We expect creators to come from all segments of life whether it being Fitness experts, musicians, dancers, models, influencers.
+                                </p>
+                                {/* <p>Content creators from various segments of life can become a part of OnlyFans clone.
                                 Fitness experts, musicians, dancers, models, influencers, and all kinds of content
                                 creators can save a place for themselves and start earning money in the long run.
                                 The content created by these people can be purchased by their followers or general
                                 audience.
-                            </p>
+                            </p> */}
                             </Col>
                         </Row>
                     </Container>
@@ -105,14 +101,14 @@ const NewLandingPage = (props) => {
                     <Container>
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
-                                <h2 className="section-title text-center mb-30">How Does Our
-                                <span> OnlyFans Clone Script Work?</span>
+                                <h2 className="section-title text-center mb-30">How Does
+                                <span> Get My Content Work</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
                                     <div className="right-bdr"></div>
                                 </div>
-                                <p className="heading-desc text-center">Take a sneak peek into the workflow of our OnlyFans clone and get a clear picture of what you’re going to get your hands on</p>
+                                <p className="heading-desc text-center">The workflow of get my content is very simple and has the following features</p>
                             </Col>
                         </Row>
                         <Row className="md-flex">
@@ -157,7 +153,7 @@ const NewLandingPage = (props) => {
                                                 </div>
                                                 <div className="process-content text-right">
                                                     <h5> Browse content creators</h5>
-                                                    <p>Users can use the extensive search feature to explore the creator profiles on the app and pick the one they are looking for.</p>
+                                                    <p>Users can use the extensive search feature to explore the creator profiles on the app and pick the one they are looking for. Creators can be found by user name or categorically by type of content posted.</p>
                                                 </div>
                                             </div>
                                             <svg x="0px" y="0px" width="312px" height="130px">
@@ -265,7 +261,7 @@ const NewLandingPage = (props) => {
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">Our OnlyFans Clone Features
-                                <span>For Users</span>
+                                <span className="ml-2">For Users</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
@@ -458,7 +454,7 @@ const NewLandingPage = (props) => {
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">Exclusive Features Pre-packed For
-                                <span>The Content Creators</span>
+                                <span className="ml-2">The Content Creators</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
@@ -590,8 +586,8 @@ const NewLandingPage = (props) => {
                     <Container>
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
-                                <h2 className="section-title text-center mb-30">Top-notch Features Of
-                                <span>The Admin Panel</span>
+                                <h2 className="section-title text-center mb-30">Features of
+                                <span className="ml-2">Admin Panel</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
@@ -727,14 +723,14 @@ const NewLandingPage = (props) => {
                     <Container>
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
-                                <h2 className="section-title text-center mb-30">Some Premium Features Of
-                                <span>Our OnlyFans Clone You Should Be Aware Of</span>
+                                <h2 className="section-title text-center mb-30">Premium Features Of
+                                <span className="ml-2">Get My Content</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
                                     <div className="right-bdr"></div>
                                 </div>
-                                <p className="heading-desc">Our OnlyFans clone houses not only basic features to enable its seamless functionality but also some elite features that enhance the app experience of both users and content creators.</p>
+                                <p className="heading-desc">Scale Big By Integrating Multiple Revenue Streams Into change to</p>
                             </Col>
                         </Row>
                         <Row className="mt-4">
@@ -830,14 +826,14 @@ const NewLandingPage = (props) => {
                     <Container>
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
-                                <h2 className="section-title text-center mb-30">Scale Big By Integrating Multiple Revenue Streams Into Your
-                                <span>OnlyFans Clone</span>
+                                <h2 className="section-title text-center mb-30"> How Can I Generate Revenue with
+                                <span className="ml-2">Get My Content?</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
                                     <div className="right-bdr"></div>
                                 </div>
-                                <p className="heading-desc text-center">There are several ways to generate revenue from the leading-edge OnlyFans clone. You can include one stream or multiple income streams concurrently to earn high profits in a short span. Below are the revenue streams worth considering to include in your application.</p>
+                                <p className="heading-desc text-center">There are several ways to generate revenue with Get My Content.  You can include one stream or multiple income streams concurrently to earn high profits in a short span. Below are the revenue streams worth considering to include in your application.</p>
                             </Col>
                             <Col md={12} className="mt-4">
                                 <Row>
@@ -856,7 +852,7 @@ const NewLandingPage = (props) => {
                                                 </div>
                                                 <div className="appseo-service-text appseo-headline pera-content text-center">
                                                     <h3>Subscription fee</h3>
-                                                    <p>Set a range of subscription packages for users to choose from. The subscriptions can be made available for a weekly, monthly, or yearly basis. You can also allow content creators to set up subscriptions individually for their profiles. In the latter, creators can share part of their income with your business.</p>
+                                                    <p>Set a range of subscription packages for users to choose from. The subscriptions can be made available for a weekly, monthly, or yearly basis.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -896,7 +892,7 @@ const NewLandingPage = (props) => {
                                                 </div>
                                                 <div className="appseo-service-text appseo-headline pera-content text-center">
                                                     <h3>Commission fee</h3>
-                                                    <p>Creators can generate income for every photo or video shared with the followers via your social media subscription platform. Of the entire amount, a part of the payment can be redirected to your account as a commission for using your platform.</p>
+                                                    <p>Create income for every photo or video shared with the followers via your social media subscription platform.</p>
                                                 </div>
                                             </div>
                                         </div>
