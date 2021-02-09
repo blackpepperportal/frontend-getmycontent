@@ -260,8 +260,8 @@ const NewLandingPage = (props) => {
                     <Container>
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
-                                <h2 className="section-title text-center mb-30">Our OnlyFans Clone Features
-                                <span className="ml-2">For Users</span>
+                                <h2 className="section-title text-center mb-30">Features For
+                                <span className="ml-2">The Content Creators</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
@@ -453,8 +453,8 @@ const NewLandingPage = (props) => {
                     <Container>
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
-                                <h2 className="section-title text-center mb-30">Exclusive Features Pre-packed For
-                                <span className="ml-2">The Content Creators</span>
+                                <h2 className="section-title text-center mb-30">Features for
+                                <span className="ml-2">Content Creators</span>
                                 </h2>
                                 <div className="title-bdr">
                                     <div className="left-bdr"></div>
@@ -782,7 +782,7 @@ const NewLandingPage = (props) => {
                                     </div>
                                     <div className="spce"></div>
                                     <h5>Post scheduling</h5>
-                                    <p>To make the job of creators effortless, our OnlyFans clone allows them to schedule their posts based on their time zones and convenience. They can create a queue of content for a week or month as they wish.</p>
+                                    <p>To make the job of creators effortless, Get My Content allows creators to schedule their posts based on their time zones and convenience. They can create a queue of content for a week or month as they wish.</p>
                                 </div>
                             </Col>
                             <Col md={6} sm={6} xl={4} className="col-md-offset-2">
