@@ -134,6 +134,13 @@ Version: 1.0
     .search-content .pl-2{
         padding-left: 0!important;
     }
+    .baner-outer{
+        top: 400px;
+        width: 290px;
+    }
+    .features-2 {
+        padding: 25px;
+    }
 }
 
 
@@ -462,6 +469,21 @@ Version: 1.0
     }
     .drawer__header{
         padding-bottom: 18px;
+    }
+    .padding-top-lg{
+        padding-top: 2em!important;
+    }
+    .work-process-wrap .process-img-item.fit-img svg {
+        top: 70%!important;
+    }
+    .baner-outer{
+        display: none!important;
+    }
+    .banner-content-sec {
+        margin-top: 0!important;
+    }
+    .signin-modal.form-section {
+        width: 100%!important;
     }
 }
 

@@ -44,7 +44,7 @@ const NewLandingPage = (props) => {
                             />
                         </figure>
                         <Row>
-                            <Col md={6}>
+                            <Col md={12} xl={6}>
                                 <div className="banner-content-sec">
                                     <h2 className="title">Premium Social Media Subscription<br /> App Development</h2>
                                     <p className="desc">Launch a revenue-generating premium social media platform like OnlyFans in a
@@ -60,7 +60,7 @@ const NewLandingPage = (props) => {
                                     </div>
                                 </div>
                             </Col>
-                            <Col md={6} className="text-center">
+                            <Col md={12} xl={6} className="text-center">
                                 <Image
                                     src={
                                         window.location.origin +
@@ -104,7 +104,7 @@ const NewLandingPage = (props) => {
                 <section className="work-flow-sec">
                     <Container>
                         <Row>
-                            <Col md={8} className="col-md-offset-2">
+                            <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">How Does Our
                                 <span> OnlyFans Clone Script Work?</span>
                                 </h2>
@@ -263,7 +263,7 @@ const NewLandingPage = (props) => {
                 <section className="user-feature-sec">
                     <Container>
                         <Row>
-                            <Col md={8} className="col-md-offset-2">
+                            <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">Our OnlyFans Clone Features
                                 <span>For Users</span>
                                 </h2>
@@ -274,7 +274,7 @@ const NewLandingPage = (props) => {
                             </Col>
                         </Row>
                         <Row className="md-flex">
-                            <Col md={6}>
+                            <Col md={12} xl={6}>
                                 <div className="mock-img">
                                     <Image
                                         src={
@@ -287,7 +287,7 @@ const NewLandingPage = (props) => {
                                     <div className="circle-bg grdnt-yellow"></div>
                                 </div>
                             </Col>
-                            <Col md={6}>
+                            <Col md={12} xl={6}>
                                 <div className="services-block-four">
                                     <div className="inner-box">
                                         <div className="icon-img-box">
@@ -363,7 +363,7 @@ const NewLandingPage = (props) => {
                             </Col>
                         </Row>
                         <Row className="md-flex">
-                            <Col md={6}>
+                            <Col md={12} xl={6}>
                                 <div className="services-block-four">
                                     <div className="inner-box">
                                         <div className="icon-img-box">
@@ -437,7 +437,7 @@ const NewLandingPage = (props) => {
                                     </div>
                                 </div>
                             </Col>
-                            <Col md={6}>
+                            <Col md={12} xl={6}>
                                 <div className="mock-img">
                                     <Image
                                         src={
@@ -456,7 +456,7 @@ const NewLandingPage = (props) => {
                 <section className="content-feature-sec">
                     <Container>
                         <Row>
-                            <Col md={8} className="col-md-offset-2">
+                            <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">Exclusive Features Pre-packed For
                                 <span>The Content Creators</span>
                                 </h2>
@@ -589,7 +589,7 @@ const NewLandingPage = (props) => {
                 <section className="admin-feature-sec">
                     <Container>
                         <Row>
-                            <Col md={8} className="col-md-offset-2">
+                            <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">Top-notch Features Of
                                 <span>The Admin Panel</span>
                                 </h2>
@@ -600,7 +600,7 @@ const NewLandingPage = (props) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -615,7 +615,7 @@ const NewLandingPage = (props) => {
                                     <div className="btm-line"></div>
                                 </div>
                             </Col>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -630,7 +630,7 @@ const NewLandingPage = (props) => {
                                     <div className="btm-line"></div>
                                 </div>
                             </Col>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -645,7 +645,7 @@ const NewLandingPage = (props) => {
                                     <div className="btm-line"></div>
                                 </div>
                             </Col>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -660,7 +660,7 @@ const NewLandingPage = (props) => {
                                     <div className="btm-line"></div>
                                 </div>
                             </Col>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -675,7 +675,7 @@ const NewLandingPage = (props) => {
                                     <div className="btm-line"></div>
                                 </div>
                             </Col>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -690,7 +690,7 @@ const NewLandingPage = (props) => {
                                     <div className="btm-line"></div>
                                 </div>
                             </Col>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -705,7 +705,7 @@ const NewLandingPage = (props) => {
                                     <div className="btm-line"></div>
                                 </div>
                             </Col>
-                            <Col md={4} sm={12} xs={12}>
+                            <Col md={6} sm={12} xs={12} xl={4}>
                                 <div className="single-app-features text-center">
                                     <Image
                                         src={
@@ -726,7 +726,7 @@ const NewLandingPage = (props) => {
                 <section className="premium-feature-sec">
                     <Container>
                         <Row>
-                            <Col md={8} className="col-md-offset-2">
+                            <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">Some Premium Features Of
                                 <span>Our OnlyFans Clone You Should Be Aware Of</span>
                                 </h2>
@@ -738,7 +738,7 @@ const NewLandingPage = (props) => {
                             </Col>
                         </Row>
                         <Row className="mt-4">
-                            <Col md={4} sm={6}>
+                            <Col md={6} sm={6} xl={4}>
                                 <div className="premium-item">
                                     <div className="icon-bg-lg bg-rad-anim">
                                         <Image
@@ -755,7 +755,7 @@ const NewLandingPage = (props) => {
                                     <p>Followers who are crazy about their favorite creators can tip them regularly or when they feel like. The amount they tip is completely their choice.</p>
                                 </div>
                             </Col>
-                            <Col md={4} sm={6}>
+                            <Col md={6} sm={6} xl={4}>
                                 <div className="premium-item">
                                     <div className="icon-bg-lg bg-rad-anim">
                                         <Image
@@ -772,7 +772,7 @@ const NewLandingPage = (props) => {
                                     <p>Creators can share their content and set a price tag for them. They will start receiving payments based on the number of fans who pay to view the content</p>
                                 </div>
                             </Col>
-                            <Col md={4} sm={6}>
+                            <Col md={6} sm={6} xl={4}>
                                 <div className="premium-item">
                                     <div className="icon-bg-lg bg-rad-anim">
                                         <Image
@@ -789,7 +789,7 @@ const NewLandingPage = (props) => {
                                     <p>To make the job of creators effortless, our OnlyFans clone allows them to schedule their posts based on their time zones and convenience. They can create a queue of content for a week or month as they wish.</p>
                                 </div>
                             </Col>
-                            <Col md={4} sm={6} className="col-md-offset-2">
+                            <Col md={6} sm={6} xl={4} className="col-md-offset-2">
                                 <div className="premium-item">
                                     <div className="icon-bg-lg bg-rad-anim">
                                         <Image
@@ -806,7 +806,7 @@ const NewLandingPage = (props) => {
                                     <p>Content creators can go on live calls to interact with their subscribers or specific followers. These live-streamed videos can be recorded and shared on their profiles as well.</p>
                                 </div>
                             </Col>
-                            <Col md={4} sm={6}>
+                            <Col md={6} sm={6} xl={4}>
                                 <div className="premium-item">
                                     <div className="icon-bg-lg bg-rad-anim">
                                         <Image
@@ -829,7 +829,7 @@ const NewLandingPage = (props) => {
                 <section className="revenue-sec">
                     <Container>
                         <Row>
-                            <Col md={8} className="col-md-offset-2">
+                            <Col md={12} xl={8} className="col-md-offset-2">
                                 <h2 className="section-title text-center mb-30">Scale Big By Integrating Multiple Revenue Streams Into Your
                                 <span>OnlyFans Clone</span>
                                 </h2>
@@ -841,7 +841,7 @@ const NewLandingPage = (props) => {
                             </Col>
                             <Col md={12} className="mt-4">
                                 <Row>
-                                    <Col md={4} sm={6}>
+                                    <Col md={6} sm={6} xl={4}>
                                         <div className="appseo-service-box position-relative">
                                             <div className="appseo-service-icon-text position-relative">
                                                 <div className="appseo-service-icon position-relative text-center">
@@ -861,7 +861,7 @@ const NewLandingPage = (props) => {
                                             </div>
                                         </div>
                                     </Col>
-                                    <Col md={4} sm={6}>
+                                    <Col md={6} sm={6} xl={4}>
                                         <div className="appseo-service-box position-relative">
                                             <div className="appseo-service-icon-text position-relative">
                                                 <div className="appseo-service-icon position-relative text-center">
@@ -881,7 +881,7 @@ const NewLandingPage = (props) => {
                                             </div>
                                         </div>
                                     </Col>
-                                    <Col md={4} sm={6}>
+                                    <Col md={6} sm={6} xl={4}>
                                         <div className="appseo-service-box position-relative">
                                             <div className="appseo-service-icon-text position-relative">
                                                 <div className="appseo-service-icon position-relative text-center">
