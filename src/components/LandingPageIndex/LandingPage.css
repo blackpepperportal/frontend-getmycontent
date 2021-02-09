@@ -4,9 +4,12 @@
     left: 0;
     width: 100%;
     overflow: hidden;
-    background-image: -webkit-linear-gradient(30deg, #f89515 0%, #f6b71d 100%);
+    /* background-image: -webkit-linear-gradient(30deg, #f89515 0%, #f6b71d 100%);
     background-image: -ms-linear-gradient(30deg, #f89515 0%, #f6b71d 100%);
-    background-image: linear-gradient(30deg, #f89515 0%, #f6b71d 100%);
+    background-image: linear-gradient(30deg, #f89515 0%, #f6b71d 100%); */
+    background-image: -webkit-linear-gradient(30deg, #40b0a8 0%, #40b0a8 100%);
+    background-image: -ms-linear-gradient(30deg, #40b0a8 0%, #40b0a8 100%);
+    background-image: linear-gradient(30deg, #40b0a8 0%, #40b0a8 100%);
     background-size: cover;
     padding: 120px 0 80px;
     height: 615px;
@@ -130,7 +133,8 @@
 }
 
 .section-title span{
-    background: linear-gradient(#f88311, #f8cd21);
+    /* background: linear-gradient(#f88311, #f8cd21); */
+    background: linear-gradient(#2e8e87, #40b0a8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -155,7 +159,7 @@
 .left-bdr, .right-bdr {
     height: 6px;
     width: 60px;
-    background-color: #f88d13;
+    background-color: #40B0A8;
     border-radius: 10px;
     position: absolute;
 }
@@ -207,7 +211,8 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    background-color: #f88d13;
+    /* background-color: #f88d13; */
+    background-color: #40B0A8;
     padding: 15px;
     height: 8.75rem;
     width: 8.75rem;
@@ -272,9 +277,12 @@
 }
 
 .grdnt-yellow:not(.overly) {
-    background-image: linear-gradient(
+    /* background-image: linear-gradient(
 130deg
-, #f88d13 0, #f88d13 51%, #ffa159 100%);
+, #f88d13 0, #f88d13 51%, #ffa159 100%); */
+background-image: linear-gradient( 
+    130deg
+     , #2e8e87 0, #40b0a8 51%, #40b0a8 100%);
 }
 
 .circle-bg {
@@ -319,7 +327,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    background: #f88d13;
+    background: #40B0A8;
     width: 80px;
     padding: 11px;
     border-radius: 10px;
@@ -338,7 +346,7 @@
 }
 
 .services-block-four .inner-box h4 a:hover{
-    color:#f88d13!important;
+    color:#40B0A8!important;
 }
 
 .services-block-four .inner-box .text {
@@ -417,7 +425,7 @@
 .single-app-features .btm-line {
     width: 100%;
     height: 4px;
-    background: #f88d13;
+    background: #40B0A8;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6541c1', endColorstr='#d43396', GradientType=1);
     -webkit-transform: scale(0);
     transform: scale(0);
@@ -567,7 +575,7 @@
     margin: 0 auto;
     position: absolute;
     border-radius: 30px;
-    background-color: #f19c13a1;
+    background-color: rgb(64 176 168 / 50%);
     -webkit-transition: .3s all ease-in-out;
     -o-transition: .3s all ease-in-out;
     transition: .3s all ease-in-out;
