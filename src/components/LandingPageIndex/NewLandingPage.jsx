@@ -49,12 +49,12 @@ const NewLandingPage = (props) => {
                                     <h2 className="title">Get My Content assists content creators monetise their social content.</h2>
                                     <p className="desc">Join get my content the first app that bridges the gap between social network and monetisation platforms.</p>
                                     <div className="banner-button-sec">
-                                        {/* <Link to="#" className="auth-btn margin-right-sm"
-                                        onClick={() => setSignInModal(true)}
-                                        >Sign In</Link> */}
-                                        <Link to="#" className="auth-btn"
+                                        <Link to="#" className="auth-btn margin-right-sm"
                                         onClick={() => setSignUpModal(true)}
                                         >Join Us</Link>
+                                        <Link to="#" className="auth-btn"
+                                        onClick={() => setSignInModal(true)}
+                                        >Sign In</Link>
                                     </div>
                                 </div>
                             </Col>
