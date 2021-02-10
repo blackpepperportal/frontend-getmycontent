@@ -157,6 +157,13 @@ class App extends Component {
             layout={AuthLayout}
           />
 
+        <AppRoute
+            authentication={this.state.authentication}
+            path={"/landing-page"}
+            component={NewLandingPage}
+            layout={MainLayout}
+          />
+
           <PrivateRoute
             authentication={this.state.authentication}
             path={"/home"}
@@ -322,13 +329,6 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/logout"}
             component={Logout}
-            layout={MainLayout}
-          />
-
-          <PrivateRoute
-            authentication={this.state.authentication}
-            path={"/landing-page"}
-            component={NewLandingPage}
             layout={MainLayout}
           />
 
