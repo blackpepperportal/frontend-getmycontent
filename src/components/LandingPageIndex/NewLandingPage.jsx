@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import "./LandingPage.css";
 import { Link } from "react-router-dom";
-import { Container, Image, Row, Col } from "react-bootstrap";
+import { Container, Image, Row, Col, Figure } from "react-bootstrap";
 import SignInModal from "../LandingPageIndex/Auth/SignInModal";
 import SignUpModal from "../LandingPageIndex/Auth/SignUpModal";
 
@@ -33,7 +33,7 @@ const NewLandingPage = (props) => {
                             alt=""
                             className="baner-outer"
                         />
-                        <figure className="figure highlight-background highlight-background--lean-right">
+                        <Figure className="figure highlight-background highlight-background--lean-right">
                             <Image
                                 src={
                                     window.location.origin +
@@ -42,7 +42,7 @@ const NewLandingPage = (props) => {
                                 alt=""
                                 className="img-fluid"
                             />
-                        </figure>
+                        </Figure>
                         <Row>
                             <Col md={12} xl={6}>
                                 <div className="banner-content-sec">

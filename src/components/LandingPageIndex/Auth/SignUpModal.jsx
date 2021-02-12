@@ -23,7 +23,7 @@ const SignUpModal = (props) => {
                             <Image
                                 src={
                                     window.location.origin +
-                                    "/assets/images/logo.png"
+                                    "/assets/images/logo-get-my-content.png"
                                 }
                                 alt=""
                                 className="modal-logo"
