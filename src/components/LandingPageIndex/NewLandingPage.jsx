@@ -46,6 +46,14 @@ const NewLandingPage = (props) => {
                         <Row>
                             <Col md={12} xl={6}>
                                 <div className="banner-content-sec">
+                                    <Image
+                                        src={
+                                            window.location.origin +
+                                            "/assets/images/get-my-content-landing.png"
+                                        }
+                                        alt=""
+                                        className="landing-logo"
+                                    />
                                     <h2 className="title">Get My Content assists content creators to  monetise their social content</h2>
                                     <p className="desc">Join Get My Content the first app that bridges the gap between social network and monetisation platforms.</p>
                                     <div className="banner-button-sec">

@@ -485,6 +485,9 @@ Version: 1.0
     .signin-modal.form-section {
         width: 100%!important;
     }
+    .banner-sec{
+        padding: 25px 0 80px!important;
+    }
 }
 
 
