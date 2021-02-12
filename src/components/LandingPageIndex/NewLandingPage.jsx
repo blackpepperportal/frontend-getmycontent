@@ -46,8 +46,8 @@ const NewLandingPage = (props) => {
                         <Row>
                             <Col md={12} xl={6}>
                                 <div className="banner-content-sec">
-                                    <h2 className="title">Get My Content assists content creators monetise their social content.</h2>
-                                    <p className="desc">Join get my content the first app that bridges the gap between social network and monetisation platforms.</p>
+                                    <h2 className="title">Get My Content assists content creators to  monetise their social content</h2>
+                                    <p className="desc">Join Get My Content the first app that bridges the gap between social network and monetisation platforms.</p>
                                     <div className="banner-button-sec">
                                         <Link to="#" className="auth-btn margin-right-sm"
                                         onClick={() => setSignUpModal(true)}
@@ -79,20 +79,10 @@ const NewLandingPage = (props) => {
                                 Who Is 
                                 <span className="ml-2">Get My Content?</span>
                                 </h2>
-                                <p>Get My Content is a new subscription-based social network that will help users 
-                                to monetise their content and earn regular revenue. 
-                                Users grow their following organically through external social media links. 
-                                Creators will share videos/photos with their supporters whilst getting paid through numerous avenues. 
-                                The only restriction content creators have is that anything posted must not be adult content.
+                                <p>Get My Content is a new subscription-based social network that helps users to monetise their content and earn regular revenue. Users are able to grow their following organically and via existing social media accounts. Creators are able to share videos/photos with their supporters whilst getting paid. The only restriction content creators have is that anything posted must not be adult content.
                                 </p>
-                                <p>We expect creators to come from all segments of life whether it being Fitness experts, musicians, dancers, models, influencers.
+                                <p>We expect creators to come from all segments of life whether it being fitness experts, musicians, dancers, models, influencers.
                                 </p>
-                                {/* <p>Content creators from various segments of life can become a part of OnlyFans clone.
-                                Fitness experts, musicians, dancers, models, influencers, and all kinds of content
-                                creators can save a place for themselves and start earning money in the long run.
-                                The content created by these people can be purchased by their followers or general
-                                audience.
-                            </p> */}
                             </Col>
                         </Row>
                     </Container>
@@ -108,7 +98,7 @@ const NewLandingPage = (props) => {
                                     <div className="left-bdr"></div>
                                     <div className="right-bdr"></div>
                                 </div>
-                                <p className="heading-desc text-center">The workflow of get my content is very simple and has the following features</p>
+                                <p className="heading-desc text-center">The workflow of Get My Content is very simple and has the following features</p>
                             </Col>
                         </Row>
                         <Row className="md-flex">
@@ -582,7 +572,7 @@ const NewLandingPage = (props) => {
                         </Row>
                     </Container>
                 </section>
-                <section className="admin-feature-sec">
+                {/* <section className="admin-feature-sec">
                     <Container>
                         <Row>
                             <Col md={12} xl={8} className="col-md-offset-2">
@@ -718,7 +708,7 @@ const NewLandingPage = (props) => {
                             </Col>
                         </Row>
                     </Container>
-                </section>
+                </section> */}
                 <section className="premium-feature-sec">
                     <Container>
                         <Row>
@@ -730,7 +720,7 @@ const NewLandingPage = (props) => {
                                     <div className="left-bdr"></div>
                                     <div className="right-bdr"></div>
                                 </div>
-                                <p className="heading-desc">Scale Big By Integrating Multiple Revenue Streams Into change to</p>
+                                {/* <p className="heading-desc">Scale Big By Integrating Multiple Revenue Streams Into change to</p> */}
                             </Col>
                         </Row>
                         <Row className="mt-4">

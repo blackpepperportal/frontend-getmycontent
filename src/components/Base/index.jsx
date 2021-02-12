@@ -161,7 +161,7 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/landing-page"}
             component={NewLandingPage}
-            layout={MainLayout}
+            layout={EmptyLayout}
           />
 
           <PrivateRoute

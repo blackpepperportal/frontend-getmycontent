@@ -445,6 +445,7 @@ background-image: linear-gradient(
     padding-bottom: 50px;
     overflow: hidden;
     position: relative;
+    background: #edf6fd;
 }
 
 .premium-item {
@@ -454,7 +455,7 @@ background-image: linear-gradient(
     background: #fff;
     transition: 0.5s;
     cursor: pointer;
-    min-height: 300px;
+    min-height: 365px;
     margin-bottom: 20px;
 }
 
