@@ -46,7 +46,7 @@ const ForgotPasswordModal = (props) => {
                         </Link>
                         
                         <Form className="modal-form" onSubmit={handleForgotPassword} method="post">
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group controlId="formBasicEmail" className="mb-4">
                                 <Form.Control
                                 type="text"
                                 controlId="loginemail"
