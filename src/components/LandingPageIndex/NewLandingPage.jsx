@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 import { Container, Image, Row, Col, Figure } from "react-bootstrap";
 import SignInModal from "../LandingPageIndex/Auth/SignInModal";
 import SignUpModal from "../LandingPageIndex/Auth/SignUpModal";
+import ForgotPasswordModal from "../LandingPageIndex/Auth/ForgotPasswordModal";
 
 const NewLandingPage = (props) => {
 
     const [signInModal, setSignInModal] = useState(false);
+
+    const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
 
     const closeSignInModal = () => {
         setSignInModal(false);
@@ -20,6 +23,10 @@ const NewLandingPage = (props) => {
         setSignUpModal(false);
     };
 
+    const closeForgotPasswordModal = () => {
+        setForgotPasswordModal(false);
+    };
+    
     return (
         <>
             <div className="landing-page-sec">
@@ -56,14 +63,14 @@ const NewLandingPage = (props) => {
                                     />
                                     <h2 className="title">Get My Content assists content creators to  monetise their social content</h2>
                                     <p className="desc">Join Get My Content the first app that bridges the gap between social network and monetisation platforms.</p>
-                                    {/* <div className="banner-button-sec">
+                                    <div className="banner-button-sec">
                                         <Link to="#" className="auth-btn margin-right-sm"
                                         onClick={() => setSignUpModal(true)}
                                         >Join Us</Link>
                                         <Link to="#" className="auth-btn"
                                         onClick={() => setSignInModal(true)}
                                         >Sign In</Link>
-                                    </div> */}
+                                    </div>
                                 </div>
                             </Col>
                             <Col md={12} xl={6} className="text-center">
@@ -903,6 +910,7 @@ const NewLandingPage = (props) => {
             </div>
             <SignInModal signInModal={signInModal} closeSignInModal={closeSignInModal} />
             <SignUpModal signUpModal={signUpModal} closeSignUpModal={closeSignUpModal} />
+            <ForgotPasswordModal forgotPasswordModal={forgotPasswordModal} closeForgotPasswordModal={closeForgotPasswordModal} />
         </>
     );
 };

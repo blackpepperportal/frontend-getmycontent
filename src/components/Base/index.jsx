@@ -151,16 +151,17 @@ class App extends Component {
         </Helmet>
         <Switch>
           <AppRoute
-            path={"/"}
+            path={"/landing-page-old"}
             component={LandingPageIndex}
             exact
             layout={AuthLayout}
           />
 
         <AppRoute
-            authentication={this.state.authentication}
-            path={"/landing-page"}
+            // authentication={this.state.authentication}
+            path={"/"}
             component={NewLandingPage}
+            exact
             layout={EmptyLayout}
           />
 
