@@ -592,7 +592,7 @@ function* usernameValidationAPI() {
       (state) => state.users.validationInputData.data
     );
     const response = yield api.postMethod("username_validation", inputData);
-    // yield put(usernameValidationSuccess(response.data));
+    yield put(usernameValidationSuccess(response.data));
     if (response.data.success) {
       
     } else {

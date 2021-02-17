@@ -145,6 +145,7 @@ const initialState = {
     loading: true,
     error: false,
     isValid: false,
+    isInValid: false,
   },
 };
 
@@ -722,7 +723,8 @@ const userReducer = (state = initialState, action) => {
               data: {},
               loading: false,
               error: false,
-              isValid:false,
+              isValid:true,
+              isInValid: false,
             },
           };
         case USERNAME_VALIDATION_FAILURE:
@@ -732,7 +734,8 @@ const userReducer = (state = initialState, action) => {
               data: {},
               loading: false,
               error: action.data,
-              isValid:true,
+              isInValid: true,
+              isValid:false,
             },
           };
     default:
