@@ -439,6 +439,96 @@ const ModelViewProfile = (props) => {
                             </span>
                           ) : null}
                         </div>
+                        <div className="profile-links">
+                          {userDetails.data.user.instagram_link ? (
+                            <span>
+                              <i className="fa fa-link"></i>{" "}
+                              <a
+                                href={userDetails.data.user.instagram_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.instagram_link}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                        <div className="profile-links">
+                          {userDetails.data.user.facebook_link ? (
+                            <span>
+                              <i className="fa fa-link"></i>{" "}
+                              <a
+                                href={userDetails.data.user.facebook_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.facebook_link}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                        <div className="profile-links">
+                          {userDetails.data.user.linkedin_link ? (
+                            <span>
+                              <i className="fa fa-link"></i>{" "}
+                              <a
+                                href={userDetails.data.user.linkedin_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.linkedin_link}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                        <div className="profile-links">
+                          {userDetails.data.user.pinterest_link ? (
+                            <span>
+                              <i className="fa fa-link"></i>{" "}
+                              <a
+                                href={userDetails.data.user.pinterest_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.pinterest_link}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                        <div className="profile-links">
+                          {userDetails.data.user.youtube_link ? (
+                            <span>
+                              <i className="fa fa-youtube"></i>{" "}
+                              <a
+                                href={userDetails.data.user.youtube_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.youtube_link}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
+                        <div className="profile-links">
+                          {userDetails.data.user.twitch_link ? (
+                            <span>
+                              <i className="fa fa-link"></i>{" "}
+                              <a
+                                href={userDetails.data.user.twitch_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                {userDetails.data.user.twitch_link}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
                       </p>
                     </p>
                   </div>
