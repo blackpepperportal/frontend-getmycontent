@@ -195,24 +195,19 @@ const EditProfileCard = (props) => {
                     event.currentTarget.value
                   )
                 }
-                isInvalid={props.validation.isValid}
+                isValid={props.validation.isValid}
+                isInvalid={props.validation.isInValid}
               />
-              {props.validation.isValid ? (
-                <Form.Control.Feedback type="invalid">
-                  Username already taken. Please try another
-                </Form.Control.Feedback>
-              ) : (
-                ""
-              )}
-              <span className="edit-new-username-status">
-                <Image
-                  src="assets/images/icons/tick.svg"
-                  className="svg-clone"
-                />
-              </span>
+              {props.validation.isInValid ? 
+                <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+              : ''}
+              {props.validation.isValid ? 
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              : ''}
+
             </div>
             <p className="input-help">
-              {window.location.origin + "/" + props.profile.data.user_unique_id}
+              {window.location.origin + "/" + props.profile.data.username}
             </p>
           </div>
           <div

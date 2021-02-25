@@ -723,9 +723,9 @@ const userReducer = (state = initialState, action) => {
     case USERNAME_VALIDATION_SUCCESS:
       return {
         ...state,
-        profile: {
-          data: action.data.data,
-        },
+        // profile: {
+        //   data: action.data.data,
+        // },
         validationInputData: {
           data: {},
           loading: false,

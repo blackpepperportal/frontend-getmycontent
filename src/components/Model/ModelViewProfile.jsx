@@ -440,95 +440,149 @@ const ModelViewProfile = (props) => {
                           ) : null}
                         </div>
                         <div className="profile-links">
-                          {userDetails.data.user.instagram_link ? (
-                            <span>
-                              <i className="fa fa-link"></i>{" "}
-                              <a
-                                href={userDetails.data.user.instagram_link}
-                                rel="nofollow"
-                                target="_blank"
-                                className="profile-a"
-                              >
-                                {userDetails.data.user.instagram_link}
-                              </a>
-                            </span>
-                          ) : null}
-                        </div>
-                        <div className="profile-links">
-                          {userDetails.data.user.facebook_link ? (
-                            <span>
-                              <i className="fa fa-link"></i>{" "}
-                              <a
-                                href={userDetails.data.user.facebook_link}
-                                rel="nofollow"
-                                target="_blank"
-                                className="profile-a"
-                              >
-                                {userDetails.data.user.facebook_link}
-                              </a>
-                            </span>
-                          ) : null}
-                        </div>
-                        <div className="profile-links">
-                          {userDetails.data.user.linkedin_link ? (
-                            <span>
-                              <i className="fa fa-link"></i>{" "}
-                              <a
-                                href={userDetails.data.user.linkedin_link}
-                                rel="nofollow"
-                                target="_blank"
-                                className="profile-a"
-                              >
-                                {userDetails.data.user.linkedin_link}
-                              </a>
-                            </span>
-                          ) : null}
-                        </div>
-                        <div className="profile-links">
-                          {userDetails.data.user.pinterest_link ? (
-                            <span>
-                              <i className="fa fa-link"></i>{" "}
-                              <a
-                                href={userDetails.data.user.pinterest_link}
-                                rel="nofollow"
-                                target="_blank"
-                                className="profile-a"
-                              >
-                                {userDetails.data.user.pinterest_link}
-                              </a>
-                            </span>
-                          ) : null}
-                        </div>
-                        <div className="profile-links">
-                          {userDetails.data.user.youtube_link ? (
-                            <span>
-                              <i className="fa fa-youtube"></i>{" "}
-                              <a
-                                href={userDetails.data.user.youtube_link}
-                                rel="nofollow"
-                                target="_blank"
-                                className="profile-a"
-                              >
-                                {userDetails.data.user.youtube_link}
-                              </a>
-                            </span>
-                          ) : null}
-                        </div>
-                        <div className="profile-links">
-                          {userDetails.data.user.twitch_link ? (
-                            <span>
-                              <i className="fa fa-link"></i>{" "}
-                              <a
-                                href={userDetails.data.user.twitch_link}
-                                rel="nofollow"
-                                target="_blank"
-                                className="profile-a"
-                              >
-                                {userDetails.data.user.twitch_link}
-                              </a>
-                            </span>
-                          ) : null}
-                        </div>
+                            {userDetails.data.user.instagram_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={userDetails.data.user.instagram_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/instagram.svg"
+                                  }
+                                  class="s_icon_16"
+                                />
+                                  {/* {userDetails.data.user.instagram_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+
+                            {userDetails.data.user.facebook_link ? (
+                              <span className="s-icon">
+                              
+                                <a
+                                  href={userDetails.data.user.facebook_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/facebook.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.facebook_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+
+                            {userDetails.data.user.twitter_link ? (
+                              <span className="s-icon">
+                                
+                                <a
+                                  href={userDetails.data.user.twitter_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/twitter.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.twitter_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+                            {userDetails.data.user.youtube_link ? (
+                              <span className="s-icon">
+                                
+                                <a
+                                  href={userDetails.data.user.youtube_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/youtube.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.youtube_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+                            {userDetails.data.user.linkedin_link ? (
+                              <span className="s-icon">
+                               
+                                <a
+                                  href={userDetails.data.user.linkedin_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                   <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/linkedin.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.linkedin_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+                            {userDetails.data.user.pinterest_link ? (
+                              <span className="s-icon">
+                                
+                                <a
+                                  href={userDetails.data.user.pinterest_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/pinterest.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.pinterest_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+
+                            {userDetails.data.user.twitch_link ? (
+                              <span className="s-icon">
+                               
+                                <a
+                                  href={userDetails.data.user.twitch_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/twitch.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.twitch_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+                          </div>
                       </p>
                     </p>
                   </div>
