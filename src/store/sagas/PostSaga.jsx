@@ -47,7 +47,7 @@ function* savePostAPI() {
   try {
     const inputData = yield select((state) => state.post.savePost.inputData);
 
-    if (!inputData.content || !inputData.post_files) {
+    if (!inputData.content && !inputData.post_files) { // !!!!! Dont change this condition. If changing get confirmation vidhya
       yield put(savePostFailure("Please fill the content"));
       const notificationMessage = getErrorNotificationMessage(
         "Please fill the content"
