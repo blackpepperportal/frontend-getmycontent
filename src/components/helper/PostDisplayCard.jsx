@@ -253,6 +253,9 @@ const PostDisplayCard = (props) => {
                               className="post-view-image"
                             />
                           </div>
+                          <div className="gallery-top-btn-sec">
+                            <Button className="subscribe-post-btn-sec">SUBSCRIBE TO SEE USER'S POSTS</Button>
+                          </div>
                         </div>
                       </div>
                     ) : postFile.file_type === "video" ? (
