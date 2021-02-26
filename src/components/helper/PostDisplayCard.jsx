@@ -213,7 +213,7 @@ const PostDisplayCard = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>
-                {post.is_user_needs_pay === 1 ? (
+                {post.payment_info.is_user_needs_pay === 1 ? (
                   <span
                     className="post-time"
                     onClick={() => setPPVPayment(true)}
@@ -253,9 +253,16 @@ const PostDisplayCard = (props) => {
                               className="post-view-image"
                             />
                           </div>
+                          {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'ppv' ? 
                           <div className="gallery-top-btn-sec">
-                            <Button className="subscribe-post-btn-sec">SUBSCRIBE TO SEE USER'S POSTS</Button>
+                            <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
                           </div>
+                          : ''}
+                          {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'subscription' ? 
+                          <div className="gallery-top-btn-sec" onClick={props.scrollToTop}>
+                            <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
+                          </div>
+                          : ''}
                         </div>
                       </div>
                     ) : postFile.file_type === "video" ? (
