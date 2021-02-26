@@ -213,7 +213,7 @@ const PostDisplayCard = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>
-                {post.payment_info.is_user_needs_pay === 1 ? (
+                {post.is_user_needs_pay === 1 ? (
                   <span
                     className="post-time"
                     onClick={() => setPPVPayment(true)}
