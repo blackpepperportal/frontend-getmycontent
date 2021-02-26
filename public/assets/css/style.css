@@ -1842,6 +1842,37 @@ button.custom-btn {
   background-color: #0091ea !important;
 }
 
+.gallery-top-btn-sec {
+  border: 5px solid rgba(138, 150, 163, 0.2);
+  padding: 1em;
+  border-radius: 5px;
+  position: absolute;
+  bottom:0;
+  width: 100%;
+  text-align: center;
+}
+
+.post-image{
+  position: relative;
+}
+
+.gallery-top-btn-sec .subscribe-post-btn-sec {
+  background-color: #0091ea!important;
+  color: #fff!important;
+  border: none!important;
+  border-radius: 1000px!important;
+  font-size: 1em!important;
+  font-weight: 600!important;
+  padding: 0.5em 2em!important;
+}
+
+.gallery-top-btn-sec .subscribe-post-btn-sec:hover,
+.gallery-top-btn-sec .subscribe-post-btn-sec:focus,
+.gallery-top-btn-sec .subscribe-post-btn-sec:active{
+  background-color: #0091ea!important;
+  color: #fff!important;
+}
+
 /*home-sidebar slider css*/
 
 .swiper-container {
