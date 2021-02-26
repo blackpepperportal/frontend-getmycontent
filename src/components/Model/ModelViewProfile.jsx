@@ -31,6 +31,11 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 
 const ModelViewProfile = (props) => {
+
+  const toggleVisibility = () => {
+    
+  };
+
   useEffect(() => {
     props.dispatch(
       fetchSingleUserProfileStart({
@@ -43,6 +48,8 @@ const ModelViewProfile = (props) => {
         type: "all",
       })
     );
+
+    window.addEventListener("scroll", toggleVisibility);
   }, []);
 
   const [activeSec, setActiveSec] = useState("post");
@@ -169,9 +176,18 @@ const ModelViewProfile = (props) => {
 
   const { userDetails } = props;
 
+  const scrollToTop = () => {
+    console.log('adadasdas');
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+
   return (
     <>
-      <div className="my-profile user-profile-page model-view-profile-sec">
+      <div className="my-profile user-profile-page model-view-profile-sec scroll-to-top">
         <Container>
           <Row>
             {userDetails.loading ? (
@@ -760,6 +776,7 @@ const ModelViewProfile = (props) => {
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
                       userPosts={props.userPosts}
+                      scrollToTop={scrollToTop}
                     />
 
                     <ModelProfilePhotoSec

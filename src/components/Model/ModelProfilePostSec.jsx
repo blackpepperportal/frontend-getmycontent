@@ -46,7 +46,7 @@ const ModelProfilePostSec = (props) => {
           "Loading..."
         ) : props.userPosts.data.posts.length > 0 ? (
           props.userPosts.data.posts.map((post) => (
-            <PostDisplayCard post={post} key={post.post_id} />
+            <PostDisplayCard post={post} key={post.post_id} scrollToTop={props.scrollToTop} />
           ))
         ) : (
           <NoDataFound />
