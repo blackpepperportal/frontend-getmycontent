@@ -434,7 +434,6 @@ a.bookmarkes-list svg.g-icon {
   width: 100%;
   color: #8a96a3 !important;
   cursor: pointer;
-  float: left;
   -webkit-box-flex: 8;
   -ms-flex-positive: 1;
   flex-grow: 1;
