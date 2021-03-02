@@ -1869,6 +1869,24 @@ button.custom-btn {
   position: relative;
 }
 
+.post-video::before{
+  position: unset!important;
+}
+
+.book-photo .post-list .post-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gallery.js-gallery .react-player__preview{
+  min-height: 100vh;
+}
+
+.book-photo .profile-post-area {
+  display: block;
+}
+
 .gallery-top-btn-sec .subscribe-post-btn-sec {
   background-color: #0091ea!important;
   color: #fff!important;
