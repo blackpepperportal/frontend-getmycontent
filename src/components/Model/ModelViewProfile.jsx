@@ -777,18 +777,21 @@ const ModelViewProfile = (props) => {
                       setActiveSec={setActiveSec}
                       userPosts={props.userPosts}
                       scrollToTop={scrollToTop}
+                      otherUserUniquId={props.match.params.username}
                     />
 
                     <ModelProfilePhotoSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
                       userPosts={props.userPosts}
+                      otherUserUniquId={props.match.params.username}
                     />
 
                     <ModelProfileVideoSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
                       userPosts={props.userPosts}
+                      otherUserUniquId={props.match.params.username}
                     />
                   </div>
                 </div>

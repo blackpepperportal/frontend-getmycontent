@@ -169,7 +169,7 @@ const EditProfileCard = (props) => {
               </div>
             </div>
             <p className="inuput-help">
-              Profile images must not contain nudity or explicit material.
+              We do not allow any nudity in images.
             </p>
           </div>
           <div
