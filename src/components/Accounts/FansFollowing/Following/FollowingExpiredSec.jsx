@@ -28,7 +28,7 @@ const FollowingExpiredSec = (props) => {
                       ? props.following.data.total
                       : 0}{" "}
                   </span>{" "}
-                  ACTIVE
+                  UNSUBSCRIBED
                 </Link>
               </div>
             </div>

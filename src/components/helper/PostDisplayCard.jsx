@@ -266,7 +266,7 @@ const PostDisplayCard = (props) => {
                         </div>
                       </div>
                     ) : postFile.file_type === "video" ? (
-                      <div className="post-image" key={index}>
+                      <div className="post-image post-video" key={index}>
                         <div className="">
                           <div className="gallery js-gallery">
                             {post.payment_info.is_user_needs_pay == 1 ? (

@@ -434,7 +434,6 @@ a.bookmarkes-list svg.g-icon {
   width: 100%;
   color: #8a96a3 !important;
   cursor: pointer;
-  float: left;
   -webkit-box-flex: 8;
   -ms-flex-positive: 1;
   flex-grow: 1;
@@ -1868,6 +1867,24 @@ button.custom-btn {
 
 .post-image{
   position: relative;
+}
+
+.post-video::before{
+  position: unset!important;
+}
+
+.book-photo .post-list .post-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gallery.js-gallery .react-player__preview{
+  min-height: 100vh;
+}
+
+.book-photo .profile-post-area {
+  display: block;
 }
 
 .gallery-top-btn-sec .subscribe-post-btn-sec {

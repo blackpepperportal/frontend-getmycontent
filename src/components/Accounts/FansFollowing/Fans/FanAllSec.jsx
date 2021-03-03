@@ -28,7 +28,7 @@ const FanAllSec = (props) => {
                       ? props.followers.data.total
                       : 0}{" "}
                   </span>{" "}
-                  ACTIVE
+                  ALL
                 </Link>
               </div>
             </div>

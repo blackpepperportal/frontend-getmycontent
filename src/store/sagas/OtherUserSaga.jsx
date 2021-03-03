@@ -10,10 +10,13 @@ import {
   fetchSingleUserPostsSuccess,
   fetchSingleUserProfileFailure,
   fetchSingleUserProfileSuccess,
+  searchUserPostSuccess,
+  searchUserPostFailure,
 } from "../actions/OtherUserAction";
 import {
   FETCH_SINGLE_USER_POSTS_START,
   FETCH_SINGLE_USER_PROFILE_START,
+  SEARCH_USER_POST_START,
 } from "../actions/ActionConstant";
 
 function* fetchOtherUserProfileAPI() {
@@ -63,11 +66,35 @@ function* fetchOtherUserPostAPI() {
   }
 }
 
+function* searchPostAPI() {
+  try {
+    const inputData = yield select((state) => state.otherUser.searchPosts.inputData);
+    const response = yield api.postMethod("posts_search", inputData);
+    if (response.data.success) {
+      yield put(fetchSingleUserPostsSuccess(response.data.data));
+    } else {
+      yield put(searchUserPostFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(searchUserPostFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([
     yield takeLatest(FETCH_SINGLE_USER_PROFILE_START, fetchOtherUserProfileAPI),
   ]);
   yield all([
     yield takeLatest(FETCH_SINGLE_USER_POSTS_START, fetchOtherUserPostAPI),
+  ]);
+
+  yield all([
+    yield takeLatest(SEARCH_USER_POST_START, searchPostAPI),
   ]);
 }

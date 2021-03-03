@@ -105,6 +105,10 @@ const Wallet = (props) => {
 														{/* <span className="amout-abb">STRAT</span> */}
 													</td>
 													<td className="amount">
+														Service Fee :{" "}{data.admin_amount_formatted}{" "}
+														{/* <span className="amout-abb">STRAT</span> */}
+													</td>
+													<td className="amount">
 														<span className="text-capitalize">
 															{data.payment_type}{" "}
 														</span>
