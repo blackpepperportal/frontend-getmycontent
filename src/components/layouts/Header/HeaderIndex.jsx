@@ -87,7 +87,7 @@ const HeaderIndex = (props) => {
                     "/assets/images/icons/notification.svg"
                   }
                 />
-                {configuration.get("configData.is_notification_count_enabled") == 1 && bellCount > 0 ?
+                {bellCount > 0 ?
                   <Badge variant="light" className="badge-notify">{bellCount}</Badge>
                 : ""}
                 
@@ -113,7 +113,7 @@ const HeaderIndex = (props) => {
                   src={window.location.origin + "/assets/images/icons/chat.svg"}
                 />
                 {/* <span className="main-header-menu__count"> 5 </span> */}
-                {configuration.get("configData.is_notification_count_enabled") == 1 && chatCount > 0 ?
+                {chatCount > 0 ?
                   <Badge variant="light" className="badge-notify">{chatCount}</Badge>
                 : ""}
               </Link>
