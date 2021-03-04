@@ -44,7 +44,7 @@ const HeaderIndex = (props) => {
           localStorage.getItem("userId"),
         myid: localStorage.getItem("userId"),
       });
-      if(localStorage.getItem("socket")) {
+      if(localStorage.getItem("socket") == "true") {
         chatSocket.on("notification", (newData) => {
           console.log(newData);
           setChatCount(newData.chat_notification);
