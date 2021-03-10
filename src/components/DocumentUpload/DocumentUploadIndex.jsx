@@ -22,6 +22,11 @@ import DocumentUploadLoader from "../Loader/DocumentUploadLoader";
 const DocumentUploadIndex = (props) => {
   useEffect(() => {
     props.dispatch(getKycDocumentStart());
+    const timer = setInterval(
+      () => props.dispatch(getKycDocumentStart()),
+      100000
+    );
+    return () => clearTimeout(timer);
   }, []);
 
   const [inputData, setInputData] = useState({});
@@ -70,7 +75,7 @@ const DocumentUploadIndex = (props) => {
                   <Row>
                     <Col sm={12} md={12}>
                       <div className="sub-heading">
-                        <h4>{doc.name}</h4>
+                        <h4>{uploadDocumentID}</h4>
                         <p>{doc.description}</p>
                       </div>
                     </Col>
@@ -127,7 +132,7 @@ const DocumentUploadIndex = (props) => {
                           className="receive-btn-blue"
                           onClick={(event) => handleSubmit(event, doc)}
                           disabled={
-                            uploadDocumentID === doc.document_id ? true : false
+                            doc.is_delete_edit_option ? false : true
                           }
                         >
                           {uploadDocumentID === doc.document_id
