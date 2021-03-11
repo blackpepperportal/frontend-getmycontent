@@ -125,7 +125,7 @@ const DocumentUploadIndex = (props) => {
                       </FormGroup>
                     </Col>
                   </Row>
-                  {doc.is_user_uploaded ? (
+                  {doc.is_delete_edit_option ? (
                     <Row>
                       <Col sm={12} md={12}>
                         <Button
