@@ -13,6 +13,7 @@ import { unFollowUserStart } from "../../../store/actions/FollowAction";
 import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 
 const UserCard = (props) => {
+  console.log(props.user);
   const [sendTip, setSendTip] = useState(false);
 
   const closeSendTipModal = () => {

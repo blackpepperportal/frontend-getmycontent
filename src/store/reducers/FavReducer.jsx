@@ -12,9 +12,13 @@ import {
 
 const initialState = {
   fav: {
-    data: {},
+    data: {
+      favs: [],
+    },
     loading: true,
     error: false,
+    skip: 0,
+    length: 0,
   },
   saveFav: {
     data: {},
@@ -40,18 +44,28 @@ const FavReducer = (state = initialState, action) => {
       return {
         ...state,
         fav: {
-          data: {},
+          inputData: action.data,
+          data: {
+            favs: [...state.fav.data.favs],
+          },
           loading: true,
           error: false,
+          skip: state.fav.skip,
+          length: state.fav.length,
         },
       };
     case FETCH_FAV_SUCCESS:
       return {
         ...state,
         fav: {
-          data: action.data,
+          data: {
+            favs: [...state.fav.data.favs, ...action.data.fav_users],
+          },
           loading: false,
           error: false,
+          inputData: {},
+          skip: action.data.fav_users.length + state.fav.skip,
+          length: action.data.fav_users.length,
         },
       };
     case FETCH_FAV_FAILURE:
@@ -61,6 +75,8 @@ const FavReducer = (state = initialState, action) => {
           data: {},
           loading: true,
           error: action.error,
+          skip: state.fav.skip,
+          length: state.fav.length,
         },
       };
     case SAVE_FAV_START:
