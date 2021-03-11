@@ -14,7 +14,7 @@ const FavoritesIndex = (props) => {
 
   const fetchFavUsersData = () => {
     setTimeout(() => {
-      if (props.posts.length !== 0) {
+      if (props.fav.length !== 0) {
         props.dispatch(fetchFavStart());
         setIsFetching(false);
       } else {
