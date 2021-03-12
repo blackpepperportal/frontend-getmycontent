@@ -275,7 +275,7 @@ const UserCard = (props) => {
                               className="svg-clone my-p-icons"
                               width="12"
                             />
-                            Remove to favorites
+                            Remove from favorites
                           </Link>
                         ) : null}
                       </>
@@ -307,7 +307,7 @@ const UserCard = (props) => {
                         className="svg-clone my-p-icons"
                         width="12"
                       />
-                      Remove to favorites
+                      Remove from favorites
                     </Link>
                   ) : (
                     <Link

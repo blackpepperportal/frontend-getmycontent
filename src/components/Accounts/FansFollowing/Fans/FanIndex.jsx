@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FanAllSec from "./FanAllSec";
+import { Link } from "react-router-dom";
 import FanActiveSec from "./FanActiveSec";
 import FanExpiredSec from "./FanExpiredSec";
 import FanTabSec from "./FanTabSec";
@@ -34,12 +35,17 @@ const FanIndex = (props) => {
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
                   <h3>
-                    <Image
-                      src="assets/images/icons/back.svg"
-                      className="svg-clone"
-                      width=""
-                    />
-                    Fans
+                    <Link
+                      className="bookmarkes-list"
+                      to={"/home"}
+                      onClick={() => props.history.goBack()}
+                    >
+                      <Image
+                        src="assets/images/icons/back.svg"
+                        className="svg-clone"
+                      />
+                      Fans
+                    </Link>
                   </h3>
                 </div>
               </div>
