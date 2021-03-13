@@ -4463,7 +4463,6 @@ ul.dropdown-menu.dropdown-menu-right {
 
 /* Pattern styles */
 .left-half {
-  float: left;
   width: 50%;
   text-align: left;
 }
@@ -4724,7 +4723,6 @@ span.new-user-name:after {
 }
 .left-half.post-write {
   width: 100%;
-  float: left;
   margin-top: 20px;
   display: flex;
   align-items: center;

@@ -9,22 +9,31 @@ import { Link } from "react-router-dom";
 
 const FavoritesIndex = (props) => {
   useEffect(() => {
-    props.dispatch(fetchFavStart());
+    props.dispatch(
+      fetchFavStart({
+        skip: props.fav.skip,
+      })
+    );
   }, []);
 
-  const fetchFavUsersData = () => {
+  const [isFetching, setIsFetching] = useInfiniteScroll(fetchFavUsersData);
+  const [noMoreData, setNoMoreData] = useState(false);
+
+  function fetchFavUsersData() {
     setTimeout(() => {
-      if (props.posts.length !== 0) {
-        props.dispatch(fetchFavStart());
+      if (props.fav.length !== 0) {
+        props.dispatch(
+          fetchFavStart({
+            skip: props.fav.skip,
+          })
+        );
         setIsFetching(false);
       } else {
         setNoMoreData(true);
       }
     }, 3000);
-  };
+  }
 
-  const [isFetching, setIsFetching] = useInfiniteScroll(fetchFavUsersData);
-  const [noMoreData, setNoMoreData] = useState(false);
 
   const [sendTip, setSendTip] = useState(false);
 
@@ -55,15 +64,22 @@ const FavoritesIndex = (props) => {
             </div>
             {props.fav.loading ? (
               "Loading..."
-            ) : props.fav.data.fav_users.length > 0 ? (
-              props.fav.data.fav_users.map((fav_user) => (
+            ) : props.fav.data.favs.length > 0 ? (
+              props.fav.data.favs.map((fav_user) => (
+                fav_user.fav_user ? 
                 <UserCard user={fav_user.fav_user} key={fav_user.user_id} />
+                : ''
               ))
             ) : (
               <NoDataFound></NoDataFound>
             )}
           </Col>
         </Row>
+        {noMoreData !== true ? (
+          <>{isFetching && "Fetching more list items..."}</>
+        ) : (
+          "No More Data"
+        )}
       </Container>
     </div>
   );

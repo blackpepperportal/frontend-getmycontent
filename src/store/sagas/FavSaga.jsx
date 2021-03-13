@@ -21,7 +21,10 @@ import {
 
 function* fetchFavAPI() {
   try {
-    const response = yield api.postMethod("fav_users");
+    const inputData = yield select(
+      (state) => state.fav.fav.inputData
+    );
+    const response = yield api.postMethod("fav_users",inputData);
     if (response.data.success) {
       yield put(fetchFavSuccess(response.data.data));
     } else {
