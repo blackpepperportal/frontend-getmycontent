@@ -672,7 +672,7 @@ const ModelViewProfile = (props) => {
                                   user_unique_id:
                                     userDetails.data.user.user_unique_id,
                                   plan_type: "month",
-                                  is_free: 1,
+                                  is_free: 0,
                                 })
                               )
                             }

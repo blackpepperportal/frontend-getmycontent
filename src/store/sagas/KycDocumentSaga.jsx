@@ -55,15 +55,15 @@ function* getKycDocumentAPI() {
     yield put(getKycDocumentSuccess(response.data.data));
     if (response.data.success) {
       console.log(response.data.data.is_document_verified);
-      if(response.data.data.is_document_verified === 3) {
-        setTimeout(() => {
+      // if(response.data.data.is_document_verified === 3) {
+      //   setTimeout(() => {
           
-        }, 3000);
-        const notificationMessage = getErrorNotificationMessage(
-          'Document is Rejected by Admin'
-        );
-        yield put(createNotification(notificationMessage));
-      }
+      //   }, 3000);
+      //   const notificationMessage = getErrorNotificationMessage(
+      //     'Document is Rejected by Admin'
+      //   );
+      //   yield put(createNotification(notificationMessage));
+      // }
     } else {
       yield put(getKycDocumentFailure(response.data.error));
       const notificationMessage = getErrorNotificationMessage(

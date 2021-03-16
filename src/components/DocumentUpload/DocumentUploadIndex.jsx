@@ -22,11 +22,6 @@ import DocumentUploadLoader from "../Loader/DocumentUploadLoader";
 const DocumentUploadIndex = (props) => {
   useEffect(() => {
     props.dispatch(getKycDocumentStart());
-    const timer = setInterval(
-      () => props.dispatch(getKycDocumentStart()),
-      100000
-    );
-    return () => clearTimeout(timer);
   }, []);
 
   const [inputData, setInputData] = useState({});
@@ -66,6 +61,10 @@ const DocumentUploadIndex = (props) => {
       <div className="document-upload-sec">
         <Container>
           <h4 class="head-title">Upload Your Documents</h4>
+          {props.kycDocDetails.loading ? '' :
+              <h3>{props.kycDocDetails.data.document_status_text_formatted}</h3>
+          }
+          
           {props.kycDocDetails.loading ? (
             <DocumentUploadLoader></DocumentUploadLoader>
           ) : props.kycDocDetails.data.documents.length > 0 ? (
@@ -92,14 +91,15 @@ const DocumentUploadIndex = (props) => {
                     )}
                     <Col sm={12} md={6} xl={6}>
                       <FormGroup>
-                        <Form.File
-                          type="file"
-                          id={doc.document_id}
-                          name={doc.document_id}
-                          onChange={(event) => handleChangeImage(event, doc)}
-                          accept="image/*"
-                        />
-
+                        {doc.is_delete_edit_option ? 
+                          <Form.File
+                            type="file"
+                            id={doc.document_id}
+                            name={doc.document_id}
+                            onChange={(event) => handleChangeImage(event, doc)}
+                            accept="image/*"
+                          />
+                        : null}
                         <Form.Label
                           htmlFor={doc.document_id}
                           className="document-upload-box-1"
@@ -117,7 +117,7 @@ const DocumentUploadIndex = (props) => {
                           />
                           <br></br>
                           <p className="document-desc">
-                            {doc.user_document.document_file !== undefined
+                            {doc.is_delete_edit_option
                               ? "Click here to reupload"
                               : null}
                           </p>

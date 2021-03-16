@@ -8,7 +8,7 @@ import io from "socket.io-client";
 import {
   updateNotificationCount,
 } from "../../../store/actions/NotificationAction";
-
+import Alert from 'react-bootstrap/Alert';
 import { connect } from "react-redux";
 let chatSocket;
 
@@ -131,6 +131,15 @@ const HeaderIndex = (props) => {
                 />
               </Button>
             </nav>
+            
+             {localStorage.getItem("is_document_verified") == 3 ? (
+                <div className="pl-2">
+                  <Alert key={1} variant='danger'>
+                    The user updated documents decined by Admin.
+                  </Alert>
+                </div>
+              ) : null}
+             
           </Container>
         </header>
       ) : (
