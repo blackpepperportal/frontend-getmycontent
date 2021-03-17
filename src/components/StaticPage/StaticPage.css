@@ -4,7 +4,7 @@
 }
 
 .static-box {
-  background: #ffffff;
+  background: var(--secondary-color);
   padding: 50px;
   border-radius: 10px;
   margin-bottom: 20px;
