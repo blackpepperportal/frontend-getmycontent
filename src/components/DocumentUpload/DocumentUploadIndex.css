@@ -4,7 +4,7 @@
 }
 
 .document-upload-sec .document-upload-box {
-    background: #ffffff;
+    background: var(--secondary-color);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
@@ -17,7 +17,7 @@
 }
 
 .document-upload-sec .document-upload-box-1 {
-    background: #ffffff;
+    background: var(--secondary-color);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
@@ -56,9 +56,9 @@
     border: none!important;
     padding: 8px 30px!important;
     font-size: 13px!important;
-    color: #ffffff!important;
+    color: var(--secondary-color)!important;
     font-weight: 500!important;
-    background: #0091ea!important;
+    background: var(--primary-color)!important;
     border-radius: 1000px!important;
     -webkit-transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
     transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
@@ -71,8 +71,8 @@
 }
 
 .receive-btn-blue:hover{
-    background: #0091ea!important; 
-    color: #ffffff!important;
+    background: var(--primary-color)!important; 
+    color: var(--secondary-color)!important;
 }
 
 .doc-upload-img-1{
@@ -100,7 +100,7 @@
 .document-upload-sec .form-control-file + label {
     border: none;
     border-radius: 5px;
-    color: #fff;
+    color: var(--secondary-color);
     cursor: pointer;
     display: inline-block;
     font-family: 'Rubik', sans-serif;
