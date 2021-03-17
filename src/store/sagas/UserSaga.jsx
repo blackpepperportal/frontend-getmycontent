@@ -166,6 +166,7 @@ function* userLoginAPI() {
         localStorage.setItem("user_cover", response.data.data.cover);
         localStorage.setItem("name", response.data.data.name);
         localStorage.setItem("username", response.data.data.username);
+        localStorage.setItem("socket", true);
         localStorage.setItem(
           "user_unique_id",
           response.data.data.user_unique_id
@@ -188,7 +189,6 @@ function* userLoginAPI() {
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
-      localStorage.setItem("socket", true);
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
@@ -219,6 +219,7 @@ function* userRegisterAPI() {
         localStorage.setItem("user_cover", response.data.data.cover);
         localStorage.setItem("username", response.data.data.username);
         localStorage.setItem("name", response.data.data.name);
+        localStorage.setItem("socket", true);
         localStorage.setItem(
           "user_unique_id",
           response.data.data.user_unique_id
@@ -241,7 +242,6 @@ function* userRegisterAPI() {
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
-      localStorage.setItem("socket", true);
     } else {
       const notificationMessage = getErrorNotificationMessage(
         response.data.error
@@ -551,6 +551,7 @@ function* resetPasswordAPI() {
       localStorage.setItem("user_cover", response.data.data.cover);
       localStorage.setItem("name", response.data.data.name);
       localStorage.setItem("username", response.data.data.username);
+      localStorage.setItem("socket", true);
       localStorage.setItem(
         "user_unique_id",
         response.data.data.user_unique_id
@@ -570,7 +571,6 @@ function* resetPasswordAPI() {
       );
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
-      localStorage.setItem("socket", true);
       yield put(createNotification(notificationMessage));
       window.location.assign("/home");
     } else {
@@ -592,7 +592,7 @@ function* usernameValidationAPI() {
       (state) => state.users.validationInputData.data
     );
     const response = yield api.postMethod("username_validation", inputData);
-    // yield put(usernameValidationSuccess(response.data));
+    yield put(usernameValidationSuccess(response.data));
     if (response.data.success) {
       
     } else {

@@ -28,7 +28,7 @@ const FollowingAllSec = (props) => {
                       ? props.following.data.total
                       : 0}{" "}
                   </span>{" "}
-                  ACTIVE
+                  ALL
                 </Link>
               </div>
             </div>

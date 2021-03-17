@@ -84,8 +84,8 @@ const ProfileIndex = (props) => {
                         {props.profile.data.name}{" "}
                         {props.profile.data.is_verified_badge == 1 ? (
                           <div className="pl-2">
-                          <VerifiedBadgeNoShadow/>
-                        </div>
+                            <VerifiedBadgeNoShadow />
+                          </div>
                         ) : null}
                       </h1>
                     </div>
@@ -121,6 +121,9 @@ const ProfileIndex = (props) => {
                       </Link>
                       {configuration.get(
                         "configData.is_verified_badge_enabled"
+                      ) == 1 &&
+                      configuration.get(
+                        "configData.is_user_allowed_verified_badge"
                       ) == 1 ? (
                         badgeStatus == 0 ? (
                           <button
@@ -162,8 +165,8 @@ const ProfileIndex = (props) => {
                             {props.profile.data.name}{" "}
                             {badgeStatus == 1 ? (
                               <div className="pl-2">
-                              <VerifiedBadgeNoShadow/>
-                            </div>
+                                <VerifiedBadgeNoShadow />
+                              </div>
                             ) : null}
                           </div>
                         </Link>
@@ -247,6 +250,145 @@ const ProfileIndex = (props) => {
                                   className="profile-a"
                                 >
                                   {props.profile.data.amazon_wishlist}
+                                </a>
+                              </span>
+                            ) : null}
+                          </div>
+
+                          <div className="profile-links">
+                            {props.profile.data.instagram_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.instagram_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/instagram.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />
+                                  {/* {props.profile.data.instagram_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+
+                            {props.profile.data.facebook_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.facebook_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/facebook.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />{" "}
+                                  {/* {props.profile.data.facebook_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+
+                            {props.profile.data.twitter_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.twitter_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/twitter.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />{" "}
+                                  {/* {props.profile.data.twitter_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+                            {props.profile.data.youtube_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.youtube_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/youtube.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />{" "}
+                                  {/* {props.profile.data.youtube_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+                            {props.profile.data.linkedin_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.linkedin_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/linkedin.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />{" "}
+                                  {/* {props.profile.data.linkedin_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+                            {props.profile.data.pinterest_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.pinterest_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/pinterest.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />{" "}
+                                  {/* {props.profile.data.pinterest_link} */}
+                                </a>
+                              </span>
+                            ) : null}
+
+                            {props.profile.data.twitch_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.twitch_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/twitch.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />{" "}
+                                  {/* {props.profile.data.twitch_link} */}
                                 </a>
                               </span>
                             ) : null}

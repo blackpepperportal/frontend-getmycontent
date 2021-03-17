@@ -37,8 +37,9 @@ const MessageIndex = (props) => {
   const [inputMessage, setInputMessage] = useState("");
   const [initialHeight, setInitialHeight] = useState(0);
 
+  const messageRef = useRef();
+
   useEffect(() => {
-    console.log("asdfasdf first");
     props.dispatch(fetchChatUsersStart());
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
     if (chatSocketUrl === "") {
@@ -47,6 +48,14 @@ const MessageIndex = (props) => {
       );
       props.dispatch(createNotification(notificationMessage));
       window.location.assign("/home");
+    }
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'nearest'
+        })
     }
   }, []);
 
@@ -310,7 +319,7 @@ const MessageIndex = (props) => {
 
                 <div className="chat-area">
                   <div className="chat-wrapper scrollbar" id="options-holder">
-                    <div className="chat-message padding overflow" id="check">
+                  <div className="chat-message padding overflow-height" id="check" ref={messageRef}>
                       {props.chatMessages.data.messages.length > 0
                         ? props.chatMessages.data.messages.map(
                             (chatMessage, index) => (

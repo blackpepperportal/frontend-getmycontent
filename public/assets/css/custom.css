@@ -10,3 +10,13 @@
   background-color: #428bca !important;
   border-color: #357ebd !important;
 }
+.s-icon {
+  margin-right: 3rem !important;
+}
+
+.s_icon_16 {
+  width: 32px;
+  height: 32px;
+  margin-right: 2px;
+  object-fit: cover;
+}

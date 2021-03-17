@@ -141,6 +141,9 @@ Version: 1.0
     .features-2 {
         padding: 25px;
     }
+    .gallery.js-gallery .react-player__preview {
+        min-height: 50vh;
+    }
 }
 
 
@@ -488,6 +491,13 @@ Version: 1.0
     .banner-sec{
         padding: 25px 0 80px!important;
     }
+    .gallery.js-gallery .react-player__preview {
+        min-height: 50vh;
+    }
+    .bookmark-sec .vertical-menu {
+        display:flex;
+    }
+
 }
 
 

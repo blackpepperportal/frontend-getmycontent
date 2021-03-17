@@ -195,24 +195,19 @@ const EditProfileCard = (props) => {
                     event.currentTarget.value
                   )
                 }
-                isInvalid={props.validation.isValid}
+                isValid={props.validation.isValid}
+                isInvalid={props.validation.isInValid}
               />
-              {props.validation.isValid ? (
-                <Form.Control.Feedback type="invalid">
-                  Username already taken. Please try another
-                </Form.Control.Feedback>
-              ) : (
-                ""
-              )}
-              <span className="edit-new-username-status">
-                <Image
-                  src="assets/images/icons/tick.svg"
-                  className="svg-clone"
-                />
-              </span>
+              {props.validation.isInValid ? 
+                <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+              : ''}
+              {props.validation.isValid ? 
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              : ''}
+
             </div>
             <p className="input-help">
-              {window.location.origin + "/" + props.profile.data.user_unique_id}
+              {window.location.origin + "/" + props.profile.data.username}
             </p>
           </div>
           <div
@@ -446,6 +441,212 @@ const EditProfileCard = (props) => {
               />
             </div>
           </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Instagram Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_instagram_link">
+              INSTAGRAM LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_instagram_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.instagram_link}
+                placeholder="Instagram Link"
+                name="instagram_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Facebook Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_facebook_link">
+              FACEBOOK LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_facebook_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.facebook_link}
+                placeholder="Facebook Link"
+                name="facebook_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Twitter Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_twitter_link">
+              TWITTER LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_twitter_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.twitter_link}
+                placeholder="Twitter Link"
+                name="twitter_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Linkedin Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_linkedin_link">
+              LINKEDIN LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_linkedin_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.linkedin_link}
+                placeholder="Linkedin Link"
+                name="linkedin_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="PINTEREST Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_pinterest_link">
+              PINTEREST LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_pinterest_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.pinterest_link}
+                placeholder="Pinterest Link"
+                name="pinterest_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="YOUTUBE Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_youtube_link">
+              YOUTUBE LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_youtube_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.youtube_link}
+                placeholder="YouTube Link"
+                name="youtube_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="TWITCH Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_twitch_link">
+              TWITCH LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_twitch_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.twitch_link}
+                placeholder="Twitch Link"
+                name="twitch_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+
           <div className="edit-save">
             <Button
               className="save-btn"
