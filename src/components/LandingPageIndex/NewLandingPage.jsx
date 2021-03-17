@@ -15,11 +15,13 @@ const NewLandingPage = (props) => {
 
     const closeSignInModal = () => {
         setSignInModal(false);
+        setSignUpModal(false);
     };
 
     const [signUpModal, setSignUpModal] = useState(false);
 
     const closeSignUpModal = () => {
+        setSignInModal(false);
         setSignUpModal(false);
     };
 
@@ -916,7 +918,6 @@ const NewLandingPage = (props) => {
 };
 
 const mapStateToPros = (state) => ({
-                cards: state.cards.cardDetails,
 });
 
 function mapDispatchToProps(dispatch) {

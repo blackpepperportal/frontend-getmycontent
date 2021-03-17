@@ -238,7 +238,7 @@ const EditProfileCard = (props) => {
               />
             </div>
           </div>
-          {props.profile &&
+          {/* {props.profile &&
           props.profile.data.categories &&
           props.profile.data.categories.length > 0 ? (
             <div
@@ -275,7 +275,7 @@ const EditProfileCard = (props) => {
                 })}
               </Form.Control>
             </div>
-          ) : null}
+          ) : null} */}
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"

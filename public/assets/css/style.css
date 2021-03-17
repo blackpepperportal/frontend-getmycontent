@@ -5480,12 +5480,12 @@ div#fav-model ul.model-filter-dropdown li a {
 #myModal2 .modal-title {
   display: inline;
 }
-.modal:nth-of-type(even) {
+/* .modal:nth-of-type(even) {
   z-index: 1052 !important;
 }
 .modal-backdrop.show:nth-of-type(even) {
   z-index: 1051 !important;
-}
+} */
 div#fav-model ul.model-filter-dropdown li:last-child a {
   padding: 15px 15px;
   display: block;
@@ -8822,4 +8822,9 @@ input.authentication-input {
 .invalid-feedback{
   text-align: left;
   font-size: 100%!important;
+}
+
+.category-list-sec .slick-track{
+  margin-left: unset;
+  margin-right: unset;
 }

@@ -119,6 +119,16 @@ const ProfileIndex = (props) => {
                         />
                         Edit profile
                       </Link>
+                      <Link
+                        to={"/update-categories"}
+                        className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile btn-profile"
+                      >
+                        <Image
+                          src="assets/images/icons/settings.svg"
+                          className="svg-clone my-p-icons"
+                        />
+                        Categories
+                      </Link>
                       {configuration.get(
                         "configData.is_verified_badge_enabled"
                       ) == 1 &&

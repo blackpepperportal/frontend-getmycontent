@@ -12,7 +12,7 @@ const HomeCategoryList = (props) => {
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
@@ -22,7 +22,7 @@ const HomeCategoryList = (props) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
+          infinite: false,
           dots: false
         }
       },

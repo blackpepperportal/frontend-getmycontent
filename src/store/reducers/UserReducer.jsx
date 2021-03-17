@@ -48,6 +48,9 @@ import {
   USERNAME_VALIDATION_START,
   USERNAME_VALIDATION_SUCCESS,
   USERNAME_VALIDATION_FAILURE,
+  USER_CATEGORY_UPDATE_START,
+  USER_CATEGORY_UPDATE_SUCCESS,
+  USER_CATEGORY_UPDATE_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -146,6 +149,14 @@ const initialState = {
     error: false,
     isValid: false,
     isInValid: false,
+  },
+  userCat: {
+    data: {},
+    loading: false,
+    error: false,
+    inputData: {},
+    buttonDisabled: false,
+    buttonLoadingContent: null,
   },
 };
 
@@ -744,6 +755,42 @@ const userReducer = (state = initialState, action) => {
           error: action.data,
           isInValid: true,
           isValid: false,
+        },
+      };
+    case USER_CATEGORY_UPDATE_START:
+      return {
+        ...state,
+        userCat: {
+          data: {},
+          loading: true,
+          error: false,
+          inputData: action.data,
+          buttonDisabled: true,
+          buttonLoadingContent: "Loading... Please wait",
+        },
+      };
+    case USER_CATEGORY_UPDATE_SUCCESS:
+      return {
+        ...state,
+        userCat: {
+          data: action.data,
+          loading: false,
+          error: false,
+          inputData: {},
+          buttonDisabled: false,
+          buttonLoadingContent: null,
+        },
+      };
+    case USER_CATEGORY_UPDATE_FAILURE:
+      return {
+        ...state,
+        userCat: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          buttonDisabled: false,
+          buttonLoadingContent: null,
         },
       };
     default:

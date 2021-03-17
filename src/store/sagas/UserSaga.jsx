@@ -29,12 +29,15 @@ import {
   resetPasswordSuccess,
   usernameValidationSuccess,
   usernameValidationFailure,
+  userCategoryUpdateSuccess,
+  userCategoryUpdateFailure,
 } from "../actions/UserAction";
 
 import api from "../../Environment";
 import {
   FETCH_USER_DETAILS_START,
   UPDATE_USER_DETAILS_START,
+  USER_CATEGORY_UPDATE_START,
   LOGIN_START,
   REGISTER_START,
   FORGOT_PASSWORD_START,
@@ -609,6 +612,32 @@ function* usernameValidationAPI() {
   }
 }
 
+function* userCategoryUpdateAPI() {
+  try {
+    const inputData = yield select((state) => state.users.userCat.inputData);
+    const response = yield api.postMethod("profile_categories_save", inputData);
+    if (response.data.success) {
+      yield put(userCategoryUpdateSuccess(response.data.data));
+
+      const notificationMessage = getSuccessNotificationMessage(
+        response.data.message
+      );
+      yield put(createNotification(notificationMessage));
+      window.location.assign("/profile");
+    } else {
+      yield put(userCategoryUpdateFailure(response.data.error));
+      const notificationMessage = getErrorNotificationMessage(
+        response.data.error
+      );
+      yield put(createNotification(notificationMessage));
+    }
+  } catch (error) {
+    yield put(userCategoryUpdateFailure(error));
+    const notificationMessage = getErrorNotificationMessage(error.message);
+    yield put(createNotification(notificationMessage));
+  }
+}
+
 export default function* pageSaga() {
   yield all([
     yield takeLatest(FETCH_USER_DETAILS_START, getUserDetailsAPI),
@@ -632,5 +661,6 @@ export default function* pageSaga() {
     ),
     yield takeLatest(RESET_PASSWORD_START, resetPasswordAPI),
     yield takeLatest(USERNAME_VALIDATION_START, usernameValidationAPI),
+    yield takeLatest(USER_CATEGORY_UPDATE_START,userCategoryUpdateAPI),
   ]);
 }

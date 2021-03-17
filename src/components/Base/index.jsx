@@ -38,6 +38,8 @@ import CategoryUsers from "../Categories/CategoryUsers";
 import ResetPassword from "../LandingPageIndex/ResetPassword";
 import UploadProfilePicture from "../Accounts/Profile/UploadProfilePicture";
 import NewLandingPage from "../LandingPageIndex/NewLandingPage";
+import UserCategoriesIndex from "../Accounts/Profile/UserCategoriesIndex";
+
 
 const history = createHistory();
 const $ = window.$;
@@ -284,6 +286,13 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/add-bank"}
             component={AddBankIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/update-categories"}
+            component={UserCategoriesIndex}
             layout={MainLayout}
           />
 
