@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Notify } from "react-redux-notify";
 // import AuthFooter from "./Footer/AuthFooter";
-import EmptyHeader from "./Header/EmptyHeader";
+// import EmptyHeader from "./Header/EmptyHeader";
 
 class EmptyLayout extends Component {
   state = {};
@@ -9,7 +9,7 @@ class EmptyLayout extends Component {
     return (
       <body>
         <Notify position="TopRight" />
-        <EmptyHeader />
+        {/* <EmptyHeader /> */}
         <div className="main-wrap-sec">
           {React.cloneElement(this.props.children)}
         </div>

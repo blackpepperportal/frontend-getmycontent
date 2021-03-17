@@ -35,6 +35,9 @@ import StaticPage from "../StaticPage/StaticPage";
 import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 import PostView from "../Post/PostView";
 import CategoryUsers from "../Categories/CategoryUsers";
+import ResetPassword from "../LandingPageIndex/ResetPassword";
+import UploadProfilePicture from "../Accounts/Profile/UploadProfilePicture";
+import NewLandingPage from "../LandingPageIndex/NewLandingPage";
 
 const history = createHistory();
 const $ = window.$;
@@ -149,10 +152,18 @@ class App extends Component {
         </Helmet>
         <Switch>
           <AppRoute
-            path={"/"}
+            path={"/landing-page-old"}
             component={LandingPageIndex}
             exact
             layout={AuthLayout}
+          />
+
+        <AppRoute
+            // authentication={this.state.authentication}
+            path={"/"}
+            component={NewLandingPage}
+            exact
+            layout={EmptyLayout}
           />
 
           <PrivateRoute
@@ -303,6 +314,19 @@ class App extends Component {
             layout={MainLayout}
           />
 
+          <AppRoute
+            path={"/reset-password/:token"}
+            component={ResetPassword}
+            layout={AuthLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/upload-profile-picture"}
+            component={UploadProfilePicture}
+            layout={MainLayout}
+          />
+
           <PrivateRoute
             authentication={this.state.authentication}
             path={"/logout"}
@@ -315,6 +339,7 @@ class App extends Component {
             component={CategoryUsers}
             layout={MainLayout}
           />
+
           {/* Dont move this route to top */}
           <PrivateRoute
             authentication={this.state.authentication}

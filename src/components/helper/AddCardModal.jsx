@@ -46,7 +46,7 @@ const AddCardModel = (props) => {
                 <div className="add-card-user-name">
                   {localStorage.getItem("name")}
                   <Image
-                    src="assets/images/icons/verified.svg"
+                    src={configuration.get('configData.verified_badge_file') ? configuration.get('configData.verified_badge_file') : ""}
                     className="add-card-verified-icon ml-3"
                   />
                 </div>

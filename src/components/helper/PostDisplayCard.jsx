@@ -21,6 +21,9 @@ import {
   saveReportPostStart,
 } from "../../store/actions/PostAction";
 import { saveBlockUserStart } from "../../store/actions/UserAction";
+import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -41,6 +44,7 @@ const PostDisplayCard = (props) => {
   const [postDisplayStatus, setPostDisplayStatus] = useState(true);
   const [likeStatus, setLikeStatus] = useState("");
   const [likeCount, setLikeCount] = useState(totalLikes);
+  const [modalStatus, setModalStatus] = useState(0);
 
   const closeSendTipModal = () => {
     setSendTip(false);
@@ -71,6 +75,17 @@ const PostDisplayCard = (props) => {
     } else {
       let currentLikeCount = likeCount - 1;
       setLikeCount(currentLikeCount);
+    }
+  };
+
+  const handlePPVPayment = (event,status) => {
+    event.preventDefault();
+    if(status && status == 1) {
+      setModalStatus(0);
+      setPPVPayment(true);
+    } else {
+      setModalStatus(1);
+      setPPVPayment(false);
     }
   };
 
@@ -121,16 +136,10 @@ const PostDisplayCard = (props) => {
 
                 <div className="user-name">
                   <span className="post-user-name">
-                    {post.user_displayname}
+                    <span className="user-name-post">{post.user_displayname}</span>
                     {"  "}
-                    {post.user.is_verified_badge == 1 ? (
-                      <img
-                        className="verified-badge"
-                        alt="verified-badge"
-                        src={
-                          window.location.origin + "/assets/images/verified.svg"
-                        }
-                      />
+                    {post.is_verified_badge == 1 ? (
+                      <VerifiedBadgeNoShadow/>
                     ) : null}
                   </span>
                   <span className="post-user-">@{post.username}</span>
@@ -218,15 +227,15 @@ const PostDisplayCard = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>
-                {post.payment_info.is_user_needs_pay === 1 ? (
+                {post.is_user_needs_pay === 1 ? (
                   <span
                     className="post-time"
-                    onClick={() => setPPVPayment(true)}
+                    onClick={(event) => handlePPVPayment(event,post.is_user_needs_pay)}
                   >
                     <span className="post-tip-lock">
                       {post.amount_formatted}{" "}
                     </span>
-                    <Link to="#" onClick={() => setPPVPayment(true)}>
+                    <Link to="#" onClick={(event) => handlePPVPayment(event,post.is_user_needs_pay)}>
                       <i className="fa fa-lock"></i>
                     </Link>
                   </span>
@@ -250,18 +259,40 @@ const PostDisplayCard = (props) => {
               ? post.postFiles.length > 0
                 ? post.postFiles.map((postFile, index) =>
                     postFile.file_type === "image" ? (
-                      <div className="post-image" key={index}>
-                        <div className="">
-                          <div className="gallery js-gallery">
-                            <Image
-                              src={postFile.post_file}
-                              className="post-view-image"
-                            />
+                      <Link to="#"
+                        onClick={(event) => handlePPVPayment(event,post.payment_info.is_user_needs_pay)}>
+                        <div className="post-image" key={index}>
+                          <div className="">
+                            <div className="gallery js-gallery">
+                              <Image
+                                src={postFile.post_file}
+                                className="post-view-image"
+                              />
+
+                            </div>
+                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'ppv' ? 
+                            <div className="gallery-top-btn-sec">
+                              <Button className="subscribe-post-btn-sec" onClick={(event) => handlePPVPayment(event,1)}>{post.payment_info.payment_text}</Button>
+                            </div>
+                            : ''}
+                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'subscription' ? 
+                            <div className="gallery-top-btn-sec" onClick={props.scrollToTop}>
+                              <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
+                            </div>
+                            : ''}
                           </div>
+                          {modalStatus ? (
+                            <Lightbox
+                              mainSrc={postFile.post_file}
+                              // nextSrc={images[(photoIndex + 1) % images.length]}
+                              // prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+                              onCloseRequest={() => setModalStatus(0)}
+                            />
+                          ) : ''}
                         </div>
-                      </div>
+                      </Link>
                     ) : postFile.file_type === "video" ? (
-                      <div className="post-image" key={index}>
+                      <div className="post-image post-video" key={index}>
                         <div className="">
                           <div className="gallery js-gallery">
                             {post.payment_info.is_user_needs_pay == 1 ? (
@@ -279,9 +310,20 @@ const PostDisplayCard = (props) => {
                                 url={postFile.post_file}
                                 controls={true}
                                 width="100%"
-                                height="360px"
+                                height="100%"
+                                className="post-video-size"
                               />
                             )}
+                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'ppv' ? 
+                            <div className="gallery-top-btn-sec">
+                              <Button className="subscribe-post-btn-sec" onClick={(event) => handlePPVPayment(event,1)}>{post.payment_info.payment_text}</Button>
+                            </div>
+                            : ''}
+                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'subscription' ? 
+                            <div className="gallery-top-btn-sec" onClick={props.scrollToTop}>
+                              <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
+                            </div>
+                            : ''}
                           </div>
                         </div>
                       </div>
@@ -362,7 +404,7 @@ const PostDisplayCard = (props) => {
                   className="svg-clone"
                 />
               </Link>
-
+              {localStorage.getItem("userId") != post.user_id ? (
               <Button
                 type="button"
                 className="g-icon"
@@ -375,6 +417,7 @@ const PostDisplayCard = (props) => {
 
                 <span className="post-tip">SEND TIP</span>
               </Button>
+              ) : null}
             </div>
             <div className="alignright">
               {bookmarkStatus !== "" ? (

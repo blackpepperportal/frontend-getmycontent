@@ -10,9 +10,10 @@ import { createNotification } from "react-redux-notify/lib/modules/Notifications
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { saveBlockUserStart } from "../../../store/actions/UserAction";
 import { unFollowUserStart } from "../../../store/actions/FollowAction";
-import VerifiedBadge from "../../Handlers/VerifiedBadge";
+import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 
 const UserCard = (props) => {
+  console.log(props.user);
   const [sendTip, setSendTip] = useState(false);
 
   const closeSendTipModal = () => {
@@ -223,7 +224,7 @@ const UserCard = (props) => {
                         <Link to={props.user.user_unique_id}>
                           <div className="follower-user-name">
                             {props.user.name}{" "}
-                            {badgeStatus == 1 ? <VerifiedBadge /> : null}
+                            {badgeStatus == 1 ? <VerifiedBadgeNoShadow /> : null}
                           </div>
                         </Link>
                       </div>
@@ -274,7 +275,7 @@ const UserCard = (props) => {
                               className="svg-clone my-p-icons"
                               width="12"
                             />
-                            Remove to favorites
+                            Remove from favorites
                           </Link>
                         ) : null}
                       </>
@@ -306,7 +307,7 @@ const UserCard = (props) => {
                         className="svg-clone my-p-icons"
                         width="12"
                       />
-                      Remove to favorites
+                      Remove from favorites
                     </Link>
                   ) : (
                     <Link

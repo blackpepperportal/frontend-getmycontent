@@ -111,6 +111,7 @@ const SendTipModal = (props) => {
                     className="tips__user__img"
                   />
                 </div>
+                <div className="body-userinfo">
                 <div className="popup-username-row">
                   <div className="pop-username">
                     <div className="">
@@ -119,10 +120,8 @@ const SendTipModal = (props) => {
                         <img
                           className="verified-badge"
                           alt="verified-badge"
-                          src={
-                            window.location.origin +
-                            "/assets/images/verified.svg"
-                          }
+                          src={configuration.get('configData.verified_badge_file') ? configuration.get('configData.verified_badge_file') : ""}
+                          
                         />
                       ) : null}
                     </div>
@@ -133,10 +132,11 @@ const SendTipModal = (props) => {
                     <div className="pop-user-username">@{props.username}</div>
                   </span>
                 </div>
+                </div>
               </div>
 
               <div className="floating-form">
-                <div className="floating-label mb-5">
+                <div className="floating-label mb-4">
                   <input
                     className="floating-input"
                     type="number"
@@ -149,7 +149,8 @@ const SendTipModal = (props) => {
                   <label className="default-label">Tip amount</label>
                 </div>
 
-                <Form className="mt-4">
+                <Form>
+                  <label className="choose-payment-label">Choose Payment</label>
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`} className="mb-3">
                       <Form.Check

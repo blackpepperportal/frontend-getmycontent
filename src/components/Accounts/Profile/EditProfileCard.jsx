@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Form, Button, Image } from "react-bootstrap";
+import configuration from "react-global-configuration";
+
 import {
   editUserDetails,
   fetchUserDetailsStart,
   updateUserDetailsStart,
+  usernameValidationStart,
 } from "../../../store/actions/UserAction";
 
 const EditProfileCard = (props) => {
@@ -19,6 +22,11 @@ const EditProfileCard = (props) => {
   useEffect(() => {
     if (props.profile.loading) props.dispatch(fetchUserDetailsStart());
   }, []);
+
+  const handleUsernameValidation = (event, username, value) => {
+    props.dispatch(editUserDetails(username, value));
+    props.dispatch(usernameValidationStart({ username: value }));
+  };
 
   const handleChangeImage = (event) => {
     if (event.currentTarget.type === "file") {
@@ -180,24 +188,26 @@ const EditProfileCard = (props) => {
                 name="username"
                 value={props.profile.data.username}
                 className="form-control edit-reset"
-                onChange={(event) => {
-                  props.dispatch(
-                    editUserDetails(
-                      event.currentTarget.name,
-                      event.currentTarget.value
-                    )
-                  );
-                }}
+                onChange={(event) =>
+                  handleUsernameValidation(
+                    event,
+                    event.currentTarget.name,
+                    event.currentTarget.value
+                  )
+                }
+                isValid={props.validation.isValid}
+                isInvalid={props.validation.isInValid}
               />
-              <span className="edit-new-username-status">
-                <Image
-                  src="assets/images/icons/tick.svg"
-                  className="svg-clone"
-                />
-              </span>
+              {props.validation.isInValid ? 
+                <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+              : ''}
+              {props.validation.isValid ? 
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              : ''}
+
             </div>
             <p className="input-help">
-              {window.location.origin + props.profile.data.user_unique_id}
+              {window.location.origin + "/" + props.profile.data.username}
             </p>
           </div>
           <div
@@ -272,7 +282,8 @@ const EditProfileCard = (props) => {
             data-vv-as="monthly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price (per month)
+              Subscription price (per month{" "}
+              {configuration.get("configData.currency_code")})
               <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
@@ -293,7 +304,7 @@ const EditProfileCard = (props) => {
                 onChange={(event) => {
                   props.dispatch(
                     editUserDetails(
-                      event.currentTarget.monthly_amount,
+                      event.currentTarget.name,
                       event.currentTarget.value
                     )
                   );
@@ -307,7 +318,8 @@ const EditProfileCard = (props) => {
             data-vv-as="yearly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price (Per Year)
+              Subscription price (Per Year{" "}
+              {configuration.get("configData.currency_code")})
               <span className="edit-input-optional">(optional)</span>
             </Form.Label>
             <div className="">
@@ -328,7 +340,7 @@ const EditProfileCard = (props) => {
                 onChange={(event) => {
                   props.dispatch(
                     editUserDetails(
-                      event.currentTarget.yearly_amount,
+                      event.currentTarget.name,
                       event.currentTarget.value
                     )
                   );
@@ -467,6 +479,212 @@ const EditProfileCard = (props) => {
               />
             </div>
           </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Instagram Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_instagram_link">
+              INSTAGRAM LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_instagram_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.instagram_link}
+                placeholder="Instagram Link"
+                name="instagram_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Facebook Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_facebook_link">
+              FACEBOOK LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_facebook_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.facebook_link}
+                placeholder="Facebook Link"
+                name="facebook_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Twitter Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_twitter_link">
+              TWITTER LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_twitter_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.twitter_link}
+                placeholder="Twitter Link"
+                name="twitter_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Linkedin Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_linkedin_link">
+              LINKEDIN LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_linkedin_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.linkedin_link}
+                placeholder="Linkedin Link"
+                name="linkedin_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="PINTEREST Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_pinterest_link">
+              PINTEREST LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_pinterest_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.pinterest_link}
+                placeholder="Pinterest Link"
+                name="pinterest_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="YOUTUBE Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_youtube_link">
+              YOUTUBE LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_youtube_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.youtube_link}
+                placeholder="YouTube Link"
+                name="youtube_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="TWITCH Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_twitch_link">
+              TWITCH LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_twitch_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.twitch_link}
+                placeholder="Twitch Link"
+                name="twitch_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
+
           <div className="edit-save">
             <Button
               className="save-btn"
@@ -487,6 +705,7 @@ const EditProfileCard = (props) => {
 const mapStateToPros = (state) => ({
   profile: state.users.profile,
   profileInputData: state.users.profileInputData,
+  validation: state.users.validationInputData,
 });
 
 function mapDispatchToProps(dispatch) {

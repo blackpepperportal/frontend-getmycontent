@@ -42,6 +42,12 @@ import {
   USER_VERIFY_BADGE_STATUS_SUCCESS,
   USER_VERIFY_BADGE_STATUS_START,
   USER_VERIFY_BADGE_STATUS_FAILURE,
+  RESET_PASSWORD_START,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE,
+  USERNAME_VALIDATION_START,
+  USERNAME_VALIDATION_SUCCESS,
+  USERNAME_VALIDATION_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -134,6 +140,13 @@ const initialState = {
     loadingButtonContent: null,
     buttonDisable: false,
   },
+  validationInputData: {
+    data: {},
+    loading: true,
+    error: false,
+    isValid: false,
+    isInValid: false,
+  },
 };
 
 const userReducer = (state = initialState, action) => {
@@ -192,6 +205,13 @@ const userReducer = (state = initialState, action) => {
             website: state.profile.data.website,
             u_category_id: state.profile.data.u_category_id,
             amazon_wishlist: state.profile.data.amazon_wishlist,
+            instagram_link: state.profile.data.instagram_link,
+            facebook_link: state.profile.data.facebook_link,
+            twitter_link: state.profile.data.twitter_link,
+            linkedin_link: state.profile.data.linkedin_link,
+            pinterest_link: state.profile.data.pinterest_link,
+            youtube_link: state.profile.data.youtube_link,
+            twitch_link: state.profile.data.twitch_link,
             monthly_amount:
               state.profile.data.monthly_amount != undefined
                 ? state.profile.data.monthly_amount
@@ -655,7 +675,77 @@ const userReducer = (state = initialState, action) => {
           loading: true,
         },
       };
+    case RESET_PASSWORD_START:
+      return {
+        ...state,
+        resetPasswordInputData: {
+          inputData: action.data,
+        },
+        buttonDisable: true,
+        loadingButtonContent: "Loading please wait",
+      };
 
+    case RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        profile: {
+          data: action.data.data,
+          loading: false,
+          error: false,
+        },
+        inputData: {
+          data: {},
+          loading: true,
+          error: false,
+          buttonDisable: false,
+          loadingButtonContent: null,
+        },
+      };
+    case RESET_PASSWORD_FAILURE:
+      return {
+        ...state,
+        buttonDisable: false,
+        loadingButtonContent: null,
+      };
+    case USERNAME_VALIDATION_START:
+      return {
+        ...state,
+        validationInputData: {
+          data: {
+            ...action.data,
+          },
+          loading: true,
+          error: false,
+          buttonDisable: true,
+          loadingButtonContent: "Loading please wait",
+        },
+      };
+
+    case USERNAME_VALIDATION_SUCCESS:
+      return {
+        ...state,
+        // profile: {
+        //   data: action.data.data,
+        // },
+        validationInputData: {
+          data: {},
+          loading: false,
+          error: false,
+          isValid: true,
+          isInValid: false,
+        },
+      };
+    case USERNAME_VALIDATION_FAILURE:
+      return {
+        ...state,
+        validationInputData: {
+          data: {},
+          loading: false,
+          error: action.data,
+          isInValid: true,
+          isValid: false,
+        },
+      };
     default:
       return state;
   }

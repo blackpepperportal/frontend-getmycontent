@@ -94,7 +94,7 @@ const CreatePostIndex = (props) => {
     if (fileUploadStatus) {
       props.dispatch(
         savePostStart({
-          content: inputData.content,
+          content: inputData.content ? inputData.content : "",
           amount: inputData.amount ? inputData.amount : "",
           post_files: props.fileUpload.data.post_file.post_file_id,
           preview_file: inputData.preview_file ? inputData.preview_file : "",
@@ -103,7 +103,7 @@ const CreatePostIndex = (props) => {
     } else {
       props.dispatch(
         savePostStart({
-          content: inputData.content,
+          content: inputData.content ? inputData.content : "",
           amount: inputData.amount ? inputData.amount : "",
         })
       );
@@ -155,7 +155,7 @@ const CreatePostIndex = (props) => {
                     placeholder="Compose new post..."
                     name="content"
                     style={{ width: "100%", maxWidth: "100%" }}
-                    value={inputData.content}
+                    value={inputData.content ? inputData.content : null}
                     onChange={(event) =>
                       setInputData({
                         ...inputData,
@@ -246,6 +246,9 @@ const CreatePostIndex = (props) => {
                     type="number"
                     placeholder="Set price for the post"
                     name="amount"
+                    pattern="[0-9]*"
+                    min="1"
+                    inputmode="numeric"
                     value={inputData.amount}
                     width="50%"
                     onChange={(event) =>
@@ -264,7 +267,7 @@ const CreatePostIndex = (props) => {
               <Col sm={12} md={12}>
                 <Form.Group className="md-mrg-btm">
                   <label className="text-muted m-1 mt-3 f-12 text-uppercase">
-                    Upload Video Thumbnail:
+                    Upload Video Thumbnail:(Optional)
                   </label>
                   <Form.Control
                     style={{ display: "block" }}

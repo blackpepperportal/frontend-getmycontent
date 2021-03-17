@@ -9,6 +9,7 @@ import {
   forgotPasswordStart,
   userLoginStart,
   userRegisterStart,
+  usernameValidationStart,
 } from "../../store/actions/UserAction";
 
 const LandingPageIndex = (props) => {
@@ -20,6 +21,8 @@ const LandingPageIndex = (props) => {
 
   const [forgotPasswordInputData, setForgotPasswordInputData] = useState({});
 
+  const [validationError, setValidationError] = useState("NO");
+  
   const handleLogin = (event) => {
     event.preventDefault();
     props.dispatch(userLoginStart(loginInputData));
@@ -65,11 +68,20 @@ const LandingPageIndex = (props) => {
     );
   };
 
+  const handleUsernameValidation = (event, username) => {
+    setSignupInputData({
+      ...signupInputData,
+      username: username,
+    })
+    props.dispatch(usernameValidationStart({username:username}));
+  };
+
   const handleSocialLoginFailure = (err) => {
     console.error(err);
   };
 
   return (
+    
     <>
       <div className="login-section">
         <Container>
@@ -184,6 +196,7 @@ const LandingPageIndex = (props) => {
                               required
                               value={loginInputData.email}
                               name="email"
+                              autocomplete="off"
                               onChange={(event) =>
                                 setLoginInputData({
                                   ...loginInputData,
@@ -199,6 +212,7 @@ const LandingPageIndex = (props) => {
                               controlId="loginpassword"
                               placeholder="Password"
                               required
+                              autocomplete="off"
                               value={loginInputData.password}
                               name="password"
                               onChange={(event) =>
@@ -265,34 +279,43 @@ const LandingPageIndex = (props) => {
                           <Form.Group controlId="formBasicName">
                             <Form.Control
                               type="text"
-                              controlId="firstname"
-                              placeholder="First Name"
+                              controlId="name"
+                              placeholder="Name"
                               required
-                              value={signupInputData.first_name}
-                              name="firstname"
+                              value={signupInputData.name}
+                              name="name"
+                              autocomplete="off"
                               onChange={(event) =>
                                 setSignupInputData({
                                   ...signupInputData,
-                                  first_name: event.currentTarget.value,
+                                  name: event.currentTarget.value,
                                 })
                               }
                             />
                           </Form.Group>
+                          {props.validation.isValid}
                           <Form.Group controlId="formBasicName">
                             <Form.Control
                               type="text"
                               controlId="lastname"
-                              placeholder="Last Name"
+                              placeholder="User Name"
                               required
-                              value={signupInputData.last_name}
-                              name="lastname"
+                              autocomplete="off"
+                              value={signupInputData.user_name}
+                              name="username"
                               onChange={(event) =>
-                                setSignupInputData({
-                                  ...signupInputData,
-                                  last_name: event.currentTarget.value,
-                                })
+                                handleUsernameValidation(event, event.currentTarget.value)
                               }
+                              isValid={props.validation.isValid}
+                              isInvalid={props.validation.isInValid}
                             />
+                            {props.validation.isInValid ? 
+                              <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+                            : ''}
+                            {props.validation.isValid ? 
+                              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                            : ''}
+                            
                           </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Control
@@ -300,6 +323,7 @@ const LandingPageIndex = (props) => {
                               controlId="registeremail"
                               placeholder="E-mail"
                               required
+                              autocomplete="off"
                               value={signupInputData.email}
                               name="email"
                               onChange={(event) =>
@@ -317,6 +341,7 @@ const LandingPageIndex = (props) => {
                               controlId="registerpassword"
                               placeholder="Password"
                               required
+                              autocomplete="off"
                               value={signupInputData.password}
                               name="password"
                               onChange={(event) =>
@@ -446,6 +471,7 @@ const mapStateToPros = (state) => ({
   login: state.users.loginInputData,
   signup: state.users.registerInputData,
   forgotPassword: state.users.forgotPasswordInputData,
+  validation: state.users.validationInputData,
 });
 
 function mapDispatchToProps(dispatch) {

@@ -3,8 +3,20 @@ import { Link } from "react-router-dom";
 import { Form} from "react-bootstrap";
 import PostDisplayCard from "../helper/PostDisplayCard";
 import NoDataFound from "../NoDataFound/NoDataFound";
+import {
+  searchUserPostStart,
+} from "../../store/actions/OtherUserAction";
+import { connect } from "react-redux";
 
 const ModelProfilePostSec = (props) => {
+
+  const handleSearch = (event) => {
+    props.dispatch(searchUserPostStart({ 
+      user_unique_id: props.otherUserUniquId,
+      search_key: event.currentTarget.value
+    }));
+  };
+
   return (
     <>
       <div
@@ -33,6 +45,7 @@ const ModelProfilePostSec = (props) => {
                   className="search-text"
                   type="text"
                   placeholder="Search Anything"
+                  onChange={handleSearch}
                 />
                 <Link to="#" className="search-btn">
                   <i class="fas fa-search"></i>
@@ -46,7 +59,7 @@ const ModelProfilePostSec = (props) => {
           "Loading..."
         ) : props.userPosts.data.posts.length > 0 ? (
           props.userPosts.data.posts.map((post) => (
-            <PostDisplayCard post={post} key={post.post_id} />
+            <PostDisplayCard post={post} key={post.post_id} scrollToTop={props.scrollToTop} />
           ))
         ) : (
           <NoDataFound />
@@ -56,4 +69,12 @@ const ModelProfilePostSec = (props) => {
   );
 };
 
-export default ModelProfilePostSec;
+const mapStateToPros = (state) => ({
+
+});
+
+function mapDispatchToProps(dispatch) {
+  return { dispatch };
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(ModelProfilePostSec);

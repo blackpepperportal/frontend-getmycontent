@@ -5,6 +5,7 @@ import FollowingExpiredSec from "./FollowingExpiredSec";
 import FollowingTabSec from "./FollowingTabSec";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   fetchActiveFollowingStart,
   fetchExpiredFollowingStart,
@@ -34,12 +35,18 @@ const FollowingIndex = (props) => {
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
                   <h3>
-                    <Image
-                      src="assets/images/icons/back.svg"
-                      className="svg-clone"
-                      width=""
-                    />
-                    Following
+                    <Link
+                      className="bookmarkes-list"
+                      to={"/home"}
+                      onClick={() => props.history.goBack()}
+                    >
+                      <Image
+                        src="assets/images/icons/back.svg"
+                        className="svg-clone"
+                      />
+                      Following
+                    </Link>
+                    
                   </h3>
                 </div>
               </div>

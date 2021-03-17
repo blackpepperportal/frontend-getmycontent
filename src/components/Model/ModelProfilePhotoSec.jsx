@@ -20,12 +20,12 @@ const ModelProfilePhotoSec = (props) => {
           "Loading..."
         ) : props.userPosts.data.posts.length > 0 ? (
           props.userPosts.data.posts.map((post) =>
-            post.post_files.length > 0
-              ? post.post_files.map((p_file) => (
+            post.postFiles.length > 0
+              ? post.postFiles.map((p_file) => (
                   <Media as="li" className="box">
                     <div className="inner">
                       <Link to="#" className="glightbox">
-                        <Image src={p_file.file} />
+                        <Image src={p_file.post_file} />
                       </Link>
                     </div>
                   </Media>

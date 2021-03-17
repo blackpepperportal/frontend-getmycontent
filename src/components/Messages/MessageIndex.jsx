@@ -26,6 +26,7 @@ import configuration from "react-global-configuration";
 import InboxLoader from "../Loader/InboxLoader";
 import { getErrorNotificationMessage } from "../helper/NotificationMessage";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
+import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 const $ = window.$;
 
 let chatSocket;
@@ -36,8 +37,9 @@ const MessageIndex = (props) => {
   const [inputMessage, setInputMessage] = useState("");
   const [initialHeight, setInitialHeight] = useState(0);
 
+  const messageRef = useRef();
+
   useEffect(() => {
-    console.log("asdfasdf first");
     props.dispatch(fetchChatUsersStart());
     let chatSocketUrl = configuration.get("configData.chat_socket_url");
     if (chatSocketUrl === "") {
@@ -46,6 +48,14 @@ const MessageIndex = (props) => {
       );
       props.dispatch(createNotification(notificationMessage));
       window.location.assign("/home");
+    }
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView(
+        {
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'nearest'
+        })
     }
   }, []);
 
@@ -111,6 +121,7 @@ const MessageIndex = (props) => {
         content.push(newData);
         // chatContent = [...this.state.chatData, ...content];
         // this.setState({ chatData: chatContent });
+        console.log(content);
         props.dispatch(addMessageContent(content));
       });
     }
@@ -218,14 +229,15 @@ const MessageIndex = (props) => {
                       >
                         {props.chatMessages.data.user.name}{" "}
                         {props.chatMessages.data.user.is_verified_badge == 1 ? (
-                          <img
-                            className="verified-badge"
-                            alt="verified-badge"
-                            src={
-                              window.location.origin +
-                              "/assets/images/verified.svg"
-                            }
-                          />
+                          // <img
+                          //   className="verified-badge"
+                          //   alt="verified-badge"
+                          //   src={
+                          //     window.location.origin +
+                          //     "/assets/images/verified.svg"
+                          //   }
+                          // />
+                          <VerifiedBadgeNoShadow/>
                         ) : null}
                       </Link>
                     </div>
@@ -307,7 +319,7 @@ const MessageIndex = (props) => {
 
                 <div className="chat-area">
                   <div className="chat-wrapper scrollbar" id="options-holder">
-                    <div className="chat-message padding overflow" id="check">
+                  <div className="chat-message padding overflow-height" id="check" ref={messageRef}>
                       {props.chatMessages.data.messages.length > 0
                         ? props.chatMessages.data.messages.map(
                             (chatMessage, index) => (

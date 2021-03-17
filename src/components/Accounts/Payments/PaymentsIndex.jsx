@@ -101,7 +101,7 @@ const PaymentsIndex = (props) => {
                           <i class="fas fa-unlock-alt"></i>
                         </div>
                         <div className="payment-body-info">
-                          <h3>SUBCRIBED</h3>
+                          <h3>SUBSCRIBED</h3>
                           <h4>{props.payments.data.user.total_followings}</h4>
                         </div>
                       </div>
@@ -165,6 +165,7 @@ const PaymentsIndex = (props) => {
                             <th>Mode</th>
                             <th>Message</th>
                             <th>Amount</th>
+                            <th>Service Fee</th>
                             <th>Status</th>
                           </tr>
                         </thead>
@@ -176,6 +177,7 @@ const PaymentsIndex = (props) => {
                               <td>{history.payment_mode}</td>
                               <td>{history.message}</td>
                               <td>{history.paid_amount_formatted}</td>
+                              <td>{history.admin_amount_formatted}</td>
                               <td>
                                 <p>
                                   <i class="far fa-clock mr-2"></i>

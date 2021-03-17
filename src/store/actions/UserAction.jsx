@@ -46,6 +46,12 @@ import {
   USER_VERIFY_BADGE_STATUS_START,
   USER_VERIFY_BADGE_STATUS_SUCCESS,
   USER_VERIFY_BADGE_STATUS_FAILURE,
+  RESET_PASSWORD_START,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE,
+  USERNAME_VALIDATION_START,
+  USERNAME_VALIDATION_SUCCESS,
+  USERNAME_VALIDATION_FAILURE,
 } from "./ActionConstant";
 
 // Get user details actions.
@@ -406,6 +412,50 @@ export function updateVerifyBadgeStatusSuccess(data) {
 export function updateVerifyBadgeStatusFailure(error) {
   return {
     type: USER_VERIFY_BADGE_STATUS_FAILURE,
+    error,
+  };
+}
+
+// User RESET_PASWORD actions.
+
+export function resetPasswordStart(data) {
+  return {
+    type: RESET_PASSWORD_START,
+    data,
+  };
+}
+
+export function resetPasswordSuccess(data) {
+  return {
+    type: RESET_PASSWORD_SUCCESS,
+    data,
+  };
+}
+
+export function resetPasswordFailure(error) {
+  return {
+    type: RESET_PASSWORD_FAILURE,
+    error,
+  };
+}
+
+export function usernameValidationStart(data) {
+  return {
+    type: USERNAME_VALIDATION_START,
+    data,
+  };
+}
+
+export function usernameValidationSuccess(data) {
+  return {
+    type: USERNAME_VALIDATION_SUCCESS,
+    data,
+  };
+}
+
+export function usernameValidationFailure(error) {
+  return {
+    type: USERNAME_VALIDATION_FAILURE,
     error,
   };
 }

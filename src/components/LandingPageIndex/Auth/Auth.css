@@ -1,0 +1,29 @@
+.modal-logo{
+    width:150px;
+    margin-bottom: 1em;
+}
+
+.social-button:hover,
+.social-button:focus,
+.social-button:active{
+    background: #0091ea!important;
+    color: #fff!important;
+}
+
+.social-button{
+    border-radius: 1000px!important;
+}
+
+.signin-modal.form-section {
+    width: 350px;
+    margin: auto;
+}
+
+.modal-btn-sec{
+    padding-top: 2em;
+}
+
+.signin-modal .or-line{
+    padding: 10px 0;
+}
+
