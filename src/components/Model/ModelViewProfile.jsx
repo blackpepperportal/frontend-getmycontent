@@ -517,6 +517,26 @@ const ModelViewProfile = (props) => {
                                 </a>
                               </span>
                             ) : null}
+                            {userDetails.data.user.snapchat_link ? (
+                              <span className="s-icon">
+                                
+                                <a
+                                  href={userDetails.data.user.snapchat_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/snapchat.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.twitter_link} */}
+                                </a>
+                              </span>
+                            ) : null}
                             {userDetails.data.user.youtube_link ? (
                               <span className="s-icon">
                                 
