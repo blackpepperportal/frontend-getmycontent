@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Form, Button, Container, Row, Col,Image } from "react-bootstrap";
 import ImageLoader from "../../helper/ImageLoader";
+import "./UserCategories.css";
 
 import {
     fetchUserDetailsStart,
@@ -52,15 +53,16 @@ const UserCategoriesIndex = (props) => {
   };
 
   return (
-    <div className="card-list-sec">
+    <div className="card-list-sec categories-sec">
       <Container>
         <h4 className="head-title">Categories</h4>
-        <Row>
+        {/* <Row>
           <Col sm={12} md={12}>
             <div className="add-bank-box">
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formHorizontalNickname">
                 <Form.Label>Categories</Form.Label>
+                <div className="radio-categories-group-sec">
                 {["checkbox"].map((type) => (
                     <div key={`custom-inline-${type}`}>
                         {props.profile &&
@@ -106,6 +108,7 @@ const UserCategoriesIndex = (props) => {
                         ) : ''}
                     </div>
                 ))}
+                </div>
                 </Form.Group>
                 <div className="edit-save">
                   <Button
@@ -121,7 +124,190 @@ const UserCategoriesIndex = (props) => {
               </Form>
             </div>
           </Col>
-        </Row>
+        </Row> */}
+        <Form>
+          <Row className="mb-4">
+            <Col md={12}>
+              <div className="radio-categories-group-sec">
+                  <div
+                    type="rounded"
+                    className="radio-categories-btn-sec"
+                  >
+                    <input
+                      type="checkbox"
+                      id="1"
+                      value="1"
+                      name="category_id"
+                    />
+                    <label htmlFor="1">
+                      <div className="categories-item">
+                        <div className="overlay-slider"></div>
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/g-2.jpg"
+                          }
+                          className="categories-img"
+                        />
+                        <p className="categories-title">
+                          Beno
+                        </p>
+                        <p className="follower-count-text">1K</p>
+                      </div>
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/checked.svg"
+                        }
+                        alt="user-image"
+                        className="checked-img"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    type="rounded"
+                    className="radio-categories-btn-sec"
+                  >
+                    <input
+                      type="checkbox"
+                      id="2"
+                      value="2"
+                      name="category_id"
+                    />
+                    <label htmlFor="2">
+                      <div className="categories-item">
+                        <div className="overlay-slider"></div>
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/g-2.jpg"
+                          }
+                          className="categories-img"
+                        />
+                        <p className="categories-title">
+                          Beno
+                        </p>
+                        <p className="follower-count-text">1K</p>
+                      </div>
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/checked.svg"
+                        }
+                        alt="user-image"
+                        className="checked-img"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    type="rounded"
+                    className="radio-categories-btn-sec"
+                  >
+                    <input
+                      type="checkbox"
+                      id="3"
+                      value="3"
+                      name="category_id"
+                    />
+                    <label htmlFor="3">
+                      <div className="categories-item">
+                        <div className="overlay-slider"></div>
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/g-2.jpg"
+                          }
+                          className="categories-img"
+                        />
+                        <p className="categories-title">
+                          Beno
+                        </p>
+                        <p className="follower-count-text">1K</p>
+                      </div>
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/checked.svg"
+                        }
+                        alt="user-image"
+                        className="checked-img"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    type="rounded"
+                    className="radio-categories-btn-sec"
+                  >
+                    <input
+                      type="checkbox"
+                      id="4"
+                      value="4"
+                      name="category_id"
+                    />
+                    <label htmlFor="4">
+                      <div className="categories-item">
+                        <div className="overlay-slider"></div>
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/g-2.jpg"
+                          }
+                          className="categories-img"
+                        />
+                        <p className="categories-title">
+                          Beno
+                        </p>
+                        <p className="follower-count-text">1K</p>
+                      </div>
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/checked.svg"
+                        }
+                        alt="user-image"
+                        className="checked-img"
+                      />
+                    </label>
+                  </div>
+                  <div
+                    type="rounded"
+                    className="radio-categories-btn-sec"
+                  >
+                    <input
+                      type="checkbox"
+                      id="5"
+                      value="5"
+                      name="category_id"
+                    />
+                    <label htmlFor="5">
+                      <div className="categories-item">
+                        <div className="overlay-slider"></div>
+                        <Image
+                          src={
+                            window.location.origin +
+                            "/assets/images/g-2.jpg"
+                          }
+                          className="categories-img"
+                        />
+                        <p className="categories-title">
+                         Movie & Entertinment
+                        </p>
+                        <p className="follower-count-text">1K</p>
+                      </div>
+                      <Image
+                        src={
+                          window.location.origin +
+                          "/assets/images/icons/checked.svg"
+                        }
+                        alt="user-image"
+                        className="checked-img"
+                      />
+                    </label>
+                  </div>
+              </div>
+            </Col>
+          </Row>
+        </Form>
       </Container>
     </div>
   );
