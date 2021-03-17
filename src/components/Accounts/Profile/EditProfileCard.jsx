@@ -529,7 +529,35 @@ const EditProfileCard = (props) => {
               />
             </div>
           </div>
-
+          <div
+            className="edit-input-wrapper disabled"
+            data-vv-delay="1000"
+            data-vv-as="Snapchat Link"
+          >
+            <Form.Label className="edit-input-label" for="edit_snapchat_link">
+              SNAPCHAT LINK
+              <span className="edit-input-optional">(optional)</span>
+            </Form.Label>
+            <div className="">
+              <Form.Control
+                id="edit_snapchat_link"
+                type="text"
+                autocomplete="off"
+                value={props.profile.data.snapchat_link}
+                placeholder="Snapchat Link"
+                name="snapchat_link"
+                className="form-control edit-reset"
+                onChange={(event) => {
+                  props.dispatch(
+                    editUserDetails(
+                      event.currentTarget.name,
+                      event.currentTarget.value
+                    )
+                  );
+                }}
+              />
+            </div>
+          </div>
           <div
             className="edit-input-wrapper disabled"
             data-vv-delay="1000"
