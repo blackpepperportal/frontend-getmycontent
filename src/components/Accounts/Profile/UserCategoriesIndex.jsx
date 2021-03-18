@@ -125,34 +125,36 @@ const UserCategoriesIndex = (props) => {
             </div>
           </Col>
         </Row> */}
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Row className="mb-4">
             <Col md={12}>
               <div className="radio-categories-group-sec">
+                {props.profile &&
+                  props.profile.data.categories &&
+                  props.profile.data.categories.length > 0 ? (
+                  props.profile.data.categories.map((category) => (
                   <div
                     type="rounded"
                     className="radio-categories-btn-sec"
                   >
                     <input
                       type="checkbox"
-                      id="1"
-                      value="1"
-                      name="category_id"
+                      id={"category" + category.u_category_id}
+                      value={category.u_category_id}
+                      name={category.u_category_id}
+                      onChange={handleSubCategory}
+                      defaultChecked={category.is_selected == 1 ? true : false}
                     />
-                    <label htmlFor="1">
+                    <label htmlFor={"category" + category.u_category_id}>
                       <div className="categories-item">
                         <div className="overlay-slider"></div>
                         <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/g-2.jpg"
-                          }
+                          src={category.picture}
                           className="categories-img"
                         />
                         <p className="categories-title">
-                          Beno
+                        {category.name}
                         </p>
-                        <p className="follower-count-text">1K</p>
                       </div>
                       <Image
                         src={
@@ -164,149 +166,22 @@ const UserCategoriesIndex = (props) => {
                       />
                     </label>
                   </div>
-                  <div
-                    type="rounded"
-                    className="radio-categories-btn-sec"
-                  >
-                    <input
-                      type="checkbox"
-                      id="2"
-                      value="2"
-                      name="category_id"
-                    />
-                    <label htmlFor="2">
-                      <div className="categories-item">
-                        <div className="overlay-slider"></div>
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/g-2.jpg"
-                          }
-                          className="categories-img"
-                        />
-                        <p className="categories-title">
-                          Beno
-                        </p>
-                        <p className="follower-count-text">1K</p>
-                      </div>
-                      <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/icons/checked.svg"
-                        }
-                        alt="user-image"
-                        className="checked-img"
-                      />
-                    </label>
-                  </div>
-                  <div
-                    type="rounded"
-                    className="radio-categories-btn-sec"
-                  >
-                    <input
-                      type="checkbox"
-                      id="3"
-                      value="3"
-                      name="category_id"
-                    />
-                    <label htmlFor="3">
-                      <div className="categories-item">
-                        <div className="overlay-slider"></div>
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/g-2.jpg"
-                          }
-                          className="categories-img"
-                        />
-                        <p className="categories-title">
-                          Beno
-                        </p>
-                        <p className="follower-count-text">1K</p>
-                      </div>
-                      <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/icons/checked.svg"
-                        }
-                        alt="user-image"
-                        className="checked-img"
-                      />
-                    </label>
-                  </div>
-                  <div
-                    type="rounded"
-                    className="radio-categories-btn-sec"
-                  >
-                    <input
-                      type="checkbox"
-                      id="4"
-                      value="4"
-                      name="category_id"
-                    />
-                    <label htmlFor="4">
-                      <div className="categories-item">
-                        <div className="overlay-slider"></div>
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/g-2.jpg"
-                          }
-                          className="categories-img"
-                        />
-                        <p className="categories-title">
-                          Beno
-                        </p>
-                        <p className="follower-count-text">1K</p>
-                      </div>
-                      <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/icons/checked.svg"
-                        }
-                        alt="user-image"
-                        className="checked-img"
-                      />
-                    </label>
-                  </div>
-                  <div
-                    type="rounded"
-                    className="radio-categories-btn-sec"
-                  >
-                    <input
-                      type="checkbox"
-                      id="5"
-                      value="5"
-                      name="category_id"
-                    />
-                    <label htmlFor="5">
-                      <div className="categories-item">
-                        <div className="overlay-slider"></div>
-                        <Image
-                          src={
-                            window.location.origin +
-                            "/assets/images/g-2.jpg"
-                          }
-                          className="categories-img"
-                        />
-                        <p className="categories-title">
-                         Movie & Entertinment
-                        </p>
-                        <p className="follower-count-text">1K</p>
-                      </div>
-                      <Image
-                        src={
-                          window.location.origin +
-                          "/assets/images/icons/checked.svg"
-                        }
-                        alt="user-image"
-                        className="checked-img"
-                      />
-                    </label>
-                  </div>
+                  ))
+                ) : ''}
               </div>
             </Col>
           </Row>
+          <div className="edit-save">
+            <Button
+              className="save-btn"
+              type="submit"
+              disabled={props.profileInputData.buttonDisable}
+            >
+              {props.profileInputData.loadingButtonContent !== null
+                  ? props.profileInputData.loadingButtonContent
+                  : "Submit"}
+            </Button>
+          </div>
         </Form>
       </Container>
     </div>
