@@ -132,13 +132,13 @@ const HeaderIndex = (props) => {
               </Button>
             </nav>
             
-             {localStorage.getItem("is_document_verified") == 3 ? (
-                <div className="pl-2">
-                  <Alert key={1} variant='danger'>
-                    The user updated documents decined by Admin.
-                  </Alert>
-                </div>
-              ) : null}
+              {/* {localStorage.getItem("is_document_verified") == 3 ? (
+                  <div className="pl-2">
+                    <Alert key={1} variant='danger'>
+                      The user updated documents decined by Admin.
+                    </Alert>
+                  </div>
+                ) : null} */}
              
           </Container>
         </header>
