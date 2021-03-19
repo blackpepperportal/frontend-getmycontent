@@ -19,7 +19,9 @@ const UserCategoriesIndex = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.dispatch(userCategoryUpdateStart(inputData));
+    const data = Array.from(event.currentTarget.elements).filter(el => (el.checked && el.getAttribute('type') === 'checkbox')).map(el => el.value);
+    let u_category_ids = data.join(); 
+    props.dispatch(userCategoryUpdateStart({ ...inputData, u_category_id: u_category_ids }));
   };
 
   const handleSubCategory = ({ currentTarget: input }) => {
@@ -142,7 +144,7 @@ const UserCategoriesIndex = (props) => {
                       id={"category" + category.u_category_id}
                       value={category.u_category_id}
                       name={category.u_category_id}
-                      onChange={handleSubCategory}
+                      // onChange={handleSubCategory}
                       defaultChecked={category.is_selected == 1 ? true : false}
                     />
                     <label htmlFor={"category" + category.u_category_id}>
