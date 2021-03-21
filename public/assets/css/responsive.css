@@ -134,6 +134,9 @@ Version: 1.0
     .search-content .pl-2{
         padding-left: 0!important;
     }
+    .gallery.js-gallery .react-player__preview {
+        min-height: 50vh;
+    }
 }
 
 
@@ -463,6 +466,13 @@ Version: 1.0
     .drawer__header{
         padding-bottom: 18px;
     }
+    .gallery.js-gallery .react-player__preview {
+        min-height: 50vh;
+    }
+    .bookmark-sec .vertical-menu {
+        display:flex;
+    }
+
 }
 
 

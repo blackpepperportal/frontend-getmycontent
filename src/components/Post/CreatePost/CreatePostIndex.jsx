@@ -267,7 +267,7 @@ const CreatePostIndex = (props) => {
               <Col sm={12} md={12}>
                 <Form.Group className="md-mrg-btm">
                   <label className="text-muted m-1 mt-3 f-12 text-uppercase">
-                    Upload Video Thumbnail:
+                    Upload Video Thumbnail:(Optional)
                   </label>
                   <Form.Control
                     style={{ display: "block" }}

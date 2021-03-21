@@ -207,6 +207,7 @@ const userReducer = (state = initialState, action) => {
             instagram_link: state.profile.data.instagram_link,
             facebook_link: state.profile.data.facebook_link,
             twitter_link: state.profile.data.twitter_link,
+            snapchat_link: state.profile.data.snapchat_link,
             linkedin_link: state.profile.data.linkedin_link,
             pinterest_link: state.profile.data.pinterest_link,
             youtube_link: state.profile.data.youtube_link,

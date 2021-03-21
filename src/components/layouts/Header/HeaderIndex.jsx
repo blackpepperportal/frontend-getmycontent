@@ -8,7 +8,7 @@ import io from "socket.io-client";
 import {
   updateNotificationCount,
 } from "../../../store/actions/NotificationAction";
-
+import Alert from 'react-bootstrap/Alert';
 import { connect } from "react-redux";
 let chatSocket;
 
@@ -44,7 +44,7 @@ const HeaderIndex = (props) => {
           localStorage.getItem("userId"),
         myid: localStorage.getItem("userId"),
       });
-      if(localStorage.getItem("socket")) {
+      if(localStorage.getItem("socket") == "true") {
         chatSocket.on("notification", (newData) => {
           console.log(newData);
           setChatCount(newData.chat_notification);
@@ -87,7 +87,7 @@ const HeaderIndex = (props) => {
                     "/assets/images/icons/notification.svg"
                   }
                 />
-                {configuration.get("configData.is_notification_count_enabled") == 1 && bellCount > 0 ?
+                {bellCount > 0 ?
                   <Badge variant="light" className="badge-notify">{bellCount}</Badge>
                 : ""}
                 
@@ -113,7 +113,7 @@ const HeaderIndex = (props) => {
                   src={window.location.origin + "/assets/images/icons/chat.svg"}
                 />
                 {/* <span className="main-header-menu__count"> 5 </span> */}
-                {configuration.get("configData.is_notification_count_enabled") == 1 && chatCount > 0 ?
+                {chatCount > 0 ?
                   <Badge variant="light" className="badge-notify">{chatCount}</Badge>
                 : ""}
               </Link>
@@ -131,6 +131,15 @@ const HeaderIndex = (props) => {
                 />
               </Button>
             </nav>
+            
+              {/* {localStorage.getItem("is_document_verified") == 3 ? (
+                  <div className="pl-2">
+                    <Alert key={1} variant='danger'>
+                      The user updated documents decined by Admin.
+                    </Alert>
+                  </div>
+                ) : null} */}
+             
           </Container>
         </header>
       ) : (

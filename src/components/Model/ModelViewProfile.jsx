@@ -31,6 +31,11 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 
 const ModelViewProfile = (props) => {
+
+  const toggleVisibility = () => {
+    
+  };
+
   useEffect(() => {
     props.dispatch(
       fetchSingleUserProfileStart({
@@ -43,6 +48,8 @@ const ModelViewProfile = (props) => {
         type: "all",
       })
     );
+
+    window.addEventListener("scroll", toggleVisibility);
   }, []);
 
   const [activeSec, setActiveSec] = useState("post");
@@ -169,9 +176,18 @@ const ModelViewProfile = (props) => {
 
   const { userDetails } = props;
 
+  const scrollToTop = () => {
+    console.log('adadasdas');
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+
   return (
     <>
-      <div className="my-profile user-profile-page model-view-profile-sec">
+      <div className="my-profile user-profile-page model-view-profile-sec scroll-to-top">
         <Container>
           <Row>
             {userDetails.loading ? (
@@ -501,6 +517,26 @@ const ModelViewProfile = (props) => {
                                 </a>
                               </span>
                             ) : null}
+                            {userDetails.data.user.snapchat_link ? (
+                              <span className="s-icon">
+                                
+                                <a
+                                  href={userDetails.data.user.snapchat_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/snapchat.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.twitter_link} */}
+                                </a>
+                              </span>
+                            ) : null}
                             {userDetails.data.user.youtube_link ? (
                               <span className="s-icon">
                                 
@@ -656,7 +692,7 @@ const ModelViewProfile = (props) => {
                                   user_unique_id:
                                     userDetails.data.user.user_unique_id,
                                   plan_type: "month",
-                                  is_free: 1,
+                                  is_free: 0,
                                 })
                               )
                             }
@@ -760,18 +796,22 @@ const ModelViewProfile = (props) => {
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
                       userPosts={props.userPosts}
+                      scrollToTop={scrollToTop}
+                      otherUserUniquId={props.match.params.username}
                     />
 
                     <ModelProfilePhotoSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
                       userPosts={props.userPosts}
+                      otherUserUniquId={props.match.params.username}
                     />
 
                     <ModelProfileVideoSec
                       activeSec={activeSec}
                       setActiveSec={setActiveSec}
                       userPosts={props.userPosts}
+                      otherUserUniquId={props.match.params.username}
                     />
                   </div>
                 </div>

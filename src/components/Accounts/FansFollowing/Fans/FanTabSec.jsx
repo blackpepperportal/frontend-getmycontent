@@ -37,7 +37,7 @@ const FanTabSec = (props) => {
           onClick={(event) => props.changeSection(event, "expired-sec")}
         >
           <Image src="assets/images/icons/warning.svg" className="svg-clone" />
-          <span className="tab-nav-item"> Expired </span>
+          <span className="tab-nav-item"> Unsubscribed </span>
         </Link>
       </Media>
       <Media

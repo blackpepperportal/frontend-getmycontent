@@ -315,6 +315,25 @@ const ProfileIndex = (props) => {
                                 </a>
                               </span>
                             ) : null}
+                            {props.profile.data.snapchat_link ? (
+                              <span className="s-icon">
+                                <a
+                                  href={props.profile.data.snapchat_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                    src={
+                                      window.location.origin +
+                                      "/assets/social/snapchat.svg"
+                                    }
+                                    class="s_icon_16"
+                                  />{" "}
+                                  {/* {props.profile.data.twitter_link} */}
+                                </a>
+                              </span>
+                            ) : null}
                             {props.profile.data.youtube_link ? (
                               <span className="s-icon">
                                 <a

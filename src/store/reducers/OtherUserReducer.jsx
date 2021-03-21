@@ -5,6 +5,9 @@ import {
   FETCH_SINGLE_USER_POSTS_START,
   FETCH_SINGLE_USER_POSTS_SUCCESS,
   FETCH_SINGLE_USER_POSTS_FAILURE,
+  SEARCH_USER_POST_START,
+  SEARCH_USER_POST_SUCCESS,
+  SEARCH_USER_POST_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -17,6 +20,14 @@ const initialState = {
     buttonDisable: false,
   },
   userPosts: {
+    data: {},
+    loading: true,
+    error: false,
+    inputData: {},
+    loadingButtonContent: null,
+    buttonDisable: false,
+  },
+  searchPosts: {
     data: {},
     loading: true,
     error: false,
@@ -100,6 +111,42 @@ const OtherUserReducer = (state = initialState, action) => {
           buttonDisable: false,
         },
       };
+      case SEARCH_USER_POST_START:
+        return {
+          ...state,
+          searchPosts: {
+            data: {},
+            loading: true,
+            error: false,
+            inputData: action.data,
+            loadingButtonContent: "Loading... Please wait.",
+            buttonDisable: true,
+          },
+        };
+      case SEARCH_USER_POST_SUCCESS:
+        return {
+          ...state,
+          searchPosts: {
+            data: action.data,
+            loading: false,
+            error: false,
+            inputData: {},
+            loadingButtonContent: null,
+            buttonDisable: false,
+          },
+        };
+      case SEARCH_USER_POST_FAILURE:
+        return {
+          ...state,
+          searchPosts: {
+            data: {},
+            loading: true,
+            error: action.error,
+            inputData: {},
+            loadingButtonContent: null,
+            buttonDisable: false,
+          },
+        };
 
     default:
       return state;

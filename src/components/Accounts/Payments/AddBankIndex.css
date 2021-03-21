@@ -1,5 +1,5 @@
 .add-bank-box{
-    background: #ffffff;
+    background: var(--secondary-color);
     padding: 50px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -11,7 +11,7 @@
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #8a96a3;
+    color: var(--quaternary-color);
     padding: 12px 6px;
     margin: 0;
 }

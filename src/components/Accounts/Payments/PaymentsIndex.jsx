@@ -165,6 +165,7 @@ const PaymentsIndex = (props) => {
                             <th>Mode</th>
                             <th>Message</th>
                             <th>Amount</th>
+                            <th>Service Fee</th>
                             <th>Status</th>
                           </tr>
                         </thead>
@@ -176,6 +177,7 @@ const PaymentsIndex = (props) => {
                               <td>{history.payment_mode}</td>
                               <td>{history.message}</td>
                               <td>{history.paid_amount_formatted}</td>
+                              <td>{history.admin_amount_formatted}</td>
                               <td>
                                 <p>
                                   <i class="far fa-clock mr-2"></i>

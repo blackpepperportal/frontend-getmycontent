@@ -13,6 +13,7 @@ import { unFollowUserStart } from "../../../store/actions/FollowAction";
 import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
 
 const UserCard = (props) => {
+  console.log(props.user);
   const [sendTip, setSendTip] = useState(false);
 
   const closeSendTipModal = () => {
@@ -274,7 +275,7 @@ const UserCard = (props) => {
                               className="svg-clone my-p-icons"
                               width="12"
                             />
-                            Remove to favorites
+                            Remove from favorites
                           </Link>
                         ) : null}
                       </>
@@ -306,7 +307,7 @@ const UserCard = (props) => {
                         className="svg-clone my-p-icons"
                         width="12"
                       />
-                      Remove to favorites
+                      Remove from favorites
                     </Link>
                   ) : (
                     <Link
