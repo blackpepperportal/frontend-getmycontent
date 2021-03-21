@@ -22,8 +22,8 @@ import {
 } from "../../store/actions/PostAction";
 import { saveBlockUserStart } from "../../store/actions/UserAction";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -78,9 +78,9 @@ const PostDisplayCard = (props) => {
     }
   };
 
-  const handlePPVPayment = (event,status) => {
+  const handlePPVPayment = (event, status) => {
     event.preventDefault();
-    if(status && status == 1) {
+    if (status && status == 1) {
       setModalStatus(0);
       setPPVPayment(true);
     } else {
@@ -136,10 +136,12 @@ const PostDisplayCard = (props) => {
 
                 <div className="user-name">
                   <span className="post-user-name">
-                    <span className="user-name-post">{post.user_displayname}</span>
+                    <span className="user-name-post">
+                      {post.user_displayname}
+                    </span>
                     {"  "}
                     {post.is_verified_badge == 1 ? (
-                      <VerifiedBadgeNoShadow/>
+                      <VerifiedBadgeNoShadow />
                     ) : null}
                   </span>
                   <span className="post-user-">@{post.username}</span>
@@ -230,12 +232,19 @@ const PostDisplayCard = (props) => {
                 {post.is_user_needs_pay === 1 ? (
                   <span
                     className="post-time"
-                    onClick={(event) => handlePPVPayment(event,post.is_user_needs_pay)}
+                    onClick={(event) =>
+                      handlePPVPayment(event, post.is_user_needs_pay)
+                    }
                   >
                     <span className="post-tip-lock">
                       {post.amount_formatted}{" "}
                     </span>
-                    <Link to="#" onClick={(event) => handlePPVPayment(event,post.is_user_needs_pay)}>
+                    <Link
+                      to="#"
+                      onClick={(event) =>
+                        handlePPVPayment(event, post.is_user_needs_pay)
+                      }
+                    >
                       <i className="fa fa-lock"></i>
                     </Link>
                   </span>
@@ -259,27 +268,60 @@ const PostDisplayCard = (props) => {
               ? post.postFiles.length > 0
                 ? post.postFiles.map((postFile, index) =>
                     postFile.file_type === "image" ? (
-                      <Link to="#"
-                        onClick={(event) => handlePPVPayment(event,post.payment_info.is_user_needs_pay)}>
+                      <Link
+                        to="#"
+                        onClick={(event) =>
+                          handlePPVPayment(
+                            event,
+                            post.payment_info.is_user_needs_pay
+                          )
+                        }
+                      >
                         <div className="post-image" key={index}>
                           <div className="">
                             <div className="gallery js-gallery">
-                              <Image
-                                src={postFile.post_file}
-                                className="post-view-image"
-                              />
-
+                              {post.payment_info.is_user_needs_pay == 1 ? (
+                                <Image
+                                  src={postFile.post_file}
+                                  className="post-view-image"
+                                  style={{ filter: "blur(20px)" }}
+                                />
+                              ) : (
+                                <Image
+                                  src={postFile.post_file}
+                                  className="post-view-image"
+                                />
+                              )}
                             </div>
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'ppv' ? 
-                            <div className="gallery-top-btn-sec">
-                              <Button className="subscribe-post-btn-sec" onClick={(event) => handlePPVPayment(event,1)}>{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'subscription' ? 
-                            <div className="gallery-top-btn-sec" onClick={props.scrollToTop}>
-                              <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type === "ppv" ? (
+                              <div className="gallery-top-btn-sec">
+                                <Button
+                                  className="subscribe-post-btn-sec"
+                                  onClick={(event) =>
+                                    handlePPVPayment(event, 1)
+                                  }
+                                >
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type ===
+                              "subscription" ? (
+                              <div
+                                className="gallery-top-btn-sec"
+                                onClick={props.scrollToTop}
+                              >
+                                <Button className="subscribe-post-btn-sec">
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
                           </div>
                           {modalStatus ? (
                             <Lightbox
@@ -288,7 +330,9 @@ const PostDisplayCard = (props) => {
                               // prevSrc={images[(photoIndex + images.length - 1) % images.length]}
                               onCloseRequest={() => setModalStatus(0)}
                             />
-                          ) : ''}
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </Link>
                     ) : postFile.file_type === "video" ? (
@@ -314,16 +358,35 @@ const PostDisplayCard = (props) => {
                                 className="post-video-size"
                               />
                             )}
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'ppv' ? 
-                            <div className="gallery-top-btn-sec">
-                              <Button className="subscribe-post-btn-sec" onClick={(event) => handlePPVPayment(event,1)}>{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'subscription' ? 
-                            <div className="gallery-top-btn-sec" onClick={props.scrollToTop}>
-                              <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type === "ppv" ? (
+                              <div className="gallery-top-btn-sec">
+                                <Button
+                                  className="subscribe-post-btn-sec"
+                                  onClick={(event) =>
+                                    handlePPVPayment(event, 1)
+                                  }
+                                >
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type ===
+                              "subscription" ? (
+                              <div
+                                className="gallery-top-btn-sec"
+                                onClick={props.scrollToTop}
+                              >
+                                <Button className="subscribe-post-btn-sec">
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                       </div>
@@ -405,18 +468,20 @@ const PostDisplayCard = (props) => {
                 />
               </Link>
               {localStorage.getItem("userId") != post.user_id ? (
-              <Button
-                type="button"
-                className="g-icon"
-                onClick={() => setSendTip(true)}
-              >
-                <Image
-                  src={window.location.origin + "/assets/images/icons/tip.svg"}
-                  className="svg-clone"
-                />
+                <Button
+                  type="button"
+                  className="g-icon"
+                  onClick={() => setSendTip(true)}
+                >
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/tip.svg"
+                    }
+                    className="svg-clone"
+                  />
 
-                <span className="post-tip">SEND TIP</span>
-              </Button>
+                  <span className="post-tip">SEND TIP</span>
+                </Button>
               ) : null}
             </div>
             <div className="alignright">
