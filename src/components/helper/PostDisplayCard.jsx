@@ -122,10 +122,12 @@ const PostDisplayCard = (props) => {
 
                 <div className="user-name">
                   <span className="post-user-name">
-                    <span className="user-name-post">{post.user_displayname}</span>
+                    <span className="user-name-post">
+                      {post.user_displayname}
+                    </span>
                     {"  "}
                     {post.is_verified_badge == 1 ? (
-                      <VerifiedBadgeNoShadow/>
+                      <VerifiedBadgeNoShadow />
                     ) : null}
                   </span>
                   <span className="post-user-">@{post.username}</span>
@@ -248,13 +250,23 @@ const PostDisplayCard = (props) => {
                       <div className="post-image" key={index}>
                         <div className="">
                           <div className="gallery js-gallery">
-                            <Image
-                              src={postFile.post_file}
-                              className="post-view-image"
-                            />
+                            {post.payment_info.is_user_needs_pay == 1 ? (
+                              <Image
+                                src={postFile.post_file}
+                                className="post-view-image"
+                                style={{ filter: "blur(20px)" }}
+                              />
+                            ) : (
+                              <Image
+                                src={postFile.post_file}
+                                className="post-view-image"
+                              />
+                            )}
                           </div>
-                          <div className="gallery-top-btn-sec">
-                            <Button className="subscribe-post-btn-sec">SUBSCRIBE TO SEE USER'S POSTS</Button>
+                          <div className="gallery-top-btn-sec" hidden>
+                            <Button className="subscribe-post-btn-sec">
+                              SUBSCRIBE TO SEE USER'S POSTS
+                            </Button>
                           </div>
                         </div>
                       </div>
@@ -362,18 +374,20 @@ const PostDisplayCard = (props) => {
                 />
               </Link>
               {localStorage.getItem("userId") != post.user_id ? (
-              <Button
-                type="button"
-                className="g-icon"
-                onClick={() => setSendTip(true)}
-              >
-                <Image
-                  src={window.location.origin + "/assets/images/icons/tip.svg"}
-                  className="svg-clone"
-                />
+                <Button
+                  type="button"
+                  className="g-icon"
+                  onClick={() => setSendTip(true)}
+                >
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/tip.svg"
+                    }
+                    className="svg-clone"
+                  />
 
-                <span className="post-tip">SEND TIP</span>
-              </Button>
+                  <span className="post-tip">SEND TIP</span>
+                </Button>
               ) : null}
             </div>
             <div className="alignright">
