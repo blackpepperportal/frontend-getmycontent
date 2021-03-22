@@ -61,10 +61,12 @@ const DocumentUploadIndex = (props) => {
       <div className="document-upload-sec">
         <Container>
           <h4 class="head-title">Upload Your Documents</h4>
-          {props.kycDocDetails.loading ? '' :
-              <h3>{props.kycDocDetails.data.document_status_text_formatted}</h3>
-          }
-          
+          {props.kycDocDetails.loading ? (
+            ""
+          ) : (
+            <h3>{props.kycDocDetails.data.document_status_text_formatted}</h3>
+          )}
+
           {props.kycDocDetails.loading ? (
             <DocumentUploadLoader></DocumentUploadLoader>
           ) : props.kycDocDetails.data.documents.length > 0 ? (
@@ -91,7 +93,7 @@ const DocumentUploadIndex = (props) => {
                     )}
                     <Col sm={12} md={6} xl={6}>
                       <FormGroup>
-                        {doc.is_delete_edit_option ? 
+                        {doc.is_delete_edit_option ? (
                           <Form.File
                             type="file"
                             id={doc.document_id}
@@ -99,7 +101,7 @@ const DocumentUploadIndex = (props) => {
                             onChange={(event) => handleChangeImage(event, doc)}
                             accept="image/*"
                           />
-                        : null}
+                        ) : null}
                         <Form.Label
                           htmlFor={doc.document_id}
                           className="document-upload-box-1"
@@ -118,7 +120,7 @@ const DocumentUploadIndex = (props) => {
                           <br></br>
                           <p className="document-desc">
                             {doc.is_delete_edit_option
-                              ? "Click here to reupload"
+                              ? "Click here to upload"
                               : null}
                           </p>
                         </Form.Label>
@@ -131,9 +133,7 @@ const DocumentUploadIndex = (props) => {
                         <Button
                           className="receive-btn-blue"
                           onClick={(event) => handleSubmit(event, doc)}
-                          disabled={
-                            doc.is_delete_edit_option ? false : true
-                          }
+                          disabled={doc.is_delete_edit_option ? false : true}
                         >
                           {uploadDocumentID === doc.document_id
                             ? props.addKycDocInput.loadingButtonContent
