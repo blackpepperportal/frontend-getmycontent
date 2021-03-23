@@ -191,6 +191,7 @@ class AuthFooter extends Component {
                     </Dropdown.Menu>
                   </Dropdown>
 
+                  { configuration.get("configData.is_multilanguage_enabled") == 1 ? (
                   <div className="select-lang-drop-down">
                     <select
                         className="form-control mw-200 mb-3"
@@ -223,6 +224,9 @@ class AuthFooter extends Component {
                       </option>
                     </select>
                 </div>
+                ) : (
+                 ''
+                )}
                 </Col>
               </Row>
             </div>
