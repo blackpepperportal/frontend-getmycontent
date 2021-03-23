@@ -10,6 +10,7 @@ import useInfiniteScroll from "../helper/useInfiniteScroll";
 import ReactPlayer from "react-player/lazy";
 import BookmarkLoader from "../Loader/BookmarkLoader";
 import PostDisplayCard from "../helper/PostDisplayCard";
+import { translate, t } from "react-multi-lang";
 
 const BookmarkVideo = (props) => {
   useEffect(() => {
@@ -50,7 +51,7 @@ const BookmarkVideo = (props) => {
             <div className="profile-post-area">
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
-                  <h3>Videos</h3>
+                  <h3>{t("Videos")}</h3>
                 </div>
               </div>
             </div>
@@ -83,4 +84,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(BookmarkVideo);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(BookmarkVideo));

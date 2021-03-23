@@ -283,4 +283,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(PaymentsIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(PaymentsIndex));

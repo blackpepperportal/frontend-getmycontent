@@ -107,4 +107,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(BookmarkPhoto);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(BookmarkPhoto));
