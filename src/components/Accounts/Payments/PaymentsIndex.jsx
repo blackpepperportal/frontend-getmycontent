@@ -22,6 +22,7 @@ import CancelWithdrawModal from "../../helper/CancelWithdrawModal";
 import { fetchPaymentsStart } from "../../../store/actions/UserAction";
 import configuration from "react-global-configuration";
 import NoDataFound from "../../NoDataFound/NoDataFound";
+import { translate, t } from "react-multi-lang";
 
 const PaymentsIndex = (props) => {
   useEffect(() => {
@@ -80,7 +81,7 @@ const PaymentsIndex = (props) => {
               </div>
               <div className="payment-body">
                 {props.payments.loading ? (
-                  "Loading..."
+                  t("loading")
                 ) : (
                   <Row>
                     <Col sm={6} xs={6} md={6} className="padding-sm space-sm">
@@ -89,7 +90,7 @@ const PaymentsIndex = (props) => {
                           <i class="fas fa-bars"></i>
                         </div>
                         <div className="payment-body-info">
-                          <h3>POSTS</h3>
+                          <h3>{t("posts")}</h3>
                           <h4>{props.payments.data.user.total_posts}</h4>
                         </div>
                       </div>
@@ -101,7 +102,7 @@ const PaymentsIndex = (props) => {
                           <i class="fas fa-unlock-alt"></i>
                         </div>
                         <div className="payment-body-info">
-                          <h3>SUBSCRIBED</h3>
+                          <h3>{t("subscribed")}</h3>
                           <h4>{props.payments.data.user.total_followings}</h4>
                         </div>
                       </div>
@@ -112,7 +113,7 @@ const PaymentsIndex = (props) => {
                           <i class="fas fa-user-friends"></i>
                         </div>
                         <div className="payment-body-info">
-                          <h3>SUBSCRIBERS</h3>
+                          <h3>{t("subscribers")}</h3>
                           <h4>{props.payments.data.user.total_followers}</h4>
                         </div>
                       </div>
@@ -123,19 +124,19 @@ const PaymentsIndex = (props) => {
             </div>
             <div className="payment-refer-add-box hidden">
               <div className="payment-body">
-                <h2>Refer your friends to</h2>
+                <h2>{t("refer_your_friend")}</h2>
                 <Link to="#" aria-current="page" className="sign-in-logo">
                   <Image
                     src={configuration.get("configData.site_logo")}
                     width="237"
                   />
                 </Link>
-                <h2>earn 5% commission,</h2>
-                <h2>LIFETIME!</h2>
+                <h2>{t("earn_commission")},</h2>
+                <h2>{t("lifetime")}!</h2>
               </div>
               <div className="payment-footer">
                 <h2>
-                  <i class="fab fa-twitter mr-3"></i> Tweet your referral URL
+                  <i class="fab fa-twitter mr-3"></i> {t("tweet_your_referral")}
                 </h2>
               </div>
             </div>
@@ -143,30 +144,30 @@ const PaymentsIndex = (props) => {
           <Col sm={12} md={12} xl={8} lg={8}>
             <div className="payment-tabs-card">
               <div className="flex-content">
-                <h2>Statements</h2>
+                <h2>{t("statements")}</h2>
                 <Button
                   className="send-withdraw-btn"
                   onClick={() => setWithdrawModal(true)}
                 >
-                  Send Withdraw
+                  {t("send_withdraw")}
                 </Button>
               </div>
               <Tabs defaultActiveKey="earnings" id="uncontrolled-tab-example">
                 <Tab eventKey="earnings" title="Earnings">
                   <div className="payment-tabs-content">
                     {props.transaction.loading ? (
-                      "Loading..."
+                      t("loading")
                     ) : props.transaction.data.history.length > 0 ? (
                       <Table borderedless responsive>
                         <thead>
                           <tr className="bg-white">
-                            <th>Date</th>
-                            <th>Transaction ID</th>
-                            <th>Mode</th>
-                            <th>Message</th>
-                            <th>Amount</th>
-                            <th>Service Fee</th>
-                            <th>Status</th>
+                            <th>{t("date")}</th>
+                            <th>{t("transaction_id")}</th>
+                            <th>{t("mode")}</th>
+                            <th>{t("message")}</th>
+                            <th>{t("amount")}</th>
+                            <th>{t("service_fee")}</th>
+                            <th>{t("status")}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -197,18 +198,18 @@ const PaymentsIndex = (props) => {
                 <Tab eventKey="payments" title="Withdraws">
                   <div className="payment-tabs-content">
                     {props.withDrawals.loading ? (
-                      "Loading..."
+                      t("loading")
                     ) : props.withDrawals.data.history.length > 0 ? (
                       <Table borderedless responsive>
                         <thead>
                           <tr className="bg-white">
-                            <th>Date</th>
-                            <th>Transaction ID</th>
-                            <th>Billing Account</th>
-                            <th>Requested</th>
-                            <th>Paid</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>{t("date")}</th>
+                            <th>{t("transaction_id")}</th>
+                            <th>{t("billing_account")}</th>
+                            <th>{t("requested")}</th>
+                            <th>{t("paid")}</th>
+                            <th>{t("status")}</th>
+                            <th>{t("action")}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -236,7 +237,7 @@ const PaymentsIndex = (props) => {
                                       }
                                       className="cancel-btn"
                                     >
-                                      Cancel
+                                      {t("cancel")}
                                     </Button>
                                   ) : (
                                     ""

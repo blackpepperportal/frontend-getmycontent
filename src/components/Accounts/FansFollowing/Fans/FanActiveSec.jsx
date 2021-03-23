@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import UserCard from "../UserCard";
-
+import { translate, t } from "react-multi-lang";
 import NoDataFound from "../../../NoDataFound/NoDataFound";
 
 const FanActiveSec = (props) => {
@@ -18,7 +18,7 @@ const FanActiveSec = (props) => {
         id="active"
       >
         {props.followers.loading ? (
-          "Loading..."
+          t("loading")
         ) : (
           <>
             <div className="bookmarkes-list bookmarks-right-side">
@@ -29,7 +29,7 @@ const FanActiveSec = (props) => {
                       ? props.followers.data.total
                       : 0}{" "}
                   </span>{" "}
-                  ACTIVE
+                  {t("active")}
                 </Link>
               </div>
             </div>
@@ -49,4 +49,4 @@ const FanActiveSec = (props) => {
   );
 };
 
-export default FanActiveSec;
+export default translate(FanActiveSec);

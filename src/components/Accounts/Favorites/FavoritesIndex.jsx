@@ -6,6 +6,7 @@ import { fetchFavStart } from "../../../store/actions/FavAction";
 import NoDataFound from "../../NoDataFound/NoDataFound";
 import useInfiniteScroll from "../../helper/useInfiniteScroll";
 import { Link } from "react-router-dom";
+import { translate, t } from "react-multi-lang";
 
 const FavoritesIndex = (props) => {
   useEffect(() => {
@@ -57,13 +58,13 @@ const FavoritesIndex = (props) => {
                         width=""
                       />{" "}
                     </Link>
-                    Favorites
+                    {t("favorites")}
                   </h3>
                 </div>
               </div>
             </div>
             {props.fav.loading ? (
-              "Loading..."
+              t("loading")
             ) : props.fav.data.favs.length > 0 ? (
               props.fav.data.favs.map((fav_user) => (
                 fav_user.fav_user ? 
@@ -78,7 +79,7 @@ const FavoritesIndex = (props) => {
         {noMoreData !== true ? (
           <>{isFetching && "Fetching more list items..."}</>
         ) : (
-          "No More Data"
+          t("no_more_data")
         )}
       </Container>
     </div>
@@ -93,4 +94,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(FavoritesIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(FavoritesIndex));

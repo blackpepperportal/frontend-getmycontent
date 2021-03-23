@@ -12,6 +12,7 @@ import {
   fetchFollowersStart,
 } from "../../../../store/actions/FollowAction";
 import FollowingLoader from "../../../Loader/FollowingLoader";
+import { translate, t } from "react-multi-lang";
 
 const FanIndex = (props) => {
   useEffect(() => {
@@ -44,7 +45,7 @@ const FanIndex = (props) => {
                         src="assets/images/icons/back.svg"
                         className="svg-clone"
                       />
-                      Fans
+                      {t("fans")}
                     </Link>
                   </h3>
                 </div>
@@ -95,4 +96,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(FanIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(FanIndex));

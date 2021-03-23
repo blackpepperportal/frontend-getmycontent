@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchListsDetailsStart } from "../../../store/actions/HomeAction";
+import { translate, t } from "react-multi-lang";
 
 const ListIndex = (props) => {
   useEffect(() => {
@@ -14,7 +15,7 @@ const ListIndex = (props) => {
         <Row>
           <Col sm={12} md={12}>
             {props.lists.loading ? (
-              "Loading..."
+              t("loading")
             ) : (
               <div className="vertical-menu">
                 <div className="bookmarkes-list bookmarks-right-side ">
@@ -28,7 +29,7 @@ const ListIndex = (props) => {
                         src="assets/images/icons/back.svg"
                         className="svg-clone"
                       />
-                      Lists
+                      {t("lists")}
                     </Link>
                   </div>
                   {/* <div className="pull-right">
@@ -44,16 +45,16 @@ const ListIndex = (props) => {
 
                 <div className="user-lists-heading">
                   <div className="pull-left">
-                    <h3 className="mb-3 mt-3">CUSTOM ORDER</h3>
+                    <h3 className="mb-3 mt-3">{t("custom_order")}</h3>
                   </div>
                 </div>
 
                 <div className="user-lists">
                   <Link to={"/fans"}>
                     <div className="pull-left">
-                      <h3>Fans</h3>
+                      <h3>{t("fans")}</h3>
                       <span className="user-list-count">
-                        {props.lists.data.total_followers} people
+                        {props.lists.data.total_followers} {t("people")}
                       </span>
                     </div>
                     <div className="pull-right"></div>
@@ -63,9 +64,9 @@ const ListIndex = (props) => {
                 <div className="user-lists">
                   <Link to={"/following"}>
                     <div className="pull-left">
-                      <h3>Following</h3>
+                      <h3>{t("following")}</h3>
                       <span className="user-list-count">
-                        {props.lists.data.total_followings} people
+                        {props.lists.data.total_followings} {t("people")}
                       </span>
                     </div>
                   </Link>
@@ -73,9 +74,9 @@ const ListIndex = (props) => {
                 <div className="user-lists">
                   <Link to={"/favorites"}>
                     <div className="pull-left">
-                      <h3>Favorites</h3>
+                      <h3>{t("favorites")}</h3>
                       <span className="user-list-count">
-                        {props.lists.data.total_fav_users} people
+                        {props.lists.data.total_fav_users} {t("people")}
                       </span>
                     </div>
                     <div className="pull-right"></div>
@@ -84,9 +85,9 @@ const ListIndex = (props) => {
                 <div className="user-lists">
                   <Link to={"/bookmarks"}>
                     <div className="pull-left">
-                      <h3>Bookmarks</h3>
+                      <h3>{t("bookmarks")}</h3>
                       <span className="user-list-count">
-                        {props.lists.data.total_bookmarks} people
+                        {props.lists.data.total_bookmarks} {t("people")}
                       </span>
                     </div>
                     <div className="pull-right"></div>
@@ -118,4 +119,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(ListIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(ListIndex));

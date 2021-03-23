@@ -11,6 +11,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { saveBlockUserStart } from "../../../store/actions/UserAction";
 import { unFollowUserStart } from "../../../store/actions/FollowAction";
 import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
+import { translate, t } from "react-multi-lang";
 
 const UserCard = (props) => {
   console.log(props.user);
@@ -94,7 +95,7 @@ const UserCard = (props) => {
                       className="follower-status-text"
                       style={{ display: "none" }}
                     >
-                      Last seen
+                      {t("last_seen")}
                       <span title="User Updated">{props.user.updated}</span>
                     </div>
                     <div className="follower-profile-toggle-dropdown">
@@ -125,7 +126,7 @@ const UserCard = (props) => {
                             onCopy={onCopy}
                           >
                             <Media as="li">
-                              <Link to="#"> Copy link to profile </Link>
+                              <Link to="#"> {t("copy_link_to_profile")} </Link>
                             </Media>
                           </CopyToClipboard>
 
@@ -138,7 +139,7 @@ const UserCard = (props) => {
                                     handleBlockUser(event, "blocked")
                                   }
                                 >
-                                  Block the user
+                                  {t("block_the_user")}
                                 </Link>
                               </Media>
                             ) : (
@@ -149,7 +150,7 @@ const UserCard = (props) => {
                                     handleBlockUser(event, "unblocked")
                                   }
                                 >
-                                  Unblock the user
+                                  {t("unblock_the_user")}
                                 </Link>
                               </Media>
                             )
@@ -161,7 +162,7 @@ const UserCard = (props) => {
                                   handleBlockUser(event, "unblocked")
                                 }
                               >
-                                Unblock the user
+                                {t("unblock_the_user")}
                               </Link>
                             </Media>
                           ) : (
@@ -172,7 +173,7 @@ const UserCard = (props) => {
                                   handleBlockUser(event, "blocked")
                                 }
                               >
-                                Block the user
+                                {t("block_the_user")}
                               </Link>
                             </Media>
                           )}
@@ -181,7 +182,7 @@ const UserCard = (props) => {
                             subscribeStatus == "unsubscribed" ? (
                               <Media as="li">
                                 <Link to={`/` + props.user.user_unique_id}>
-                                  Subscribe
+                                  {t("subscribe")}
                                 </Link>
                               </Media>
                             ) : (
@@ -192,14 +193,14 @@ const UserCard = (props) => {
                                     handleUnfollowUser(event, "unsubscribed")
                                   }
                                 >
-                                  Unsubscribe
+                                  {t("unsubscribe")}
                                 </Link>
                               </Media>
                             )
                           ) : props.user.show_follow ? (
                             <Media as="li">
                               <Link to={`/` + props.user.user_unique_id}>
-                                Subscribe
+                                {t("subscribe")}
                               </Link>
                             </Media>
                           ) : (
@@ -210,7 +211,7 @@ const UserCard = (props) => {
                                   handleUnfollowUser(event, "unsubscribed")
                                 }
                               >
-                                Unsubscribe
+                                {t("unsubscribe")}
                               </Link>
                             </Media>
                           )}
@@ -275,7 +276,7 @@ const UserCard = (props) => {
                               className="svg-clone my-p-icons"
                               width="12"
                             />
-                            Remove from favorites
+                            {t("remove_from_favorites")}
                           </Link>
                         ) : null}
                       </>
@@ -291,7 +292,7 @@ const UserCard = (props) => {
                               className="svg-clone my-p-icons"
                               width="12"
                             />
-                            Add to favorites
+                            {t("add_to_favorites")}
                           </Link>
                         ) : null}
                       </>
@@ -307,7 +308,7 @@ const UserCard = (props) => {
                         className="svg-clone my-p-icons"
                         width="12"
                       />
-                      Remove from favorites
+                      {t("remove_from_favorites")}
                     </Link>
                   ) : (
                     <Link
@@ -320,7 +321,7 @@ const UserCard = (props) => {
                         className="svg-clone my-p-icons"
                         width="12"
                       />
-                      Add to favorites
+                      {t("add_to_favorites")}
                     </Link>
                   )}
                 </div>
@@ -335,7 +336,7 @@ const UserCard = (props) => {
                     src="assets/images/icons/tip.svg"
                     className="svg-clone"
                   />
-                  <span className="b-btn-text">Tip</span>
+                  <span className="b-btn-text">{t("tip")}</span>
                 </Button>
               </div>
               <div className="lists-button-group" style={{ display: "none" }}>
@@ -347,7 +348,7 @@ const UserCard = (props) => {
                     src="assets/images/icons/subscribe.svg"
                     className="svg-clone"
                   />
-                  <span className="b-btn-text">Subscribed for free</span>
+                  <span className="b-btn-text">{t("subscribed_for_free")}</span>
                 </Link>
               </div>
             </div>
@@ -371,4 +372,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(null, mapDispatchToProps)(UserCard);
+export default connect(null, mapDispatchToProps)(translate(UserCard));
