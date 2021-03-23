@@ -3,7 +3,25 @@ import configuration from "react-global-configuration";
 import { Link } from "react-router-dom";
 import { Form, Container, Row, Col, Dropdown, Media } from "react-bootstrap";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  setLanguage,
+  translate,
+  getLanguage
+} from "react-multi-lang";
+import en from "../../translations/en.json";
+import pt from "../../translations/pt.json";
+
 class AuthFooter extends Component {
+
+  handleChangeLang = ({ currentTarget: input }) => {
+    console.log(input.value);
+    setLanguage(input.value);
+    localStorage.setItem("lang", input.value);
+    // window.location.reload();
+};
+
   render() {
     return (
       <>
@@ -172,6 +190,39 @@ class AuthFooter extends Component {
                       </Form>
                     </Dropdown.Menu>
                   </Dropdown>
+
+                  <div className="select-lang-drop-down">
+                    <select
+                        className="form-control mw-200 mb-3"
+                        onChange={this.handleChangeLang}
+                        name="lang"
+                    >
+                      <option
+                          value="en"
+                          selected={
+                              localStorage.getItem(
+                                  "lang"
+                              ) == "en"
+                                  ? true
+                                  : false
+                          }
+                      >
+                          English
+                      </option>
+                      <option
+                          value="pt"
+                          selected={
+                              localStorage.getItem(
+                                  "lang"
+                              ) == "pt"
+                                  ? true
+                                  : false
+                          }
+                      >
+                          Spanish
+                      </option>
+                    </select>
+                </div>
                 </Col>
               </Row>
             </div>
