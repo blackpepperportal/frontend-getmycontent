@@ -44,9 +44,9 @@ import {
   setLanguage,
 } from "react-multi-lang";
 import en from "../translations/en.json";
-import pt from "../translations/pt.json";
+import es from "../translations/es.json";
 
-setTranslations({ en,pt });
+setTranslations({ en,es });
 
 const history = createHistory();
 const $ = window.$;

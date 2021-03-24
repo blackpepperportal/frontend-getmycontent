@@ -11,7 +11,7 @@ import {
   getLanguage
 } from "react-multi-lang";
 import en from "../../translations/en.json";
-import pt from "../../translations/pt.json";
+import es from "../../translations/es.json";
 
 class AuthFooter extends Component {
 
@@ -211,11 +211,11 @@ class AuthFooter extends Component {
                           {t("english")}
                       </option>
                       <option
-                          value="pt"
+                          value="es"
                           selected={
                               localStorage.getItem(
                                   "lang"
-                              ) == "pt"
+                              ) == "es"
                                   ? true
                                   : false
                           }
