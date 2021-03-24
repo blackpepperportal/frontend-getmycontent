@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import "./AddBankIndex.css";
 import { addBankAccountStart } from "../../../store/actions/BankAccountAction";
+import { translate, t } from "react-multi-lang";
 
 const AddBankIndex = (props) => {
   const [inputData, setInputData] = useState({});
@@ -15,14 +16,14 @@ const AddBankIndex = (props) => {
   return (
     <div className="card-list-sec">
       <Container>
-        <h4 className="head-title">Add Bank</h4>
+        <h4 className="head-title">{t("add_bank")}</h4>
         <Row>
           <Col sm={12} md={12}>
             <div className="add-bank-box">
               <Form onSubmit={handleSubmit}>
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalNickname">
-                    <Form.Label>Nick Name: (*)</Form.Label>
+                    <Form.Label>{t("nick_name")}: (*)</Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Nick Name"
@@ -40,10 +41,10 @@ const AddBankIndex = (props) => {
 
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalAccountName">
-                    <Form.Label>Account Name: (*)</Form.Label>
+                    <Form.Label>{t("account_name")}: (*)</Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Account Name"
+                      placeholder={t("account_name")}
                       value={inputData.account_holder_name}
                       name="account_holder_name"
                       onChange={(event) => {
@@ -57,10 +58,10 @@ const AddBankIndex = (props) => {
                 </Col>
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalAccountNumber">
-                    <Form.Label>Account Number: (*)</Form.Label>
+                    <Form.Label>{t("account_number")}: (*)</Form.Label>
                     <Form.Control
                       type="number"
-                      placeholder="Account Number"
+                      placeholder={t("account_number")}
                       value={inputData.account_number}
                       min='0'
                       name="account_number"
@@ -76,12 +77,12 @@ const AddBankIndex = (props) => {
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalBanlName">
                     <Form.Label>
-                      Bank Name:{" "}
-                      <span className="text-capitalize">(Optional)</span>
+                      {t("bank_name")}:{" "}
+                      <span className="text-capitalize">({t("optional")})</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Bank Name"
+                      placeholder={t("bank_name")}
                       value={inputData.bank_name}
                       name="bank_name"
                       onChange={(event) => {
@@ -96,12 +97,12 @@ const AddBankIndex = (props) => {
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalIFSCCode">
                     <Form.Label>
-                      IFSC Code:{" "}
-                      <span className="text-capitalize">(Optional)</span>
+                      {t("ifsc_code")}:{" "}
+                      <span className="text-capitalize">({t("optional")})</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="IFSC Code"
+                      placeholder={t("ifsc_code")}
                       value={inputData.ifsc_code}
                       name="ifsc_code"
                       onChange={(event) => {
@@ -116,12 +117,12 @@ const AddBankIndex = (props) => {
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalSWIFTCode">
                     <Form.Label>
-                      SWIFT Code:{" "}
-                      <span className="text-capitalize">(Optional)</span>
+                      {t("swift_code")}:{" "}
+                      <span className="text-capitalize">({t("optional")})</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="SWIFT Code"
+                      placeholder={t("swift_code")}
                       value={inputData.swift_code}
                       name="swift_code"
                       onChange={(event) => {
@@ -137,12 +138,12 @@ const AddBankIndex = (props) => {
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalRouteNumber">
                     <Form.Label>
-                      Route Number:
-                      <span className="text-capitalize">(Optional)</span>
+                      {t("route_number")}:
+                      <span className="text-capitalize">({t("optional")})</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Route Number"
+                      placeholder={t("route_number")}
                       value={inputData.route_number}
                       name="route_number"
                       onChange={(event) => {
@@ -157,12 +158,12 @@ const AddBankIndex = (props) => {
                 <Col md={6}>
                   <Form.Group controlId="formHorizontalIBANNumber">
                     <Form.Label>
-                      IBAN Number:{" "}
-                      <span className="text-capitalize">(Optional)</span>
+                      {t("iban_number")}:{" "}
+                      <span className="text-capitalize">({t("optional")})</span>
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="IBAN Number"
+                      placeholder={t("iban_number")}
                       value={inputData.iban_number}
                       name="iban_number"
                       onChange={(event) => {
@@ -182,7 +183,7 @@ const AddBankIndex = (props) => {
                   >
                     {props.bankAccount.loadingButtonContent !== null
                       ? props.bankAccount.loadingButtonContent
-                      : "Submit"}
+                      : t("submit")}
                   </Button>
                 </div>
               </Form>
@@ -202,4 +203,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(AddBankIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(AddBankIndex));

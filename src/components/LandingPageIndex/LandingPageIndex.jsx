@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import configuration from "react-global-configuration";
 import SocialButton from "../helper/SocialButton";
-
+import { translate, t } from "react-multi-lang";
 import { connect } from "react-redux";
 import {
   forgotPasswordStart,
@@ -148,7 +148,7 @@ const LandingPageIndex = (props) => {
                       className="social-button"
                       id="facebook-connect"
                     >
-                      <span>Sign Up / Login with Facebook</span>
+                      <span>{t("signup")} / {t("login_with_facebook")}</span>
                     </SocialButton>
                   ) : (
                     ""
@@ -164,7 +164,7 @@ const LandingPageIndex = (props) => {
                       className="social-button"
                       id="google-connect"
                     >
-                      <span>Sign Up / Login with Google</span>
+                      <span>{t("signup")} / {t("login_with_facebook")}</span>
                     </SocialButton>
                   ) : (
                     ""
@@ -234,7 +234,7 @@ const LandingPageIndex = (props) => {
                                 }}
                               >
                                 {" "}
-                                Forgot password?{" "}
+                                {t("forgot_password")}{" "}
                               </Link>
                             </p>
                           </div>
@@ -251,7 +251,7 @@ const LandingPageIndex = (props) => {
                                 : "Login"}
                             </Button>
                           </div>
-                          <p id="two">Don't have an account yet?</p>
+                          <p id="two">{t("do_not_have_an_account")}</p>
                           <p>
                             <Link
                               className="signup"
@@ -263,7 +263,7 @@ const LandingPageIndex = (props) => {
                               }}
                             >
                               {" "}
-                              Sign up for{" "}
+                              {t("signup_for")}{" "}
                               {configuration.get("configData.site_name")}
                             </Link>
                           </p>
@@ -310,10 +310,10 @@ const LandingPageIndex = (props) => {
                               isInvalid={props.validation.isInValid}
                             />
                             {props.validation.isInValid ? 
-                              <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+                              <Form.Control.Feedback type="invalid">{t("username_already_taken")}</Form.Control.Feedback>
                             : ''}
                             {props.validation.isValid ? 
-                              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                              <Form.Control.Feedback>{t("looks_good")}</Form.Control.Feedback>
                             : ''}
                             
                           </Form.Group>
@@ -360,13 +360,13 @@ const LandingPageIndex = (props) => {
                             {/* <input type="checkbox" id="checkbox" /> */}
                             {/* <label for="checkbox"></label> */}
                             <p className="terms">
-                              By signing up you agree to our{" "}
+                              {t("signing_up_confirmation")}{" "}
                               <Link to={`/page/terms`} target="_blank">
-                                Terms of Service
+                                {t("terms_of_service")}
                               </Link>{" "}
-                              and{" "}
+                              {t("and")}{" "}
                               <Link to={`/page/privacy`} target="_blank">
-                                Privacy Policy
+                                {t("privacy_policy")}
                               </Link>
                               .
                             </p>
@@ -385,7 +385,7 @@ const LandingPageIndex = (props) => {
                                 : "SIGN UP"}
                             </Button>
                           </Form.Group>
-                          <p id="two">Already have an account?</p>
+                          <p id="two">{t("already_have_an_account")}</p>
                           <p>
                             <Link
                               className="signup"
@@ -397,7 +397,7 @@ const LandingPageIndex = (props) => {
                               }}
                             >
                               {" "}
-                              Login for{" "}
+                              {t("login_for")}{" "}
                               {configuration.get("configData.site_name")}
                             </Link>
                           </p>
@@ -437,7 +437,7 @@ const LandingPageIndex = (props) => {
                                 : "Forgot Password"}
                             </Button>
                           </Form.Group>
-                          <p id="two">Already have an account?</p>
+                          <p id="two">{t("already_have_an_account")}</p>
                           <p>
                             <Link
                               className="signup"
@@ -449,7 +449,7 @@ const LandingPageIndex = (props) => {
                               }}
                             >
                               {" "}
-                              Login for{" "}
+                              {t("login_for")}{" "}
                               {configuration.get("configData.site_name")}
                             </Link>
                           </p>
@@ -478,4 +478,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(LandingPageIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(LandingPageIndex));

@@ -37,6 +37,17 @@ import PostView from "../Post/PostView";
 import ResetPassword from "../LandingPageIndex/ResetPassword";
 import UploadProfilePicture from "../Accounts/Profile/UploadProfilePicture";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate,
+  setLanguage,
+} from "react-multi-lang";
+import en from "../translations/en.json";
+import es from "../translations/es.json";
+
+setTranslations({ en,es });
+
 const history = createHistory();
 const $ = window.$;
 
@@ -105,6 +116,12 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchConfig();
+    let userLanguage = localStorage.getItem("lang")
+        ? localStorage.getItem("lang")
+        : "en";
+        console.log(userLanguage);
+        localStorage.setItem("lang", userLanguage);
+        setLanguage(userLanguage);
   }
 
   async fetchConfig() {

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {Container, Row, Col, Image} from "react-bootstrap";
 import BookmarkNav from "./BookmarkNav";
+import { translate, t } from "react-multi-lang";
 
 const BookmarkAudio = () => {
   return (
@@ -13,7 +14,7 @@ const BookmarkAudio = () => {
             <div className="profile-post-area">
               <div className="bookmarkes-list bookmarks-right-side">
                 <div className="pull-left">
-                  <h3>Audio</h3>
+                  <h3>{t("audio")}</h3>
                 </div>
                 <div className="pull-right">
                   <Link className="bookmarks-filter" href="#">
@@ -33,7 +34,7 @@ const BookmarkAudio = () => {
                       className="svg-clone"
                       width="64"
                     />
-                    <p> No bookmarks yet</p>
+                    <p> {t("no_bookmarks_yet")}</p>
                   </span>
                 </div>
               </div>
@@ -45,4 +46,4 @@ const BookmarkAudio = () => {
   );
 };
 
-export default BookmarkAudio;
+export default translate(BookmarkAudio);

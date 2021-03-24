@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { deleteAccountStart } from "../../../store/actions/UserAction";
+import { translate, t } from "react-multi-lang";
 
 const DeleteAccountCard = (props) => {
   const [password, setPassword] = useState("");
@@ -27,28 +28,27 @@ const DeleteAccountCard = (props) => {
             <Col sm={12} md={12}>
               <div className="card">
                 <div className="card-header bg-transparent">
-                  <h4>Delete Account</h4>
+                  <h4>{t("delete_account")}</h4>
                 </div>
                 <div className="card-body">
                   <Row>
                     <Col sm={12} md={12}>
                       <div className="card-details">
                         <h5>
-                          <b>Hope, see you soon</b>
+                          <b>{t("hope_see_you_soon")}</b>
                         </h5>
                         <p>
-                          Note: Once you deleted account, you will lose your
-                          history and wishlist details
+                          {t("delete_account_note")}
                         </p>
                       </div>
                       <Form autoComplete="new-password" onSubmit={handleSubmit}>
                         <Form.Group>
-                          <Form.Label for="password">Password</Form.Label>
+                          <Form.Label for="password">{t("password")}</Form.Label>
                           <Form.Control
                             className="form-control"
                             id="password"
                             type="password"
-                            placeholder="Enter your password"
+                            placeholder={t("enter_your_password")}
                             name="password"
                             value={password}
                             onChange={(event) =>
@@ -65,7 +65,7 @@ const DeleteAccountCard = (props) => {
                             >
                               {props.deleteAcc.loadingButtonContent !== null
                                 ? props.deleteAcc.loadingButtonContent
-                                : "Delete Account"}
+                                : t("delete_account") }
                             </Button>
                           </Col>
                         </Row>
@@ -90,4 +90,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(DeleteAccountCard);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(DeleteAccountCard));

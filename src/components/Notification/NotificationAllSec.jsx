@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 import NoDataFound from "../NoDataFound/NoDataFound";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
+import { translate, t } from "react-multi-lang";
 
 const NotificationAllSec = (props) => {
   const { notifications } = props;
@@ -18,7 +19,7 @@ const NotificationAllSec = (props) => {
         }
         id="Section1"
       >
-        <h3 className="notify-title">ALL</h3>
+        <h3 className="notify-title">{t("all")}</h3>
         <div className="notification-list">
           {notifications.length > 0 ? (
             notifications.map((notification) => (
@@ -72,4 +73,4 @@ const NotificationAllSec = (props) => {
   );
 };
 
-export default NotificationAllSec;
+export default translate(NotificationAllSec);

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Form, Button, Image } from "react-bootstrap";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 import {
   editUserDetails,
@@ -64,7 +65,7 @@ const EditProfileCard = (props) => {
   return (
     <>
       {props.profile.loading ? (
-        "Loading..."
+        t("loading")
       ) : (
         <div
           role="tabpanel"
@@ -78,8 +79,8 @@ const EditProfileCard = (props) => {
           <div className="profile-post-area">
             <div className="bookmarkes-list bookmarks-right-side border-btm-none">
               <div className="pull-left">
-                <h3>EDIT PROFILE</h3>
-                <p className="small-text">CHANGE PROFILE AND COVER PHOTOS</p>
+                <h3>{t("edit_profile")}</h3>
+                <p className="small-text">{t("change_photo")}</p>
               </div>
               <div className="pull-right"></div>
             </div>
@@ -111,7 +112,7 @@ const EditProfileCard = (props) => {
                       for="changeCover"
                       title="Change cover"
                     >
-                      Upload cover image
+                      {t("upload_cover_image")}
                     </Form.Label>
                   </Form>
                 </a>
@@ -162,14 +163,14 @@ const EditProfileCard = (props) => {
                       type="file"
                       title="Change picture"
                     >
-                      Upload profile photo
+                      {t("upload_profile_photo")}
                     </Form.Label>
                   </Form>
                 </a>
               </div>
             </div>
             <p className="inuput-help">
-              Profile images must not contain nudity or explicit material.
+              {t("upload_profile_photo_para")}
             </p>
           </div>
           <div
@@ -178,7 +179,7 @@ const EditProfileCard = (props) => {
             data-vv-as="username"
           >
             <Form.Label className="edit-input-label">
-              Username <span className="edit-input-optional">(optional)</span>
+              {t("username")} <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -199,10 +200,10 @@ const EditProfileCard = (props) => {
                 isInvalid={props.validation.isInValid}
               />
               {props.validation.isInValid ? 
-                <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">{t("username_error")}</Form.Control.Feedback>
               : ''}
               {props.validation.isValid ? 
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback>{t("looks_good")}</Form.Control.Feedback>
               : ''}
 
             </div>
@@ -216,8 +217,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Display Name"
           >
             <Form.Label className="edit-input-label">
-              Display name
-              <span className="edit-input-optional">(optional)</span>
+              {t("display_name")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -244,9 +245,9 @@ const EditProfileCard = (props) => {
             data-vv-as="monthly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price (per month{" "}
+              {t("subscription_price")} ({t("per_month")}{" "}
               {configuration.get("configData.currency_code")})
-              <span className="edit-input-optional">(optional)</span>
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -280,9 +281,9 @@ const EditProfileCard = (props) => {
             data-vv-as="yearly_amount"
           >
             <Form.Label className="edit-input-label">
-              Subscription price (Per Year{" "}
+              {t("subscription_price")} ({t("subscription_price")}{" "}
               {configuration.get("configData.currency_code")})
-              <span className="edit-input-optional">(optional)</span>
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -311,19 +312,19 @@ const EditProfileCard = (props) => {
             </div>
             {localStorage.getItem("is_subscription_enabled") == 1 ? (
               <p className="inuput-help">
-                You can change the
+                {t("you_can_change_the")}
                 <Link to={`/add-bank`}>
-                  Bank Account or Payment Information
+                  {t("you_can_change_the_para1")}
                 </Link>{" "}
-                at any time.
+                {t("you_can_change_the_para2")}.
               </p>
             ) : (
               <p className="inuput-help">
-                You must
+                {t("you_can_change_the_para3")}
                 <Link to={`/add-bank`}>
-                  Add a Bank Account or Payment Information
+                  {t("you_can_change_the_para4")}
                 </Link>{" "}
-                before you can set your price or accept tips.
+                {t("you_can_change_the_para5")}.
               </p>
             )}
           </div>
@@ -333,7 +334,7 @@ const EditProfileCard = (props) => {
             data-vv-as="description"
           >
             <Form.Label className="edit-input-label">
-              ABOUT <span className="edit-input-optional">(optional)</span>
+              {t("about")} <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -361,7 +362,7 @@ const EditProfileCard = (props) => {
             data-vv-as="Address"
           >
             <Form.Label className="edit-input-label">
-              LOCATION <span className="edit-input-optional">(optional)</span>
+              {t("location")} <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -369,7 +370,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.address}
-                placeholder="Location"
+                placeholder={t("location")}
                 name="address"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -389,8 +390,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Website"
           >
             <Form.Label className="edit-input-label">
-              WEBSITE URL
-              <span className="edit-input-optional">(optional)</span>
+              {t("website_url")} 
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -398,7 +399,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.website}
-                placeholder="Website URL"
+                placeholder={t("website_url")} 
                 name="website"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -418,8 +419,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Amazon Wishlist"
           >
             <Form.Label className="edit-input-label">
-              AMAZON WISHLIST
-              <span className="edit-input-optional">(optional)</span>
+              {t("amazon_wishlist")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -427,7 +428,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.amazon_wishlist}
-                placeholder="Amazon Wishlist"
+                placeholder={t("amazon_wishlist")}
                 name="amazon_wishlist"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -447,8 +448,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Instagram Link"
           >
             <Form.Label className="edit-input-label" for="edit_instagram_link">
-              INSTAGRAM LINK
-              <span className="edit-input-optional">(optional)</span>
+              {t("instagaram_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -456,7 +457,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.instagram_link}
-                placeholder="Instagram Link"
+                placeholder={t("instagaram_link")}
                 name="instagram_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -476,8 +477,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Facebook Link"
           >
             <Form.Label className="edit-input-label" for="edit_facebook_link">
-              FACEBOOK LINK
-              <span className="edit-input-optional">(optional)</span>
+              {t("facebook_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -485,7 +486,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.facebook_link}
-                placeholder="Facebook Link"
+                placeholder={t("facebook_link")}
                 name="facebook_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -506,8 +507,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Twitter Link"
           >
             <Form.Label className="edit-input-label" for="edit_twitter_link">
-              TWITTER LINK
-              <span className="edit-input-optional">(optional)</span>
+              {t("twitter_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -515,7 +516,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.twitter_link}
-                placeholder="Twitter Link"
+                placeholder={t("twitter_link")}
                 name="twitter_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -535,8 +536,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Snapchat Link"
           >
             <Form.Label className="edit-input-label" for="edit_snapchat_link">
-              SNAPCHAT LINK
-              <span className="edit-input-optional">(optional)</span>
+              {t("snapchat_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -544,7 +545,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.snapchat_link}
-                placeholder="Snapchat Link"
+                placeholder={t("snapchat_link")}
                 name="snapchat_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -564,8 +565,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Linkedin Link"
           >
             <Form.Label className="edit-input-label" for="edit_linkedin_link">
-              LINKEDIN LINK
-              <span className="edit-input-optional">(optional)</span>
+              {t("linkedin_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -573,7 +574,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.linkedin_link}
-                placeholder="Linkedin Link"
+                placeholder={t("linkedin_link")}
                 name="linkedin_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -593,8 +594,8 @@ const EditProfileCard = (props) => {
             data-vv-as="PINTEREST Link"
           >
             <Form.Label className="edit-input-label" for="edit_pinterest_link">
-              PINTEREST LINK
-              <span className="edit-input-optional">(optional)</span>
+              {t("pinterest_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -602,7 +603,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.pinterest_link}
-                placeholder="Pinterest Link"
+                placeholder={t("pinterest_link")}
                 name="pinterest_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -622,8 +623,8 @@ const EditProfileCard = (props) => {
             data-vv-as="YOUTUBE Link"
           >
             <Form.Label className="edit-input-label" for="edit_youtube_link">
-              YOUTUBE LINK
-              <span className="edit-input-optional">(optional)</span>
+              {t("youtube_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -631,7 +632,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.youtube_link}
-                placeholder="YouTube Link"
+                placeholder={t("youtube_link")}
                 name="youtube_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -651,8 +652,8 @@ const EditProfileCard = (props) => {
             data-vv-as="TWITCH Link"
           >
             <Form.Label className="edit-input-label" for="edit_twitch_link">
-              TWITCH LINK
-              <span className="edit-input-optional">(optional)</span>
+             {t("youtube_link")}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -660,7 +661,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.twitch_link}
-                placeholder="Twitch Link"
+                placeholder={t("youtube_link")}
                 name="twitch_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -683,7 +684,7 @@ const EditProfileCard = (props) => {
             >
               {props.profileInputData.loadingButtonContent !== null
                 ? props.profileInputData.loadingButtonContent
-                : "Submit"}
+                : t("submit")}
             </Button>
           </div>
         </div>
@@ -702,4 +703,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(EditProfileCard);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(EditProfileCard));

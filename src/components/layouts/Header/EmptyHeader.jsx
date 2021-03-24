@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 const EmptyHeader = () => {
   return (
@@ -31,19 +32,19 @@ const EmptyHeader = () => {
               {localStorage.getItem("userLoginStatus") == "true" ? (
                 <li className="nav-item active">
                   <Link className="nav-link smooth" to={"/dashboard"}>
-                    Dashboard
+                    {t("dashboard")}
                   </Link>
                 </li>
               ) : (
                 <>
                   <li className="nav-item active">
                     <Link className="nav-link smooth" to={"/login"}>
-                      Login
+                      {t("login")}
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link smooth" to={"/signup"}>
-                      Register
+                      {t("register")}
                     </Link>
                   </li>
                 </>
@@ -56,4 +57,4 @@ const EmptyHeader = () => {
   );
 };
 
-export default EmptyHeader;
+export default translate(EmptyHeader);

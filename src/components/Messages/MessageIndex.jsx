@@ -22,6 +22,7 @@ import ChatUserList from "./ChatUserList";
 import InboxNoDataFound from "../NoDataFound/InboxNoDataFound";
 import io from "socket.io-client";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 import InboxLoader from "../Loader/InboxLoader";
 import { getErrorNotificationMessage } from "../helper/NotificationMessage";
@@ -259,27 +260,27 @@ const MessageIndex = (props) => {
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
                         <Media as="li">
-                          <Link to="#"> Copy link to post </Link>
+                          <Link to="#"> {t("copy_link_to_post")} </Link>
                         </Media>
                         <Media as="li">
                           <Link to="#">
                             {" "}
-                            Hide paid blurred from the home feed{" "}
+                            {t("hide_paid_blurred_from_the_home_feed")}{" "}
                           </Link>
                         </Media>
                         <Media as="li" className="divider"></Media>
                         <Media as="li">
-                          <Link to="#"> I don't like this post </Link>
+                          <Link to="#"> {t("i_dont_like_this_post")} </Link>
                         </Media>
                         <Media as="li">
-                          <Link to="#"> Hide user's posts from feed </Link>
+                          <Link to="#"> {t("hide_users_posts_from_feed")} </Link>
                         </Media>
                       </Dropdown.Menu>
                     </Dropdown>
                   </span>
                   <div className="chat-subheader hidden">
                     <div className="chat-user-status">
-                      Last seen <span title="Sep 7, 3:12 pm"> 1 hour ago </span>
+                      {t("last_seen")} <span title="Sep 7, 3:12 pm"> 1 {t("hour_ago")} </span>
                     </div>
 
                     <Button type="button" className="chat-subheader-btn">
@@ -303,7 +304,7 @@ const MessageIndex = (props) => {
                         width="12"
                       />
 
-                      <span>Gallery</span>
+                      <span>{t("gallery")}</span>
                     </Button>
                     <Button type="button" className="chat-subheader-btn">
                       <Image
@@ -312,7 +313,7 @@ const MessageIndex = (props) => {
                         width="12"
                       />
 
-                      <span>Find</span>
+                      <span>{t("find")}</span>
                     </Button>
                   </div>
                 </div>
@@ -477,4 +478,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(MessageIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(MessageIndex));

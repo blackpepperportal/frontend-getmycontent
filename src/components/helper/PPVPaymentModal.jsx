@@ -14,6 +14,7 @@ import {
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 const PPVPaymentModal = (props) => {
   const [amount, setAmount] = useState(0);
@@ -104,19 +105,19 @@ const PPVPaymentModal = (props) => {
         {props.PPVPayment === true ? (
           <Form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-              <Modal.Title>Pay and See the Post</Modal.Title>
+              <Modal.Title>{t("pay_and_see_the_Post")}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="floating-form">
                 <h4>
-                  Pay Amount:{" "}
+                  {t("pay_amount")}:{" "}
                   <span className="text-info">
                     {props.post.amount_formatted}
                   </span>
                 </h4>
 
                 <Form className="mt-4">
-                  <label className="text-muted f-12">Choose Payment Mode</label>
+                  <label className="text-muted f-12">{t("choose_payment_mode")}</label>
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`} className="mb-3">
                       <Form.Check
@@ -173,7 +174,7 @@ const PPVPaymentModal = (props) => {
                 data-dismiss="modal"
                 onClick={props.closePPVPaymentModal}
               >
-                CANCEL
+                {t("cancel")}
               </Button>
               {paymentType !== "paypal" ? (
                 <Button
@@ -185,7 +186,7 @@ const PPVPaymentModal = (props) => {
                 >
                   {props.ppvPayStripe.loadingButtonContent !== null
                     ? props.ppvPayStripe.loadingButtonContent
-                    : "Confirm"}
+                    : t("confirm")}
                 </Button>
               ) : (
                 ""
@@ -206,4 +207,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(PPVPaymentModal);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(PPVPaymentModal));

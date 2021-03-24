@@ -7,6 +7,7 @@ import { fetchPostSuggesstionStart } from "../../store/actions/HomeAction";
 // import { Carousel } from "react-responsive-carousel";
 import Slider from "react-slick";
 import VerifiedBadge from "../Handlers/VerifiedBadge";
+import { translate, t } from "react-multi-lang";
 
 const HomePageSuggesstion = (props) => {
   useEffect(() => {
@@ -62,7 +63,7 @@ const HomePageSuggesstion = (props) => {
     <Col xl={4} md={12} className="suggest-col">
       <Row>
         <Col sm={12} xl={5} xs={12} md={6} className="mrg-btm-xs">
-          <h4 className="suggestions">suggestions</h4>
+          <h4 className="suggestions">{t("suggestions")}</h4>
         </Col>
         <Col sm={12} xl={7} xs={12} md={6} className="mrg-btm-xs">
           <div className="controls pull-right ">
@@ -115,7 +116,7 @@ const HomePageSuggesstion = (props) => {
                 <Row className="diplay-block">
                   <Col sm={12} md={12}>
                     {props.postSug.loading ? (
-                      "Loading..."
+                      t("loading")
                     ) : props.postSug.data.users.length > 0 ? (
                       // <Carousel
                       //   axis="vertical"
@@ -189,7 +190,7 @@ const HomePageSuggesstion = (props) => {
                       </Slider>
                     ) : (
                       // </Carousel>
-                      "No Suggestions"
+                      t("no_suggestions")
                     )}
                   </Col>
                 </Row>
@@ -210,4 +211,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(HomePageSuggesstion);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(HomePageSuggesstion));

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Col, Image } from "react-bootstrap";
 import { connect } from "react-redux";
 import { fetchBookmarksStart } from "../../store/actions/BookmarkAction";
+import { translate, t } from "react-multi-lang";
 
 const BookmarkNav = (props) => {
   return (
@@ -16,7 +17,7 @@ const BookmarkNav = (props) => {
           <Link to={"/list"}>
             <Image src="assets/images/icons/back.svg" className="svg-clone" />
           </Link>
-          BOOKMARKS
+          {t("bookmarks")}
         </NavLink>
 
         <NavLink
@@ -28,7 +29,7 @@ const BookmarkNav = (props) => {
             src="assets/images/icons/bookmark.svg"
             className="svg-clone my-p-icons"
           />
-          ALL BOOKMARKS
+          {t("all_bookmarks")}
         </NavLink>
 
         <NavLink
@@ -40,7 +41,7 @@ const BookmarkNav = (props) => {
             src="assets/images/icons/gallery.svg"
             className="svg-clone my-p-icons"
           />
-          Photos
+          {t("photos")}
         </NavLink>
 
         <NavLink
@@ -52,7 +53,7 @@ const BookmarkNav = (props) => {
             src="assets/images/icons/video.svg"
             className="svg-clone my-p-icons"
           />
-          Videos
+          {t("videos")}
         </NavLink>
 
         {/* <NavLink
@@ -99,4 +100,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(null, mapDispatchToProps)(BookmarkNav);
+export default connect(null, mapDispatchToProps)(translate(BookmarkNav));

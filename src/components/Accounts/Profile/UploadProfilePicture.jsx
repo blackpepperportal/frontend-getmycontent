@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Image, Button } from "react-bootstrap";
 import "./UploadProfilePicture.css";
 import { connect } from "react-redux";
+import { translate, t } from "react-multi-lang";
 
 import {
   updateUserDetailsStart,
@@ -53,7 +54,7 @@ const UploadProfilePicture = (props) => {
     <>
       <div className="document-upload-sec">
         <Container>
-          <h4 className="head-title">Upload Profile Picture</h4>
+          <h4 className="head-title">{t("upload_profile_picture")}</h4>
           <div className="upload-profile-picture-card">
             <Row>
                 <Col md={6}>
@@ -94,16 +95,15 @@ const UploadProfilePicture = (props) => {
                 <Col md={6}>
                     <div className="upload-profile-info">
                         <h2 className="title">
-                            Profile Photo
+                            {t("profile_photo")}
                         </h2>
-                        <p className="desc">It’s not much fun to host a landscape! Be sure to use a photo that clearly shows your 
-                        face and doesn’t include any personal or sensitive info you’d rather not have hosts or guests see.
+                        <p className="desc">{t("profile_photo_para")}
                         </p>
                         <Button
                           className="upload-profile-img-btn btn-block"
                           onClick={handleSubmit}
                         >
-                          Submit
+                          {t("submit")}
                         </Button>
                     </div>
                 </Col>
@@ -124,4 +124,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(UploadProfilePicture);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(UploadProfilePicture));

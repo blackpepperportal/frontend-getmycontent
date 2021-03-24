@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Image, Media } from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
 
 const FollowingTabSec = (props) => {
   return (
@@ -21,7 +22,7 @@ const FollowingTabSec = (props) => {
             src="assets/images/icons/tick-circle.svg"
             className="svg-clone"
           />
-          <span className="tab-nav-item"> Active </span>
+          <span className="tab-nav-item"> {t("active")} </span>
         </Link>
       </Media>
       <Media
@@ -37,7 +38,7 @@ const FollowingTabSec = (props) => {
           onClick={(event) => props.changeSection(event, "expired-sec")}
         >
           <Image src="assets/images/icons/warning.svg" className="svg-clone" />
-          <span className="tab-nav-item"> Unsubscribed </span>
+          <span className="tab-nav-item"> {t("unsubscribed")} </span>
         </Link>
       </Media>
       <Media
@@ -53,11 +54,11 @@ const FollowingTabSec = (props) => {
           onClick={(event) => props.changeSection(event, "all-sec")}
         >
           <Image src="assets/images/icons/all.svg" className="svg-clone" />
-          <span className="tab-nav-item"> All </span>
+          <span className="tab-nav-item"> {t("all")} </span>
         </Link>
       </Media>
     </ul>
   );
 };
 
-export default FollowingTabSec;
+export default translate(FollowingTabSec);

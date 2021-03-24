@@ -24,6 +24,7 @@ import { saveBlockUserStart } from "../../store/actions/UserAction";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
+import { translate, t } from "react-multi-lang";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -173,7 +174,7 @@ const PostDisplayCard = (props) => {
                         <Media as="li">
                           <Link to="#" className="dropdown-a">
                             {" "}
-                            Copy link to post{" "}
+                            {t("copy_link_to_post")}{" "}
                           </Link>
                         </Media>
                       </CopyToClipboard>
@@ -186,7 +187,7 @@ const PostDisplayCard = (props) => {
                             onClick={(event) => handleReportPost(event, post)}
                             className="dropdown-a"
                           >
-                            Report
+                            {t("report")}
                           </Link>
                         </Media>
                       ) : null}
@@ -207,7 +208,7 @@ const PostDisplayCard = (props) => {
                             className="dropdown-a"
                           >
                             {" "}
-                            I don't like the user. Add to blocklists.
+                            {t("add_to_blocklist_para")}
                           </Link>
                         </Media>
                       ) : null}
@@ -221,7 +222,7 @@ const PostDisplayCard = (props) => {
                               onClick={(event) => handleDeletePost(event, post)}
                               className="dropdown-a"
                             >
-                              Delete Post
+                              {t("delete_post")}
                             </Link>
                           </Media>
                         </>
@@ -480,7 +481,7 @@ const PostDisplayCard = (props) => {
                     className="svg-clone"
                   />
 
-                  <span className="post-tip">SEND TIP</span>
+                  <span className="post-tip">{t("send_tip")}</span>
                 </Button>
               ) : null}
             </div>
@@ -555,26 +556,26 @@ const PostDisplayCard = (props) => {
           </div>
 
           <div className="likes alignleft">
-            <p>{likeCount} Likes</p>
+            <p>{likeCount} {t("likes")}</p>
             {isVisible && commentInputData.post_id === post.post_id ? (
               <Link
                 className="Show view-comments"
                 onClick={closeCommentSection}
               >
-                Close Comments
+                {t("close_comments")}
               </Link>
             ) : (
               <Link
                 className="Show view-comments text-muted"
                 onClick={(event) => showCommentSection(event, post.post_id)}
               >
-                View Comments
+                {t("view_comments")}
               </Link>
             )}
             {isVisible && commentInputData.post_id === post.post_id ? (
               <div id="target">
                 {props.comments.loading
-                  ? "Loading..."
+                  ? t("loading")
                   : props.comments.data.post_comments.length > 0
                   ? props.comments.data.post_comments.map((comment) => (
                       <div className="row comment-row">
@@ -708,4 +709,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(PostDisplayCard);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(PostDisplayCard));

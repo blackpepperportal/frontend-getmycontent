@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { translate, t } from "react-multi-lang";
 
 import "./NotFound.css";
 
@@ -460,7 +461,7 @@ const NotFoundIndex = () => {
                 className="no-data-btn"
                 style={{ height: "5rem", width: "20rem" }}
               >
-                Go Home
+                {t("go_home")}
               </Button>
             </Link>
           </Col>
@@ -471,4 +472,4 @@ const NotFoundIndex = () => {
   );
 };
 
-export default NotFoundIndex;
+export default translate(NotFoundIndex);

@@ -23,6 +23,7 @@ import { createNotification } from "react-redux-notify/lib/modules/Notifications
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import configuration from "react-global-configuration";
 import VerifiedBadgeNoShadow from "../../Handlers/VerifiedBadgeNoShadow";
+import { translate, t } from "react-multi-lang";
 
 import "./Profile.css";
 
@@ -117,7 +118,7 @@ const ProfileIndex = (props) => {
                           src="assets/images/icons/settings.svg"
                           className="svg-clone my-p-icons"
                         />
-                        Edit profile
+                        {t("edit_profile")}
                       </Link>
                       {configuration.get(
                         "configData.is_verified_badge_enabled"
@@ -130,7 +131,7 @@ const ProfileIndex = (props) => {
                             onClick={onVerificationBadgeChange}
                             className="m-uppercase m-l-10 save-btn btn btn-primary"
                           >
-                            Show Badge
+                            {t("show_badge")}
                           </button>
                         ) : (
                           <button
@@ -138,7 +139,7 @@ const ProfileIndex = (props) => {
                             // onClick={props.dispatch(updateVerifyBadgeStatusStart())}
                             className="m-uppercase m-l-10 save-btn btn btn-danger"
                           >
-                            Disable Badge
+                            {t("disable_badge")}
                           </button>
                         )
                       ) : null}
@@ -192,7 +193,7 @@ const ProfileIndex = (props) => {
                               ? localStorage.getItem("total_followers")
                               : 0}
                           </span>{" "}
-                          Fans
+                          {t("fans")}
                         </Link>
                       </Media>
                       <Media as="li">
@@ -202,7 +203,7 @@ const ProfileIndex = (props) => {
                               ? localStorage.getItem("total_followings")
                               : 0}
                           </span>{" "}
-                          Following
+                          {t("following")}
                         </Link>
                       </Media>
                     </ul>
@@ -456,7 +457,7 @@ const ProfileIndex = (props) => {
                 )
               ) : null} */}
               {props.posts.loading ? (
-                "Loading..."
+                t("loading")
               ) : props.posts.error === false ? (
                 props.posts.data.posts.length > 0 ? (
                   props.posts.data.posts.map((post) => (
@@ -485,4 +486,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(ProfileIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(ProfileIndex));

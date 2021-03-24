@@ -7,6 +7,7 @@ import BookmarkPhotoLoader from "../Loader/BookmarkPhotoLoader";
 import BookmarkNoDataFound from "../NoDataFound/BookmarkNoDataFound";
 import { fetchBookmarksPhotoStart } from "../../store/actions/BookmarkAction";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
+import { translate, t } from "react-multi-lang";
 
 const BookmarkPhoto = (props) => {
   useEffect(() => {
@@ -49,7 +50,7 @@ const BookmarkPhoto = (props) => {
               <div className="profile-post-area">
                 <div className="bookmarkes-list bookmarks-right-side">
                   <div className="pull-left">
-                    <h3>PHOTOS</h3>
+                    <h3>{t("photos")}</h3>
                   </div>
                   <div className="pull-right">
                     <Link className="bookmarks-filter" href="#">
@@ -91,7 +92,7 @@ const BookmarkPhoto = (props) => {
         {noMoreData !== true ? (
           <>{isFetching && "Fetching more list items..."}</>
         ) : (
-          "No More Data"
+          t("no_more_data")
         )}
       </Container>
     </div>
@@ -106,4 +107,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(BookmarkPhoto);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(BookmarkPhoto));
