@@ -18,6 +18,7 @@ import {
 
 import NoDataFound from "../NoDataFound/NoDataFound";
 import DocumentUploadLoader from "../Loader/DocumentUploadLoader";
+import { translate, t } from "react-multi-lang";
 
 const DocumentUploadIndex = (props) => {
   useEffect(() => {
@@ -60,7 +61,7 @@ const DocumentUploadIndex = (props) => {
     <>
       <div className="document-upload-sec">
         <Container>
-          <h4 class="head-title">Upload Your Documents</h4>
+          <h4 class="head-title">{t("upload_your_documents")}</h4>
           {props.kycDocDetails.loading ? (
             ""
           ) : (
@@ -120,7 +121,7 @@ const DocumentUploadIndex = (props) => {
                           <br></br>
                           <p className="document-desc">
                             {doc.is_delete_edit_option
-                              ? "Click here to upload"
+                              ? t("click_here_to_upload")
                               : null}
                           </p>
                         </Form.Label>
@@ -137,7 +138,7 @@ const DocumentUploadIndex = (props) => {
                         >
                           {uploadDocumentID === doc.document_id
                             ? props.addKycDocInput.loadingButtonContent
-                            : "Send for Approval"}
+                            : t("send_for_approval")}
                         </Button>
                       </Col>
                     </Row>
@@ -166,4 +167,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(DocumentUploadIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(DocumentUploadIndex));

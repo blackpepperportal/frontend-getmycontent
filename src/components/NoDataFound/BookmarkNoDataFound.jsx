@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col} from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
 
 const BookmarkNoDataFound = () => {
   return (
@@ -8,7 +9,7 @@ const BookmarkNoDataFound = () => {
         <Row>
           <Col sm="12" md="12">
             <span> <i className="material-icons icon-bookmark">bookmark_border</i></span>
-            <p className="desc">No bookmarks yet</p>
+            <p className="desc">{t("no_bookmarks_yet")}</p>
           </Col>
         </Row>
       </div>
@@ -16,4 +17,4 @@ const BookmarkNoDataFound = () => {
   );
 };
 
-export default BookmarkNoDataFound;
+export default translate(BookmarkNoDataFound);

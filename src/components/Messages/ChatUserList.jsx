@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Col, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { translate, t } from "react-multi-lang";
 
 const ChatUserList = (props) => {
   const { chatUsers } = props;
@@ -11,7 +12,7 @@ const ChatUserList = (props) => {
           <Link className="chat-header-back" to={`/home`}>
             <Image src="assets/images/icons/back.svg" className="svg-clone" />
           </Link>
-          <h1 className="chat-page-title">Messages</h1>
+          <h1 className="chat-page-title">{t("messages")}</h1>
 
           <Link type="button" className="search-btn-1 hidden">
             <Image src="assets/images/icons/search.svg" className="svg-clone" />
@@ -26,7 +27,7 @@ const ChatUserList = (props) => {
           <div className="friend-chat-list-scroll overflow">
             <div className="recent-chat">
               <div className="alignleft">
-                <h2 className="chat-section-title">Recent</h2>
+                <h2 className="chat-section-title">{t("recent")}</h2>
               </div>
             </div>
 
@@ -93,4 +94,4 @@ const ChatUserList = (props) => {
   );
 };
 
-export default ChatUserList;
+export default translate(ChatUserList);

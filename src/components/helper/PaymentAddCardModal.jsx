@@ -18,6 +18,7 @@ import {
   getSuccessNotificationMessage,
 } from "./NotificationMessage";
 import { fetchCardDetailsStart } from "../../store/actions/CardsAction";
+import { translate, t } from "react-multi-lang";
 
 const PaymentAddCardModal = (props) => {
   const stripe = useStripe();
@@ -100,7 +101,7 @@ const PaymentAddCardModal = (props) => {
       >
         <Form>
           <Modal.Header closeButton>
-            <Modal.Title>Add Card</Modal.Title>
+            <Modal.Title>{t("add_card")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Row>
@@ -116,7 +117,7 @@ const PaymentAddCardModal = (props) => {
               data-dismiss="modal"
               onClick={props.closePaymentAddCardModal}
             >
-              CANCEL
+              {t("cancel")}
             </Button>
             <Button
               type="submit"
@@ -125,7 +126,7 @@ const PaymentAddCardModal = (props) => {
               onClick={addCard}
               disabled={addCardButtonDisable}
             >
-              {addCardLoadingContent != null ? addCardLoadingContent : "Add"}
+              {addCardLoadingContent != null ? addCardLoadingContent : t("add")}
             </Button>
           </Modal.Footer>
         </Form>
@@ -138,4 +139,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(null, mapDispatchToProps)(PaymentAddCardModal);
+export default connect(null, mapDispatchToProps)(translate(PaymentAddCardModal));

@@ -1,4 +1,5 @@
 import React from "react";
+import { translate, t } from "react-multi-lang";
 
 const CreatePollModal = () => {
   return (
@@ -7,11 +8,11 @@ const CreatePollModal = () => {
         <div className="modal-content">
           <div className="modal-header">
             <div className="left-half">
-              <p className="poll-model-title">Poll Duration</p>
+              <p className="poll-model-title">{t("poll_duration")}</p>
             </div>
             <div className="right-half">
               {" "}
-              <p className="poll-days">7 days</p>
+              <p className="poll-days">7 {t("days")}</p>
             </div>
           </div>
 
@@ -28,7 +29,7 @@ const CreatePollModal = () => {
                   for="ModalPollDuration0"
                   className="b-make-post__expire__label"
                 >
-                  <span className="g-first-letter">1</span> day
+                  <span className="g-first-letter">1</span> {t("day")}
                 </label>
               </div>
               <div className="b-make-post__expire__item">
@@ -42,7 +43,7 @@ const CreatePollModal = () => {
                   for="ModalPollDuration1"
                   className="b-make-post__expire__label"
                 >
-                  <span className="g-first-letter">3</span> days
+                  <span className="g-first-letter">3</span> {t("days")}
                 </label>
               </div>
               <div className="b-make-post__expire__item">
@@ -56,7 +57,7 @@ const CreatePollModal = () => {
                   for="ModalPollDuration2"
                   className="b-make-post__expire__label"
                 >
-                  <span className="g-first-letter">7</span> days
+                  <span className="g-first-letter">7</span> {t("days")}
                 </label>
               </div>
               <div className="b-make-post__expire__item">
@@ -70,7 +71,7 @@ const CreatePollModal = () => {
                   for="ModalPollDuration3"
                   className="b-make-post__expire__label"
                 >
-                  <span className="g-first-letter">30</span> days
+                  <span className="g-first-letter">30</span> {t("days")}
                 </label>
               </div>
               <div className="b-make-post__expire__item">
@@ -85,7 +86,7 @@ const CreatePollModal = () => {
                   className="b-make-post__expire__label"
                 >
                   <span>
-                    <span className="g-first-letter">N</span>o limit
+                    <span className="g-first-letter">N</span>o {t("limit")}
                   </span>
                 </label>
               </div>
@@ -94,10 +95,10 @@ const CreatePollModal = () => {
 
           <div className="modal-footer">
             <button type="button" className="simple-btn" data-dismiss="modal">
-              Cancel
+              {t("cancel")}
             </button>
             <button type="button" className="simple-btn">
-              Save
+              {t("save")}
             </button>
           </div>
         </div>
@@ -106,4 +107,4 @@ const CreatePollModal = () => {
   );
 };
 
-export default CreatePollModal;
+export default translate(CreatePollModal);

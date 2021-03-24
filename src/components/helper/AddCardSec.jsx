@@ -8,6 +8,7 @@ import {
   getErrorNotificationMessage,
 } from "../helper/NotificationMessage";
 import { fetchCardDetailsStart } from "../../store/actions/CardsAction";
+import { translate, t } from "react-multi-lang";
 
 class AddCardSec extends Component {
   state = {
@@ -86,7 +87,7 @@ class AddCardSec extends Component {
     const { addCardLoadingContent, addCardButtonDisable } = this.state;
     return (
       <div className="modal-body sm-padding">
-        <h4 className="title">Add Card</h4>
+        <h4 className="title">{t("add_card")}</h4>
 
         <div className="form-group">
           <CardElement />
@@ -99,7 +100,7 @@ class AddCardSec extends Component {
             onClick={this.addCard}
             disabled={addCardButtonDisable}
           >
-            {addCardLoadingContent != null ? addCardLoadingContent : "Submit"}
+            {addCardLoadingContent != null ? addCardLoadingContent : t("submit")}
           </button>
         </div>
       </div>
@@ -111,4 +112,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(null, mapDispatchToProps)(injectStripe(AddCardSec));
+export default connect(null, mapDispatchToProps)(injectStripe(translate(AddCardSec)));

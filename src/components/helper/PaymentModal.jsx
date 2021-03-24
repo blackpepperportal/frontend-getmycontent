@@ -12,6 +12,7 @@ import {
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 const PaymentModal = (props) => {
   const [paymentType, setPaymentType] = useState("card");
@@ -83,7 +84,7 @@ const PaymentModal = (props) => {
         {props.subscrptionPayment === true ? (
           <Form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-              <Modal.Title>Subscribe</Modal.Title>
+              <Modal.Title>{t("subscribe")}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="header-userinfo">
@@ -119,7 +120,7 @@ const PaymentModal = (props) => {
               <div className="floating-form">
                 <div>
                   <div className="pop-user-username">
-                    Amount - {props.subscriptionData.amount_formatted}
+                    {t("amount")} - {props.subscriptionData.amount_formatted}
                   </div>
                 </div>
                 <Form className="mt-4">
@@ -181,7 +182,7 @@ const PaymentModal = (props) => {
                 data-dismiss="modal"
                 onClick={props.closePaymentModal}
               >
-                CANCEL
+                {t("cancel")}
               </Button>
               {paymentType !== "paypal" ? (
                 <Button
@@ -193,7 +194,7 @@ const PaymentModal = (props) => {
                 >
                   {props.subPayStripe.loadingButtonContent !== null
                     ? props.subPayStripe.loadingButtonContent
-                    : "Pay Now"}
+                    : t("pay_now")}
                 </Button>
               ) : (
                 ""
@@ -214,4 +215,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(PaymentModal);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(PaymentModal));

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {Image, Media} from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
 
 const NotificationTabSec = (props) => {
   return (
@@ -20,7 +21,7 @@ const NotificationTabSec = (props) => {
                 <span>
                     <Image src="assets/images/icons/all.svg" className="svg-clone" />
                 </span>
-                All
+                {t("all")}
             </Link>
         </Media>
         <Media as="li"
@@ -37,7 +38,7 @@ const NotificationTabSec = (props) => {
                <span>
                     <Image src="assets/images/icons/comment.svg" className="svg-clone" />
                 </span>
-                Interactions
+                {t("interactions")}
             </Link>
         </Media>
         <Media as="li"
@@ -54,7 +55,7 @@ const NotificationTabSec = (props) => {
                 <span>
                     <Image src="assets/images/icons/heart.svg" className="svg-clone" />
                 </span>
-                Liked
+                {t("liked")}
             </Link>
         </Media>
         <Media as="li"
@@ -71,7 +72,7 @@ const NotificationTabSec = (props) => {
                 <span>
                     <Image src="assets/images/icons/unlock.svg" className="svg-clone" />
                 </span>
-                Subscribed
+                {t("subscribed")}
             </Link>
         </Media>
         <Media as="li"
@@ -88,7 +89,7 @@ const NotificationTabSec = (props) => {
                 <span>
                     <Image src="assets/images/icons/tip.svg" className="svg-clone" />
                 </span>
-                Tipped
+                {t("tipped")}
             </Link>
         </Media>
         <Media as="li"
@@ -105,7 +106,7 @@ const NotificationTabSec = (props) => {
                 <span>
                     <img src="assets/images/icons/warning.svg" className="svg-clone" />
                 </span>
-                Promotions
+                {t("promotions")}
             </Link>
         </Media>
         </ul>
@@ -113,4 +114,4 @@ const NotificationTabSec = (props) => {
   );
 };
 
-export default NotificationTabSec;
+export default translate(NotificationTabSec);

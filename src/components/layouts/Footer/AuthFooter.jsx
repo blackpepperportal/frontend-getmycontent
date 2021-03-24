@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import configuration from "react-global-configuration";
 import { Link } from "react-router-dom";
 import { Form, Container, Row, Col, Dropdown, Media } from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
 
 import {
   setTranslations,
   setDefaultLanguage,
   setLanguage,
-  translate,
   getLanguage
 } from "react-multi-lang";
 import en from "../../translations/en.json";
@@ -78,7 +78,7 @@ class AuthFooter extends Component {
                       id="dropdown-basic"
                     >
                       <i className="fa fa-globe mr-2"></i>
-                      <span>English</span>
+                      <span>{t("english")}</span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right mobile-popup model-filter-dropdown">
                       <Form className="pop-ups-bg">
@@ -208,7 +208,7 @@ class AuthFooter extends Component {
                                   : false
                           }
                       >
-                          English
+                          {t("english")}
                       </option>
                       <option
                           value="pt"
@@ -220,7 +220,7 @@ class AuthFooter extends Component {
                                   : false
                           }
                       >
-                          Spanish
+                          {t("spanish")}
                       </option>
                     </select>
                 </div>
@@ -237,4 +237,4 @@ class AuthFooter extends Component {
   }
 }
 
-export default AuthFooter;
+export default translate(AuthFooter);

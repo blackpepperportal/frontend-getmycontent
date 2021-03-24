@@ -1,5 +1,6 @@
 import React from "react";
 import {Form, Button, Image, Modal} from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
 
 const ReportModeModal = (props) => {
   return (
@@ -13,7 +14,7 @@ const ReportModeModal = (props) => {
       >
         <Form>
           <Modal.Header closeButton>
-            <Modal.Title>Report Post</Modal.Title>
+            <Modal.Title>{t("report_post")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
               <div className="report-form">
@@ -58,13 +59,13 @@ const ReportModeModal = (props) => {
               type="button"
               className="btn btn-theme"
             >
-              CANCEL
+              {t("cancel")}
             </Button>
             <Button
               type="button"
               className="btn btn-normal"
             >
-              REPORT
+              {t("report")}
             </Button>
           </Modal.Footer>
         </Form>
@@ -73,4 +74,4 @@ const ReportModeModal = (props) => {
   );
 };
 
-export default ReportModeModal;
+export default translate(ReportModeModal);

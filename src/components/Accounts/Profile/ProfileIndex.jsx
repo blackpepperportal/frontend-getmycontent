@@ -457,7 +457,7 @@ const ProfileIndex = (props) => {
                 )
               ) : null} */}
               {props.posts.loading ? (
-                "Loading..."
+                t("loading")
               ) : props.posts.error === false ? (
                 props.posts.data.posts.length > 0 ? (
                   props.posts.data.posts.map((post) => (

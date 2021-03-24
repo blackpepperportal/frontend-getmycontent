@@ -5,6 +5,7 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import { fetchNotificationsStart } from "../../store/actions/NotificationAction";
 import { connect } from "react-redux";
 import NotificationLoader from "../Loader/NotificationLoader";
+import { translate, t } from "react-multi-lang";
 
 const NotificationIndex = (props) => {
   const [activeSec, setActiveSec] = useState("notify-all-sec");
@@ -27,7 +28,7 @@ const NotificationIndex = (props) => {
                         src="assets/images/icons/back.svg"
                         className="svg-clone"
                       />
-                      Notifications
+                      {t("notifications")}
                     </Link>
                   </div>
                 </div>
@@ -64,4 +65,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(NotificationIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(NotificationIndex));
