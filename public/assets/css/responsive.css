@@ -491,6 +491,9 @@ Version: 1.0
     .resp-col-reverse{
         flex-direction: column-reverse;
     }
+    .gallery-play-icon{
+        top:40%;
+    }
 }
 
 
