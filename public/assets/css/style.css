@@ -357,7 +357,7 @@ span.no-bookmarks {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
 }
 
 .user-lists-heading svg.g-icon.has-tooltip {
@@ -1107,7 +1107,9 @@ p#one {
   margin-bottom: 0;
   padding-top: 0.2em;
 }
-.btn.btn-auth:hover {
+.btn.btn-auth:hover,
+.btn.btn-auth:focus,
+.btn.btn-auth:active{
   color: var(--secondary-color) !important;
   background: var(--primary-color) !important;
 }
@@ -2243,7 +2245,7 @@ h4.suggestions {
   display: flex;
 }
 .pull-left.side-user-head ul.list-inline span.fans-follow {
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
   font-size: 15px;
   /* padding: 0 3px 0 0; */
 }
@@ -2769,7 +2771,7 @@ span.friend-name {
   display: block;
   margin-right: 5px;
   font-weight: 500;
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
   user-select: text;
   position: relative;
 }
@@ -3939,7 +3941,7 @@ h1.chat-page-title {
   -ms-flex: 1;
   flex: 1;
   text-align: left;
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
   font-size: 18px;
   margin: 0;
   text-transform: uppercase;
@@ -4245,7 +4247,7 @@ h1.chat-section-title {
   -ms-flex: 1;
   flex: 1;
   font-size: 18px;
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
   text-align: left;
   margin-top: 0px;
   padding-top: 1.7em;
@@ -4283,7 +4285,7 @@ a.chat-user-name {
   display: -ms-inline-flexbox;
   display: contents;
   min-width: 0;
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
   font-family: roboto, sans-serif;
 }
 
@@ -5315,7 +5317,7 @@ span.follower-profile-avatar img {
   line-height: 24px;
   padding-right: 22px;
   font-weight: 500;
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
 }
 .g-user-realname__wrapper {
   max-width: 100%;
@@ -5347,7 +5349,7 @@ svg.g-icon.m-verified {
 }
 .swiper-btn-fav {
   font-size: 12px;
-  color:var(--secondary-color);
+  color:var(--tertiary-color);
   padding: 0px 8px;
   border-radius: 6px;
   background: rgba(138, 150, 163, 0.08);
