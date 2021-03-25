@@ -8454,12 +8454,12 @@ input.authentication-input {
   } */
 
 .slick-prev:before {
-  color:var(--secondary-color);
+  color:#000;
   font-size: 23px;
 }
 
 .slick-next:before {
-  color:var(--secondary-color);
+  color:#000;
   font-size: 23px;
 }
 
