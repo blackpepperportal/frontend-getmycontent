@@ -230,7 +230,9 @@ const PostDisplayCard = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>
-                {post.is_user_needs_pay === 1 ? (
+                {post.is_user_needs_pay === 1 ? 
+
+                  post.payment_info.post_payment_type === 'ppv' ? (
                   <span
                     className="post-time"
                     onClick={(event) =>
@@ -249,7 +251,13 @@ const PostDisplayCard = (props) => {
                       <i className="fa fa-lock"></i>
                     </Link>
                   </span>
-                ) : post.amount > 0 ? (
+                  ) :
+                  (
+                    <Link to="#">
+                      <i className="fa fa-unlock text-success"></i>
+                    </Link>
+                  )
+                 : post.amount > 0 ? (
                   <span className="post-time">
                     <span className="post-tip-lock">
                       {post.amount_formatted}{" "}
@@ -607,7 +615,7 @@ const PostDisplayCard = (props) => {
                             <div className="comment-info-sec">
                               <ul className="list-unstyled comment-info-link">
                                 <Media as="li">
-                                  <p>Dec 22</p>
+                                  <p>{comment.created}</p>
                                 </Media>
                                 {/* <Media as="li">
                                   <p>1 Like</p>
