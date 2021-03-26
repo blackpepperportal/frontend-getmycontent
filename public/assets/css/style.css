@@ -1475,6 +1475,7 @@ i.fa.fa-ellipsis-h {
   display: grid;
   grid-auto-flow: row;
   /*margin-left: 20px; */
+  text-align: right;
 }
 span.fa.fa-ellipsis-h {
   font-size: 22px;
@@ -8636,5 +8637,21 @@ button {
 .invalid-feedback{
   text-align: left;
   font-size: 100%!important;
+}
+
+.gallery-img-sec{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.gallery-play-icon{
+  border-style: solid;
+  border-width: 16px 0px 16px 26px;
+  border-color: transparent transparent transparent white;
+  position:absolute;
+  top:50%;
 }
 
