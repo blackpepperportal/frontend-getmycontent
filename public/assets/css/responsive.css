@@ -474,7 +474,7 @@ Version: 1.0
         padding-bottom: 18px;
     }
     .gallery.js-gallery .react-player__preview {
-        min-height: 14em;
+        min-height: 16em;
     }
     .bookmark-sec .vertical-menu {
         display:flex;
@@ -498,7 +498,7 @@ Version: 1.0
         background-repeat: no-repeat;
     }
     .post-content .post-image .post-view-image{
-        height:14em;
+        height:16em;
         object-fit: cover;
     }
 }
