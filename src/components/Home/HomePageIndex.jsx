@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
-import { Container, Col, Form, Media, Image } from "react-bootstrap";
+import { Container, Col, Form, Media, Image, Row } from "react-bootstrap";
 import {
   fetchHomePostsStart,
   searchUserStart,
@@ -145,6 +145,7 @@ const HomePageIndex = (props) => {
             )}
           </div>
           <div className="padding-top-xl">
+            <Row className="resp-col-reverse">
             <Col xl={8} md={12} className="custom-padding">
               {/* <Container>
                 <Row>
@@ -167,6 +168,7 @@ const HomePageIndex = (props) => {
               )}
             </Col>
             <HomePageSuggesstion />
+            </Row>
           </div>
         </Container>
       </div>
