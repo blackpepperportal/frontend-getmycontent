@@ -172,7 +172,6 @@ const SignInModal = (props) => {
                             <div className="forget-password">
                                 <p id="one">
                                 <Link
-                                    type="button"
                                     className="forgot-link"
                                     onClick={showForgotPassword}
                                     // onClick={(event) => {

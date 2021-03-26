@@ -161,10 +161,14 @@ const SignUpModal = (props) => {
                                     onChange={(event) =>
                                         handleUsernameValidation(event, event.currentTarget.value)
                                     }
-                                    isInvalid={props.validation.isValid}
+                                    isValid={props.validation.isValid}
+                                    isInvalid={props.validation.isInValid}
                                 />
-                                {props.validation.isValid ? 
+                                {props.validation.isInValid ? 
                                 <Form.Control.Feedback type="invalid">Username already taken. Please try another</Form.Control.Feedback>
+                                : ''}
+                                {props.validation.isValid ? 
+                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 : ''}
                             </Form.Group>
                             <Form.Group controlId="formBasicEmail">

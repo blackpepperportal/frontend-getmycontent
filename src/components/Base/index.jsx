@@ -34,9 +34,12 @@ import DocumentUploadIndex from "../DocumentUpload/DocumentUploadIndex";
 import StaticPage from "../StaticPage/StaticPage";
 import FanIndex from "../Accounts/FansFollowing/Fans/FanIndex";
 import PostView from "../Post/PostView";
+import CategoryUsers from "../Categories/CategoryUsers";
 import ResetPassword from "../LandingPageIndex/ResetPassword";
 import UploadProfilePicture from "../Accounts/Profile/UploadProfilePicture";
 import NewLandingPage from "../LandingPageIndex/NewLandingPage";
+import UserCategoriesIndex from "../Accounts/Profile/UserCategoriesIndex";
+
 
 import {
   setTranslations,
@@ -305,6 +308,13 @@ class App extends Component {
 
           <PrivateRoute
             authentication={this.state.authentication}
+            path={"/update-categories"}
+            component={UserCategoriesIndex}
+            layout={MainLayout}
+          />
+
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/banking"}
             component={BankingIndex}
             layout={MainLayout}
@@ -349,6 +359,12 @@ class App extends Component {
             component={Logout}
             layout={MainLayout}
           />
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/category/:u_category_unique_id"}
+            component={CategoryUsers}
+            layout={MainLayout}
+          />
 
           {/* Dont move this route to top */}
           <PrivateRoute
@@ -357,7 +373,6 @@ class App extends Component {
             component={ModelViewProfile}
             layout={MainLayout}
           />
-
           <Route path="*" component={NotFoundIndex} />
         </Switch>
       </>

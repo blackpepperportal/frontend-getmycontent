@@ -352,6 +352,13 @@ Version: 1.0
     .search-btn{
         width: 46px;
     }
+    .category-list-sec .media{
+        justify-content: center;
+    }
+    .category-list-sec .category-sec{
+        margin-right: 0;
+    }
+
     .bookmark-sec .post-header{
         justify-content: space-between;
     }
@@ -526,6 +533,7 @@ Version: 1.0
         height:16em;
         object-fit: cover;
     }
+>>>>>>> 8fe8f1e28b764d758f9315591b147f86034ac4a5
 }
 
 

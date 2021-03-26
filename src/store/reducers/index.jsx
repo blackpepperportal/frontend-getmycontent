@@ -25,6 +25,7 @@ import OtherUserReducer from "./OtherUserReducer";
 import PostLikesReducer from "./PostLikesReducer";
 import ChatReducer from "./ChatReducer";
 import NotificationReducer from "./NotificationReducer";
+import CategoryReducer from "./CategoryReducer";
 
 export default combineReducers({
   users: UserReducer,
@@ -52,4 +53,5 @@ export default combineReducers({
   postLike: PostLikesReducer,
   chat: ChatReducer,
   notification: NotificationReducer,
+  category: CategoryReducer,
 });

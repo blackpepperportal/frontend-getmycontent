@@ -1,0 +1,150 @@
+/*Categories check box Section CSS*/
+
+.categories-sec .radio-categories-group-sec input[type="checkbox"] {
+    position: absolute;
+    visibility: hidden;
+    height: 0px;
+    margin: 0px;
+    width: 0px;
+}
+
+.categories-sec .radio-categories-group-sec label {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.categories-sec .radio-categories-group-sec .categories-item{
+    margin-bottom: 0.6rem;
+    transition: border-color 108ms ease-in-out 0s, background-color 108ms ease-in-out 0s;
+    margin-right: 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+}
+
+.radio-categories-group-sec .checked-img {
+    position: absolute;
+    width: 2em;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+}
+
+.radio-categories-group-sec input[type=checkbox]:checked + label .checked-img{
+    opacity: 1;
+}
+
+.categories-sec .radio-categories-group-sec input:not(:disabled) + label {
+    cursor: pointer;
+}
+
+.radio-categories-group-sec {
+    grid-template-columns: repeat(5, 1fr);
+    display: grid;
+    gap: 1rem;
+}
+
+.radio-categories-group-sec .categories-title {
+    font-size: 1.7em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    color: #fff;
+    min-width: 4rem;
+    position: absolute;
+    text-align: center;
+    right: 1rem;
+    bottom: 0.5rem;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 180px;
+    overflow: hidden;
+    text-align: right;
+}
+
+.radio-categories-group-sec .follower-count-text{
+    font-size: 1.7em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    color: #fff;
+    min-width: 4rem;
+    position: absolute;
+    text-align: center;
+    right: 1rem;
+    bottom:2.5rem;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 180px;
+    overflow: hidden;
+    text-align: right;
+}
+
+.radio-categories-group-sec .categories-item .categories-img {
+    border-radius: 0.6rem;
+    width: 100%;
+    height: 14em;
+    object-fit: cover;
+}
+
+
+.radio-categories-group-sec .radio-categories-btn-sec {
+    position: relative;
+}
+
+.categories-sec .btn-continue {
+    display: inline-block;
+    appearance: none;
+    border: 0.1rem solid var(--tertiary-color);
+    transition: border-color 216ms ease-in-out 0s, background-color 216ms ease-in-out 0s;
+    position: relative;
+    outline: none;
+    text-decoration: none;
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.4rem 1.8rem;
+    border-radius: 0.6rem;
+    margin-top:1rem;
+    margin-bottom: 1rem;
+}
+
+.categories-sec .btn-continue:hover,
+.categories-sec .btn-continue:focus,
+.categories-sec .btn-continue:active{
+    border: 0.1rem solid var(--tertiary-color)!important;
+    background-color: var(--tertiary-color)!important;
+    color: var(--secondary-color)!important;
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+.categories-sec h3{
+    margin-bottom: 1em;
+}
+
+.overlay-slider {
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);;
+    border-radius: 0.6rem;
+    z-index: 2;
+  }
+

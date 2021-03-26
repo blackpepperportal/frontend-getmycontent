@@ -48,6 +48,9 @@ import {
   USERNAME_VALIDATION_START,
   USERNAME_VALIDATION_SUCCESS,
   USERNAME_VALIDATION_FAILURE,
+  USER_CATEGORY_UPDATE_START,
+  USER_CATEGORY_UPDATE_SUCCESS,
+  USER_CATEGORY_UPDATE_FAILURE,
 } from "../actions/ActionConstant";
 
 const initialState = {
@@ -147,6 +150,14 @@ const initialState = {
     isValid: false,
     isInValid: false,
   },
+  userCat: {
+    data: {},
+    loading: false,
+    error: false,
+    inputData: {},
+    buttonDisabled: false,
+    buttonLoadingContent: null,
+  },
 };
 
 const userReducer = (state = initialState, action) => {
@@ -203,6 +214,7 @@ const userReducer = (state = initialState, action) => {
             about: state.profile.data.about,
             address: state.profile.data.address,
             website: state.profile.data.website,
+            u_category_id: state.profile.data.u_category_id,
             amazon_wishlist: state.profile.data.amazon_wishlist,
             instagram_link: state.profile.data.instagram_link,
             facebook_link: state.profile.data.facebook_link,
@@ -744,6 +756,42 @@ const userReducer = (state = initialState, action) => {
           error: action.data,
           isInValid: true,
           isValid: false,
+        },
+      };
+    case USER_CATEGORY_UPDATE_START:
+      return {
+        ...state,
+        userCat: {
+          data: {},
+          loading: true,
+          error: false,
+          inputData: action.data,
+          buttonDisabled: true,
+          buttonLoadingContent: "Loading... Please wait",
+        },
+      };
+    case USER_CATEGORY_UPDATE_SUCCESS:
+      return {
+        ...state,
+        userCat: {
+          data: action.data,
+          loading: false,
+          error: false,
+          inputData: {},
+          buttonDisabled: false,
+          buttonLoadingContent: null,
+        },
+      };
+    case USER_CATEGORY_UPDATE_FAILURE:
+      return {
+        ...state,
+        userCat: {
+          data: {},
+          loading: true,
+          error: action.error,
+          inputData: {},
+          buttonDisabled: false,
+          buttonLoadingContent: null,
         },
       };
     default:

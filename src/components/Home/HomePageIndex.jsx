@@ -16,6 +16,7 @@ import PostDisplayCard from "../helper/PostDisplayCard";
 import NoDataFound from "../NoDataFound/NoDataFound";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
 import HomeLoader from "../Loader/HomeLoader";
+import HomeCategoryList from "../Categories/HomeCategoryList";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 import { translate, t } from "react-multi-lang";
 
@@ -144,6 +145,11 @@ const HomePageIndex = (props) => {
               </div>
             )}
           </div>
+          {/* categories list start */}
+          <HomeCategoryList />
+          <hr></hr>
+          {/* categories list start */}
+
           <div className="padding-top-xl">
             <Row className="resp-col-reverse">
             <Col xl={8} md={12} className="custom-padding">

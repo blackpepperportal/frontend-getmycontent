@@ -52,6 +52,9 @@ import {
   USERNAME_VALIDATION_START,
   USERNAME_VALIDATION_SUCCESS,
   USERNAME_VALIDATION_FAILURE,
+  USER_CATEGORY_UPDATE_START,
+  USER_CATEGORY_UPDATE_SUCCESS,
+  USER_CATEGORY_UPDATE_FAILURE,
 } from "./ActionConstant";
 
 // Get user details actions.
@@ -456,6 +459,27 @@ export function usernameValidationSuccess(data) {
 export function usernameValidationFailure(error) {
   return {
     type: USERNAME_VALIDATION_FAILURE,
+    error,
+  };
+}
+
+export function userCategoryUpdateStart(data) {
+  return {
+    type: USER_CATEGORY_UPDATE_START,
+    data,
+  };
+}
+
+export function userCategoryUpdateSuccess(data) {
+  return {
+    type: USER_CATEGORY_UPDATE_SUCCESS,
+    data,
+  };
+}
+
+export function userCategoryUpdateFailure(error) {
+  return {
+    type: USER_CATEGORY_UPDATE_FAILURE,
     error,
   };
 }

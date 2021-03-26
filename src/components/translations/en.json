@@ -134,7 +134,7 @@
     "change_photo": "CHANGE PROFILE AND COVER PHOTOS",
     "upload_cover_image": "Upload cover image",
     "upload_profile_photo": "Upload profile photo",
-    "upload_profile_photo_para": "Profile images must not contain nudity or explicit material.",
+    "upload_profile_photo_para": "Please add a photo here that’s clear to see. Make sure you don’t include any personal info.",
     "username": "Username",
     "username_error": "Username already taken. Please try another",
     "display_name": "Display name",
