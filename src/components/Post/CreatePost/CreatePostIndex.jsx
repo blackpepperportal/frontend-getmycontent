@@ -8,6 +8,7 @@ import {
 } from "../../../store/actions/PostAction";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { getErrorNotificationMessage } from "../../helper/NotificationMessage";
+import { translate, t } from "react-multi-lang";
 
 const CreatePostIndex = (props) => {
   const [inputData, setInputData] = useState({});
@@ -123,7 +124,7 @@ const CreatePostIndex = (props) => {
                       src="assets/images/icons/back.svg"
                       className="svg-clone"
                     />
-                    NEW POST
+                    {t("new_post")}
                   </Link>
                 </div>
                 <div className="pull-right">
@@ -140,7 +141,7 @@ const CreatePostIndex = (props) => {
                       ? props.fileUpload.loadingButtonContent
                       : props.savePost.loadingButtonContent !== null
                       ? props.savePost.loadingButtonContent
-                      : "POST"}
+                      : t("post")}
                   </Button>
                 </div>
               </div>
@@ -152,7 +153,7 @@ const CreatePostIndex = (props) => {
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="Compose new post..."
+                    placeholder={t("new_post_placeholder")}
                     name="content"
                     style={{ width: "100%", maxWidth: "100%" }}
                     value={inputData.content ? inputData.content : null}
@@ -241,10 +242,10 @@ const CreatePostIndex = (props) => {
             {paidPost == true ? (
               <Col sm={12} md={12}>
                 <Form.Group className="md-mrg-btm">
-                  <label className="text-muted m-1">Price (Optional)</label>
+                  <label className="text-muted m-1">{t("price")} ({t("optional")})</label>
                   <Form.Control
                     type="number"
-                    placeholder="Set price for the post"
+                    placeholder={t("price_placeholder")}
                     name="amount"
                     pattern="[0-9]*"
                     min="1"
@@ -267,12 +268,12 @@ const CreatePostIndex = (props) => {
               <Col sm={12} md={12}>
                 <Form.Group className="md-mrg-btm">
                   <label className="text-muted m-1 mt-3 f-12 text-uppercase">
-                    Upload Video Thumbnail:(Optional)
+                    {t("upload_video_thumbnail")}:({t("optional")})
                   </label>
                   <Form.Control
                     style={{ display: "block" }}
                     type="file"
-                    placeholder="Video Thumbnail Image"
+                    placeholder={t("upload_video_thumbnail_placeholder")}
                     name="preview_file"
                     width="50%"
                     className="form-control"
@@ -305,4 +306,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(CreatePostIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(CreatePostIndex));

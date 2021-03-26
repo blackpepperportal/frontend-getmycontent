@@ -7,6 +7,7 @@ import PostDisplayCard from "../helper/PostDisplayCard";
 import BookmarkNoDataFound from "../NoDataFound/BookmarkNoDataFound";
 import BookmarkLoader from "../Loader/BookmarkLoader";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
+import { translate, t } from "react-multi-lang";
 
 const BookmarksIndex = (props) => {
   useEffect(() => {
@@ -42,7 +43,7 @@ const BookmarksIndex = (props) => {
               <div className="profile-post-area">
                 <div className="bookmarkes-list bookmarks-right-side">
                   <div className="pull-left">
-                    <h3>ALL BOOKMARKS</h3>
+                    <h3>{t("all_bookmarks")}</h3>
                   </div>
                 </div>
               </div>
@@ -60,7 +61,7 @@ const BookmarksIndex = (props) => {
           {noMoreData !== true ? (
             <>{isFetching && "Fetching more list items..."}</>
           ) : (
-            "No More Data"
+            t("no_more_data")
           )}
         </Container>
       </div>
@@ -76,4 +77,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(BookmarksIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(BookmarksIndex));

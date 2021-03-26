@@ -7,6 +7,7 @@ import { fetchAllTransactionStart } from "../../store/actions/TransactionAction"
 import WithdrawModal from "../helper/WithdrawModal";
 import NoDataFound from "../NoDataFound/NoDataFound";
 import WalletLoader from "../Loader/WalletLoader";
+import { translate, t } from "react-multi-lang";
 
 const Wallet = (props) => {
 	useEffect(() => {
@@ -33,7 +34,7 @@ const Wallet = (props) => {
 									<Row>
 										<Col sm={12} md={6} xl={5}>
 											<div className="wallet-header-card">
-												<h5>Total Balance</h5>
+												<h5>{t("total_balance")}</h5>
 												<div className="wallet-header-details">
 													<Image
 														src={
@@ -52,7 +53,7 @@ const Wallet = (props) => {
 										</Col>
 										<Col sm={12} md={6} xl={4}>
 											<div className="wallet-header-card">
-												<h5>Current Balance</h5>
+												<h5>{t("current_balance")}</h5>
 												<div className="wallet-header-details">
 													<Image
 														src={
@@ -75,7 +76,7 @@ const Wallet = (props) => {
 													className="send-btn-white"
 													onClick={() => setWithdrawModal(true)}
 												>
-													WithDraw
+													{t("withDraw")}
 												</Button>
 											</div>
 										</Col>
@@ -90,12 +91,12 @@ const Wallet = (props) => {
 				<Container>
 					<Row>
 						<Col sm={12} md={12}>
-							<h4>TRANSACTIONS</h4>
+							<h4>{t("transactions")}</h4>
 							<div className="trans-table">
 								<Table borderedless responsive>
 									<tbody>
 										{props.transaction.loading ? (
-											"Loading..."
+											t("loading")
 										) : props.transaction.data.history.length > 0 ? (
 											props.transaction.data.history.map((data) => (
 												<tr>
@@ -105,7 +106,7 @@ const Wallet = (props) => {
 														{/* <span className="amout-abb">STRAT</span> */}
 													</td>
 													<td className="amount">
-														Service Fee :{" "}{data.admin_amount_formatted}{" "}
+														{t("service_fee")} :{" "}{data.admin_amount_formatted}{" "}
 														{/* <span className="amout-abb">STRAT</span> */}
 													</td>
 													<td className="amount">
@@ -115,7 +116,7 @@ const Wallet = (props) => {
 														{/* <span className="amout-abb text-muted">TYPE</span> */}
 													</td>
 													<td>
-														from :{" "}
+														{t("from")} :{" "}
 														{data.received_from_username
 															? data.received_from_username
 															: "-"}

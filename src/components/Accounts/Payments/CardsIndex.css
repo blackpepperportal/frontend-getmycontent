@@ -4,7 +4,7 @@
 }
 
 .card-list-box {
-    background: #ffffff;
+    background: var(--secondary-color);
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -23,7 +23,7 @@
 .card-list-box h5{
     font-size: 1.6em;
     font-weight: 700;
-    color: #212529;
+    color: var(--tertiary-color);
     letter-spacing: 0.002em;
 }
 
@@ -54,7 +54,7 @@
     font-weight: 900;
     text-align: center;
     margin-bottom: 2em;
-    border-bottom:1px solid #dedede;
+    border-bottom:1px solid var(--septenary-color);
     padding-bottom: 1em;
 }
 
@@ -74,11 +74,11 @@
 
 .add-card-modal .close{
     font-size: 3em;
-    color: #fff;
+    color: var(--secondary-color);
 }
 
 .add-card-modal .close:hover{
-    color: #fff;
+    color: var(--secondary-color);
 }
 
 .add-card-modal .user-profile-img{
@@ -110,7 +110,7 @@
 }
 
 .add-card-modal .add-card-content-header .media i{
-    color: #0091ea;
+    color: var(--primary-color);
 }
 
 .add-card-user-name {
@@ -122,14 +122,14 @@
 .sub-title {
     font-size: 1.6em;
     font-weight: 600;
-    color: #8a96a3;
+    color: var(--quaternary-color);
     margin-bottom: 1.5em;
 }
 
 .title {
     font-size: 1.8em;
     font-weight: 600;
-    color: #8a96a3;
+    color: var(--quaternary-color);
     margin-bottom: 1em;
 }
 

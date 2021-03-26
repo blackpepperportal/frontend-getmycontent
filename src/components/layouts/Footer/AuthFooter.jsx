@@ -2,8 +2,26 @@ import React, { Component } from "react";
 import configuration from "react-global-configuration";
 import { Link } from "react-router-dom";
 import { Form, Container, Row, Col, Dropdown, Media } from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
+
+import {
+  setTranslations,
+  setDefaultLanguage,
+  setLanguage,
+  getLanguage
+} from "react-multi-lang";
+import en from "../../translations/en.json";
+import es from "../../translations/es.json";
 
 class AuthFooter extends Component {
+
+  handleChangeLang = ({ currentTarget: input }) => {
+    console.log(input.value);
+    setLanguage(input.value);
+    localStorage.setItem("lang", input.value);
+    // window.location.reload();
+};
+
   render() {
     return (
       <>
@@ -60,7 +78,7 @@ class AuthFooter extends Component {
                       id="dropdown-basic"
                     >
                       <i className="fa fa-globe mr-2"></i>
-                      <span>English</span>
+                      <span>{t("english")}</span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right mobile-popup model-filter-dropdown">
                       <Form className="pop-ups-bg">
@@ -172,6 +190,43 @@ class AuthFooter extends Component {
                       </Form>
                     </Dropdown.Menu>
                   </Dropdown>
+
+                  { configuration.get("configData.is_multilanguage_enabled") == 1 ? (
+                  <div className="select-lang-drop-down">
+                    <select
+                        className="form-control mw-200 mb-3"
+                        onChange={this.handleChangeLang}
+                        name="lang"
+                    >
+                      <option
+                          value="en"
+                          selected={
+                              localStorage.getItem(
+                                  "lang"
+                              ) == "en"
+                                  ? true
+                                  : false
+                          }
+                      >
+                          {t("english")}
+                      </option>
+                      <option
+                          value="es"
+                          selected={
+                              localStorage.getItem(
+                                  "lang"
+                              ) == "es"
+                                  ? true
+                                  : false
+                          }
+                      >
+                          {t("spanish")}
+                      </option>
+                    </select>
+                </div>
+                ) : (
+                 ''
+                )}
                 </Col>
               </Row>
             </div>
@@ -182,4 +237,4 @@ class AuthFooter extends Component {
   }
 }
 
-export default AuthFooter;
+export default translate(AuthFooter);

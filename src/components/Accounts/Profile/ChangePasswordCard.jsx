@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { changePasswordStart } from "../../../store/actions/UserAction";
+import { translate, t } from "react-multi-lang";
 
 const ChangePasswordCard = (props) => {
   const [inputData, setInputData] = useState({});
@@ -24,17 +25,17 @@ const ChangePasswordCard = (props) => {
       >
         <div className="change-password-sec">
           <div className="card-header bg-transparent">
-            <h4>Change Password</h4>
+            <h4>{t("change_password")}</h4>
           </div>
           <div className="card-body">
             <Form autoComplete="new-password" onSubmit={handleSubmit}>
               <Form.Group>
-                <Form.Label for="old_password">Old Password</Form.Label>
+                <Form.Label for="old_password">{t("old_password")}</Form.Label>
                 <Form.Control
                   className="form-control"
                   id="old_password"
                   type="password"
-                  placeholder="Enter your old password"
+                  placeholder={t("old_password_placeholder")}
                   name="old_password"
                   value={inputData.old_password}
                   onChange={(event) =>
@@ -46,12 +47,12 @@ const ChangePasswordCard = (props) => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label for="password">New Password</Form.Label>
+                <Form.Label for="password">{t("new_password")}</Form.Label>
                 <Form.Control
                   className="form-control"
                   id="password"
                   type="password"
-                  placeholder="Enter your new password"
+                  placeholder={t("new_password_placeholder")}
                   name="password"
                   value={inputData.password}
                   onChange={(event) =>
@@ -64,13 +65,13 @@ const ChangePasswordCard = (props) => {
               </Form.Group>
               <Form.Group>
                 <Form.Label for="password_confirmation">
-                  Confirm Password
+                  {t("confirm_password")}
                 </Form.Label>
                 <Form.Control
                   className="form-control"
                   id="password_confirmation"
                   type="password"
-                  placeholder="Confirm Password"
+                  placeholder={t("confirm_password")}
                   name="password_confirmation"
                   value={inputData.password_confirmation}
                   onChange={(event) =>
@@ -91,7 +92,7 @@ const ChangePasswordCard = (props) => {
                   >
                     {props.changePassword.loadingButtonContent != null
                       ? props.changePassword.loadingButtonContent
-                      : "Change Password"}
+                      : t("change_password")}
                   </Button>
                 </Col>
               </Row>
@@ -111,4 +112,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(ChangePasswordCard);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(ChangePasswordCard));

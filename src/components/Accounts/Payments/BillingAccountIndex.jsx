@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import NoDataFound from "../../NoDataFound/NoDataFound";
 import BillingAccountLoader from "../../Loader/BillingAccountLoader";
+import { translate, t } from "react-multi-lang";
 
 const BillingAccountIndex = (props) => {
   useEffect(() => {
@@ -24,16 +25,15 @@ const BillingAccountIndex = (props) => {
               <div className="wallet-header-sec">
                 <Row>
                   <Col sm={12} md={12} xl={9}>
-                    <h3>Billing Accounts</h3>
+                    <h3>{t("billing_accounts")}</h3>
                     <p className="text-muted f-2">
-                      You earnings will be created based on the withdraw billing
-                      accounts. Please add proper information
+                      {t("billing_accounts_para")}
                     </p>
                   </Col>
                   <Col sm={12} md={12} xl={3}>
                     <div className="edit-save">
                       <Link className="receive-btn-blue" to={"/add-bank"}>
-                        Add New Account
+                        {t("add_new_account")}
                       </Link>
                     </div>
                   </Col>
@@ -69,7 +69,7 @@ const BillingAccountIndex = (props) => {
                             {accounts.is_default === 1 ? (
                               <td>
                                 <Badge className="unconfirmed-badge">
-                                  Default
+                                  {t("default")}
                                 </Badge>
                               </td>
                             ) : (
@@ -87,7 +87,7 @@ const BillingAccountIndex = (props) => {
                                     )
                                   }
                                 >
-                                  Make Default
+                                  {t("make_default")}
                                 </Button>
                               ) : null}{" "}
                               <Button
@@ -100,7 +100,7 @@ const BillingAccountIndex = (props) => {
                                   )
                                 }
                               >
-                                Delete
+                                {t("delete")}
                               </Button>{" "}
                             </td>
                           </tr>
@@ -128,4 +128,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(BillingAccountIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(BillingAccountIndex));

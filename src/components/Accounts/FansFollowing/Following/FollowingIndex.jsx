@@ -12,6 +12,7 @@ import {
   fetchFollowingStart,
 } from "../../../../store/actions/FollowAction";
 import FollowingLoader from "../../../Loader/FollowingLoader";
+import { translate, t } from "react-multi-lang";
 
 const FollowingIndex = (props) => {
   useEffect(() => {
@@ -44,7 +45,7 @@ const FollowingIndex = (props) => {
                         src="assets/images/icons/back.svg"
                         className="svg-clone"
                       />
-                      Following
+                      {t("following")}
                     </Link>
                     
                   </h3>
@@ -96,4 +97,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(FollowingIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(FollowingIndex));

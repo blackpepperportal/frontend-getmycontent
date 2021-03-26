@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import UserCard from "../UserCard";
 import NoDataFound from "../../../NoDataFound/NoDataFound";
+import { translate, t } from "react-multi-lang";
 
 const FollowingAllSec = (props) => {
   return (
@@ -17,7 +18,7 @@ const FollowingAllSec = (props) => {
         id="all"
       >
         {props.following.loading ? (
-          "Loading..."
+          t("loading")
         ) : (
           <>
             <div className="bookmarkes-list bookmarks-right-side">
@@ -28,7 +29,7 @@ const FollowingAllSec = (props) => {
                       ? props.following.data.total
                       : 0}{" "}
                   </span>{" "}
-                  ALL
+                  {t("all")}
                 </Link>
               </div>
             </div>
@@ -52,4 +53,4 @@ const FollowingAllSec = (props) => {
   );
 };
 
-export default FollowingAllSec;
+export default translate(FollowingAllSec);

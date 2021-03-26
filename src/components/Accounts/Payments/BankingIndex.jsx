@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Form, Button, Container, Row, Col, Image } from "react-bootstrap";
 import "./BankingIndex.css";
 import { getKycDocumentStart } from "../../../store/actions/KycDocumentAction";
+import { translate, t } from "react-multi-lang";
 
 const BankingIndex = (props) => {
   useEffect(() => {
@@ -21,7 +22,7 @@ const BankingIndex = (props) => {
                   src="assets/images/icons/back.svg"
                   className="svg-clone"
                 /> */}
-                <span>Banking</span>
+                <span>{t("banking")}</span>
               </div>
               <div className="help-icon">
                 <Image
@@ -32,94 +33,92 @@ const BankingIndex = (props) => {
             </div>
             <div className="banking-body">
               <Form className="banking-personal-form">
-                <h2 className="title">PERSONAL INFORMATION</h2>
+                <h2 className="title">{t("personal_information")}</h2>
                 <h4>
-                  Fill in your legal name, address and attach your goverment
-                  issued picture ID
+                  {t("personal_information_para")}
                 </h4>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>First Name</Form.Label>
-                  <Form.Control type="fname" placeholder="First Name" />
+                  <Form.Label>{t("first_name")}</Form.Label>
+                  <Form.Control type="fname" placeholder={t("first_name")} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="lname" placeholder="Last Name" />
+                  <Form.Label>{t("last_name")}</Form.Label>
+                  <Form.Control type="lname" placeholder={t("last_name")} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Country</Form.Label>
+                  <Form.Label>{t("country")}</Form.Label>
                   <Form.Control
                     type="email"
                     value="United Kingdom"
                     placeholder=""
                   />
                   <Form.Text className="text-muted">
-                    If you would like to change your country please contact{" "}
-                    <Link to="#">customer support</Link>
+                    {t("customer_support_para")}{" "}
+                    <Link to="#">{t("customer_support")}</Link>
                   </Form.Text>
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Address</Form.Label>
-                  <Form.Control type="address" placeholder="Your address" />
+                  <Form.Label>{t("address")}</Form.Label>
+                  <Form.Control type="address" placeholder={t("your_address")} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>City</Form.Label>
-                  <Form.Control type="city" placeholder="Your city" />
+                  <Form.Label>{t("city")}</Form.Label>
+                  <Form.Control type="city" placeholder={t("your_city")} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Postal/Zip</Form.Label>
-                  <Form.Control type="pcode" placeholder="Postal/Zip" />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>
-                    Twitter <span>(optional)</span>
-                  </Form.Label>
-                  <Form.Control type="lname" placeholder="Your username" />
+                  <Form.Label>{t("postal_zip")}</Form.Label>
+                  <Form.Control type="pcode" placeholder={t("postal_zip")} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>
-                    Instagaram <span>(optional)</span>
+                    {t("twitter")} <span>({t("optional")})</span>
                   </Form.Label>
-                  <Form.Control type="lname" placeholder="Your username" />
+                  <Form.Control type="lname" placeholder={t("twitter")} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>
-                    Website <span>(optional)</span>
+                    {t("instagaram")} <span>({t("optional")})</span>
                   </Form.Label>
-                  <Form.Control type="lname" placeholder="Website" />
+                  <Form.Control type="lname" placeholder={t("instagaram")} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>
-                    Date Of Birth<span>(optional)</span>
+                    {t("website")} <span>({t("optional")})</span>
                   </Form.Label>
-                  <Form.Control type="dob" placeholder="Date of birth" />
+                  <Form.Control type="lname" placeholder={t("website")} />
+                </Form.Group>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>
+                    {t("dob")} <span>({t("optional")})</span>
+                  </Form.Label>
+                  <Form.Control type="dob" placeholder={t("dob")} />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label>Document Type</Form.Label>
+                  <Form.Label>{t("document_type")}</Form.Label>
                   <Form.Control
                     as="select"
                     className="mr-sm-2"
                     id="inlineFormCustomSelect"
                     custom
                   >
-                    <option value="0">Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="0">{t("choose")}</option>
+                    <option value="1">{t("one")}</option>
+                    <option value="2">{t("two")}</option>
+                    <option value="3">{t("three")}</option>
                   </Form.Control>
                 </Form.Group>
                 <Form.Row>
                   <Col sm={12}>
                     <Form.Group className="upload-btn-wrapper">
-                      <Form.Label>Photo of Your ID</Form.Label>
-                      <button className="btn-upload">Select File</button>
+                      <Form.Label>{t("select_file_para")}</Form.Label>
+                      <button className="btn-upload">{t("select_file")}</button>
                       <Form.File
                         id="exampleFormControlFile1"
                         label=""
                         accept="image/*"
                       />
                       <Form.Text className="text-muted">
-                        Please upload a photo of your picture ID Document (i.e.
-                        Passport or Driving License)
+                        {t("select_file_para2")}
                       </Form.Text>
                     </Form.Group>
                   </Col>
@@ -128,16 +127,15 @@ const BankingIndex = (props) => {
                 <Form.Row>
                   <Col sm={12}>
                     <Form.Group className="upload-btn-wrapper">
-                      <Form.Label>Photo of Holding Your Id</Form.Label>
-                      <button className="btn-upload">Select File</button>
+                      <Form.Label>{t("select_file_para3")}</Form.Label>
+                      <button className="btn-upload">{t("select_file")}</button>
                       <Form.File
                         id="exampleFormControlFile1"
                         label=""
                         accept="image/*"
                       />
                       <Form.Text className="text-muted">
-                        Please upload a photo of your picture ID Document (i.e.
-                        a selfie ensuring your face is clearly visible)
+                        {t("select_file_para4")}
                       </Form.Text>
                     </Form.Group>
                   </Col>
@@ -145,7 +143,7 @@ const BankingIndex = (props) => {
                 </Form.Row>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>
-                    ID Expiration Date <span>optional</span>
+                    {t("id_expiration_date")} <span>{t("optional")}</span>
                   </Form.Label>
                   <Form.Control
                     type="address"
@@ -167,7 +165,7 @@ const BankingIndex = (props) => {
                 </Form.Group>
                 <Form.Group>
                   <Form.Label className="mb-4 mt-2">
-                    Explicity Content<span>(optional)</span>
+                    {t("explicity_content")}<span>({t("optional")})</span>
                   </Form.Label>
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`}>
@@ -182,7 +180,7 @@ const BankingIndex = (props) => {
                   ))}
                 </Form.Group>
                 <div className="edit-save">
-                  <Button className="save-btn"> Send For Approval </Button>
+                  <Button className="save-btn"> {t("send_for_approval")} </Button>
                 </div>
               </Form>
             </div>
@@ -201,4 +199,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(BankingIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(BankingIndex));

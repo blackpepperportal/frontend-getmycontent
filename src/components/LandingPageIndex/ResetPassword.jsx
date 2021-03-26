@@ -5,6 +5,7 @@ import { fetchSinglePageStart } from "../../store/actions/PageAction";
 import { Link } from "react-router-dom";
 import configuration from "react-global-configuration";
 import { resetPasswordStart } from "../../store/actions/UserAction";
+import { translate, t } from "react-multi-lang";
 
 class ResetPassword extends Component {
     state = {
@@ -94,7 +95,7 @@ class ResetPassword extends Component {
                                                 type="password"
                                                 controlId="loginemail"
                                                 className="form-control"
-                                                placeholder="Enter your new password"
+                                                placeholder={t("new_password_placeholder")}
                                                 onChange={this.handleChange}
                                                 value={inputData.password}
                                                 name="password"
@@ -108,7 +109,7 @@ class ResetPassword extends Component {
                                                 className="form-control"
                                                 id="password_confirmation"
                                                 type="password"
-                                                placeholder="Confirm Password"
+                                                placeholder={t("confirm_password")}
                                                 name="password_confirmation"
                                                 value={inputData.password_confirmation}
                                                 onChange={this.handleChange}
@@ -126,10 +127,10 @@ class ResetPassword extends Component {
                                                 {this.props.inputData.loadingButtonContent !=
                                                 null
                                                 ? this.props.inputData.loadingButtonContent
-                                                : "Reset Password"}                                            
+                                                : t("reset_password")}                                            
                                             </Button>
                                         </Form.Group>
-                                        <p id="two">Already have an account?</p>
+                                        <p id="two">{t("already_have_an_account")}</p>
                                         <p>
                                             <Link
                                             className="signup"
@@ -137,7 +138,7 @@ class ResetPassword extends Component {
                                             id="signin"
                                             >
                                             {" "}
-                                            Login for{" "}
+                                            {t("login_for")}{" "}
                                             {configuration.get("configData.site_name")}
                                             </Link>
                                         </p>
@@ -163,4 +164,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(ResetPassword);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(ResetPassword));

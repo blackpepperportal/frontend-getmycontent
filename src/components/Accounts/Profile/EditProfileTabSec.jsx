@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Image, Media } from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
 
 const EditProfileTabSec = (props) => {
   return (
@@ -19,7 +20,7 @@ const EditProfileTabSec = (props) => {
           // onClick={() => props.setActiveSec("settings-card")}
         >
           <Image src="assets/images/icons/back.svg" className="svg-clone" />
-          Settings
+          {t("settings")}
         </Link>
       </Media>
       <Media
@@ -36,7 +37,7 @@ const EditProfileTabSec = (props) => {
           onClick={() => props.setActiveSec("profile-card")}
         >
           <Image src="assets/images/icons/profile.svg" className="svg-clone" />
-          Profile
+          {t("profile")}
         </Link>
       </Media>
       <Media
@@ -53,7 +54,7 @@ const EditProfileTabSec = (props) => {
           onClick={() => props.setActiveSec("change-password-card")}
         >
           <Image src="assets/images/icons/change-1.svg" className="svg-clone" />
-          Change Password
+          {t("change_password")}
         </Link>
       </Media>
       <Media
@@ -70,7 +71,7 @@ const EditProfileTabSec = (props) => {
           onClick={() => props.setActiveSec("delete-account-card")}
         >
           <Image src="assets/images/icons/delete.svg" className="svg-clone" />
-          Delete Account
+          {t("delete_account")}
         </Link>
       </Media>
       <Media
@@ -86,7 +87,7 @@ const EditProfileTabSec = (props) => {
           data-toggle="tab"
         >
           <Image src="assets/images/icons/account.svg" className="svg-clone" />
-          Add Bank
+          {t("add_bank")}
         </Link>
       </Media>
 
@@ -106,7 +107,7 @@ const EditProfileTabSec = (props) => {
             src="assets/images/icons/notification.svg"
             className="svg-clone"
           />
-          Payments
+          {t("payments")}
         </Link>
       </Media>
       <Media
@@ -116,7 +117,7 @@ const EditProfileTabSec = (props) => {
       >
         <Link to={`/document-upload`} className="bookmarkes-list">
           <Image src="assets/images/icons/security.svg" className="svg-clone" />
-          Documents
+          {t("documents")}
         </Link>
       </Media>
       <Media
@@ -126,11 +127,11 @@ const EditProfileTabSec = (props) => {
       >
         <Link to={`/billing-accounts`} className="bookmarkes-list">
           <Image src="assets/images/icons/bank.svg" className="svg-clone" />
-          Bank Accounts
+          {t("bank_accounts")}
         </Link>
       </Media>
     </ul>
   );
 };
 
-export default EditProfileTabSec;
+export default translate(EditProfileTabSec);

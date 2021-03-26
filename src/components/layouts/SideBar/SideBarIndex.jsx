@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { translate, t } from "react-multi-lang";
 
 const SideBarIndex = ({ toggleClass }) => {
   return (
@@ -24,7 +25,7 @@ const SideBarIndex = ({ toggleClass }) => {
                 }
                 className="nav-icon"
               ></img>
-              <span className="nav-text">Dashboard</span>
+              <span className="nav-text">{t("dashboard")}</span>
             </NavLink>
             <div className="triangle"></div>
           </li>
@@ -32,7 +33,7 @@ const SideBarIndex = ({ toggleClass }) => {
           <li className="nav-item">
             <NavLink className="nav-item-hold" to={"/meetings"}>
               <i className="nav-icon i-Conference"></i>
-              <span className="nav-text">Meetings</span>
+              <span className="nav-text">{t("meetings")}</span>
             </NavLink>
             <div className="triangle"></div>
           </li>
@@ -40,7 +41,7 @@ const SideBarIndex = ({ toggleClass }) => {
           <li className="nav-item">
             <NavLink className="nav-item-hold" to={"/my-subscriptions"}>
               <i className="nav-icon i-Download"></i>
-              <span className="nav-text">Subscriptions</span>
+              <span className="nav-text">{t("subscriptions")}</span>
             </NavLink>
             <div className="triangle"></div>
           </li>
@@ -48,7 +49,7 @@ const SideBarIndex = ({ toggleClass }) => {
           <li className="nav-item">
             <NavLink className="nav-item-hold" to={"/cards"}>
               <i className="nav-icon i-Wallet"></i>
-              <span className="nav-text">Payments</span>
+              <span className="nav-text">{t("payments")}</span>
             </NavLink>
             <div className="triangle"></div>
           </li>
@@ -64,14 +65,14 @@ const SideBarIndex = ({ toggleClass }) => {
           <li className="nav-item">
             <NavLink className="nav-item-hold" to={"/profile"}>
               <i className="nav-icon i-Administrator"></i>
-              <span className="nav-text">Account</span>
+              <span className="nav-text">{t("account")}</span>
             </NavLink>
             <div className="triangle"></div>
           </li>
           <li className="nav-item">
             <NavLink className="nav-item-hold" to={"/logout"}>
               <i className="nav-icon i-Endways"></i>
-              <span className="nav-text">Exit</span>
+              <span className="nav-text">{t("exit")}</span>
             </NavLink>
             <div className="triangle"></div>
           </li>
@@ -82,4 +83,4 @@ const SideBarIndex = ({ toggleClass }) => {
   );
 };
 
-export default SideBarIndex;
+export default translate(SideBarIndex);

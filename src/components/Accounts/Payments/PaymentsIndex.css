@@ -31,7 +31,7 @@
 
 .payment-sec .profile-img {
     border-radius: 50%;
-    border: 4px solid white;
+    border: 4px solid var(--secondary-color);
     height: 100px;
     width: 100px;
     margin-top: -4em;
@@ -48,7 +48,7 @@
 .payment-user-details .desc{
     font-size: 1.4em;
     font-weight: 500;
-    color: #0091ea;
+    color: var(--primary-color);
     font-style: italic;
     line-height: 1.6;
 }
@@ -62,7 +62,7 @@
 .payment-body-icon {
     width: 4em;
     height: 4em;
-    background: #0091ea;
+    background: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,7 +71,7 @@
 
 .payment-body-icon i{
     font-size: 1.8em;
-    color: #ffffff;
+    color: var(--secondary-color);
 }
 
 .payment-body-info{
@@ -86,7 +86,7 @@
     font-size: 1.1em;
     font-weight: 600;
     line-height: 1.3;
-    color: #8a96a3;
+    color: var(--quaternary-color);
 }
 
 .payment-body h4{
@@ -119,18 +119,18 @@
 .payment-footer h2{
     font-size: 1.5em;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--secondary-color);
     margin-bottom: 0;
 }
 
 .payment-body h2{
     font-size: 1.5em;
     font-weight: 600;
-    color: #0091ea;
+    color: var(--primary-color);
 }
 
 .payment-footer{
-    background: #0091ea;
+    background: var(--primary-color);
     padding: 1em 2em;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px; 
@@ -141,24 +141,24 @@
 }
 
 .payment-tabs-card{
-    background-color: #ffffff;
+    background-color: var(--secondary-color);
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 2px 5px rgba(0,0,0,.05);
-    background-color: #ffffff;
+    background-color: var(--secondary-color);
     padding: 2em;
 }
 
 .payment-tabs-card .nav-tabs .nav-link.active {
-    background-color: #0091ea;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    border-bottom: 1px solid #0091ea;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .payment-tabs-card .nav-tabs .nav-link.active:hover,
 .payment-tabs-card .nav-tabs .nav-link.active:focus{
-    color: #ffffff!important;
+    color: var(--secondary-color)!important;
     outline: none;
 }
 
@@ -177,7 +177,7 @@
     font-size: 1.4em;
     padding:0.5em 2em;
     margin-right: 0.4em;
-    border-bottom: 1px solid #0091ea;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .payment-tabs-card .payment-tabs-content tr{
@@ -185,24 +185,26 @@
 }
 
 .bg-white{
-    background-color: #ffffff;
+    background-color: var(--secondary-color);
 }
 
 .payment-tabs-card .payment-tabs-content td {
     font-size: 1.2em;
     font-weight: 400;
     vertical-align: middle;
+    white-space: nowrap;
 }
 
 .payment-tabs-card .payment-tabs-content th {
     font-size: 1.2em;
     font-weight: 600;
-    color: #8a96a3;
-    border-bottom: 1px solid #0091ea;
+    color: var(--quaternary-color);
+    border-bottom: 1px solid var(--primary-color);
+    white-space: nowrap;
 }
 
 .payment-tabs-card .nav-tabs{
-    border-bottom: 1px solid #0091ea;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 .payment-tabs-card h2{
@@ -217,11 +219,11 @@
 }
 
 .payment-tabs-card .fa-check-circle{
-    color: #0091ea;
+    color: var(--primary-color);
 }
 
 .payment-tabs-card .tick{
-    color: #0091ea;
+    color: var(--primary-color);
 }
 
 .payment-tabs-card .payment-tabs-content p{
@@ -233,20 +235,39 @@
     text-align: center;
     font-size: 14px;
     font-weight: 400;
-    background: #0091ea;
+    background: var(--primary-color);
     /* min-width: 78px; */
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
     padding:5px 20px;
     border: 1px solid rgba(138, 150, 163, 0.25) !important;
-    color: #ffffff;
+    color: var(--secondary-color);
     border-radius: 1000px;
 }
 
 .payment-sec .send-withdraw-btn:hover,
 .payment-sec .send-withdraw-btn:focus,
 .payment-sec .send-withdraw-btn:active{
-    background: #0091ea!important;
-    color: #ffffff!important;
+    background: var(--primary-color)!important;
+    color: var(--secondary-color)!important;
+}
+
+.payment-sec ::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.payment-sec ::-webkit-scrollbar
+{
+	width: 5px;
+    height: 5px;
+	background-color: #F5F5F5;
+}
+
+.payment-sec ::-webkit-scrollbar-thumb
+{
+	background-color: var(--primary-color);
+	border: 2px solid var(--primary-color);
 }

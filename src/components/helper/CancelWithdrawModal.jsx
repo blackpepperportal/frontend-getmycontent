@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import { cancelWithDrawRequestStart } from "../../store/actions/WithDrawAction";
+import { translate, t } from "react-multi-lang";
 
 const CancelWithdrawModal = (props) => {
   const [cancelWithdrawInputData, setCancelWithdrawInputData] = useState({});
@@ -31,7 +32,7 @@ const CancelWithdrawModal = (props) => {
       >
         <Form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Withdraw Request</Modal.Title>
+            <Modal.Title>{t("withdraw_request")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="floating-form">
@@ -50,7 +51,7 @@ const CancelWithdrawModal = (props) => {
                   }
                 />
                 <span className="highlight"></span>
-                <label className="default-label">Cancel Reason</label>
+                <label className="default-label">{t("cancel_reason")}</label>
               </div>
             </div>
           </Modal.Body>
@@ -61,7 +62,7 @@ const CancelWithdrawModal = (props) => {
               data-dismiss="modal"
               onClick={props.closeCancelWithdrawModal}
             >
-              CANCEL
+              {t("cancel")}
             </Button>
             <Button
               type="submit"
@@ -71,7 +72,7 @@ const CancelWithdrawModal = (props) => {
             >
               {props.cancelWithDraw.loadingButtonContent !== null
                 ? props.cancelWithDraw.loadingButtonContent
-                : "Cancel Withdraw"}
+                : t("cancel_withdraw")}
             </Button>
           </Modal.Footer>
         </Form>
@@ -88,4 +89,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(CancelWithdrawModal);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(CancelWithdrawModal));

@@ -6,6 +6,7 @@ import PaymentAddCardModal from "../helper/PaymentAddCardModal";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 const AddCardModel = (props) => {
   const stripePromise = loadStripe(
@@ -52,20 +53,20 @@ const AddCardModel = (props) => {
                 </div>
               </Link>
               <h6 className="sub-title">@{localStorage.getItem("username")}</h6>
-              <h4 className="title">SUBSCRIPTION BENEFITS:</h4>
+              <h4 className="title">{t("subscription_benefits")}:</h4>
               <div className="flex-center">
                 <ul className="list-unstyled">
                   <Media as="li">
                     <i class="fas fa-check mr-2"></i>
-                    <span>Full access to this user's content</span>
+                    <span>{t("full_access_to_user_content")}</span>
                   </Media>
                   <Media as="li">
                     <i class="fas fa-check mr-2"></i>
-                    <span>Direct message with this user</span>
+                    <span>{t("direct_message_with_this_user")}</span>
                   </Media>
                   <Media as="li">
                     <i class="fas fa-check mr-2"></i>
-                    <span>Cancel your subscription at any time</span>
+                    <span>{t("cancel_your_subscription_at_any_time")}</span>
                   </Media>
                 </ul>
               </div>
@@ -82,7 +83,7 @@ const AddCardModel = (props) => {
                     src="assets/images/icons/subscribe-blue.svg"
                     className="svg-clone"
                   />
-                  <span className="b-btn-text">PLEASE ADD A PAYMENT CARD</span>
+                  <span className="b-btn-text">{t("please_add_payment_card")}</span>
                 </Link>
               </div>
             </div>
@@ -99,4 +100,4 @@ const AddCardModel = (props) => {
   );
 };
 
-export default AddCardModel;
+export default translate(AddCardModel);

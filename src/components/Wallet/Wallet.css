@@ -45,7 +45,7 @@
     font-size: 13px!important;
     color: #222222!important;
     font-weight: 500!important;
-    background: #ffffff!important;
+    background: var(--secondary-color)!important;
     border-radius: 1000px!important;
     -webkit-transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
     transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
@@ -58,7 +58,7 @@
 }
 
 .send-btn-white:hover{
-    background: #ffffff!important; 
+    background: var(--secondary-color)!important; 
     color: #222222!important;
 }
 
@@ -66,9 +66,9 @@
     border: none!important;
     padding: 8px 30px!important;
     font-size: 13px!important;
-    color: #ffffff!important;
+    color: var(--secondary-color)!important;
     font-weight: 500!important;
-    background: #0091ea!important;
+    background: var(--primary-color)!important;
     border-radius: 1000px!important;
     -webkit-transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
     transition: opacity .15s ease,background-color .15s ease,-webkit-box-shadow .15s ease;
@@ -80,8 +80,8 @@
 }
 
 .receive-btn-blue:hover{
-    background: #0091ea!important; 
-    color: #ffffff!important;
+    background: var(--primary-color)!important; 
+    color: var(--secondary-color)!important;
 }
 
 .trans-table-sec{
@@ -106,7 +106,7 @@
 .trans-table-sec .trans-table td {
     /* border-top: 1px solid #edf0f5; */
     padding: 2em;
-    background-color: #ffffff;
+    background-color: var(--secondary-color);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     vertical-align: middle;
     border-bottom: 1px solid rgba(0,0,0,0.1);
@@ -143,7 +143,7 @@
 
 .trans-table .fa-plus{
     font-size: 0.7em;
-    color: #0091ea;
+    color: var(--primary-color);
 }
 
 .trans-table .unconfirmed-badge.badge{

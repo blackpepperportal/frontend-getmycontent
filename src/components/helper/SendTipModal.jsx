@@ -14,6 +14,7 @@ import {
   getSuccessNotificationMessage,
   getErrorNotificationMessage,
 } from "../../components/helper/NotificationMessage";
+import { translate, t } from "react-multi-lang";
 
 const SendTipModal = (props) => {
   const [amount, setAmount] = useState(0);
@@ -100,7 +101,7 @@ const SendTipModal = (props) => {
         {props.sendTip === true ? (
           <Form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-              <Modal.Title>Send Tip</Modal.Title>
+              <Modal.Title>{t("send_tip")}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <div className="header-userinfo">
@@ -146,11 +147,11 @@ const SendTipModal = (props) => {
                     onChange={(event) => setAmount(event.currentTarget.value)}
                   />
                   <span className="highlight"></span>
-                  <label className="default-label">Tip amount</label>
+                  <label className="default-label">{t("tip_amount")}</label>
                 </div>
 
                 <Form>
-                  <label className="choose-payment-label">Choose Payment</label>
+                  <label className="choose-payment-label">{t("choose_payment")}</label>
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`} className="mb-3">
                       <Form.Check
@@ -191,7 +192,7 @@ const SendTipModal = (props) => {
                     placeholder="Message (optional) "
                   />
                   <span className="highlight"></span>
-                  <label className="default-label">Message (optional)</label>
+                  <label className="default-label">{t("message")} ({t("optional")})</label>
                 </div>
               </div>
             </Modal.Body>
@@ -214,7 +215,7 @@ const SendTipModal = (props) => {
                 data-dismiss="modal"
                 onClick={props.closeSendTipModal}
               >
-                CANCEL
+                {t("cancel")}
               </Button>
               {paymentType !== "paypal" ? (
                 <Button
@@ -226,7 +227,7 @@ const SendTipModal = (props) => {
                 >
                   {props.tipStripe.loadingButtonContent !== null
                     ? props.tipStripe.loadingButtonContent
-                    : "SEND TIP"}
+                    : t("send_tip")}
                 </Button>
               ) : (
                 ""
@@ -247,4 +248,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(SendTipModal);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(SendTipModal));

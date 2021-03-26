@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
+import { translate, t } from "react-multi-lang";
 
 const InboxNoDataFound = () => {
   return (
@@ -8,7 +9,7 @@ const InboxNoDataFound = () => {
         <Row>
           <Col sm="12" md="12">
             <h4>
-              Select any Coversation or Send a New Message from others profile
+              {t("start_chat_para")}
             </h4>
             {/* <Button className="save-btn">
                 New Message
@@ -20,4 +21,4 @@ const InboxNoDataFound = () => {
   );
 };
 
-export default InboxNoDataFound;
+export default translate(InboxNoDataFound);

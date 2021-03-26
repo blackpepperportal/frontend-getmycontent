@@ -29,6 +29,7 @@ import { getSuccessNotificationMessage } from "../helper/NotificationMessage";
 import { createNotification } from "react-redux-notify/lib/modules/Notifications";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
+import { translate, t } from "react-multi-lang";
 
 const ModelViewProfile = (props) => {
 
@@ -191,7 +192,7 @@ const ModelViewProfile = (props) => {
         <Container>
           <Row>
             {userDetails.loading ? (
-              "Loading..."
+              t("loading")
             ) : (
               <Col sm={12} md={12}>
                 <div className="cover-area">
@@ -222,7 +223,7 @@ const ModelViewProfile = (props) => {
                       ) : null}
                     </h1>
                     <span className="post-count">
-                      {userDetails.data.user.total_posts} Post
+                      {userDetails.data.user.total_posts} {t("post")}
                     </span>
                   </div>
                 </div>
@@ -517,6 +518,26 @@ const ModelViewProfile = (props) => {
                                 </a>
                               </span>
                             ) : null}
+                            {userDetails.data.user.snapchat_link ? (
+                              <span className="s-icon">
+                                
+                                <a
+                                  href={userDetails.data.user.snapchat_link}
+                                  rel="nofollow"
+                                  target="_blank"
+                                  className="profile-a"
+                                >
+                                  <img
+                                  src={
+                                    window.location.origin +
+                                    "/assets/social/snapchat.svg"
+                                  }
+                                  class="s_icon_16"
+                                />{" "}
+                                  {/* {userDetails.data.user.twitter_link} */}
+                                </a>
+                              </span>
+                            ) : null}
                             {userDetails.data.user.youtube_link ? (
                               <span className="s-icon">
                                 
@@ -611,7 +632,7 @@ const ModelViewProfile = (props) => {
                         <>
                           <div className="subscription-section">
                             <span className="subscribe-title">
-                              Monthly Subscription{" "}
+                              {t("monthly_subscription")}{" "}
                             </span>
 
                             <Button
@@ -628,7 +649,7 @@ const ModelViewProfile = (props) => {
                                 )
                               }
                             >
-                              SUBSCRIBE FOR{" "}
+                              {t("subscribe_for")}{" "}
                               {
                                 userDetails.data.payment_info.subscription_info
                                   .monthly_amount_formatted
@@ -637,7 +658,7 @@ const ModelViewProfile = (props) => {
                           </div>
                           <div className="subscription-section">
                             <span className="subscribe-title">
-                              Yearly Subscription{" "}
+                              {t("yearly_subscription")}{" "}
                             </span>
                             <Button
                               to=""
@@ -653,7 +674,7 @@ const ModelViewProfile = (props) => {
                                 )
                               }
                             >
-                              SUBSCRIBE FOR{" "}
+                              {t("subscribe_for")}{" "}
                               {
                                 userDetails.data.payment_info.subscription_info
                                   .yearly_amount_formatted
@@ -704,7 +725,7 @@ const ModelViewProfile = (props) => {
                             className="g-btn m-rounded m-border m-uppercase m-flex m-fluid-width m-profile user-follow"
                             onClick={handleUnfollowModalShow}
                           >
-                            Following
+                            {t("following")}
                           </Button>
                         </div>
 
@@ -716,10 +737,10 @@ const ModelViewProfile = (props) => {
                           centered
                         >
                           <Modal.Header closeButton>
-                            <Modal.Title>UNSUBSCRIBE</Modal.Title>
+                            <Modal.Title>{t("unsubscribe")}</Modal.Title>
                           </Modal.Header>
                           <Modal.Body>
-                            Are you sure you want to cancel subscription?
+                            {t("cancel_subscription_conformation")}
                           </Modal.Body>
                           <Modal.Footer>
                             <Button
@@ -727,7 +748,7 @@ const ModelViewProfile = (props) => {
                               size="lg"
                               onClick={handleUnfollowModalClose}
                             >
-                              Close
+                              {t("close")}
                             </Button>
                             <Button
                               variant="primary"
@@ -739,7 +760,7 @@ const ModelViewProfile = (props) => {
                                 )
                               }
                             >
-                              Yes
+                              {t("yes")}
                             </Button>
                           </Modal.Footer>
                         </Modal>
@@ -759,7 +780,7 @@ const ModelViewProfile = (props) => {
                         )
                       }
                     >
-                      UNBLOCK USER
+                      {t("unblock_user")}
                     </Link>
                   </div>
                 )}
@@ -801,7 +822,7 @@ const ModelViewProfile = (props) => {
         </Container>
       </div>
       {userDetails.loading ? (
-        "Loading..."
+        t("loading")
       ) : (
         <SendTipModal
           sendTip={sendTip}
@@ -815,7 +836,7 @@ const ModelViewProfile = (props) => {
       )}
 
       {userDetails.loading ? (
-        "Loading..."
+        t("loading")
       ) : (
         <PaymentModal
           subscrptionPayment={subscrptionPayment}
@@ -842,4 +863,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(ModelViewProfile);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(ModelViewProfile));

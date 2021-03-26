@@ -14,6 +14,7 @@ import PaymentAddCardModal from "../../helper/PaymentAddCardModal";
 import NoDataFound from "../../NoDataFound/NoDataFound";
 import CardListLoader from "../../Loader/CardListLoader";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 const CardsIndex = (props) => {
   useEffect(() => {
@@ -42,7 +43,7 @@ const CardsIndex = (props) => {
     <>
       <div className="card-list-sec">
         <Container>
-          <h4 className="head-title">Your Cards</h4>
+          <h4 className="head-title">{t("your_cards")}</h4>
           <Row>
             <Col sm={12} md={6} xl={4}>
               <div
@@ -54,7 +55,7 @@ const CardsIndex = (props) => {
                     src="/assets/images/icons/add-card.svg"
                     className="add-card-img"
                   />
-                  <h5 className="text-muted">Add Card</h5>
+                  <h5 className="text-muted">{t("add_card")}</h5>
                 </div>
               </div>
             </Col>
@@ -72,7 +73,7 @@ const CardsIndex = (props) => {
                       <div className="action-btn">
                         {card.is_default == 1 ? (
                           <p className="card-link-text text-success">
-                            default card
+                            {t("default_card")}
                           </p>
                         ) : (
                           <Link
@@ -85,7 +86,7 @@ const CardsIndex = (props) => {
                               )
                             }
                           >
-                            Mark as Default
+                            {t("mark_as_default")}
                           </Link>
                         )}
                       </div>
@@ -121,4 +122,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(CardsIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(CardsIndex));

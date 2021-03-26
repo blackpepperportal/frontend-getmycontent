@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HomePageSuggesstion from "./HomePageSuggesstion";
 import { Link } from "react-router-dom";
-import { Container, Col, Form, Media, Image } from "react-bootstrap";
+import { Container, Col, Form, Media, Image, Row } from "react-bootstrap";
 import {
   fetchHomePostsStart,
   searchUserStart,
@@ -17,6 +17,7 @@ import NoDataFound from "../NoDataFound/NoDataFound";
 import useInfiniteScroll from "../helper/useInfiniteScroll";
 import HomeLoader from "../Loader/HomeLoader";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
+import { translate, t } from "react-multi-lang";
 
 const HomePageIndex = (props) => {
   useEffect(() => {
@@ -89,7 +90,7 @@ const HomePageIndex = (props) => {
         <Container>
           <div className="search-row">
             <Link to="#" className="search-button">
-              Home
+              {t("home")}
             </Link>
             <div className="search-container">
               <Form className="search-box">
@@ -108,7 +109,7 @@ const HomePageIndex = (props) => {
               <div className="search-dropdown-sec">
                 <ul className="list-unstyled search-dropdown-list-sec">
                   {props.searchUser.loading
-                    ? "Loading..."
+                    ? t("loading")
                     : props.searchUser.data.users.length > 0
                     ? props.searchUser.data.users.map((user) => (
                         <Media as="li">
@@ -138,12 +139,13 @@ const HomePageIndex = (props) => {
                           </Link>
                         </Media>
                       ))
-                    : "No user found"}
+                    : t("no_user_found")}
                 </ul>
               </div>
             )}
           </div>
           <div className="padding-top-xl">
+            <Row className="resp-col-reverse">
             <Col xl={8} md={12} className="custom-padding">
               {/* <Container>
                 <Row>
@@ -162,10 +164,11 @@ const HomePageIndex = (props) => {
               {noMoreData !== true ? (
                 <>{isFetching && "Fetching more list items..."}</>
               ) : (
-                "No More Data"
+                t("no_more_data")
               )}
             </Col>
             <HomePageSuggesstion />
+            </Row>
           </div>
         </Container>
       </div>
@@ -182,4 +185,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(HomePageIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(HomePageIndex));

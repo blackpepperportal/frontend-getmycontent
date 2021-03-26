@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import UserCard from "../UserCard";
-
+import { translate, t } from "react-multi-lang";
 import NoDataFound from "../../../NoDataFound/NoDataFound";
 
 const FollowingActiveSec = (props) => {
@@ -18,7 +18,7 @@ const FollowingActiveSec = (props) => {
         id="active"
       >
         {props.following.loading ? (
-          "Loading..."
+          t("loading")
         ) : (
           <>
             <div className="bookmarkes-list bookmarks-right-side">
@@ -29,7 +29,7 @@ const FollowingActiveSec = (props) => {
                       ? props.following.data.total
                       : 0}{" "}
                   </span>{" "}
-                  ACTIVE
+                  {t("active")}
                 </Link>
               </div>
             </div>
@@ -53,4 +53,4 @@ const FollowingActiveSec = (props) => {
   );
 };
 
-export default FollowingActiveSec;
+export default translate(FollowingActiveSec);

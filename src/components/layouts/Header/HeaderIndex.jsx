@@ -10,6 +10,8 @@ import {
 } from "../../../store/actions/NotificationAction";
 import Alert from 'react-bootstrap/Alert';
 import { connect } from "react-redux";
+import { translate, t } from "react-multi-lang";
+
 let chatSocket;
 
 const HeaderIndex = (props) => {
@@ -132,13 +134,13 @@ const HeaderIndex = (props) => {
               </Button>
             </nav>
             
-             {localStorage.getItem("is_document_verified") == 3 ? (
-                <div className="pl-2">
-                  <Alert key={1} variant='danger'>
-                    The user updated documents decined by Admin.
-                  </Alert>
-                </div>
-              ) : null}
+              {/* {localStorage.getItem("is_document_verified") == 3 ? (
+                  <div className="pl-2">
+                    <Alert key={1} variant='danger'>
+                      The user updated documents decined by Admin.
+                    </Alert>
+                  </div>
+                ) : null} */}
              
           </Container>
         </header>
@@ -207,7 +209,7 @@ const HeaderIndex = (props) => {
                             ? localStorage.getItem("total_followers")
                             : 0}
                         </span>{" "}
-                        Fans
+                        {t("fans")}
                       </Link>
                     </Media>
                     <Media as="li">
@@ -220,7 +222,7 @@ const HeaderIndex = (props) => {
                             ? localStorage.getItem("total_followings")
                             : 0}
                         </span>{" "}
-                        Following
+                        {t("following")}
                       </Link>
                     </Media>
                   </ul>
@@ -258,7 +260,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  My Profile
+                  {t("my_profile")}
                 </Link>
 
                 <Link
@@ -274,7 +276,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Bookmarks
+                  {t("bookmarks")}
                 </Link>
 
                 <Link
@@ -289,7 +291,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Lists
+                  {t("lists")}
                 </Link>
 
                 <Link
@@ -305,7 +307,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Settings
+                  {t("settings")}
                 </Link>
 
                 <hr className="sidebar-menu-divider" />
@@ -322,7 +324,7 @@ const HeaderIndex = (props) => {
                     }
                     alt="Your Cards"
                   />{" "}
-                  Your Cards <span className="desc">(to subscribe)</span>
+                  {t("your_cards")} <span className="desc">({t("to_subscribe")})</span>
                 </Link>
 
                 <Link
@@ -337,7 +339,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Add bank <span className="desc">(to earn)</span>
+                  {t("add_bank")} <span className="desc">({t("to_earn")})</span>
                 </Link>
                 <Link
                   to={"/wallet"}
@@ -351,7 +353,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Wallet <span className="desc">(Your Earnings)</span>
+                  {t("wallet")} <span className="desc">({t("your_earnings")})</span>
                 </Link>
 
                 <hr className="sidebar-menu-divider" />
@@ -368,7 +370,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Help and Support
+                  {t("help_and_support")}
                 </Link>
 
                 <Link
@@ -384,7 +386,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Dark mode
+                  {t("dark_mode")}
                 </Link>
                 <hr className="sidebar-menu-divider" />
                 <Link
@@ -399,7 +401,7 @@ const HeaderIndex = (props) => {
                     }
                     alt={configuration.get("configData.site_name")}
                   />{" "}
-                  Logout
+                  {t("logout")}
                 </Link>
               </div>
             </div>
@@ -418,4 +420,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(HeaderIndex);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(HeaderIndex));

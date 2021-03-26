@@ -22,8 +22,9 @@ import {
 } from "../../store/actions/PostAction";
 import { saveBlockUserStart } from "../../store/actions/UserAction";
 import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
+import { translate, t } from "react-multi-lang";
 
 const PostDisplayCard = (props) => {
   const { post } = props;
@@ -78,9 +79,9 @@ const PostDisplayCard = (props) => {
     }
   };
 
-  const handlePPVPayment = (event,status) => {
+  const handlePPVPayment = (event, status) => {
     event.preventDefault();
-    if(status && status == 1) {
+    if (status && status == 1) {
       setModalStatus(0);
       setPPVPayment(true);
     } else {
@@ -136,10 +137,12 @@ const PostDisplayCard = (props) => {
 
                 <div className="user-name">
                   <span className="post-user-name">
-                    <span className="user-name-post">{post.user_displayname}</span>
+                    <span className="user-name-post">
+                      {post.user_displayname}
+                    </span>
                     {"  "}
                     {post.is_verified_badge == 1 ? (
-                      <VerifiedBadgeNoShadow/>
+                      <VerifiedBadgeNoShadow />
                     ) : null}
                   </span>
                   <span className="post-user-">@{post.username}</span>
@@ -171,7 +174,7 @@ const PostDisplayCard = (props) => {
                         <Media as="li">
                           <Link to="#" className="dropdown-a">
                             {" "}
-                            Copy link to post{" "}
+                            {t("copy_link_to_post")}{" "}
                           </Link>
                         </Media>
                       </CopyToClipboard>
@@ -184,7 +187,7 @@ const PostDisplayCard = (props) => {
                             onClick={(event) => handleReportPost(event, post)}
                             className="dropdown-a"
                           >
-                            Report
+                            {t("report")}
                           </Link>
                         </Media>
                       ) : null}
@@ -205,7 +208,7 @@ const PostDisplayCard = (props) => {
                             className="dropdown-a"
                           >
                             {" "}
-                            I don't like the user. Add to blocklists.
+                            {t("add_to_blocklist_para")}
                           </Link>
                         </Media>
                       ) : null}
@@ -219,7 +222,7 @@ const PostDisplayCard = (props) => {
                               onClick={(event) => handleDeletePost(event, post)}
                               className="dropdown-a"
                             >
-                              Delete Post
+                              {t("delete_post")}
                             </Link>
                           </Media>
                         </>
@@ -227,19 +230,34 @@ const PostDisplayCard = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>
-                {post.is_user_needs_pay === 1 ? (
+                {post.is_user_needs_pay === 1 ? 
+
+                  post.payment_info.post_payment_type === 'ppv' ? (
                   <span
                     className="post-time"
-                    onClick={(event) => handlePPVPayment(event,post.is_user_needs_pay)}
+                    onClick={(event) =>
+                      handlePPVPayment(event, post.is_user_needs_pay)
+                    }
                   >
                     <span className="post-tip-lock">
                       {post.amount_formatted}{" "}
                     </span>
-                    <Link to="#" onClick={(event) => handlePPVPayment(event,post.is_user_needs_pay)}>
+                    <Link
+                      to="#"
+                      onClick={(event) =>
+                        handlePPVPayment(event, post.is_user_needs_pay)
+                      }
+                    >
                       <i className="fa fa-lock"></i>
                     </Link>
                   </span>
-                ) : post.amount > 0 ? (
+                  ) :
+                  (
+                    <Link to="#">
+                      <i className="fa fa-unlock text-success"></i>
+                    </Link>
+                  )
+                 : post.amount > 0 ? (
                   <span className="post-time">
                     <span className="post-tip-lock">
                       {post.amount_formatted}{" "}
@@ -259,27 +277,60 @@ const PostDisplayCard = (props) => {
               ? post.postFiles.length > 0
                 ? post.postFiles.map((postFile, index) =>
                     postFile.file_type === "image" ? (
-                      <Link to="#"
-                        onClick={(event) => handlePPVPayment(event,post.payment_info.is_user_needs_pay)}>
+                      <Link
+                        to="#"
+                        onClick={(event) =>
+                          handlePPVPayment(
+                            event,
+                            post.payment_info.is_user_needs_pay
+                          )
+                        }
+                      >
                         <div className="post-image" key={index}>
                           <div className="">
                             <div className="gallery js-gallery">
-                              <Image
-                                src={postFile.post_file}
-                                className="post-view-image"
-                              />
-
+                              {post.payment_info.is_user_needs_pay == 1 ? (
+                                <Image
+                                  src={postFile.post_file}
+                                  className="post-view-image"
+                                  style={{ filter: "blur(20px)" }}
+                                />
+                              ) : (
+                                <Image
+                                  src={postFile.post_file}
+                                  className="post-view-image"
+                                />
+                              )}
                             </div>
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'ppv' ? 
-                            <div className="gallery-top-btn-sec">
-                              <Button className="subscribe-post-btn-sec" onClick={(event) => handlePPVPayment(event,1)}>{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'subscription' ? 
-                            <div className="gallery-top-btn-sec" onClick={props.scrollToTop}>
-                              <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type === "ppv" ? (
+                              <div className="gallery-top-btn-sec">
+                                <Button
+                                  className="subscribe-post-btn-sec"
+                                  onClick={(event) =>
+                                    handlePPVPayment(event, 1)
+                                  }
+                                >
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type ===
+                              "subscription" ? (
+                              <div
+                                className="gallery-top-btn-sec"
+                                onClick={props.scrollToTop}
+                              >
+                                <Button className="subscribe-post-btn-sec">
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
                           </div>
                           {modalStatus ? (
                             <Lightbox
@@ -288,7 +339,9 @@ const PostDisplayCard = (props) => {
                               // prevSrc={images[(photoIndex + images.length - 1) % images.length]}
                               onCloseRequest={() => setModalStatus(0)}
                             />
-                          ) : ''}
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </Link>
                     ) : postFile.file_type === "video" ? (
@@ -296,14 +349,17 @@ const PostDisplayCard = (props) => {
                         <div className="">
                           <div className="gallery js-gallery">
                             {post.payment_info.is_user_needs_pay == 1 ? (
-                              <Image
-                                src={
-                                  postFile.preview_file
-                                    ? postFile.preview_file
-                                    : postFile.post_file
-                                }
-                                className="post-view-image"
-                              />
+                              <div className="gallery-img-sec">
+                                <Image
+                                  src={
+                                    postFile.preview_file
+                                      ? postFile.preview_file
+                                      : postFile.post_file
+                                  }
+                                  className="post-view-image"
+                                />
+                                <div className="gallery-play-icon"></div>
+                              </div>
                             ) : (
                               <ReactPlayer
                                 light={postFile.preview_file}
@@ -314,16 +370,35 @@ const PostDisplayCard = (props) => {
                                 className="post-video-size"
                               />
                             )}
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'ppv' ? 
-                            <div className="gallery-top-btn-sec">
-                              <Button className="subscribe-post-btn-sec" onClick={(event) => handlePPVPayment(event,1)}>{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
-                            {post.payment_info.is_user_needs_pay === 1 && post.payment_info.post_payment_type === 'subscription' ? 
-                            <div className="gallery-top-btn-sec" onClick={props.scrollToTop}>
-                              <Button className="subscribe-post-btn-sec">{post.payment_info.payment_text}</Button>
-                            </div>
-                            : ''}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type === "ppv" ? (
+                              <div className="gallery-top-btn-sec">
+                                <Button
+                                  className="subscribe-post-btn-sec"
+                                  onClick={(event) =>
+                                    handlePPVPayment(event, 1)
+                                  }
+                                >
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                            {post.payment_info.is_user_needs_pay === 1 &&
+                            post.payment_info.post_payment_type ===
+                              "subscription" ? (
+                              <div
+                                className="gallery-top-btn-sec"
+                                onClick={props.scrollToTop}
+                              >
+                                <Button className="subscribe-post-btn-sec">
+                                  {post.payment_info.payment_text}
+                                </Button>
+                              </div>
+                            ) : (
+                              ""
+                            )}
                           </div>
                         </div>
                       </div>
@@ -405,18 +480,20 @@ const PostDisplayCard = (props) => {
                 />
               </Link>
               {localStorage.getItem("userId") != post.user_id ? (
-              <Button
-                type="button"
-                className="g-icon"
-                onClick={() => setSendTip(true)}
-              >
-                <Image
-                  src={window.location.origin + "/assets/images/icons/tip.svg"}
-                  className="svg-clone"
-                />
+                <Button
+                  type="button"
+                  className="g-icon"
+                  onClick={() => setSendTip(true)}
+                >
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/tip.svg"
+                    }
+                    className="svg-clone"
+                  />
 
-                <span className="post-tip">SEND TIP</span>
-              </Button>
+                  <span className="post-tip">{t("send_tip")}</span>
+                </Button>
               ) : null}
             </div>
             <div className="alignright">
@@ -490,26 +567,26 @@ const PostDisplayCard = (props) => {
           </div>
 
           <div className="likes alignleft">
-            <p>{likeCount} Likes</p>
+            <p>{likeCount} {t("likes")}</p>
             {isVisible && commentInputData.post_id === post.post_id ? (
               <Link
                 className="Show view-comments"
                 onClick={closeCommentSection}
               >
-                Close Comments
+                {t("close_comments")}
               </Link>
             ) : (
               <Link
                 className="Show view-comments text-muted"
                 onClick={(event) => showCommentSection(event, post.post_id)}
               >
-                View Comments
+                {t("view_comments")}
               </Link>
             )}
             {isVisible && commentInputData.post_id === post.post_id ? (
               <div id="target">
                 {props.comments.loading
-                  ? "Loading..."
+                  ? t("loading")
                   : props.comments.data.post_comments.length > 0
                   ? props.comments.data.post_comments.map((comment) => (
                       <div className="row comment-row">
@@ -538,7 +615,7 @@ const PostDisplayCard = (props) => {
                             <div className="comment-info-sec">
                               <ul className="list-unstyled comment-info-link">
                                 <Media as="li">
-                                  <p>Dec 22</p>
+                                  <p>{comment.created}</p>
                                 </Media>
                                 {/* <Media as="li">
                                   <p>1 Like</p>
@@ -643,4 +720,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(PostDisplayCard);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(PostDisplayCard));

@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./StaticPage.css";
 import { connect } from "react-redux";
 import { fetchSinglePageStart } from "../../store/actions/PageAction";
+import { translate, t } from "react-multi-lang";
 
 class StaticPage extends Component {
   state = {
@@ -41,7 +42,7 @@ class StaticPage extends Component {
       <>
         <div className="static-page-sec">
           {displayContent.loading ? (
-            "Loading..."
+            t("loading")
           ) : (
             <Container>
               <h4 className="head-title">{displayContent.data.title}</h4>
@@ -49,7 +50,7 @@ class StaticPage extends Component {
                 <Col sm="12" md="12">
                   <div className="static-box">
                     <h5 className="text-muted">
-                      Updated At:{displayContent.data.updated_at}
+                      {t("updated_at")}:{displayContent.data.updated_at}
                     </h5>
                     <p
                       dangerouslySetInnerHTML={{
@@ -75,4 +76,4 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(StaticPage);
+export default connect(mapStateToPros, mapDispatchToProps)(translate(StaticPage));
