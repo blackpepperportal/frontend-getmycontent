@@ -22,7 +22,7 @@ const LandingPageIndex = (props) => {
   const [forgotPasswordInputData, setForgotPasswordInputData] = useState({});
 
   const [validationError, setValidationError] = useState("NO");
-  
+
   const handleLogin = (event) => {
     event.preventDefault();
     props.dispatch(userLoginStart(loginInputData));
@@ -72,8 +72,8 @@ const LandingPageIndex = (props) => {
     setSignupInputData({
       ...signupInputData,
       username: username,
-    })
-    props.dispatch(usernameValidationStart({username:username}));
+    });
+    props.dispatch(usernameValidationStart({ username: username }));
   };
 
   const handleSocialLoginFailure = (err) => {
@@ -81,7 +81,6 @@ const LandingPageIndex = (props) => {
   };
 
   return (
-    
     <>
       <div className="login-section">
         <Container>
@@ -148,7 +147,9 @@ const LandingPageIndex = (props) => {
                       className="social-button"
                       id="facebook-connect"
                     >
-                      <span>{t("signup")} / {t("login_with_facebook")}</span>
+                      <span>
+                        {t("signup")} / {t("login_with_facebook")}
+                      </span>
                     </SocialButton>
                   ) : (
                     ""
@@ -164,7 +165,9 @@ const LandingPageIndex = (props) => {
                       className="social-button"
                       id="google-connect"
                     >
-                      <span>{t("signup")} / {t("login_with_facebook")}</span>
+                      <span>
+                        {t("signup")} / {t("login_with_google")}
+                      </span>
                     </SocialButton>
                   ) : (
                     ""
@@ -304,18 +307,28 @@ const LandingPageIndex = (props) => {
                               value={signupInputData.user_name}
                               name="username"
                               onChange={(event) =>
-                                handleUsernameValidation(event, event.currentTarget.value)
+                                handleUsernameValidation(
+                                  event,
+                                  event.currentTarget.value
+                                )
                               }
                               isValid={props.validation.isValid}
                               isInvalid={props.validation.isInValid}
                             />
-                            {props.validation.isInValid ? 
-                              <Form.Control.Feedback type="invalid">{t("username_already_taken")}</Form.Control.Feedback>
-                            : ''}
-                            {props.validation.isValid ? 
-                              <Form.Control.Feedback>{t("looks_good")}</Form.Control.Feedback>
-                            : ''}
-                            
+                            {props.validation.isInValid ? (
+                              <Form.Control.Feedback type="invalid">
+                                {t("username_already_taken")}
+                              </Form.Control.Feedback>
+                            ) : (
+                              ""
+                            )}
+                            {props.validation.isValid ? (
+                              <Form.Control.Feedback>
+                                {t("looks_good")}
+                              </Form.Control.Feedback>
+                            ) : (
+                              ""
+                            )}
                           </Form.Group>
                           <Form.Group controlId="formBasicEmail">
                             <Form.Control
@@ -478,4 +491,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(LandingPageIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(LandingPageIndex));
