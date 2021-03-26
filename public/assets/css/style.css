@@ -1475,6 +1475,7 @@ i.fa.fa-ellipsis-h {
   display: grid;
   grid-auto-flow: row;
   /*margin-left: 20px; */
+  text-align: right;
 }
 span.fa.fa-ellipsis-h {
   font-size: 22px;
