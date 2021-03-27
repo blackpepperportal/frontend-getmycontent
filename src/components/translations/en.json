@@ -49,7 +49,7 @@
     "add_bank": "Add Bank",
     "nick_name": "Nick Name",
     "account_name": "Account Name",
-    "account_number": "Account Number",
+    "account_number": "Account No",
     "bank_name": "Bank Name",
     "optional": "Optional",
     "ifsc_code": "IFSC Code",
@@ -275,6 +275,9 @@
     "current_balance": "Current Balance",
     "withDraw": "WithDraw",
     "transactions": "TRANSACTIONS",
-    "from": "from"
+    "from": "from",
+    "nickname": "Nickname",
+    "account_holder_name": "Holder Name",
+    "is_default": "Is Default"
   
   }
