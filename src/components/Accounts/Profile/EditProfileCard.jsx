@@ -169,9 +169,7 @@ const EditProfileCard = (props) => {
                 </a>
               </div>
             </div>
-            <p className="inuput-help">
-              {t("upload_profile_photo_para")}
-            </p>
+            <p className="inuput-help">{t("upload_profile_photo_para")}</p>
           </div>
           <div
             className="edit-input-wrapper"
@@ -179,7 +177,8 @@ const EditProfileCard = (props) => {
             data-vv-as="username"
           >
             <Form.Label className="edit-input-label">
-              {t("username")} <span className="edit-input-optional">({t("optional")})</span>
+              {t("username")}{" "}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -199,13 +198,18 @@ const EditProfileCard = (props) => {
                 isValid={props.validation.isValid}
                 isInvalid={props.validation.isInValid}
               />
-              {props.validation.isInValid ? 
-                <Form.Control.Feedback type="invalid">{t("username_error")}</Form.Control.Feedback>
-              : ''}
-              {props.validation.isValid ? 
+              {props.validation.isInValid ? (
+                <Form.Control.Feedback type="invalid">
+                  {t("username_error")}
+                </Form.Control.Feedback>
+              ) : (
+                ""
+              )}
+              {props.validation.isValid ? (
                 <Form.Control.Feedback>{t("looks_good")}</Form.Control.Feedback>
-              : ''}
-
+              ) : (
+                ""
+              )}
             </div>
             <p className="input-help">
               {window.location.origin + "/" + props.profile.data.username}
@@ -334,7 +338,8 @@ const EditProfileCard = (props) => {
             data-vv-as="description"
           >
             <Form.Label className="edit-input-label">
-              {t("about")} <span className="edit-input-optional">({t("optional")})</span>
+              {t("about")}{" "}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -362,7 +367,8 @@ const EditProfileCard = (props) => {
             data-vv-as="Address"
           >
             <Form.Label className="edit-input-label">
-              {t("location")} <span className="edit-input-optional">({t("optional")})</span>
+              {t("location")}{" "}
+              <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
               <Form.Control
@@ -390,7 +396,7 @@ const EditProfileCard = (props) => {
             data-vv-as="Website"
           >
             <Form.Label className="edit-input-label">
-              {t("website_url")} 
+              {t("website_url")}
               <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
@@ -399,7 +405,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.website}
-                placeholder={t("website_url")} 
+                placeholder={t("website_url")}
                 name="website"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -652,7 +658,7 @@ const EditProfileCard = (props) => {
             data-vv-as="TWITCH Link"
           >
             <Form.Label className="edit-input-label" for="edit_twitch_link">
-             {t("youtube_link")}
+              {t("twitch_link")}
               <span className="edit-input-optional">({t("optional")})</span>
             </Form.Label>
             <div className="">
@@ -661,7 +667,7 @@ const EditProfileCard = (props) => {
                 type="text"
                 autocomplete="off"
                 value={props.profile.data.twitch_link}
-                placeholder={t("youtube_link")}
+                placeholder={t("twitch_link")}
                 name="twitch_link"
                 className="form-control edit-reset"
                 onChange={(event) => {
@@ -703,4 +709,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(EditProfileCard));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(EditProfileCard));
