@@ -235,7 +235,10 @@ const ProfileIndex = (props) => {
                                   target="_blank"
                                   className="profile-a"
                                 >
-                                  {props.profile.data.website}
+                                  {props.profile.data.website.replace(
+                                    /(^\w+:|^)\/\//,
+                                    ""
+                                  )}
                                 </a>
                               </span>
                             ) : null}
@@ -250,7 +253,10 @@ const ProfileIndex = (props) => {
                                   target="_blank"
                                   className="profile-a"
                                 >
-                                  {props.profile.data.amazon_wishlist}
+                                  {props.profile.data.amazon_wishlist.replace(
+                                    /(^\w+:|^)\/\//,
+                                    ""
+                                  )}
                                 </a>
                               </span>
                             ) : null}
@@ -486,4 +492,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(ProfileIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(ProfileIndex));

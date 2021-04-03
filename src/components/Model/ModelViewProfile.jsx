@@ -79,6 +79,7 @@ const ModelViewProfile = (props) => {
       );
     }
   };
+
   const handleBlockUser = (event, status, user_id) => {
     event.preventDefault();
     setBlockUserStatus(status);
@@ -428,11 +429,14 @@ const ModelViewProfile = (props) => {
                               <i className="fa fa-link"></i>{" "}
                               <a
                                 href={userDetails.data.user.website}
-                                rel="nofollow"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 className="profile-a"
                               >
-                                {userDetails.data.user.website}
+                                {userDetails.data.user.website.replace(
+                                  /(^\w+:|^)\/\//,
+                                  ""
+                                )}
                               </a>
                             </span>
                           ) : null}
@@ -447,7 +451,10 @@ const ModelViewProfile = (props) => {
                                 target="_blank"
                                 className="profile-a"
                               >
-                                {userDetails.data.user.amazon_wishlist}
+                                {userDetails.data.user.amazon_wishlist.replace(
+                                  /(^\w+:|^)\/\//,
+                                  ""
+                                )}
                               </a>
                             </span>
                           ) : null}
