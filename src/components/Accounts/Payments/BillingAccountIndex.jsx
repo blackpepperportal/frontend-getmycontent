@@ -45,30 +45,29 @@ const BillingAccountIndex = (props) => {
       </div>
       <div className="trans-table-sec">
         <Container>
-          <Row>
-            <Col sm={12} md={12}>
-              <div className="trans-table">
-                <Table borderedless responsive>
-                  <thead>
-                    <tr className="bg-white text-muted text-center">
-                      <th>{t("nickname")}</th>
-                      <th>{t("account_holder_name")}</th>
-                      <th>{t("account_number")}</th>
-                      <th>{t("bank_name")}</th>
-                      <th>{t("ifsc_code")}</th>
-                      <th>{t("swift_code")}</th>
-                      <th>{t("route_number")}</th>
-                      <th>{t("iban_number")}</th>
-                      <th>{t("is_default")}</th>
-                      <th>{t("status")}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {props.bankAccount.loading ? (
-                      <BillingAccountLoader />
-                    ) : props.bankAccount.data.billing_accounts.length > 0 ? (
-                      // <span>
-                      props.bankAccount.data.billing_accounts.map(
+          {props.bankAccount.loading ? (
+            <BillingAccountLoader />
+          ) : props.bankAccount.data.billing_accounts.length > 0 ? (
+            <Row>
+              <Col sm={12} md={12}>
+                <div className="trans-table">
+                  <Table borderedless responsive>
+                    <thead>
+                      <tr className="bg-white text-muted text-center">
+                        <th>{t("nickname")}</th>
+                        <th>{t("account_holder_name")}</th>
+                        <th>{t("account_number")}</th>
+                        <th>{t("bank_name")}</th>
+                        <th>{t("ifsc_code")}</th>
+                        <th>{t("swift_code")}</th>
+                        <th>{t("route_number")}</th>
+                        <th>{t("iban_number")}</th>
+                        <th>{t("is_default")}</th>
+                        <th>{t("status")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {props.bankAccount.data.billing_accounts.map(
                         (accounts) => (
                           <tr key={accounts.user_billing_account_id}>
                             <td>{accounts.nickname}</td>
@@ -141,16 +140,15 @@ const BillingAccountIndex = (props) => {
                             </td>
                           </tr>
                         )
-                      )
-                    ) : (
-                      // </span>
-                      <NoDataFound />
-                    )}
-                  </tbody>
-                </Table>
-              </div>
-            </Col>
-          </Row>
+                      )}
+                    </tbody>
+                  </Table>
+                </div>
+              </Col>
+            </Row>
+          ) : (
+            <NoDataFound />
+          )}
         </Container>
       </div>
     </>
