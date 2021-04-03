@@ -65,7 +65,11 @@ const DocumentUploadIndex = (props) => {
           {props.kycDocDetails.loading ? (
             ""
           ) : (
-            <h3>{props.kycDocDetails.data.document_status_text_formatted}</h3>
+            <>
+              <h3 className="mb-10 text-info">
+                {props.kycDocDetails.data.document_status_text_formatted}
+              </h3>
+            </>
           )}
 
           {props.kycDocDetails.loading ? (
@@ -77,7 +81,7 @@ const DocumentUploadIndex = (props) => {
                   <Row>
                     <Col sm={12} md={12}>
                       <div className="sub-heading">
-                        <h4>{doc.title}</h4>
+                        <h4>{doc.name}</h4>
                         <p>{doc.description}</p>
                       </div>
                     </Col>
@@ -167,4 +171,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(DocumentUploadIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(DocumentUploadIndex));

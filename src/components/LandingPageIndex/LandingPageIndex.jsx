@@ -190,8 +190,12 @@ const LandingPageIndex = (props) => {
                   <div id="main">
                     <div id="first">
                       {show === "login" ? (
-                        <Form onSubmit={handleLogin} method="post">
-                          <Form.Group controlId="formBasicEmail">
+                        <Form
+                          onSubmit={handleLogin}
+                          method="post"
+                          autoComplete="off"
+                        >
+                          <Form.Group controlId="loginemail">
                             <Form.Control
                               type="text"
                               controlId="loginemail"
@@ -199,7 +203,7 @@ const LandingPageIndex = (props) => {
                               required
                               value={loginInputData.email}
                               name="email"
-                              autocomplete="off"
+                              autoComplete="nope"
                               onChange={(event) =>
                                 setLoginInputData({
                                   ...loginInputData,
@@ -229,6 +233,7 @@ const LandingPageIndex = (props) => {
                           <div className="forget-password">
                             <p id="one">
                               <Link
+                                to="#"
                                 type="button"
                                 className="forgot-link"
                                 onClick={(event) => {
@@ -278,16 +283,17 @@ const LandingPageIndex = (props) => {
                           id="form"
                           method="post"
                           name="form"
+                          autoComplete="off"
                         >
-                          <Form.Group controlId="formBasicName">
+                          <Form.Group controlId="signupName">
                             <Form.Control
                               type="text"
-                              controlId="name"
+                              controlId="signupName"
                               placeholder="Name"
                               required
                               value={signupInputData.name}
                               name="name"
-                              autocomplete="off"
+                              autoComplete="off"
                               onChange={(event) =>
                                 setSignupInputData({
                                   ...signupInputData,
@@ -297,20 +303,23 @@ const LandingPageIndex = (props) => {
                             />
                           </Form.Group>
                           {props.validation.isValid}
-                          <Form.Group controlId="formBasicName">
+                          <Form.Group controlId="signupUsername">
                             <Form.Control
                               type="text"
-                              controlId="lastname"
+                              controlId="signupUsername"
                               placeholder="User Name"
                               required
-                              autocomplete="off"
+                              autoComplete="off"
                               value={signupInputData.user_name}
                               name="username"
                               onChange={(event) =>
-                                handleUsernameValidation(
-                                  event,
-                                  event.currentTarget.value
-                                )
+                                event.currentTarget.value &&
+                                event.currentTarget.value.length > 3
+                                  ? handleUsernameValidation(
+                                      event,
+                                      event.currentTarget.value
+                                    )
+                                  : ""
                               }
                               isValid={props.validation.isValid}
                               isInvalid={props.validation.isInValid}
@@ -330,13 +339,13 @@ const LandingPageIndex = (props) => {
                               ""
                             )}
                           </Form.Group>
-                          <Form.Group controlId="formBasicEmail">
+                          <Form.Group controlId="registerEmail">
                             <Form.Control
                               type="text"
-                              controlId="registeremail"
+                              controlId="registerEmail"
                               placeholder="E-mail"
                               required
-                              autocomplete="off"
+                              autoComplete="off"
                               value={signupInputData.email}
                               name="email"
                               onChange={(event) =>
@@ -348,13 +357,13 @@ const LandingPageIndex = (props) => {
                             />
                           </Form.Group>
 
-                          <Form.Group controlId="formBasicPassword">
+                          <Form.Group controlId="registerPassword">
                             <Form.Control
                               type="password"
-                              controlId="registerpassword"
+                              controlId="registerPassword"
                               placeholder="Password"
                               required
-                              autocomplete="off"
+                              autoComplete="new-password"
                               value={signupInputData.password}
                               name="password"
                               onChange={(event) =>

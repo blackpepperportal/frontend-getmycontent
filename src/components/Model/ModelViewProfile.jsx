@@ -58,7 +58,7 @@ const ModelViewProfile = (props) => {
 
   const [subscriptionData, setSubscriptionData] = useState({
     is_free: 0,
-    plan_type: "month",
+    plan_type: "months",
     amount: 0,
     amount_formatted: 0,
   });
@@ -639,7 +639,7 @@ const ModelViewProfile = (props) => {
                               onClick={(event) =>
                                 subscriptionPayment(
                                   event,
-                                  "month",
+                                  "months",
                                   userDetails.data.payment_info
                                     .subscription_info.monthly_amount,
                                   userDetails.data.payment_info
@@ -664,7 +664,7 @@ const ModelViewProfile = (props) => {
                               onClick={(event) =>
                                 subscriptionPayment(
                                   event,
-                                  "year",
+                                  "years",
                                   userDetails.data.payment_info
                                     .subscription_info.yearly_amount,
                                   userDetails.data.payment_info
@@ -690,7 +690,7 @@ const ModelViewProfile = (props) => {
                                 subscriptionPaymentStripeStart({
                                   user_unique_id:
                                     userDetails.data.user.user_unique_id,
-                                  plan_type: "month",
+                                  plan_type: "months",
                                   is_free: 0,
                                 })
                               )
