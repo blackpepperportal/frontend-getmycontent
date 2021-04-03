@@ -19,6 +19,7 @@ import { translate, t } from "react-multi-lang";
 const SendTipModal = (props) => {
   const [amount, setAmount] = useState(0);
   const [paymentType, setPaymentType] = useState("card");
+  const [message, setMessage] = useState("");
   const [showPayPal, payPal] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +31,7 @@ const SendTipModal = (props) => {
               ? props.post_id
               : "",
           amount: amount,
+          message: message,
           user_id: props.user_id,
         })
       );
@@ -41,6 +43,7 @@ const SendTipModal = (props) => {
               ? props.post_id
               : "",
           amount: amount,
+          message: message,
           user_id: props.user_id,
         })
       );
@@ -113,26 +116,33 @@ const SendTipModal = (props) => {
                   />
                 </div>
                 <div className="body-userinfo">
-                <div className="popup-username-row">
-                  <div className="pop-username">
-                    <div className="">
-                      {props.name}{" "}
-                      {props.is_verified_badge == 1 ? (
-                        <img
-                          className="verified-badge"
-                          alt="verified-badge"
-                          src={configuration.get('configData.verified_badge_file') ? configuration.get('configData.verified_badge_file') : ""}
-                          
-                        />
-                      ) : null}
+                  <div className="popup-username-row">
+                    <div className="pop-username">
+                      <div className="">
+                        {props.name}{" "}
+                        {props.is_verified_badge == 1 ? (
+                          <img
+                            className="verified-badge"
+                            alt="verified-badge"
+                            src={
+                              configuration.get(
+                                "configData.verified_badge_file"
+                              )
+                                ? configuration.get(
+                                    "configData.verified_badge_file"
+                                  )
+                                : ""
+                            }
+                          />
+                        ) : null}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="popup-username-row">
-                  <span className="pop-username popuser-realname">
-                    <div className="pop-user-username">@{props.username}</div>
-                  </span>
-                </div>
+                  <div className="popup-username-row">
+                    <span className="pop-username popuser-realname">
+                      <div className="pop-user-username">@{props.username}</div>
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -151,7 +161,9 @@ const SendTipModal = (props) => {
                 </div>
 
                 <Form>
-                  <label className="choose-payment-label">{t("choose_payment")}</label>
+                  <label className="choose-payment-label">
+                    {t("choose_payment")}
+                  </label>
                   {["radio"].map((type) => (
                     <div key={`custom-inline-${type}`} className="mb-3">
                       <Form.Check
@@ -190,9 +202,14 @@ const SendTipModal = (props) => {
                     className="floating-input"
                     type="text"
                     placeholder="Message (optional) "
+                    onChange={(event) => {
+                      setMessage(event.currentTarget.value);
+                    }}
                   />
                   <span className="highlight"></span>
-                  <label className="default-label">{t("message")} ({t("optional")})</label>
+                  <label className="default-label">
+                    {t("message")} ({t("optional")})
+                  </label>
                 </div>
               </div>
             </Modal.Body>
@@ -248,4 +265,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(SendTipModal));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(SendTipModal));
