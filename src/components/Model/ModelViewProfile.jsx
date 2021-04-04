@@ -473,7 +473,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/instagram.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />
                                 {/* {userDetails.data.user.instagram_link} */}
                               </a>
@@ -493,7 +493,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/facebook.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
                                 {/* {userDetails.data.user.facebook_link} */}
                               </a>
@@ -513,7 +513,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/twitter.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
                                 {/* {userDetails.data.user.twitter_link} */}
                               </a>
@@ -532,7 +532,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/snapchat.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
                                 {/* {userDetails.data.user.twitter_link} */}
                               </a>
@@ -551,7 +551,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/youtube.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
                                 {/* {userDetails.data.user.youtube_link} */}
                               </a>
@@ -570,7 +570,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/linkedin.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
                                 {/* {userDetails.data.user.linkedin_link} */}
                               </a>
@@ -589,7 +589,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/pinterest.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
                                 {/* {userDetails.data.user.pinterest_link} */}
                               </a>
@@ -609,7 +609,7 @@ const ModelViewProfile = (props) => {
                                     window.location.origin +
                                     "/assets/social/twitch.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
                                 {/* {userDetails.data.user.twitch_link} */}
                               </a>

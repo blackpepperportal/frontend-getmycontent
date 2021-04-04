@@ -54,6 +54,13 @@ const PostDisplayCard = (props) => {
     setPPVPayment(false);
   };
 
+  const handleImagePreview = (event, status, paymentStatus) => {
+    event.preventDefault();
+    if (paymentStatus == 0) {
+      setModalStatus(status);
+    }
+  };
+
   const handleCommentSubmit = (event) => {
     event.preventDefault();
     props.dispatch(saveCommentStart(commentInputData));
@@ -284,7 +291,11 @@ const PostDisplayCard = (props) => {
                                 event,
                                 post.payment_info.is_user_needs_pay
                               )
-                            : props.scrollToTop
+                            : handleImagePreview(
+                                event,
+                                1,
+                                post.payment_info.is_user_needs_pay
+                              )
                         }
                       >
                         <div className="post-image" key={index}>
@@ -300,6 +311,10 @@ const PostDisplayCard = (props) => {
                                 <Image
                                   src={postFile.post_file}
                                   className="post-view-image"
+                                  // onClick={handleImagePreview}
+                                  onClick={(event) =>
+                                    handleImagePreview(event, 1)
+                                  }
                                 />
                               )}
                             </div>
@@ -675,7 +690,7 @@ const PostDisplayCard = (props) => {
                         className="custom-btn"
                         onClick={handleCommentSubmit}
                       >
-                        <i class="fas fa-paper-plane"></i>
+                        <i className="fas fa-paper-plane"></i>
                       </Button>
                     </Form>
                   </div>

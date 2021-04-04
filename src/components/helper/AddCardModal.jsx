@@ -47,7 +47,11 @@ const AddCardModel = (props) => {
                 <div className="add-card-user-name">
                   {localStorage.getItem("name")}
                   <Image
-                    src={configuration.get('configData.verified_badge_file') ? configuration.get('configData.verified_badge_file') : ""}
+                    src={
+                      configuration.get("configData.verified_badge_file")
+                        ? configuration.get("configData.verified_badge_file")
+                        : ""
+                    }
                     className="add-card-verified-icon ml-3"
                   />
                 </div>
@@ -57,15 +61,15 @@ const AddCardModel = (props) => {
               <div className="flex-center">
                 <ul className="list-unstyled">
                   <Media as="li">
-                    <i class="fas fa-check mr-2"></i>
+                    <i className="fas fa-check mr-2"></i>
                     <span>{t("full_access_to_user_content")}</span>
                   </Media>
                   <Media as="li">
-                    <i class="fas fa-check mr-2"></i>
+                    <i className="fas fa-check mr-2"></i>
                     <span>{t("direct_message_with_this_user")}</span>
                   </Media>
                   <Media as="li">
-                    <i class="fas fa-check mr-2"></i>
+                    <i className="fas fa-check mr-2"></i>
                     <span>{t("cancel_your_subscription_at_any_time")}</span>
                   </Media>
                 </ul>
@@ -83,7 +87,9 @@ const AddCardModel = (props) => {
                     src="assets/images/icons/subscribe-blue.svg"
                     className="svg-clone"
                   />
-                  <span className="b-btn-text">{t("please_add_payment_card")}</span>
+                  <span className="b-btn-text">
+                    {t("please_add_payment_card")}
+                  </span>
                 </Link>
               </div>
             </div>

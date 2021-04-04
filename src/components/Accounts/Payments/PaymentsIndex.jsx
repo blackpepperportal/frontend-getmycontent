@@ -87,7 +87,7 @@ const PaymentsIndex = (props) => {
                     <Col sm={6} xs={6} md={6} className="padding-sm space-sm">
                       <div className="flex-box">
                         <div className="payment-body-icon">
-                          <i class="fas fa-bars"></i>
+                          <i className="fas fa-bars"></i>
                         </div>
                         <div className="payment-body-info">
                           <h3>{t("posts")}</h3>
@@ -99,7 +99,7 @@ const PaymentsIndex = (props) => {
                     <Col sm={6} xs={6} md={6} className="padding-sm">
                       <div className="flex-box">
                         <div className="payment-body-icon">
-                          <i class="fas fa-unlock-alt"></i>
+                          <i className="fas fa-unlock-alt"></i>
                         </div>
                         <div className="payment-body-info">
                           <h3>{t("subscribed")}</h3>
@@ -110,7 +110,7 @@ const PaymentsIndex = (props) => {
                     <Col sm={6} xs={6} md={6} className="padding-sm">
                       <div className="flex-box">
                         <div className="payment-body-icon">
-                          <i class="fas fa-user-friends"></i>
+                          <i className="fas fa-user-friends"></i>
                         </div>
                         <div className="payment-body-info">
                           <h3>{t("subscribers")}</h3>
@@ -136,7 +136,8 @@ const PaymentsIndex = (props) => {
               </div>
               <div className="payment-footer">
                 <h2>
-                  <i class="fab fa-twitter mr-3"></i> {t("tweet_your_referral")}
+                  <i className="fab fa-twitter mr-3"></i>{" "}
+                  {t("tweet_your_referral")}
                 </h2>
               </div>
             </div>
@@ -181,7 +182,7 @@ const PaymentsIndex = (props) => {
                               <td>{history.admin_amount_formatted}</td>
                               <td>
                                 <p>
-                                  <i class="far fa-clock mr-2"></i>
+                                  <i className="far fa-clock mr-2"></i>
                                   {history.status_formatted}
                                 </p>
                               </td>
@@ -283,4 +284,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(PaymentsIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(PaymentsIndex));
