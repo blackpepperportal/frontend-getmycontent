@@ -61,7 +61,7 @@ const DocumentUploadIndex = (props) => {
     <>
       <div className="document-upload-sec">
         <Container>
-          <h4 class="head-title">{t("upload_your_documents")}</h4>
+          <h4 className="head-title">{t("upload_your_documents")}</h4>
           {props.kycDocDetails.loading ? (
             ""
           ) : (

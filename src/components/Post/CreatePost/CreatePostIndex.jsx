@@ -218,7 +218,7 @@ const CreatePostIndex = (props) => {
                     <div className="post-title-content">
                       <h4>{videoTitle}</h4>
                       <Link to="#" onClick={videoClose}>
-                        <i class="far fa-window-close"></i>
+                        <i className="far fa-window-close"></i>
                       </Link>
                     </div>
                   ) : null}
@@ -231,7 +231,7 @@ const CreatePostIndex = (props) => {
                   <Col sm={12} md={3}>
                     <div className="post-img-preview-sec">
                       <Link to="#" onClick={imageClose}>
-                        <i class="far fa-times-circle"></i>
+                        <i className="far fa-times-circle"></i>
                       </Link>
                       <Image
                         alt="#"
