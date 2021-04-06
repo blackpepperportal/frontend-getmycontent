@@ -18,7 +18,8 @@ class MainLayout extends Component {
           <div className="main-wrap-sec">
             {React.cloneElement(this.props.children)}
           </div>
-          <NewFooter />
+          {/* <NewFooter /> */}
+          <AuthFooter />
         </div>
       </div>
     );
