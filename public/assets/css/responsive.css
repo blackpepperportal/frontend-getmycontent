@@ -143,6 +143,10 @@ Version: 1.0
     .resp-col-reverse{
         flex-direction: column-reverse;
     }
+    .resp-col-width-half{
+        flex: 0 0 50%!important;
+        max-width: 50%!important;
+    }
 }
 
 
@@ -500,6 +504,23 @@ Version: 1.0
     .post-content .post-image .post-view-image{
         height:16em;
         object-fit: cover;
+        min-height: 16em;
+    }
+    .resp-col-width{
+        flex: 0 0 100%!important;
+        max-width: 100%!important;
+    }
+    .new-footer-sec{
+        padding-bottom: 8em;
+        text-align: center;
+    }
+    .footer-link-sec li{
+        align-items: center;
+        justify-content: center;
+    }
+    .footer-social-link-sec{
+        align-items: center;
+        justify-content: center;
     }
 }
 
