@@ -235,7 +235,10 @@ const ProfileIndex = (props) => {
                                   target="_blank"
                                   className="profile-a"
                                 >
-                                  {props.profile.data.website}
+                                  {props.profile.data.website.replace(
+                                    /(^\w+:|^)\/\//,
+                                    ""
+                                  )}
                                 </a>
                               </span>
                             ) : null}
@@ -250,7 +253,10 @@ const ProfileIndex = (props) => {
                                   target="_blank"
                                   className="profile-a"
                                 >
-                                  {props.profile.data.amazon_wishlist}
+                                  {props.profile.data.amazon_wishlist.replace(
+                                    /(^\w+:|^)\/\//,
+                                    ""
+                                  )}
                                 </a>
                               </span>
                             ) : null}
@@ -270,7 +276,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/instagram.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />
                                   {/* {props.profile.data.instagram_link} */}
                                 </a>
@@ -290,7 +296,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/facebook.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />{" "}
                                   {/* {props.profile.data.facebook_link} */}
                                 </a>
@@ -310,7 +316,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/twitter.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />{" "}
                                   {/* {props.profile.data.twitter_link} */}
                                 </a>
@@ -329,7 +335,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/snapchat.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />{" "}
                                   {/* {props.profile.data.twitter_link} */}
                                 </a>
@@ -348,7 +354,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/youtube.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />{" "}
                                   {/* {props.profile.data.youtube_link} */}
                                 </a>
@@ -367,7 +373,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/linkedin.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />{" "}
                                   {/* {props.profile.data.linkedin_link} */}
                                 </a>
@@ -386,7 +392,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/pinterest.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />{" "}
                                   {/* {props.profile.data.pinterest_link} */}
                                 </a>
@@ -406,7 +412,7 @@ const ProfileIndex = (props) => {
                                       window.location.origin +
                                       "/assets/social/twitch.svg"
                                     }
-                                    class="s_icon_16"
+                                    className="s_icon_16"
                                   />{" "}
                                   {/* {props.profile.data.twitch_link} */}
                                 </a>
@@ -435,7 +441,7 @@ const ProfileIndex = (props) => {
                             placeholder="Search Anything"
                           />
                           <Link to="#" className="search-btn">
-                            <i class="fas fa-search"></i>
+                            <i className="fas fa-search"></i>
                           </Link>
                         </Form>
                       </div>
@@ -486,4 +492,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(ProfileIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(ProfileIndex));

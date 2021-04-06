@@ -45,31 +45,65 @@ const BillingAccountIndex = (props) => {
       </div>
       <div className="trans-table-sec">
         <Container>
-          <Row>
-            <Col sm={12} md={12}>
-              <div className="trans-table">
-                <Table borderedless responsive>
-                  <tbody>
-                    {props.bankAccount.loading ? (
-                      <BillingAccountLoader />
-                    ) : props.bankAccount.data.billing_accounts.length > 0 ? (
-                      props.bankAccount.data.billing_accounts.map(
+          {props.bankAccount.loading ? (
+            <BillingAccountLoader />
+          ) : props.bankAccount.data.billing_accounts.length > 0 ? (
+            <Row>
+              <Col sm={12} md={12}>
+                <div className="trans-table">
+                  <Table borderedless responsive>
+                    <thead>
+                      <tr className="bg-white text-muted text-center">
+                        <th>{t("nickname")}</th>
+                        <th>{t("account_holder_name")}</th>
+                        <th>{t("account_number")}</th>
+                        <th>{t("bank_name")}</th>
+                        <th>{t("ifsc_code")}</th>
+                        <th>{t("swift_code")}</th>
+                        <th>{t("route_number")}</th>
+                        <th>{t("iban_number")}</th>
+                        <th>{t("is_default")}</th>
+                        <th>{t("status")}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {props.bankAccount.data.billing_accounts.map(
                         (accounts) => (
                           <tr key={accounts.user_billing_account_id}>
                             <td>{accounts.nickname}</td>
-                            <td>{accounts.account_holder_name}</td>
-                            <td className="amount">
-                              {accounts.account_number}
+                            <td>
+                              {accounts.account_holder_name
+                                ? accounts.account_holder_name
+                                : "-"}
                             </td>
-                            <td>{accounts.bank_name}</td>
-                            <td>{accounts.ifsc_code}</td>
-                            <td>{accounts.swift_code}</td>
-                            <td>{accounts.route_number}</td>
-                            <td>{accounts.iban_number}</td>
+                            <td className="amount">
+                              {accounts.account_number
+                                ? accounts.account_number
+                                : "-"}
+                            </td>
+                            <td>
+                              {accounts.bank_name ? accounts.bank_name : "-"}
+                            </td>
+                            <td>
+                              {accounts.ifsc_code ? accounts.ifsc_code : "-"}
+                            </td>
+                            <td>
+                              {accounts.swift_code ? accounts.swift_code : "-"}
+                            </td>
+                            <td>
+                              {accounts.route_number
+                                ? accounts.route_number
+                                : "-"}
+                            </td>
+                            <td>
+                              {accounts.iban_number
+                                ? accounts.iban_number
+                                : "-"}
+                            </td>
                             {accounts.is_default === 1 ? (
                               <td>
                                 <Badge className="unconfirmed-badge">
-                                  {t("default")}
+                                  {t("yes")}
                                 </Badge>
                               </td>
                             ) : (
@@ -78,6 +112,7 @@ const BillingAccountIndex = (props) => {
                             <td>
                               {accounts.is_default === 0 ? (
                                 <Button
+                                  style={{ marginBottom: "1rem" }}
                                   onClick={() =>
                                     props.dispatch(
                                       makeDefaultBankAccountStart({
@@ -105,15 +140,15 @@ const BillingAccountIndex = (props) => {
                             </td>
                           </tr>
                         )
-                      )
-                    ) : (
-                      <NoDataFound />
-                    )}
-                  </tbody>
-                </Table>
-              </div>
-            </Col>
-          </Row>
+                      )}
+                    </tbody>
+                  </Table>
+                </div>
+              </Col>
+            </Row>
+          ) : (
+            <NoDataFound />
+          )}
         </Container>
       </div>
     </>
@@ -128,4 +163,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(BillingAccountIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(BillingAccountIndex));

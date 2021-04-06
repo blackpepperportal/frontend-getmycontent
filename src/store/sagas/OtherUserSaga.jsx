@@ -36,6 +36,7 @@ function* fetchOtherUserProfileAPI() {
         response.data.error
       );
       yield put(createNotification(notificationMessage));
+      window.location.assign("/home");
     }
   } catch (error) {
     yield put(fetchSingleUserProfileFailure(error));
@@ -68,7 +69,9 @@ function* fetchOtherUserPostAPI() {
 
 function* searchPostAPI() {
   try {
-    const inputData = yield select((state) => state.otherUser.searchPosts.inputData);
+    const inputData = yield select(
+      (state) => state.otherUser.searchPosts.inputData
+    );
     const response = yield api.postMethod("posts_search", inputData);
     if (response.data.success) {
       yield put(fetchSingleUserPostsSuccess(response.data.data));
@@ -94,7 +97,5 @@ export default function* pageSaga() {
     yield takeLatest(FETCH_SINGLE_USER_POSTS_START, fetchOtherUserPostAPI),
   ]);
 
-  yield all([
-    yield takeLatest(SEARCH_USER_POST_START, searchPostAPI),
-  ]);
+  yield all([yield takeLatest(SEARCH_USER_POST_START, searchPostAPI)]);
 }
