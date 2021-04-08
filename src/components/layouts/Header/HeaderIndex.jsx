@@ -309,7 +309,23 @@ const HeaderIndex = (props) => {
                   />{" "}
                   {t("settings")}
                 </Link>
+                
+                <Link 
+                  to={"/explore"}
+                  className="sidebar-menus-item"
+                  data-name="Explore"
+                  onClick={() => setIsVisible(!isVisible)}
+                >
+                  <Image
+                    src={
+                      window.location.origin + "/assets/images/icons/explore.svg"
+                    }
+                    alt="Your Cards"
+                  />
+                  Explore
 
+                </Link>
+                
                 <hr className="sidebar-menu-divider" />
 
                 <Link

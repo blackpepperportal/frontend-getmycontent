@@ -1,0 +1,124 @@
+.explore-card{
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 200px;
+    grid-auto-flow: dense;
+    /* padding: 5px;
+    border: 3px solid black; */
+}
+
+.explore-card .vertical::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+
+
+.explore-card .horizontal::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.explore-card .big::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.explore-card .small::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.explore-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.explore-card .horizontal:hover .explore-play-icon-sec i{
+    color: #101010;
+}
+
+.explore-card .vertical:hover .explore-play-icon-sec i{
+    color: #101010;
+}
+
+.explore-card .big:hover .explore-play-icon-sec i{
+    color: #101010;
+}
+
+.explore-card .small:hover .explore-play-icon-sec i{
+    color: #101010;
+}
+
+.explore-card .horizontal {
+    grid-column: span 2;
+    position: relative;
+}
+
+.explore-card .vertical {
+    grid-row: span 2;
+    position: relative;
+}
+
+.explore-card .big {
+    grid-column: span 2;
+    grid-row: span 2;
+    position: relative;
+}
+
+.explore-sec{
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.explore-play-icon-sec{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+}
+
+.small{
+    position: relative;
+}
+
+.explore-play-icon-sec i{
+    font-size: 2.5em;
+    color: #fff;
+    transition: all 1s ease;
+    /* background: rgba(0,0,0,0.5);
+    padding: 0.2em;
+    border-radius: 5px; */
+}
+
+
+
+/* .explore-card{
+    position: relative;
+} */

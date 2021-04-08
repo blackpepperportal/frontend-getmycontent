@@ -39,6 +39,7 @@ import ResetPassword from "../LandingPageIndex/ResetPassword";
 import UploadProfilePicture from "../Accounts/Profile/UploadProfilePicture";
 import NewLandingPage from "../LandingPageIndex/NewLandingPage";
 import UserCategoriesIndex from "../Accounts/Profile/UserCategoriesIndex";
+import ExploreIndex from "../Explore/ExploreIndex";
 
 
 import {
@@ -366,6 +367,12 @@ class App extends Component {
             layout={MainLayout}
           />
 
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/explore"}
+            component={ExploreIndex}
+            layout={MainLayout}
+          />
           {/* Dont move this route to top */}
           <PrivateRoute
             authentication={this.state.authentication}
