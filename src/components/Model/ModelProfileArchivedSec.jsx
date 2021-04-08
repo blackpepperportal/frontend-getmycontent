@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SendTipModal from "../helper/SendTipModal";
 import { Link } from "react-router-dom";
-import { Form} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const ModelProfileArchivedSec = (props) => {
   const [sendTip, setSendTip] = useState(false);
@@ -35,7 +35,7 @@ const ModelProfileArchivedSec = (props) => {
                 placeholder="Search Anything"
               />
               <Link to="#" className="search-btn">
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
               </Link>
             </Form>
           </div>

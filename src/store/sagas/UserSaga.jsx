@@ -241,7 +241,11 @@ function* userRegisterAPI() {
           response.data.message
         );
         yield put(createNotification(notificationMessage));
-        window.location.assign("/upload-profile-picture");
+        if (response.data.data.is_welcome_steps == 1) {
+          window.location.assign("/upload-profile-picture");
+        } else {
+          window.location.assign("/home");
+        }
       }
       localStorage.setItem("userId", response.data.data.user_id);
       localStorage.setItem("accessToken", response.data.data.token);
@@ -555,10 +559,7 @@ function* resetPasswordAPI() {
       localStorage.setItem("name", response.data.data.name);
       localStorage.setItem("username", response.data.data.username);
       localStorage.setItem("socket", true);
-      localStorage.setItem(
-        "user_unique_id",
-        response.data.data.user_unique_id
-      );
+      localStorage.setItem("user_unique_id", response.data.data.user_unique_id);
       localStorage.setItem(
         "is_document_verified",
         response.data.data.is_document_verified
@@ -597,7 +598,6 @@ function* usernameValidationAPI() {
     const response = yield api.postMethod("username_validation", inputData);
     yield put(usernameValidationSuccess(response.data));
     if (response.data.success) {
-      
     } else {
       yield put(usernameValidationFailure(response));
       // const notificationMessage = getErrorNotificationMessage(

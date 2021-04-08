@@ -35,6 +35,7 @@
     height: 100px;
     width: 100px;
     margin-top: -4em;
+    object-fit: cover;
 }
 
 .payment-user-details .title {

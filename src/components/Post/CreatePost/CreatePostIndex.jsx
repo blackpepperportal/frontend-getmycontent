@@ -166,68 +166,72 @@ const CreatePostIndex = (props) => {
                   />
                 </Form.Group>
               </div>
-              <div className="left-half post-write">
-                <Button>
-                  <Form.Group className="mb-0">
-                    <Form.Control
-                      id="fileupload_photo"
-                      type="file"
-                      multiple="multiple"
-                      accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png"
-                      onChange={(event) => handleChangeImage(event, "image")}
-                      name="post_files"
-                    />
-                    <Form.Label
-                      id="attach_file_photo"
-                      for="fileupload_photo"
-                      className="chat-attach_file"
-                      data-original-title="null"
-                    >
-                      <Image
-                        src="assets/images/icons/gallery.svg"
-                        className="svg-clone"
+              {localStorage.getItem("is_document_verified") == 2 ? (
+                <div className="left-half post-write">
+                  <Button>
+                    <Form.Group className="mb-0">
+                      <Form.Control
+                        id="fileupload_photo"
+                        type="file"
+                        multiple="multiple"
+                        accept=".gif,.jpg,.jpeg,.gif,.png,.jpg,.jpeg,.png"
+                        onChange={(event) => handleChangeImage(event, "image")}
+                        name="post_files"
                       />
-                    </Form.Label>
-                  </Form.Group>
-                </Button>
-                <Button>
-                  <Form.Group className="mb-0">
-                    <Form.Control
-                      id="fileupload_video"
-                      type="file"
-                      multiple="multiple"
-                      accept="video/mp4,video/x-m4v,video/*"
-                      onChange={(event) => handleChangeVideo(event, "video")}
-                      name="post_files"
-                    />
-                    <Form.Label
-                      id="attach_file_video"
-                      for="fileupload_video"
-                      className="chat-attach_file"
-                      data-original-title="null"
-                    >
-                      <Image
-                        src="assets/images/icons/video.svg"
-                        className="svg-clone"
+                      <Form.Label
+                        id="attach_file_photo"
+                        for="fileupload_photo"
+                        className="chat-attach_file"
+                        data-original-title="null"
+                      >
+                        <Image
+                          src="assets/images/icons/gallery.svg"
+                          className="svg-clone"
+                        />
+                      </Form.Label>
+                    </Form.Group>
+                  </Button>
+                  <Button>
+                    <Form.Group className="mb-0">
+                      <Form.Control
+                        id="fileupload_video"
+                        type="file"
+                        multiple="multiple"
+                        accept="video/mp4,video/x-m4v,video/*"
+                        onChange={(event) => handleChangeVideo(event, "video")}
+                        name="post_files"
                       />
-                    </Form.Label>
-                  </Form.Group>
-                </Button>
-                {videoTitle !== "" ? (
-                  <div className="post-title-content">
-                    <h4>{videoTitle}</h4>
-                    <Link to="#" onClick={videoClose}>
-                      <i class="far fa-window-close"></i>
-                    </Link>
-                  </div>
-                ) : null}
-              </div>
+                      <Form.Label
+                        id="attach_file_video"
+                        for="fileupload_video"
+                        className="chat-attach_file"
+                        data-original-title="null"
+                      >
+                        <Image
+                          src="assets/images/icons/video.svg"
+                          className="svg-clone"
+                        />
+                      </Form.Label>
+                    </Form.Group>
+                  </Button>
+                  {videoTitle !== "" ? (
+                    <div className="post-title-content">
+                      <h4>{videoTitle}</h4>
+                      <Link to="#" onClick={videoClose}>
+                        <i className="far fa-window-close"></i>
+                      </Link>
+                    </div>
+                  ) : null}
+                </div>
+              ) : (
+                ""
+              )}
               {image.previewImage !== "" ? (
                 <Row>
                   <Col sm={12} md={3}>
                     <div className="post-img-preview-sec">
                       <Link to="#" onClick={imageClose}>
-                        <i class="far fa-times-circle"></i>
+                        <i className="far fa-times-circle"></i>
                       </Link>
                       <Image
                         alt="#"
@@ -242,7 +246,9 @@ const CreatePostIndex = (props) => {
             {paidPost == true ? (
               <Col sm={12} md={12}>
                 <Form.Group className="md-mrg-btm">
-                  <label className="text-muted m-1">{t("price")} ({t("optional")})</label>
+                  <label className="text-muted m-1">
+                    {t("price")} ({t("optional")})
+                  </label>
                   <Form.Control
                     type="number"
                     placeholder={t("price_placeholder")}
@@ -306,4 +312,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(CreatePostIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(CreatePostIndex));

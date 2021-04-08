@@ -54,6 +54,13 @@ const PostDisplayCard = (props) => {
     setPPVPayment(false);
   };
 
+  const handleImagePreview = (event, status, paymentStatus) => {
+    event.preventDefault();
+    if (paymentStatus == 0) {
+      setModalStatus(status);
+    }
+  };
+
   const handleCommentSubmit = (event) => {
     event.preventDefault();
     props.dispatch(saveCommentStart(commentInputData));
@@ -230,34 +237,32 @@ const PostDisplayCard = (props) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>
-                {post.is_user_needs_pay === 1 ? 
-
-                  post.payment_info.post_payment_type === 'ppv' ? (
-                  <span
-                    className="post-time"
-                    onClick={(event) =>
-                      handlePPVPayment(event, post.is_user_needs_pay)
-                    }
-                  >
-                    <span className="post-tip-lock">
-                      {post.amount_formatted}{" "}
-                    </span>
-                    <Link
-                      to="#"
+                {post.is_user_needs_pay === 1 ? (
+                  post.payment_info.post_payment_type === "ppv" ? (
+                    <span
+                      className="post-time"
                       onClick={(event) =>
                         handlePPVPayment(event, post.is_user_needs_pay)
                       }
                     >
-                      <i className="fa fa-lock"></i>
-                    </Link>
-                  </span>
-                  ) :
-                  (
+                      <span className="post-tip-lock">
+                        {post.amount_formatted}{" "}
+                      </span>
+                      <Link
+                        to="#"
+                        onClick={(event) =>
+                          handlePPVPayment(event, post.is_user_needs_pay)
+                        }
+                      >
+                        <i className="fa fa-lock"></i>
+                      </Link>
+                    </span>
+                  ) : (
                     <Link to="#">
                       <i className="fa fa-unlock text-success"></i>
                     </Link>
                   )
-                 : post.amount > 0 ? (
+                ) : post.amount > 0 ? (
                   <span className="post-time">
                     <span className="post-tip-lock">
                       {post.amount_formatted}{" "}
@@ -280,10 +285,17 @@ const PostDisplayCard = (props) => {
                       <Link
                         to="#"
                         onClick={(event) =>
-                          handlePPVPayment(
-                            event,
-                            post.payment_info.is_user_needs_pay
-                          )
+                          post.payment_info.post_payment_type === "ppv" &&
+                          post.payment_info.is_user_needs_pay === 1
+                            ? handlePPVPayment(
+                                event,
+                                post.payment_info.is_user_needs_pay
+                              )
+                            : handleImagePreview(
+                                event,
+                                1,
+                                post.payment_info.is_user_needs_pay
+                              )
                         }
                       >
                         <div className="post-image" key={index}>
@@ -299,6 +311,10 @@ const PostDisplayCard = (props) => {
                                 <Image
                                   src={postFile.post_file}
                                   className="post-view-image"
+                                  // onClick={handleImagePreview}
+                                  onClick={(event) =>
+                                    handleImagePreview(event, 1)
+                                  }
                                 />
                               )}
                             </div>
@@ -567,7 +583,9 @@ const PostDisplayCard = (props) => {
           </div>
 
           <div className="likes alignleft">
-            <p>{likeCount} {t("likes")}</p>
+            <p>
+              {likeCount} {t("likes")}
+            </p>
             {isVisible && commentInputData.post_id === post.post_id ? (
               <Link
                 className="Show view-comments"
@@ -672,7 +690,7 @@ const PostDisplayCard = (props) => {
                         className="custom-btn"
                         onClick={handleCommentSubmit}
                       >
-                        <i class="fas fa-paper-plane"></i>
+                        <i className="fas fa-paper-plane"></i>
                       </Button>
                     </Form>
                   </div>
@@ -720,4 +738,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(PostDisplayCard));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(PostDisplayCard));

@@ -32,10 +32,7 @@ import VerifiedBadgeNoShadow from "../Handlers/VerifiedBadgeNoShadow";
 import { translate, t } from "react-multi-lang";
 
 const ModelViewProfile = (props) => {
-
-  const toggleVisibility = () => {
-    
-  };
+  const toggleVisibility = () => {};
 
   useEffect(() => {
     props.dispatch(
@@ -61,7 +58,7 @@ const ModelViewProfile = (props) => {
 
   const [subscriptionData, setSubscriptionData] = useState({
     is_free: 0,
-    plan_type: "month",
+    plan_type: "months",
     amount: 0,
     amount_formatted: 0,
   });
@@ -82,6 +79,7 @@ const ModelViewProfile = (props) => {
       );
     }
   };
+
   const handleBlockUser = (event, status, user_id) => {
     event.preventDefault();
     setBlockUserStatus(status);
@@ -178,13 +176,12 @@ const ModelViewProfile = (props) => {
   const { userDetails } = props;
 
   const scrollToTop = () => {
-    console.log('adadasdas');
+    console.log("adadasdas");
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
-
 
   return (
     <>
@@ -432,11 +429,14 @@ const ModelViewProfile = (props) => {
                               <i className="fa fa-link"></i>{" "}
                               <a
                                 href={userDetails.data.user.website}
-                                rel="nofollow"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 className="profile-a"
                               >
-                                {userDetails.data.user.website}
+                                {userDetails.data.user.website.replace(
+                                  /(^\w+:|^)\/\//,
+                                  ""
+                                )}
                               </a>
                             </span>
                           ) : null}
@@ -451,175 +451,171 @@ const ModelViewProfile = (props) => {
                                 target="_blank"
                                 className="profile-a"
                               >
-                                {userDetails.data.user.amazon_wishlist}
+                                {userDetails.data.user.amazon_wishlist.replace(
+                                  /(^\w+:|^)\/\//,
+                                  ""
+                                )}
                               </a>
                             </span>
                           ) : null}
                         </div>
                         <div className="profile-links">
-                            {userDetails.data.user.instagram_link ? (
-                              <span className="s-icon">
-                                <a
-                                  href={userDetails.data.user.instagram_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                  <img
+                          {userDetails.data.user.instagram_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.instagram_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/instagram.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />
-                                  {/* {userDetails.data.user.instagram_link} */}
-                                </a>
-                              </span>
-                            ) : null}
+                                {/* {userDetails.data.user.instagram_link} */}
+                              </a>
+                            </span>
+                          ) : null}
 
-                            {userDetails.data.user.facebook_link ? (
-                              <span className="s-icon">
-                              
-                                <a
-                                  href={userDetails.data.user.facebook_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                  <img
+                          {userDetails.data.user.facebook_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.facebook_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/facebook.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
-                                  {/* {userDetails.data.user.facebook_link} */}
-                                </a>
-                              </span>
-                            ) : null}
+                                {/* {userDetails.data.user.facebook_link} */}
+                              </a>
+                            </span>
+                          ) : null}
 
-                            {userDetails.data.user.twitter_link ? (
-                              <span className="s-icon">
-                                
-                                <a
-                                  href={userDetails.data.user.twitter_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                  <img
+                          {userDetails.data.user.twitter_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.twitter_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/twitter.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
-                                  {/* {userDetails.data.user.twitter_link} */}
-                                </a>
-                              </span>
-                            ) : null}
-                            {userDetails.data.user.snapchat_link ? (
-                              <span className="s-icon">
-                                
-                                <a
-                                  href={userDetails.data.user.snapchat_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                  <img
+                                {/* {userDetails.data.user.twitter_link} */}
+                              </a>
+                            </span>
+                          ) : null}
+                          {userDetails.data.user.snapchat_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.snapchat_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/snapchat.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
-                                  {/* {userDetails.data.user.twitter_link} */}
-                                </a>
-                              </span>
-                            ) : null}
-                            {userDetails.data.user.youtube_link ? (
-                              <span className="s-icon">
-                                
-                                <a
-                                  href={userDetails.data.user.youtube_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                  <img
+                                {/* {userDetails.data.user.twitter_link} */}
+                              </a>
+                            </span>
+                          ) : null}
+                          {userDetails.data.user.youtube_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.youtube_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/youtube.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
-                                  {/* {userDetails.data.user.youtube_link} */}
-                                </a>
-                              </span>
-                            ) : null}
-                            {userDetails.data.user.linkedin_link ? (
-                              <span className="s-icon">
-                               
-                                <a
-                                  href={userDetails.data.user.linkedin_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                   <img
+                                {/* {userDetails.data.user.youtube_link} */}
+                              </a>
+                            </span>
+                          ) : null}
+                          {userDetails.data.user.linkedin_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.linkedin_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/linkedin.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
-                                  {/* {userDetails.data.user.linkedin_link} */}
-                                </a>
-                              </span>
-                            ) : null}
-                            {userDetails.data.user.pinterest_link ? (
-                              <span className="s-icon">
-                                
-                                <a
-                                  href={userDetails.data.user.pinterest_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                  <img
+                                {/* {userDetails.data.user.linkedin_link} */}
+                              </a>
+                            </span>
+                          ) : null}
+                          {userDetails.data.user.pinterest_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.pinterest_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/pinterest.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
-                                  {/* {userDetails.data.user.pinterest_link} */}
-                                </a>
-                              </span>
-                            ) : null}
+                                {/* {userDetails.data.user.pinterest_link} */}
+                              </a>
+                            </span>
+                          ) : null}
 
-                            {userDetails.data.user.twitch_link ? (
-                              <span className="s-icon">
-                               
-                                <a
-                                  href={userDetails.data.user.twitch_link}
-                                  rel="nofollow"
-                                  target="_blank"
-                                  className="profile-a"
-                                >
-                                  <img
+                          {userDetails.data.user.twitch_link ? (
+                            <span className="s-icon">
+                              <a
+                                href={userDetails.data.user.twitch_link}
+                                rel="nofollow"
+                                target="_blank"
+                                className="profile-a"
+                              >
+                                <img
                                   src={
                                     window.location.origin +
                                     "/assets/social/twitch.svg"
                                   }
-                                  class="s_icon_16"
+                                  className="s_icon_16"
                                 />{" "}
-                                  {/* {userDetails.data.user.twitch_link} */}
-                                </a>
-                              </span>
-                            ) : null}
-                          </div>
+                                {/* {userDetails.data.user.twitch_link} */}
+                              </a>
+                            </span>
+                          ) : null}
+                        </div>
                       </p>
                     </p>
                   </div>
@@ -627,7 +623,9 @@ const ModelViewProfile = (props) => {
 
                 {userDetails.data.is_block_user == 0 ? (
                   <>
-                    {userDetails.data.payment_info.is_user_needs_pay == 1 ? (
+                    {userDetails.data.payment_info.is_user_needs_pay == 1 &&
+                    userDetails.data.payment_info.unsubscribe_btn_status ==
+                      0 ? (
                       userDetails.data.payment_info.is_free_account == 0 ? (
                         <>
                           <div className="subscription-section">
@@ -641,7 +639,7 @@ const ModelViewProfile = (props) => {
                               onClick={(event) =>
                                 subscriptionPayment(
                                   event,
-                                  "month",
+                                  "months",
                                   userDetails.data.payment_info
                                     .subscription_info.monthly_amount,
                                   userDetails.data.payment_info
@@ -666,7 +664,7 @@ const ModelViewProfile = (props) => {
                               onClick={(event) =>
                                 subscriptionPayment(
                                   event,
-                                  "year",
+                                  "years",
                                   userDetails.data.payment_info
                                     .subscription_info.yearly_amount,
                                   userDetails.data.payment_info
@@ -692,7 +690,7 @@ const ModelViewProfile = (props) => {
                                 subscriptionPaymentStripeStart({
                                   user_unique_id:
                                     userDetails.data.user.user_unique_id,
-                                  plan_type: "month",
+                                  plan_type: "months",
                                   is_free: 0,
                                 })
                               )
@@ -863,4 +861,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(ModelViewProfile));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(ModelViewProfile));

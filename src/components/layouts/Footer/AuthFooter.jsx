@@ -8,19 +8,18 @@ import {
   setTranslations,
   setDefaultLanguage,
   setLanguage,
-  getLanguage
+  getLanguage,
 } from "react-multi-lang";
 import en from "../../translations/en.json";
 import es from "../../translations/es.json";
 
 class AuthFooter extends Component {
-
   handleChangeLang = ({ currentTarget: input }) => {
     console.log(input.value);
     setLanguage(input.value);
     localStorage.setItem("lang", input.value);
     // window.location.reload();
-};
+  };
 
   render() {
     return (
@@ -31,7 +30,7 @@ class AuthFooter extends Component {
               <Row>
                 <Col sm={12} xs={12} xl={4} lg={4} md={12}>
                   <ul className="list-inline">
-                    <Media as="li">
+                    <Media as="li" key="copy-key">
                       <Link to="#">
                         {configuration.get("configData.copyright_content")}
                       </Link>
@@ -43,7 +42,10 @@ class AuthFooter extends Component {
                     {configuration
                       .get("configData.footer_pages1")
                       .map((static_page, index) => (
-                        <Media as="li">
+                        <Media
+                          as="li"
+                          key={"sp-" + static_page.static_page_unique_id}
+                        >
                           <Link
                             to={`/page/${static_page.static_page_unique_id}`}
                             key={static_page.static_page_unique_id}
@@ -59,7 +61,10 @@ class AuthFooter extends Component {
                     {configuration
                       .get("configData.footer_pages2")
                       .map((static_page, index) => (
-                        <Media as="li">
+                        <Media
+                          as="li"
+                          key={"sp-" + static_page.static_page_unique_id}
+                        >
                           <Link
                             to={`/page/${static_page.static_page_unique_id}`}
                             key={static_page.static_page_unique_id}
@@ -71,7 +76,7 @@ class AuthFooter extends Component {
                   </ul>
                 </Col>
                 <Col sm={12} xs={12} xl={2} lg={2} md={12}>
-                  <Dropdown className="country-sec" style={{display : "none"}}>
+                  <Dropdown className="country-sec" style={{ display: "none" }}>
                     <Dropdown.Toggle
                       className="btn btn-default dropdown-toggle countrySelect"
                       type="button"
@@ -82,7 +87,7 @@ class AuthFooter extends Component {
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right mobile-popup model-filter-dropdown">
                       <Form className="pop-ups-bg">
-                        <Media as="li">
+                        <Media as="li" key="language-en">
                           <a>
                             {["radio"].map((type) => (
                               <div key={`custom-inline-${type}`}>
@@ -97,7 +102,7 @@ class AuthFooter extends Component {
                             ))}
                           </a>
                         </Media>
-                        <Media as="li">
+                        <Media as="li" key="language-sp">
                           <a>
                             {["radio"].map((type) => (
                               <div key={`custom-inline-${type}`}>
@@ -191,42 +196,35 @@ class AuthFooter extends Component {
                     </Dropdown.Menu>
                   </Dropdown>
 
-                  { configuration.get("configData.is_multilanguage_enabled") == 1 ? (
-                  <div className="select-lang-drop-down">
-                    <select
+                  {configuration.get("configData.is_multilanguage_enabled") ==
+                  1 ? (
+                    <div className="select-lang-drop-down">
+                      <select
                         className="form-control mw-200 mb-3"
                         onChange={this.handleChangeLang}
                         name="lang"
-                    >
-                      <option
+                      >
+                        <option
                           value="en"
                           selected={
-                              localStorage.getItem(
-                                  "lang"
-                              ) == "en"
-                                  ? true
-                                  : false
+                            localStorage.getItem("lang") == "en" ? true : false
                           }
-                      >
+                        >
                           {t("english")}
-                      </option>
-                      <option
+                        </option>
+                        <option
                           value="es"
                           selected={
-                              localStorage.getItem(
-                                  "lang"
-                              ) == "es"
-                                  ? true
-                                  : false
+                            localStorage.getItem("lang") == "es" ? true : false
                           }
-                      >
+                        >
                           {t("spanish")}
-                      </option>
-                    </select>
-                </div>
-                ) : (
-                 ''
-                )}
+                        </option>
+                      </select>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </Col>
               </Row>
             </div>

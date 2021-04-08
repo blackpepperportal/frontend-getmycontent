@@ -102,7 +102,7 @@ const HomePageIndex = (props) => {
                   onChange={handleSearch}
                 />
                 <Link to="#" className="search-btn">
-                  <i class="fas fa-search"></i>
+                  <i className="fas fa-search"></i>
                 </Link>
               </Form>
             </div>
@@ -128,7 +128,7 @@ const HomePageIndex = (props) => {
                                   {user.name}{" "}
                                   {user.is_verified_badge == 1 ? (
                                     <div className="pl-2">
-                                      <VerifiedBadgeNoShadow/>
+                                      <VerifiedBadgeNoShadow />
                                     </div>
                                   ) : null}
                                 </h5>
@@ -152,28 +152,28 @@ const HomePageIndex = (props) => {
 
           <div className="padding-top-xl">
             <Row className="resp-col-reverse">
-            <Col xl={8} md={12} className="custom-padding">
-              {/* <Container>
+              <Col xl={8} md={12} className="custom-padding">
+                {/* <Container>
                 <Row>
                   <div id="stories" className="storiesWrapper"></div>
                 </Row>
               </Container> */}
-              {props.posts.loading ? (
-                <HomeLoader />
-              ) : props.posts.data.posts.length > 0 ? (
-                props.posts.data.posts.map((post) => (
-                  <PostDisplayCard post={post} key={post.post_id} />
-                ))
-              ) : (
-                <NoDataFound />
-              )}
-              {noMoreData !== true ? (
-                <>{isFetching && "Fetching more list items..."}</>
-              ) : (
-                t("no_more_data")
-              )}
-            </Col>
-            <HomePageSuggesstion />
+                {props.posts.loading ? (
+                  <HomeLoader />
+                ) : props.posts.data.posts.length > 0 ? (
+                  props.posts.data.posts.map((post) => (
+                    <PostDisplayCard post={post} key={post.post_id} />
+                  ))
+                ) : (
+                  <NoDataFound />
+                )}
+                {noMoreData !== true ? (
+                  <>{isFetching && "Fetching more list items..."}</>
+                ) : (
+                  t("no_more_data")
+                )}
+              </Col>
+              <HomePageSuggesstion />
             </Row>
           </div>
         </Container>
@@ -191,4 +191,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(HomePageIndex));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(HomePageIndex));

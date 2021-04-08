@@ -49,7 +49,7 @@
     "add_bank": "Add Bank",
     "nick_name": "Nick Name",
     "account_name": "Account Name",
-    "account_number": "Account Number",
+    "account_number": "Account No",
     "bank_name": "Bank Name",
     "optional": "Optional",
     "ifsc_code": "IFSC Code",
@@ -184,7 +184,7 @@
     "direct_message_with_this_user": "Direct message with this user",
     "cancel_your_subscription_at_any_time": "Cancel your subscription at any time",
     "please_add_payment_card": "PLEASE ADD A PAYMENT CARD",
-    "send_tip": "Send tip",
+    "send_tip": "Send Tip",
     "withdraw_request": "Withdraw Request",
     "cancel_reason": "Cancel Reason",
     "cancel_withdraw": "Cancel Withdraw",
@@ -275,6 +275,9 @@
     "current_balance": "Current Balance",
     "withDraw": "WithDraw",
     "transactions": "TRANSACTIONS",
-    "from": "from"
+    "from": "from",
+    "nickname": "Nickname",
+    "account_holder_name": "Holder Name",
+    "is_default": "Is Default"
   
   }

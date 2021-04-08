@@ -10,7 +10,6 @@ import {
 } from "../../../store/actions/UserAction";
 
 const UploadProfilePicture = (props) => {
-
   const [profileInputData, setProfileInputData] = useState({});
 
   const [image, setImage] = useState({
@@ -57,56 +56,55 @@ const UploadProfilePicture = (props) => {
           <h4 className="head-title">{t("upload_profile_picture")}</h4>
           <div className="upload-profile-picture-card">
             <Row>
-                <Col md={6}>
-                    <div className="upload-profile-picture-sec">
-                        <Form className="upload-profile-img-form">
-                            <Form.Group>
-                                <input type="file" id="file" />
-                                <Form.Control
-                                  className="hidden-input"
-                                  id="changePicture"
-                                  type="file"
-                                  accept="image/*"
-                                  name="picture"
-                                  onChange={handleChangeImage}
-                                />
-                                <Form.Label for="file"
-                                  className="hidden-input"
-                                  for="changePicture"
-                                  type="file"
-                                  title="Change picture">
-                                    <Image
-                                      src={
-                                        image.picture === ""
-                                          ? window.location.origin +
-                                          "/assets/images/upload-profile-img.svg"
-                                          : image.picture
-                                      }
-                                      className="upload-profile-picture-img"
-                                    />
-                                    <div className="edit-icon-sec">
-                                        <i class="fas fa-upload"></i>
-                                    </div>
-                                </Form.Label>
-                            </Form.Group>
-                        </Form>
-                    </div>
-                </Col>
-                <Col md={6}>
-                    <div className="upload-profile-info">
-                        <h2 className="title">
-                            {t("profile_photo")}
-                        </h2>
-                        <p className="desc">{t("profile_photo_para")}
-                        </p>
-                        <Button
-                          className="upload-profile-img-btn btn-block"
-                          onClick={handleSubmit}
-                        >
-                          {t("submit")}
-                        </Button>
-                    </div>
-                </Col>
+              <Col md={6}>
+                <div className="upload-profile-picture-sec">
+                  <Form className="upload-profile-img-form">
+                    <Form.Group>
+                      <input type="file" id="file" />
+                      <Form.Control
+                        className="hidden-input"
+                        id="changePicture"
+                        type="file"
+                        accept="image/*"
+                        name="picture"
+                        onChange={handleChangeImage}
+                      />
+                      <Form.Label
+                        for="file"
+                        className="hidden-input"
+                        for="changePicture"
+                        type="file"
+                        title="Change picture"
+                      >
+                        <Image
+                          src={
+                            image.picture === ""
+                              ? window.location.origin +
+                                "/assets/images/upload-profile-img.svg"
+                              : image.picture
+                          }
+                          className="upload-profile-picture-img"
+                        />
+                        <div className="edit-icon-sec">
+                          <i className="fas fa-upload"></i>
+                        </div>
+                      </Form.Label>
+                    </Form.Group>
+                  </Form>
+                </div>
+              </Col>
+              <Col md={6}>
+                <div className="upload-profile-info">
+                  <h2 className="title">{t("profile_photo")}</h2>
+                  <p className="desc">{t("profile_photo_para")}</p>
+                  <Button
+                    className="upload-profile-img-btn btn-block"
+                    onClick={handleSubmit}
+                  >
+                    {t("submit")}
+                  </Button>
+                </div>
+              </Col>
             </Row>
           </div>
         </Container>
@@ -124,4 +122,7 @@ function mapDispatchToProps(dispatch) {
   return { dispatch };
 }
 
-export default connect(mapStateToPros, mapDispatchToProps)(translate(UploadProfilePicture));
+export default connect(
+  mapStateToPros,
+  mapDispatchToProps
+)(translate(UploadProfilePicture));
