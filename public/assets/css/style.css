@@ -4,7 +4,8 @@ body {
   font-family: "Roboto", sans-serif!important;
 }
 :root {
-  --primary-color: #1e90ff;
+  /* --primary-color: #1e90ff; */
+  --primary-color:#40B0A8;
   --secondary-color:#ffffff;
   --tertiary-color:#242529;
   --quaternary-color :#8a96a3;
@@ -1060,21 +1061,15 @@ button.btn.btn-lg.r-btn {
 .forgot-link {
   float: right;
   font-size: 14px;
-<<<<<<< HEAD
-  margin: 40px 0px 0px 0px;
-  color: #0091ea;
-=======
   margin: 20px 0px 0px 0px;
   color: var(--primary-color);
->>>>>>> remotes/codegama/fansclub-frontend-package/master
   padding: 0;
   font-family: roboto;
   background-color: transparent;
   min-width: unset;
   border: none;
   text-transform: unset;
-  transition: opacity 0.3s ease, background-color 0.3s ease,
-    box-shadow 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, -webkit-box-shadow 0.3s ease;
   display: inline-block;
   white-space: nowrap;
 }
@@ -1109,6 +1104,7 @@ p#two {
   padding: 9px 16px;
   min-height: 48px;
   background: var(--primary-color) !important;
+  border-color: var(--primary-color)!important;
   border-radius: 1000px;
   width: 100%;
   color: var(--secondary-color);
